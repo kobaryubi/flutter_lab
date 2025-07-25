@@ -3,3 +3,10 @@ description: Flutter lab project
 
 publish_to: none
 version: 1.0.0+1
+
+environment:
+  sdk: ^3.3.4
+
+dependencies:
+  flutter:
+    sdk: flutter
