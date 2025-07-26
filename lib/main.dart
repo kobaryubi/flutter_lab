@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const FlutterLabApp());
@@ -9,7 +10,10 @@ class FlutterLabApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('Welcome to Flutter Lab!');
+    return ChangeNotifierProvider(
+      create: (context) => FlutterLabModel(),
+      child: const Text('Welcome to Flutter Lab!'),
+    );
   }
 }
 
