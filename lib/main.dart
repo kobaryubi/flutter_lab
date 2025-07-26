@@ -27,6 +27,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('Welcome to Flutter Lab!');
+    return Scaffold(
+      body: const Text('Welcome to Flutter Lab!'),
+    );
   }
 }
