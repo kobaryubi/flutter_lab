@@ -13,3 +13,10 @@ flutter pub upgrade --major-versions
 ```sh
 flutter pub outdated
 ```
+
+### flutter commands
+
+```sh
+flutter analyze
+flutter clean
+```
