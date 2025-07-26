@@ -13,6 +13,7 @@ class FlutterLabApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => FlutterLabModel(),
       child: MaterialApp(
+        title: 'Flutter Lab',
         theme: ThemeData(),
         home: const HomePage(),
       ),
