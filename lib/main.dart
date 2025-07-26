@@ -12,3 +12,5 @@ class FlutterLabApp extends StatelessWidget {
     return const Text('Welcome to Flutter Lab!');
   }
 }
+
+class FlutterLabModel extends ChangeNotifier {}
