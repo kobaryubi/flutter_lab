@@ -1,3 +1,4 @@
+import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,25 +22,47 @@ class FlutterLabApp extends StatelessWidget {
   }
 }
 
-class FlutterLabModel extends ChangeNotifier {}
+class FlutterLabModel extends ChangeNotifier {
+  var current = WordPair.random();
+
+  void getNext() {
+    current = WordPair.random();
+    notifyListeners();
+  }
+}
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var flutterLabModel = context.watch<FlutterLabModel>();
+    final flutterLabModel = context.watch<FlutterLabModel>();
+    final pair = flutterLabModel.current;
 
     return Scaffold(
       body: Column(
         children: [
           const Text('Welcome to Flutter Lab!'),
+          BigCard(pair: pair),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              flutterLabModel.getNext();
+            },
             child: const Text('Next'),
           )
         ],
       ),
     );
+  }
+}
+
+class BigCard extends StatelessWidget {
+  final WordPair pair;
+
+  const BigCard({super.key, required this.pair});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(pair.asLowerCase);
   }
 }
