@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -12,7 +12,10 @@ class FlutterLabApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => FlutterLabModel(),
-      child: const HomePage(),
+      child: MaterialApp(
+        theme: ThemeData(),
+        home: const HomePage(),
+      ),
     );
   }
 }
