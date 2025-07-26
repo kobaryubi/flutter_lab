@@ -12,9 +12,18 @@ class FlutterLabApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => FlutterLabModel(),
-      child: const Text('Welcome to Flutter Lab!'),
+      child: const HomePage(),
     );
   }
 }
 
 class FlutterLabModel extends ChangeNotifier {}
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text('Welcome to Flutter Lab!');
+  }
+}
