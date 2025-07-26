@@ -29,7 +29,15 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Text('Welcome to Flutter Lab!'),
+      body: Column(
+        children: [
+          const Text('Welcome to Flutter Lab!'),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Next'),
+          )
+        ],
+      ),
     );
   }
 }
