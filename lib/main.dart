@@ -28,6 +28,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var flutterLabModel = context.watch<FlutterLabModel>();
+
     return Scaffold(
       body: Column(
         children: [
