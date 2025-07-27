@@ -54,33 +54,37 @@ class HomePage extends StatelessWidget {
         : Icons.favorite_border;
 
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            BigCard(pair: pair),
-            SizedBox(height: 10),
-            Row(
-              mainAxisSize: MainAxisSize.min,
+      body: Row(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton.icon(
-                  icon: Icon(icon),
-                  onPressed: () {
-                    flutterLabModel.toggleFavorite();
-                  },
-                  label: const Text('Like'),
-                ),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    flutterLabModel.getNext();
-                  },
-                  child: const Text('Next'),
+                BigCard(pair: pair),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ElevatedButton.icon(
+                      icon: Icon(icon),
+                      onPressed: () {
+                        flutterLabModel.toggleFavorite();
+                      },
+                      label: const Text('Like'),
+                    ),
+                    SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        flutterLabModel.getNext();
+                      },
+                      child: const Text('Next'),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
