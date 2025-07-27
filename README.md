@@ -20,3 +20,9 @@ flutter pub outdated
 flutter analyze
 flutter clean
 ```
+
+### Dart commands
+
+```sh
+dart format .
+```
