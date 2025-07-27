@@ -44,7 +44,6 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Welcome to Flutter Lab!'),
             BigCard(pair: pair),
             ElevatedButton(
               onPressed: () {
