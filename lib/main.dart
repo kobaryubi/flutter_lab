@@ -57,11 +57,16 @@ class HomePage extends StatelessWidget {
           children: [
             BigCard(pair: pair),
             SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                flutterLabModel.getNext();
-              },
-              child: const Text('Next'),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    flutterLabModel.getNext();
+                  },
+                  child: const Text('Next'),
+                ),
+              ],
             ),
           ],
         ),
