@@ -49,6 +49,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final flutterLabModel = context.watch<FlutterLabModel>();
     final pair = flutterLabModel.current;
+    final icon = flutterLabModel.favorites.contains(pair)
+        ? Icons.favorite
+        : Icons.favorite_border;
 
     return Scaffold(
       body: Center(
@@ -60,6 +63,14 @@ class HomePage extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
+                ElevatedButton.icon(
+                  icon: Icon(icon),
+                  onPressed: () {
+                    flutterLabModel.toggleFavorite();
+                  },
+                  label: const Text('Like'),
+                ),
+                SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {
                     flutterLabModel.getNext();
