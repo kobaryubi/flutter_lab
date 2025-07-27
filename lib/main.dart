@@ -40,17 +40,20 @@ class HomePage extends StatelessWidget {
     final pair = flutterLabModel.current;
 
     return Scaffold(
-      body: Column(
-        children: [
-          const Text('Welcome to Flutter Lab!'),
-          BigCard(pair: pair),
-          ElevatedButton(
-            onPressed: () {
-              flutterLabModel.getNext();
-            },
-            child: const Text('Next'),
-          ),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Welcome to Flutter Lab!'),
+            BigCard(pair: pair),
+            ElevatedButton(
+              onPressed: () {
+                flutterLabModel.getNext();
+              },
+              child: const Text('Next'),
+            ),
+          ],
+        ),
       ),
     );
   }
