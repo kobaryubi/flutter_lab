@@ -47,6 +47,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: Row(
         children: [
@@ -63,7 +65,10 @@ class HomePage extends StatelessWidget {
             ],
             selectedIndex: 0,
           ),
-          const GeneratorPage(),
+          Container(
+            color: theme.colorScheme.primaryContainer,
+            child: const GeneratorPage(),
+          ),
         ],
       ),
     );
