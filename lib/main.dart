@@ -56,6 +56,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    Widget page;
+    switch (selectedIndex) {
+      case 0:
+        page = const GeneratorPage();
+        break;
+      case 1:
+        page = Placeholder();
+        break;
+      default:
+        throw UnimplementedError('no widget for $selectedIndex');
+    }
+
     return Scaffold(
       body: Row(
         children: [
@@ -80,7 +92,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: Container(
               color: theme.colorScheme.primaryContainer,
-              child: const GeneratorPage(),
+              child: page,
             ),
           ),
         ],
