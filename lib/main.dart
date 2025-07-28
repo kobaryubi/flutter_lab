@@ -56,6 +56,19 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
+          NavigationRail(
+            destinations: [
+              NavigationRailDestination(
+                icon: Icon(Icons.home),
+                label: Text('Home'),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.favorite),
+                label: Text('Favorites'),
+              ),
+            ],
+            selectedIndex: 0,
+          ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
