@@ -47,12 +47,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final flutterLabModel = context.watch<FlutterLabModel>();
-    final pair = flutterLabModel.current;
-    final icon = flutterLabModel.favorites.contains(pair)
-        ? Icons.favorite
-        : Icons.favorite_border;
-
     return Scaffold(
       body: Row(
         children: [
@@ -69,34 +63,7 @@ class HomePage extends StatelessWidget {
             ],
             selectedIndex: 0,
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                BigCard(pair: pair),
-                SizedBox(height: 10),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ElevatedButton.icon(
-                      icon: Icon(icon),
-                      onPressed: () {
-                        flutterLabModel.toggleFavorite();
-                      },
-                      label: const Text('Like'),
-                    ),
-                    SizedBox(width: 10),
-                    ElevatedButton(
-                      onPressed: () {
-                        flutterLabModel.getNext();
-                      },
-                      child: const Text('Next'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          const GeneratorPage(),
         ],
       ),
     );
@@ -124,6 +91,48 @@ class BigCard extends StatelessWidget {
           style: style,
           semanticsLabel: "${pair.first} ${pair.second}",
         ),
+      ),
+    );
+  }
+}
+
+class GeneratorPage extends StatelessWidget {
+  const GeneratorPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final flutterLabModel = context.watch<FlutterLabModel>();
+    final pair = flutterLabModel.current;
+    final icon = flutterLabModel.favorites.contains(pair)
+        ? Icons.favorite
+        : Icons.favorite_border;
+
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          BigCard(pair: pair),
+          SizedBox(height: 10),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ElevatedButton.icon(
+                icon: Icon(icon),
+                onPressed: () {
+                  flutterLabModel.toggleFavorite();
+                },
+                label: const Text('Like'),
+              ),
+              SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  flutterLabModel.getNext();
+                },
+                child: const Text('Next'),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
