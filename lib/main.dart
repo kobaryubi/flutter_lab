@@ -37,7 +37,10 @@ class FavoritePage extends StatelessWidget {
     return ListView.builder(
       itemCount: favorites.length,
       itemBuilder: (context, index) {
-        return Text(favorites[index].asLowerCase);
+        return ListTile(
+          leading: const Icon(Icons.favorite),
+          title: Text(favorites[index].asLowerCase),
+        );
       },
     );
   }
