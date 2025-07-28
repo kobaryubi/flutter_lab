@@ -50,6 +50,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -68,7 +70,12 @@ class _HomePageState extends State<HomePage> {
                 label: Text('Favorites'),
               ),
             ],
-            selectedIndex: 0,
+            selectedIndex: selectedIndex,
+            onDestinationSelected: (value) {
+              setState(() {
+                selectedIndex = value;
+              });
+            },
           ),
           Expanded(
             child: Container(
