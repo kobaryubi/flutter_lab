@@ -65,9 +65,11 @@ class HomePage extends StatelessWidget {
             ],
             selectedIndex: 0,
           ),
-          Container(
-            color: theme.colorScheme.primaryContainer,
-            child: const GeneratorPage(),
+          Expanded(
+            child: Container(
+              color: theme.colorScheme.primaryContainer,
+              child: const GeneratorPage(),
+            ),
           ),
         ],
       ),
