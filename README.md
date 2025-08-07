@@ -2,6 +2,13 @@
 
 ## Misc
 
+```sh
+flutter run lib/main.dart
+
+# Run the code generator
+dart run build_runner watch -d
+```
+
 ### To automatically upgrade your package dependencies to the latest versions
 
 ```sh
