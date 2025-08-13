@@ -16,6 +16,18 @@ class _CounterState extends State<CounterWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Text('$_counter');
+    return Column(
+      children: [
+        Text('Count: $_counter'),
+        TextButton(
+          onPressed: () {
+            setState(() {
+              _incrementCounter();
+            });
+          },
+          child: const Text('Increment'),
+        ),
+      ],
+    );
   }
 }
