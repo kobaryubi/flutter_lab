@@ -1,9 +1,10 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/compass_app.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const FlutterLabApp());
+  runApp(MultiProvider(providers: [], child: const CompassApp()));
 }
 
 class FlutterLabApp extends StatelessWidget {
