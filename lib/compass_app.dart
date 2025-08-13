@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/routing/routes.dart';
+import 'package:flutter_lab/ui/home/home_view_model.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final _router = GoRouter(
-  routes: [GoRoute(path: '/', builder: (context, state) => const HomeScreen())],
+  routes: [
+    GoRoute(
+      path: Routes.home,
+      builder: (context, state) {
+        final viewModel = HomeViewModel();
+        return HomeScreen(viewModel: viewModel);
+      },
+    ),
+  ],
 );
 
 class CompassApp extends StatelessWidget {
