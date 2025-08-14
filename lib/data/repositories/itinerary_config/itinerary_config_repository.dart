@@ -3,5 +3,5 @@ import 'package:flutter_lab/utils/result.dart';
 
 abstract class ItineraryConfigRepository {
   Future<Result<ItineraryConfig>> getItineraryConfig();
-  Future<Result<void>> setItineraryConfig(ItineraryConfig itineraryConfig);
+  Future<Result<bool>> setItineraryConfig(ItineraryConfig itineraryConfig);
 }
