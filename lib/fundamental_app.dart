@@ -16,9 +16,7 @@ class FundamentalApp extends StatelessWidget {
                   const Text('Hello, World!'),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
-                      print('Click!');
-                    },
+                    onPressed: () {},
                     child: const Text('A button'),
                   ),
                 ],
