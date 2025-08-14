@@ -6,7 +6,7 @@ part 'booking.freezed.dart';
 part 'booking.g.dart';
 
 @freezed
-class Booking with _$Booking {
+abstract class Booking with _$Booking {
   const factory Booking({
     int? id,
     required DateTime startDate,

@@ -4,7 +4,7 @@ part 'destination.freezed.dart';
 part 'destination.g.dart';
 
 @freezed
-class Destination with _$Destination {
+abstract class Destination with _$Destination {
   const factory Destination({
     required String ref,
     required String name,

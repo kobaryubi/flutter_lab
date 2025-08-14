@@ -6,7 +6,7 @@ part 'activity.g.dart';
 enum TimeOfDay { any, morning, afternoon, evening, night }
 
 @freezed
-class Activity with _$Activity {
+abstract class Activity with _$Activity {
   const factory Activity({
     required String name,
     required String description,
