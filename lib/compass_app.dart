@@ -9,6 +9,7 @@ class CompassApp extends StatelessWidget {
     return WidgetsApp.router(
       routerConfig: router(),
       color: const Color(0x00ffffff),
+      title: 'Compass App',
     );
   }
 }
