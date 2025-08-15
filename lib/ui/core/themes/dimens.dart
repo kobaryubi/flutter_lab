@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-abstract final class Dimens {
+final class Dimens {
   const Dimens();
 
   static const paddingHorizontal = 20.0;
