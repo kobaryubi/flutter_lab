@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/routing/routes.dart';
-import 'package:flutter_lab/ui/home/home_view_model.dart';
-import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
-import 'package:go_router/go_router.dart';
-
-final _router = GoRouter(
-  routes: [
-    GoRoute(
-      path: Routes.home,
-      builder: (context, state) {
-        final viewModel = HomeViewModel();
-        return HomeScreen(viewModel: viewModel);
-      },
-    ),
-  ],
-);
+import 'package:flutter_lab/routing/router.dart';
 
 class CompassApp extends StatelessWidget {
   const CompassApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: _router);
+    return WidgetsApp.router(
+      routerConfig: router(),
+      color: const Color(0x00ffffff),
+    );
   }
 }
