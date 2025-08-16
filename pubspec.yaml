@@ -28,6 +28,7 @@ dev_dependencies:
   json_serializable: ^6.10.0
 
 flutter:
+  generate: true
   assets:
     - assets/activities.json
     - assets/destinations.json
