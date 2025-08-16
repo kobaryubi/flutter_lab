@@ -10,6 +10,7 @@ dart run build_runner watch -d
 dart run build_runner build
 
 flutter create --platforms android .
+flutter gen-l10n
 ```
 
 ### To automatically upgrade your package dependencies to the latest versions
