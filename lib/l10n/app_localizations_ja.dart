@@ -10,4 +10,65 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get helloWorld => 'こんにちは、世界！';
+
+  @override
+  String get activities => 'Activities';
+
+  @override
+  String get addDates => 'Add Dates';
+
+  @override
+  String get bookingDeleted => 'Booking deleted';
+
+  @override
+  String get bookNewTrip => 'Book New Trip';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get daytime => 'Daytime';
+
+  @override
+  String get errorWhileDeletingBooking => 'Error while deleting booking';
+
+  @override
+  String get errorWhileLoadingActivities => 'Error while loading activities';
+
+  @override
+  String get errorWhileLoadingBooking => 'Error while loading booking';
+
+  @override
+  String get errorWhileLoadingContinents => 'Error while loading continents';
+
+  @override
+  String get errorWhileLoadingDestinations =>
+      'Error while loading destinations';
+
+  @override
+  String get errorWhileLoadingHome => 'Error while loading home';
+
+  @override
+  String get errorWhileLogin => 'Error while trying to login';
+
+  @override
+  String get errorWhileLogout => 'Error while trying to logout';
+
+  @override
+  String get errorWhileSavingActivities => 'Error while saving activities';
+
+  @override
+  String get errorWhileSavingItinerary => 'Error while saving itinerary';
+
+  @override
+  String get errorWhileSharing => 'Error while sharing booking';
+
+  @override
+  String get evening => 'Evening';
+
+  @override
+  String get login => 'Login';
 }

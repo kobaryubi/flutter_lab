@@ -103,6 +103,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hello World!'**
   String get helloWorld;
+
+  /// No description provided for @activities.
+  ///
+  /// In en, this message translates to:
+  /// **'Activities'**
+  String get activities;
+
+  /// No description provided for @addDates.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Dates'**
+  String get addDates;
+
+  /// No description provided for @bookingDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking deleted'**
+  String get bookingDeleted;
+
+  /// No description provided for @bookNewTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Book New Trip'**
+  String get bookNewTrip;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @daytime.
+  ///
+  /// In en, this message translates to:
+  /// **'Daytime'**
+  String get daytime;
+
+  /// No description provided for @errorWhileDeletingBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while deleting booking'**
+  String get errorWhileDeletingBooking;
+
+  /// No description provided for @errorWhileLoadingActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while loading activities'**
+  String get errorWhileLoadingActivities;
+
+  /// No description provided for @errorWhileLoadingBooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while loading booking'**
+  String get errorWhileLoadingBooking;
+
+  /// No description provided for @errorWhileLoadingContinents.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while loading continents'**
+  String get errorWhileLoadingContinents;
+
+  /// No description provided for @errorWhileLoadingDestinations.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while loading destinations'**
+  String get errorWhileLoadingDestinations;
+
+  /// No description provided for @errorWhileLoadingHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while loading home'**
+  String get errorWhileLoadingHome;
+
+  /// No description provided for @errorWhileLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while trying to login'**
+  String get errorWhileLogin;
+
+  /// No description provided for @errorWhileLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while trying to logout'**
+  String get errorWhileLogout;
+
+  /// No description provided for @errorWhileSavingActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while saving activities'**
+  String get errorWhileSavingActivities;
+
+  /// No description provided for @errorWhileSavingItinerary.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while saving itinerary'**
+  String get errorWhileSavingItinerary;
+
+  /// No description provided for @errorWhileSharing.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while sharing booking'**
+  String get errorWhileSharing;
+
+  /// No description provided for @evening.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening'**
+  String get evening;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
 }
 
 class _AppLocalizationsDelegate
