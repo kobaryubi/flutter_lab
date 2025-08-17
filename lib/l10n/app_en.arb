@@ -42,5 +42,33 @@
   "evening": "Evening",
   "@evening": {},
   "login": "Login",
-  "@login": {}
+  "@login": {},
+  "nameTrips": "{name}'s Trips",
+  "@nameTrips": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "search": "Search",
+  "@search": {},
+  "searchDestination": "Search destination",
+  "@searchDestination": {},
+  "selected": "{count} selected",
+  "@selected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareTrip": "Share Trip",
+  "@shareTrip": {},
+  "tryAgain": "Try again",
+  "@tryAgain": {},
+  "yourChosenActivities": "Your chosen activities",
+  "@yourChosenActivities": {},
+  "when": "When",
+  "@when": {}
 }
