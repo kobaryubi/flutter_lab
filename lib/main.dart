@@ -2,15 +2,21 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/compass_app.dart';
 import 'package:flutter_lab/config/dependencies.dart';
-import 'package:flutter_lab/fundamental_app.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   Logger.root.level = Level.ALL;
 
-  // runApp(const FundamentalApp());
-  runApp(MultiProvider(providers: providersLocal, child: const CompassApp()));
+  runApp(
+    ProviderScope(
+      child: MultiProvider(
+        providers: providersLocal,
+        child: const CompassApp(),
+      ),
+    ),
+  );
 }
 
 class FlutterLabApp extends StatelessWidget {
