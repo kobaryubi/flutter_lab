@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-abstract final class CompassAppColors {
+abstract final class AppColors {
   static const primary = Color(0xff3d6838);
   static const onPrimary = Color(0xffffffff);
   static const primaryContainer = Color(0xffbdf0b3);
