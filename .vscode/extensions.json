@@ -1,5 +1,6 @@
 {
   "recommendations": [
-    "google.arb-editor"
+    "google.arb-editor",
+    "robert-brunhage.flutter-riverpod-snippets"
   ]
 }
