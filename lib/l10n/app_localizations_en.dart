@@ -71,4 +71,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login => 'Login';
+
+  @override
+  String nameTrips(String name) {
+    return '$name\'s Trips';
+  }
+
+  @override
+  String get search => 'Search';
+
+  @override
+  String get searchDestination => 'Search destination';
+
+  @override
+  String selected(int count) {
+    return '$count selected';
+  }
+
+  @override
+  String get shareTrip => 'Share Trip';
+
+  @override
+  String get tryAgain => 'Try again';
+
+  @override
+  String get yourChosenActivities => 'Your chosen activities';
+
+  @override
+  String get when => 'When';
 }

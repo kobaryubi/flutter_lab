@@ -223,6 +223,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login'**
   String get login;
+
+  /// No description provided for @nameTrips.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s Trips'**
+  String nameTrips(String name);
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
+
+  /// No description provided for @searchDestination.
+  ///
+  /// In en, this message translates to:
+  /// **'Search destination'**
+  String get searchDestination;
+
+  /// No description provided for @selected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} selected'**
+  String selected(int count);
+
+  /// No description provided for @shareTrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Trip'**
+  String get shareTrip;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get tryAgain;
+
+  /// No description provided for @yourChosenActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'Your chosen activities'**
+  String get yourChosenActivities;
+
+  /// No description provided for @when.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get when;
 }
 
 class _AppLocalizationsDelegate
