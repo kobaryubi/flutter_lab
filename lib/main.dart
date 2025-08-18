@@ -1,6 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/compass_app.dart';
+import 'package:flutter_lab/flutter_lab_app.dart';
 import 'package:flutter_lab/config/dependencies.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logging/logging.dart';
@@ -13,26 +13,10 @@ void main() {
     ProviderScope(
       child: MultiProvider(
         providers: providersLocal,
-        child: const CompassApp(),
+        child: const FlutterLabApp(),
       ),
     ),
   );
-}
-
-class FlutterLabApp extends StatelessWidget {
-  const FlutterLabApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => FlutterLabModel(),
-      child: MaterialApp(
-        title: 'Flutter Lab',
-        theme: ThemeData(),
-        home: const HomePage(),
-      ),
-    );
-  }
 }
 
 class FavoritePage extends StatelessWidget {
