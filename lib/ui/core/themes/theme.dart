@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/widgets.dart';
 
 abstract final class TextStyles {
   static final headlineLarge = TextStyle(

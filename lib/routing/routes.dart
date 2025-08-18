@@ -10,4 +10,7 @@ abstract final class Routes {
   static const booking = '/$bookingRelative';
   static const bookingRelative = 'booking';
   static String bookingWithId(int id) => '$booking/$id';
+
+  static const riverpodGettingStarted = '/$riverpodGettingStartedRelative';
+  static const riverpodGettingStartedRelative = 'riverpod-getting-started';
 }
