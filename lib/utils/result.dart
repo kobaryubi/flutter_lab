@@ -1,12 +1,3 @@
-// /// switch (result) {
-// ///   case Ok(): {
-// ///     print(result.value);
-// ///   }
-// ///   case Error(): {
-// ///     print(result.error);
-// ///   }
-// /// }
-// /// ```
 sealed class Result<T> {
   const Result();
 
