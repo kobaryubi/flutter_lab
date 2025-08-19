@@ -17,7 +17,7 @@ class OptimisticStateViewModel extends ChangeNotifier {
   bool _subscribed = false;
   bool get subscribed => _subscribed;
 
-  late final Command0 subscribe;
+  late final Command0<void> subscribe;
 
   Future<Result<void>> _subscribe() async {
     if (_subscribed) {
