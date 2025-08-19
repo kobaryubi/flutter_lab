@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 final class Dimens {
   const Dimens();
 
+  static const padding = 8.0;
   static const paddingHorizontal = 20.0;
   static const paddingVertical = 24.0;
   static const paddingScreenHorizontal = 16.0;
@@ -15,4 +16,7 @@ final class Dimens {
     horizontal: paddingScreenHorizontal,
     vertical: paddingScreenVertical,
   );
+
+  static const iconWidth = 24.0;
+  static const iconHeight = 24.0;
 }
