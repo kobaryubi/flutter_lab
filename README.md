@@ -14,6 +14,8 @@ flutter gen-l10n
 dart run vector_graphics_compiler -i assets/icons/add_location_outlined.svg -o assets/icons/add_location_outlined.svg.vec
 
 dart run custom_lint
+flutter widget-preview start
+fluttergen
 ```
 
 ### To automatically upgrade your package dependencies to the latest versions
