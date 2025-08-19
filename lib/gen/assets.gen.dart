@@ -21,10 +21,6 @@ class $AssetsIconsGen {
   SvgGenImage get addLocationOutlined =>
       const SvgGenImage.vec('assets/icons/add_location_outlined.svg');
 
-  /// File path: assets/icons/add_location_outlined.svg.vec
-  SvgGenImage get addLocationOutlinedSvg =>
-      const SvgGenImage.vec('assets/icons/add_location_outlined.svg.vec');
-
   /// File path: assets/icons/delete.svg
   SvgGenImage get delete => const SvgGenImage.vec('assets/icons/delete.svg');
 
@@ -32,12 +28,7 @@ class $AssetsIconsGen {
   SvgGenImage get logout => const SvgGenImage.vec('assets/icons/logout.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [
-    addLocationOutlined,
-    addLocationOutlinedSvg,
-    delete,
-    logout,
-  ];
+  List<SvgGenImage> get values => [addLocationOutlined, delete, logout];
 }
 
 class Assets {
