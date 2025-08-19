@@ -1,5 +1,5 @@
 import 'package:flutter_lab/utils/result.dart';
 
-abstract class SubscribeRepository {
+abstract class SubscriptionRepository {
   Future<Result<void>> subscribe();
 }

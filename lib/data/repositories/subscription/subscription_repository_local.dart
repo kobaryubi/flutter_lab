@@ -1,7 +1,7 @@
-import 'package:flutter_lab/data/repositories/subscribe/subscribe_repository.dart';
+import 'package:flutter_lab/data/repositories/subscription/subscription_repository.dart';
 import 'package:flutter_lab/utils/result.dart';
 
-class SubscribeRepositoryLocal implements SubscribeRepository {
+class SubscriptionRepositoryLocal implements SubscriptionRepository {
   @override
   Future<Result<void>> subscribe() async {
     try {
