@@ -38,10 +38,17 @@ dev_dependencies:
   custom_lint: ^0.8.0
   riverpod_generator: ^3.0.0-dev.17
   riverpod_lint: ^3.0.0-dev.17
+  flutter_gen: ^5.11.0
+
+flutter_gen:
+  integrations:
+    flutter_svg: true
 
 flutter:
   generate: true
   assets:
     - assets/activities.json
     - assets/destinations.json
-    - assets/icons/
+    - path: assets/icons/
+      transformers:
+        - package: vector_graphics_compiler
