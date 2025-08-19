@@ -1,17 +1,10 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:vector_graphics/vector_graphics_compat.dart';
 
-class CompassFab extends StatelessWidget {
-  const CompassFab({
-    super.key,
-    required this.icon,
-    required this.label,
-    required this.onPressed,
-  });
+class Fab extends StatelessWidget {
+  const Fab({super.key, required this.label, required this.onPressed});
 
-  final String icon;
   final String label;
   final VoidCallback onPressed;
 
@@ -26,24 +19,23 @@ class CompassFab extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.0),
-            color: CompassAppColors.primaryContainer,
+            color: AppColors.primaryContainer,
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SvgPicture(
-                AssetBytesLoader(icon),
+              Assets.icons.addLocationOutlined.svg(
                 width: 24,
                 height: 24,
                 colorFilter: ColorFilter.mode(
-                  CompassAppColors.onPrimaryContainer,
+                  AppColors.onPrimaryContainer,
                   BlendMode.srcIn,
                 ),
               ),
               const SizedBox(width: 8.0),
               Text(
                 label,
-                style: TextStyle(color: CompassAppColors.onPrimaryContainer),
+                style: TextStyle(color: AppColors.onPrimaryContainer),
               ),
             ],
           ),
