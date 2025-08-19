@@ -11,6 +11,12 @@ abstract final class Routes {
   static const bookingRelative = 'booking';
   static String bookingWithId(int id) => '$booking/$id';
 
+  static const compass = '/$compassRelative';
+  static const compassRelative = 'compass';
+
+  static const optimisticState = '/$optimisticStateRelative';
+  static const optimisticStateRelative = 'optimistic-state';
+
   static const riverpodGettingStarted = '/$riverpodGettingStartedRelative';
   static const riverpodGettingStartedRelative = 'riverpod-getting-started';
 }
