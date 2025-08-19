@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/l10n/app_localizations.dart';
 import 'package:flutter_lab/routing/router.dart';
+import 'package:provider/provider.dart';
 
 class FlutterLabApp extends StatelessWidget {
   const FlutterLabApp({super.key});
