@@ -18,11 +18,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   static const List<AppLink> links = [
     AppLink(title: 'compass', route: Routes.compass),
+    AppLink(title: 'optimistic state', route: Routes.optimisticState),
+    // riverpod
+    AppLink(title: 'riverpod', route: Routes.riverpod),
     AppLink(
       title: 'riverpod getting started',
       route: Routes.riverpodGettingStarted,
     ),
-    AppLink(title: 'optimistic state', route: Routes.optimisticState),
   ];
 
   @override
