@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CounterWidget extends StatefulWidget {
+  const CounterWidget({super.key});
+
   @override
   State<CounterWidget> createState() => _CounterState();
 }
