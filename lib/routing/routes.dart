@@ -17,6 +17,11 @@ abstract final class Routes {
   static const optimisticState = '/$optimisticStateRelative';
   static const optimisticStateRelative = 'optimistic-state';
 
-  static const riverpodGettingStarted = '/$riverpodGettingStartedRelative';
-  static const riverpodGettingStartedRelative = 'riverpod-getting-started';
+  static const riverpod = '/$riverpodRelative';
+  static const riverpodRelative = 'riverpod';
+  static const riverpodGettingStarted =
+      '/$riverpodRelative/$gettingStartedRelative';
+  static const gettingStartedRelative = 'getting-started';
+  static const riverpodRandomJoke = '/$riverpodRelative/$randomJokeRelative';
+  static const randomJokeRelative = 'random-joke';
 }
