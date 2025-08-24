@@ -19,8 +19,7 @@ class _ButtonStyleButtonState extends State<ButtonStyleButton> {
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      onTap: widget.onPressed,
-      child: widget.child,
+      child: GestureDetector(onTap: widget.onPressed, child: widget.child),
     );
   }
 }
