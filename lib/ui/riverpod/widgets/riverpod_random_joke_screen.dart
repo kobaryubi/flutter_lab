@@ -9,7 +9,18 @@ class RiverpodRandomJokeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       color: AppColors.white1,
-      child: SafeArea(child: Text('riverpod random joke screen')),
+      child: SafeArea(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Text(
+              'What kind of bagel can fly?\n\n'
+              'A plain bagel.',
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
