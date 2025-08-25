@@ -1,9 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/domain/models/todo/todo.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:uuid/uuid.dart';
+
+part 'riverpod_getting_started_screen.g.dart';
 
 enum TodoListFilter { all, active, completed }
 
@@ -42,5 +47,42 @@ class RiverpodGettingStartedScreen extends HookConsumerWidget {
         ),
       ),
     );
+  }
+}
+
+const _uuid = Uuid();
+
+@riverpod
+class TodoListNotifier extends _$TodoListNotifier {
+  @override
+  List<Todo> build() => [
+    const Todo(id: 'todo-0', description: 'Buy cookies'),
+    const Todo(id: 'todo-1', description: 'Star Riverpod'),
+    const Todo(id: 'todo-2', description: 'Have a walk'),
+  ];
+
+  void add(String description) {
+    state = [...state, Todo(id: _uuid.v4(), description: description)];
+  }
+
+  void toggle(String id) {
+    state = [
+      for (final todo in state)
+        if (todo.id == id) todo.copyWith(completed: !todo.completed) else todo,
+    ];
+  }
+
+  void edit({required String id, required String description}) {
+    state = [
+      for (final todo in state)
+        if (todo.id == id)
+          Todo(id: todo.id, completed: todo.completed, description: description)
+        else
+          todo,
+    ];
+  }
+
+  void remove(Todo target) {
+    state = state.where((todo) => todo.id != target.id).toList();
   }
 }
