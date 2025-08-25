@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Todo {
 
- String get description; int get id; bool get completed;
+ String get description; String get id; bool get completed;
 /// Create a copy of Todo
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $TodoCopyWith<$Res>  {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) _then) = _$TodoCopyWithImpl;
 @useResult
 $Res call({
- String description, int id, bool completed
+ String description, String id, bool completed
 });
 
 
@@ -69,7 +69,7 @@ class _$TodoCopyWithImpl<$Res>
   return _then(_self.copyWith(
 description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,completed: null == completed ? _self.completed : completed // ignore: cast_nullable_to_non_nullable
+as String,completed: null == completed ? _self.completed : completed // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -155,7 +155,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String description,  int id,  bool completed)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String description,  String id,  bool completed)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Todo() when $default != null:
 return $default(_that.description,_that.id,_that.completed);case _:
@@ -176,7 +176,7 @@ return $default(_that.description,_that.id,_that.completed);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String description,  int id,  bool completed)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String description,  String id,  bool completed)  $default,) {final _that = this;
 switch (_that) {
 case _Todo():
 return $default(_that.description,_that.id,_that.completed);case _:
@@ -196,7 +196,7 @@ return $default(_that.description,_that.id,_that.completed);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String description,  int id,  bool completed)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String description,  String id,  bool completed)?  $default,) {final _that = this;
 switch (_that) {
 case _Todo() when $default != null:
 return $default(_that.description,_that.id,_that.completed);case _:
@@ -215,7 +215,7 @@ class _Todo implements Todo {
   factory _Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);
 
 @override final  String description;
-@override final  int id;
+@override final  String id;
 @override@JsonKey() final  bool completed;
 
 /// Create a copy of Todo
@@ -251,7 +251,7 @@ abstract mixin class _$TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
   factory _$TodoCopyWith(_Todo value, $Res Function(_Todo) _then) = __$TodoCopyWithImpl;
 @override @useResult
 $Res call({
- String description, int id, bool completed
+ String description, String id, bool completed
 });
 
 
@@ -272,7 +272,7 @@ class __$TodoCopyWithImpl<$Res>
   return _then(_Todo(
 description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,completed: null == completed ? _self.completed : completed // ignore: cast_nullable_to_non_nullable
+as String,completed: null == completed ? _self.completed : completed // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

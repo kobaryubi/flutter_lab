@@ -7,7 +7,7 @@ part 'todo.g.dart';
 abstract class Todo with _$Todo {
   const factory Todo({
     required String description,
-    required int id,
+    required String id,
     @Default(false) bool completed,
   }) = _Todo;
 
