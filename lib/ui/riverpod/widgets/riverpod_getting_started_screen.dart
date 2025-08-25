@@ -12,6 +12,13 @@ part 'riverpod_getting_started_screen.g.dart';
 
 enum TodoListFilter { all, active, completed }
 
+final uncompletedTodosCount = Provider<int>((ref) {
+  return ref
+      .watch(todoListNotifierProvider)
+      .where((todo) => !todo.completed)
+      .length;
+});
+
 class RiverpodGettingStartedScreen extends HookConsumerWidget {
   const RiverpodGettingStartedScreen({super.key});
 
@@ -42,6 +49,7 @@ class RiverpodGettingStartedScreen extends HookConsumerWidget {
                 cursorColor: AppColors.gray1,
                 backgroundCursorColor: AppColors.primary,
               ),
+              // toolbar
             ],
           ),
         ),
