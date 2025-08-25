@@ -4,6 +4,7 @@ import 'package:flutter_lab/domain/models/todo/todo.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
+import 'package:flutter_lab/ui/core/ui/text_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
@@ -18,6 +19,30 @@ final uncompletedTodosCount = Provider<int>((ref) {
       .where((todo) => !todo.completed)
       .length;
 });
+
+@riverpod
+class TodoListFilterNotifier extends _$TodoListFilterNotifier {
+  @override
+  TodoListFilter build() => TodoListFilter.all;
+
+  @override
+  set state(TodoListFilter newState) => super.state = newState;
+}
+
+@riverpod
+List<Todo> filteredTodos(Ref ref) {
+  final filter = ref.watch(todoListFilterNotifierProvider);
+  final todos = ref.watch(todoListNotifierProvider);
+
+  switch (filter) {
+    case TodoListFilter.completed:
+      return todos.where((todo) => todo.completed).toList();
+    case TodoListFilter.active:
+      return todos.where((todo) => !todo.completed).toList();
+    case TodoListFilter.all:
+      return todos;
+  }
+}
 
 class RiverpodGettingStartedScreen extends HookConsumerWidget {
   const RiverpodGettingStartedScreen({super.key});
@@ -50,6 +75,7 @@ class RiverpodGettingStartedScreen extends HookConsumerWidget {
                 backgroundCursorColor: AppColors.primary,
               ),
               // toolbar
+              const _Toolbar(),
             ],
           ),
         ),
@@ -92,5 +118,40 @@ class TodoListNotifier extends _$TodoListNotifier {
 
   void remove(Todo target) {
     state = state.where((todo) => todo.id != target.id).toList();
+  }
+}
+
+class _Toolbar extends HookConsumerWidget {
+  const _Toolbar();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          '${ref.watch(uncompletedTodosCount)} items left',
+          overflow: TextOverflow.ellipsis,
+        ),
+        TextButton(
+          onPressed: () =>
+              ref.read(todoListFilterNotifierProvider.notifier).state =
+                  TodoListFilter.all,
+          child: const Text('All'),
+        ),
+        TextButton(
+          onPressed: () =>
+              ref.read(todoListFilterNotifierProvider.notifier).state =
+                  TodoListFilter.active,
+          child: const Text('Active'),
+        ),
+        TextButton(
+          onPressed: () =>
+              ref.read(todoListFilterNotifierProvider.notifier).state =
+                  TodoListFilter.completed,
+          child: const Text('Completed'),
+        ),
+      ],
+    );
   }
 }
