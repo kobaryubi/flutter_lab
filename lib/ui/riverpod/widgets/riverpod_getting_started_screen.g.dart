@@ -6,6 +6,101 @@ part of 'riverpod_getting_started_screen.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+@ProviderFor(TodoListFilterNotifier)
+const todoListFilterNotifierProvider = TodoListFilterNotifierProvider._();
+
+final class TodoListFilterNotifierProvider
+    extends $NotifierProvider<TodoListFilterNotifier, TodoListFilter> {
+  const TodoListFilterNotifierProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'todoListFilterNotifierProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$todoListFilterNotifierHash();
+
+  @$internal
+  @override
+  TodoListFilterNotifier create() => TodoListFilterNotifier();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(TodoListFilter value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<TodoListFilter>(value),
+    );
+  }
+}
+
+String _$todoListFilterNotifierHash() =>
+    r'd462b4cdb3ca1abf01a1b18376c4664b3a69c3b1';
+
+abstract class _$TodoListFilterNotifier extends $Notifier<TodoListFilter> {
+  TodoListFilter build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<TodoListFilter, TodoListFilter>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<TodoListFilter, TodoListFilter>,
+              TodoListFilter,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
+@ProviderFor(filteredTodos)
+const filteredTodosProvider = FilteredTodosProvider._();
+
+final class FilteredTodosProvider
+    extends $FunctionalProvider<List<Todo>, List<Todo>, List<Todo>>
+    with $Provider<List<Todo>> {
+  const FilteredTodosProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'filteredTodosProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$filteredTodosHash();
+
+  @$internal
+  @override
+  $ProviderElement<List<Todo>> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  List<Todo> create(Ref ref) {
+    return filteredTodos(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(List<Todo> value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<List<Todo>>(value),
+    );
+  }
+}
+
+String _$filteredTodosHash() => r'06f042c3fa992832de1fb6a9579eb5b76cb682fa';
+
 @ProviderFor(TodoListNotifier)
 const todoListNotifierProvider = TodoListNotifierProvider._();
 
