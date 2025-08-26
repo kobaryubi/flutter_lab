@@ -4,15 +4,19 @@ import 'package:flutter_lab/domain/models/todo/todo.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
+import 'package:flutter_lab/ui/core/ui/elevated_button.dart';
 import 'package:flutter_lab/ui/core/ui/text_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
 
 part 'riverpod_getting_started_screen.g.dart';
 
+/// The different filters that can be applied to the todo list.
 enum TodoListFilter { all, active, completed }
 
+/// The number of uncompleted todos.
 final uncompletedTodosCount = Provider<int>((ref) {
   return ref
       .watch(todoListNotifierProvider)
@@ -44,6 +48,11 @@ List<Todo> filteredTodos(Ref ref) {
   }
 }
 
+@riverpod
+Todo _currentTodo(Ref ref) {
+  throw UnimplementedError();
+}
+
 class RiverpodGettingStartedScreen extends HookConsumerWidget {
   const RiverpodGettingStartedScreen({super.key});
 
@@ -51,6 +60,12 @@ class RiverpodGettingStartedScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final todoFocusNode = useFocusNode();
     final todoController = useTextEditingController();
+    final todos = ref.watch(filteredTodosProvider);
+
+    final onSubmitted = useCallback<ValueChanged<String>>((title) {
+      ref.read(todoListNotifierProvider.notifier).add(title);
+      todoController.clear();
+    }, [todoController]);
 
     return ColoredBox(
       color: AppColors.white1,
@@ -73,15 +88,87 @@ class RiverpodGettingStartedScreen extends HookConsumerWidget {
                 style: TextStyles.bodyMedium.copyWith(color: AppColors.black1),
                 cursorColor: AppColors.gray1,
                 backgroundCursorColor: AppColors.primary,
+                onSubmitted: onSubmitted,
               ),
               // toolbar
               const _Toolbar(),
+              for (final todo in todos)
+                Dismissible(
+                  key: ValueKey(todo.id),
+                  onDismissed: (_) {
+                    ref.read(todoListNotifierProvider.notifier).remove(todo);
+                  },
+                  child: ProviderScope(
+                    overrides: [_currentTodoProvider.overrideWithValue(todo)],
+                    child: const TodoItem(),
+                  ),
+                ),
             ],
           ),
         ),
       ),
     );
   }
+}
+
+class TodoItem extends HookConsumerWidget {
+  const TodoItem({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final todo = ref.watch(_currentTodoProvider);
+    final itemFocusNode = useFocusNode();
+    final itemIsFocused = useIsFocused(itemFocusNode);
+
+    final textEditingController = useTextEditingController();
+    final textFieldFocusNode = useFocusNode();
+
+    return Focus(
+      focusNode: itemFocusNode,
+      onFocusChange: (focused) {
+        if (focused) {
+          textEditingController.text = todo.description;
+        } else {
+          ref
+              .read(todoListNotifierProvider.notifier)
+              .edit(id: todo.id, description: textEditingController.text);
+        }
+      },
+      child: ElevatedButton(
+        onPressed: () {
+          itemFocusNode.requestFocus();
+          textFieldFocusNode.requestFocus();
+        },
+        child: itemIsFocused
+            ? EditableText(
+                focusNode: textFieldFocusNode,
+                controller: textEditingController,
+                style: TextStyles.bodyMedium.copyWith(color: AppColors.black1),
+                cursorColor: AppColors.gray1,
+                backgroundCursorColor: AppColors.primary,
+              )
+            : Text(todo.description),
+      ),
+    );
+  }
+}
+
+bool useIsFocused(FocusNode node) {
+  final isFocused = useState(node.hasFocus);
+
+  useEffect(
+    () {
+      void listener() {
+        isFocused.value = node.hasFocus;
+      }
+
+      node.addListener(listener);
+      return () => node.removeListener(listener);
+    },
+    [node],
+  );
+
+  return isFocused.value;
 }
 
 const _uuid = Uuid();
@@ -116,6 +203,7 @@ class TodoListNotifier extends _$TodoListNotifier {
     ];
   }
 
+  /// Removes a todo from the list.
   void remove(Todo target) {
     state = state.where((todo) => todo.id != target.id).toList();
   }

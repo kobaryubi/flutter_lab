@@ -101,6 +101,46 @@ final class FilteredTodosProvider
 
 String _$filteredTodosHash() => r'06f042c3fa992832de1fb6a9579eb5b76cb682fa';
 
+@ProviderFor(_currentTodo)
+const _currentTodoProvider = _CurrentTodoProvider._();
+
+final class _CurrentTodoProvider extends $FunctionalProvider<Todo, Todo, Todo>
+    with $Provider<Todo> {
+  const _CurrentTodoProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'_currentTodoProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$_currentTodoHash();
+
+  @$internal
+  @override
+  $ProviderElement<Todo> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Todo create(Ref ref) {
+    return _currentTodo(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Todo value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Todo>(value),
+    );
+  }
+}
+
+String _$_currentTodoHash() => r'0b35a95688e9c46d1a49887c2ab799387aba68ee';
+
 @ProviderFor(TodoListNotifier)
 const todoListNotifierProvider = TodoListNotifierProvider._();
 
