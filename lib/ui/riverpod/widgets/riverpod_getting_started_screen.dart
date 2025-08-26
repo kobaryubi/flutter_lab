@@ -6,8 +6,8 @@ import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
 import 'package:flutter_lab/ui/core/ui/elevated_button.dart';
 import 'package:flutter_lab/ui/core/ui/text_button.dart';
+import 'package:flutter_lab/ui/riverpod/view_models/riverpod_getting_started_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
 
@@ -15,14 +15,6 @@ part 'riverpod_getting_started_screen.g.dart';
 
 /// The different filters that can be applied to the todo list.
 enum TodoListFilter { all, active, completed }
-
-/// The number of uncompleted todos.
-final uncompletedTodosCount = Provider<int>((ref) {
-  return ref
-      .watch(todoListNotifierProvider)
-      .where((todo) => !todo.completed)
-      .length;
-});
 
 @riverpod
 class TodoListFilterNotifier extends _$TodoListFilterNotifier {
@@ -214,11 +206,13 @@ class _Toolbar extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final vm = ref.watch(riverpodGettingStartedViewModelProvider);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '${ref.watch(uncompletedTodosCount)} items left',
+          '${vm.uncompletedTodosCount} items left',
           overflow: TextOverflow.ellipsis,
         ),
         TextButton(
