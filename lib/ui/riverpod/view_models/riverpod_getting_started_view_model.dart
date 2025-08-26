@@ -39,7 +39,8 @@ final class RiverpodGettingStartedViewModel
   }
 
   /// Updates the UI state based on the current filter.
+  // ignore: use_setters_to_change_properties
   void updateFilter(TodoListFilter filter) {
-    state = state.copyWith(filter: filter);
+    ref.read(todoListFilterNotifierProvider.notifier).state = filter;
   }
 }
