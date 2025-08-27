@@ -17,30 +17,6 @@ part 'riverpod_getting_started_screen.g.dart';
 enum TodoListFilter { all, active, completed }
 
 @riverpod
-class TodoListFilterNotifier extends _$TodoListFilterNotifier {
-  @override
-  TodoListFilter build() => TodoListFilter.all;
-
-  @override
-  set state(TodoListFilter newState) => super.state = newState;
-}
-
-@riverpod
-List<Todo> filteredTodos(Ref ref) {
-  final filter = ref.watch(todoListFilterNotifierProvider);
-  final todos = ref.watch(todoListNotifierProvider);
-
-  switch (filter) {
-    case TodoListFilter.completed:
-      return todos.where((todo) => todo.completed).toList();
-    case TodoListFilter.active:
-      return todos.where((todo) => !todo.completed).toList();
-    case TodoListFilter.all:
-      return todos;
-  }
-}
-
-@riverpod
 Todo _currentTodo(Ref ref) {
   throw UnimplementedError();
 }
@@ -52,7 +28,7 @@ class RiverpodGettingStartedScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final todoFocusNode = useFocusNode();
     final todoController = useTextEditingController();
-    final todos = ref.watch(filteredTodosProvider);
+    final vm = ref.watch(riverpodGettingStartedViewModelProvider);
 
     final onSubmitted = useCallback<ValueChanged<String>>((title) {
       ref.read(todoListNotifierProvider.notifier).add(title);
@@ -84,7 +60,7 @@ class RiverpodGettingStartedScreen extends HookConsumerWidget {
               ),
               // toolbar
               const _Toolbar(),
-              for (final todo in todos)
+              for (final todo in vm.filteredTodos)
                 Dismissible(
                   key: ValueKey(todo.id),
                   onDismissed: (_) {
@@ -206,31 +182,35 @@ class _Toolbar extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vm = ref.watch(riverpodGettingStartedViewModelProvider);
+    final uncompletedTodosCount = ref.watch(
+      riverpodGettingStartedViewModelProvider.select(
+        (it) => it.uncompletedTodosCount,
+      ),
+    );
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '${vm.uncompletedTodosCount} items left',
+          '$uncompletedTodosCount items left',
           overflow: TextOverflow.ellipsis,
         ),
         TextButton(
-          onPressed: () =>
-              ref.read(todoListFilterNotifierProvider.notifier).state =
-                  TodoListFilter.all,
+          onPressed: () => ref
+              .read(riverpodGettingStartedViewModelProvider.notifier)
+              .updateFilter(TodoListFilter.all),
           child: const Text('All'),
         ),
         TextButton(
-          onPressed: () =>
-              ref.read(todoListFilterNotifierProvider.notifier).state =
-                  TodoListFilter.active,
+          onPressed: () => ref
+              .read(riverpodGettingStartedViewModelProvider.notifier)
+              .updateFilter(TodoListFilter.active),
           child: const Text('Active'),
         ),
         TextButton(
-          onPressed: () =>
-              ref.read(todoListFilterNotifierProvider.notifier).state =
-                  TodoListFilter.completed,
+          onPressed: () => ref
+              .read(riverpodGettingStartedViewModelProvider.notifier)
+              .updateFilter(TodoListFilter.completed),
           child: const Text('Completed'),
         ),
       ],
