@@ -1,5 +1,21 @@
+import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/domain/models/album/album.dart';
+import 'package:flutter_lab/ui/core/themes/colors.dart';
+import 'package:http/http.dart' as http;
+
+Future<Album> fetchAlbum() async {
+  final response = await http.get(
+    Uri.parse('https://jsonplaceholder.typicode.com/albums/1'),
+  );
+
+  if (response.statusCode == 200) {
+    return Album.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  }
+
+  throw Exception('Failed to load album');
+}
 
 class CookbookNetworkingFetchDataScreen extends StatefulWidget {
   const CookbookNetworkingFetchDataScreen({super.key});
@@ -16,10 +32,30 @@ class _CookbookNetworkingFetchDataScreenState
   @override
   void initState() {
     super.initState();
+    futureAlbum = fetchAlbum();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ColoredBox(
+      color: AppColors.white1,
+      child: Center(
+        child: FutureBuilder<Album>(
+          future: futureAlbum,
+          builder: (context, snapshot) {
+            final data = snapshot.data;
+            if (snapshot.hasData && data != null) {
+              return Text(data.title);
+            }
+
+            if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+
+            return const Text('Loading...');
+          },
+        ),
+      ),
+    );
   }
 }
