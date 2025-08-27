@@ -6,6 +6,7 @@ import 'package:flutter_lab/ui/home/home_view_model.dart';
 import 'package:flutter_lab/ui/home/widgets/launcher_row.dart';
 import 'package:go_router/go_router.dart';
 
+/// Home screen widget for the application.
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.viewModel});
 
@@ -25,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       title: 'riverpod getting started',
       route: Routes.riverpodGettingStarted,
     ),
+    AppLink(title: 'riverpod random joke', route: Routes.riverpodRandomJoke),
   ];
 
   @override
