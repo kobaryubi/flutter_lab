@@ -1,21 +1,25 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_lab/joke.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/ui/elevated_button.dart';
+import 'package:flutter_lab/ui/riverpod/view_models/riverpod_random_joke_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+/// Screen for displaying a random joke.
 class RiverpodRandomJokeScreen extends HookConsumerWidget {
+  /// Creates an instance of [RiverpodRandomJokeScreen].
   const RiverpodRandomJokeScreen({super.key});
 
   void _onGetAnotherJokePressed(WidgetRef ref) {
-    ref.invalidate(randomJokeProvider);
+    ref.read(riverpodRandomJokeViewModelProvider.notifier).refreshJoke();
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final randomJoke = ref.watch(randomJokeProvider);
+    final randomJoke = ref.watch(
+      riverpodRandomJokeViewModelProvider.select((it) => it.randomJoke),
+    );
 
-    return Container(
+    return ColoredBox(
       color: AppColors.white1,
       child: SafeArea(
         child: Stack(
