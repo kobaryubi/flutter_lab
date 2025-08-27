@@ -34,4 +34,9 @@ final class RiverpodRandomJokeViewModel extends _$RiverpodRandomJokeViewModel {
       randomJoke: randomJoke,
     );
   }
+
+  /// Refresh the current joke.
+  void refreshJoke() {
+    ref.invalidate(randomJokeProvider);
+  }
 }
