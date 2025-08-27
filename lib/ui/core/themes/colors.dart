@@ -9,6 +9,7 @@ abstract final class AppColors {
   static const whiteTransparent = Color(0x4DFFFFFF);
   static const blackTransparent = Color(0x4D000000);
   static const red1 = Color(0xFFE74C3C);
+  static const blue1 = Color(0xFF3498DB);
 
   static const primary = Color(0xff3d6838);
   static const onPrimary = Color(0xffffffff);
