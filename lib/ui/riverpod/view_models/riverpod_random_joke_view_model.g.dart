@@ -45,108 +45,60 @@ String _$randomJokeHash() => r'7ca5b1caafcf95d375c495170156f219a3bf7dc6';
 /// ViewModel for managing random jokes.
 @ProviderFor(RiverpodRandomJokeViewModel)
 const riverpodRandomJokeViewModelProvider =
-    RiverpodRandomJokeViewModelFamily._();
+    RiverpodRandomJokeViewModelProvider._();
 
 /// ViewModel for managing random jokes.
 final class RiverpodRandomJokeViewModelProvider
     extends
-        $AsyncNotifierProvider<
+        $NotifierProvider<
           RiverpodRandomJokeViewModel,
           RiverpodRandomJokeUiState
         > {
   /// ViewModel for managing random jokes.
-  const RiverpodRandomJokeViewModelProvider._({
-    required RiverpodRandomJokeViewModelFamily super.from,
-    required (dynamic, WidgetRef) super.argument,
-  }) : super(
-         retry: null,
-         name: r'riverpodRandomJokeViewModelProvider',
-         isAutoDispose: true,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+  const RiverpodRandomJokeViewModelProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'riverpodRandomJokeViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
   @override
   String debugGetCreateSourceHash() => _$riverpodRandomJokeViewModelHash();
-
-  @override
-  String toString() {
-    return r'riverpodRandomJokeViewModelProvider'
-        ''
-        '$argument';
-  }
 
   @$internal
   @override
   RiverpodRandomJokeViewModel create() => RiverpodRandomJokeViewModel();
 
-  @override
-  bool operator ==(Object other) {
-    return other is RiverpodRandomJokeViewModelProvider &&
-        other.argument == argument;
-  }
-
-  @override
-  int get hashCode {
-    return argument.hashCode;
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(RiverpodRandomJokeUiState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<RiverpodRandomJokeUiState>(value),
+    );
   }
 }
 
 String _$riverpodRandomJokeViewModelHash() =>
-    r'66764161bda999dbafc8ebd7cfb0594e5c815a2b';
-
-/// ViewModel for managing random jokes.
-final class RiverpodRandomJokeViewModelFamily extends $Family
-    with
-        $ClassFamilyOverride<
-          RiverpodRandomJokeViewModel,
-          AsyncValue<RiverpodRandomJokeUiState>,
-          RiverpodRandomJokeUiState,
-          FutureOr<RiverpodRandomJokeUiState>,
-          (dynamic, WidgetRef)
-        > {
-  const RiverpodRandomJokeViewModelFamily._()
-    : super(
-        retry: null,
-        name: r'riverpodRandomJokeViewModelProvider',
-        dependencies: null,
-        $allTransitiveDependencies: null,
-        isAutoDispose: true,
-      );
-
-  /// ViewModel for managing random jokes.
-  RiverpodRandomJokeViewModelProvider call(dynamic _, WidgetRef ref) =>
-      RiverpodRandomJokeViewModelProvider._(argument: (_, ref), from: this);
-
-  @override
-  String toString() => r'riverpodRandomJokeViewModelProvider';
-}
+    r'1c85225ee6200bcef249943cd11a3691d059b13c';
 
 abstract class _$RiverpodRandomJokeViewModel
-    extends $AsyncNotifier<RiverpodRandomJokeUiState> {
-  late final _$args = ref.$arg as (dynamic, WidgetRef);
-  dynamic get _ => _$args.$1;
-  WidgetRef get ref => _$args.$2;
-
-  FutureOr<RiverpodRandomJokeUiState> build(dynamic _, WidgetRef ref);
+    extends $Notifier<RiverpodRandomJokeUiState> {
+  RiverpodRandomJokeUiState build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(_$args.$1, _$args.$2);
+    final created = build();
     final ref =
-        this.ref
-            as $Ref<
-              AsyncValue<RiverpodRandomJokeUiState>,
-              RiverpodRandomJokeUiState
-            >;
+        this.ref as $Ref<RiverpodRandomJokeUiState, RiverpodRandomJokeUiState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<
-                AsyncValue<RiverpodRandomJokeUiState>,
-                RiverpodRandomJokeUiState
-              >,
-              AsyncValue<RiverpodRandomJokeUiState>,
+              AnyNotifier<RiverpodRandomJokeUiState, RiverpodRandomJokeUiState>,
+              RiverpodRandomJokeUiState,
               Object?,
               Object?
             >;
