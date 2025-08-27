@@ -7,3 +7,4 @@ analyzer:
     - custom_lint
   errors:
     avoid_print: error
+    public_member_api_docs: ignore
