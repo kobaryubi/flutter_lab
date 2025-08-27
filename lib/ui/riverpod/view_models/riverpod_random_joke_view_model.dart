@@ -27,12 +27,12 @@ Future<Joke> randomJoke(Ref ref) async {
 
 /// ViewModel for managing random jokes.
 @riverpod
-class RiverpodRandomJokeViewModel extends _$RiverpodRandomJokeViewModel {
+final class RiverpodRandomJokeViewModel extends _$RiverpodRandomJokeViewModel {
   @override
-  Future<RiverpodRandomJokeUiState> build(
+  RiverpodRandomJokeUiState build(
     _,
     WidgetRef ref,
-  ) async {
+  ) {
     final randomJoke = ref.watch(randomJokeProvider);
 
     return RiverpodRandomJokeUiState(
