@@ -12,6 +12,20 @@ void main() {
     expect(titleFinder, findsOneWidget);
     expect(messageFinder, findsOneWidget);
   });
+
+  testWidgets('finds a widget using a Key', (tester) async {
+    const testKey = Key('K');
+    await tester.pumpWidget(
+      const MyWidget(title: 'T', message: 'M', key: testKey),
+    );
+    expect(find.byKey(testKey), findsOneWidget);
+  });
+
+  testWidgets('finds a specific instance', (tester) async {
+    const childWidget = Padding(padding: EdgeInsets.zero);
+    await tester.pumpWidget(Container(child: childWidget));
+    expect(find.byWidget(childWidget), findsOneWidget);
+  });
 }
 
 class MyWidget extends StatelessWidget {
