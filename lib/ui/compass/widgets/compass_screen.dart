@@ -3,10 +3,9 @@ import 'package:flutter_lab/l10n/app_localizations.dart';
 import 'package:flutter_lab/ui/home/home_view_model.dart';
 
 class CompassScreen extends StatefulWidget {
-  const CompassScreen({required HomeViewModel viewModel, super.key})
-    : _viewModel = viewModel;
+  const CompassScreen({required this.viewModel, super.key});
 
-  final HomeViewModel _viewModel;
+  final HomeViewModel viewModel;
 
   @override
   State<CompassScreen> createState() => _CompassScreenState();
@@ -16,29 +15,29 @@ class _CompassScreenState extends State<CompassScreen> {
   @override
   void initState() {
     super.initState();
-    widget._viewModel.deleteBooking.addListener(_onResult);
+    widget.viewModel.deleteBooking.addListener(_onResult);
   }
 
   @override
   void didUpdateWidget(covariant CompassScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
-    oldWidget._viewModel.deleteBooking.removeListener(_onResult);
-    widget._viewModel.deleteBooking.addListener(_onResult);
+    oldWidget.viewModel.deleteBooking.removeListener(_onResult);
+    widget.viewModel.deleteBooking.addListener(_onResult);
   }
 
   @override
   void dispose() {
-    widget._viewModel.deleteBooking.removeListener(_onResult);
+    widget.viewModel.deleteBooking.removeListener(_onResult);
     super.dispose();
   }
 
   void _onResult() {
-    if (widget._viewModel.deleteBooking.completed) {
-      widget._viewModel.deleteBooking.clearResult();
+    if (widget.viewModel.deleteBooking.completed) {
+      widget.viewModel.deleteBooking.clearResult();
     }
 
-    if (widget._viewModel.deleteBooking.error) {
-      widget._viewModel.deleteBooking.clearResult();
+    if (widget.viewModel.deleteBooking.error) {
+      widget.viewModel.deleteBooking.clearResult();
     }
   }
 
