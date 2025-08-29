@@ -12,6 +12,8 @@ class Scaffold extends StatefulWidget {
 class _ScaffoldState extends State<Scaffold> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ScrollNotificationObserver(
+      child: Container(),
+    );
   }
 }
