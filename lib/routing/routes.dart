@@ -36,4 +36,8 @@ abstract final class Routes {
   static const cookbookNetworkingFetchData =
       '/$cookbookRelative/$networkingRelative/$fetchDataRelative';
   static const fetchDataRelative = 'fetch-data';
+
+  // animations
+  static const animations = '/$animationsRelative';
+  static const animationsRelative = 'animations';
 }
