@@ -1,7 +1,9 @@
 import 'package:flutter/widgets.dart';
 
 class Scaffold extends StatefulWidget {
-  const Scaffold({super.key});
+  const Scaffold({this.drawer, super.key});
+
+  final Widget? drawer;
 
   @override
   State<Scaffold> createState() => _ScaffoldState();
