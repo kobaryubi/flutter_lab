@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/ui/core/themes/colors.dart';
 
 class Scaffold extends StatefulWidget {
   const Scaffold({this.drawer, super.key});
@@ -12,8 +13,10 @@ class Scaffold extends StatefulWidget {
 class _ScaffoldState extends State<Scaffold> {
   @override
   Widget build(BuildContext context) {
-    return ScrollNotificationObserver(
-      child: Container(),
+    return const ScrollNotificationObserver(
+      child: ColoredBox(
+        color: AppColors.scaffoldBackgroundColor,
+      ),
     );
   }
 }
