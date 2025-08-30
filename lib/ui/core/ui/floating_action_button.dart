@@ -17,6 +17,20 @@ class FloatingActionButton extends StatefulWidget {
 class _FloatingActionButtonState extends State<FloatingActionButton> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final button = GestureDetector(
+      onTap: widget.onPressed,
+      child: IconTheme(
+        data: const IconThemeData(),
+        child: DefaultTextStyle(
+          style: const TextStyle(),
+          child: widget.child,
+        ),
+      ),
+    );
+
+    return Semantics(
+      button: true,
+      child: button,
+    );
   }
 }
