@@ -26,6 +26,8 @@ class CompassHeader extends StatelessWidget {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipOval(
               child: Image.asset(
