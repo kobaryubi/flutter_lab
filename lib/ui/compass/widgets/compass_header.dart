@@ -44,6 +44,7 @@ class CompassHeader extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: Dimens.paddingVertical),
       ],
     );
   }
