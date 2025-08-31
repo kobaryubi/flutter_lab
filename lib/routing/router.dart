@@ -22,11 +22,10 @@ import 'package:flutter_lab/ui/search_form/widgets/search_form_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-GoRouter router(AuthRepository authRepository) => GoRouter(
+GoRouter router() => GoRouter(
   initialLocation: Routes.home,
   debugLogDiagnostics: true,
   redirect: _redirect,
-  refreshListenable: authRepository,
   routes: [
     GoRoute(
       path: Routes.login,
