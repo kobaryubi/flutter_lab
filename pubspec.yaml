@@ -56,8 +56,7 @@ flutter_gen:
 flutter:
   generate: true
   assets:
-    - assets/activities.json
-    - assets/destinations.json
+    - assets/
     - path: assets/icons/
       transformers:
         - package: vector_graphics_compiler
