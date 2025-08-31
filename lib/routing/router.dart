@@ -3,10 +3,12 @@ import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/activities/activities_view_model.dart';
 import 'package:flutter_lab/ui/activities/widgets/activities_screen.dart';
+import 'package:flutter_lab/ui/animations/widgets/animations_screen.dart';
 import 'package:flutter_lab/ui/auth/login/widgets/login_screen.dart';
 import 'package:flutter_lab/ui/auth/login/widgets/login_view_model.dart';
+import 'package:flutter_lab/ui/compass/view_models/compass_view_model.dart';
 import 'package:flutter_lab/ui/compass/widgets/compass_screen.dart';
-import 'package:flutter_lab/ui/home/home_view_model.dart';
+import 'package:flutter_lab/ui/cookbook/widgets/cookbook_networking_fetch_data_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/optimistic_state/widgets/optimistic_state_screen.dart';
 import 'package:flutter_lab/ui/optimistic_state/widgets/optimistic_state_view_model.dart';
@@ -36,13 +38,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
     ),
     GoRoute(
       path: Routes.home,
-      builder: (context, state) {
-        final viewModel = HomeViewModel(
-          bookingRepository: context.read(),
-          userRepository: context.read(),
-        );
-        return HomeScreen(viewModel: viewModel);
-      },
+      builder: (context, state) => const HomeScreen(),
       routes: [
         GoRoute(
           path: Routes.searchRelative,
@@ -114,7 +110,7 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         GoRoute(
           path: Routes.compassRelative,
           builder: (context, state) {
-            final viewModel = HomeViewModel(
+            final viewModel = CompassViewModel(
               bookingRepository: context.read(),
               userRepository: context.read(),
             );
@@ -132,6 +128,26 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         ),
       ],
     ),
+    // cookbook
+    GoRoute(
+      path: Routes.cookbook,
+      builder: (context, state) => const Placeholder(),
+      routes: [
+        GoRoute(
+          path: Routes.networkingRelative,
+          builder: (context, state) => const Placeholder(),
+          routes: [
+            GoRoute(
+              path: Routes.fetchDataRelative,
+              builder: (context, state) {
+                return const CookbookNetworkingFetchDataScreen();
+              },
+            ),
+          ],
+        ),
+      ],
+    ),
+    // riverpod
     GoRoute(
       path: Routes.riverpod,
       builder: (context, state) {
@@ -147,10 +163,17 @@ GoRouter router(AuthRepository authRepository) => GoRouter(
         GoRoute(
           path: Routes.randomJokeRelative,
           builder: (context, state) {
-            return RiverpodRandomJokeScreen();
+            return const RiverpodRandomJokeScreen();
           },
         ),
       ],
+    ),
+    // animations
+    GoRoute(
+      path: Routes.animations,
+      builder: (context, state) {
+        return const AnimationsScreen();
+      },
     ),
   ],
 );
