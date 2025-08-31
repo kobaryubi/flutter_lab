@@ -1,6 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/l10n/app_localizations.dart';
+import 'package:flutter_lab/routing/routes.dart';
+import 'package:flutter_lab/ui/core/ui/floating_action_button.dart';
+import 'package:flutter_lab/ui/core/ui/scaffold.dart';
 import 'package:flutter_lab/ui/home/home_view_model.dart';
+import 'package:go_router/go_router.dart';
 
 class CompassScreen extends StatefulWidget {
   const CompassScreen({required this.viewModel, super.key});
@@ -41,12 +46,24 @@ class _CompassScreenState extends State<CompassScreen> {
     }
   }
 
+  void _onPressed(BuildContext context) {
+    context.go(Routes.search);
+  }
+
   @override
   Widget build(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context);
     if (appLocalizations == null) {
       return const Center(child: Text('Localization not found'));
     }
-    return Text('compass screen');
+
+    return Scaffold(
+      body: const Text('compass screen'),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _onPressed(context),
+        label: Text(appLocalizations.bookNewTrip),
+        icon: Assets.icons.search,
+      ),
+    );
   }
 }
