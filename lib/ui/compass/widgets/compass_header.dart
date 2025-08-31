@@ -61,9 +61,17 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: GoogleFonts.rubik(textStyle: TextStyles.headlineLarge),
+    return ShaderMask(
+      blendMode: BlendMode.srcIn,
+      shaderCallback: (Rect bounds) => const RadialGradient(
+        center: Alignment.bottomLeft,
+        radius: 2,
+        colors: [Color(0xFF7B1FA2), Color(0xFFAB47BC)],
+      ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+      child: Text(
+        text,
+        style: GoogleFonts.rubik(textStyle: TextStyles.headlineLarge),
+      ),
     );
   }
 }
