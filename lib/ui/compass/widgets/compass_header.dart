@@ -8,6 +8,10 @@ class CompassHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = viewModel.user;
+    if (user == null) {
+      return const SizedBox();
+    }
     return Container();
   }
 }

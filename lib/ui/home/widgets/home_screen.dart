@@ -2,24 +2,20 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
-import 'package:flutter_lab/ui/home/home_view_model.dart';
 import 'package:flutter_lab/ui/home/widgets/launcher_row.dart';
 import 'package:go_router/go_router.dart';
 
-/// Home screen widget for the application.
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.viewModel});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
-  final HomeViewModel viewModel;
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   static const List<AppLink> links = [
     AppLink(title: 'compass', route: Routes.compass),
     AppLink(title: 'optimistic state', route: Routes.optimisticState),
+    // cookbook
+    AppLink(
+      title: 'networking fetch data',
+      route: Routes.cookbookNetworkingFetchData,
+    ),
     // riverpod
     AppLink(title: 'riverpod', route: Routes.riverpod),
     AppLink(
@@ -27,6 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
       route: Routes.riverpodGettingStarted,
     ),
     AppLink(title: 'riverpod random joke', route: Routes.riverpodRandomJoke),
+    // animations
+    AppLink(title: 'animations', route: Routes.animations),
   ];
 
   @override
@@ -37,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Column(
             children: [
-              AppBar(),
+              const AppBar(),
               Expanded(
                 child: SafeArea(
                   top: false,
