@@ -21,161 +21,167 @@ import 'package:flutter_lab/ui/search_form/search_form_view_model.dart';
 import 'package:flutter_lab/ui/search_form/widgets/search_form_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-GoRouter router() => GoRouter(
-  initialLocation: Routes.home,
-  debugLogDiagnostics: true,
-  redirect: _redirect,
-  routes: [
-    GoRoute(
-      path: Routes.login,
-      builder: (context, state) {
-        return LoginScreen(
-          viewModel: LoginViewModel(authRepository: context.read()),
-        );
-      },
-    ),
-    GoRoute(
-      path: Routes.home,
-      builder: (context, state) => const HomeScreen(),
-      routes: [
-        GoRoute(
-          path: Routes.searchRelative,
-          builder: (context, state) {
-            final viewModel = SearchFormViewModel(
-              continentRepository: context.read(),
-              itineraryConfigRepository: context.read(),
-            );
-            return SearchFormScreen(viewModel: viewModel);
-          },
-        ),
-        GoRoute(
-          path: Routes.resultsRelative,
-          builder: (context, state) {
-            final viewModel = ResultsViewModel(
-              destinationRepository: context.read(),
-              itineraryConfigRepository: context.read(),
-            );
-            return ResultsScreen(viewModel: viewModel);
-          },
-        ),
-        GoRoute(
-          path: Routes.activitiesRelative,
-          builder: (context, state) {
-            final viewModel = ActivitiesViewModel(
-              activityRepository: context.read(),
-              itineraryConfigRepository: context.read(),
-            );
-            return ActivitiesScreen(viewModel: viewModel);
-          },
-        ),
-        //         GoRoute(
-        //           path: Routes.bookingRelative,
-        //           builder: (context, state) {
-        //             final viewModel = BookingViewModel(
-        //               itineraryConfigRepository: context.read(),
-        //               createBookingUseCase: context.read(),
-        //               shareBookingUseCase: context.read(),
-        //               bookingRepository: context.read(),
-        //             );
+part 'router.g.dart';
 
-        //             // When opening the booking screen directly
-        //             // create a new booking from the stored ItineraryConfig.
-        //             viewModel.createBooking.execute();
+@riverpod
+GoRouter router(Ref ref) {
+  return GoRouter(
+    initialLocation: Routes.home,
+    debugLogDiagnostics: true,
+    redirect: _redirect,
+    routes: [
+      GoRoute(
+        path: Routes.login,
+        builder: (context, state) {
+          return LoginScreen(
+            viewModel: LoginViewModel(authRepository: context.read()),
+          );
+        },
+      ),
+      GoRoute(
+        path: Routes.home,
+        builder: (context, state) => const HomeScreen(),
+        routes: [
+          GoRoute(
+            path: Routes.searchRelative,
+            builder: (context, state) {
+              final viewModel = SearchFormViewModel(
+                continentRepository: context.read(),
+                itineraryConfigRepository: context.read(),
+              );
+              return SearchFormScreen(viewModel: viewModel);
+            },
+          ),
+          GoRoute(
+            path: Routes.resultsRelative,
+            builder: (context, state) {
+              final viewModel = ResultsViewModel(
+                destinationRepository: context.read(),
+                itineraryConfigRepository: context.read(),
+              );
+              return ResultsScreen(viewModel: viewModel);
+            },
+          ),
+          GoRoute(
+            path: Routes.activitiesRelative,
+            builder: (context, state) {
+              final viewModel = ActivitiesViewModel(
+                activityRepository: context.read(),
+                itineraryConfigRepository: context.read(),
+              );
+              return ActivitiesScreen(viewModel: viewModel);
+            },
+          ),
+          //         GoRoute(
+          //           path: Routes.bookingRelative,
+          //           builder: (context, state) {
+          //             final viewModel = BookingViewModel(
+          //               itineraryConfigRepository: context.read(),
+          //               createBookingUseCase: context.read(),
+          //               shareBookingUseCase: context.read(),
+          //               bookingRepository: context.read(),
+          //             );
 
-        //             return BookingScreen(viewModel: viewModel);
-        //           },
-        //           routes: [
-        //             GoRoute(
-        //               path: ':id',
-        //               builder: (context, state) {
-        //                 final id = int.parse(state.pathParameters['id']!);
-        //                 final viewModel = BookingViewModel(
-        //                   itineraryConfigRepository: context.read(),
-        //                   createBookingUseCase: context.read(),
-        //                   shareBookingUseCase: context.read(),
-        //                   bookingRepository: context.read(),
-        //                 );
+          //             // When opening the booking screen directly
+          //             // create a new booking from the stored ItineraryConfig.
+          //             viewModel.createBooking.execute();
 
-        //                 // When opening the booking screen with an existing id
-        //                 // load and display that booking.
-        //                 viewModel.loadBooking.execute(id);
+          //             return BookingScreen(viewModel: viewModel);
+          //           },
+          //           routes: [
+          //             GoRoute(
+          //               path: ':id',
+          //               builder: (context, state) {
+          //                 final id = int.parse(state.pathParameters['id']!);
+          //                 final viewModel = BookingViewModel(
+          //                   itineraryConfigRepository: context.read(),
+          //                   createBookingUseCase: context.read(),
+          //                   shareBookingUseCase: context.read(),
+          //                   bookingRepository: context.read(),
+          //                 );
 
-        //                 return BookingScreen(viewModel: viewModel);
-        //               },
-        //             ),
-        //           ],
-        //         ),
-        GoRoute(
-          path: Routes.compassRelative,
-          builder: (context, state) {
-            final viewModel = CompassViewModel(
-              bookingRepository: context.read(),
-              userRepository: context.read(),
-            );
-            return CompassScreen(viewModel: viewModel);
-          },
-        ),
-        GoRoute(
-          path: Routes.optimisticStateRelative,
-          builder: (context, state) {
-            final viewModel = OptimisticStateViewModel(
-              subscriptionRepository: context.read(),
-            );
-            return OptimisticStateScreen(viewModel: viewModel);
-          },
-        ),
-      ],
-    ),
-    // cookbook
-    GoRoute(
-      path: Routes.cookbook,
-      builder: (context, state) => const Placeholder(),
-      routes: [
-        GoRoute(
-          path: Routes.networkingRelative,
-          builder: (context, state) => const Placeholder(),
-          routes: [
-            GoRoute(
-              path: Routes.fetchDataRelative,
-              builder: (context, state) {
-                return const CookbookNetworkingFetchDataScreen();
-              },
-            ),
-          ],
-        ),
-      ],
-    ),
-    // riverpod
-    GoRoute(
-      path: Routes.riverpod,
-      builder: (context, state) {
-        return const RiverpodScreen();
-      },
-      routes: [
-        GoRoute(
-          path: Routes.gettingStartedRelative,
-          builder: (context, state) {
-            return const RiverpodGettingStartedScreen();
-          },
-        ),
-        GoRoute(
-          path: Routes.randomJokeRelative,
-          builder: (context, state) {
-            return const RiverpodRandomJokeScreen();
-          },
-        ),
-      ],
-    ),
-    // animations
-    GoRoute(
-      path: Routes.animations,
-      builder: (context, state) {
-        return const AnimationsScreen();
-      },
-    ),
-  ],
-);
+          //                 // When opening the booking screen with an existing id
+          //                 // load and display that booking.
+          //                 viewModel.loadBooking.execute(id);
+
+          //                 return BookingScreen(viewModel: viewModel);
+          //               },
+          //             ),
+          //           ],
+          //         ),
+          GoRoute(
+            path: Routes.compassRelative,
+            builder: (context, state) {
+              final viewModel = CompassViewModel(
+                bookingRepository: context.read(),
+                userRepository: context.read(),
+              );
+              return CompassScreen(viewModel: viewModel);
+            },
+          ),
+          GoRoute(
+            path: Routes.optimisticStateRelative,
+            builder: (context, state) {
+              final viewModel = OptimisticStateViewModel(
+                subscriptionRepository: context.read(),
+              );
+              return OptimisticStateScreen(viewModel: viewModel);
+            },
+          ),
+        ],
+      ),
+      // cookbook
+      GoRoute(
+        path: Routes.cookbook,
+        builder: (context, state) => const Placeholder(),
+        routes: [
+          GoRoute(
+            path: Routes.networkingRelative,
+            builder: (context, state) => const Placeholder(),
+            routes: [
+              GoRoute(
+                path: Routes.fetchDataRelative,
+                builder: (context, state) {
+                  return const CookbookNetworkingFetchDataScreen();
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+      // riverpod
+      GoRoute(
+        path: Routes.riverpod,
+        builder: (context, state) {
+          return const RiverpodScreen();
+        },
+        routes: [
+          GoRoute(
+            path: Routes.gettingStartedRelative,
+            builder: (context, state) {
+              return const RiverpodGettingStartedScreen();
+            },
+          ),
+          GoRoute(
+            path: Routes.randomJokeRelative,
+            builder: (context, state) {
+              return const RiverpodRandomJokeScreen();
+            },
+          ),
+        ],
+      ),
+      // animations
+      GoRoute(
+        path: Routes.animations,
+        builder: (context, state) {
+          return const AnimationsScreen();
+        },
+      ),
+    ],
+  );
+}
 
 Future<String?> _redirect(BuildContext context, GoRouterState state) async {
   final loggedIn = await context.read<AuthRepository>().isAuthenticated;

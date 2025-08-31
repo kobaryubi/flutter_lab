@@ -31,12 +31,16 @@ class $AssetsIconsGen {
   /// File path: assets/icons/logout.svg
   SvgGenImage get logout => const SvgGenImage.vec('assets/icons/logout.svg');
 
+  /// File path: assets/icons/search.svg
+  SvgGenImage get search => const SvgGenImage.vec('assets/icons/search.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
     addLocationOutlined,
     arrowForward,
     delete,
     logout,
+    search,
   ];
 }
 
