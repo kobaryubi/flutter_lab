@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
@@ -6,12 +7,14 @@ import 'package:flutter_lab/ui/core/themes/theme.dart';
 class FloatingActionButton extends StatefulWidget {
   const FloatingActionButton({
     required this.onPressed,
-    required this.child,
+    required this.label,
+    required this.icon,
     super.key,
   });
 
   final VoidCallback onPressed;
-  final Widget child;
+  final Text label;
+  final SvgGenImage icon;
 
   @override
   State<StatefulWidget> createState() => _FloatingActionButtonState();
@@ -42,7 +45,20 @@ class _FloatingActionButtonState extends State<FloatingActionButton> {
             ),
             child: Padding(
               padding: const EdgeInsets.all(Dimens.padding),
-              child: widget.child,
+              child: Row(
+                children: [
+                  widget.icon.svg(
+                    width: 24,
+                    height: 24,
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.onPrimaryContainer,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                  const SizedBox(width: Dimens.padding),
+                  widget.label,
+                ],
+              ),
             ),
           ),
         ),
