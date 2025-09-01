@@ -1,10 +1,12 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/domain/models/booking/booking_summary.dart';
 import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/l10n/app_localizations.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/compass/view_models/compass_view_model.dart';
 import 'package:flutter_lab/ui/compass/widgets/compass_header.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
+import 'package:flutter_lab/ui/core/themes/theme.dart';
 import 'package:flutter_lab/ui/core/ui/floating_action_button.dart';
 import 'package:flutter_lab/ui/core/ui/scaffold.dart';
 import 'package:go_router/go_router.dart';
@@ -85,7 +87,13 @@ class _CompassScreenState extends State<CompassScreen> {
                 ),
                 SliverList.builder(
                   itemCount: widget.viewModel.bookings.length,
-                  itemBuilder: (_, index) => Text('$index'),
+                  itemBuilder: (_, index) => _Booking(
+                    key: ValueKey(widget.viewModel.bookings[index].id),
+                    booking: widget.viewModel.bookings[index],
+                    onTap: () => context.push(
+                      Routes.bookingWithId(widget.viewModel.bookings[index].id),
+                    ),
+                  ),
                 ),
               ],
             );
@@ -102,15 +110,18 @@ class _CompassScreenState extends State<CompassScreen> {
 }
 
 class _Booking extends StatelessWidget {
-  const _Booking({super.key});
+  const _Booking({required this.booking, required this.onTap, super.key});
+
+  final BookingSummary booking;
+  final GestureTapCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [const Text('Paris'), const Text('May')],
+      child: GestureDetector(
+        onTap: onTap,
+        child: Text(booking.name, style: TextStyles.titleMedium),
       ),
     );
   }
