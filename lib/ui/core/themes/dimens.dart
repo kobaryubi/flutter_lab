@@ -20,4 +20,6 @@ final class Dimens {
 
   static const iconWidth = 24.0;
   static const iconHeight = 24.0;
+
+  static const appBarHeight = 48.0;
 }

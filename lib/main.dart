@@ -1,7 +1,7 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/flutter_lab_app.dart';
 import 'package:flutter_lab/config/dependencies.dart';
+import 'package:flutter_lab/flutter_lab_app.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
