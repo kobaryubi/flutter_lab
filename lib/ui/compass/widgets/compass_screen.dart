@@ -8,6 +8,7 @@ import 'package:flutter_lab/ui/compass/widgets/compass_header.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
+import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/floating_action_button.dart';
 import 'package:flutter_lab/ui/core/ui/scaffold.dart';
 import 'package:go_router/go_router.dart';
@@ -63,6 +64,7 @@ class _CompassScreenState extends State<CompassScreen> {
     }
 
     return Scaffold(
+      appBar: const AppBar(title: Text('Compass')),
       body: ListenableBuilder(
         listenable: widget.viewModel.load,
         builder: (context, child) {
