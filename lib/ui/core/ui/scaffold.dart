@@ -25,7 +25,12 @@ class Scaffold extends StatelessWidget {
         top: false,
         child: Stack(
           children: [
-            body,
+            Column(
+              children: [
+                appBar,
+                Expanded(child: body),
+              ],
+            ),
             if (fab != null)
               Positioned(
                 bottom: 16,
