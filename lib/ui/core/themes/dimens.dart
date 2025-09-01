@@ -22,4 +22,5 @@ final class Dimens {
   static const iconHeight = 24.0;
 
   static const appBarHeight = 48.0;
+  static const actionSize = 40.0;
 }
