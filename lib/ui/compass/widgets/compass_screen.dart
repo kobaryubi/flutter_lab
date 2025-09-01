@@ -100,3 +100,18 @@ class _CompassScreenState extends State<CompassScreen> {
     );
   }
 }
+
+class _Booking extends StatelessWidget {
+  const _Booking({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [const Text('Paris'), const Text('May')],
+      ),
+    );
+  }
+}
