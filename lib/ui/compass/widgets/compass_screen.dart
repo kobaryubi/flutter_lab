@@ -5,6 +5,7 @@ import 'package:flutter_lab/l10n/app_localizations.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/compass/view_models/compass_view_model.dart';
 import 'package:flutter_lab/ui/compass/widgets/compass_header.dart';
+import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
 import 'package:flutter_lab/ui/core/ui/floating_action_button.dart';
@@ -134,6 +135,21 @@ class _Booking extends StatelessWidget {
       key: ValueKey(booking.id),
       confirmDismiss: confirmDismiss,
       direction: DismissDirection.endToStart,
+      background: ColoredBox(
+        color: AppColors.gray1,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(Dimens.padding),
+              child: Assets.icons.delete.svg(
+                width: Dimens.iconWidth,
+                height: Dimens.iconHeight,
+              ),
+            ),
+          ],
+        ),
+      ),
       child: Semantics(
         button: true,
         child: GestureDetector(
