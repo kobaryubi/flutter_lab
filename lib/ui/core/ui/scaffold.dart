@@ -21,24 +21,21 @@ class Scaffold extends StatelessWidget {
 
     return ColoredBox(
       color: AppColors.scaffoldBackgroundColor,
-      child: SafeArea(
-        top: false,
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                appBar,
-                Expanded(child: body),
-              ],
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              appBar,
+              Expanded(child: body),
+            ],
+          ),
+          if (fab != null)
+            Positioned(
+              bottom: 16,
+              right: 16,
+              child: fab,
             ),
-            if (fab != null)
-              Positioned(
-                bottom: 16,
-                right: 16,
-                child: fab,
-              ),
-          ],
-        ),
+        ],
       ),
     );
   }
