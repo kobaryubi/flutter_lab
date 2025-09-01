@@ -132,11 +132,16 @@ class _Booking extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: ValueKey(booking.id),
+      confirmDismiss: confirmDismiss,
+      direction: DismissDirection.endToStart,
       child: Semantics(
         button: true,
         child: GestureDetector(
           onTap: onTap,
-          child: Text(booking.name, style: TextStyles.titleMedium),
+          child: Padding(
+            padding: const EdgeInsets.all(Dimens.padding),
+            child: Text(booking.name, style: TextStyles.titleMedium),
+          ),
         ),
       ),
     );
