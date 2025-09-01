@@ -66,8 +66,12 @@ class _CompassScreenState extends State<CompassScreen> {
       body: ListenableBuilder(
         listenable: widget.viewModel.load,
         builder: (context, child) {
-          if (child == null) {
+          if (child == null || widget.viewModel.load.running) {
             return const Text('Loading...');
+          }
+
+          if (widget.viewModel.load.error) {
+            return const Text('Error');
           }
 
           return child;
