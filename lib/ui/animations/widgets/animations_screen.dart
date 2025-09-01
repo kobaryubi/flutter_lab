@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/scaffold.dart';
 
 class AnimatedLogo extends AnimatedWidget {
@@ -98,7 +99,10 @@ class _AnimationsScreenState extends State<AnimationsScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: AnimatedLogo(animation: animation));
+    return Scaffold(
+      appBar: const AppBar(title: Text('Animations')),
+      body: AnimatedLogo(animation: animation),
+    );
   }
 
   @override
