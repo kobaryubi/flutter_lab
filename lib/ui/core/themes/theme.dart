@@ -13,10 +13,6 @@ abstract final class TextStyles {
     fontSize: 18,
     fontWeight: FontWeight.w500,
   );
-  static const titleLarge = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.w500,
-  );
   static const bodyLarge = TextStyle(fontSize: 18, fontWeight: FontWeight.w400);
   static const bodyMedium = TextStyle(
     fontSize: 16,
