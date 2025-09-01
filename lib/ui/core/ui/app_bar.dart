@@ -10,17 +10,19 @@ class AppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: AppColors.primary,
-      height: Dimens.appBarHeight,
       child: SafeArea(
         bottom: false,
-        child: Center(
-          child: DefaultTextStyle(
-            style: TextStyles.headlineLarge.copyWith(
-              color: AppColors.onPrimary,
+        child: SizedBox(
+          height: Dimens.appBarHeight,
+          child: Center(
+            child: DefaultTextStyle(
+              style: TextStyles.headlineLarge.copyWith(
+                color: AppColors.onPrimary,
+              ),
+              child: title,
             ),
-            child: title,
           ),
         ),
       ),
