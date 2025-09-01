@@ -1,33 +1,37 @@
 import 'package:flutter/widgets.dart';
 
 abstract final class TextStyles {
-  static final headlineLarge = TextStyle(
+  static const headlineLarge = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.w500,
   );
-  static final headlineSmall = TextStyle(
+  static const headlineSmall = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w400,
   );
-  static final titleMedium = TextStyle(
+  static const titleMedium = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w500,
   );
-  static final bodyLarge = TextStyle(fontSize: 18, fontWeight: FontWeight.w400);
-  static final bodyMedium = TextStyle(
+  static const titleLarge = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
+  );
+  static const bodyLarge = TextStyle(fontSize: 18, fontWeight: FontWeight.w400);
+  static const bodyMedium = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
-  static final bodySmall = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
-  static final labelSmall = TextStyle(
+  static const bodySmall = TextStyle(fontSize: 14, fontWeight: FontWeight.w400);
+  static const labelSmall = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w500,
   );
-  static final labelLarge = TextStyle(
+  static const labelLarge = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w400,
   );
-  static final hintStyle = TextStyle(
+  static const hintStyle = TextStyle(
     fontSize: 18.0,
     fontWeight: FontWeight.w400,
   );
