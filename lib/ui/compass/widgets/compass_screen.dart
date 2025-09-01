@@ -83,6 +83,10 @@ class _CompassScreenState extends State<CompassScreen> {
                     child: CompassHeader(viewModel: widget.viewModel),
                   ),
                 ),
+                SliverList.builder(
+                  itemCount: widget.viewModel.bookings.length,
+                  itemBuilder: (_, index) => Text('$index'),
+                ),
               ],
             );
           },
