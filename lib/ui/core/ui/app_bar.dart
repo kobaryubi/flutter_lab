@@ -3,6 +3,7 @@ import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
+import 'package:go_router/go_router.dart';
 
 class AppBar extends StatelessWidget {
   const AppBar({required this.title, super.key});
@@ -15,8 +16,9 @@ class AppBar extends StatelessWidget {
       color: AppColors.primary,
       child: SafeArea(
         bottom: false,
-        child: SizedBox(
+        child: Container(
           height: Dimens.appBarHeight,
+          padding: const EdgeInsets.symmetric(horizontal: Dimens.padding),
           child: Stack(
             children: [
               Center(
@@ -27,10 +29,11 @@ class AppBar extends StatelessWidget {
                   child: title,
                 ),
               ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: _BackButton(),
-              ),
+              if (context.canPop())
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: _BackButton(),
+                ),
             ],
           ),
         ),
@@ -48,6 +51,7 @@ class _BackButton extends StatelessWidget {
       button: true,
       label: 'back',
       child: GestureDetector(
+        onTap: () => context.pop(),
         behavior: HitTestBehavior.opaque,
         child: SizedBox.square(
           dimension: Dimens.actionSize,
