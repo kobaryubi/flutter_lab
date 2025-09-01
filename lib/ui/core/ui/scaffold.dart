@@ -1,16 +1,40 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
+import 'package:flutter_lab/ui/core/ui/app_bar.dart';
+import 'package:flutter_lab/ui/core/ui/floating_action_button.dart';
 
 class Scaffold extends StatelessWidget {
-  const Scaffold({required this.child, super.key});
+  const Scaffold({
+    required this.appBar,
+    required this.body,
+    this.floatingActionButton,
+    super.key,
+  });
 
-  final Widget child;
+  final AppBar appBar;
+  final Widget body;
+  final FloatingActionButton? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
+    final fab = floatingActionButton;
+
     return ColoredBox(
       color: AppColors.scaffoldBackgroundColor,
-      child: SafeArea(child: child),
+      child: SafeArea(
+        top: false,
+        child: Stack(
+          children: [
+            body,
+            if (fab != null)
+              Positioned(
+                bottom: 16,
+                right: 16,
+                child: fab,
+              ),
+          ],
+        ),
+      ),
     );
   }
 }
