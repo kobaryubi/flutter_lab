@@ -8,6 +8,14 @@ class CompassBookingBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListenableBuilder(
+      listenable: viewModel,
+      builder: (context, _) {
+        final booking = viewModel.booking;
+        if (booking == null) return const SizedBox();
+
+        return const CustomScrollView(slivers: [SliverToBoxAdapter()]);
+      },
+    );
   }
 }
