@@ -11,6 +11,10 @@ abstract final class AppColors {
   static const red1 = Color(0xFFE74C3C);
   static const blue1 = Color(0xFF3498DB);
 
+  static const scaffoldBackgroundColor = Color(0xFFFFFFFF);
+  static const shadow = Color(0x1A000000);
+  static const transparent = Color(0x00000000);
+
   static const primary = Color(0xff3d6838);
   static const onPrimary = Color(0xffffffff);
   static const primaryContainer = Color(0xffbdf0b3);
