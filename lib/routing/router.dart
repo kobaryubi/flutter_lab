@@ -70,7 +70,6 @@ GoRouter router(Ref ref) {
           //               itineraryConfigRepository: context.read(),
           //               createBookingUseCase: context.read(),
           //               shareBookingUseCase: context.read(),
-          //               bookingRepository: context.read(),
           //             );
 
           //             // When opening the booking screen directly
@@ -82,7 +81,6 @@ GoRouter router(Ref ref) {
           //                   itineraryConfigRepository: context.read(),
           //                   createBookingUseCase: context.read(),
           //                   shareBookingUseCase: context.read(),
-          //                   bookingRepository: context.read(),
           //                 );
 
           //                 // When opening the booking screen with an existing id
@@ -115,6 +113,7 @@ GoRouter router(Ref ref) {
                 builder: (context, state) {
                   final viewModel = CompassBookingViewModel(
                     bookingRepository: context.read(),
+                    shareBookingUseCase: context.read(),
                   );
 
                   return CompassBookingScreen(viewModel: viewModel);
@@ -125,6 +124,7 @@ GoRouter router(Ref ref) {
                     builder: (context, state) {
                       final viewModel = CompassBookingViewModel(
                         bookingRepository: context.read(),
+                        shareBookingUseCase: context.read(),
                       );
 
                       return CompassBookingScreen(viewModel: viewModel);
