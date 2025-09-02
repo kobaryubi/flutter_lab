@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/domain/models/booking/booking.dart';
+import 'package:flutter_lab/l10n/app_localizations.dart';
 import 'package:flutter_lab/ui/compass/widgets/compass_home_button.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
@@ -15,7 +16,13 @@ class CompassBookingHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context);
+    if (appLocalizations == null) {
+      return const SizedBox();
+    }
+
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _Top(booking: booking),
         Padding(
@@ -28,6 +35,13 @@ class CompassBookingHeader extends StatelessWidget {
         const SizedBox(height: Dimens.paddingVertical),
         _Tags(booking: booking),
         const SizedBox(height: Dimens.paddingVertical),
+        Padding(
+          padding: Dimens.edgeInsetsScreenHorizontal,
+          child: Text(
+            appLocalizations.yourChosenActivities,
+            style: TextStyles.headlineSmall,
+          ),
+        ),
       ],
     );
   }
