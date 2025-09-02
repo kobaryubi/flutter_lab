@@ -15,7 +15,7 @@ class CompassBookingBody extends StatelessWidget {
         final booking = viewModel.booking;
         if (booking == null) return const SizedBox();
 
-        return const CustomScrollView(
+        return CustomScrollView(
           slivers: [
             SliverToBoxAdapter(child: CompassBookingHeader(booking: booking)),
           ],
