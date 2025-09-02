@@ -38,6 +38,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage.vec('assets/icons/search.svg');
 
+  /// File path: assets/icons/share.svg
+  SvgGenImage get share => const SvgGenImage.vec('assets/icons/share.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
     addLocationOutlined,
@@ -46,6 +49,7 @@ class $AssetsIconsGen {
     delete,
     logout,
     search,
+    share,
   ];
 }
 
