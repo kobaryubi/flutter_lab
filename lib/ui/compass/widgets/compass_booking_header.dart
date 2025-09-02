@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/domain/models/booking/booking.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
+import 'package:flutter_lab/ui/core/themes/dimens.dart';
+import 'package:flutter_lab/ui/core/themes/theme.dart';
 import 'package:flutter_lab/utils/image_error_listener.dart';
 
 class CompassBookingHeader extends StatelessWidget {
@@ -78,6 +80,15 @@ class _Headline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Align(
+      alignment: Alignment.bottomLeft,
+      child: Padding(
+        padding: const EdgeInsets.all(Dimens.padding),
+        child: Text(
+          booking.destination.name,
+          style: TextStyles.headlineLarge.copyWith(color: AppColors.black1),
+        ),
+      ),
+    );
   }
 }
