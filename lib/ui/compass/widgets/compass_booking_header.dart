@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/domain/models/booking/booking.dart';
+import 'package:flutter_lab/utils/image_error_listener.dart';
 
 class CompassBookingHeader extends StatelessWidget {
   const CompassBookingHeader({required this.booking, super.key});
@@ -33,6 +35,10 @@ class _HeaderImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return CachedNetworkImage(
+      fit: BoxFit.fitWidth,
+      imageUrl: booking.destination.imageUrl,
+      errorListener: imageErrorListener,
+    );
   }
 }
