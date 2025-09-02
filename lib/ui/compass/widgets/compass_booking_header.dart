@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/domain/models/booking/booking.dart';
+import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/utils/image_error_listener.dart';
 
 class CompassBookingHeader extends StatelessWidget {
@@ -23,7 +24,13 @@ class _Top extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 260,
-      child: Stack(children: [_HeaderImage(booking: booking)]),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          _HeaderImage(booking: booking),
+          const _Gradient(),
+        ],
+      ),
     );
   }
 }
@@ -39,6 +46,26 @@ class _HeaderImage extends StatelessWidget {
       fit: BoxFit.fitWidth,
       imageUrl: booking.destination.imageUrl,
       errorListener: imageErrorListener,
+    );
+  }
+}
+
+class _Gradient extends StatelessWidget {
+  const _Gradient();
+
+  @override
+  Widget build(BuildContext context) {
+    return const DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            AppColors.transparent,
+            AppColors.onPrimaryContainer,
+          ],
+        ),
+      ),
     );
   }
 }
