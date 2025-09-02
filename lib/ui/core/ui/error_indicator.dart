@@ -25,7 +25,7 @@ class ErrorIndicator extends StatelessWidget {
             child: Center(
               child: Text(
                 title,
-                style: TextStyle(color: CompassAppColors.onError),
+                style: const TextStyle(color: AppColors.onError),
               ),
             ),
           ),

@@ -5,8 +5,8 @@ import 'package:flutter_lab/domain/models/album/album.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:http/http.dart' as http;
 
-Future<Album> fetchAlbum() async {
-  final response = await http.get(
+Future<Album> fetchAlbum(http.Client client) async {
+  final response = await client.get(
     Uri.parse('https://jsonplaceholder.typicode.com/albums/1'),
   );
 
@@ -32,7 +32,7 @@ class _CookbookNetworkingFetchDataScreenState
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    futureAlbum = fetchAlbum(http.Client());
   }
 
   @override

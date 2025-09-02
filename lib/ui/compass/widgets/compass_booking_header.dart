@@ -60,7 +60,7 @@ class _Tags extends StatelessWidget {
         spacing: 6,
         runSpacing: 6,
         children: booking.destination.tags
-            .map((tag) => const TagChip())
+            .map((tag) => TagChip(tag: tag))
             .toList(),
       ),
     );
