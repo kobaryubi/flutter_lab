@@ -7,9 +7,11 @@ import 'package:flutter_lab/ui/animations/widgets/animations_screen.dart';
 import 'package:flutter_lab/ui/auth/login/widgets/login_screen.dart';
 import 'package:flutter_lab/ui/auth/login/widgets/login_view_model.dart';
 import 'package:flutter_lab/ui/compass/view_models/compass_booking_view_model.dart';
+import 'package:flutter_lab/ui/compass/view_models/compass_search_form_view_model.dart';
 import 'package:flutter_lab/ui/compass/view_models/compass_view_model.dart';
 import 'package:flutter_lab/ui/compass/widgets/compass_booking_screen.dart';
 import 'package:flutter_lab/ui/compass/widgets/compass_screen.dart';
+import 'package:flutter_lab/ui/compass/widgets/compass_search_form_screen.dart';
 import 'package:flutter_lab/ui/cookbook/widgets/cookbook_networking_fetch_data_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/optimistic_state/widgets/optimistic_state_screen.dart';
@@ -19,8 +21,6 @@ import 'package:flutter_lab/ui/results/widgets/results_screen.dart';
 import 'package:flutter_lab/ui/riverpod/widgets/riverpod_getting_started_screen.dart';
 import 'package:flutter_lab/ui/riverpod/widgets/riverpod_random_joke_screen.dart';
 import 'package:flutter_lab/ui/riverpod/widgets/riverpod_screen.dart';
-import 'package:flutter_lab/ui/search_form/search_form_view_model.dart';
-import 'package:flutter_lab/ui/search_form/widgets/search_form_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -46,16 +46,6 @@ GoRouter router(Ref ref) {
         path: Routes.home,
         builder: (context, state) => const HomeScreen(),
         routes: [
-          GoRoute(
-            path: Routes.searchRelative,
-            builder: (context, state) {
-              final viewModel = SearchFormViewModel(
-                continentRepository: context.read(),
-                itineraryConfigRepository: context.read(),
-              );
-              return SearchFormScreen(viewModel: viewModel);
-            },
-          ),
           GoRoute(
             path: Routes.resultsRelative,
             builder: (context, state) {
@@ -111,9 +101,21 @@ GoRouter router(Ref ref) {
             },
             routes: [
               GoRoute(
+                path: Routes.searchRelative,
+                builder: (context, state) {
+                  final viewModel = CompassSearchFormViewModel(
+                    continentRepository: context.read(),
+                    itineraryConfigRepository: context.read(),
+                  );
+                  return CompassSearchFormScreen(viewModel: viewModel);
+                },
+              ),
+              GoRoute(
                 path: Routes.bookingRelative,
                 builder: (context, state) {
-                  final viewModel = CompassBookingViewModel();
+                  final viewModel = CompassBookingViewModel(
+                    bookingRepository: context.read(),
+                  );
 
                   return CompassBookingScreen(viewModel: viewModel);
                 },
@@ -121,7 +123,9 @@ GoRouter router(Ref ref) {
                   GoRoute(
                     path: ':id',
                     builder: (context, state) {
-                      final viewModel = CompassBookingViewModel();
+                      final viewModel = CompassBookingViewModel(
+                        bookingRepository: context.read(),
+                      );
 
                       return CompassBookingScreen(viewModel: viewModel);
                     },
