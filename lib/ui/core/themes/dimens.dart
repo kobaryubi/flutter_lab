@@ -23,4 +23,6 @@ final class Dimens {
 
   static const appBarHeight = 48.0;
   static const actionSize = 40.0;
+
+  static const borderRadius = 8.0;
 }
