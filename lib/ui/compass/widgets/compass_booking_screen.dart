@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/l10n/app_localizations.dart';
 import 'package:flutter_lab/ui/compass/view_models/compass_booking_view_model.dart';
+import 'package:flutter_lab/ui/compass/widgets/compass_booking_body.dart';
 import 'package:flutter_lab/ui/core/ui/floating_action_button.dart';
 import 'package:flutter_lab/ui/core/ui/scaffold.dart';
 
@@ -32,7 +33,7 @@ class _CompassBookingScreenState extends State<CompassBookingScreen> {
 
           return child;
         },
-        child: Container(),
+        child: CompassBookingBody(viewModel: widget.viewModel),
       ),
       floatingActionButton: ListenableBuilder(
         listenable: widget.viewModel,
