@@ -1,10 +1,15 @@
 import 'package:flutter_lab/domain/models/booking/booking.dart';
 import 'package:flutter_lab/utils/result.dart';
 import 'package:logging/logging.dart';
+import 'package:share_plus/share_plus.dart';
 
 typedef ShareFunction = Future<void> Function(String text);
 
 class BookingShareUseCase {
+  factory BookingShareUseCase.withSharePlus() =>
+      BookingShareUseCase._((String text) async {
+        await SharePlus.instance.share(ShareParams(text: text));
+      });
   BookingShareUseCase._(this._share);
 
   final _log = Logger('BookingShareUseCase');

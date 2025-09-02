@@ -27,7 +27,9 @@ class _CompassBookingScreenState extends State<CompassBookingScreen> {
       floatingActionButton: ListenableBuilder(
         listenable: widget.viewModel,
         builder: (context, _) => FloatingActionButton(
-          onPressed: () {},
+          onPressed: widget.viewModel.booking != null
+              ? widget.viewModel.shareBooking.execute
+              : null,
           label: Text(appLocalizations.shareTrip),
           icon: Assets.icons.share,
         ),
