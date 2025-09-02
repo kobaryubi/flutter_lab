@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              const AppBar(),
+              const AppBar(title: Text('Home')),
               Expanded(
                 child: SafeArea(
                   top: false,
