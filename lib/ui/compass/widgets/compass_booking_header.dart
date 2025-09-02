@@ -30,6 +30,17 @@ class CompassBookingHeader extends StatelessWidget {
   }
 }
 
+class _Tags extends StatelessWidget {
+  const _Tags({required this.booking});
+
+  final Booking booking;
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox();
+  }
+}
+
 class _Top extends StatelessWidget {
   const _Top({required this.booking});
 
