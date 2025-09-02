@@ -8,11 +8,13 @@ abstract final class Routes {
   static const activities = '/$activitiesRelative';
   static const activitiesRelative = 'activities';
   static const booking = '/$bookingRelative';
-  static const bookingRelative = 'booking';
-  static String bookingWithId(int id) => '$booking/$id';
 
+  // compass
   static const compass = '/$compassRelative';
   static const compassRelative = 'compass';
+  static String compassBookingWithId(int id) =>
+      '/$compassRelative/$bookingRelative/$id';
+  static const bookingRelative = 'booking';
 
   static const optimisticState = '/$optimisticStateRelative';
   static const optimisticStateRelative = 'optimistic-state';
