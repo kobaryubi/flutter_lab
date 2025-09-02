@@ -76,16 +76,11 @@ GoRouter router(Ref ref) {
           //             // create a new booking from the stored ItineraryConfig.
           //             viewModel.createBooking.execute();
 
-          //                 final id = int.parse(state.pathParameters['id']!);
           //                 final viewModel = BookingViewModel(
           //                   itineraryConfigRepository: context.read(),
           //                   createBookingUseCase: context.read(),
           //                   shareBookingUseCase: context.read(),
           //                 );
-
-          //                 // When opening the booking screen with an existing id
-          //                 // load and display that booking.
-          //                 viewModel.loadBooking.execute(id);
 
           // compass
           GoRoute(
@@ -126,6 +121,9 @@ GoRouter router(Ref ref) {
                         bookingRepository: context.read(),
                         shareBookingUseCase: context.read(),
                       );
+
+                      final id = int.parse(state.pathParameters['id']!);
+                      viewModel.loadBooking.execute(id);
 
                       return CompassBookingScreen(viewModel: viewModel);
                     },

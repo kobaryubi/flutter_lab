@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/domain/models/booking/booking.dart';
+import 'package:flutter_lab/ui/compass/widgets/compass_home_button.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
@@ -32,6 +33,11 @@ class _Top extends StatelessWidget {
           _HeaderImage(booking: booking),
           const _Gradient(),
           _Headline(booking: booking),
+          const Positioned(
+            right: Dimens.padding,
+            top: Dimens.padding,
+            child: CompassHomeButton(),
+          ),
         ],
       ),
     );
