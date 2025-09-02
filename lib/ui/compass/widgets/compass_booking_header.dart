@@ -5,6 +5,7 @@ import 'package:flutter_lab/ui/compass/widgets/compass_home_button.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
+import 'package:flutter_lab/ui/core/ui/tag_chip.dart';
 import 'package:flutter_lab/utils/image_error_listener.dart';
 
 class CompassBookingHeader extends StatelessWidget {
@@ -37,7 +38,16 @@ class _Tags extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox();
+    return Padding(
+      padding: Dimens.edgeInsetsScreenHorizontal,
+      child: Wrap(
+        spacing: 6,
+        runSpacing: 6,
+        children: booking.destination.tags
+            .map((tag) => const TagChip())
+            .toList(),
+      ),
+    );
   }
 }
 
