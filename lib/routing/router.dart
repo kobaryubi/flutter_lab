@@ -7,6 +7,7 @@ import 'package:flutter_lab/ui/animations/widgets/animations_screen.dart';
 import 'package:flutter_lab/ui/auth/login/widgets/login_screen.dart';
 import 'package:flutter_lab/ui/auth/login/widgets/login_view_model.dart';
 import 'package:flutter_lab/ui/compass/view_models/compass_view_model.dart';
+import 'package:flutter_lab/ui/compass/widgets/compass_booking_screen.dart';
 import 'package:flutter_lab/ui/compass/widgets/compass_screen.dart';
 import 'package:flutter_lab/ui/cookbook/widgets/cookbook_networking_fetch_data_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
@@ -75,7 +76,6 @@ GoRouter router(Ref ref) {
             },
           ),
           //         GoRoute(
-          //           path: Routes.bookingRelative,
           //           builder: (context, state) {
           //             final viewModel = BookingViewModel(
           //               itineraryConfigRepository: context.read(),
@@ -90,9 +90,6 @@ GoRouter router(Ref ref) {
 
           //             return BookingScreen(viewModel: viewModel);
           //           },
-          //           routes: [
-          //             GoRoute(
-          //               path: ':id',
           //               builder: (context, state) {
           //                 final id = int.parse(state.pathParameters['id']!);
           //                 final viewModel = BookingViewModel(
@@ -108,9 +105,7 @@ GoRouter router(Ref ref) {
 
           //                 return BookingScreen(viewModel: viewModel);
           //               },
-          //             ),
-          //           ],
-          //         ),
+          // compass
           GoRoute(
             path: Routes.compassRelative,
             builder: (context, state) {
@@ -120,6 +115,22 @@ GoRouter router(Ref ref) {
               );
               return CompassScreen(viewModel: viewModel);
             },
+            routes: [
+              GoRoute(
+                path: Routes.bookingRelative,
+                builder: (context, state) {
+                  return Container();
+                },
+                routes: [
+                  GoRoute(
+                    path: ':id',
+                    builder: (context, state) {
+                      return const CompassBookingScreen();
+                    },
+                  ),
+                ],
+              ),
+            ],
           ),
           GoRoute(
             path: Routes.optimisticStateRelative,
