@@ -98,7 +98,9 @@ class _CompassScreenState extends State<CompassScreen> {
                     key: ValueKey(widget.viewModel.bookings[index].id),
                     booking: widget.viewModel.bookings[index],
                     onTap: () => context.push(
-                      Routes.bookingWithId(widget.viewModel.bookings[index].id),
+                      Routes.compassBookingWithId(
+                        widget.viewModel.bookings[index].id,
+                      ),
                     ),
                     confirmDismiss: (_) async {
                       await widget.viewModel.deleteBooking.execute(
