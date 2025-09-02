@@ -119,7 +119,7 @@ class _CompassScreenState extends State<CompassScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => _onPressed(context),
         label: Text(appLocalizations.bookNewTrip),
-        icon: Assets.icons.search,
+        icon: Assets.icons.addLocationOutlined,
       ),
     );
   }
