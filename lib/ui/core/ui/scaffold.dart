@@ -5,19 +5,20 @@ import 'package:flutter_lab/ui/core/ui/floating_action_button.dart';
 
 class Scaffold extends StatelessWidget {
   const Scaffold({
-    required this.appBar,
     required this.body,
+    this.appBar,
     this.floatingActionButton,
     super.key,
   });
 
-  final AppBar appBar;
   final Widget body;
+  final AppBar? appBar;
   final FloatingActionButton? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
     final fab = floatingActionButton;
+    final appBar = this.appBar;
 
     return ColoredBox(
       color: AppColors.scaffoldBackgroundColor,
@@ -25,7 +26,7 @@ class Scaffold extends StatelessWidget {
         children: [
           Column(
             children: [
-              appBar,
+              if (appBar != null) appBar,
               Expanded(child: body),
             ],
           ),
