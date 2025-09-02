@@ -29,6 +29,7 @@ class _Top extends StatelessWidget {
         children: [
           _HeaderImage(booking: booking),
           const _Gradient(),
+          _Headline(booking: booking),
         ],
       ),
     );
@@ -67,5 +68,16 @@ class _Gradient extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _Headline extends StatelessWidget {
+  const _Headline({required this.booking});
+
+  final Booking booking;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
