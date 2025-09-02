@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
-import 'package:flutter_lab/ui/core/ui/floating_action_button.dart';
 
 class Scaffold extends StatelessWidget {
   const Scaffold({
@@ -13,7 +12,7 @@ class Scaffold extends StatelessWidget {
 
   final Widget body;
   final AppBar? appBar;
-  final FloatingActionButton? floatingActionButton;
+  final Widget? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
