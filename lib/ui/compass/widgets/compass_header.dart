@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class CompassHeader extends StatelessWidget {
-  const CompassHeader({super.key, required this.viewModel});
+  const CompassHeader({required this.viewModel, super.key});
 
   final CompassViewModel viewModel;
 
