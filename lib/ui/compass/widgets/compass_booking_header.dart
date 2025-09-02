@@ -14,7 +14,19 @@ class CompassBookingHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [_Top(booking: booking)]);
+    return Column(
+      children: [
+        _Top(booking: booking),
+        Padding(
+          padding: Dimens.edgeInsetsScreenHorizontal,
+          child: Text(
+            booking.destination.knownFor,
+            style: TextStyles.bodyLarge.copyWith(color: AppColors.black1),
+          ),
+        ),
+        const SizedBox(height: Dimens.paddingVertical),
+      ],
+    );
   }
 }
 
@@ -36,7 +48,7 @@ class _Top extends StatelessWidget {
           const Positioned(
             right: Dimens.padding,
             top: Dimens.padding,
-            child: CompassHomeButton(),
+            child: CompassHomeButton(blur: true),
           ),
         ],
       ),
