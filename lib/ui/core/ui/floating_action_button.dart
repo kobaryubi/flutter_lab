@@ -6,13 +6,13 @@ import 'package:flutter_lab/ui/core/themes/theme.dart';
 
 class FloatingActionButton extends StatefulWidget {
   const FloatingActionButton({
-    required this.onPressed,
     required this.label,
     required this.icon,
+    this.onPressed,
     super.key,
   });
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Text label;
   final SvgGenImage icon;
 
