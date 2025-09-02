@@ -3,10 +3,13 @@ import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
+import 'package:flutter_lab/ui/core/ui/blur_filter.dart';
 import 'package:go_router/go_router.dart';
 
 class CompassHomeButton extends StatelessWidget {
-  const CompassHomeButton({super.key});
+  const CompassHomeButton({super.key, this.blur = false});
+
+  final bool blur;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +19,13 @@ class CompassHomeButton extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
+          if (blur)
+            ClipRect(
+              child: BackdropFilter(
+                filter: kBlurFilter,
+                child: const SizedBox.expand(),
+              ),
+            ),
           DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.gray1),
