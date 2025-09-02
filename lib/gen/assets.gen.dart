@@ -32,6 +32,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/delete.svg
   SvgGenImage get delete => const SvgGenImage.vec('assets/icons/delete.svg');
 
+  /// File path: assets/icons/home.svg
+  SvgGenImage get home => const SvgGenImage.vec('assets/icons/home.svg');
+
   /// File path: assets/icons/logout.svg
   SvgGenImage get logout => const SvgGenImage.vec('assets/icons/logout.svg');
 
@@ -47,6 +50,7 @@ class $AssetsIconsGen {
     arrowBack,
     arrowForward,
     delete,
+    home,
     logout,
     search,
     share,
