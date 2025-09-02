@@ -6,7 +6,7 @@ import 'package:flutter_lab/ui/core/ui/floating_action_button.dart';
 import 'package:flutter_lab/ui/core/ui/scaffold.dart';
 
 class CompassBookingScreen extends StatefulWidget {
-  const CompassBookingScreen({super.key, required this.viewModel});
+  const CompassBookingScreen({required this.viewModel, super.key});
 
   final CompassBookingViewModel viewModel;
 
@@ -23,7 +23,17 @@ class _CompassBookingScreenState extends State<CompassBookingScreen> {
     }
 
     return Scaffold(
-      body: Container(),
+      body: ListenableBuilder(
+        listenable: widget.viewModel.loadBooking,
+        builder: (context, child) {
+          if (child == null) {
+            return const SizedBox();
+          }
+
+          return child;
+        },
+        child: Container(),
+      ),
       floatingActionButton: ListenableBuilder(
         listenable: widget.viewModel,
         builder: (context, _) => FloatingActionButton(
