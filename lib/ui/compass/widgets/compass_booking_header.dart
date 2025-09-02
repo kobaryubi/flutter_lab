@@ -26,6 +26,8 @@ class CompassBookingHeader extends StatelessWidget {
           ),
         ),
         const SizedBox(height: Dimens.paddingVertical),
+        _Tags(booking: booking),
+        const SizedBox(height: Dimens.paddingVertical),
       ],
     );
   }
