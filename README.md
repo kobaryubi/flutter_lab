@@ -42,3 +42,11 @@ flutter clean
 ```sh
 dart format .
 ```
+
+### testing
+
+```sh
+flutter test test/counter_test.dart
+flutter test test/fetch_album_test.dart
+flutter test test/widget_test.dart
+```
