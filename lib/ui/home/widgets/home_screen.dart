@@ -11,6 +11,11 @@ class HomeScreen extends StatelessWidget {
   static const List<AppLink> links = [
     AppLink(title: 'compass', route: Routes.compass),
     AppLink(title: 'optimistic state', route: Routes.optimisticState),
+    // webview
+    AppLink(
+      title: 'webview',
+      route: Routes.webview,
+    ),
     // cookbook
     AppLink(
       title: 'networking fetch data',
