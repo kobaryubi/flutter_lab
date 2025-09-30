@@ -50,3 +50,9 @@ flutter test test/counter_test.dart
 flutter test test/fetch_album_test.dart
 flutter test test/widget_test.dart
 ```
+
+### preview
+
+```sh
+flutter widget-preview start
+```
