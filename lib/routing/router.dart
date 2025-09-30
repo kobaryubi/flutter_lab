@@ -21,6 +21,7 @@ import 'package:flutter_lab/ui/results/widgets/results_screen.dart';
 import 'package:flutter_lab/ui/riverpod/widgets/riverpod_getting_started_screen.dart';
 import 'package:flutter_lab/ui/riverpod/widgets/riverpod_random_joke_screen.dart';
 import 'package:flutter_lab/ui/riverpod/widgets/riverpod_screen.dart';
+import 'package:flutter_lab/ui/webview/widgets/webview_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -46,6 +47,7 @@ GoRouter router(Ref ref) {
         path: Routes.home,
         builder: (context, state) => const HomeScreen(),
         routes: [
+          // /results
           GoRoute(
             path: Routes.resultsRelative,
             builder: (context, state) {
@@ -56,6 +58,7 @@ GoRouter router(Ref ref) {
               return ResultsScreen(viewModel: viewModel);
             },
           ),
+          // /activities
           GoRoute(
             path: Routes.activitiesRelative,
             builder: (context, state) {
@@ -82,6 +85,13 @@ GoRouter router(Ref ref) {
           //                   shareBookingUseCase: context.read(),
           //                 );
 
+          // /webview
+          GoRoute(
+            path: Routes.webviewRelative,
+            builder: (context, state) {
+              return const WebViewScreen();
+            },
+          ),
           // compass
           GoRoute(
             path: Routes.compassRelative,
