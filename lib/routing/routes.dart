@@ -8,6 +8,8 @@ abstract final class Routes {
   static const activities = '/$activitiesRelative';
   static const activitiesRelative = 'activities';
   static const booking = '/$bookingRelative';
+  static const webview = '/$webviewRelative';
+  static const webviewRelative = 'webview';
 
   // compass
   static const compass = '/$compassRelative';
