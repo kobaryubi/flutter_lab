@@ -92,6 +92,13 @@ GoRouter router(Ref ref) {
               return const WebViewScreen();
             },
           ),
+          // /petstore
+          GoRoute(
+            path: Routes.petstoreRelative,
+            builder: (context, state) {
+              return const 
+            }
+          ),
           // compass
           GoRoute(
             path: Routes.compassRelative,
