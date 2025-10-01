@@ -48,28 +48,28 @@ final class PetRepositoryProvider
 String _$petRepositoryHash() => r'223a87f1f958af890ab235324f25d39a6076a5af';
 
 /// use case
-@ProviderFor(listPetsUseCaseProvider)
-const listPetsUseCaseProviderProvider = ListPetsUseCaseProviderProvider._();
+@ProviderFor(listPetsUseCase)
+const listPetsUseCaseProvider = ListPetsUseCaseProvider._();
 
 /// use case
-final class ListPetsUseCaseProviderProvider
+final class ListPetsUseCaseProvider
     extends
         $FunctionalProvider<ListPetsUseCase, ListPetsUseCase, ListPetsUseCase>
     with $Provider<ListPetsUseCase> {
   /// use case
-  const ListPetsUseCaseProviderProvider._()
+  const ListPetsUseCaseProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'listPetsUseCaseProviderProvider',
+        name: r'listPetsUseCaseProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$listPetsUseCaseProviderHash();
+  String debugGetCreateSourceHash() => _$listPetsUseCaseHash();
 
   @$internal
   @override
@@ -78,7 +78,7 @@ final class ListPetsUseCaseProviderProvider
 
   @override
   ListPetsUseCase create(Ref ref) {
-    return listPetsUseCaseProvider(ref);
+    return listPetsUseCase(ref);
   }
 
   /// {@macro riverpod.override_with_value}
@@ -90,8 +90,7 @@ final class ListPetsUseCaseProviderProvider
   }
 }
 
-String _$listPetsUseCaseProviderHash() =>
-    r'61927af89128dd721830dc580ca380b6e6612ff0';
+String _$listPetsUseCaseHash() => r'e21a2d4ad0c4f1a75b234748472c84959659c703';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

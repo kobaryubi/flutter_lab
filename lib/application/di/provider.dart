@@ -13,7 +13,7 @@ PetRepository petRepository(Ref ref) {
 
 /// use case
 @riverpod
-ListPetsUseCase listPetsUseCaseProvider(Ref ref) {
+ListPetsUseCase listPetsUseCase(Ref ref) {
   return ListPetsUseCase(
     petRepository: ref.read(petRepositoryProvider),
   );
