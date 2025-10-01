@@ -72,5 +72,12 @@ docker run --rm \
   -v ${PWD}:/local openapitools/openapi-generator-cli generate \
   -i /local/petstore.yaml \
   -g dart-dio \
-  -o /local/lib/data/services/dio/gen
+  -o /local/package/petstore \
+  --additional-properties pubName=petstore
+```
+
+### add local package
+
+```sh
+fvm flutter pub add "petstore:{path: package/petstore}"
 ```
