@@ -56,3 +56,21 @@ flutter test test/widget_test.dart
 ```sh
 flutter widget-preview start
 ```
+
+### fvm
+
+```sh
+curl -fsSL https://fvm.app/install.sh | bash
+fvm use 3.35.0
+fvm flutter doctor
+```
+
+### generate API client from OpenAPI spec
+
+```sh
+docker run --rm \
+  -v ${PWD}:/local openapitools/openapi-generator-cli generate \
+  -i /local/petstore.yaml \
+  -g dart-dio \
+  -o /local/lib/data/services/dio/gen
+```
