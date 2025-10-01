@@ -16,6 +16,8 @@ class HomeScreen extends StatelessWidget {
       title: 'webview',
       route: Routes.webview,
     ),
+    // petstore
+    AppLink(title: 'petstore', route: Routes.petstore),
     // cookbook
     AppLink(
       title: 'networking fetch data',

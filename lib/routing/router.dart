@@ -16,6 +16,7 @@ import 'package:flutter_lab/ui/cookbook/widgets/cookbook_networking_fetch_data_s
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/optimistic_state/widgets/optimistic_state_screen.dart';
 import 'package:flutter_lab/ui/optimistic_state/widgets/optimistic_state_view_model.dart';
+import 'package:flutter_lab/ui/petstore/widgets/petstore_screen.dart';
 import 'package:flutter_lab/ui/results/results_view_model.dart';
 import 'package:flutter_lab/ui/results/widgets/results_screen.dart';
 import 'package:flutter_lab/ui/riverpod/widgets/riverpod_getting_started_screen.dart';
@@ -96,8 +97,8 @@ GoRouter router(Ref ref) {
           GoRoute(
             path: Routes.petstoreRelative,
             builder: (context, state) {
-              return const 
-            }
+              return const PetStoreScreen();
+            },
           ),
           // compass
           GoRoute(
