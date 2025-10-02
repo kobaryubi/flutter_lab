@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PetStoreUiState {
 
- AsyncValue<List<Pet>> get pets;
+ AsyncValue<List<Pet>>? get pets;
 /// Create a copy of PetStoreUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $PetStoreUiStateCopyWith<$Res>  {
   factory $PetStoreUiStateCopyWith(PetStoreUiState value, $Res Function(PetStoreUiState) _then) = _$PetStoreUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<List<Pet>> pets
+ AsyncValue<List<Pet>>? pets
 });
 
 
@@ -62,10 +62,10 @@ class _$PetStoreUiStateCopyWithImpl<$Res>
 
 /// Create a copy of PetStoreUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? pets = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? pets = freezed,}) {
   return _then(_self.copyWith(
-pets: null == pets ? _self.pets : pets // ignore: cast_nullable_to_non_nullable
-as AsyncValue<List<Pet>>,
+pets: freezed == pets ? _self.pets : pets // ignore: cast_nullable_to_non_nullable
+as AsyncValue<List<Pet>>?,
   ));
 }
 
@@ -150,7 +150,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<List<Pet>> pets)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<List<Pet>>? pets)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PetStoreUiState() when $default != null:
 return $default(_that.pets);case _:
@@ -171,7 +171,7 @@ return $default(_that.pets);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<List<Pet>> pets)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<List<Pet>>? pets)  $default,) {final _that = this;
 switch (_that) {
 case _PetStoreUiState():
 return $default(_that.pets);case _:
@@ -191,7 +191,7 @@ return $default(_that.pets);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<List<Pet>> pets)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<List<Pet>>? pets)?  $default,) {final _that = this;
 switch (_that) {
 case _PetStoreUiState() when $default != null:
 return $default(_that.pets);case _:
@@ -209,7 +209,7 @@ class _PetStoreUiState implements PetStoreUiState {
   const _PetStoreUiState({required this.pets});
   
 
-@override final  AsyncValue<List<Pet>> pets;
+@override final  AsyncValue<List<Pet>>? pets;
 
 /// Create a copy of PetStoreUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -241,7 +241,7 @@ abstract mixin class _$PetStoreUiStateCopyWith<$Res> implements $PetStoreUiState
   factory _$PetStoreUiStateCopyWith(_PetStoreUiState value, $Res Function(_PetStoreUiState) _then) = __$PetStoreUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<List<Pet>> pets
+ AsyncValue<List<Pet>>? pets
 });
 
 
@@ -258,10 +258,10 @@ class __$PetStoreUiStateCopyWithImpl<$Res>
 
 /// Create a copy of PetStoreUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? pets = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? pets = freezed,}) {
   return _then(_PetStoreUiState(
-pets: null == pets ? _self.pets : pets // ignore: cast_nullable_to_non_nullable
-as AsyncValue<List<Pet>>,
+pets: freezed == pets ? _self.pets : pets // ignore: cast_nullable_to_non_nullable
+as AsyncValue<List<Pet>>?,
   ));
 }
 

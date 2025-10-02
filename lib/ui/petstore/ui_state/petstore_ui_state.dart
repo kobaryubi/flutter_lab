@@ -7,6 +7,6 @@ part 'petstore_ui_state.freezed.dart';
 @freezed
 abstract class PetStoreUiState with _$PetStoreUiState {
   const factory PetStoreUiState({
-    required AsyncValue<List<Pet>> pets,
+    required AsyncValue<List<Pet>>? pets,
   }) = _PetStoreUiState;
 }
