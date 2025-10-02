@@ -28,7 +28,12 @@ class _Body extends HookConsumerWidget {
     );
     final vm = ref.read(petStoreViewModelProvider.notifier);
 
-    if (petsAsyncValue.isLoading) {
+    useEffect(() {
+      vm.listPets();
+      return null;
+    }, []);
+
+    if (petsAsyncValue == null || petsAsyncValue.isLoading) {
       return const Text('Loading...');
     }
 
