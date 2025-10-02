@@ -45,7 +45,7 @@ final class PetRepositoryProvider
   }
 }
 
-String _$petRepositoryHash() => r'223a87f1f958af890ab235324f25d39a6076a5af';
+String _$petRepositoryHash() => r'fd69045e0fcb40b13f211714a7c12f243c0bd7ed';
 
 /// use case
 @ProviderFor(listPetsUseCase)

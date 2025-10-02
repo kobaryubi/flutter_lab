@@ -1,7 +1,7 @@
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart';
 import 'package:flutter_lab/data/mapper/pet/pet_mapper.auto_mappr.dart';
 import 'package:flutter_lab/domain/models/pet/pet.dart';
-import 'package:petstore/petstore.dart' as dto;
+import 'package:petstore/petstore.dart' as petstore;
 
-@AutoMappr([MapType<dto.Pet, Pet>()])
+@AutoMappr([MapType<petstore.Pet, Pet>()])
 class PetMapper extends $PetMapper {}

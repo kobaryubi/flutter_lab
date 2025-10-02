@@ -43,6 +43,7 @@ class ApiClient {
         final stringData = await response.transform(utf8.decoder).join();
         final json = jsonDecode(stringData) as List<dynamic>;
         return Result.ok(
+          // ignore: argument_type_not_assignable
           json.map((element) => Continent.fromJson(element)).toList(),
         );
       }
@@ -66,6 +67,7 @@ class ApiClient {
         final json = jsonDecode(stringData) as List<dynamic>;
 
         return Result.ok(
+          // ignore: argument_type_not_assignable
           json.map((element) => Destination.fromJson(element)).toList(),
         );
       }
@@ -92,6 +94,7 @@ class ApiClient {
         final stringData = await response.transform(utf8.decoder).join();
         final json = jsonDecode(stringData) as List<dynamic>;
         final activities = json
+            // ignore: argument_type_not_assignable
             .map((element) => Activity.fromJson(element))
             .toList();
         return Result.ok(activities);
@@ -115,6 +118,7 @@ class ApiClient {
         final stringData = await response.transform(utf8.decoder).join();
         final json = jsonDecode(stringData) as List<dynamic>;
         final bookings = json
+            // ignore: argument_type_not_assignable
             .map((element) => BookingApiModel.fromJson(element))
             .toList();
 
@@ -137,6 +141,7 @@ class ApiClient {
       final response = await request.close();
       if (response.statusCode == 200) {
         final stringData = await response.transform(utf8.decoder).join();
+        // ignore: argument_type_not_assignable
         final booking = BookingApiModel.fromJson(jsonDecode(stringData));
         return Result.ok(booking);
       }
@@ -158,6 +163,7 @@ class ApiClient {
       final response = await request.close();
       if (response.statusCode == 201) {
         final stringData = await response.transform(utf8.decoder).join();
+        // ignore: argument_type_not_assignable
         final booking = BookingApiModel.fromJson(jsonDecode(stringData));
 
         return Result.ok(booking);
@@ -179,6 +185,7 @@ class ApiClient {
       final response = await request.close();
       if (response.statusCode == 200) {
         final stringData = await response.transform(utf8.decoder).join();
+        // ignore: argument_type_not_assignable
         final user = UserApiModel.fromJson(jsonDecode(stringData));
         return Result.ok(user);
       } else {
