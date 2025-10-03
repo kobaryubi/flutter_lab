@@ -876,6 +876,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.3"
+  protobuf:
+    dependency: transitive
+    description:
+      name: protobuf
+      sha256: de9c9eb2c33f8e933a42932fe1dc504800ca45ebc3d673e6ed7f39754ee4053e
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.0"
   provider:
     dependency: "direct main"
     description:
@@ -924,6 +932,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.7.3"
+  retrofit_generator:
+    dependency: "direct dev"
+    description:
+      name: retrofit_generator
+      sha256: bf8c5fc06d92de0cc79ace127a620af6dcbabaf7426da91e308a5bc3a0266c3e
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.0.0"
   riverpod:
     dependency: transitive
     description:

@@ -57,6 +57,7 @@ dev_dependencies:
     sdk: flutter
   auto_mappr: ^2.10.0
   http_mock_adapter: ^0.6.1
+  retrofit_generator: ^10.0.0
 
 flutter_gen:
   integrations:
