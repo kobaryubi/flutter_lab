@@ -11,7 +11,7 @@ PetRepository petRepository(Ref ref) {
   return PetRepositoryRemote();
 }
 
-/// use case
+// use case
 @riverpod
 ListPetsUseCase listPetsUseCase(Ref ref) {
   return ListPetsUseCase(

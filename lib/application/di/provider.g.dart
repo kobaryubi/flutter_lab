@@ -47,16 +47,13 @@ final class PetRepositoryProvider
 
 String _$petRepositoryHash() => r'fd69045e0fcb40b13f211714a7c12f243c0bd7ed';
 
-/// use case
 @ProviderFor(listPetsUseCase)
 const listPetsUseCaseProvider = ListPetsUseCaseProvider._();
 
-/// use case
 final class ListPetsUseCaseProvider
     extends
         $FunctionalProvider<ListPetsUseCase, ListPetsUseCase, ListPetsUseCase>
     with $Provider<ListPetsUseCase> {
-  /// use case
   const ListPetsUseCaseProvider._()
     : super(
         from: null,

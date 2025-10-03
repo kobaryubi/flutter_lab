@@ -50,7 +50,7 @@ packages:
     source: hosted
     version: "2.13.0"
   auto_mappr:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: auto_mappr
       sha256: "3ce49379f250df99b3b2e40b25210fedb2846210b7c7d9a1dbc341e9d4d0c3fd"
@@ -58,7 +58,7 @@ packages:
     source: hosted
     version: "2.10.0"
   auto_mappr_annotation:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: auto_mappr_annotation
       sha256: "6b004ddabca19094c78bfdbd5185893cf3e70c5f11148878274238328bdb258e"
@@ -549,6 +549,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
+  http_mock_adapter:
+    dependency: "direct dev"
+    description:
+      name: http_mock_adapter
+      sha256: "46399c78bd4a0af071978edd8c502d7aeeed73b5fb9860bca86b5ed647a63c1b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.1"
   http_multi_server:
     dependency: transitive
     description:
@@ -653,6 +661,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      sha256: "55d6c23a6c15db14920e037fe7e0dc32e7cdaf3b64b4b25df2d541b5b6b81c0c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.6.1"
   logging:
     dependency: "direct main"
     description:
@@ -900,6 +916,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  retrofit:
+    dependency: "direct main"
+    description:
+      name: retrofit
+      sha256: be571b11e3d7c62d0894fc193d1199864f761fc84bf8ccca5efe0bb0b6b0c38b
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.7.3"
   riverpod:
     dependency: transitive
     description:

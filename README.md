@@ -73,7 +73,10 @@ docker run --rm \
   -i /local/petstore.yaml \
   -g dart-dio \
   -o /local/package/petstore \
-  --additional-properties pubName=petstore
+  --additional-properties pubName=petstore,pubLibrary=petstore
+cd package/petstore
+dart run build_runner build --delete-conflicting-outputs
+cd ../..
 ```
 
 ### add local package
