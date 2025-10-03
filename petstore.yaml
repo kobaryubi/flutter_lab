@@ -22,6 +22,25 @@ paths:
             application/json: 
               schema:
                 $ref: '#/components/schemas/Pets'
+    post:
+      summary: create a pet
+      tags:
+        - pets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+      responses:
+        201:
+          description: Created
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Pet:
@@ -40,3 +59,14 @@ components:
       maxItems: 100
       items:
         $ref: '#/components/schemas/Pet'
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
