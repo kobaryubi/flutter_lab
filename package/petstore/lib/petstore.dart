@@ -12,5 +12,6 @@ export 'package:petstore/src/model/date.dart';
 
 export 'package:petstore/src/api/pets_api.dart';
 
+export 'package:petstore/src/model/error.dart';
 export 'package:petstore/src/model/pet.dart';
 

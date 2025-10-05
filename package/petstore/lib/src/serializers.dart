@@ -14,11 +14,13 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:petstore/src/date_serializer.dart';
 import 'package:petstore/src/model/date.dart';
 
+import 'package:petstore/src/model/error.dart';
 import 'package:petstore/src/model/pet.dart';
 
 part 'serializers.g.dart';
 
 @SerializersFor([
+  Error,
   Pet,
 ])
 Serializers serializers = (_$serializers.toBuilder()

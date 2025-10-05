@@ -1,6 +1,7 @@
 .gitignore
 README.md
 analysis_options.yaml
+doc/Error.md
 doc/Pet.md
 doc/PetsApi.md
 lib/petstore.dart
@@ -14,6 +15,8 @@ lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
 lib/src/model/date.dart
+lib/src/model/error.dart
 lib/src/model/pet.dart
 lib/src/serializers.dart
 pubspec.yaml
+test/error_test.dart

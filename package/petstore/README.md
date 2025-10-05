@@ -66,10 +66,12 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 [*PetsApi*](doc/PetsApi.md) | [**petsGet**](doc/PetsApi.md#petsget) | **GET** /pets | 
+[*PetsApi*](doc/PetsApi.md) | [**petsPost**](doc/PetsApi.md#petspost) | **POST** /pets | create a pet
 
 
 ## Documentation For Models
 
+ - [Error](doc/Error.md)
  - [Pet](doc/Pet.md)
 
 
