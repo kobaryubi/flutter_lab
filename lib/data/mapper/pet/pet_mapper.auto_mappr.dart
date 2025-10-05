@@ -16,6 +16,7 @@ import '../../../domain/models/pet/pet.dart' as _i3;
 /// {@template package:flutter_lab/data/mapper/pet/pet_mapper.dart}
 /// Available mappings:
 /// - `Pet` → `Pet`.
+/// - `Pet` → `Pet`.
 /// {@endtemplate}
 class $PetMapper implements _i1.AutoMapprInterface {
   const $PetMapper();
@@ -34,6 +35,12 @@ class $PetMapper implements _i1.AutoMapprInterface {
             sourceTypeOf == _typeOf<_i2.Pet?>()) &&
         (targetTypeOf == _typeOf<_i3.Pet>() ||
             targetTypeOf == _typeOf<_i3.Pet?>())) {
+      return true;
+    }
+    if ((sourceTypeOf == _typeOf<_i3.Pet>() ||
+            sourceTypeOf == _typeOf<_i3.Pet?>()) &&
+        (targetTypeOf == _typeOf<_i2.Pet>() ||
+            targetTypeOf == _typeOf<_i2.Pet?>())) {
       return true;
     }
     if (recursive) {
@@ -222,6 +229,15 @@ class $PetMapper implements _i1.AutoMapprInterface {
       }
       return (_map__i2$Pet_To__i3$Pet((model as _i2.Pet?)) as TARGET);
     }
+    if ((sourceTypeOf == _typeOf<_i3.Pet>() ||
+            sourceTypeOf == _typeOf<_i3.Pet?>()) &&
+        (targetTypeOf == _typeOf<_i2.Pet>() ||
+            targetTypeOf == _typeOf<_i2.Pet?>())) {
+      if (canReturnNull && model == null) {
+        return null;
+      }
+      return (_map__i3$Pet_To__i2$Pet((model as _i3.Pet?)) as TARGET);
+    }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
   }
 
@@ -257,5 +273,16 @@ class $PetMapper implements _i1.AutoMapprInterface {
       );
     }
     return _i3.Pet(id: model.id, name: model.name);
+  }
+
+  _i2.Pet _map__i3$Pet_To__i2$Pet(_i3.Pet? input) {
+    final model = input;
+    if (model == null) {
+      throw Exception(
+        r'Mapping Pet → Pet failed because Pet was null, and no default value was provided. '
+        r'Consider setting the whenSourceIsNull parameter on the MapType<Pet, Pet> to handle null values during mapping.',
+      );
+    }
+    return _i2.Pet();
   }
 }
