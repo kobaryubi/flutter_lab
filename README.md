@@ -84,3 +84,9 @@ cd ../..
 ```sh
 fvm flutter pub add "petstore:{path: package/petstore}"
 ```
+
+### lefthook
+
+```sh
+brew install lefthook
+```
