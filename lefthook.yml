@@ -1,5 +1,7 @@
 pre-commit:
   parallel: true
+  exclude:
+    - "package/*"
   jobs:
     - name: format
       glob: "*.dart"
