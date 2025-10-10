@@ -89,4 +89,6 @@ fvm flutter pub add "petstore:{path: package/petstore}"
 
 ```sh
 brew install lefthook
+lefthook install
+lefthook validate
 ```
