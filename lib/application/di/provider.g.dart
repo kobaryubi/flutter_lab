@@ -6,6 +6,46 @@ part of 'provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+@ProviderFor(dio)
+const dioProvider = DioProvider._();
+
+final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
+    with $Provider<Dio> {
+  const DioProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'dioProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$dioHash();
+
+  @$internal
+  @override
+  $ProviderElement<Dio> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Dio create(Ref ref) {
+    return dio(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Dio value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Dio>(value),
+    );
+  }
+}
+
+String _$dioHash() => r'0c2bde79fee4386c4d0f928c82ea4a53050319e9';
+
 @ProviderFor(petRepository)
 const petRepositoryProvider = PetRepositoryProvider._();
 
@@ -45,7 +85,7 @@ final class PetRepositoryProvider
   }
 }
 
-String _$petRepositoryHash() => r'fd69045e0fcb40b13f211714a7c12f243c0bd7ed';
+String _$petRepositoryHash() => r'94f470db974f59901abf6bc501364a3b4fdde52e';
 
 @ProviderFor(listPetsUseCase)
 const listPetsUseCaseProvider = ListPetsUseCaseProvider._();
@@ -88,6 +128,52 @@ final class ListPetsUseCaseProvider
 }
 
 String _$listPetsUseCaseHash() => r'e21a2d4ad0c4f1a75b234748472c84959659c703';
+
+@ProviderFor(createPetUseCase)
+const createPetUseCaseProvider = CreatePetUseCaseProvider._();
+
+final class CreatePetUseCaseProvider
+    extends
+        $FunctionalProvider<
+          CreatePetUseCase,
+          CreatePetUseCase,
+          CreatePetUseCase
+        >
+    with $Provider<CreatePetUseCase> {
+  const CreatePetUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'createPetUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$createPetUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<CreatePetUseCase> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  CreatePetUseCase create(Ref ref) {
+    return createPetUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(CreatePetUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<CreatePetUseCase>(value),
+    );
+  }
+}
+
+String _$createPetUseCaseHash() => r'aad94a395f0d8f780d7a19578c3346c771ef6ba0';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
