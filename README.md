@@ -6,8 +6,8 @@
 flutter run lib/main.dart
 
 # Run the code generator
-dart run build_runner watch -d
-dart run build_runner build
+fvm dart run build_runner watch -d
+fvm dart run build_runner build
 
 flutter create --platforms android .
 flutter gen-l10n
