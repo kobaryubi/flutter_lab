@@ -13,4 +13,9 @@ class PetRepositoryLocal implements PetRepository {
       ].toSuccess(),
     );
   }
+
+  @override
+  AsyncResult<Unit> createPet(Pet pet) {
+    throw UnimplementedError();
+  }
 }
