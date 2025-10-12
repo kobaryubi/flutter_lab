@@ -13,7 +13,7 @@
 **/Pods/
 **/.symlinks/
 # profile
-# xcuserdata
+xcuserdata
 # **/.generated/
 Flutter/App.framework
 Flutter/Flutter.framework
