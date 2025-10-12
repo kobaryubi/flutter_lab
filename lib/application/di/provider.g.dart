@@ -44,7 +44,7 @@ final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
   }
 }
 
-String _$dioHash() => r'0c2bde79fee4386c4d0f928c82ea4a53050319e9';
+String _$dioHash() => r'ce1bb28487aa038e7abd11780b439f309a055888';
 
 @ProviderFor(petRepository)
 const petRepositoryProvider = PetRepositoryProvider._();
