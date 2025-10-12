@@ -1,7 +1,9 @@
 import 'package:flutter/widget_previews.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/domain/models/pet/pet.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
+import 'package:flutter_lab/ui/core/ui/button.dart';
 import 'package:flutter_lab/ui/core/ui/scaffold.dart';
 import 'package:flutter_lab/ui/petstore/view_model/petstore_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -43,12 +45,23 @@ class _Body extends HookConsumerWidget {
 
     final pets = petsAsyncValue.value ?? [];
 
-    return ListView.builder(
+    final onAddPetButtonPressed = useCallback(() {
+      vm.createPet(const Pet(id: 1, name: 'New Pet'));
+    }, [vm]);
+
+    final listView = ListView.builder(
       itemCount: pets.length,
       itemBuilder: (context, index) {
         final pet = pets[index];
         return Text(pet.name);
       },
+    );
+
+    return Column(
+      children: [
+        Button(onPressed: onAddPetButtonPressed, label: 'Add Pet'),
+        listView,
+      ],
     );
   }
 }
