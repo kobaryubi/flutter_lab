@@ -1,12 +1,12 @@
 import 'package:flutter_lab/domain/models/album/album.dart';
 import 'package:flutter_lab/ui/cookbook/widgets/cookbook_networking_fetch_data_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 // import 'package:mockito/mockito.dart';
 
 // import 'fetch_album_test.mocks.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'fetch_album_test.mocks.dart';

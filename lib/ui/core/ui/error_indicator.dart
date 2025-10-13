@@ -3,10 +3,10 @@ import 'package:flutter_lab/ui/core/themes/colors.dart';
 
 class ErrorIndicator extends StatelessWidget {
   const ErrorIndicator({
-    super.key,
     required this.title,
     required this.label,
     required this.onPressed,
+    super.key,
   });
 
   final String title;
@@ -17,11 +17,10 @@ class ErrorIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         IntrinsicWidth(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8),
             child: Center(
               child: Text(
                 title,

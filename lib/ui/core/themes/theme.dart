@@ -28,7 +28,7 @@ abstract final class TextStyles {
     fontWeight: FontWeight.w400,
   );
   static const hintStyle = TextStyle(
-    fontSize: 18.0,
+    fontSize: 18,
     fontWeight: FontWeight.w400,
   );
 }

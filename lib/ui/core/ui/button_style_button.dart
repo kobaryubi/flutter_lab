@@ -2,9 +2,9 @@ import 'package:flutter/widgets.dart';
 
 abstract class ButtonStyleButton extends StatefulWidget {
   const ButtonStyleButton({
-    super.key,
     required this.onPressed,
     required this.child,
+    super.key,
   });
 
   final VoidCallback onPressed;
