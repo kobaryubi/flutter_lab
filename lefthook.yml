@@ -9,5 +9,3 @@ pre-commit:
     - name: fix
       run: fvm dart fix --apply
       stage_fixed: true
-    # - name: analyze
-    #   run: fvm flutter analyze
