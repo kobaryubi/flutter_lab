@@ -56,7 +56,7 @@ class CompassSearchFormViewModel extends ChangeNotifier {
       return result;
     }
 
-    return await _loadItineraryConfig();
+    return _loadItineraryConfig();
   }
 
   Future<Result<void>> _loadContinents() async {
