@@ -17,7 +17,7 @@ class RiverpodScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final counter = useState(0);
 
-    final String value = ref.watch(helloWorldProvider);
+    final value = ref.watch(helloWorldProvider);
 
     return Center(child: Text('$value ${counter.value}'));
   }

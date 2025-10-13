@@ -66,8 +66,8 @@ class BookingRepositoryLocal implements BookingRepository {
       _bookings.add(
         Booking(
           id: _sequentialId++,
-          startDate: DateTime(2024, 1, 1),
-          endDate: DateTime(2024, 2, 1),
+          startDate: DateTime(2024),
+          endDate: DateTime(2024, 2),
           destination: destination,
           activity: activities,
         ),

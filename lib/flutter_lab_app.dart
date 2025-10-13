@@ -19,7 +19,7 @@ class FlutterLabApp extends ConsumerWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       textStyle: TextStyles.bodyMedium.merge(
-        TextStyle(color: AppColors.black1),
+        const TextStyle(color: AppColors.black1),
       ),
     );
   }

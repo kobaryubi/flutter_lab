@@ -4,7 +4,7 @@ import 'package:flutter_lab/ui/auth/logout/logout_view_model.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 
 class LogoutButton extends StatefulWidget {
-  const LogoutButton({super.key, required this.viewModel});
+  const LogoutButton({required this.viewModel, super.key});
 
   final LogoutViewModel viewModel;
 
@@ -35,13 +35,13 @@ class _LogoutButtonState extends State<LogoutButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40.0,
-      width: 40.0,
+      height: 40,
+      width: 40,
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.gray1),
-          borderRadius: BorderRadius.circular(8.0),
-          color: Color(0x00000000),
+          borderRadius: BorderRadius.circular(8),
+          color: const Color(0x00000000),
         ),
         child: Semantics(
           button: true,
@@ -49,7 +49,7 @@ class _LogoutButtonState extends State<LogoutButton> {
             onTap: widget.viewModel.logout.execute,
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: Center(child: Assets.icons.logout.svg()),
             ),

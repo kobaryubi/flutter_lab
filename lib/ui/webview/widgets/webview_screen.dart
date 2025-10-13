@@ -72,6 +72,7 @@ class _Body extends HookWidget {
             log.info('JavaScript message: ${message.message}');
           },
         );
+      return null;
     }, [webViewController]);
 
     return Stack(

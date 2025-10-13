@@ -23,9 +23,7 @@ class _CounterState extends State<CounterWidget> {
         Text('Count: $_counter'),
         TextButton(
           onPressed: () {
-            setState(() {
-              _incrementCounter();
-            });
+            setState(_incrementCounter);
           },
           child: const Text('Increment'),
         ),

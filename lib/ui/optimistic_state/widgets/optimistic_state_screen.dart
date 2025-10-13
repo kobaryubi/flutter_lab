@@ -3,7 +3,7 @@ import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/optimistic_state/widgets/optimistic_state_view_model.dart';
 
 class OptimisticStateScreen extends StatefulWidget {
-  const OptimisticStateScreen({super.key, required this.viewModel});
+  const OptimisticStateScreen({required this.viewModel, super.key});
 
   final OptimisticStateViewModel viewModel;
 

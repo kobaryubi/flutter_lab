@@ -8,11 +8,11 @@ part 'booking.g.dart';
 @freezed
 abstract class Booking with _$Booking {
   const factory Booking({
-    int? id,
     required DateTime startDate,
     required DateTime endDate,
     required Destination destination,
     required List<Activity> activity,
+    int? id,
   }) = _Booking;
 
   factory Booking.fromJson(Map<String, Object?> json) =>

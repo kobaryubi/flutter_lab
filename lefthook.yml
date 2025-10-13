@@ -1,5 +1,4 @@
 pre-commit:
-  parallel: true
   exclude:
     - "package/*"
   jobs:
@@ -7,3 +6,7 @@ pre-commit:
       glob: "*.dart"
       run: fvm dart format {staged_files}
       stage_fixed: true
+    - name: fix
+      run: fvm dart fix --apply
+    # - name: analyze
+    #   run: fvm flutter analyze

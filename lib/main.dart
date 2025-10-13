@@ -44,8 +44,8 @@ class FavoritePage extends StatelessWidget {
 }
 
 class FlutterLabModel extends ChangeNotifier {
-  var current = WordPair.random();
-  var favorites = <WordPair>[];
+  WordPair current = WordPair.random();
+  List<WordPair> favorites = <WordPair>[];
 
   void getNext() {
     current = WordPair.random();
@@ -71,7 +71,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var selectedIndex = 0;
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -81,10 +81,8 @@ class _HomePageState extends State<HomePage> {
     switch (selectedIndex) {
       case 0:
         page = const GeneratorPage();
-        break;
       case 1:
         page = const FavoritePage();
-        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -96,7 +94,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               NavigationRail(
                 extended: constraints.maxWidth >= 600,
-                destinations: [
+                destinations: const [
                   NavigationRailDestination(
                     icon: Icon(Icons.home),
                     label: Text('Home'),
@@ -114,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               Expanded(
-                child: Container(
+                child: ColoredBox(
                   color: theme.colorScheme.primaryContainer,
                   child: page,
                 ),
@@ -128,9 +126,8 @@ class _HomePageState extends State<HomePage> {
 }
 
 class BigCard extends StatelessWidget {
+  const BigCard({required this.pair, super.key});
   final WordPair pair;
-
-  const BigCard({super.key, required this.pair});
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +143,7 @@ class BigCard extends StatelessWidget {
         child: Text(
           pair.asLowerCase,
           style: style,
-          semanticsLabel: "${pair.first} ${pair.second}",
+          semanticsLabel: '${pair.first} ${pair.second}',
         ),
       ),
     );
@@ -169,22 +166,18 @@ class GeneratorPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           BigCard(pair: pair),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton.icon(
                 icon: Icon(icon),
-                onPressed: () {
-                  flutterLabModel.toggleFavorite();
-                },
+                onPressed: flutterLabModel.toggleFavorite,
                 label: const Text('Like'),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               ElevatedButton(
-                onPressed: () {
-                  flutterLabModel.getNext();
-                },
+                onPressed: flutterLabModel.getNext,
                 child: const Text('Next'),
               ),
             ],

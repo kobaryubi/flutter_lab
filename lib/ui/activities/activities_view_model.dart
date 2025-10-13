@@ -94,7 +94,7 @@ class ActivitiesViewModel extends ChangeNotifier {
       (_daytimeActivities + _eveningActivities).any(
         (activity) => activity.ref == activityRef,
       ),
-      "Activity $activityRef not found",
+      'Activity $activityRef not found',
     );
     _selectedActivities.add(activityRef);
     _log.finest('Activity $activityRef added');
@@ -106,7 +106,7 @@ class ActivitiesViewModel extends ChangeNotifier {
       (_daytimeActivities + _eveningActivities).any(
         (activity) => activity.ref == activityRef,
       ),
-      "Activity $activityRef not found",
+      'Activity $activityRef not found',
     );
     _selectedActivities.remove(activityRef);
     _log.finest('Activity $activityRef removed');

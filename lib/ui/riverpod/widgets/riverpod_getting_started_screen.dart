@@ -44,7 +44,7 @@ class RiverpodGettingStartedScreen extends HookConsumerWidget {
             padding: Dimens.edgeInsetsScreenSymmetric,
             children: [
               // title
-              Text(
+              const Text(
                 'todos',
                 textAlign: TextAlign.center,
                 style: TextStyles.headlineLarge,

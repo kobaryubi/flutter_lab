@@ -67,7 +67,7 @@ class ResultsViewModel extends ChangeNotifier {
   }
 
   Future<Result<void>> _updateItineraryConfig(String destinationRef) async {
-    assert(destinationRef.isNotEmpty, "destinationRef should not be empty");
+    assert(destinationRef.isNotEmpty, 'destinationRef should not be empty');
 
     final resultConfig = await _itineraryConfigRepository.getItineraryConfig();
     switch (resultConfig) {

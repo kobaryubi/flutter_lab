@@ -48,7 +48,7 @@ class ApiClient {
         );
       }
 
-      return const Result.error(HttpException("Invalid response"));
+      return const Result.error(HttpException('Invalid response'));
     } on Exception catch (error) {
       return Result.error(error);
     } finally {
@@ -72,7 +72,7 @@ class ApiClient {
         );
       }
 
-      return const Result.error(HttpException("Invalid response"));
+      return const Result.error(HttpException('Invalid response'));
     } on Exception catch (error) {
       return Result.error(error);
     } finally {
@@ -100,7 +100,7 @@ class ApiClient {
         return Result.ok(activities);
       }
 
-      return const Result.error(HttpException("Invalid response"));
+      return const Result.error(HttpException('Invalid response'));
     } on Exception catch (error) {
       return Result.error(error);
     } finally {
@@ -125,7 +125,7 @@ class ApiClient {
         return Result.ok(bookings);
       }
 
-      return const Result.error(HttpException("Invalid response"));
+      return const Result.error(HttpException('Invalid response'));
     } on Exception catch (error) {
       return Result.error(error);
     } finally {
@@ -146,7 +146,7 @@ class ApiClient {
         return Result.ok(booking);
       }
 
-      return const Result.error(HttpException("Invalid response"));
+      return const Result.error(HttpException('Invalid response'));
     } on Exception catch (error) {
       return Result.error(error);
     } finally {
@@ -169,7 +169,7 @@ class ApiClient {
         return Result.ok(booking);
       }
 
-      return const Result.error(HttpException("Invalid response"));
+      return const Result.error(HttpException('Invalid response'));
     } on Exception catch (error) {
       return Result.error(error);
     } finally {
@@ -189,7 +189,7 @@ class ApiClient {
         final user = UserApiModel.fromJson(jsonDecode(stringData));
         return Result.ok(user);
       } else {
-        return const Result.error(HttpException("Invalid response"));
+        return const Result.error(HttpException('Invalid response'));
       }
     } on Exception catch (error) {
       return Result.error(error);
@@ -208,7 +208,7 @@ class ApiClient {
         return const Result.ok(null);
       }
 
-      return const Result.error(HttpException("Invalid response"));
+      return const Result.error(HttpException('Invalid response'));
     } on Exception catch (error) {
       return Result.error(error);
     } finally {

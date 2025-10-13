@@ -4,7 +4,7 @@ import 'package:flutter_lab/ui/results/results_view_model.dart';
 import 'package:go_router/go_router.dart';
 
 class ResultsScreen extends StatefulWidget {
-  const ResultsScreen({super.key, required this.viewModel});
+  const ResultsScreen({required this.viewModel, super.key});
 
   final ResultsViewModel viewModel;
 

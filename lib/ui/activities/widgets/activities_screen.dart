@@ -51,16 +51,12 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
               return child;
             }
 
-            return const Column(
-              children: [],
-            );
+            return const Column();
           },
           child: ListenableBuilder(
             listenable: widget.viewModel,
             builder: (BuildContext context, Widget? child) {
-              return Column(
-                children: [],
-              );
+              return const Column();
             },
           ),
         ),

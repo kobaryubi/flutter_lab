@@ -3,7 +3,7 @@ import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 
 class Fab extends StatelessWidget {
-  const Fab({super.key, required this.label, required this.onPressed});
+  const Fab({required this.label, required this.onPressed, super.key});
 
   final String label;
   final VoidCallback onPressed;
@@ -16,9 +16,9 @@ class Fab extends StatelessWidget {
       child: GestureDetector(
         onTap: onPressed,
         child: Container(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16.0),
+            borderRadius: BorderRadius.circular(16),
             color: AppColors.primaryContainer,
           ),
           child: Row(
@@ -27,15 +27,15 @@ class Fab extends StatelessWidget {
               Assets.icons.addLocationOutlined.svg(
                 width: 24,
                 height: 24,
-                colorFilter: ColorFilter.mode(
+                colorFilter: const ColorFilter.mode(
                   AppColors.onPrimaryContainer,
                   BlendMode.srcIn,
                 ),
               ),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
               Text(
                 label,
-                style: TextStyle(color: AppColors.onPrimaryContainer),
+                style: const TextStyle(color: AppColors.onPrimaryContainer),
               ),
             ],
           ),
