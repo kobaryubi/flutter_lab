@@ -4,7 +4,7 @@ include:
 
 analyzer:
   exclude:
-    - lib/package/**
+    - package/**
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/*.gen.dart"
