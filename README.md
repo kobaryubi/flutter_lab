@@ -92,3 +92,9 @@ brew install lefthook
 lefthook install
 lefthook validate
 ```
+
+### flutter flavorizr
+
+```sh
+fvm dart run flutter_flavorizr
+```
