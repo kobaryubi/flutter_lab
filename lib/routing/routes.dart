@@ -49,4 +49,16 @@ abstract final class Routes {
 
   // 404
   static const notFound = '/404';
+
+  // fitness tracker
+  static const fitnessTracker = '/$fitnessTrackerRelative';
+  static const fitnessTrackerRelative = 'fitness-tracker';
+  static const fitnessTrackerWorkoutList =
+      '/$fitnessTrackerRelative/$workoutListRelative';
+  static const workoutListRelative = 'workout-list';
+  static const fitnessTrackerChat = '/$fitnessTrackerRelative/$chatRelative';
+  static const chatRelative = 'chat';
+  static const fitnessTrackerProfile =
+      '/$fitnessTrackerRelative/$profileRelative';
+  static const profileRelative = 'profile';
 }
