@@ -46,4 +46,7 @@ abstract final class Routes {
   // animations
   static const animations = '/$animationsRelative';
   static const animationsRelative = 'animations';
+
+  // 404
+  static const notFound = '/404';
 }

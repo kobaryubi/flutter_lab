@@ -32,6 +32,8 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'riverpod random joke', route: Routes.riverpodRandomJoke),
     // animations
     AppLink(title: 'animations', route: Routes.animations),
+    // not found
+    AppLink(title: 'not found', route: '/dummy-route'),
   ];
 
   @override

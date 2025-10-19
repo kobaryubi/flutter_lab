@@ -13,6 +13,7 @@ import 'package:flutter_lab/ui/compass/widgets/compass_booking_screen.dart';
 import 'package:flutter_lab/ui/compass/widgets/compass_screen.dart';
 import 'package:flutter_lab/ui/compass/widgets/compass_search_form_screen.dart';
 import 'package:flutter_lab/ui/cookbook/widgets/cookbook_networking_fetch_data_screen.dart';
+import 'package:flutter_lab/ui/error/widgets/not_found_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/optimistic_state/widgets/optimistic_state_screen.dart';
 import 'package:flutter_lab/ui/optimistic_state/widgets/optimistic_state_view_model.dart';
@@ -33,6 +34,9 @@ part 'router.g.dart';
 GoRouter router(Ref ref) {
   return GoRouter(
     initialLocation: Routes.home,
+    onException: (context, state, router) {
+      router.go(Routes.notFound);
+    },
     debugLogDiagnostics: true,
     redirect: _redirect,
     routes: [
@@ -207,6 +211,11 @@ GoRouter router(Ref ref) {
         builder: (context, state) {
           return const AnimationsScreen();
         },
+      ),
+      // 404
+      GoRoute(
+        path: Routes.notFound,
+        builder: (context, state) => const NotFoundScreen(),
       ),
     ],
   );
