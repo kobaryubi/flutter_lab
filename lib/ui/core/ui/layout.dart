@@ -18,7 +18,9 @@ class Layout extends StatelessWidget {
             color: AppColors.onPrimaryContainer,
           ),
           Expanded(child: navigationShell),
-          const BottomNavigationBar(),
+          BottomNavigationBar(
+            navigationShell: navigationShell,
+          ),
         ],
       ),
     );
