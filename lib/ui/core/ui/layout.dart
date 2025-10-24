@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
+import 'package:flutter_lab/ui/core/ui/bottom_navigation_bar.dart';
 import 'package:go_router/go_router.dart';
 
 class Layout extends StatelessWidget {
@@ -17,10 +18,7 @@ class Layout extends StatelessWidget {
             color: AppColors.onPrimaryContainer,
           ),
           Expanded(child: navigationShell),
-          Container(
-            height: 24,
-            color: AppColors.onPrimaryContainer,
-          ),
+          const BottomNavigationBar(),
         ],
       ),
     );
