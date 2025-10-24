@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_lab/ui/core/themes/colors.dart';
+import 'package:flutter_lab/ui/config.dart';
+import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/bottom_navigation_bar.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,9 +14,8 @@ class Layout extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          Container(
-            height: 24,
-            color: AppColors.onPrimaryContainer,
+          AppBar(
+            title: Text(fitnessTrackerNavTitles[navigationShell.currentIndex]),
           ),
           Expanded(child: navigationShell),
           BottomNavigationBar(

@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/ui/config.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,19 +16,14 @@ class BottomNavigationBar extends StatelessWidget {
       height: 56,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          _Nav(label: 'Workouts', navigationShell: navigationShell, index: 0),
-          _Nav(
-            label: 'Chat',
+        children: List.generate(
+          fitnessTrackerNavTitles.length,
+          (index) => _Nav(
+            label: fitnessTrackerNavTitles[index],
             navigationShell: navigationShell,
-            index: 1,
+            index: index,
           ),
-          _Nav(
-            label: 'Profile',
-            navigationShell: navigationShell,
-            index: 2,
-          ),
-        ],
+        ),
       ),
     );
   }
