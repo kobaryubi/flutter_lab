@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:go_router/go_router.dart';
 
 class Layout extends StatelessWidget {
@@ -8,6 +9,20 @@ class Layout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return navigationShell;
+    return SafeArea(
+      child: Column(
+        children: [
+          Container(
+            height: 24,
+            color: AppColors.onPrimaryContainer,
+          ),
+          Expanded(child: navigationShell),
+          Container(
+            height: 24,
+            color: AppColors.onPrimaryContainer,
+          ),
+        ],
+      ),
+    );
   }
 }
