@@ -13,6 +13,7 @@ import 'package:flutter_lab/ui/compass/widgets/compass_booking_screen.dart';
 import 'package:flutter_lab/ui/compass/widgets/compass_screen.dart';
 import 'package:flutter_lab/ui/compass/widgets/compass_search_form_screen.dart';
 import 'package:flutter_lab/ui/cookbook/widgets/cookbook_networking_fetch_data_screen.dart';
+import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/error/widgets/not_found_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/optimistic_state/widgets/optimistic_state_screen.dart';
@@ -216,6 +217,45 @@ GoRouter router(Ref ref) {
       GoRoute(
         path: Routes.notFound,
         builder: (context, state) => const NotFoundScreen(),
+      ),
+      StatefulShellRoute.indexedStack(
+        builder:
+            (
+              BuildContext context,
+              GoRouterState state,
+              StatefulNavigationShell navigationShell,
+            ) {
+              return Layout(navigationShell: navigationShell);
+            },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.fitnessTrackerWorkoutList,
+                builder: (BuildContext context, GoRouterState state) =>
+                    const Placeholder(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.fitnessTrackerChat,
+                builder: (BuildContext context, GoRouterState state) =>
+                    const Placeholder(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: Routes.fitnessTrackerProfile,
+                builder: (BuildContext context, GoRouterState state) =>
+                    const Placeholder(),
+              ),
+            ],
+          ),
+        ],
       ),
     ],
   );

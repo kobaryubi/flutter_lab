@@ -34,6 +34,11 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'animations', route: Routes.animations),
     // not found
     AppLink(title: 'not found', route: '/dummy-route'),
+    // fitness-tracker
+    AppLink(
+      title: 'fitness tracker',
+      route: Routes.fitnessTrackerWorkoutList,
+    ),
   ];
 
   @override
