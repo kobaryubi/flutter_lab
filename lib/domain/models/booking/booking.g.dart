@@ -7,7 +7,6 @@ part of 'booking.dart';
 // **************************************************************************
 
 _Booking _$BookingFromJson(Map<String, dynamic> json) => _Booking(
-  id: (json['id'] as num?)?.toInt(),
   startDate: DateTime.parse(json['startDate'] as String),
   endDate: DateTime.parse(json['endDate'] as String),
   destination: Destination.fromJson(
@@ -16,12 +15,13 @@ _Booking _$BookingFromJson(Map<String, dynamic> json) => _Booking(
   activity: (json['activity'] as List<dynamic>)
       .map((e) => Activity.fromJson(e as Map<String, dynamic>))
       .toList(),
+  id: (json['id'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$BookingToJson(_Booking instance) => <String, dynamic>{
-  'id': instance.id,
   'startDate': instance.startDate.toIso8601String(),
   'endDate': instance.endDate.toIso8601String(),
   'destination': instance.destination,
   'activity': instance.activity,
+  'id': instance.id,
 };

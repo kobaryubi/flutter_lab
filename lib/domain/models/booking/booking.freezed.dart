@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Booking {
 
- int? get id; DateTime get startDate; DateTime get endDate; Destination get destination; List<Activity> get activity;
+ DateTime get startDate; DateTime get endDate; Destination get destination; List<Activity> get activity; int? get id;
 /// Create a copy of Booking
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $BookingCopyWith<Booking> get copyWith => _$BookingCopyWithImpl<Booking>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Booking&&(identical(other.id, id) || other.id == id)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.destination, destination) || other.destination == destination)&&const DeepCollectionEquality().equals(other.activity, activity));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Booking&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.destination, destination) || other.destination == destination)&&const DeepCollectionEquality().equals(other.activity, activity)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,startDate,endDate,destination,const DeepCollectionEquality().hash(activity));
+int get hashCode => Object.hash(runtimeType,startDate,endDate,destination,const DeepCollectionEquality().hash(activity),id);
 
 @override
 String toString() {
-  return 'Booking(id: $id, startDate: $startDate, endDate: $endDate, destination: $destination, activity: $activity)';
+  return 'Booking(startDate: $startDate, endDate: $endDate, destination: $destination, activity: $activity, id: $id)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $BookingCopyWith<$Res>  {
   factory $BookingCopyWith(Booking value, $Res Function(Booking) _then) = _$BookingCopyWithImpl;
 @useResult
 $Res call({
- int? id, DateTime startDate, DateTime endDate, Destination destination, List<Activity> activity
+ DateTime startDate, DateTime endDate, Destination destination, List<Activity> activity, int? id
 });
 
 
@@ -65,14 +65,14 @@ class _$BookingCopyWithImpl<$Res>
 
 /// Create a copy of Booking
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? startDate = null,Object? endDate = null,Object? destination = null,Object? activity = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? startDate = null,Object? endDate = null,Object? destination = null,Object? activity = null,Object? id = freezed,}) {
   return _then(_self.copyWith(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
+startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
 as DateTime,endDate: null == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
 as DateTime,destination: null == destination ? _self.destination : destination // ignore: cast_nullable_to_non_nullable
 as Destination,activity: null == activity ? _self.activity : activity // ignore: cast_nullable_to_non_nullable
-as List<Activity>,
+as List<Activity>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 /// Create a copy of Booking
@@ -166,10 +166,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  DateTime startDate,  DateTime endDate,  Destination destination,  List<Activity> activity)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DateTime startDate,  DateTime endDate,  Destination destination,  List<Activity> activity,  int? id)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Booking() when $default != null:
-return $default(_that.id,_that.startDate,_that.endDate,_that.destination,_that.activity);case _:
+return $default(_that.startDate,_that.endDate,_that.destination,_that.activity,_that.id);case _:
   return orElse();
 
 }
@@ -187,10 +187,10 @@ return $default(_that.id,_that.startDate,_that.endDate,_that.destination,_that.a
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  DateTime startDate,  DateTime endDate,  Destination destination,  List<Activity> activity)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DateTime startDate,  DateTime endDate,  Destination destination,  List<Activity> activity,  int? id)  $default,) {final _that = this;
 switch (_that) {
 case _Booking():
-return $default(_that.id,_that.startDate,_that.endDate,_that.destination,_that.activity);case _:
+return $default(_that.startDate,_that.endDate,_that.destination,_that.activity,_that.id);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -207,10 +207,10 @@ return $default(_that.id,_that.startDate,_that.endDate,_that.destination,_that.a
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  DateTime startDate,  DateTime endDate,  Destination destination,  List<Activity> activity)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DateTime startDate,  DateTime endDate,  Destination destination,  List<Activity> activity,  int? id)?  $default,) {final _that = this;
 switch (_that) {
 case _Booking() when $default != null:
-return $default(_that.id,_that.startDate,_that.endDate,_that.destination,_that.activity);case _:
+return $default(_that.startDate,_that.endDate,_that.destination,_that.activity,_that.id);case _:
   return null;
 
 }
@@ -222,10 +222,9 @@ return $default(_that.id,_that.startDate,_that.endDate,_that.destination,_that.a
 @JsonSerializable()
 
 class _Booking implements Booking {
-  const _Booking({this.id, required this.startDate, required this.endDate, required this.destination, required final  List<Activity> activity}): _activity = activity;
+  const _Booking({required this.startDate, required this.endDate, required this.destination, required final  List<Activity> activity, this.id}): _activity = activity;
   factory _Booking.fromJson(Map<String, dynamic> json) => _$BookingFromJson(json);
 
-@override final  int? id;
 @override final  DateTime startDate;
 @override final  DateTime endDate;
 @override final  Destination destination;
@@ -236,6 +235,7 @@ class _Booking implements Booking {
   return EqualUnmodifiableListView(_activity);
 }
 
+@override final  int? id;
 
 /// Create a copy of Booking
 /// with the given fields replaced by the non-null parameter values.
@@ -250,16 +250,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Booking&&(identical(other.id, id) || other.id == id)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.destination, destination) || other.destination == destination)&&const DeepCollectionEquality().equals(other._activity, _activity));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Booking&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.destination, destination) || other.destination == destination)&&const DeepCollectionEquality().equals(other._activity, _activity)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,startDate,endDate,destination,const DeepCollectionEquality().hash(_activity));
+int get hashCode => Object.hash(runtimeType,startDate,endDate,destination,const DeepCollectionEquality().hash(_activity),id);
 
 @override
 String toString() {
-  return 'Booking(id: $id, startDate: $startDate, endDate: $endDate, destination: $destination, activity: $activity)';
+  return 'Booking(startDate: $startDate, endDate: $endDate, destination: $destination, activity: $activity, id: $id)';
 }
 
 
@@ -270,7 +270,7 @@ abstract mixin class _$BookingCopyWith<$Res> implements $BookingCopyWith<$Res> {
   factory _$BookingCopyWith(_Booking value, $Res Function(_Booking) _then) = __$BookingCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, DateTime startDate, DateTime endDate, Destination destination, List<Activity> activity
+ DateTime startDate, DateTime endDate, Destination destination, List<Activity> activity, int? id
 });
 
 
@@ -287,14 +287,14 @@ class __$BookingCopyWithImpl<$Res>
 
 /// Create a copy of Booking
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? startDate = null,Object? endDate = null,Object? destination = null,Object? activity = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? startDate = null,Object? endDate = null,Object? destination = null,Object? activity = null,Object? id = freezed,}) {
   return _then(_Booking(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
+startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
 as DateTime,endDate: null == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
 as DateTime,destination: null == destination ? _self.destination : destination // ignore: cast_nullable_to_non_nullable
 as Destination,activity: null == activity ? _self._activity : activity // ignore: cast_nullable_to_non_nullable
-as List<Activity>,
+as List<Activity>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 

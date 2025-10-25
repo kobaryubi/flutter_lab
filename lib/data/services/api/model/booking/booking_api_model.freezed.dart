@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$BookingApiModel {
 
- int? get id; DateTime get startDate; DateTime get endDate; String get name; String get destinationRef; List<String> get activitiesRef;
+ DateTime get startDate; DateTime get endDate; String get name; String get destinationRef; List<String> get activitiesRef; int? get id;
 /// Create a copy of BookingApiModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $BookingApiModelCopyWith<BookingApiModel> get copyWith => _$BookingApiModelCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BookingApiModel&&(identical(other.id, id) || other.id == id)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.name, name) || other.name == name)&&(identical(other.destinationRef, destinationRef) || other.destinationRef == destinationRef)&&const DeepCollectionEquality().equals(other.activitiesRef, activitiesRef));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BookingApiModel&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.name, name) || other.name == name)&&(identical(other.destinationRef, destinationRef) || other.destinationRef == destinationRef)&&const DeepCollectionEquality().equals(other.activitiesRef, activitiesRef)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,startDate,endDate,name,destinationRef,const DeepCollectionEquality().hash(activitiesRef));
+int get hashCode => Object.hash(runtimeType,startDate,endDate,name,destinationRef,const DeepCollectionEquality().hash(activitiesRef),id);
 
 @override
 String toString() {
-  return 'BookingApiModel(id: $id, startDate: $startDate, endDate: $endDate, name: $name, destinationRef: $destinationRef, activitiesRef: $activitiesRef)';
+  return 'BookingApiModel(startDate: $startDate, endDate: $endDate, name: $name, destinationRef: $destinationRef, activitiesRef: $activitiesRef, id: $id)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $BookingApiModelCopyWith<$Res>  {
   factory $BookingApiModelCopyWith(BookingApiModel value, $Res Function(BookingApiModel) _then) = _$BookingApiModelCopyWithImpl;
 @useResult
 $Res call({
- int? id, DateTime startDate, DateTime endDate, String name, String destinationRef, List<String> activitiesRef
+ DateTime startDate, DateTime endDate, String name, String destinationRef, List<String> activitiesRef, int? id
 });
 
 
@@ -65,15 +65,15 @@ class _$BookingApiModelCopyWithImpl<$Res>
 
 /// Create a copy of BookingApiModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? startDate = null,Object? endDate = null,Object? name = null,Object? destinationRef = null,Object? activitiesRef = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? startDate = null,Object? endDate = null,Object? name = null,Object? destinationRef = null,Object? activitiesRef = null,Object? id = freezed,}) {
   return _then(_self.copyWith(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
+startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
 as DateTime,endDate: null == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
 as DateTime,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,destinationRef: null == destinationRef ? _self.destinationRef : destinationRef // ignore: cast_nullable_to_non_nullable
 as String,activitiesRef: null == activitiesRef ? _self.activitiesRef : activitiesRef // ignore: cast_nullable_to_non_nullable
-as List<String>,
+as List<String>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -158,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  DateTime startDate,  DateTime endDate,  String name,  String destinationRef,  List<String> activitiesRef)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DateTime startDate,  DateTime endDate,  String name,  String destinationRef,  List<String> activitiesRef,  int? id)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BookingApiModel() when $default != null:
-return $default(_that.id,_that.startDate,_that.endDate,_that.name,_that.destinationRef,_that.activitiesRef);case _:
+return $default(_that.startDate,_that.endDate,_that.name,_that.destinationRef,_that.activitiesRef,_that.id);case _:
   return orElse();
 
 }
@@ -179,10 +179,10 @@ return $default(_that.id,_that.startDate,_that.endDate,_that.name,_that.destinat
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  DateTime startDate,  DateTime endDate,  String name,  String destinationRef,  List<String> activitiesRef)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DateTime startDate,  DateTime endDate,  String name,  String destinationRef,  List<String> activitiesRef,  int? id)  $default,) {final _that = this;
 switch (_that) {
 case _BookingApiModel():
-return $default(_that.id,_that.startDate,_that.endDate,_that.name,_that.destinationRef,_that.activitiesRef);case _:
+return $default(_that.startDate,_that.endDate,_that.name,_that.destinationRef,_that.activitiesRef,_that.id);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -199,10 +199,10 @@ return $default(_that.id,_that.startDate,_that.endDate,_that.name,_that.destinat
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  DateTime startDate,  DateTime endDate,  String name,  String destinationRef,  List<String> activitiesRef)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DateTime startDate,  DateTime endDate,  String name,  String destinationRef,  List<String> activitiesRef,  int? id)?  $default,) {final _that = this;
 switch (_that) {
 case _BookingApiModel() when $default != null:
-return $default(_that.id,_that.startDate,_that.endDate,_that.name,_that.destinationRef,_that.activitiesRef);case _:
+return $default(_that.startDate,_that.endDate,_that.name,_that.destinationRef,_that.activitiesRef,_that.id);case _:
   return null;
 
 }
@@ -214,10 +214,9 @@ return $default(_that.id,_that.startDate,_that.endDate,_that.name,_that.destinat
 @JsonSerializable()
 
 class _BookingApiModel implements BookingApiModel {
-  const _BookingApiModel({this.id, required this.startDate, required this.endDate, required this.name, required this.destinationRef, required final  List<String> activitiesRef}): _activitiesRef = activitiesRef;
+  const _BookingApiModel({required this.startDate, required this.endDate, required this.name, required this.destinationRef, required final  List<String> activitiesRef, this.id}): _activitiesRef = activitiesRef;
   factory _BookingApiModel.fromJson(Map<String, dynamic> json) => _$BookingApiModelFromJson(json);
 
-@override final  int? id;
 @override final  DateTime startDate;
 @override final  DateTime endDate;
 @override final  String name;
@@ -229,6 +228,7 @@ class _BookingApiModel implements BookingApiModel {
   return EqualUnmodifiableListView(_activitiesRef);
 }
 
+@override final  int? id;
 
 /// Create a copy of BookingApiModel
 /// with the given fields replaced by the non-null parameter values.
@@ -243,16 +243,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BookingApiModel&&(identical(other.id, id) || other.id == id)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.name, name) || other.name == name)&&(identical(other.destinationRef, destinationRef) || other.destinationRef == destinationRef)&&const DeepCollectionEquality().equals(other._activitiesRef, _activitiesRef));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BookingApiModel&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.name, name) || other.name == name)&&(identical(other.destinationRef, destinationRef) || other.destinationRef == destinationRef)&&const DeepCollectionEquality().equals(other._activitiesRef, _activitiesRef)&&(identical(other.id, id) || other.id == id));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,startDate,endDate,name,destinationRef,const DeepCollectionEquality().hash(_activitiesRef));
+int get hashCode => Object.hash(runtimeType,startDate,endDate,name,destinationRef,const DeepCollectionEquality().hash(_activitiesRef),id);
 
 @override
 String toString() {
-  return 'BookingApiModel(id: $id, startDate: $startDate, endDate: $endDate, name: $name, destinationRef: $destinationRef, activitiesRef: $activitiesRef)';
+  return 'BookingApiModel(startDate: $startDate, endDate: $endDate, name: $name, destinationRef: $destinationRef, activitiesRef: $activitiesRef, id: $id)';
 }
 
 
@@ -263,7 +263,7 @@ abstract mixin class _$BookingApiModelCopyWith<$Res> implements $BookingApiModel
   factory _$BookingApiModelCopyWith(_BookingApiModel value, $Res Function(_BookingApiModel) _then) = __$BookingApiModelCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, DateTime startDate, DateTime endDate, String name, String destinationRef, List<String> activitiesRef
+ DateTime startDate, DateTime endDate, String name, String destinationRef, List<String> activitiesRef, int? id
 });
 
 
@@ -280,15 +280,15 @@ class __$BookingApiModelCopyWithImpl<$Res>
 
 /// Create a copy of BookingApiModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? startDate = null,Object? endDate = null,Object? name = null,Object? destinationRef = null,Object? activitiesRef = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? startDate = null,Object? endDate = null,Object? name = null,Object? destinationRef = null,Object? activitiesRef = null,Object? id = freezed,}) {
   return _then(_BookingApiModel(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int?,startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
+startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
 as DateTime,endDate: null == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
 as DateTime,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,destinationRef: null == destinationRef ? _self.destinationRef : destinationRef // ignore: cast_nullable_to_non_nullable
 as String,activitiesRef: null == activitiesRef ? _self._activitiesRef : activitiesRef // ignore: cast_nullable_to_non_nullable
-as List<String>,
+as List<String>,id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
