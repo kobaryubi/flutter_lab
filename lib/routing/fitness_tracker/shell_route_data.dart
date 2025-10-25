@@ -1,10 +1,19 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_lab/routing/fitness_tracker/branch_workout_list_data.dart';
-import 'package:flutter_lab/ui/core/ui/layout.dart';
-import 'package:go_router/go_router.dart';
+part of '../router.dart';
 
 @TypedStatefulShellRoute<ShellRouteData>(
-  branches: [TypedStatefulShellBranch<BranchWorkoutListData>()],
+  branches: [
+    TypedStatefulShellBranch<BranchWorkoutListData>(
+      routes: [
+        TypedGoRoute<WorkoutListRoute>(path: Routes.fitnessTrackerWorkoutList),
+      ],
+    ),
+    TypedStatefulShellBranch<BranchChatData>(
+      routes: [TypedGoRoute<ChatRoute>(path: Routes.fitnessTrackerChat)],
+    ),
+    TypedStatefulShellBranch<BranchProfileData>(
+      routes: [TypedGoRoute<ProfileRoute>(path: Routes.fitnessTrackerProfile)],
+    ),
+  ],
 )
 class ShellRouteData extends StatefulShellRouteData {
   const ShellRouteData();

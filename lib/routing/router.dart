@@ -13,6 +13,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'fitness_tracker/shell_route_data.dart';
 part 'fitness_tracker/workout_list_route.dart';
+part 'fitness_tracker/chat_route.dart';
+part 'fitness_tracker/profile_route.dart';
 part 'home_route.dart';
 part 'router.g.dart';
 
