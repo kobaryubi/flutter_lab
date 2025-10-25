@@ -61,14 +61,12 @@ class HomeScreen extends StatelessWidget {
     // not found
     AppLink(
       title: 'not found',
-      route: WorkoutListRoute(),
-      // route: '/dummy-route'
+      route: NotFoundRoute(),
     ),
     // fitness-tracker
     AppLink(
       title: 'fitness tracker',
       route: WorkoutListRoute(),
-      // route: Routes.fitnessTrackerWorkoutList,
     ),
   ];
 
