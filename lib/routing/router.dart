@@ -198,14 +198,6 @@ GoRouter router(Ref ref) {
     //     builder: (context, state) => const NotFoundScreen(),
     //   ),
     //   StatefulShellRoute.indexedStack(
-    //     builder:
-    //         (
-    //           BuildContext context,
-    //           GoRouterState state,
-    //           StatefulNavigationShell navigationShell,
-    //         ) {
-    //           return Layout(navigationShell: navigationShell);
-    //         },
     //     branches: [
     //       StatefulShellBranch(
     //         routes: [
