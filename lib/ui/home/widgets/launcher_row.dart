@@ -3,9 +3,9 @@ import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 
 class AppLink {
-  const AppLink({required this.title, required this.route});
+  const AppLink({required this.title, required this.onTap});
   final String title;
-  final String route;
+  final VoidCallback onTap;
 }
 
 class LauncherRow extends StatelessWidget {
