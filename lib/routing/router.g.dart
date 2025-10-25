@@ -45,7 +45,7 @@ final class RouterProvider
   }
 }
 
-String _$routerHash() => r'73474264aa8dac2bb9bb1cea8b88c2da72cdcc7a';
+String _$routerHash() => r'a9b5d70d35276d104fc8133398d6f0561651d933';
 
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
