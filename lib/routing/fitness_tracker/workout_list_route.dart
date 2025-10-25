@@ -1,8 +1,5 @@
 part of '../router.dart';
 
-@TypedGoRoute<WorkoutListRoute>(
-  path: Routes.fitnessTrackerWorkoutList,
-)
 @immutable
 class WorkoutListRoute extends GoRouteData with $WorkoutListRoute {
   @override
