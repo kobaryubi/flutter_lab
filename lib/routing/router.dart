@@ -1,12 +1,17 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
+import 'package:flutter_lab/routing/fitness_tracker/branch_chat_data.dart';
+import 'package:flutter_lab/routing/fitness_tracker/branch_profile_data.dart';
+import 'package:flutter_lab/routing/fitness_tracker/branch_workout_list_data.dart';
 import 'package:flutter_lab/routing/routes.dart';
+import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/workout_list_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'fitness_tracker/shell_route_data.dart';
 part 'fitness_tracker/workout_list_route.dart';
 part 'home_route.dart';
 part 'router.g.dart';

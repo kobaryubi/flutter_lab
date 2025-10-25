@@ -6,12 +6,28 @@ part of 'router.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [$workoutListRoute, $homeRoute];
+List<RouteBase> get $appRoutes => [$shellRouteData, $homeRoute];
 
-RouteBase get $workoutListRoute => GoRouteData.$route(
-  path: '/fitness-tracker/workout-list',
-  factory: $WorkoutListRoute._fromState,
+RouteBase get $shellRouteData => StatefulShellRouteData.$route(
+  factory: $ShellRouteDataExtension._fromState,
+  branches: [
+    StatefulShellBranchData.$branch(
+      routes: [
+        GoRouteData.$route(
+          path: '/fitness-tracker/workout-list',
+          factory: $WorkoutListRoute._fromState,
+        ),
+      ],
+    ),
+    StatefulShellBranchData.$branch(),
+    StatefulShellBranchData.$branch(),
+  ],
 );
+
+extension $ShellRouteDataExtension on ShellRouteData {
+  static ShellRouteData _fromState(GoRouterState state) =>
+      const ShellRouteData();
+}
 
 mixin $WorkoutListRoute on GoRouteData {
   static WorkoutListRoute _fromState(GoRouterState state) => WorkoutListRoute();
