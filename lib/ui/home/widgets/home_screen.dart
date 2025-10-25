@@ -1,43 +1,74 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_lab/routing/routes.dart';
+import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/home/widgets/launcher_row.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  static const List<AppLink> links = [
-    AppLink(title: 'compass', route: Routes.compass),
-    AppLink(title: 'optimistic state', route: Routes.optimisticState),
+  static final List<AppLink> links = [
+    AppLink(
+      title: 'compass',
+      route: WorkoutListRoute(),
+      //  route: Routes.compass
+    ),
+    AppLink(
+      title: 'optimistic state',
+      route: WorkoutListRoute(),
+      // route: Routes.optimisticState
+    ),
     // webview
     AppLink(
       title: 'webview',
-      route: Routes.webview,
+      route: WorkoutListRoute(),
+      // route: Routes.webview,
     ),
     // petstore
-    AppLink(title: 'petstore', route: Routes.petstore),
+    AppLink(
+      title: 'petstore',
+      route: WorkoutListRoute(),
+      // route: Routes.petstore),
+    ),
     // cookbook
     AppLink(
       title: 'networking fetch data',
-      route: Routes.cookbookNetworkingFetchData,
+      route: WorkoutListRoute(),
+      // route: Routes.cookbookNetworkingFetchData,
     ),
     // riverpod
-    AppLink(title: 'riverpod', route: Routes.riverpod),
+    AppLink(
+      title: 'riverpod',
+      route: WorkoutListRoute(),
+      // route: Routes.riverpod
+    ),
     AppLink(
       title: 'riverpod getting started',
-      route: Routes.riverpodGettingStarted,
+      route: WorkoutListRoute(),
+      // route: Routes.riverpodGettingStarted,
     ),
-    AppLink(title: 'riverpod random joke', route: Routes.riverpodRandomJoke),
+    AppLink(
+      title: 'riverpod random joke',
+      route: WorkoutListRoute(),
+      // route: Routes.riverpodRandomJoke
+    ),
     // animations
-    AppLink(title: 'animations', route: Routes.animations),
+    AppLink(
+      title: 'animations',
+      route: WorkoutListRoute(),
+      // route: Routes.animations
+    ),
     // not found
-    AppLink(title: 'not found', route: '/dummy-route'),
+    AppLink(
+      title: 'not found',
+      route: WorkoutListRoute(),
+      // route: '/dummy-route'
+    ),
     // fitness-tracker
     AppLink(
       title: 'fitness tracker',
-      route: Routes.fitnessTrackerWorkoutList,
+      route: WorkoutListRoute(),
+      // route: Routes.fitnessTrackerWorkoutList,
     ),
   ];
 
@@ -67,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                         return LauncherRow(
                           title: link.title,
                           onTap: () {
-                            context.go(link.route);
+                            link.route.go(context);
                           },
                         );
                       },
