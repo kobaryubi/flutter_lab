@@ -31,8 +31,6 @@ GoRouter router(Ref ref) {
     //     },
     //   ),
     //   GoRoute(
-    //     path: Routes.home,
-    //     builder: (context, state) => const HomeScreen(),
     //     routes: [
     //       // /results
     //       GoRoute(
