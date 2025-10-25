@@ -5,6 +5,7 @@ import 'package:flutter_lab/routing/fitness_tracker/branch_profile_data.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_workout_list_data.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:flutter_lab/ui/error/widgets/not_found_screen.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/chat_screen.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/profile_screen.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/workout_list_screen.dart';
@@ -18,6 +19,7 @@ part 'fitness_tracker/workout_list_route.dart';
 part 'fitness_tracker/chat_route.dart';
 part 'fitness_tracker/profile_route.dart';
 part 'home_route.dart';
+part 'not_found_route.dart';
 part 'router.g.dart';
 
 @riverpod
@@ -200,42 +202,6 @@ GoRouter router(Ref ref) {
     //     builder: (context, state) {
     //       return const AnimationsScreen();
     //     },
-    //   ),
-    //   // 404
-    //   GoRoute(
-    //     path: Routes.notFound,
-    //     builder: (context, state) => const NotFoundScreen(),
-    //   ),
-    //   StatefulShellRoute.indexedStack(
-    //     branches: [
-    //       StatefulShellBranch(
-    //         routes: [
-    //           GoRoute(
-    //             path: Routes.fitnessTrackerWorkoutList,
-    //             builder: (BuildContext context, GoRouterState state) =>
-    //                 const Placeholder(),
-    //           ),
-    //         ],
-    //       ),
-    //       StatefulShellBranch(
-    //         routes: [
-    //           GoRoute(
-    //             path: Routes.fitnessTrackerChat,
-    //             builder: (BuildContext context, GoRouterState state) =>
-    //                 const Placeholder(),
-    //           ),
-    //         ],
-    //       ),
-    //       StatefulShellBranch(
-    //         routes: [
-    //           GoRoute(
-    //             path: Routes.fitnessTrackerProfile,
-    //             builder: (BuildContext context, GoRouterState state) =>
-    //                 const Placeholder(),
-    //           ),
-    //         ],
-    //       ),
-    //     ],
     //   ),
     // ],
   );

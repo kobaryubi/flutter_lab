@@ -6,7 +6,7 @@ part of 'router.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [$shellRouteData, $homeRoute];
+List<RouteBase> get $appRoutes => [$shellRouteData, $homeRoute, $notFoundRoute];
 
 RouteBase get $shellRouteData => StatefulShellRouteData.$route(
   factory: $ShellRouteDataExtension._fromState,
@@ -111,6 +111,29 @@ mixin $HomeRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $notFoundRoute =>
+    GoRouteData.$route(path: '/404', factory: $NotFoundRoute._fromState);
+
+mixin $NotFoundRoute on GoRouteData {
+  static NotFoundRoute _fromState(GoRouterState state) => NotFoundRoute();
+
+  @override
+  String get location => GoRouteData.$location('/404');
 
   @override
   void go(BuildContext context) => context.go(location);
