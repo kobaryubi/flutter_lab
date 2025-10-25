@@ -1,11 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
+import 'package:go_router/go_router.dart';
 
 class AppLink {
-  const AppLink({required this.title, required this.onTap});
+  const AppLink({required this.title, required this.route});
   final String title;
-  final VoidCallback onTap;
+  final GoRouteData route;
 }
 
 class LauncherRow extends StatelessWidget {
