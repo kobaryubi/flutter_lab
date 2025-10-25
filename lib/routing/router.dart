@@ -5,6 +5,8 @@ import 'package:flutter_lab/routing/fitness_tracker/branch_profile_data.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_workout_list_data.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:flutter_lab/ui/fitness_tracker/widgets/chat_screen.dart';
+import 'package:flutter_lab/ui/fitness_tracker/widgets/profile_screen.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/workout_list_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:go_router/go_router.dart';
