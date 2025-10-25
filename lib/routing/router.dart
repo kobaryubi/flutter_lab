@@ -1,11 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
-import 'package:flutter_lab/routing/fitness_tracker/workout_list_route.dart';
 import 'package:flutter_lab/routing/routes.dart';
+import 'package:flutter_lab/ui/fitness_tracker/widgets/workout_list_screen.dart';
+import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'fitness_tracker/workout_list_route.dart';
+part 'home_route.dart';
 part 'router.g.dart';
 
 @riverpod
