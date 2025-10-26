@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository_remote.dart';
+import 'package:flutter_lab/domain/location/location_repository.dart';
+import 'package:flutter_lab/domain/location/mock_location_repository.dart';
 import 'package:flutter_lab/domain/use_cases/petstore/create_pet_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/petstore/list_pets_use_case.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
@@ -49,6 +51,11 @@ PetRepository petRepository(Ref ref) {
   return PetRepositoryRemote(
     dio: ref.read(dioProvider),
   );
+}
+
+@riverpod
+LocationRepository locationRepository(Ref ref) {
+  return MockLocationRepository();
 }
 
 // use case
