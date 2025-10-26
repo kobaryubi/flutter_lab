@@ -20,6 +20,7 @@ part 'fitness_tracker/chat_route.dart';
 part 'fitness_tracker/profile_route.dart';
 part 'home_route.dart';
 part 'not_found_route.dart';
+part 'location_route.dart';
 part 'router.g.dart';
 
 @riverpod

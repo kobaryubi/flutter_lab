@@ -61,4 +61,8 @@ abstract final class Routes {
   static const fitnessTrackerProfile =
       '/$fitnessTrackerRelative/$profileRelative';
   static const profileRelative = 'profile';
+
+  // channel method
+  static const location = '/$locationRelative';
+  static const locationRelative = 'location';
 }
