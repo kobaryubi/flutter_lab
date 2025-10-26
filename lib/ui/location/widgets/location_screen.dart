@@ -40,8 +40,30 @@ class _Body extends HookConsumerWidget {
       return Text('Error: ${locationAsyncValue.error}');
     }
 
-    return const Center(
-      child: Text('Location Screen'),
+    final location = locationAsyncValue.value!;
+
+    final oppositeLatitude = -location.latitude;
+    var oppositeLongitude = location.longitude + 180;
+    if (oppositeLongitude > 180) {
+      oppositeLongitude -= 360;
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: Text(
+            '現在緯度: ${location.latitude.toStringAsFixed(2)}, 現在経度: ${location.longitude.toStringAsFixed(2)}',
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(16),
+          child: Text(
+            '反転緯度: ${oppositeLatitude.toStringAsFixed(2)}, 反転経度: ${oppositeLongitude.toStringAsFixed(2)}',
+          ),
+        ),
+      ],
     );
   }
 }
