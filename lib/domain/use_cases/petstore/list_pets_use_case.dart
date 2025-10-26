@@ -8,7 +8,7 @@ class ListPetsUseCase {
 
   final PetRepository _petRepository;
 
-  Future<Result<List<Pet>>> call() async {
+  AsyncResult<List<Pet>> call() async {
     return _petRepository.listPets();
   }
 }

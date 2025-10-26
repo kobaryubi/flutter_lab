@@ -223,5 +223,53 @@ final class CreatePetUseCaseProvider
 
 String _$createPetUseCaseHash() => r'aad94a395f0d8f780d7a19578c3346c771ef6ba0';
 
+@ProviderFor(getLocationUseCase)
+const getLocationUseCaseProvider = GetLocationUseCaseProvider._();
+
+final class GetLocationUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetLocationUseCase,
+          GetLocationUseCase,
+          GetLocationUseCase
+        >
+    with $Provider<GetLocationUseCase> {
+  const GetLocationUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getLocationUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getLocationUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetLocationUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetLocationUseCase create(Ref ref) {
+    return getLocationUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetLocationUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetLocationUseCase>(value),
+    );
+  }
+}
+
+String _$getLocationUseCaseHash() =>
+    r'f87973883bed086591df7a5a02dd45bb75d0bda6';
+
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
