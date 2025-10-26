@@ -24,6 +24,16 @@ class ShellRouteData extends StatefulShellRouteData {
     GoRouterState state,
     StatefulNavigationShell navigationShell,
   ) {
-    return Layout(navigationShell: navigationShell);
+    return Layout(
+      appBar: AppBar(
+        title: Text(
+          fitnessTrackerNavTitles[navigationShell.currentIndex],
+        ),
+      ),
+      navigationShell: navigationShell,
+      bottomNavigationBar: BottomNavigationBar(
+        navigationShell: navigationShell,
+      ),
+    );
   }
 }

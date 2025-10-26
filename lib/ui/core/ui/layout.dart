@@ -1,14 +1,18 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_lab/ui/config.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
-import 'package:flutter_lab/ui/core/ui/app_bar.dart';
-import 'package:flutter_lab/ui/core/ui/bottom_navigation_bar.dart';
 import 'package:go_router/go_router.dart';
 
 class Layout extends StatelessWidget {
-  const Layout({required this.navigationShell, super.key});
+  const Layout({
+    required this.navigationShell,
+    required this.appBar,
+    this.bottomNavigationBar,
+    super.key,
+  });
 
   final StatefulNavigationShell navigationShell;
+  final Widget appBar;
+  final Widget? bottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +23,9 @@ class Layout extends StatelessWidget {
           color: AppColors.white1,
           child: Column(
             children: [
-              AppBar(
-                title: Text(
-                  fitnessTrackerNavTitles[navigationShell.currentIndex],
-                ),
-              ),
+              appBar,
               Expanded(child: navigationShell),
-              BottomNavigationBar(
-                navigationShell: navigationShell,
-              ),
+              if (bottomNavigationBar != null) bottomNavigationBar!,
             ],
           ),
         ),
