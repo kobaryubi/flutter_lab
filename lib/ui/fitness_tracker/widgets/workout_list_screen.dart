@@ -10,9 +10,12 @@ class WorkoutListScreen extends StatelessWidget {
     return Center(
       child: GestureDetector(
         onTap: () {
-          LocationRoute().go(context);
+          LocationRoute().push<void>(context);
         },
-        child: const Text('Location', style: TextStyle(color: AppColors.black1)),
+        child: const Text(
+          'Location',
+          style: TextStyle(color: AppColors.black1),
+        ),
       ),
     );
   }
