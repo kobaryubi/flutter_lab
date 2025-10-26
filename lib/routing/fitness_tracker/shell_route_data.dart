@@ -30,10 +30,10 @@ class ShellRouteData extends StatefulShellRouteData {
           fitnessTrackerNavTitles[navigationShell.currentIndex],
         ),
       ),
-      navigationShell: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
         navigationShell: navigationShell,
       ),
+      child: navigationShell,
     );
   }
 }

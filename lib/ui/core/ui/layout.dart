@@ -1,17 +1,16 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
-import 'package:go_router/go_router.dart';
 
 class Layout extends StatelessWidget {
   const Layout({
-    required this.navigationShell,
     required this.appBar,
+    required this.child,
     this.bottomNavigationBar,
     super.key,
   });
 
-  final StatefulNavigationShell navigationShell;
   final Widget appBar;
+  final Widget child;
   final Widget? bottomNavigationBar;
 
   @override
@@ -24,7 +23,7 @@ class Layout extends StatelessWidget {
           child: Column(
             children: [
               appBar,
-              Expanded(child: navigationShell),
+              Expanded(child: child),
               if (bottomNavigationBar != null) bottomNavigationBar!,
             ],
           ),
