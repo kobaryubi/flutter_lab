@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/routing/router.dart';
+import 'package:flutter_lab/ui/core/themes/colors.dart';
 
 class WorkoutListScreen extends StatelessWidget {
   const WorkoutListScreen({super.key});
@@ -11,6 +12,7 @@ class WorkoutListScreen extends StatelessWidget {
         onTap: () {
           LocationRoute().go(context);
         },
+        child: const Text('Location', style: TextStyle(color: AppColors.black1)),
       ),
     );
   }
