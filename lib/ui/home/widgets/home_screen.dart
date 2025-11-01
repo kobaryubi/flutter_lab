@@ -101,7 +101,7 @@ class HomeScreen extends StatelessWidget {
                         return LauncherRow(
                           title: link.title,
                           onTap: () {
-                            link.route.go(context);
+                            link.route.push<void>(context);
                           },
                         );
                       },

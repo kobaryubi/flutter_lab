@@ -84,7 +84,7 @@ class _Body extends HookWidget {
           bottom: 16,
           right: 16,
           child: Button(
-            onPressed: onRunJavaScriptButtonPressed,
+            onTap: onRunJavaScriptButtonPressed,
             label: 'run javascript',
           ),
         ),
