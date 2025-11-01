@@ -67,6 +67,13 @@ abstract final class Routes {
   static const locationRelative = 'location';
 
   // routing
-  static const routing = '/$routingRelative';
-  static const routingRelative = 'routing';
+  static const routing = '/routing';
+  // 横スライド遷移
+  static const routingSlide = '/routing/slide';
+  // フルスクリーンダイアログ遷移
+  static const routingFullscreenDialog = '/routing/fullscreen_dialog';
+  // webview遷移
+  static const routingWebView = '/routing/webview';
+  // 外部ブラウザ遷移
+  static const routingExternalBrowser = '/routing/external_browser';
 }
