@@ -11,6 +11,7 @@ List<RouteBase> get $appRoutes => [
   $homeRoute,
   $notFoundRoute,
   $locationRoute,
+  $routingRoute,
 ];
 
 RouteBase get $shellRouteData => StatefulShellRouteData.$route(
@@ -162,6 +163,29 @@ mixin $LocationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/location');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $routingRoute =>
+    GoRouteData.$route(path: '/routing', factory: $RoutingRoute._fromState);
+
+mixin $RoutingRoute on GoRouteData {
+  static RoutingRoute _fromState(GoRouterState state) => RoutingRoute();
+
+  @override
+  String get location => GoRouteData.$location('/routing');
 
   @override
   void go(BuildContext context) => context.go(location);

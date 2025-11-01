@@ -68,6 +68,11 @@ class HomeScreen extends StatelessWidget {
       title: 'fitness tracker',
       route: WorkoutListRoute(),
     ),
+    // routing
+    AppLink(
+      title: 'routing',
+      route: RoutingRoute(),
+    ),
   ];
 
   @override
