@@ -27,6 +27,7 @@ part 'home_route.dart';
 part 'not_found_route.dart';
 part 'location_route.dart';
 part 'routing_route.dart';
+part 'routing_slide_route.dart';
 part 'router.g.dart';
 
 @riverpod
