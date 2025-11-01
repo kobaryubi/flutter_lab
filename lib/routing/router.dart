@@ -15,6 +15,7 @@ import 'package:flutter_lab/ui/fitness_tracker/widgets/workout_list_screen.dart'
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/location/widgets/location_screen.dart';
 import 'package:flutter_lab/ui/routing/widget/routing_screen.dart';
+import 'package:flutter_lab/ui/routing_slide/widget/routing_slide_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
