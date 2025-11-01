@@ -59,7 +59,7 @@ class _Body extends HookConsumerWidget {
 
     return Column(
       children: [
-        Button(onPressed: onAddPetButtonPressed, label: 'Add Pet'),
+        Button(onTap: onAddPetButtonPressed, label: 'Add Pet'),
         Expanded(child: listView),
       ],
     );
