@@ -65,4 +65,8 @@ abstract final class Routes {
   // channel method
   static const location = '/$locationRelative';
   static const locationRelative = 'location';
+
+  // routing
+  static const routing = '/$routingRelative';
+  static const routingRelative = 'routing';
 }
