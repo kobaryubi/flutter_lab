@@ -20,7 +20,9 @@ void main() {
   runApp(
     ProviderScope(
       overrides: [
-        locationRepositoryProvider.overrideWithValue(GpsLocationRepository()),
+        locationRepositoryProvider.overrideWithValue(
+          PlatformLocationRepository(),
+        ),
       ],
       child: MultiProvider(
         providers: providersLocal,
