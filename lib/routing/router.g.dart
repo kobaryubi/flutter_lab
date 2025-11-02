@@ -12,7 +12,7 @@ List<RouteBase> get $appRoutes => [
   $notFoundRoute,
   $locationRoute,
   $routingRoute,
-  $routingSlideRoute,
+  $routingCupertinoRoute,
 ];
 
 RouteBase get $shellRouteData => StatefulShellRouteData.$route(
@@ -202,14 +202,14 @@ mixin $RoutingRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $routingSlideRoute => GoRouteData.$route(
+RouteBase get $routingCupertinoRoute => GoRouteData.$route(
   path: '/routing/slide',
-  factory: $RoutingSlideRoute._fromState,
+  factory: $RoutingCupertinoRoute._fromState,
 );
 
-mixin $RoutingSlideRoute on GoRouteData {
-  static RoutingSlideRoute _fromState(GoRouterState state) =>
-      RoutingSlideRoute();
+mixin $RoutingCupertinoRoute on GoRouteData {
+  static RoutingCupertinoRoute _fromState(GoRouterState state) =>
+      RoutingCupertinoRoute();
 
   @override
   String get location => GoRouteData.$location('/routing/slide');

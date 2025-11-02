@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_chat_data.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_profile_data.dart';
@@ -28,7 +28,7 @@ part 'home_route.dart';
 part 'not_found_route.dart';
 part 'location_route.dart';
 part 'routing_route.dart';
-part 'routing_slide_route.dart';
+part 'routing_cupertino_route.dart';
 part 'router.g.dart';
 
 @riverpod
