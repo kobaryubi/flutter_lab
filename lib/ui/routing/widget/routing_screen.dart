@@ -32,11 +32,6 @@ class RoutingScreen extends StatelessWidget {
             label: 'webview遷移',
             onTap: () {},
           ),
-          // 外部ブラウザ遷移
-          Button(
-            label: '外部ブラウザ遷移',
-            onTap: () {},
-          ),
         ],
       ),
     );

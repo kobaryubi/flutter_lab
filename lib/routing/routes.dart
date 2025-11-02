@@ -73,6 +73,7 @@ abstract final class Routes {
       '/routing/cupertino/fullscreen_dialog';
   // webview遷移
   static const routingWebView = '/routing/webview';
-  // 外部ブラウザ遷移
-  static const routingExternalBrowser = '/routing/external_browser';
+
+  // launch url
+  static const launchUrl = '/launch_url';
 }

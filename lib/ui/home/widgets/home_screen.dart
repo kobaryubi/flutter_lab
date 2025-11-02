@@ -73,6 +73,13 @@ class HomeScreen extends StatelessWidget {
       title: 'routing',
       route: RoutingRoute(),
     ),
+    // launch url
+    AppLink(
+      title: 'launch url',
+      route: LaunchUrlRoute(
+        url: 'https://flutter.dev',
+      ),
+    ),
   ];
 
   @override

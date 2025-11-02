@@ -14,6 +14,7 @@ List<RouteBase> get $appRoutes => [
   $routingRoute,
   $routingCupertinoRoute,
   $routingCupertinoFullscreenDialogRoute,
+  $launchUrlRoute,
 ];
 
 RouteBase get $shellRouteData => StatefulShellRouteData.$route(
@@ -242,6 +243,35 @@ mixin $RoutingCupertinoFullscreenDialogRoute on GoRouteData {
   @override
   String get location =>
       GoRouteData.$location('/routing/cupertino/fullscreen_dialog');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $launchUrlRoute => GoRouteData.$route(
+  path: '/launch_url',
+  factory: $LaunchUrlRoute._fromState,
+);
+
+mixin $LaunchUrlRoute on GoRouteData {
+  static LaunchUrlRoute _fromState(GoRouterState state) =>
+      LaunchUrlRoute(url: state.uri.queryParameters['url']!);
+
+  LaunchUrlRoute get _self => this as LaunchUrlRoute;
+
+  @override
+  String get location =>
+      GoRouteData.$location('/launch_url', queryParams: {'url': _self.url});
 
   @override
   void go(BuildContext context) => context.go(location);

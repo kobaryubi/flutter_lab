@@ -13,6 +13,7 @@ import 'package:flutter_lab/ui/fitness_tracker/widgets/chat_screen.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/profile_screen.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/workout_list_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
+import 'package:flutter_lab/ui/launch_url/widget/launch_url_screen.dart';
 import 'package:flutter_lab/ui/location/widgets/location_screen.dart';
 import 'package:flutter_lab/ui/routing/widget/routing_screen.dart';
 import 'package:flutter_lab/ui/routing_cupertino/widget/routing_cupertino_screen.dart';
@@ -31,6 +32,7 @@ part 'location_route.dart';
 part 'routing_route.dart';
 part 'routing_cupertino_route.dart';
 part 'routing_cupertino_fullscreen_dialog_route.dart';
+part 'launch_url_route.dart';
 part 'router.g.dart';
 
 @riverpod
