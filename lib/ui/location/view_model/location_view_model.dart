@@ -8,7 +8,7 @@ part 'location_view_model.g.dart';
 class LocationViewModel extends _$LocationViewModel {
   @override
   LocationUiState build() {
-    return const LocationUiState(location: null);
+    return const LocationUiState(location: null, battery: null);
   }
 
   Future<void> getLocation() async {
@@ -18,6 +18,17 @@ class LocationViewModel extends _$LocationViewModel {
       location: await AsyncValue.guard(() async {
         final locationResult = await getLocationUseCase.call();
         return locationResult.getOrThrow();
+      }),
+    );
+  }
+
+  Future<void> getBattery() async {
+    final batteryRepository = ref.read(batteryRepositoryProvider);
+
+    state = state.copyWith(
+      battery: await AsyncValue.guard(() async {
+        final batteryResult = await batteryRepository.get();
+        return batteryResult.getOrThrow();
       }),
     );
   }

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LocationUiState {
 
- AsyncValue<Location>? get location;
+ AsyncValue<Location>? get location; AsyncValue<Battery>? get battery;
 /// Create a copy of LocationUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $LocationUiStateCopyWith<LocationUiState> get copyWith => _$LocationUiStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocationUiState&&(identical(other.location, location) || other.location == location));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocationUiState&&(identical(other.location, location) || other.location == location)&&(identical(other.battery, battery) || other.battery == battery));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,location);
+int get hashCode => Object.hash(runtimeType,location,battery);
 
 @override
 String toString() {
-  return 'LocationUiState(location: $location)';
+  return 'LocationUiState(location: $location, battery: $battery)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $LocationUiStateCopyWith<$Res>  {
   factory $LocationUiStateCopyWith(LocationUiState value, $Res Function(LocationUiState) _then) = _$LocationUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<Location>? location
+ AsyncValue<Location>? location, AsyncValue<Battery>? battery
 });
 
 
@@ -62,10 +62,11 @@ class _$LocationUiStateCopyWithImpl<$Res>
 
 /// Create a copy of LocationUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? location = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? location = freezed,Object? battery = freezed,}) {
   return _then(_self.copyWith(
 location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as AsyncValue<Location>?,
+as AsyncValue<Location>?,battery: freezed == battery ? _self.battery : battery // ignore: cast_nullable_to_non_nullable
+as AsyncValue<Battery>?,
   ));
 }
 
@@ -150,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Location>? location)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Location>? location,  AsyncValue<Battery>? battery)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LocationUiState() when $default != null:
-return $default(_that.location);case _:
+return $default(_that.location,_that.battery);case _:
   return orElse();
 
 }
@@ -171,10 +172,10 @@ return $default(_that.location);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Location>? location)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Location>? location,  AsyncValue<Battery>? battery)  $default,) {final _that = this;
 switch (_that) {
 case _LocationUiState():
-return $default(_that.location);case _:
+return $default(_that.location,_that.battery);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +192,10 @@ return $default(_that.location);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Location>? location)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Location>? location,  AsyncValue<Battery>? battery)?  $default,) {final _that = this;
 switch (_that) {
 case _LocationUiState() when $default != null:
-return $default(_that.location);case _:
+return $default(_that.location,_that.battery);case _:
   return null;
 
 }
@@ -206,10 +207,11 @@ return $default(_that.location);case _:
 
 
 class _LocationUiState implements LocationUiState {
-  const _LocationUiState({required this.location});
+  const _LocationUiState({required this.location, required this.battery});
   
 
 @override final  AsyncValue<Location>? location;
+@override final  AsyncValue<Battery>? battery;
 
 /// Create a copy of LocationUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -221,16 +223,16 @@ _$LocationUiStateCopyWith<_LocationUiState> get copyWith => __$LocationUiStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocationUiState&&(identical(other.location, location) || other.location == location));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocationUiState&&(identical(other.location, location) || other.location == location)&&(identical(other.battery, battery) || other.battery == battery));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,location);
+int get hashCode => Object.hash(runtimeType,location,battery);
 
 @override
 String toString() {
-  return 'LocationUiState(location: $location)';
+  return 'LocationUiState(location: $location, battery: $battery)';
 }
 
 
@@ -241,7 +243,7 @@ abstract mixin class _$LocationUiStateCopyWith<$Res> implements $LocationUiState
   factory _$LocationUiStateCopyWith(_LocationUiState value, $Res Function(_LocationUiState) _then) = __$LocationUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<Location>? location
+ AsyncValue<Location>? location, AsyncValue<Battery>? battery
 });
 
 
@@ -258,10 +260,11 @@ class __$LocationUiStateCopyWithImpl<$Res>
 
 /// Create a copy of LocationUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? location = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? location = freezed,Object? battery = freezed,}) {
   return _then(_LocationUiState(
 location: freezed == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as AsyncValue<Location>?,
+as AsyncValue<Location>?,battery: freezed == battery ? _self.battery : battery // ignore: cast_nullable_to_non_nullable
+as AsyncValue<Battery>?,
   ));
 }
 
