@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository_remote.dart';
+import 'package:flutter_lab/domain/battery/battery_repository.dart';
+import 'package:flutter_lab/domain/battery/platform_battery_repository.dart';
 import 'package:flutter_lab/domain/location/location_repository.dart';
 import 'package:flutter_lab/domain/location/mock_location_repository.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
@@ -57,6 +59,11 @@ PetRepository petRepository(Ref ref) {
 @riverpod
 LocationRepository locationRepository(Ref ref) {
   return MockLocationRepository();
+}
+
+@riverpod
+BatteryRepository batteryRepository(Ref ref) {
+  return PlatformBatteryRepository();
 }
 
 // use case
