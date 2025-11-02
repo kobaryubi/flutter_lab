@@ -15,11 +15,10 @@ class RoutingScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          // 横アニメーション遷移
           Button(
-            label: '横アニメーション遷移',
+            label: 'cupertino',
             onTap: () {
-              RoutingSlideRoute().push<void>(context);
+              RoutingCupertinoRoute().push<void>(context);
             },
           ),
           // フルスクリーンモーダルアニメーション遷移
