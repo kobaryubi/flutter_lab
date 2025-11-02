@@ -1,6 +1,6 @@
 part of 'router.dart';
 
-@TypedGoRoute<RoutingCupertinoRoute>(path: Routes.routingSlide)
+@TypedGoRoute<RoutingCupertinoRoute>(path: Routes.routingCupertino)
 @immutable
 class RoutingCupertinoRoute extends GoRouteData with $RoutingCupertinoRoute {
   @override
@@ -9,7 +9,7 @@ class RoutingCupertinoRoute extends GoRouteData with $RoutingCupertinoRoute {
     GoRouterState state,
   ) {
     return const CupertinoPage(
-      child: RoutingSlideScreen(),
+      child: RoutingCupertinoScreen(),
     );
   }
 }

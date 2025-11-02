@@ -68,10 +68,9 @@ abstract final class Routes {
 
   // routing
   static const routing = '/routing';
-  // 横スライド遷移
-  static const routingSlide = '/routing/slide';
-  // フルスクリーンダイアログ遷移
-  static const routingFullscreenDialog = '/routing/fullscreen_dialog';
+  static const routingCupertino = '/routing/cupertino';
+  static const routingCupertinoFullscreenDialog =
+      '/routing/cupertino/fullscreen_dialog';
   // webview遷移
   static const routingWebView = '/routing/webview';
   // 外部ブラウザ遷移

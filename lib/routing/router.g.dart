@@ -13,6 +13,7 @@ List<RouteBase> get $appRoutes => [
   $locationRoute,
   $routingRoute,
   $routingCupertinoRoute,
+  $routingCupertinoFullscreenDialogRoute,
 ];
 
 RouteBase get $shellRouteData => StatefulShellRouteData.$route(
@@ -203,7 +204,7 @@ mixin $RoutingRoute on GoRouteData {
 }
 
 RouteBase get $routingCupertinoRoute => GoRouteData.$route(
-  path: '/routing/slide',
+  path: '/routing/cupertino',
   factory: $RoutingCupertinoRoute._fromState,
 );
 
@@ -212,7 +213,35 @@ mixin $RoutingCupertinoRoute on GoRouteData {
       RoutingCupertinoRoute();
 
   @override
-  String get location => GoRouteData.$location('/routing/slide');
+  String get location => GoRouteData.$location('/routing/cupertino');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $routingCupertinoFullscreenDialogRoute => GoRouteData.$route(
+  path: '/routing/cupertino/fullscreen_dialog',
+  factory: $RoutingCupertinoFullscreenDialogRoute._fromState,
+);
+
+mixin $RoutingCupertinoFullscreenDialogRoute on GoRouteData {
+  static RoutingCupertinoFullscreenDialogRoute _fromState(
+    GoRouterState state,
+  ) => RoutingCupertinoFullscreenDialogRoute();
+
+  @override
+  String get location =>
+      GoRouteData.$location('/routing/cupertino/fullscreen_dialog');
 
   @override
   void go(BuildContext context) => context.go(location);
