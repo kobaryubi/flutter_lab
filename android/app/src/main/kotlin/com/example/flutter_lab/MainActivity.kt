@@ -1,6 +1,5 @@
 package com.example.flutter_lab
 
-import androidx.annotation.NonNull
 import com.example.flutter_lab.infrastructure.platform.MethodChannelNames
 import com.example.flutter_lab.infrastructure.platform.MethodNames
 import io.flutter.embedding.android.FlutterActivity
