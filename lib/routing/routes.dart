@@ -76,4 +76,7 @@ abstract final class Routes {
 
   // launch url
   static const launchUrl = '/launch_url';
+
+  /// camera
+  static const camera = '/camera';
 }

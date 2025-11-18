@@ -80,6 +80,12 @@ class HomeScreen extends StatelessWidget {
         url: 'https://flutter.dev',
       ),
     ),
+
+    /// camera
+    AppLink(
+      title: 'camera',
+      route: CameraRoute(),
+    ),
   ];
 
   @override
