@@ -11,11 +11,15 @@ import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   Logger.root.level = Level.ALL;
 
   F.appFlavor = Flavor.values.firstWhere(
     (element) => element.name == appFlavor,
   );
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(
     ProviderScope(
