@@ -79,4 +79,7 @@ abstract final class Routes {
 
   /// camera
   static const camera = '/camera';
+
+  /// adjust
+  static const adjust = '/adjust';
 }
