@@ -4,6 +4,7 @@ import 'package:flutter_lab/routing/fitness_tracker/branch_chat_data.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_profile_data.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_workout_list_data.dart';
 import 'package:flutter_lab/routing/routes.dart';
+import 'package:flutter_lab/ui/adjust/widget/adjust_screen.dart';
 import 'package:flutter_lab/ui/camera/widget/camera_screen.dart';
 import 'package:flutter_lab/ui/config.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
@@ -35,6 +36,7 @@ part 'routing_cupertino_route.dart';
 part 'routing_cupertino_fullscreen_dialog_route.dart';
 part 'launch_url_route.dart';
 part 'camera_route.dart';
+part 'adjust_route.dart';
 part 'router.g.dart';
 
 @riverpod

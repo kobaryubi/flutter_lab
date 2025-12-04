@@ -16,6 +16,7 @@ List<RouteBase> get $appRoutes => [
   $routingCupertinoFullscreenDialogRoute,
   $launchUrlRoute,
   $cameraRoute,
+  $adjustRoute,
 ];
 
 RouteBase get $shellRouteData => StatefulShellRouteData.$route(
@@ -296,6 +297,29 @@ mixin $CameraRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/camera');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $adjustRoute =>
+    GoRouteData.$route(path: '/adjust', factory: $AdjustRoute._fromState);
+
+mixin $AdjustRoute on GoRouteData {
+  static AdjustRoute _fromState(GoRouterState state) => AdjustRoute();
+
+  @override
+  String get location => GoRouteData.$location('/adjust');
 
   @override
   void go(BuildContext context) => context.go(location);
