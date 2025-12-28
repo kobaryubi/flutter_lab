@@ -82,4 +82,7 @@ abstract final class Routes {
 
   /// adjust
   static const adjust = '/adjust';
+
+  /// portal
+  static const portal = '/portal';
 }
