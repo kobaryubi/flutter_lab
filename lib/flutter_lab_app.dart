@@ -3,6 +3,7 @@ import 'package:flutter_lab/l10n/app_localizations.dart';
 import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
+import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FlutterLabApp extends ConsumerWidget {
@@ -12,14 +13,16 @@ class FlutterLabApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
 
-    return WidgetsApp.router(
-      routerConfig: router,
-      color: const Color(0xffffffff),
-      title: 'Flutter Lab',
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      textStyle: TextStyles.bodyMedium.merge(
-        const TextStyle(color: AppColors.black1),
+    return Portal(
+      child: WidgetsApp.router(
+        routerConfig: router,
+        color: const Color(0xffffffff),
+        title: 'Flutter Lab',
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        textStyle: TextStyles.bodyMedium.merge(
+          const TextStyle(color: AppColors.black1),
+        ),
       ),
     );
   }
