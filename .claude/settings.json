@@ -14,7 +14,8 @@
       "Bash(fvm flutter test:*)",
       "Bash(fvm flutter gen-l10n:*)",
       "Bash(fvm dart format:*)",
-      "Bash(fvm dart run custom_lint:*)"
+      "Bash(fvm dart run custom_lint:*)",
+      "Bash(ls:*)"
     ]
   }
 }
