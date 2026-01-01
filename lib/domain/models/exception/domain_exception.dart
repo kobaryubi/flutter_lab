@@ -4,7 +4,7 @@ part 'domain_exception.freezed.dart';
 
 /// Domain exception following gRPC status code pattern.
 @freezed
-sealed class DomainException with _$DomainException {
+sealed class DomainException with _$DomainException implements Exception {
   /// The operation was cancelled.
   const factory DomainException.cancelled() = Cancelled;
 
