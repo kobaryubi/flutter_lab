@@ -75,7 +75,6 @@ class _Top extends StatelessWidget {
       height: 260,
       child: Stack(
         fit: StackFit.expand,
-        children: [],
       ),
     );
   }
