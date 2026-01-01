@@ -71,23 +71,51 @@ class _ContextualMenu extends HookWidget {
     return _ModalEntry(
       visible: showMenu.value,
       onClose: handleClose,
-      modal: Column(
-        mainAxisSize: .min,
-        crossAxisAlignment: .start,
-        children: [
-          GestureDetector(
-            onTap: handleClose,
-            child: const Text('First'),
-          ),
-          GestureDetector(
-            onTap: handleClose,
-            child: const Text('Second'),
-          ),
-        ],
-      ),
+      modal: _Menu(onClose: handleClose),
       child: GestureDetector(
         onTap: handleOpen,
         child: const Text('Show Menu'),
+      ),
+    );
+  }
+}
+
+/// Menu widget containing menu items.
+class _Menu extends StatelessWidget {
+  const _Menu({required this.onClose});
+
+  final VoidCallback onClose;
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: const Color(0xFFFFFFFF),
+      child: Column(
+        mainAxisSize: .min,
+        crossAxisAlignment: .start,
+        children: [
+          _MenuItem(text: 'First', onTap: onClose),
+          _MenuItem(text: 'Second', onTap: onClose),
+        ],
+      ),
+    );
+  }
+}
+
+/// Individual menu item.
+class _MenuItem extends StatelessWidget {
+  const _MenuItem({required this.text, required this.onTap});
+
+  final String text;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const .all(12),
+        child: Text(text),
       ),
     );
   }
@@ -111,17 +139,17 @@ class _ModalEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     return PortalTarget(
       visible: visible,
-      anchor: const Aligned(
-        follower: .topLeft,
-        target: .bottomLeft,
+      portalFollower: ModalBarrier(
+        onDismiss: onClose,
+        color: const Color(0x80000000),
       ),
-      portalFollower: GestureDetector(
-        behavior: .opaque,
-        onTap: onClose,
-        child: modal,
-      ),
-      child: IgnorePointer(
-        ignoring: visible,
+      child: PortalTarget(
+        visible: visible,
+        anchor: const Aligned(
+          follower: .topLeft,
+          target: .bottomLeft,
+        ),
+        portalFollower: modal,
         child: child,
       ),
     );
