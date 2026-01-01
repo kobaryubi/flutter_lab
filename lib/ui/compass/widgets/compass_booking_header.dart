@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/domain/models/booking/booking.dart';
 import 'package:flutter_lab/l10n/app_localizations.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
 import 'package:flutter_lab/ui/core/ui/tag_chip.dart';
-import 'package:flutter_lab/utils/image_error_listener.dart';
 
 class CompassBookingHeader extends StatelessWidget {
   const CompassBookingHeader({required this.booking, super.key});
@@ -74,35 +72,19 @@ class _Top extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       height: 260,
       child: Stack(
         fit: StackFit.expand,
         children: [
-          _HeaderImage(booking: booking),
-          const _Gradient(),
-          const Positioned(
+          _Gradient(),
+          Positioned(
             right: Dimens.padding,
             top: Dimens.padding,
             child: CompassHomeButton(blur: true),
           ),
         ],
       ),
-    );
-  }
-}
-
-class _HeaderImage extends StatelessWidget {
-  const _HeaderImage({required this.booking});
-
-  final Booking booking;
-
-  @override
-  Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      fit: BoxFit.fitWidth,
-      imageUrl: booking.destination.imageUrl,
-      errorListener: imageErrorListener,
     );
   }
 }
