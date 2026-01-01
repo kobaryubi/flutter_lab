@@ -157,6 +157,25 @@ Platform-specific code uses method channels:
 - **Error Handling**: `result_dart`
 - **Linting**: `very_good_analysis`, `custom_lint`, `riverpod_lint`
 
+## Implementation Guidelines
+
+When implementing new features, follow a step-by-step approach:
+
+1. **Start simple** - Implement the minimal working version first
+2. **Add incrementally** - Add one feature at a time (styling, positioning, animation, etc.)
+3. **Verify each step** - Ensure each step works before moving to the next
+
+Example for UI components:
+```
+Step 1: Basic widget structure (no styling)
+Step 2: Add state management
+Step 3: Add positioning/layout
+Step 4: Add styling (colors, padding, etc.)
+Step 5: Add animations if needed
+```
+
+This approach makes it easier to understand, debug, and learn from the implementation.
+
 ## Commit Message Convention
 
 Use Gitmoji prefixes for all commit messages:
