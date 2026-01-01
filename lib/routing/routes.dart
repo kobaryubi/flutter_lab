@@ -82,4 +82,7 @@ abstract final class Routes {
 
   /// portal
   static const portal = '/portal';
+
+  /// error handling
+  static const errorHandling = '/error_handling';
 }

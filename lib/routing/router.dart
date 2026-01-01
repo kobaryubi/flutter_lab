@@ -10,6 +10,7 @@ import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/bottom_navigation_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/error/widgets/not_found_screen.dart';
+import 'package:flutter_lab/ui/error_handling/widget/error_handling_screen.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/chat_screen.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/profile_screen.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/workout_list_screen.dart';
@@ -25,6 +26,7 @@ import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'camera_route.dart';
+part 'error_handling_route.dart';
 part 'fitness_tracker/chat_route.dart';
 part 'fitness_tracker/profile_route.dart';
 part 'fitness_tracker/shell_route_data.dart';
