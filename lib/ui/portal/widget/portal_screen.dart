@@ -115,7 +115,11 @@ class _ModalEntry extends StatelessWidget {
         follower: .topLeft,
         target: .bottomLeft,
       ),
-      portalFollower: modal,
+      portalFollower: GestureDetector(
+        behavior: .opaque,
+        onTap: onClose,
+        child: modal,
+      ),
       child: IgnorePointer(
         ignoring: visible,
         child: child,
