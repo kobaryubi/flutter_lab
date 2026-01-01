@@ -6,6 +6,9 @@ part of 'riverpod_screen.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(helloWorld)
 const helloWorldProvider = HelloWorldProvider._();
 
@@ -46,6 +49,3 @@ final class HelloWorldProvider
 }
 
 String _$helloWorldHash() => r'91394d5c0c2976e818ad9eb0bbf15e40481ef69b';
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

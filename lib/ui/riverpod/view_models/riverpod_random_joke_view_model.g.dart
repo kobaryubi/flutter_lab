@@ -6,11 +6,15 @@ part of 'riverpod_random_joke_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 /// Riverpod provider for fetching a random joke.
+
 @ProviderFor(randomJoke)
 const randomJokeProvider = RandomJokeProvider._();
 
 /// Riverpod provider for fetching a random joke.
+
 final class RandomJokeProvider
     extends $FunctionalProvider<AsyncValue<Joke>, Joke, FutureOr<Joke>>
     with $FutureModifier<Joke>, $FutureProvider<Joke> {
@@ -43,6 +47,7 @@ final class RandomJokeProvider
 String _$randomJokeHash() => r'7ca5b1caafcf95d375c495170156f219a3bf7dc6';
 
 /// ViewModel for managing random jokes.
+
 @ProviderFor(RiverpodRandomJokeViewModel)
 const riverpodRandomJokeViewModelProvider =
     RiverpodRandomJokeViewModelProvider._();
@@ -85,6 +90,8 @@ final class RiverpodRandomJokeViewModelProvider
 String _$riverpodRandomJokeViewModelHash() =>
     r'1c85225ee6200bcef249943cd11a3691d059b13c';
 
+/// ViewModel for managing random jokes.
+
 abstract class _$RiverpodRandomJokeViewModel
     extends $Notifier<RiverpodRandomJokeUiState> {
   RiverpodRandomJokeUiState build();
@@ -105,6 +112,3 @@ abstract class _$RiverpodRandomJokeViewModel
     element.handleValue(ref, created);
   }
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -6,9 +6,12 @@ part of 'riverpod_getting_started_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 /// Notifier for the todo list filter.
+
 @ProviderFor(TodoListFilterNotifier)
-const todoListFilterNotifierProvider = TodoListFilterNotifierProvider._();
+const todoListFilterProvider = TodoListFilterNotifierProvider._();
 
 /// Notifier for the todo list filter.
 final class TodoListFilterNotifierProvider
@@ -19,7 +22,7 @@ final class TodoListFilterNotifierProvider
         from: null,
         argument: null,
         retry: null,
-        name: r'todoListFilterNotifierProvider',
+        name: r'todoListFilterProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
@@ -44,6 +47,8 @@ final class TodoListFilterNotifierProvider
 String _$todoListFilterNotifierHash() =>
     r'd462b4cdb3ca1abf01a1b18376c4664b3a69c3b1';
 
+/// Notifier for the todo list filter.
+
 abstract class _$TodoListFilterNotifier extends $Notifier<TodoListFilter> {
   TodoListFilter build();
   @$mustCallSuper
@@ -64,6 +69,7 @@ abstract class _$TodoListFilterNotifier extends $Notifier<TodoListFilter> {
 }
 
 /// ViewModel for the Riverpod Getting Started screen.
+
 @ProviderFor(RiverpodGettingStartedViewModel)
 const riverpodGettingStartedViewModelProvider =
     RiverpodGettingStartedViewModelProvider._();
@@ -108,6 +114,8 @@ final class RiverpodGettingStartedViewModelProvider
 String _$riverpodGettingStartedViewModelHash() =>
     r'9449f40c34c2717d2ff76f3ee9a29f48d3a4aac7';
 
+/// ViewModel for the Riverpod Getting Started screen.
+
 abstract class _$RiverpodGettingStartedViewModel
     extends $Notifier<RiverpodGettingStartedUiState> {
   RiverpodGettingStartedUiState build();
@@ -135,6 +143,3 @@ abstract class _$RiverpodGettingStartedViewModel
     element.handleValue(ref, created);
   }
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

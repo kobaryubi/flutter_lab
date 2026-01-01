@@ -1,4 +1,12 @@
 PODS:
+  - Adjust (5.4.6):
+    - Adjust/Adjust (= 5.4.6)
+  - Adjust/Adjust (5.4.6):
+    - AdjustSignature (= 3.61.0)
+  - adjust_sdk (5.4.5):
+    - Adjust (= 5.4.6)
+    - Flutter
+  - AdjustSignature (3.61.0)
   - app_links (6.4.1):
     - Flutter
   - camera_avfoundation (0.0.1):
@@ -22,6 +30,7 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - adjust_sdk (from `.symlinks/plugins/adjust_sdk/ios`)
   - app_links (from `.symlinks/plugins/app_links/ios`)
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - Flutter (from `Flutter`)
@@ -32,7 +41,14 @@ DEPENDENCIES:
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/darwin`)
 
+SPEC REPOS:
+  trunk:
+    - Adjust
+    - AdjustSignature
+
 EXTERNAL SOURCES:
+  adjust_sdk:
+    :path: ".symlinks/plugins/adjust_sdk/ios"
   app_links:
     :path: ".symlinks/plugins/app_links/ios"
   camera_avfoundation:
@@ -53,6 +69,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
+  Adjust: 293c828a88a2c280471797edb3e895c80652a786
+  adjust_sdk: 1064b7d147d89c4665b8e5dd304148f10e6b4ac5
+  AdjustSignature: 94b6b7f7150edbbebc4320eeaddaac881f6e8e2d
   app_links: 585674be3c6661708e6cd794ab4f39fb9d8356f9
   camera_avfoundation: 281867ff09f1da66f031a184ecfbc6f2e625c9f5
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467

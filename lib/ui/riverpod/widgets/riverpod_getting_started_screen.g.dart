@@ -6,6 +6,9 @@ part of 'riverpod_getting_started_screen.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(_currentTodo)
 const _currentTodoProvider = _CurrentTodoProvider._();
 
@@ -47,7 +50,7 @@ final class _CurrentTodoProvider extends $FunctionalProvider<Todo, Todo, Todo>
 String _$_currentTodoHash() => r'0b35a95688e9c46d1a49887c2ab799387aba68ee';
 
 @ProviderFor(TodoListNotifier)
-const todoListNotifierProvider = TodoListNotifierProvider._();
+const todoListProvider = TodoListNotifierProvider._();
 
 final class TodoListNotifierProvider
     extends $NotifierProvider<TodoListNotifier, List<Todo>> {
@@ -56,7 +59,7 @@ final class TodoListNotifierProvider
         from: null,
         argument: null,
         retry: null,
-        name: r'todoListNotifierProvider',
+        name: r'todoListProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
@@ -98,6 +101,3 @@ abstract class _$TodoListNotifier extends $Notifier<List<Todo>> {
     element.handleValue(ref, created);
   }
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
