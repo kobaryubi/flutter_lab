@@ -179,6 +179,7 @@ This approach makes it easier to understand, debug, and learn from the implement
 ## Coding Rules
 
 - **Dartdoc comments** - Add dartdoc (`///`) to public APIs and functions to explain their purpose
+- **No styling in examples** - When implementing example/lab features, skip styling (colors, shadows, etc.) to focus on confirming functionality only
 
 ## Commit Message Convention
 
