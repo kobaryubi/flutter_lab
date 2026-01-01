@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh:*)",
+      "Bash(mkdir:*)",
+      "Bash(fvm dart run build_runner:*)",
+      "Bash(fvm flutter run:*)",
+      "Bash(fvm flutter analyze:*)",
+      "Bash(fvm flutter test:*)",
+      "Bash(fvm flutter gen-l10n:*)",
+      "Bash(fvm dart format:*)",
+      "Bash(fvm dart run custom_lint:*)"
+    ]
+  }
+}
