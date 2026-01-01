@@ -17,6 +17,7 @@ import 'package:flutter_lab/ui/fitness_tracker/widgets/workout_list_screen.dart'
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/launch_url/widget/launch_url_screen.dart';
 import 'package:flutter_lab/ui/location/widgets/location_screen.dart';
+import 'package:flutter_lab/ui/portal/widget/portal_screen.dart';
 import 'package:flutter_lab/ui/routing/widget/routing_screen.dart';
 import 'package:flutter_lab/ui/routing_cupertino/widget/routing_cupertino_screen.dart';
 import 'package:flutter_lab/ui/routing_cupertino_fullscreen_dialog/widget/routing_cupertino_fullscreen_dialog_screen.dart';
@@ -24,20 +25,21 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'fitness_tracker/shell_route_data.dart';
-part 'fitness_tracker/workout_list_route.dart';
+part 'adjust_route.dart';
+part 'camera_route.dart';
 part 'fitness_tracker/chat_route.dart';
 part 'fitness_tracker/profile_route.dart';
+part 'fitness_tracker/shell_route_data.dart';
+part 'fitness_tracker/workout_list_route.dart';
 part 'home_route.dart';
-part 'not_found_route.dart';
-part 'location_route.dart';
-part 'routing_route.dart';
-part 'routing_cupertino_route.dart';
-part 'routing_cupertino_fullscreen_dialog_route.dart';
 part 'launch_url_route.dart';
-part 'camera_route.dart';
-part 'adjust_route.dart';
+part 'location_route.dart';
+part 'not_found_route.dart';
+part 'portal_route.dart';
 part 'router.g.dart';
+part 'routing_cupertino_fullscreen_dialog_route.dart';
+part 'routing_cupertino_route.dart';
+part 'routing_route.dart';
 
 @riverpod
 GoRouter router(Ref ref) {

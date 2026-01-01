@@ -7,17 +7,64 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
+  $adjustRoute,
+  $cameraRoute,
   $shellRouteData,
   $homeRoute,
-  $notFoundRoute,
-  $locationRoute,
-  $routingRoute,
-  $routingCupertinoRoute,
-  $routingCupertinoFullscreenDialogRoute,
   $launchUrlRoute,
-  $cameraRoute,
-  $adjustRoute,
+  $locationRoute,
+  $notFoundRoute,
+  $portalRoute,
+  $routingCupertinoFullscreenDialogRoute,
+  $routingCupertinoRoute,
+  $routingRoute,
 ];
+
+RouteBase get $adjustRoute =>
+    GoRouteData.$route(path: '/adjust', factory: $AdjustRoute._fromState);
+
+mixin $AdjustRoute on GoRouteData {
+  static AdjustRoute _fromState(GoRouterState state) => AdjustRoute();
+
+  @override
+  String get location => GoRouteData.$location('/adjust');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $cameraRoute =>
+    GoRouteData.$route(path: '/camera', factory: $CameraRoute._fromState);
+
+mixin $CameraRoute on GoRouteData {
+  static CameraRoute _fromState(GoRouterState state) => CameraRoute();
+
+  @override
+  String get location => GoRouteData.$location('/camera');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
 
 RouteBase get $shellRouteData => StatefulShellRouteData.$route(
   factory: $ShellRouteDataExtension._fromState,
@@ -137,14 +184,20 @@ mixin $HomeRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $notFoundRoute =>
-    GoRouteData.$route(path: '/404', factory: $NotFoundRoute._fromState);
+RouteBase get $launchUrlRoute => GoRouteData.$route(
+  path: '/launch_url',
+  factory: $LaunchUrlRoute._fromState,
+);
 
-mixin $NotFoundRoute on GoRouteData {
-  static NotFoundRoute _fromState(GoRouterState state) => NotFoundRoute();
+mixin $LaunchUrlRoute on GoRouteData {
+  static LaunchUrlRoute _fromState(GoRouterState state) =>
+      LaunchUrlRoute(url: state.uri.queryParameters['url']!);
+
+  LaunchUrlRoute get _self => this as LaunchUrlRoute;
 
   @override
-  String get location => GoRouteData.$location('/404');
+  String get location =>
+      GoRouteData.$location('/launch_url', queryParams: {'url': _self.url});
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -183,14 +236,14 @@ mixin $LocationRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $routingRoute =>
-    GoRouteData.$route(path: '/routing', factory: $RoutingRoute._fromState);
+RouteBase get $notFoundRoute =>
+    GoRouteData.$route(path: '/404', factory: $NotFoundRoute._fromState);
 
-mixin $RoutingRoute on GoRouteData {
-  static RoutingRoute _fromState(GoRouterState state) => RoutingRoute();
+mixin $NotFoundRoute on GoRouteData {
+  static NotFoundRoute _fromState(GoRouterState state) => NotFoundRoute();
 
   @override
-  String get location => GoRouteData.$location('/routing');
+  String get location => GoRouteData.$location('/404');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -206,17 +259,14 @@ mixin $RoutingRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $routingCupertinoRoute => GoRouteData.$route(
-  path: '/routing/cupertino',
-  factory: $RoutingCupertinoRoute._fromState,
-);
+RouteBase get $portalRoute =>
+    GoRouteData.$route(path: '/portal', factory: $PortalRoute._fromState);
 
-mixin $RoutingCupertinoRoute on GoRouteData {
-  static RoutingCupertinoRoute _fromState(GoRouterState state) =>
-      RoutingCupertinoRoute();
+mixin $PortalRoute on GoRouteData {
+  static PortalRoute _fromState(GoRouterState state) => PortalRoute();
 
   @override
-  String get location => GoRouteData.$location('/routing/cupertino');
+  String get location => GoRouteData.$location('/portal');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -260,20 +310,17 @@ mixin $RoutingCupertinoFullscreenDialogRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $launchUrlRoute => GoRouteData.$route(
-  path: '/launch_url',
-  factory: $LaunchUrlRoute._fromState,
+RouteBase get $routingCupertinoRoute => GoRouteData.$route(
+  path: '/routing/cupertino',
+  factory: $RoutingCupertinoRoute._fromState,
 );
 
-mixin $LaunchUrlRoute on GoRouteData {
-  static LaunchUrlRoute _fromState(GoRouterState state) =>
-      LaunchUrlRoute(url: state.uri.queryParameters['url']!);
-
-  LaunchUrlRoute get _self => this as LaunchUrlRoute;
+mixin $RoutingCupertinoRoute on GoRouteData {
+  static RoutingCupertinoRoute _fromState(GoRouterState state) =>
+      RoutingCupertinoRoute();
 
   @override
-  String get location =>
-      GoRouteData.$location('/launch_url', queryParams: {'url': _self.url});
+  String get location => GoRouteData.$location('/routing/cupertino');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -289,37 +336,14 @@ mixin $LaunchUrlRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $cameraRoute =>
-    GoRouteData.$route(path: '/camera', factory: $CameraRoute._fromState);
+RouteBase get $routingRoute =>
+    GoRouteData.$route(path: '/routing', factory: $RoutingRoute._fromState);
 
-mixin $CameraRoute on GoRouteData {
-  static CameraRoute _fromState(GoRouterState state) => CameraRoute();
-
-  @override
-  String get location => GoRouteData.$location('/camera');
+mixin $RoutingRoute on GoRouteData {
+  static RoutingRoute _fromState(GoRouterState state) => RoutingRoute();
 
   @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $adjustRoute =>
-    GoRouteData.$route(path: '/adjust', factory: $AdjustRoute._fromState);
-
-mixin $AdjustRoute on GoRouteData {
-  static AdjustRoute _fromState(GoRouterState state) => AdjustRoute();
-
-  @override
-  String get location => GoRouteData.$location('/adjust');
+  String get location => GoRouteData.$location('/routing');
 
   @override
   void go(BuildContext context) => context.go(location);
