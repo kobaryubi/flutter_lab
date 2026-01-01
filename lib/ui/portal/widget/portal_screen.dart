@@ -11,13 +11,20 @@ class PortalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Layout(
       appBar: AppBar(title: Text('portal')),
-      child: Center(child: _Body()),
+      child: Column(
+        mainAxisAlignment: .center,
+        children: [
+          _SimpleOverlay(),
+          SizedBox(height: 32),
+          _ContextualMenu(),
+        ],
+      ),
     );
   }
 }
 
-class _Body extends HookWidget {
-  const _Body();
+class _SimpleOverlay extends HookWidget {
+  const _SimpleOverlay();
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +45,80 @@ class _Body extends HookWidget {
       child: GestureDetector(
         onTap: handleTap,
         child: const Text('Tap me'),
+      ),
+    );
+  }
+}
+
+/// Contextual menu using _ModalEntry.
+class _ContextualMenu extends HookWidget {
+  const _ContextualMenu();
+
+  @override
+  Widget build(BuildContext context) {
+    final showMenu = useState(false);
+
+    /// Shows the menu.
+    void handleOpen() {
+      showMenu.value = true;
+    }
+
+    /// Hides the menu.
+    void handleClose() {
+      showMenu.value = false;
+    }
+
+    return _ModalEntry(
+      visible: showMenu.value,
+      onClose: handleClose,
+      modal: Column(
+        mainAxisSize: .min,
+        crossAxisAlignment: .start,
+        children: [
+          GestureDetector(
+            onTap: handleClose,
+            child: const Text('First'),
+          ),
+          GestureDetector(
+            onTap: handleClose,
+            child: const Text('Second'),
+          ),
+        ],
+      ),
+      child: GestureDetector(
+        onTap: handleOpen,
+        child: const Text('Show Menu'),
+      ),
+    );
+  }
+}
+
+/// Reusable modal entry widget for showing overlay content.
+class _ModalEntry extends StatelessWidget {
+  const _ModalEntry({
+    required this.visible,
+    required this.onClose,
+    required this.modal,
+    required this.child,
+  });
+
+  final bool visible;
+  final VoidCallback onClose;
+  final Widget modal;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return PortalTarget(
+      visible: visible,
+      anchor: const Aligned(
+        follower: .topLeft,
+        target: .bottomLeft,
+      ),
+      portalFollower: modal,
+      child: IgnorePointer(
+        ignoring: visible,
+        child: child,
       ),
     );
   }
