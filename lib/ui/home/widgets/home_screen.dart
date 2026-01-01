@@ -74,7 +74,7 @@ class HomeScreen extends StatelessWidget {
       route: RoutingRoute(),
     ),
     // launch url
-    AppLink(
+    const AppLink(
       title: 'launch url',
       route: LaunchUrlRoute(
         url: 'https://flutter.dev',
@@ -91,6 +91,12 @@ class HomeScreen extends StatelessWidget {
     AppLink(
       title: 'overlay example',
       route: PortalRoute(),
+    ),
+
+    // error handling
+    AppLink(
+      title: 'error handling',
+      route: ErrorHandlingRoute(),
     ),
   ];
 
