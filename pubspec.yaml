@@ -9,7 +9,6 @@ environment:
   flutter: '>=3.38.5 <4.0.0'
 
 dependencies:
-  adjust_sdk: ^5.4.5
   app_links: ^6.4.1
   auto_mappr_annotation: ^2.3.0
   cached_network_image: ^3.4.1

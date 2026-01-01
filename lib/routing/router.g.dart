@@ -7,7 +7,6 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-  $adjustRoute,
   $cameraRoute,
   $shellRouteData,
   $homeRoute,
@@ -19,29 +18,6 @@ List<RouteBase> get $appRoutes => [
   $routingCupertinoRoute,
   $routingRoute,
 ];
-
-RouteBase get $adjustRoute =>
-    GoRouteData.$route(path: '/adjust', factory: $AdjustRoute._fromState);
-
-mixin $AdjustRoute on GoRouteData {
-  static AdjustRoute _fromState(GoRouterState state) => AdjustRoute();
-
-  @override
-  String get location => GoRouteData.$location('/adjust');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
 
 RouteBase get $cameraRoute =>
     GoRouteData.$route(path: '/camera', factory: $CameraRoute._fromState);

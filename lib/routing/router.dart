@@ -4,7 +4,6 @@ import 'package:flutter_lab/routing/fitness_tracker/branch_chat_data.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_profile_data.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_workout_list_data.dart';
 import 'package:flutter_lab/routing/routes.dart';
-import 'package:flutter_lab/ui/adjust/widget/adjust_screen.dart';
 import 'package:flutter_lab/ui/camera/widget/camera_screen.dart';
 import 'package:flutter_lab/ui/config.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
@@ -25,7 +24,6 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'adjust_route.dart';
 part 'camera_route.dart';
 part 'fitness_tracker/chat_route.dart';
 part 'fitness_tracker/profile_route.dart';
