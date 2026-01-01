@@ -156,3 +156,20 @@ Platform-specific code uses method channels:
 - **Mapping**: `auto_mappr`
 - **Error Handling**: `result_dart`
 - **Linting**: `very_good_analysis`, `custom_lint`, `riverpod_lint`
+
+## Commit Message Convention
+
+Use Gitmoji prefixes for all commit messages:
+
+- ✨ New feature
+- 🐛 Bug fix
+- 📝 Documentation
+- 💄 UI/style updates
+- ♻️ Refactor
+- ✅ Tests
+- 🔧 Configuration
+- 🚀 Deploy/release
+- 🔥 Remove code/files
+- 🎨 Improve structure/format
+
+Example: `✨ add user authentication feature`
