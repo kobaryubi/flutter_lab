@@ -21,7 +21,6 @@ class CompassBookingHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _Top(booking: booking),
         Padding(
           padding: Dimens.edgeInsetsScreenHorizontal,
           child: Text(
@@ -59,22 +58,6 @@ class _Tags extends StatelessWidget {
         children: booking.destination.tags
             .map((tag) => TagChip(tag: tag))
             .toList(),
-      ),
-    );
-  }
-}
-
-class _Top extends StatelessWidget {
-  const _Top({required this.booking});
-
-  final Booking booking;
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 260,
-      child: Stack(
-        fit: StackFit.expand,
       ),
     );
   }
