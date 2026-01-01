@@ -2,6 +2,8 @@
   "permissions": {
     "defaultMode": "acceptEdits",
     "allow": [
+      "Read(~/.claude.json)",
+      "Edit(~/.claude.json)",
       "Bash(git checkout:*)",
       "Bash(git push:*)",
       "Bash(git add:*)",
