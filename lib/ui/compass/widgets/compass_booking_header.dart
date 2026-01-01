@@ -77,33 +77,12 @@ class _Top extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          _Gradient(),
           Positioned(
             right: Dimens.padding,
             top: Dimens.padding,
             child: CompassHomeButton(blur: true),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _Gradient extends StatelessWidget {
-  const _Gradient();
-
-  @override
-  Widget build(BuildContext context) {
-    return const DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            AppColors.transparent,
-            AppColors.onPrimaryContainer,
-          ],
-        ),
       ),
     );
   }
