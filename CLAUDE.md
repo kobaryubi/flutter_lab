@@ -180,6 +180,7 @@ This approach makes it easier to understand, debug, and learn from the implement
 
 - **Dartdoc comments** - Add dartdoc (`///`) to public APIs and functions to explain their purpose
 - **No styling in examples** - When implementing example/lab features, skip styling (colors, shadows, etc.) to focus on confirming functionality only
+- **Dot shorthands** - Use dot shorthand syntax when the type is clear from context (e.g., `.center` instead of `MainAxisAlignment.center`)
 
 ## Commit Message Convention
 
