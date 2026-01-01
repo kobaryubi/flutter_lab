@@ -42,7 +42,7 @@ final class ErrorHandlingViewModelProvider
 }
 
 String _$errorHandlingViewModelHash() =>
-    r'2880725566527cde13c1926b13b800a6ce979673';
+    r'3afa3e3405368dd3dfcca8c8e0a142ff4fe377f7';
 
 abstract class _$ErrorHandlingViewModel
     extends $Notifier<ErrorHandlingUiState> {
