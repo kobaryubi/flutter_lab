@@ -23,6 +23,11 @@ class _Body extends HookWidget {
   Widget build(BuildContext context) {
     final isVisible = useState(false);
 
+    /// Toggles the visibility of the portal overlay.
+    void handleTap() {
+      isVisible.value = !isVisible.value;
+    }
+
     return PortalTarget(
       visible: isVisible.value,
       anchor: const Aligned(
@@ -31,7 +36,7 @@ class _Body extends HookWidget {
       ),
       portalFollower: const Text('Hello from overlay!'),
       child: GestureDetector(
-        onTap: () => isVisible.value = !isVisible.value,
+        onTap: handleTap,
         child: const Text('Tap me'),
       ),
     );

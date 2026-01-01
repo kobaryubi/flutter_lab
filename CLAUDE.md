@@ -176,6 +176,10 @@ Step 5: Add animations if needed
 
 This approach makes it easier to understand, debug, and learn from the implementation.
 
+## Coding Rules
+
+- **Dartdoc comments** - Add dartdoc (`///`) to public APIs and functions to explain their purpose
+
 ## Commit Message Convention
 
 Use Gitmoji prefixes for all commit messages:
