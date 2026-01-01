@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'domain_error.dart';
+part of 'domain_exception.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,7 +12,7 @@ part of 'domain_error.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$DomainError {
+mixin _$DomainException {
 
 
 
@@ -20,7 +20,7 @@ mixin _$DomainError {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DomainError);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DomainException);
 }
 
 
@@ -29,20 +29,20 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError()';
+  return 'DomainException()';
 }
 
 
 }
 
 /// @nodoc
-class $DomainErrorCopyWith<$Res>  {
-$DomainErrorCopyWith(DomainError _, $Res Function(DomainError) __);
+class $DomainExceptionCopyWith<$Res>  {
+$DomainExceptionCopyWith(DomainException _, $Res Function(DomainException) __);
 }
 
 
-/// Adds pattern-matching-related methods to [DomainError].
-extension DomainErrorPatterns on DomainError {
+/// Adds pattern-matching-related methods to [DomainException].
+extension DomainExceptionPatterns on DomainException {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -258,7 +258,7 @@ return unauthenticated();case _:
 /// @nodoc
 
 
-class Cancelled implements DomainError {
+class Cancelled implements DomainException {
   const Cancelled();
   
 
@@ -278,7 +278,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.cancelled()';
+  return 'DomainException.cancelled()';
 }
 
 
@@ -290,7 +290,7 @@ String toString() {
 /// @nodoc
 
 
-class Unknown implements DomainError {
+class Unknown implements DomainException {
   const Unknown();
   
 
@@ -310,7 +310,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.unknown()';
+  return 'DomainException.unknown()';
 }
 
 
@@ -322,7 +322,7 @@ String toString() {
 /// @nodoc
 
 
-class InvalidArgument implements DomainError {
+class InvalidArgument implements DomainException {
   const InvalidArgument();
   
 
@@ -342,7 +342,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.invalidArgument()';
+  return 'DomainException.invalidArgument()';
 }
 
 
@@ -354,7 +354,7 @@ String toString() {
 /// @nodoc
 
 
-class DeadlineExceeded implements DomainError {
+class DeadlineExceeded implements DomainException {
   const DeadlineExceeded();
   
 
@@ -374,7 +374,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.deadlineExceeded()';
+  return 'DomainException.deadlineExceeded()';
 }
 
 
@@ -386,7 +386,7 @@ String toString() {
 /// @nodoc
 
 
-class NotFound implements DomainError {
+class NotFound implements DomainException {
   const NotFound();
   
 
@@ -406,7 +406,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.notFound()';
+  return 'DomainException.notFound()';
 }
 
 
@@ -418,7 +418,7 @@ String toString() {
 /// @nodoc
 
 
-class AlreadyExists implements DomainError {
+class AlreadyExists implements DomainException {
   const AlreadyExists();
   
 
@@ -438,7 +438,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.alreadyExists()';
+  return 'DomainException.alreadyExists()';
 }
 
 
@@ -450,7 +450,7 @@ String toString() {
 /// @nodoc
 
 
-class PermissionDenied implements DomainError {
+class PermissionDenied implements DomainException {
   const PermissionDenied();
   
 
@@ -470,7 +470,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.permissionDenied()';
+  return 'DomainException.permissionDenied()';
 }
 
 
@@ -482,7 +482,7 @@ String toString() {
 /// @nodoc
 
 
-class ResourceExhausted implements DomainError {
+class ResourceExhausted implements DomainException {
   const ResourceExhausted();
   
 
@@ -502,7 +502,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.resourceExhausted()';
+  return 'DomainException.resourceExhausted()';
 }
 
 
@@ -514,7 +514,7 @@ String toString() {
 /// @nodoc
 
 
-class FailedPrecondition implements DomainError {
+class FailedPrecondition implements DomainException {
   const FailedPrecondition();
   
 
@@ -534,7 +534,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.failedPrecondition()';
+  return 'DomainException.failedPrecondition()';
 }
 
 
@@ -546,7 +546,7 @@ String toString() {
 /// @nodoc
 
 
-class Aborted implements DomainError {
+class Aborted implements DomainException {
   const Aborted();
   
 
@@ -566,7 +566,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.aborted()';
+  return 'DomainException.aborted()';
 }
 
 
@@ -578,7 +578,7 @@ String toString() {
 /// @nodoc
 
 
-class OutOfRange implements DomainError {
+class OutOfRange implements DomainException {
   const OutOfRange();
   
 
@@ -598,7 +598,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.outOfRange()';
+  return 'DomainException.outOfRange()';
 }
 
 
@@ -610,7 +610,7 @@ String toString() {
 /// @nodoc
 
 
-class Unimplemented implements DomainError {
+class Unimplemented implements DomainException {
   const Unimplemented();
   
 
@@ -630,7 +630,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.unimplemented()';
+  return 'DomainException.unimplemented()';
 }
 
 
@@ -642,7 +642,7 @@ String toString() {
 /// @nodoc
 
 
-class Internal implements DomainError {
+class Internal implements DomainException {
   const Internal();
   
 
@@ -662,7 +662,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.internal()';
+  return 'DomainException.internal()';
 }
 
 
@@ -674,7 +674,7 @@ String toString() {
 /// @nodoc
 
 
-class Unavailable implements DomainError {
+class Unavailable implements DomainException {
   const Unavailable();
   
 
@@ -694,7 +694,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.unavailable()';
+  return 'DomainException.unavailable()';
 }
 
 
@@ -706,7 +706,7 @@ String toString() {
 /// @nodoc
 
 
-class DataLoss implements DomainError {
+class DataLoss implements DomainException {
   const DataLoss();
   
 
@@ -726,7 +726,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.dataLoss()';
+  return 'DomainException.dataLoss()';
 }
 
 
@@ -738,7 +738,7 @@ String toString() {
 /// @nodoc
 
 
-class Unauthenticated implements DomainError {
+class Unauthenticated implements DomainException {
   const Unauthenticated();
   
 
@@ -758,7 +758,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DomainError.unauthenticated()';
+  return 'DomainException.unauthenticated()';
 }
 
 
