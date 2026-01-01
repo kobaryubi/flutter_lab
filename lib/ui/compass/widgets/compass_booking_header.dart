@@ -81,7 +81,6 @@ class _Top extends StatelessWidget {
         children: [
           _HeaderImage(booking: booking),
           const _Gradient(),
-          _Headline(booking: booking),
           const Positioned(
             right: Dimens.padding,
             top: Dimens.padding,
@@ -122,26 +121,6 @@ class _Gradient extends StatelessWidget {
             AppColors.transparent,
             AppColors.onPrimaryContainer,
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Headline extends StatelessWidget {
-  const _Headline({required this.booking});
-
-  final Booking booking;
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomLeft,
-      child: Padding(
-        padding: const EdgeInsets.all(Dimens.padding),
-        child: Text(
-          booking.destination.name,
-          style: TextStyles.headlineLarge.copyWith(color: AppColors.black1),
         ),
       ),
     );
