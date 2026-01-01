@@ -1,5 +1,6 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "Dart-Code.flutter",
-  "dart.flutterSdkPath": ".fvm/versions/3.35.0"
+  "dart.flutterSdkPath": ".fvm/versions/3.38.5",
+  "java.configuration.updateBuildConfiguration": "automatic"
 }
