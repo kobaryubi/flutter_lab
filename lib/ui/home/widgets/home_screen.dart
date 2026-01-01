@@ -81,10 +81,16 @@ class HomeScreen extends StatelessWidget {
       ),
     ),
 
-    /// camera
+    // camera
     AppLink(
       title: 'camera',
       route: CameraRoute(),
+    ),
+
+    // overlay example
+    AppLink(
+      title: 'overlay example',
+      route: PortalRoute(),
     ),
   ];
 
