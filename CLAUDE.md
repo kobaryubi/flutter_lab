@@ -40,21 +40,29 @@ This project follows **Clean Architecture** with feature-based organization:
 
 ```
 lib/
-├── domain/           # Business logic layer (pure Dart)
-│   ├── models/       # Entities (@freezed)
-│   ├── use_cases/    # Business logic callables
-│   └── [feature]/    # Repository interfaces
-├── data/             # Data layer
-│   ├── repositories/ # Repository implementations
-│   ├── services/     # API clients (Retrofit/Dio)
-│   ├── mapper/       # DTO→Domain mapping (auto_mappr)
-│   └── platform/     # Platform channels
-├── application/      # DI layer
-│   └── di/           # Riverpod providers
-├── ui/               # Presentation layer
-│   ├── core/         # Shared themes, components
-│   └── [feature]/    # Feature screens, view models, UI state
-└── routing/          # GoRouter setup with typed routes
+├── domain/              # Business logic layer (pure Dart)
+│   ├── models/          # Entities (@freezed)
+│   ├── use_cases/       # Business logic callables
+│   └── [feature]/       # Repository interfaces
+├── data/                # Data layer
+│   ├── repositories/    # Repository implementations
+│   ├── services/        # API clients (Retrofit/Dio)
+│   ├── mapper/          # DTO→Domain mapping (auto_mappr)
+│   └── platform/        # Platform channels
+├── application/         # DI layer
+│   └── di/              # Riverpod providers
+├── presentation/        # Presentation layer
+│   ├── core/
+│   │   ├── provider/    # Shared notifiers
+│   │   ├── theme/       # Themes
+│   │   ├── widget/      # Shared widgets
+│   │   └── l10n/        # Localization
+│   └── [feature]/
+│       ├── screen/      # Screen widgets
+│       ├── widget/      # Feature-specific widgets
+│       ├── provider/    # View models / notifiers
+│       └── state/       # UI state classes (@freezed)
+└── routing/             # GoRouter setup with typed routes
 ```
 
 ## Key Patterns
