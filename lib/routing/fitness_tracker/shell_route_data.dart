@@ -22,13 +22,8 @@ class ShellRouteData extends StatefulShellRouteData {
     StatefulNavigationShell navigationShell,
   ) {
     return Layout(
-      appBar: AppBar(
-        title: Text(
-          fitnessTrackerNavTitles[navigationShell.currentIndex],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        navigationShell: navigationShell,
+      appBar: const AppBar(
+        title: Text('Fitness'),
       ),
       child: navigationShell,
     );
