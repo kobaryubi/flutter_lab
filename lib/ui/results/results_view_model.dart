@@ -5,7 +5,6 @@ import 'package:flutter_lab/domain/models/destination/destination.dart';
 import 'package:flutter_lab/domain/models/itinerary_config/itinerary_config.dart';
 import 'package:flutter_lab/utils/command.dart';
 import 'package:flutter_lab/utils/result.dart';
-import 'package:logging/logging.dart';
 
 class ResultsViewModel extends ChangeNotifier {
   ResultsViewModel({
@@ -17,7 +16,6 @@ class ResultsViewModel extends ChangeNotifier {
     search = Command0(_search)..execute();
   }
 
-  final _log = Logger('ResultsViewModel');
   final DestinationRepository _destinationRepository;
   final ItineraryConfigRepository _itineraryConfigRepository;
 
@@ -34,10 +32,6 @@ class ResultsViewModel extends ChangeNotifier {
     final resultConfig = await _itineraryConfigRepository.getItineraryConfig();
     switch (resultConfig) {
       case Error<ItineraryConfig>():
-        _log.warning(
-          'Failed to load stored ItineraryConfig',
-          resultConfig.error,
-        );
         return resultConfig;
       case Ok<ItineraryConfig>():
     }
@@ -47,19 +41,14 @@ class ResultsViewModel extends ChangeNotifier {
     final result = await _destinationRepository.getDestinations();
     switch (result) {
       case Ok():
-        {
-          _destinations = result.value
-              .where(
-                (destination) =>
-                    destination.continent == _itineraryConfig!.continent,
-              )
-              .toList();
-          _log.fine('Destinations (${_destinations.length}) loaded');
-        }
+        _destinations = result.value
+            .where(
+              (destination) =>
+                  destination.continent == _itineraryConfig!.continent,
+            )
+            .toList();
       case Error():
-        {
-          _log.warning('Failed to load destinations', result.error);
-        }
+        break;
     }
 
     notifyListeners();
@@ -72,10 +61,6 @@ class ResultsViewModel extends ChangeNotifier {
     final resultConfig = await _itineraryConfigRepository.getItineraryConfig();
     switch (resultConfig) {
       case Error<ItineraryConfig>():
-        _log.warning(
-          'Failed to load stored ItineraryConfig',
-          resultConfig.error,
-        );
         return resultConfig;
       case Ok<ItineraryConfig>():
     }
@@ -84,9 +69,6 @@ class ResultsViewModel extends ChangeNotifier {
     final result = await _itineraryConfigRepository.setItineraryConfig(
       itineraryConfig.copyWith(destination: destinationRef, activities: []),
     );
-    if (result is Error<bool>) {
-      _log.warning('Failed to store ItineraryConfig', result.error);
-    }
     return result;
   }
 }
