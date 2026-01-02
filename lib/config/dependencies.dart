@@ -2,16 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository_dev.dart';
-import 'package:flutter_lab/data/repositories/destination/destination_repository.dart';
-import 'package:flutter_lab/data/repositories/destination/destination_repository_local.dart';
-import 'package:flutter_lab/data/repositories/destination/destination_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/itinerary_config/itinerary_config_repository.dart';
 import 'package:flutter_lab/data/repositories/itinerary_config/itinerary_config_repository_memory.dart';
 import 'package:flutter_lab/data/repositories/joke/joke_repository.dart';
 import 'package:flutter_lab/data/repositories/joke/joke_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/subscription/subscription_repository.dart';
 import 'package:flutter_lab/data/repositories/subscription/subscription_repository_local.dart';
-import 'package:flutter_lab/data/services/api/api_client.dart';
 import 'package:flutter_lab/data/services/dio/dio_client.dart';
 import 'package:flutter_lab/data/services/local/local_data_service.dart';
 import 'package:flutter_lab/domain/use_cases/booking/booking_share_use_case.dart';
@@ -30,20 +26,12 @@ List<SingleChildWidget> _sharedProviders = [
 ];
 
 final List<SingleChildWidget> providersRemote = [
-  Provider(create: (context) => ApiClient()),
-  Provider<DestinationRepository>(
-    create: (context) => DestinationRepositoryRemote(apiClient: context.read()),
-  ),
   ..._sharedProviders,
 ];
 
 final List<SingleChildWidget> providersLocal = [
   ChangeNotifierProvider<AuthRepository>(create: (_) => AuthRepositoryDev()),
   Provider(create: (_) => LocalDataService()),
-  Provider<DestinationRepository>(
-    create: (context) =>
-        DestinationRepositoryLocal(localDataService: context.read()),
-  ),
   ..._sharedProviders,
 ];
 
