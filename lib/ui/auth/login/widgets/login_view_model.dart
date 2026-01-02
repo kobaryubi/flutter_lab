@@ -1,7 +1,6 @@
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
 import 'package:flutter_lab/utils/command.dart';
 import 'package:flutter_lab/utils/result.dart';
-import 'package:logging/logging.dart';
 
 class LoginViewModel {
   LoginViewModel({required AuthRepository authRepository})
@@ -10,7 +9,6 @@ class LoginViewModel {
   }
 
   final AuthRepository _authRepository;
-  final _log = Logger('LoginViewModel');
 
   late Command1 login;
 
@@ -20,10 +18,6 @@ class LoginViewModel {
       email: email,
       password: password,
     );
-    if (result is Error<void>) {
-      _log.warning('Login failed! ${result.error}');
-    }
-
     return result;
   }
 }
