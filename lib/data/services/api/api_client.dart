@@ -175,21 +175,4 @@ class ApiClient {
       client.close();
     }
   }
-
-  Future<Result<void>> deleteBooking(int id) async {
-    final client = _clientFactory();
-    try {
-      final request = await client.delete(_host, _port, '/booking/$id');
-      final response = await request.close();
-      if (response.statusCode == 204) {
-        return const Result.ok(null);
-      }
-
-      return const Result.error(HttpException('Invalid response'));
-    } on Exception catch (error) {
-      return Result.error(error);
-    } finally {
-      client.close();
-    }
-  }
 }
