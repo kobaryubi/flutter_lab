@@ -9,11 +9,6 @@ class HomeScreen extends StatelessWidget {
 
   static final List<AppLink> links = [
     AppLink(
-      title: 'compass',
-      route: WorkoutListRoute(),
-      //  route: Routes.compass
-    ),
-    AppLink(
       title: 'optimistic state',
       route: WorkoutListRoute(),
       // route: Routes.optimisticState
