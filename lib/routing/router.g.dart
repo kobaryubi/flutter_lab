@@ -9,7 +9,6 @@ part of 'router.dart';
 List<RouteBase> get $appRoutes => [
   $cameraRoute,
   $errorHandlingRoute,
-  $shellRouteData,
   $homeRoute,
   $launchUrlRoute,
   $locationRoute,
@@ -54,101 +53,6 @@ mixin $ErrorHandlingRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/error_handling');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $shellRouteData => StatefulShellRouteData.$route(
-  factory: $ShellRouteDataExtension._fromState,
-  branches: [
-    StatefulShellBranchData.$branch(
-      routes: [
-        GoRouteData.$route(
-          path: '/fitness-tracker/workout-list',
-          factory: $WorkoutListRoute._fromState,
-        ),
-      ],
-    ),
-    StatefulShellBranchData.$branch(
-      routes: [
-        GoRouteData.$route(
-          path: '/fitness-tracker/chat',
-          factory: $ChatRoute._fromState,
-        ),
-      ],
-    ),
-    StatefulShellBranchData.$branch(
-      routes: [
-        GoRouteData.$route(
-          path: '/fitness-tracker/profile',
-          factory: $ProfileRoute._fromState,
-        ),
-      ],
-    ),
-  ],
-);
-
-extension $ShellRouteDataExtension on ShellRouteData {
-  static ShellRouteData _fromState(GoRouterState state) =>
-      const ShellRouteData();
-}
-
-mixin $WorkoutListRoute on GoRouteData {
-  static WorkoutListRoute _fromState(GoRouterState state) => WorkoutListRoute();
-
-  @override
-  String get location => GoRouteData.$location('/fitness-tracker/workout-list');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-mixin $ChatRoute on GoRouteData {
-  static ChatRoute _fromState(GoRouterState state) => ChatRoute();
-
-  @override
-  String get location => GoRouteData.$location('/fitness-tracker/chat');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-mixin $ProfileRoute on GoRouteData {
-  static ProfileRoute _fromState(GoRouterState state) => ProfileRoute();
-
-  @override
-  String get location => GoRouteData.$location('/fitness-tracker/profile');
 
   @override
   void go(BuildContext context) => context.go(location);

@@ -1,15 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
 import 'package:flutter_lab/presentation/error_handling/screen/error_handling_screen.dart';
-import 'package:flutter_lab/routing/fitness_tracker/branch_profile_data.dart';
-import 'package:flutter_lab/routing/fitness_tracker/branch_workout_list_data.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/camera/widget/camera_screen.dart';
-import 'package:flutter_lab/ui/core/ui/app_bar.dart';
-import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/error/widgets/not_found_screen.dart';
-import 'package:flutter_lab/ui/fitness_tracker/widgets/profile_screen.dart';
-import 'package:flutter_lab/ui/fitness_tracker/widgets/workout_list_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/launch_url/widget/launch_url_screen.dart';
 import 'package:flutter_lab/ui/location/widgets/location_screen.dart';
@@ -23,9 +17,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'camera_route.dart';
 part 'error_handling_route.dart';
-part 'fitness_tracker/profile_route.dart';
-part 'fitness_tracker/shell_route_data.dart';
-part 'fitness_tracker/workout_list_route.dart';
 part 'home_route.dart';
 part 'launch_url_route.dart';
 part 'location_route.dart';
