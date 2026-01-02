@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
 import 'package:flutter_lab/presentation/error_handling/screen/error_handling_screen.dart';
-import 'package:flutter_lab/routing/fitness_tracker/branch_chat_data.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_profile_data.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_workout_list_data.dart';
 import 'package:flutter_lab/routing/routes.dart';
@@ -26,7 +25,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'camera_route.dart';
 part 'error_handling_route.dart';
-part 'fitness_tracker/chat_route.dart';
 part 'fitness_tracker/profile_route.dart';
 part 'fitness_tracker/shell_route_data.dart';
 part 'fitness_tracker/workout_list_route.dart';
@@ -124,16 +122,6 @@ GoRouter router(Ref ref) {
     //           return CompassScreen(viewModel: viewModel);
     //         },
     //         routes: [
-    //           GoRoute(
-    //             path: Routes.searchRelative,
-    //             builder: (context, state) {
-    //               final viewModel = CompassSearchFormViewModel(
-    //                 continentRepository: context.read(),
-    //                 itineraryConfigRepository: context.read(),
-    //               );
-    //               return CompassSearchFormScreen(viewModel: viewModel);
-    //             },
-    //           ),
     //           GoRoute(
     //             path: Routes.bookingRelative,
     //             builder: (context, state) {

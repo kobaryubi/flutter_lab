@@ -37,8 +37,6 @@ abstract final class Routes {
   static const fitnessTrackerWorkoutList =
       '/$fitnessTrackerRelative/$workoutListRelative';
   static const workoutListRelative = 'workout-list';
-  static const fitnessTrackerChat = '/$fitnessTrackerRelative/$chatRelative';
-  static const chatRelative = 'chat';
   static const fitnessTrackerProfile =
       '/$fitnessTrackerRelative/$profileRelative';
   static const profileRelative = 'profile';

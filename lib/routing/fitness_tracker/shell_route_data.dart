@@ -7,9 +7,6 @@ part of '../router.dart';
         TypedGoRoute<WorkoutListRoute>(path: Routes.fitnessTrackerWorkoutList),
       ],
     ),
-    TypedStatefulShellBranch<BranchChatData>(
-      routes: [TypedGoRoute<ChatRoute>(path: Routes.fitnessTrackerChat)],
-    ),
     TypedStatefulShellBranch<BranchProfileData>(
       routes: [TypedGoRoute<ProfileRoute>(path: Routes.fitnessTrackerProfile)],
     ),
