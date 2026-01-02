@@ -1,12 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/l10n/app_localizations.dart';
-import 'package:flutter_lab/ui/auth/logout/logout_view_model.dart';
-import 'package:flutter_lab/ui/auth/logout/widgets/logout_button.dart';
 import 'package:flutter_lab/ui/compass/view_models/compass_view_model.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class CompassHeader extends StatelessWidget {
   const CompassHeader({required this.viewModel, super.key});
@@ -28,24 +25,12 @@ class CompassHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipOval(
-              child: Image.asset(
-                user.picture,
-                width: Dimens.profilePictureSize,
-                height: Dimens.profilePictureSize,
-              ),
-            ),
-            LogoutButton(
-              viewModel: LogoutViewModel(
-                authRepository: context.read(),
-                itineraryConfigRepository: context.read(),
-              ),
-            ),
-          ],
+        ClipOval(
+          child: Image.asset(
+            user.picture,
+            width: Dimens.profilePictureSize,
+            height: Dimens.profilePictureSize,
+          ),
         ),
         const SizedBox(height: Dimens.paddingVertical),
         _Title(text: appLocalizations.nameTrips(user.name)),
