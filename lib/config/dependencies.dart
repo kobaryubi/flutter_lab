@@ -5,9 +5,6 @@ import 'package:flutter_lab/data/repositories/activity/activity_repository_local
 import 'package:flutter_lab/data/repositories/activity/activity_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository_dev.dart';
-import 'package:flutter_lab/data/repositories/booking/booking_repository.dart';
-import 'package:flutter_lab/data/repositories/booking/booking_repository_local.dart';
-import 'package:flutter_lab/data/repositories/booking/booking_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/continent/continent_repository.dart';
 import 'package:flutter_lab/data/repositories/continent/continent_repository_local.dart';
 import 'package:flutter_lab/data/repositories/continent/continent_repository_remote.dart';
@@ -64,9 +61,6 @@ final List<SingleChildWidget> providersRemote = [
   Provider<ActivityRepository>(
     create: (context) => ActivityRepositoryRemote(apiClient: context.read()),
   ),
-  Provider<BookingRepository>(
-    create: (context) => BookingRepositoryRemote(apiClient: context.read()),
-  ),
   Provider<UserRepository>(
     create: (context) => UserRepositoryRemote(apiClient: context.read()),
   ),
@@ -87,10 +81,6 @@ final List<SingleChildWidget> providersLocal = [
   Provider<ActivityRepository>(
     create: (context) =>
         ActivityRepositoryLocal(localDataService: context.read()),
-  ),
-  Provider<BookingRepository>(
-    create: (context) =>
-        BookingRepositoryLocal(localDataService: context.read()),
   ),
   Provider<UserRepository>(
     create: (context) => UserRepositoryLocal(localDataService: context.read()),
