@@ -13,7 +13,6 @@ class ActivitiesViewModel extends ChangeNotifier {
   }) : _activityRepository = activityRepository,
        _itineraryConfigRepository = itineraryConfigRepository {
     loadActivities = Command0(_loadActivities)..execute();
-    saveActivities = Command0(_saveActivities);
   }
 
   final ActivityRepository _activityRepository;
@@ -28,7 +27,6 @@ class ActivitiesViewModel extends ChangeNotifier {
   Set<String> get selectedActivities => _selectedActivities;
 
   late final Command0 loadActivities;
-  late final Command0 saveActivities;
 
   Future<Result<void>> _loadActivities() async {
     final result = await _itineraryConfigRepository.getItineraryConfig();
@@ -76,20 +74,5 @@ class ActivitiesViewModel extends ChangeNotifier {
 
     notifyListeners();
     return resultActivities;
-  }
-
-  Future<Result<void>> _saveActivities() async {
-    final resultConfig = await _itineraryConfigRepository.getItineraryConfig();
-    switch (resultConfig) {
-      case Error<ItineraryConfig>():
-        return resultConfig;
-      case Ok<ItineraryConfig>():
-    }
-
-    final itineraryConfig = resultConfig.value;
-    final result = await _itineraryConfigRepository.setItineraryConfig(
-      itineraryConfig.copyWith(activities: _selectedActivities.toList()),
-    );
-    return result;
   }
 }
