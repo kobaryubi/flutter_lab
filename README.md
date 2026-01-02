@@ -1,21 +1,35 @@
 # flutter_lab
 
-## Misc
+## Clean
+
+```sh
+fvm flutter clean
+fvm flutter pub get
+fvm dart run build_runner build
+```
+
+## Run
 
 ```sh
 flutter run lib/main.dart
+```
 
-# Run the code generator
+## Code Generation
+
+```sh
 fvm dart run build_runner watch -d
 fvm dart run build_runner build
-
-flutter create --platforms android .
 flutter gen-l10n
-dart run vector_graphics_compiler -i assets/icons/add_location_outlined.svg -o assets/icons/add_location_outlined.svg.vec
+fluttergen
+```
 
+## Misc
+
+```sh
+flutter create --platforms android .
+dart run vector_graphics_compiler -i assets/icons/add_location_outlined.svg -o assets/icons/add_location_outlined.svg.vec
 dart run custom_lint
 flutter widget-preview start
-fluttergen
 ```
 
 ### To automatically upgrade your package dependencies to the latest versions
