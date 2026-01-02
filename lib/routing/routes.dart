@@ -7,8 +7,6 @@ abstract final class Routes {
   static const resultsRelative = 'results';
   static const activities = '/$activitiesRelative';
   static const activitiesRelative = 'activities';
-  static const booking = '/$bookingRelative';
-  static const bookingRelative = 'booking';
   static const webview = '/$webviewRelative';
   static const webviewRelative = 'webview';
   static const petstore = '/$petstoreRelative';

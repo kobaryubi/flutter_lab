@@ -67,7 +67,6 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
   void _onResult() {
     if (widget.viewModel.saveActivities.completed) {
       widget.viewModel.saveActivities.clearResult();
-      context.go(Routes.booking);
     }
 
     if (widget.viewModel.saveActivities.error) {
