@@ -17,9 +17,6 @@ import 'package:flutter_lab/data/repositories/joke/joke_repository.dart';
 import 'package:flutter_lab/data/repositories/joke/joke_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/subscription/subscription_repository.dart';
 import 'package:flutter_lab/data/repositories/subscription/subscription_repository_local.dart';
-import 'package:flutter_lab/data/repositories/user/user_repository.dart';
-import 'package:flutter_lab/data/repositories/user/user_repository_local.dart';
-import 'package:flutter_lab/data/repositories/user/user_repository_remote.dart';
 import 'package:flutter_lab/data/services/api/api_client.dart';
 import 'package:flutter_lab/data/services/dio/dio_client.dart';
 import 'package:flutter_lab/data/services/local/local_data_service.dart';
@@ -61,9 +58,6 @@ final List<SingleChildWidget> providersRemote = [
   Provider<ActivityRepository>(
     create: (context) => ActivityRepositoryRemote(apiClient: context.read()),
   ),
-  Provider<UserRepository>(
-    create: (context) => UserRepositoryRemote(apiClient: context.read()),
-  ),
   ..._sharedProviders,
 ];
 
@@ -81,9 +75,6 @@ final List<SingleChildWidget> providersLocal = [
   Provider<ActivityRepository>(
     create: (context) =>
         ActivityRepositoryLocal(localDataService: context.read()),
-  ),
-  Provider<UserRepository>(
-    create: (context) => UserRepositoryLocal(localDataService: context.read()),
   ),
   ..._sharedProviders,
 ];
