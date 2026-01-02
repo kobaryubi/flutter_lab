@@ -1,4 +1,0 @@
-const fitnessTrackerNavTitles = [
-  'Workouts',
-  'Profile',
-];
