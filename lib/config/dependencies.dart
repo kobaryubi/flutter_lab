@@ -9,7 +9,6 @@ import 'package:flutter_lab/data/repositories/joke/joke_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/subscription/subscription_repository.dart';
 import 'package:flutter_lab/data/repositories/subscription/subscription_repository_local.dart';
 import 'package:flutter_lab/data/services/dio/dio_client.dart';
-import 'package:flutter_lab/data/services/local/local_data_service.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -29,7 +28,6 @@ final List<SingleChildWidget> providersRemote = [
 
 final List<SingleChildWidget> providersLocal = [
   ChangeNotifierProvider<AuthRepository>(create: (_) => AuthRepositoryDev()),
-  Provider(create: (_) => LocalDataService()),
   ..._sharedProviders,
 ];
 
