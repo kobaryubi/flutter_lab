@@ -8,8 +8,6 @@ import 'package:flutter_lab/domain/models/continent/continent.dart';
 import 'package:flutter_lab/domain/models/destination/destination.dart';
 import 'package:flutter_lab/utils/result.dart';
 
-typedef AuthHeaderProvider = String? Function();
-
 class ApiClient {
   ApiClient({String? host, int? port, HttpClient Function()? clientFactory})
     : _host = host ?? 'localhost',
@@ -20,24 +18,10 @@ class ApiClient {
   final int _port;
   final HttpClient Function() _clientFactory;
 
-  AuthHeaderProvider? _authHeaderProvider;
-
-  set authHeaderProvider(AuthHeaderProvider authHeaderProvider) {
-    _authHeaderProvider = authHeaderProvider;
-  }
-
-  Future<void> _authHeader(HttpHeaders headers) async {
-    final header = _authHeaderProvider?.call();
-    if (header != null) {
-      headers.add(HttpHeaders.authorizationHeader, header);
-    }
-  }
-
   Future<Result<List<Continent>>> getContinents() async {
     final client = _clientFactory();
     try {
       final request = await client.get(_host, _port, '/continent');
-      await _authHeader(request.headers);
       final response = await request.close();
       if (response.statusCode == 200) {
         final stringData = await response.transform(utf8.decoder).join();
@@ -60,7 +44,6 @@ class ApiClient {
     final client = _clientFactory();
     try {
       final request = await client.get(_host, _port, '/destination');
-      await _authHeader(request.headers);
       final response = await request.close();
       if (response.statusCode == 200) {
         final stringData = await response.transform(utf8.decoder).join();
@@ -88,7 +71,6 @@ class ApiClient {
         _port,
         '/destination/$ref/activity',
       );
-      await _authHeader(request.headers);
       final response = await request.close();
       if (response.statusCode == 200) {
         final stringData = await response.transform(utf8.decoder).join();
@@ -112,7 +94,6 @@ class ApiClient {
     final client = _clientFactory();
     try {
       final request = await client.get(_host, _port, '/booking');
-      await _authHeader(request.headers);
       final response = await request.close();
       if (response.statusCode == 200) {
         final stringData = await response.transform(utf8.decoder).join();
@@ -137,7 +118,6 @@ class ApiClient {
     final client = _clientFactory();
     try {
       final request = await client.get(_host, _port, '/booking/$id');
-      await _authHeader(request.headers);
       final response = await request.close();
       if (response.statusCode == 200) {
         final stringData = await response.transform(utf8.decoder).join();
@@ -158,7 +138,6 @@ class ApiClient {
     final client = _clientFactory();
     try {
       final request = await client.post(_host, _port, '/booking');
-      await _authHeader(request.headers);
       request.write(jsonEncode(booking));
       final response = await request.close();
       if (response.statusCode == 201) {
@@ -181,7 +160,6 @@ class ApiClient {
     final client = _clientFactory();
     try {
       final request = await client.get(_host, _port, '/user');
-      await _authHeader(request.headers);
       final response = await request.close();
       if (response.statusCode == 200) {
         final stringData = await response.transform(utf8.decoder).join();
@@ -202,7 +180,6 @@ class ApiClient {
     final client = _clientFactory();
     try {
       final request = await client.delete(_host, _port, '/booking/$id');
-      await _authHeader(request.headers);
       final response = await request.close();
       if (response.statusCode == 204) {
         return const Result.ok(null);

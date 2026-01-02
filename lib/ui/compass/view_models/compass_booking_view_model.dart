@@ -4,7 +4,6 @@ import 'package:flutter_lab/domain/models/booking/booking.dart';
 import 'package:flutter_lab/domain/use_cases/booking/booking_share_use_case.dart';
 import 'package:flutter_lab/utils/command.dart';
 import 'package:flutter_lab/utils/result.dart';
-import 'package:logging/logging.dart';
 
 class CompassBookingViewModel extends ChangeNotifier {
   CompassBookingViewModel({
@@ -29,8 +28,6 @@ class CompassBookingViewModel extends ChangeNotifier {
   Booking? _booking;
   Booking? get booking => _booking;
 
-  final _log = Logger('CompassBookingViewModel');
-
   final BookingShareUseCase _shareUseCase;
 
   late final Command1<void, int> loadBooking;
@@ -40,11 +37,10 @@ class CompassBookingViewModel extends ChangeNotifier {
     final result = await _bookingRepository.getBooking(id);
     switch (result) {
       case Ok<Booking>():
-        _log.fine('Loaded booking $id');
         _booking = result.value;
         notifyListeners();
       case Error<Booking>():
-        _log.warning('Failed to load booking $id');
+        break;
     }
 
     return result;
