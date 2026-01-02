@@ -12,10 +12,6 @@ abstract final class Routes {
   static const petstore = '/$petstoreRelative';
   static const petstoreRelative = 'petstore';
 
-  // compass
-  static const compass = '/$compassRelative';
-  static const compassRelative = 'compass';
-
   static const optimisticState = '/$optimisticStateRelative';
   static const optimisticStateRelative = 'optimistic-state';
 
