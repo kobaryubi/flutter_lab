@@ -1,4 +1,3 @@
-import 'package:flutter_lab/domain/models/exception/domain_exception.dart';
 import 'package:flutter_lab/domain/models/todo/todo.dart';
 import 'package:flutter_lab/ui/error_handling/ui_state/error_handling_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -21,15 +20,6 @@ class ErrorHandlingViewModel extends _$ErrorHandlingViewModel {
           const Todo(id: '1', description: 'First todo'),
           const Todo(id: '2', description: 'Second todo', completed: true),
         ];
-      }),
-    );
-  }
-
-  /// Throws a domain exception.
-  Future<void> throwException(DomainException exception) async {
-    state = state.copyWith(
-      todos: await AsyncValue.guard(() async {
-        throw exception;
       }),
     );
   }

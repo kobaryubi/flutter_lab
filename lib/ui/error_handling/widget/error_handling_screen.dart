@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/domain/models/exception/domain_exception.dart';
 import 'package:flutter_lab/domain/models/todo/todo.dart';
+import 'package:flutter_lab/ui/core/error/global_error_widget_notifier.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/error_handling/view_model/error_handling_view_model.dart';
@@ -35,20 +36,18 @@ class _Body extends ConsumerWidget {
           onTap: vm.load,
           child: const Text('Load Todos'),
         ),
-        Expanded(child: _ExceptionButtons(vm: vm)),
+        const Expanded(child: _ExceptionButtons()),
         Expanded(child: _TodoList(todos: todos)),
       ],
     );
   }
 }
 
-class _ExceptionButtons extends StatelessWidget {
-  const _ExceptionButtons({required this.vm});
-
-  final ErrorHandlingViewModel vm;
+class _ExceptionButtons extends ConsumerWidget {
+  const _ExceptionButtons();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final exceptions = [
       const DomainException.cancelled(),
       const DomainException.unknown(),
@@ -72,8 +71,9 @@ class _ExceptionButtons extends StatelessWidget {
       children: exceptions
           .map(
             (e) => GestureDetector(
-              onTap: () => vm.throwException(e),
-              child: Text('Throw ${e.runtimeType}'),
+              onTap: () => ref.read(globalErrorWidgetProvider.notifier).widget =
+                  Text(e.runtimeType.toString()),
+              child: Text('Show ${e.runtimeType}'),
             ),
           )
           .toList(),
