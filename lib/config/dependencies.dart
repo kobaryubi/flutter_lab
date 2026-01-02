@@ -2,8 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository_dev.dart';
-import 'package:flutter_lab/data/repositories/itinerary_config/itinerary_config_repository.dart';
-import 'package:flutter_lab/data/repositories/itinerary_config/itinerary_config_repository_memory.dart';
 import 'package:flutter_lab/data/repositories/joke/joke_repository.dart';
 import 'package:flutter_lab/data/repositories/joke/joke_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/subscription/subscription_repository.dart';
@@ -16,9 +14,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 List<SingleChildWidget> _sharedProviders = [
   Provider<SubscriptionRepository>(
     create: (BuildContext context) => SubscriptionRepositoryLocal(),
-  ),
-  Provider<ItineraryConfigRepository>(
-    create: (_) => ItineraryConfigRepositoryMemory(),
   ),
 ];
 
