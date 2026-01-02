@@ -8,37 +8,10 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   static final List<AppLink> links = [
-    // riverpod
-    AppLink(
-      title: 'riverpod',
-      route: WorkoutListRoute(),
-      // route: Routes.riverpod
-    ),
-    AppLink(
-      title: 'riverpod getting started',
-      route: WorkoutListRoute(),
-      // route: Routes.riverpodGettingStarted,
-    ),
-    AppLink(
-      title: 'riverpod random joke',
-      route: WorkoutListRoute(),
-      // route: Routes.riverpodRandomJoke
-    ),
-    // animations
-    AppLink(
-      title: 'animations',
-      route: WorkoutListRoute(),
-      // route: Routes.animations
-    ),
     // not found
     AppLink(
       title: 'not found',
       route: NotFoundRoute(),
-    ),
-    // fitness-tracker
-    AppLink(
-      title: 'fitness tracker',
-      route: WorkoutListRoute(),
     ),
     // routing
     AppLink(
