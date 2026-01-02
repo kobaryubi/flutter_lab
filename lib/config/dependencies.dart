@@ -1,13 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_lab/data/repositories/activity/activity_repository.dart';
-import 'package:flutter_lab/data/repositories/activity/activity_repository_local.dart';
-import 'package:flutter_lab/data/repositories/activity/activity_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository_dev.dart';
-import 'package:flutter_lab/data/repositories/continent/continent_repository.dart';
-import 'package:flutter_lab/data/repositories/continent/continent_repository_local.dart';
-import 'package:flutter_lab/data/repositories/continent/continent_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/destination/destination_repository.dart';
 import 'package:flutter_lab/data/repositories/destination/destination_repository_local.dart';
 import 'package:flutter_lab/data/repositories/destination/destination_repository_remote.dart';
@@ -40,12 +34,6 @@ final List<SingleChildWidget> providersRemote = [
   Provider<DestinationRepository>(
     create: (context) => DestinationRepositoryRemote(apiClient: context.read()),
   ),
-  Provider<ContinentRepository>(
-    create: (context) => ContinentRepositoryRemote(apiClient: context.read()),
-  ),
-  Provider<ActivityRepository>(
-    create: (context) => ActivityRepositoryRemote(apiClient: context.read()),
-  ),
   ..._sharedProviders,
 ];
 
@@ -55,14 +43,6 @@ final List<SingleChildWidget> providersLocal = [
   Provider<DestinationRepository>(
     create: (context) =>
         DestinationRepositoryLocal(localDataService: context.read()),
-  ),
-  Provider<ContinentRepository>(
-    create: (context) =>
-        ContinentRepositoryLocal(localDataService: context.read()),
-  ),
-  Provider<ActivityRepository>(
-    create: (context) =>
-        ActivityRepositoryLocal(localDataService: context.read()),
   ),
   ..._sharedProviders,
 ];
