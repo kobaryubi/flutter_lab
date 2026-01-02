@@ -78,17 +78,6 @@ class ActivitiesViewModel extends ChangeNotifier {
     return resultActivities;
   }
 
-  void addActivity(String activityRef) {
-    assert(
-      (_daytimeActivities + _eveningActivities).any(
-        (activity) => activity.ref == activityRef,
-      ),
-      'Activity $activityRef not found',
-    );
-    _selectedActivities.add(activityRef);
-    notifyListeners();
-  }
-
   Future<Result<void>> _saveActivities() async {
     final resultConfig = await _itineraryConfigRepository.getItineraryConfig();
     switch (resultConfig) {
