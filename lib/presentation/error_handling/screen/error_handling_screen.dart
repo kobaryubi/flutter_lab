@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/domain/models/exception/domain_exception.dart';
 import 'package:flutter_lab/domain/models/todo/todo.dart';
-import 'package:flutter_lab/ui/core/error/global_error_widget_notifier.dart';
+import 'package:flutter_lab/presentation/core/provider/global_error_widget_notifier.dart';
+import 'package:flutter_lab/presentation/error_handling/provider/error_handling_view_model.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
-import 'package:flutter_lab/ui/error_handling/view_model/error_handling_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ErrorHandlingScreen extends StatelessWidget {

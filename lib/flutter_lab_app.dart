@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/l10n/app_localizations.dart';
+import 'package:flutter_lab/presentation/core/widget/global_error_overlay.dart';
 import 'package:flutter_lab/routing/router.dart';
-import 'package:flutter_lab/ui/core/error/global_error_overlay.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
 import 'package:flutter_portal/flutter_portal.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
+import 'package:flutter_lab/presentation/error_handling/screen/error_handling_screen.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_chat_data.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_profile_data.dart';
 import 'package:flutter_lab/routing/fitness_tracker/branch_workout_list_data.dart';
@@ -10,8 +11,6 @@ import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/bottom_navigation_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/error/widgets/not_found_screen.dart';
-import 'package:flutter_lab/ui/error_handling/widget/error_handling_screen.dart';
-import 'package:flutter_lab/ui/fitness_tracker/widgets/chat_screen.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/profile_screen.dart';
 import 'package:flutter_lab/ui/fitness_tracker/widgets/workout_list_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
@@ -196,17 +195,7 @@ GoRouter router(Ref ref) {
     //   ),
     //   // riverpod
     //   GoRoute(
-    //     path: Routes.riverpod,
-    //     builder: (context, state) {
-    //       return const RiverpodScreen();
-    //     },
     //     routes: [
-    //       GoRoute(
-    //         path: Routes.gettingStartedRelative,
-    //         builder: (context, state) {
-    //           return const RiverpodGettingStartedScreen();
-    //         },
-    //       ),
     //       GoRoute(
     //         path: Routes.randomJokeRelative,
     //         builder: (context, state) {

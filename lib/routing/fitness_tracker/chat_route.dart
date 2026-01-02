@@ -4,6 +4,6 @@ part of '../router.dart';
 class ChatRoute extends GoRouteData with $ChatRoute {
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const ChatScreen();
+    return const SizedBox();
   }
 }
