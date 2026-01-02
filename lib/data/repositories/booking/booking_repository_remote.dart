@@ -110,13 +110,4 @@ class BookingRepositoryRemote implements BookingRepository {
       return Result.error(e);
     }
   }
-
-  @override
-  Future<Result<void>> delete(int id) async {
-    try {
-      return _apiClient.deleteBooking(id);
-    } on Exception catch (e) {
-      return Result.error(e);
-    }
-  }
 }

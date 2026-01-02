@@ -6,5 +6,4 @@ abstract class BookingRepository {
   Future<Result<List<BookingSummary>>> getBookingsList();
   Future<Result<Booking>> getBooking(int id);
   Future<Result<void>> createBooking(Booking booking);
-  Future<Result<void>> delete(int id);
 }

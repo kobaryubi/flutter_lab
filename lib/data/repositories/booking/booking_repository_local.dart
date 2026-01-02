@@ -74,10 +74,4 @@ class BookingRepositoryLocal implements BookingRepository {
       );
     }
   }
-
-  @override
-  Future<Result<void>> delete(int id) async {
-    _bookings.removeWhere((booking) => booking.id == id);
-    return const Result.ok(null);
-  }
 }
