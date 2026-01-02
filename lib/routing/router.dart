@@ -110,35 +110,6 @@ GoRouter router(Ref ref) {
     //           );
     //           return CompassScreen(viewModel: viewModel);
     //         },
-    //         routes: [
-    //           GoRoute(
-    //             path: Routes.bookingRelative,
-    //             builder: (context, state) {
-    //               final viewModel = CompassBookingViewModel(
-    //                 bookingRepository: context.read(),
-    //                 shareBookingUseCase: context.read(),
-    //               );
-
-    //               return CompassBookingScreen(viewModel: viewModel);
-    //             },
-    //             routes: [
-    //               GoRoute(
-    //                 path: ':id',
-    //                 builder: (context, state) {
-    //                   final viewModel = CompassBookingViewModel(
-    //                     bookingRepository: context.read(),
-    //                     shareBookingUseCase: context.read(),
-    //                   );
-
-    //                   final id = int.parse(state.pathParameters['id']!);
-    //                   viewModel.loadBooking.execute(id);
-
-    //                   return CompassBookingScreen(viewModel: viewModel);
-    //                 },
-    //               ),
-    //             ],
-    //           ),
-    //         ],
     //       ),
     //       GoRoute(
     //         path: Routes.optimisticStateRelative,
