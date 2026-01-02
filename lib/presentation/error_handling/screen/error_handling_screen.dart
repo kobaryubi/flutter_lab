@@ -26,15 +26,19 @@ class _Body extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final todos = ref.watch(
-      errorHandlingViewModelProvider.select((s) => s.todos),
+      errorHandlingViewModelProvider.select((state) => state.todos),
     );
-    final vm = ref.read(errorHandlingViewModelProvider.notifier);
+    final viewModel = ref.read(errorHandlingViewModelProvider.notifier);
+
+    void handleLoadTodos() {
+      viewModel.load();
+    }
 
     return Column(
       crossAxisAlignment: .stretch,
       children: [
         GestureDetector(
-          onTap: vm.load,
+          onTap: handleLoadTodos,
           child: const Text('Load Todos'),
         ),
         const Expanded(child: _ExceptionButtons()),
@@ -47,74 +51,88 @@ class _Body extends ConsumerWidget {
 class _ExceptionButtons extends ConsumerWidget {
   const _ExceptionButtons();
 
+  static const _exceptions = [
+    DomainException.cancelled(),
+    DomainException.unknown(),
+    DomainException.invalidArgument(),
+    DomainException.deadlineExceeded(),
+    DomainException.notFound(),
+    DomainException.alreadyExists(),
+    DomainException.permissionDenied(),
+    DomainException.resourceExhausted(),
+    DomainException.failedPrecondition(),
+    DomainException.aborted(),
+    DomainException.outOfRange(),
+    DomainException.unimplemented(),
+    DomainException.internal(),
+    DomainException.unavailable(),
+    DomainException.dataLoss(),
+    DomainException.unauthenticated(),
+  ];
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final exceptions = [
-      const DomainException.cancelled(),
-      const DomainException.unknown(),
-      const DomainException.invalidArgument(),
-      const DomainException.deadlineExceeded(),
-      const DomainException.notFound(),
-      const DomainException.alreadyExists(),
-      const DomainException.permissionDenied(),
-      const DomainException.resourceExhausted(),
-      const DomainException.failedPrecondition(),
-      const DomainException.aborted(),
-      const DomainException.outOfRange(),
-      const DomainException.unimplemented(),
-      const DomainException.internal(),
-      const DomainException.unavailable(),
-      const DomainException.dataLoss(),
-      const DomainException.unauthenticated(),
-    ];
+    return ListView(
+      children: [
+        for (final exception in _exceptions)
+          _ExceptionButton(exception: exception),
+      ],
+    );
+  }
+}
 
-    void clearError() {
+class _ExceptionButton extends ConsumerWidget {
+  const _ExceptionButton({required this.exception});
+
+  final DomainException exception;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    void handleClearError() {
       ref.read(globalErrorWidgetProvider.notifier).widget = null;
     }
 
-    void showError(DomainException exception) {
+    void handleTap() {
       final errorScreen = switch (exception) {
-        Cancelled() => ErrorScreen.cancelled(onButtonTap: clearError),
-        Unknown() => ErrorScreen.unknown(onButtonTap: clearError),
+        Cancelled() => ErrorScreen.cancelled(onButtonTap: handleClearError),
+        Unknown() => ErrorScreen.unknown(onButtonTap: handleClearError),
         InvalidArgument() => ErrorScreen.invalidArgument(
-          onButtonTap: clearError,
+          onButtonTap: handleClearError,
         ),
         DeadlineExceeded() => ErrorScreen.deadlineExceeded(
-          onButtonTap: clearError,
+          onButtonTap: handleClearError,
         ),
-        NotFound() => ErrorScreen.notFound(onButtonTap: clearError),
-        AlreadyExists() => ErrorScreen.alreadyExists(onButtonTap: clearError),
+        NotFound() => ErrorScreen.notFound(onButtonTap: handleClearError),
+        AlreadyExists() => ErrorScreen.alreadyExists(
+          onButtonTap: handleClearError,
+        ),
         PermissionDenied() => ErrorScreen.permissionDenied(
-          onButtonTap: clearError,
+          onButtonTap: handleClearError,
         ),
         ResourceExhausted() => ErrorScreen.resourceExhausted(
-          onButtonTap: clearError,
+          onButtonTap: handleClearError,
         ),
         FailedPrecondition() => ErrorScreen.failedPrecondition(
-          onButtonTap: clearError,
+          onButtonTap: handleClearError,
         ),
-        Aborted() => ErrorScreen.aborted(onButtonTap: clearError),
-        OutOfRange() => ErrorScreen.outOfRange(onButtonTap: clearError),
-        Unimplemented() => ErrorScreen.unimplemented(onButtonTap: clearError),
-        Internal() => ErrorScreen.internal(onButtonTap: clearError),
-        Unavailable() => ErrorScreen.unavailable(onButtonTap: clearError),
-        DataLoss() => ErrorScreen.dataLoss(onButtonTap: clearError),
+        Aborted() => ErrorScreen.aborted(onButtonTap: handleClearError),
+        OutOfRange() => ErrorScreen.outOfRange(onButtonTap: handleClearError),
+        Unimplemented() => ErrorScreen.unimplemented(
+          onButtonTap: handleClearError,
+        ),
+        Internal() => ErrorScreen.internal(onButtonTap: handleClearError),
+        Unavailable() => ErrorScreen.unavailable(onButtonTap: handleClearError),
+        DataLoss() => ErrorScreen.dataLoss(onButtonTap: handleClearError),
         Unauthenticated() => ErrorScreen.unauthenticated(
-          onButtonTap: clearError,
+          onButtonTap: handleClearError,
         ),
       };
       ref.read(globalErrorWidgetProvider.notifier).widget = errorScreen;
     }
 
-    return ListView(
-      children: exceptions
-          .map(
-            (e) => GestureDetector(
-              onTap: () => showError(e),
-              child: Text('Show ${e.runtimeType}'),
-            ),
-          )
-          .toList(),
+    return GestureDetector(
+      onTap: handleTap,
+      child: Text('Show ${exception.runtimeType}'),
     );
   }
 }
