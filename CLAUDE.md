@@ -188,7 +188,7 @@ This approach makes it easier to understand, debug, and learn from the implement
 
 - **Dartdoc comments** - Add dartdoc (`///`) to public APIs and functions to explain their purpose
 - **No styling in examples** - When implementing example/lab features, skip styling (colors, shadows, etc.) to focus on confirming functionality only
-- **Dot shorthands** - Use dot shorthand syntax when the type is clear from context (e.g., `.center` instead of `MainAxisAlignment.center`)
+- **Dot shorthands** - Use dot shorthand syntax when the type is clear from context for enums, static factory constructors, and static methods (e.g., `.center` instead of `MainAxisAlignment.center`, `.all(8)` instead of `EdgeInsets.all(8)`)
 - **No abbreviations** - Use full variable names instead of abbreviations (e.g., `exception` instead of `e`, `context` instead of `ctx`)
 - **Define handlers** - Always define callback handlers as named functions rather than inline anonymous functions (e.g., `onTap: handleTap` instead of `onTap: () => doSomething()`)
 - **No automatic commits** - Do not commit changes automatically; only commit when explicitly requested

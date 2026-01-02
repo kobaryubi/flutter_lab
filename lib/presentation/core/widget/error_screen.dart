@@ -181,11 +181,11 @@ class ErrorScreen extends StatelessWidget {
       color: const Color(0x80000000),
       child: Center(
         child: Container(
-          margin: const EdgeInsets.all(32),
-          padding: const EdgeInsets.all(24),
+          margin: const .all(32),
+          padding: const .all(24),
           decoration: BoxDecoration(
             color: const Color(0xFFFFFFFF),
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: .circular(16),
           ),
           child: Column(
             mainAxisSize: .min,
