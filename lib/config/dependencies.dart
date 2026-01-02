@@ -26,7 +26,6 @@ import 'package:flutter_lab/data/repositories/user/user_repository_remote.dart';
 import 'package:flutter_lab/data/services/api/api_client.dart';
 import 'package:flutter_lab/data/services/dio/dio_client.dart';
 import 'package:flutter_lab/data/services/local/local_data_service.dart';
-import 'package:flutter_lab/domain/use_cases/booking/booking_create_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/booking/booking_share_use_case.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -38,14 +37,6 @@ List<SingleChildWidget> _sharedProviders = [
   ),
   Provider<ItineraryConfigRepository>(
     create: (_) => ItineraryConfigRepositoryMemory(),
-  ),
-  Provider(
-    lazy: true,
-    create: (context) => BookingCreateUseCase(
-      //           destinationRepository: context.read(),
-      //           activityRepository: context.read(),
-      bookingRepository: context.read(),
-    ),
   ),
   Provider(lazy: true, create: (_) => BookingShareUseCase.withSharePlus()),
 ];
