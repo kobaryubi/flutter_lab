@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/domain/models/booking/booking_summary.dart';
 import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/ui/compass/view_models/compass_view_model.dart';
-import 'package:flutter_lab/ui/compass/widgets/compass_header.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
@@ -70,15 +69,6 @@ class _CompassScreenState extends State<CompassScreen> {
           builder: (context, _) {
             return CustomScrollView(
               slivers: [
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: Dimens.paddingScreenVertical,
-                      horizontal: Dimens.paddingScreenHorizontal,
-                    ),
-                    child: CompassHeader(viewModel: widget.viewModel),
-                  ),
-                ),
                 SliverList.builder(
                   itemCount: widget.viewModel.bookings.length,
                   itemBuilder: (_, index) => _Booking(

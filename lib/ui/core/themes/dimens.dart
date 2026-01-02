@@ -6,7 +6,6 @@ abstract final class Dimens {
   static const paddingVertical = 24.0;
   static const paddingScreenHorizontal = 16.0;
   static const paddingScreenVertical = 16.0;
-  static const profilePictureSize = 64.0;
 
   static const edgeInsetsScreenHorizontal = EdgeInsets.symmetric(
     horizontal: paddingScreenHorizontal,
