@@ -74,7 +74,6 @@ class _CompassScreenState extends State<CompassScreen> {
                   itemBuilder: (_, index) => _Booking(
                     key: ValueKey(widget.viewModel.bookings[index].id),
                     booking: widget.viewModel.bookings[index],
-                    onTap: () {},
                     confirmDismiss: (_) async {
                       await widget.viewModel.deleteBooking.execute(
                         widget.viewModel.bookings[index].id,
@@ -96,13 +95,11 @@ class _CompassScreenState extends State<CompassScreen> {
 class _Booking extends StatelessWidget {
   const _Booking({
     required this.booking,
-    required this.onTap,
     required this.confirmDismiss,
     super.key,
   });
 
   final BookingSummary booking;
-  final GestureTapCallback onTap;
   final ConfirmDismissCallback confirmDismiss;
 
   @override
@@ -126,15 +123,9 @@ class _Booking extends StatelessWidget {
           ],
         ),
       ),
-      child: Semantics(
-        button: true,
-        child: GestureDetector(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(Dimens.padding),
-            child: Text(booking.name, style: TextStyles.titleMedium),
-          ),
-        ),
+      child: Padding(
+        padding: const EdgeInsets.all(Dimens.padding),
+        child: Text(booking.name, style: TextStyles.titleMedium),
       ),
     );
   }
