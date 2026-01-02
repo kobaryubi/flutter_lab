@@ -15,17 +15,18 @@ class FlutterLabApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
 
     return Portal(
-      child: GlobalErrorOverlay(
-        child: WidgetsApp.router(
-          routerConfig: router,
-          color: const Color(0xffffffff),
-          title: 'Flutter Lab',
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          textStyle: TextStyles.bodyMedium.merge(
-            const TextStyle(color: AppColors.black1),
-          ),
+      child: WidgetsApp.router(
+        routerConfig: router,
+        color: const Color(0xffffffff),
+        title: 'Flutter Lab',
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        textStyle: TextStyles.bodyMedium.merge(
+          const TextStyle(color: AppColors.black1),
         ),
+        builder: (context, child) {
+          return GlobalErrorOverlay(child: child ?? const SizedBox.shrink());
+        },
       ),
     );
   }
