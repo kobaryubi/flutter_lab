@@ -177,17 +177,28 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: .min,
-        children: [
-          Text(message ?? 'An error occurred'),
-          const SizedBox(height: 16),
-          GestureDetector(
-            onTap: onButtonTap,
-            child: const Text('Retry'),
+    return ColoredBox(
+      color: const Color(0x80000000),
+      child: Center(
+        child: Container(
+          margin: const EdgeInsets.all(32),
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: const Color(0xFFFFFFFF),
+            borderRadius: BorderRadius.circular(16),
           ),
-        ],
+          child: Column(
+            mainAxisSize: .min,
+            children: [
+              Text(message ?? 'An error occurred'),
+              const SizedBox(height: 16),
+              GestureDetector(
+                onTap: onButtonTap,
+                child: const Text('Retry'),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
