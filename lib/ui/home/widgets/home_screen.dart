@@ -8,29 +8,6 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   static final List<AppLink> links = [
-    AppLink(
-      title: 'optimistic state',
-      route: WorkoutListRoute(),
-      // route: Routes.optimisticState
-    ),
-    // webview
-    AppLink(
-      title: 'webview',
-      route: WorkoutListRoute(),
-      // route: Routes.webview,
-    ),
-    // petstore
-    AppLink(
-      title: 'petstore',
-      route: WorkoutListRoute(),
-      // route: Routes.petstore),
-    ),
-    // cookbook
-    AppLink(
-      title: 'networking fetch data',
-      route: WorkoutListRoute(),
-      // route: Routes.cookbookNetworkingFetchData,
-    ),
     // riverpod
     AppLink(
       title: 'riverpod',
