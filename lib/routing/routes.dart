@@ -20,9 +20,6 @@ abstract final class Routes {
   static const riverpodRelative = 'riverpod';
   static const riverpodCounter = '/$riverpodRelative/$counterRelative';
   static const counterRelative = 'counter';
-  static const riverpodGettingStarted =
-      '/$riverpodRelative/$gettingStartedRelative';
-  static const gettingStartedRelative = 'getting-started';
   static const riverpodRandomJoke = '/$riverpodRelative/$randomJokeRelative';
   static const randomJokeRelative = 'random-joke';
 
