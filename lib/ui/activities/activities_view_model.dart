@@ -5,7 +5,6 @@ import 'package:flutter_lab/domain/models/activity/activity.dart';
 import 'package:flutter_lab/domain/models/itinerary_config/itinerary_config.dart';
 import 'package:flutter_lab/utils/command.dart';
 import 'package:flutter_lab/utils/result.dart';
-import 'package:logging/logging.dart';
 
 class ActivitiesViewModel extends ChangeNotifier {
   ActivitiesViewModel({
@@ -17,7 +16,6 @@ class ActivitiesViewModel extends ChangeNotifier {
     saveActivities = Command0(_saveActivities);
   }
 
-  final _log = Logger('ActivitiesViewModel');
   final ActivityRepository _activityRepository;
   final ItineraryConfigRepository _itineraryConfigRepository;
   List<Activity> _daytimeActivities = <Activity>[];
@@ -36,14 +34,12 @@ class ActivitiesViewModel extends ChangeNotifier {
     final result = await _itineraryConfigRepository.getItineraryConfig();
     switch (result) {
       case Error<ItineraryConfig>():
-        _log.warning('Failed to load stored ItineraryConfig', result.error);
         return result;
       case Ok<ItineraryConfig>():
     }
 
     final destinationRef = result.value.destination;
     if (destinationRef == null) {
-      _log.severe('Destination missing in ItineraryConfig');
       return Result.error(Exception('Destination not found'));
     }
 
@@ -73,16 +69,9 @@ class ActivitiesViewModel extends ChangeNotifier {
                 ].contains(activity.timeOfDay),
               )
               .toList();
-
-          _log.fine(
-            'Activities (daytime: ${_daytimeActivities.length}, '
-            'evening: ${_eveningActivities.length}) loaded',
-          );
         }
       case Error():
-        {
-          _log.warning('Failed to load activities', resultActivities.error);
-        }
+        break;
     }
 
     notifyListeners();
@@ -97,7 +86,6 @@ class ActivitiesViewModel extends ChangeNotifier {
       'Activity $activityRef not found',
     );
     _selectedActivities.add(activityRef);
-    _log.finest('Activity $activityRef added');
     notifyListeners();
   }
 
@@ -109,7 +97,6 @@ class ActivitiesViewModel extends ChangeNotifier {
       'Activity $activityRef not found',
     );
     _selectedActivities.remove(activityRef);
-    _log.finest('Activity $activityRef removed');
     notifyListeners();
   }
 
@@ -117,10 +104,6 @@ class ActivitiesViewModel extends ChangeNotifier {
     final resultConfig = await _itineraryConfigRepository.getItineraryConfig();
     switch (resultConfig) {
       case Error<ItineraryConfig>():
-        _log.warning(
-          'Failed to load stored ItineraryConfig',
-          resultConfig.error,
-        );
         return resultConfig;
       case Ok<ItineraryConfig>():
     }
@@ -129,9 +112,6 @@ class ActivitiesViewModel extends ChangeNotifier {
     final result = await _itineraryConfigRepository.setItineraryConfig(
       itineraryConfig.copyWith(activities: _selectedActivities.toList()),
     );
-    if (result is Error<bool>) {
-      _log.warning('Failed to store ItineraryConfig', result.error);
-    }
     return result;
   }
 }
