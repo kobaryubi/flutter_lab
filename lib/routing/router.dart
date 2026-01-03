@@ -80,17 +80,6 @@ GoRouter router(Ref ref) {
     //           return const PetStoreScreen();
     //         },
     //       ),
-    //       // compass
-    //       GoRoute(
-    //         path: Routes.compassRelative,
-    //         builder: (context, state) {
-    //           final viewModel = CompassViewModel(
-    //             bookingRepository: context.read(),
-    //             userRepository: context.read(),
-    //           );
-    //           return CompassScreen(viewModel: viewModel);
-    //         },
-    //       ),
     //       GoRoute(
     //         path: Routes.optimisticStateRelative,
     //         builder: (context, state) {
