@@ -1,10 +1,6 @@
 abstract final class Routes {
   static const home = '/';
   static const login = '/login';
-  static const search = '/$searchRelative';
-  static const searchRelative = 'search';
-  static const results = '/$resultsRelative';
-  static const resultsRelative = 'results';
   static const activities = '/$activitiesRelative';
   static const activitiesRelative = 'activities';
   static const webview = '/$webviewRelative';
@@ -54,4 +50,7 @@ abstract final class Routes {
 
   /// error handling
   static const errorHandling = '/error_handling';
+
+  /// shared preferences
+  static const sharedPreferences = '/shared_preferences';
 }

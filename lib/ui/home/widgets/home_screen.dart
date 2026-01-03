@@ -43,6 +43,12 @@ class HomeScreen extends StatelessWidget {
       title: 'error handling',
       route: ErrorHandlingRoute(),
     ),
+
+    // shared preferences
+    AppLink(
+      title: 'shared preferences',
+      route: SharedPreferencesRoute(),
+    ),
   ];
 
   @override

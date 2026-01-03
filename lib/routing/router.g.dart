@@ -17,6 +17,7 @@ List<RouteBase> get $appRoutes => [
   $routingCupertinoFullscreenDialogRoute,
   $routingCupertinoRoute,
   $routingRoute,
+  $sharedPreferencesRoute,
 ];
 
 RouteBase get $cameraRoute =>
@@ -251,6 +252,32 @@ mixin $RoutingRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/routing');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $sharedPreferencesRoute => GoRouteData.$route(
+  path: '/shared_preferences',
+  factory: $SharedPreferencesRoute._fromState,
+);
+
+mixin $SharedPreferencesRoute on GoRouteData {
+  static SharedPreferencesRoute _fromState(GoRouterState state) =>
+      SharedPreferencesRoute();
+
+  @override
+  String get location => GoRouteData.$location('/shared_preferences');
 
   @override
   void go(BuildContext context) => context.go(location);
