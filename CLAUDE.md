@@ -193,6 +193,7 @@ This approach makes it easier to understand, debug, and learn from the implement
 - **Define handlers** - Always define callback handlers as named functions rather than inline anonymous functions (e.g., `onTap: handleTap` instead of `onTap: () => doSomething()`)
 - **No automatic commits** - Do not commit changes automatically; only commit when explicitly requested
 - **No git -C option** - Do not use the `-C` option in git commands; run git commands from the working directory instead
+- **Named parameters** - Use named parameters for function arguments to improve readability (e.g., `saveDate({required DateTime date})` instead of `saveDate(DateTime date)`)
 
 ## Commit Message Convention
 
