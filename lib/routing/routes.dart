@@ -1,8 +1,6 @@
 abstract final class Routes {
   static const home = '/';
   static const login = '/login';
-  static const activities = '/$activitiesRelative';
-  static const activitiesRelative = 'activities';
   static const webview = '/$webviewRelative';
   static const webviewRelative = 'webview';
   static const petstore = '/$petstoreRelative';

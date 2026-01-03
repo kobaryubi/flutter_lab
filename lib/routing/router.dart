@@ -50,17 +50,6 @@ GoRouter router(Ref ref) {
     //   ),
     //   GoRoute(
     //     routes: [
-    //       // /activities
-    //       GoRoute(
-    //         path: Routes.activitiesRelative,
-    //         builder: (context, state) {
-    //           final viewModel = ActivitiesViewModel(
-    //             activityRepository: context.read(),
-    //             itineraryConfigRepository: context.read(),
-    //           );
-    //           return ActivitiesScreen(viewModel: viewModel);
-    //         },
-    //       ),
     //       //             final viewModel = BookingViewModel(
     //       //               itineraryConfigRepository: context.read(),
     //       //               createBookingUseCase: context.read(),
