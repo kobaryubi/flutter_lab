@@ -91,25 +91,6 @@ GoRouter router(Ref ref) {
     //       ),
     //     ],
     //   ),
-    //   // cookbook
-    //   GoRoute(
-    //     path: Routes.cookbook,
-    //     builder: (context, state) => const Placeholder(),
-    //     routes: [
-    //       GoRoute(
-    //         path: Routes.networkingRelative,
-    //         builder: (context, state) => const Placeholder(),
-    //         routes: [
-    //           GoRoute(
-    //             path: Routes.fetchDataRelative,
-    //             builder: (context, state) {
-    //               return const CookbookNetworkingFetchDataScreen();
-    //             },
-    //           ),
-    //         ],
-    //       ),
-    //     ],
-    //   ),
     //   // riverpod
     //   GoRoute(
     //     routes: [
