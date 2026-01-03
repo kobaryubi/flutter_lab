@@ -320,3 +320,51 @@ final class GetLocationUseCaseProvider
 
 String _$getLocationUseCaseHash() =>
     r'f87973883bed086591df7a5a02dd45bb75d0bda6';
+
+@ProviderFor(sharedPreferencesAsync)
+const sharedPreferencesAsyncProvider = SharedPreferencesAsyncProvider._();
+
+final class SharedPreferencesAsyncProvider
+    extends
+        $FunctionalProvider<
+          SharedPreferencesAsync,
+          SharedPreferencesAsync,
+          SharedPreferencesAsync
+        >
+    with $Provider<SharedPreferencesAsync> {
+  const SharedPreferencesAsyncProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'sharedPreferencesAsyncProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$sharedPreferencesAsyncHash();
+
+  @$internal
+  @override
+  $ProviderElement<SharedPreferencesAsync> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SharedPreferencesAsync create(Ref ref) {
+    return sharedPreferencesAsync(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SharedPreferencesAsync value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SharedPreferencesAsync>(value),
+    );
+  }
+}
+
+String _$sharedPreferencesAsyncHash() =>
+    r'05e887bc85127af92d1c449c66e8909cea753690';

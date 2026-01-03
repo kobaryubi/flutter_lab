@@ -10,6 +10,7 @@ import 'package:flutter_lab/domain/use_cases/petstore/create_pet_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/petstore/list_pets_use_case.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'provider.g.dart';
 
@@ -86,4 +87,9 @@ GetLocationUseCase getLocationUseCase(Ref ref) {
   return GetLocationUseCase(
     locationRepository: ref.read(locationRepositoryProvider),
   );
+}
+
+@riverpod
+SharedPreferencesAsync sharedPreferencesAsync(Ref ref) {
+  return SharedPreferencesAsync();
 }
