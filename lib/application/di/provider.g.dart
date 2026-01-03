@@ -367,4 +367,4 @@ final class SharedPreferencesAsyncProvider
 }
 
 String _$sharedPreferencesAsyncHash() =>
-    r'05e887bc85127af92d1c449c66e8909cea753690';
+    r'20412b105d8291909fc3f5560b76bfce34a2d129';
