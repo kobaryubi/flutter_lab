@@ -108,6 +108,6 @@ GetLocationUseCase getLocationUseCase(Ref ref) {
 }
 
 @riverpod
-SharedPreferencesAsync sharedPreferencesAsync() {
+SharedPreferencesAsync sharedPreferencesAsync(Ref ref) {
   return SharedPreferencesAsync();
 }
