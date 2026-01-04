@@ -1,34 +1,33 @@
 import 'package:flutter_lab/data/repositories/agreement/agreement_repository.dart';
+import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_lab/data/shared_preferences/shared_preferences_keys.dart';
 import 'package:flutter_lab/domain/models/exception/domain_exception.dart';
 import 'package:result_dart/result_dart.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 /// Implementation of [AgreementRepository] using SharedPreferences.
 class SharedPreferencesAgreementRepository implements AgreementRepository {
   /// Creates a [SharedPreferencesAgreementRepository].
   SharedPreferencesAgreementRepository({
-    required SharedPreferencesAsync sharedPreferencesAsync,
-  }) : _sharedPreferencesAsync = sharedPreferencesAsync;
+    required SharedPreferencesService sharedPreferencesService,
+  }) : _sharedPreferencesService = sharedPreferencesService;
 
-  final SharedPreferencesAsync _sharedPreferencesAsync;
+  final SharedPreferencesService _sharedPreferencesService;
 
   @override
   AsyncResult<DateTime> getLatestAgreedDate() async {
-    final value = await _sharedPreferencesAsync.getString(
-      SharedPreferencesKeys.latestAgreedDate,
+    final value = await _sharedPreferencesService.getDateTime(
+      key: SharedPreferencesKeys.latestAgreedDate,
     );
-    if (value == null) {
-      return const Failure(DomainException.notFound());
-    }
-    return Success(DateTime.parse(value));
+    return value == null
+        ? const Failure(DomainException.notFound())
+        : Success(value);
   }
 
   @override
   AsyncResult<Unit> saveLatestAgreedDate({required DateTime date}) async {
-    await _sharedPreferencesAsync.setString(
-      SharedPreferencesKeys.latestAgreedDate,
-      date.toIso8601String(),
+    await _sharedPreferencesService.setDateTime(
+      key: SharedPreferencesKeys.latestAgreedDate,
+      value: date,
     );
     return const Success(unit);
   }
