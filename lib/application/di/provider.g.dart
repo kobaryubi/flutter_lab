@@ -185,6 +185,54 @@ final class BatteryRepositoryProvider
 
 String _$batteryRepositoryHash() => r'a0c5fdca34fa0de5278b57c8640d108dd163cc13';
 
+@ProviderFor(agreementRepository)
+const agreementRepositoryProvider = AgreementRepositoryProvider._();
+
+final class AgreementRepositoryProvider
+    extends
+        $FunctionalProvider<
+          AgreementRepository,
+          AgreementRepository,
+          AgreementRepository
+        >
+    with $Provider<AgreementRepository> {
+  const AgreementRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'agreementRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$agreementRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<AgreementRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  AgreementRepository create(Ref ref) {
+    return agreementRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AgreementRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AgreementRepository>(value),
+    );
+  }
+}
+
+String _$agreementRepositoryHash() =>
+    r'37dc684315480fe885115f92720a50cff0fa8108';
+
 @ProviderFor(listPetsUseCase)
 const listPetsUseCaseProvider = ListPetsUseCaseProvider._();
 

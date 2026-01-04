@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_lab/data/repositories/agreement/agreement_repository.dart';
+import 'package:flutter_lab/data/repositories/agreement/shared_preferences_agreement_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository_remote.dart';
 import 'package:flutter_lab/domain/battery/battery_repository.dart';
@@ -65,6 +67,13 @@ LocationRepository locationRepository(Ref ref) {
 @riverpod
 BatteryRepository batteryRepository(Ref ref) {
   return PlatformBatteryRepository();
+}
+
+@riverpod
+AgreementRepository agreementRepository(Ref ref) {
+  return SharedPreferencesAgreementRepository(
+    sharedPreferencesAsync: ref.read(sharedPreferencesAsyncProvider),
+  );
 }
 
 // use case
