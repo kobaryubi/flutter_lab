@@ -41,14 +41,6 @@ GoRouter router(Ref ref) {
     routes: $appRoutes,
     // [
     //   GoRoute(
-    //     path: Routes.login,
-    //     builder: (context, state) {
-    //       return LoginScreen(
-    //         viewModel: LoginViewModel(authRepository: context.read()),
-    //       );
-    //     },
-    //   ),
-    //   GoRoute(
     //     routes: [
     //       //             final viewModel = BookingViewModel(
     //       //               itineraryConfigRepository: context.read(),
