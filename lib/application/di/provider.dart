@@ -3,6 +3,7 @@ import 'package:flutter_lab/data/repositories/agreement/agreement_repository.dar
 import 'package:flutter_lab/data/repositories/agreement/shared_preferences_agreement_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository_remote.dart';
+import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_lab/domain/battery/battery_repository.dart';
 import 'package:flutter_lab/domain/battery/platform_battery_repository.dart';
 import 'package:flutter_lab/domain/location/location_repository.dart';
@@ -72,6 +73,14 @@ BatteryRepository batteryRepository(Ref ref) {
 @riverpod
 AgreementRepository agreementRepository(Ref ref) {
   return SharedPreferencesAgreementRepository(
+    sharedPreferencesService: ref.read(sharedPreferencesServiceProvider),
+  );
+}
+
+// service
+@riverpod
+SharedPreferencesService sharedPreferencesService(Ref ref) {
+  return SharedPreferencesService(
     sharedPreferencesAsync: ref.read(sharedPreferencesAsyncProvider),
   );
 }

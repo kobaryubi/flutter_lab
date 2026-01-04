@@ -231,7 +231,55 @@ final class AgreementRepositoryProvider
 }
 
 String _$agreementRepositoryHash() =>
-    r'37dc684315480fe885115f92720a50cff0fa8108';
+    r'9533be4ae8a2dfc74c6b105d55cc21ad553be2f6';
+
+@ProviderFor(sharedPreferencesService)
+const sharedPreferencesServiceProvider = SharedPreferencesServiceProvider._();
+
+final class SharedPreferencesServiceProvider
+    extends
+        $FunctionalProvider<
+          SharedPreferencesService,
+          SharedPreferencesService,
+          SharedPreferencesService
+        >
+    with $Provider<SharedPreferencesService> {
+  const SharedPreferencesServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'sharedPreferencesServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$sharedPreferencesServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<SharedPreferencesService> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SharedPreferencesService create(Ref ref) {
+    return sharedPreferencesService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SharedPreferencesService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SharedPreferencesService>(value),
+    );
+  }
+}
+
+String _$sharedPreferencesServiceHash() =>
+    r'ff3d722c3d22209355ab8b5865a9c6d116a6b305';
 
 @ProviderFor(listPetsUseCase)
 const listPetsUseCaseProvider = ListPetsUseCaseProvider._();
