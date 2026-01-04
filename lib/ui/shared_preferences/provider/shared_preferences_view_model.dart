@@ -1,0 +1,40 @@
+import 'package:flutter_lab/application/di/provider.dart';
+import 'package:flutter_lab/ui/shared_preferences/provider/shared_preferences_ui_state.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'shared_preferences_view_model.g.dart';
+
+/// View model for shared preferences screen.
+@riverpod
+class SharedPreferencesViewModel extends _$SharedPreferencesViewModel {
+  @override
+  SharedPreferencesUiState build() {
+    return const SharedPreferencesUiState(latestAgreedDate: null);
+  }
+
+  /// Loads the stored datetime from shared preferences.
+  Future<void> load() async {
+    final repository = ref.read(agreementRepositoryProvider);
+
+    state = state.copyWith(
+      latestAgreedDate: await AsyncValue.guard(() async {
+        final result = await repository.getLatestAgreedDate();
+        return result.getOrThrow();
+      }),
+    );
+  }
+
+  /// Saves the current datetime to shared preferences.
+  Future<void> save() async {
+    final repository = ref.read(agreementRepositoryProvider);
+    final now = DateTime.now();
+
+    state = state.copyWith(
+      latestAgreedDate: await AsyncValue.guard(() async {
+        final result = await repository.saveLatestAgreedDate(date: now);
+        result.getOrThrow();
+        return now;
+      }),
+    );
+  }
+}
