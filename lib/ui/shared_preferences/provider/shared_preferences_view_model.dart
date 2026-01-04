@@ -12,7 +12,7 @@ class SharedPreferencesViewModel extends _$SharedPreferencesViewModel {
     return const SharedPreferencesUiState(latestAgreedDate: null);
   }
 
-  /// Loads the stored datetime from shared preferences.
+  /// Loads the latest agreed date.
   Future<void> load() async {
     final repository = ref.read(agreementRepositoryProvider);
 
@@ -24,17 +24,9 @@ class SharedPreferencesViewModel extends _$SharedPreferencesViewModel {
     );
   }
 
-  /// Saves the current datetime to shared preferences.
+  /// Saves the current datetime as latest agreed date.
   Future<void> save() async {
     final repository = ref.read(agreementRepositoryProvider);
-    final now = DateTime.now();
-
-    state = state.copyWith(
-      latestAgreedDate: await AsyncValue.guard(() async {
-        final result = await repository.saveLatestAgreedDate(date: now);
-        result.getOrThrow();
-        return now;
-      }),
-    );
+    await repository.saveLatestAgreedDate(date: DateTime.now());
   }
 }
