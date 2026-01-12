@@ -1,12 +1,4 @@
 PODS:
-  - Adjust (5.4.6):
-    - Adjust/Adjust (= 5.4.6)
-  - Adjust/Adjust (5.4.6):
-    - AdjustSignature (= 3.61.0)
-  - adjust_sdk (5.4.5):
-    - Adjust (= 5.4.6)
-    - Flutter
-  - AdjustSignature (3.61.0)
   - app_links (6.4.1):
     - Flutter
   - camera_avfoundation (0.0.1):
@@ -30,7 +22,6 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - adjust_sdk (from `.symlinks/plugins/adjust_sdk/ios`)
   - app_links (from `.symlinks/plugins/app_links/ios`)
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - Flutter (from `Flutter`)
@@ -41,14 +32,7 @@ DEPENDENCIES:
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/darwin`)
 
-SPEC REPOS:
-  trunk:
-    - Adjust
-    - AdjustSignature
-
 EXTERNAL SOURCES:
-  adjust_sdk:
-    :path: ".symlinks/plugins/adjust_sdk/ios"
   app_links:
     :path: ".symlinks/plugins/app_links/ios"
   camera_avfoundation:
@@ -69,18 +53,15 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
-  Adjust: 293c828a88a2c280471797edb3e895c80652a786
-  adjust_sdk: 1064b7d147d89c4665b8e5dd304148f10e6b4ac5
-  AdjustSignature: 94b6b7f7150edbbebc4320eeaddaac881f6e8e2d
   app_links: 585674be3c6661708e6cd794ab4f39fb9d8356f9
   camera_avfoundation: 281867ff09f1da66f031a184ecfbc6f2e625c9f5
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  path_provider_foundation: 0b743cbb62d8e47eab856f09262bb8c1ddcfe6ba
   share_plus: 8b6f8b3447e494cca5317c8c3073de39b3600d1f
-  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+  shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
   sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
   url_launcher_ios: bb13df5870e8c4234ca12609d04010a21be43dfa
-  webview_flutter_wkwebview: a4af96a051138e28e29f60101d094683b9f82188
+  webview_flutter_wkwebview: 29eb20d43355b48fe7d07113835b9128f84e3af4
 
 PODFILE CHECKSUM: 9bd01eeb059573fe49911971e27c1343da0bf472
 
