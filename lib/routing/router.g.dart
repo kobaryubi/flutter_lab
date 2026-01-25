@@ -17,6 +17,7 @@ List<RouteBase> get $appRoutes => [
   $routingCupertinoFullscreenDialogRoute,
   $routingCupertinoRoute,
   $routingRoute,
+  $s3EtagCacheRoute,
   $sharedPreferencesRoute,
 ];
 
@@ -252,6 +253,31 @@ mixin $RoutingRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/routing');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $s3EtagCacheRoute => GoRouteData.$route(
+  path: '/s3_etag_cache',
+  factory: $S3EtagCacheRoute._fromState,
+);
+
+mixin $S3EtagCacheRoute on GoRouteData {
+  static S3EtagCacheRoute _fromState(GoRouterState state) => S3EtagCacheRoute();
+
+  @override
+  String get location => GoRouteData.$location('/s3_etag_cache');
 
   @override
   void go(BuildContext context) => context.go(location);
