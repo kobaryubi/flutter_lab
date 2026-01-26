@@ -233,48 +233,6 @@ final class AgreementRepositoryProvider
 String _$agreementRepositoryHash() =>
     r'9533be4ae8a2dfc74c6b105d55cc21ad553be2f6';
 
-@ProviderFor(imageRepository)
-const imageRepositoryProvider = ImageRepositoryProvider._();
-
-final class ImageRepositoryProvider
-    extends
-        $FunctionalProvider<ImageRepository, ImageRepository, ImageRepository>
-    with $Provider<ImageRepository> {
-  const ImageRepositoryProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'imageRepositoryProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$imageRepositoryHash();
-
-  @$internal
-  @override
-  $ProviderElement<ImageRepository> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  ImageRepository create(Ref ref) {
-    return imageRepository(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ImageRepository value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ImageRepository>(value),
-    );
-  }
-}
-
-String _$imageRepositoryHash() => r'5aa0048f5ad82dbc143119b1813df1608dee5a99';
-
 @ProviderFor(sharedPreferencesService)
 const sharedPreferencesServiceProvider = SharedPreferencesServiceProvider._();
 

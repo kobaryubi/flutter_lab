@@ -2,12 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter_lab/data/repositories/agreement/shared_preferences_agreement_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository_remote.dart';
-import 'package:flutter_lab/data/repositories/s3_image/s3_image_repository_impl.dart';
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
 import 'package:flutter_lab/domain/battery/battery_repository.dart';
 import 'package:flutter_lab/domain/battery/platform_battery_repository.dart';
-import 'package:flutter_lab/domain/image/image_repository.dart';
 import 'package:flutter_lab/domain/location/location_repository.dart';
 import 'package:flutter_lab/domain/location/mock_location_repository.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
@@ -76,15 +74,6 @@ BatteryRepository batteryRepository(Ref ref) {
 AgreementRepository agreementRepository(Ref ref) {
   return SharedPreferencesAgreementRepository(
     sharedPreferencesService: ref.read(sharedPreferencesServiceProvider),
-  );
-}
-
-@riverpod
-ImageRepository imageRepository(Ref ref) {
-  return S3ImageRepositoryImpl(
-    dio: Dio(),
-    bucketName: 'masahiko-kobayashi-flutter-lab',
-    region: 'ap-northeast-1',
   );
 }
 
