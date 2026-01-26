@@ -42,4 +42,7 @@ abstract final class Routes {
 
   /// shared preferences
   static const sharedPreferences = '/shared_preferences';
+
+  /// S3 ETag cache verification
+  static const s3EtagCache = '/s3_etag_cache';
 }
