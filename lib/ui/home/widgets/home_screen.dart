@@ -49,6 +49,12 @@ class HomeScreen extends StatelessWidget {
       title: 'shared preferences',
       route: SharedPreferencesRoute(),
     ),
+
+    // S3 ETag cache
+    AppLink(
+      title: 'S3 ETag cache',
+      route: S3EtagCacheRoute(),
+    ),
   ];
 
   @override
