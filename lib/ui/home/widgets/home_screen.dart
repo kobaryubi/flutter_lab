@@ -55,6 +55,18 @@ class HomeScreen extends StatelessWidget {
       title: 'S3 ETag cache',
       route: S3EtagCacheRoute(),
     ),
+
+    // app lifecycle hooks
+    AppLink(
+      title: 'app lifecycle hooks',
+      route: AppLifecycleRoute(),
+    ),
+
+    // web view hook
+    AppLink(
+      title: 'web view hook',
+      route: WebViewHookRoute(),
+    ),
   ];
 
   @override
