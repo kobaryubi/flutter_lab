@@ -25,7 +25,7 @@ abstract final class Routes {
   static const routingCupertino = '/routing/cupertino';
   static const routingCupertinoFullscreenDialog =
       '/routing/cupertino/fullscreen_dialog';
-  // webview遷移
+  // web view遷移
   static const routingWebView = '/routing/webview';
 
   // launch url
@@ -45,4 +45,10 @@ abstract final class Routes {
 
   /// S3 ETag cache verification
   static const s3EtagCache = '/s3_etag_cache';
+
+  /// app lifecycle hooks
+  static const appLifecycle = '/app_lifecycle';
+
+  /// web view hook
+  static const webViewHook = '/web_view_hook';
 }

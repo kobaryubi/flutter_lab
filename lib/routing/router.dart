@@ -14,7 +14,7 @@ import 'package:flutter_lab/ui/routing_cupertino/widget/routing_cupertino_screen
 import 'package:flutter_lab/ui/routing_cupertino_fullscreen_dialog/widget/routing_cupertino_fullscreen_dialog_screen.dart';
 import 'package:flutter_lab/ui/s3_etag_cache/widget/s3_etag_cache_screen.dart';
 import 'package:flutter_lab/ui/shared_preferences/widget/shared_preferences_screen.dart';
-import 'package:flutter_lab/ui/webview_hook/widget/web_view_hook_screen.dart';
+import 'package:flutter_lab/ui/web_view_hook/widget/web_view_hook_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -33,7 +33,7 @@ part 'routing_cupertino_route.dart';
 part 'routing_route.dart';
 part 's3_etag_cache_route.dart';
 part 'shared_preferences_route.dart';
-part 'webview_hook_route.dart';
+part 'web_view_hook_route.dart';
 
 @riverpod
 GoRouter router(Ref ref) {
