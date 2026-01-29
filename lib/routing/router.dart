@@ -33,7 +33,7 @@ part 'routing_cupertino_route.dart';
 part 'routing_route.dart';
 part 's3_etag_cache_route.dart';
 part 'shared_preferences_route.dart';
-part 'web_view_hook_route.dart';
+part 'web_view_route.dart';
 
 @riverpod
 GoRouter router(Ref ref) {

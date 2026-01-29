@@ -20,7 +20,7 @@ List<RouteBase> get $appRoutes => [
   $routingRoute,
   $s3EtagCacheRoute,
   $sharedPreferencesRoute,
-  $webViewHookRoute,
+  $webViewRoute,
 ];
 
 RouteBase get $appLifecycleRoute => GoRouteData.$route(
@@ -347,16 +347,14 @@ mixin $SharedPreferencesRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $webViewHookRoute => GoRouteData.$route(
-  path: '/web_view_hook',
-  factory: $WebViewHookRoute._fromState,
-);
+RouteBase get $webViewRoute =>
+    GoRouteData.$route(path: '/web_view', factory: $WebViewRoute._fromState);
 
-mixin $WebViewHookRoute on GoRouteData {
-  static WebViewHookRoute _fromState(GoRouterState state) => WebViewHookRoute();
+mixin $WebViewRoute on GoRouteData {
+  static WebViewRoute _fromState(GoRouterState state) => WebViewRoute();
 
   @override
-  String get location => GoRouteData.$location('/web_view_hook');
+  String get location => GoRouteData.$location('/web_view');
 
   @override
   void go(BuildContext context) => context.go(location);
