@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
 import 'package:flutter_lab/presentation/error_handling/screen/error_handling_screen.dart';
 import 'package:flutter_lab/routing/routes.dart';
+import 'package:flutter_lab/ui/app_lifecycle/widget/app_lifecycle_screen.dart';
 import 'package:flutter_lab/ui/camera/widget/camera_screen.dart';
 import 'package:flutter_lab/ui/error/widgets/not_found_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/launch_url/widget/launch_url_screen.dart';
-import 'package:flutter_lab/ui/lifecycle/widget/lifecycle_screen.dart';
 import 'package:flutter_lab/ui/location/widgets/location_screen.dart';
 import 'package:flutter_lab/ui/portal/widget/portal_screen.dart';
 import 'package:flutter_lab/ui/routing/widget/routing_screen.dart';
@@ -19,6 +19,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'app_lifecycle_route.dart';
 part 'camera_route.dart';
 part 'error_handling_route.dart';
 part 'home_route.dart';
@@ -32,7 +33,6 @@ part 'routing_cupertino_route.dart';
 part 'routing_route.dart';
 part 's3_etag_cache_route.dart';
 part 'shared_preferences_route.dart';
-part 'lifecycle_route.dart';
 part 'webview_hook_route.dart';
 
 @riverpod
