@@ -27,11 +27,6 @@ class RoutingScreen extends StatelessWidget {
               RoutingCupertinoFullscreenDialogRoute().push<void>(context);
             },
           ),
-          // webview遷移
-          Button(
-            label: 'webview遷移',
-            onTap: () {},
-          ),
         ],
       ),
     );
