@@ -7,66 +7,20 @@ import 'package:flutter_lab/ui/home/widgets/launcher_row.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  static final List<AppLink> links = [
-    // not found
-    AppLink(
-      title: 'not found',
-      route: NotFoundRoute(),
-    ),
-    // routing
-    AppLink(
-      title: 'routing',
-      route: RoutingRoute(),
-    ),
-    // launch url
+  static final _links = [
+    AppLink(title: 'not found', route: NotFoundRoute()),
+    AppLink(title: 'routing', route: RoutingRoute()),
     const AppLink(
       title: 'launch url',
-      route: LaunchUrlRoute(
-        url: 'https://flutter.dev',
-      ),
+      route: LaunchUrlRoute(url: 'https://flutter.dev'),
     ),
-
-    // camera
-    AppLink(
-      title: 'camera',
-      route: CameraRoute(),
-    ),
-
-    // overlay example
-    AppLink(
-      title: 'overlay example',
-      route: PortalRoute(),
-    ),
-
-    // error handling
-    AppLink(
-      title: 'error handling',
-      route: ErrorHandlingRoute(),
-    ),
-
-    // shared preferences
-    AppLink(
-      title: 'shared preferences',
-      route: SharedPreferencesRoute(),
-    ),
-
-    // S3 ETag cache
-    AppLink(
-      title: 'S3 ETag cache',
-      route: S3EtagCacheRoute(),
-    ),
-
-    // app lifecycle hooks
-    AppLink(
-      title: 'app lifecycle hooks',
-      route: AppLifecycleRoute(),
-    ),
-
-    // web view hook
-    AppLink(
-      title: 'web view hook',
-      route: WebViewHookRoute(),
-    ),
+    AppLink(title: 'camera', route: CameraRoute()),
+    AppLink(title: 'overlay example', route: PortalRoute()),
+    AppLink(title: 'error handling', route: ErrorHandlingRoute()),
+    AppLink(title: 'shared preferences', route: SharedPreferencesRoute()),
+    AppLink(title: 'S3 ETag cache', route: S3EtagCacheRoute()),
+    AppLink(title: 'app lifecycle hooks', route: AppLifecycleRoute()),
+    AppLink(title: 'web view', route: WebViewRoute()),
   ];
 
   @override
@@ -85,13 +39,13 @@ class HomeScreen extends StatelessWidget {
                   child: SizedBox(
                     width: double.infinity,
                     child: ListView.separated(
-                      itemCount: links.length,
+                      itemCount: _links.length,
                       separatorBuilder: (_, _) => const SizedBox(
                         height: 1,
                         child: ColoredBox(color: AppColors.gray1),
                       ),
                       itemBuilder: (BuildContext context, int index) {
-                        final link = links[index];
+                        final link = _links[index];
                         return LauncherRow(
                           title: link.title,
                           onTap: () {
