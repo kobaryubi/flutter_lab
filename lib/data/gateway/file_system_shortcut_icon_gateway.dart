@@ -7,7 +7,24 @@ import 'package:path_provider/path_provider.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// File system implementation of [ShortcutIconGateway].
+///
+/// Icons are stored under `downloads/shortcuts/` within the
+/// application documents directory.
 class FileSystemShortcutIconGateway implements ShortcutIconGateway {
+  static const _subDirectory = 'downloads/shortcuts';
+
+  /// Returns the shortcuts directory, creating it if it does not exist.
+  Future<Directory> _getShortcutsDirectory() async {
+    final documents = await getApplicationDocumentsDirectory();
+    final directory = Directory(
+      path.join(documents.path, _subDirectory),
+    );
+    if (!directory.existsSync()) {
+      await directory.create(recursive: true);
+    }
+    return directory;
+  }
+
   @override
   AsyncResult<File> saveIcon({
     required String assetPath,
@@ -15,7 +32,7 @@ class FileSystemShortcutIconGateway implements ShortcutIconGateway {
   }) async {
     try {
       final byteData = await rootBundle.load(assetPath);
-      final directory = await getApplicationDocumentsDirectory();
+      final directory = await _getShortcutsDirectory();
       final file = File(path.join(directory.path, fileName));
       await file.writeAsBytes(
         byteData.buffer.asUint8List(),
@@ -30,7 +47,7 @@ class FileSystemShortcutIconGateway implements ShortcutIconGateway {
   @override
   AsyncResult<Unit> deleteIcon({required String fileName}) async {
     try {
-      final directory = await getApplicationDocumentsDirectory();
+      final directory = await _getShortcutsDirectory();
       final file = File(path.join(directory.path, fileName));
       if (file.existsSync()) {
         await file.delete();
