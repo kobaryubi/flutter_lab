@@ -28,17 +28,6 @@ class WebViewState {
 
   /// Current load status.
   final WebViewLoadStatus status;
-
-  /// Whether the page is currently loading.
-  bool get isLoading => status == WebViewLoadStatus.loading;
-
-  /// Whether the page has loaded successfully.
-  bool get isLoaded => status == WebViewLoadStatus.loaded;
-}
-
-/// Configuration options for [useWebView].
-class WebViewConfig {
-  const WebViewConfig();
 }
 
 /// Hook that manages WebView state and provides load status.
@@ -47,7 +36,6 @@ class WebViewConfig {
 /// and navigation actions.
 WebViewState useWebView({
   String? initialUrl,
-  WebViewConfig config = const WebViewConfig(),
 }) {
   final status = useState(WebViewLoadStatus.initial);
   final controller = useMemoized(WebViewController.new, []);

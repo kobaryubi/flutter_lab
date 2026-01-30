@@ -32,7 +32,7 @@ class _Body extends HookWidget {
           child: Stack(
             children: [
               WebViewWidget(controller: webView.controller),
-              if (webView.isLoading) const Text('Loading...'),
+              if (webView.status == .loading) const Text('Loading...'),
             ],
           ),
         ),
