@@ -57,4 +57,20 @@ class FileSystemShortcutIconGateway implements ShortcutIconGateway {
       return Failure(exception);
     }
   }
+
+  @override
+  AsyncResult<Unit> deleteAllIcons() async {
+    try {
+      final documents = await getApplicationDocumentsDirectory();
+      final directory = Directory(
+        path.join(documents.path, _subDirectory),
+      );
+      if (directory.existsSync()) {
+        await directory.delete(recursive: true);
+      }
+      return const Success(unit);
+    } on Exception catch (exception) {
+      return Failure(exception);
+    }
+  }
 }

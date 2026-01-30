@@ -26,4 +26,9 @@ class FileSystemShortcutRepository implements ShortcutRepository {
   AsyncResult<Unit> deleteShortcutIcon({required String fileName}) {
     return _gateway.deleteIcon(fileName: fileName);
   }
+
+  @override
+  AsyncResult<Unit> deleteAllShortcutIcons() {
+    return _gateway.deleteAllIcons();
+  }
 }

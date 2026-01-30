@@ -12,4 +12,7 @@ abstract class ShortcutIconGateway {
 
   /// Deletes a local icon file.
   AsyncResult<Unit> deleteIcon({required String fileName});
+
+  /// Deletes all icons by removing the shortcuts directory.
+  AsyncResult<Unit> deleteAllIcons();
 }

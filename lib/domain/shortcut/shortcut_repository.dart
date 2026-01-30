@@ -12,4 +12,7 @@ abstract class ShortcutRepository {
 
   /// Deletes a shortcut icon from the local file system.
   AsyncResult<Unit> deleteShortcutIcon({required String fileName});
+
+  /// Deletes all shortcut icons by removing the shortcuts directory.
+  AsyncResult<Unit> deleteAllShortcutIcons();
 }
