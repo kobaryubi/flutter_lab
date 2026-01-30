@@ -1,13 +1,17 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
+import 'package:flutter_lab/data/gateway/file_system_shortcut_icon_gateway.dart';
 import 'package:flutter_lab/data/repositories/agreement/shared_preferences_agreement_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository_remote.dart';
+import 'package:flutter_lab/data/repositories/shortcut/file_system_shortcut_repository.dart';
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
 import 'package:flutter_lab/domain/battery/battery_repository.dart';
 import 'package:flutter_lab/domain/battery/platform_battery_repository.dart';
 import 'package:flutter_lab/domain/location/location_repository.dart';
 import 'package:flutter_lab/domain/location/mock_location_repository.dart';
+import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/petstore/create_pet_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/petstore/list_pets_use_case.dart';
@@ -74,6 +78,19 @@ BatteryRepository batteryRepository(Ref ref) {
 AgreementRepository agreementRepository(Ref ref) {
   return SharedPreferencesAgreementRepository(
     sharedPreferencesService: ref.read(sharedPreferencesServiceProvider),
+  );
+}
+
+// gateway
+@riverpod
+ShortcutIconGateway shortcutIconGateway(Ref ref) {
+  return FileSystemShortcutIconGateway();
+}
+
+@riverpod
+ShortcutRepository shortcutRepository(Ref ref) {
+  return FileSystemShortcutRepository(
+    gateway: ref.read(shortcutIconGatewayProvider),
   );
 }
 

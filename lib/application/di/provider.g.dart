@@ -233,6 +233,102 @@ final class AgreementRepositoryProvider
 String _$agreementRepositoryHash() =>
     r'9533be4ae8a2dfc74c6b105d55cc21ad553be2f6';
 
+@ProviderFor(shortcutIconGateway)
+const shortcutIconGatewayProvider = ShortcutIconGatewayProvider._();
+
+final class ShortcutIconGatewayProvider
+    extends
+        $FunctionalProvider<
+          ShortcutIconGateway,
+          ShortcutIconGateway,
+          ShortcutIconGateway
+        >
+    with $Provider<ShortcutIconGateway> {
+  const ShortcutIconGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'shortcutIconGatewayProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$shortcutIconGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<ShortcutIconGateway> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ShortcutIconGateway create(Ref ref) {
+    return shortcutIconGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ShortcutIconGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ShortcutIconGateway>(value),
+    );
+  }
+}
+
+String _$shortcutIconGatewayHash() =>
+    r'5c7071db96b2fa82b3104ab046f057ee12f65b99';
+
+@ProviderFor(shortcutRepository)
+const shortcutRepositoryProvider = ShortcutRepositoryProvider._();
+
+final class ShortcutRepositoryProvider
+    extends
+        $FunctionalProvider<
+          ShortcutRepository,
+          ShortcutRepository,
+          ShortcutRepository
+        >
+    with $Provider<ShortcutRepository> {
+  const ShortcutRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'shortcutRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$shortcutRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<ShortcutRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ShortcutRepository create(Ref ref) {
+    return shortcutRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ShortcutRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ShortcutRepository>(value),
+    );
+  }
+}
+
+String _$shortcutRepositoryHash() =>
+    r'91e04e6423dd3276fc01ddb4543d4343fa2b08f8';
+
 @ProviderFor(sharedPreferencesService)
 const sharedPreferencesServiceProvider = SharedPreferencesServiceProvider._();
 
