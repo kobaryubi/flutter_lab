@@ -27,7 +27,7 @@ class _Body extends HookWidget {
 
     return Column(
       children: [
-        _StatusBar(webView: webView),
+        Text('Status: ${webView.status.name}'),
         Expanded(
           child: Stack(
             children: [
@@ -36,21 +36,6 @@ class _Body extends HookWidget {
             ],
           ),
         ),
-      ],
-    );
-  }
-}
-
-class _StatusBar extends StatelessWidget {
-  const _StatusBar({required this.webView});
-
-  final WebViewState webView;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('Status: ${webView.status.name}'),
       ],
     );
   }
