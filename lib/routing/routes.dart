@@ -13,6 +13,10 @@ abstract final class Routes {
   static const s3EtagCache = '/s3_etag_cache';
   static const appLifecycle = '/app_lifecycle';
 
+  static const shellDemoTabA = '/shell_demo/tab_a';
+  static const shellDemoTabB = '/shell_demo/tab_b';
+  static const shellDemoTabC = '/shell_demo/tab_c';
+
   static const routing = '/routing';
   static const routingCupertino = '/routing/cupertino';
   static const routingCupertinoFullscreenDialog =

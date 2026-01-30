@@ -20,6 +20,7 @@ List<RouteBase> get $appRoutes => [
   $routingRoute,
   $s3EtagCacheRoute,
   $sharedPreferencesRoute,
+  $shellDemoRoute,
   $webViewRoute,
 ];
 
@@ -332,6 +333,104 @@ mixin $SharedPreferencesRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/shared_preferences');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $shellDemoRoute => StatefulShellRouteData.$route(
+  factory: $ShellDemoRouteExtension._fromState,
+  branches: [
+    StatefulShellBranchData.$branch(
+      routes: [
+        GoRouteData.$route(
+          path: '/shell_demo/tab_a',
+          factory: $ShellDemoTabARoute._fromState,
+        ),
+      ],
+    ),
+    StatefulShellBranchData.$branch(
+      routes: [
+        GoRouteData.$route(
+          path: '/shell_demo/tab_b',
+          factory: $ShellDemoTabBRoute._fromState,
+        ),
+      ],
+    ),
+    StatefulShellBranchData.$branch(
+      routes: [
+        GoRouteData.$route(
+          path: '/shell_demo/tab_c',
+          factory: $ShellDemoTabCRoute._fromState,
+        ),
+      ],
+    ),
+  ],
+);
+
+extension $ShellDemoRouteExtension on ShellDemoRoute {
+  static ShellDemoRoute _fromState(GoRouterState state) =>
+      const ShellDemoRoute();
+}
+
+mixin $ShellDemoTabARoute on GoRouteData {
+  static ShellDemoTabARoute _fromState(GoRouterState state) =>
+      ShellDemoTabARoute();
+
+  @override
+  String get location => GoRouteData.$location('/shell_demo/tab_a');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $ShellDemoTabBRoute on GoRouteData {
+  static ShellDemoTabBRoute _fromState(GoRouterState state) =>
+      ShellDemoTabBRoute();
+
+  @override
+  String get location => GoRouteData.$location('/shell_demo/tab_b');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $ShellDemoTabCRoute on GoRouteData {
+  static ShellDemoTabCRoute _fromState(GoRouterState state) =>
+      ShellDemoTabCRoute();
+
+  @override
+  String get location => GoRouteData.$location('/shell_demo/tab_c');
 
   @override
   void go(BuildContext context) => context.go(location);
