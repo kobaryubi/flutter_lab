@@ -76,6 +76,7 @@ flutter:
   generate: true
   assets:
     - assets/
+    - assets/icons/search.png
     - path: assets/icons/
       transformers:
         - package: vector_graphics_compiler
