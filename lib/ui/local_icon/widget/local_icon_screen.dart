@@ -31,7 +31,7 @@ class _Body extends HookWidget {
     /// Copies the bundled search.png asset to the Application Documents
     /// directory and updates state with the resulting file.
     Future<void> copyAsset() async {
-      final byteData = await rootBundle.load('assets/icons/search.png');
+      final byteData = await rootBundle.load('assets/images/search.png');
       final directory = await getApplicationDocumentsDirectory();
       final localFile = File('${directory.path}/search.png');
       await localFile.writeAsBytes(
