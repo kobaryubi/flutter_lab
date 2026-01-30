@@ -12,6 +12,7 @@ List<RouteBase> get $appRoutes => [
   $errorHandlingRoute,
   $homeRoute,
   $launchUrlRoute,
+  $localIconRoute,
   $localPathsRoute,
   $locationRoute,
   $notFoundRoute,
@@ -137,6 +138,31 @@ mixin $LaunchUrlRoute on GoRouteData {
   @override
   String get location =>
       GoRouteData.$location('/launch_url', queryParams: {'url': _self.url});
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $localIconRoute => GoRouteData.$route(
+  path: '/local_icon',
+  factory: $LocalIconRoute._fromState,
+);
+
+mixin $LocalIconRoute on GoRouteData {
+  static LocalIconRoute _fromState(GoRouterState state) => LocalIconRoute();
+
+  @override
+  String get location => GoRouteData.$location('/local_icon');
 
   @override
   void go(BuildContext context) => context.go(location);
