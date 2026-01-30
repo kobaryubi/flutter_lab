@@ -22,6 +22,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'app lifecycle hooks', route: AppLifecycleRoute()),
     AppLink(title: 'web view', route: WebViewRoute()),
     AppLink(title: 'shell demo', route: ShellDemoTabARoute()),
+    AppLink(title: 'local paths', route: LocalPathsRoute()),
   ];
 
   @override

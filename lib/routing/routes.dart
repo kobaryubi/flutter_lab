@@ -12,6 +12,7 @@ abstract final class Routes {
   static const sharedPreferences = '/shared_preferences';
   static const s3EtagCache = '/s3_etag_cache';
   static const appLifecycle = '/app_lifecycle';
+  static const localPaths = '/local_paths';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';

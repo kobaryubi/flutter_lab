@@ -12,6 +12,7 @@ List<RouteBase> get $appRoutes => [
   $errorHandlingRoute,
   $homeRoute,
   $launchUrlRoute,
+  $localPathsRoute,
   $locationRoute,
   $notFoundRoute,
   $portalRoute,
@@ -136,6 +137,31 @@ mixin $LaunchUrlRoute on GoRouteData {
   @override
   String get location =>
       GoRouteData.$location('/launch_url', queryParams: {'url': _self.url});
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $localPathsRoute => GoRouteData.$route(
+  path: '/local_paths',
+  factory: $LocalPathsRoute._fromState,
+);
+
+mixin $LocalPathsRoute on GoRouteData {
+  static LocalPathsRoute _fromState(GoRouterState state) => LocalPathsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/local_paths');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -349,6 +375,7 @@ mixin $SharedPreferencesRoute on GoRouteData {
 }
 
 RouteBase get $shellDemoRoute => StatefulShellRouteData.$route(
+  navigatorContainerBuilder: ShellDemoRoute.$navigatorContainerBuilder,
   factory: $ShellDemoRouteExtension._fromState,
   branches: [
     StatefulShellBranchData.$branch(
