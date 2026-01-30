@@ -3,9 +3,6 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 /// Load status for WebView.
 enum WebViewLoadStatus {
-  /// Initial state before loading starts.
-  initial,
-
   /// Page is currently loading.
   loading,
 
@@ -37,7 +34,7 @@ class WebViewState {
 WebViewState useWebView({
   String? initialUrl,
 }) {
-  final status = useState(WebViewLoadStatus.initial);
+  final status = useState(WebViewLoadStatus.loading);
   final controller = useMemoized(WebViewController.new, []);
 
   /// Handles page load started event.
