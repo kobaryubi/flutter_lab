@@ -3,13 +3,13 @@ flavors:
     app:
       name: "Flutter Lab Local"
     android:
-      applicationId: "com.masahikokobayashi.flutter_lab.local"
+      applicationId: "com.masahikokobayashi.flutterlab.local"
     ios:
-      bundleId: "com.masahikokobayashi.flutter_lab.local"
+      bundleId: "com.masahikokobayashi.flutterlab.local"
   production:
     app:
       name: "Flutter Lab"
     android:
-      applicationId: "com.masahikokobayashi.flutter_lab"
+      applicationId: "com.masahikokobayashi.flutterlab"
     ios:
-      bundleId: "com.masahikokobayashi.flutter_lab"
+      bundleId: "com.masahikokobayashi.flutterlab"

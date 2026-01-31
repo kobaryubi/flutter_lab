@@ -8,12 +8,12 @@ android.apply {
     productFlavors {
         create("local") {
             dimension = "flavor-type"
-            applicationId = "com.masahikokobayashi.flutter_lab.local"
+            applicationId = "com.masahikokobayashi.flutterlab.local"
             resValue(type = "string", name = "app_name", value = "Flutter Lab Local")
         }
         create("production") {
             dimension = "flavor-type"
-            applicationId = "com.masahikokobayashi.flutter_lab"
+            applicationId = "com.masahikokobayashi.flutterlab"
             resValue(type = "string", name = "app_name", value = "Flutter Lab")
         }
     }
