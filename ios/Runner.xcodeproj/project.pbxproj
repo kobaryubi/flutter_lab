@@ -59,6 +59,7 @@
 		1FFD3A6551C07406829E8341 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		219F0E1B1A297CB63209DB50 /* productionRelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = productionRelease.xcconfig; path = Flutter/productionRelease.xcconfig; sourceTree = "<group>"; };
 		29917FC1536C13FCCC3CCDCB /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CB1C7CC2F2EC0A90057E8C0 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
@@ -179,6 +180,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				2CB1C7CC2F2EC0A90057E8C0 /* Runner.entitlements */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -463,6 +465,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 219F0E1B1A297CB63209DB50 /* productionRelease.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -472,6 +475,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 038257F5B488E734EF1B3DE9 /* localRelease.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -535,6 +539,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = TENQMTMR26;
 				ENABLE_BITCODE = NO;
@@ -787,6 +792,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E344E0E8E9B99C96DC8E7C8 /* productionProfile.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -871,6 +877,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 631728DE413B0F46105F504F /* localDebug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -993,6 +1000,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = TENQMTMR26;
 				ENABLE_BITCODE = NO;
@@ -1016,6 +1024,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = TENQMTMR26;
 				ENABLE_BITCODE = NO;
@@ -1036,6 +1045,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 069C700E7C8D9850010D105F /* localProfile.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1189,6 +1199,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6DC5FA0FA71EFF7A4BA0292D /* productionDebug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
