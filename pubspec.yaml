@@ -60,7 +60,7 @@ dev_dependencies:
   flutter_gen: ^5.11.0
   very_good_analysis: ^9.0.0
   test: ^1.25.15
-  mockito: ^5.5.0
+  mocktail: ^1.0.4
   flutter_test:
     sdk: flutter
   auto_mappr: ^2.10.0
