@@ -133,7 +133,6 @@
 				D2CE461CE7AD847A68585AE0 /* Pods-Runner.profile-production.xcconfig */,
 				F5825E6C29D6AC7A54029B2C /* Pods-Runner.release-production.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -382,9 +381,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -460,6 +463,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 219F0E1B1A297CB63209DB50 /* productionRelease.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Release-production";
@@ -468,6 +472,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 038257F5B488E734EF1B3DE9 /* localRelease.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Release-local";
@@ -545,6 +550,48 @@
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Profile;
+		};
+		2CB1C7C62F2E1A780057E8C0 /* Debug-local */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Debug-local";
+		};
+		2CB1C7C72F2E1A780057E8C0 /* Profile-local */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Profile-local";
+		};
+		2CB1C7C82F2E1A780057E8C0 /* Release-local */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Release-local";
+		};
+		2CB1C7C92F2E1A780057E8C0 /* Debug-production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Debug-production";
+		};
+		2CB1C7CA2F2E1A780057E8C0 /* Profile-production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Profile-production";
+		};
+		2CB1C7CB2F2E1A780057E8C0 /* Release-production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = RunnerTests;
+			};
+			name = "Release-production";
 		};
 		331C8088294A63A400263BE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -740,6 +787,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E344E0E8E9B99C96DC8E7C8 /* productionProfile.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Profile-production";
@@ -823,6 +871,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 631728DE413B0F46105F504F /* localDebug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Debug-local";
@@ -987,6 +1036,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 069C700E7C8D9850010D105F /* localProfile.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Profile-local";
@@ -1139,6 +1189,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6DC5FA0FA71EFF7A4BA0292D /* productionDebug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = TENQMTMR26;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Debug-production";
@@ -1227,6 +1278,12 @@
 				331C8088294A63A400263BE5 /* Debug */,
 				331C8089294A63A400263BE5 /* Release */,
 				331C808A294A63A400263BE5 /* Profile */,
+				2CB1C7C62F2E1A780057E8C0 /* Debug-local */,
+				2CB1C7C72F2E1A780057E8C0 /* Profile-local */,
+				2CB1C7C82F2E1A780057E8C0 /* Release-local */,
+				2CB1C7C92F2E1A780057E8C0 /* Debug-production */,
+				2CB1C7CA2F2E1A780057E8C0 /* Profile-production */,
+				2CB1C7CB2F2E1A780057E8C0 /* Release-production */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
