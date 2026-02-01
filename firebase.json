@@ -1,0 +1,22 @@
+{
+  "flutter": {
+    "platforms": {
+      "ios": {
+        "default": {
+          "projectId": "flutter-lab-local",
+          "appId": "1:490238734395:ios:5fee01c29c33c0c934ac1e",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "flutter-lab-local",
+          "configurations": {
+            "ios": "1:490238734395:ios:5fee01c29c33c0c934ac1e"
+          }
+        }
+      }
+    }
+  }
+}
