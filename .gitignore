@@ -49,4 +49,4 @@ migrate_working_dir/
 .fvm/
 
 # Firebase config
-**/GoogleService-Info.plist
+**/firebase_options.dart
