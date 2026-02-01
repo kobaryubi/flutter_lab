@@ -6,6 +6,8 @@ flavors:
       applicationId: "com.masahikokobayashi.flutterlab.local"
     ios:
       bundleId: "com.masahikokobayashi.flutterlab.local"
+      firebase:
+        config: ".firebase/local/GoogleService-Info.plist"
   production:
     app:
       name: "Flutter Lab"
