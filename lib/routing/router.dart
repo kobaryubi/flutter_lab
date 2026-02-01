@@ -5,6 +5,7 @@ import 'package:flutter_lab/presentation/error_handling/screen/error_handling_sc
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/app_lifecycle/widget/app_lifecycle_screen.dart';
 import 'package:flutter_lab/ui/camera/widget/camera_screen.dart';
+import 'package:flutter_lab/ui/dio_cache/widget/dio_cache_screen.dart';
 import 'package:flutter_lab/ui/error/widgets/not_found_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/launch_url/widget/launch_url_screen.dart';
@@ -19,6 +20,7 @@ import 'package:flutter_lab/ui/s3_etag_cache/widget/s3_etag_cache_screen.dart';
 import 'package:flutter_lab/ui/shared_preferences/widget/shared_preferences_screen.dart';
 import 'package:flutter_lab/ui/shell_demo/widget/branch_screen.dart';
 import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_scaffold.dart';
+import 'package:flutter_lab/ui/url_navigation/widget/url_navigation_screen.dart';
 import 'package:flutter_lab/ui/web_view/widgets/web_view_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +28,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_lifecycle_route.dart';
 part 'camera_route.dart';
+part 'dio_cache_route.dart';
 part 'error_handling_route.dart';
 part 'home_route.dart';
 part 'launch_url_route.dart';
@@ -41,6 +44,7 @@ part 'routing_route.dart';
 part 's3_etag_cache_route.dart';
 part 'shared_preferences_route.dart';
 part 'shell_demo_route.dart';
+part 'url_navigation_route.dart';
 part 'web_view_route.dart';
 
 @riverpod

@@ -9,6 +9,7 @@ part of 'router.dart';
 List<RouteBase> get $appRoutes => [
   $appLifecycleRoute,
   $cameraRoute,
+  $dioCacheRoute,
   $errorHandlingRoute,
   $homeRoute,
   $launchUrlRoute,
@@ -23,6 +24,7 @@ List<RouteBase> get $appRoutes => [
   $s3EtagCacheRoute,
   $sharedPreferencesRoute,
   $shellDemoRoute,
+  $urlNavigationRoute,
   $webViewRoute,
 ];
 
@@ -60,6 +62,29 @@ mixin $CameraRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/camera');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $dioCacheRoute =>
+    GoRouteData.$route(path: '/dio_cache', factory: $DioCacheRoute._fromState);
+
+mixin $DioCacheRoute on GoRouteData {
+  static DioCacheRoute _fromState(GoRouterState state) => DioCacheRoute();
+
+  @override
+  String get location => GoRouteData.$location('/dio_cache');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -484,6 +509,32 @@ mixin $ShellDemoTabCRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/shell_demo/tab_c');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $urlNavigationRoute => GoRouteData.$route(
+  path: '/url_navigation',
+  factory: $UrlNavigationRoute._fromState,
+);
+
+mixin $UrlNavigationRoute on GoRouteData {
+  static UrlNavigationRoute _fromState(GoRouterState state) =>
+      UrlNavigationRoute();
+
+  @override
+  String get location => GoRouteData.$location('/url_navigation');
 
   @override
   void go(BuildContext context) => context.go(location);
