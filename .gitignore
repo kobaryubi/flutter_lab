@@ -47,3 +47,6 @@ migrate_working_dir/
 
 # FVM Version Cache
 .fvm/
+
+# Firebase config
+**/GoogleService-Info.plist
