@@ -8,6 +8,7 @@ part of 'router.dart';
 
 List<RouteBase> get $appRoutes => [
   $appLifecycleRoute,
+  $arutanaAdRoute,
   $cameraRoute,
   $dioCacheRoute,
   $errorHandlingRoute,
@@ -39,6 +40,31 @@ mixin $AppLifecycleRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/app_lifecycle');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $arutanaAdRoute => GoRouteData.$route(
+  path: '/arutana_ad',
+  factory: $ArutanaAdRoute._fromState,
+);
+
+mixin $ArutanaAdRoute on GoRouteData {
+  static ArutanaAdRoute _fromState(GoRouterState state) => ArutanaAdRoute();
+
+  @override
+  String get location => GoRouteData.$location('/arutana_ad');
 
   @override
   void go(BuildContext context) => context.go(location);

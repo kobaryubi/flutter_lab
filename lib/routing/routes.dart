@@ -16,6 +16,7 @@ abstract final class Routes {
   static const localIcon = '/local_icon';
   static const urlNavigation = '/url_navigation';
   static const dioCache = '/dio_cache';
+  static const arutanaAd = '/arutana_ad';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';
