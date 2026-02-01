@@ -14,6 +14,8 @@ abstract final class Routes {
   static const appLifecycle = '/app_lifecycle';
   static const localPaths = '/local_paths';
   static const localIcon = '/local_icon';
+  static const urlNavigation = '/url_navigation';
+  static const dioCache = '/dio_cache';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';
