@@ -1,17 +1,23 @@
 import 'package:english_words/english_words.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/config/dependencies.dart';
 import 'package:flutter_lab/domain/location/platform_location_repository.dart';
+import 'package:flutter_lab/firebase_options.dart';
 import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/flutter_lab_app.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   Logger.root.level = Level.ALL;
 
