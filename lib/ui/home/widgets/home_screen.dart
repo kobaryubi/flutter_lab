@@ -24,6 +24,8 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'shell demo', route: ShellDemoTabARoute()),
     AppLink(title: 'local paths', route: LocalPathsRoute()),
     AppLink(title: 'local icon', route: LocalIconRoute()),
+    AppLink(title: 'url navigation', route: UrlNavigationRoute()),
+    AppLink(title: 'dio cache', route: DioCacheRoute()),
   ];
 
   @override
