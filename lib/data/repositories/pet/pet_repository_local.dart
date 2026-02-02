@@ -1,5 +1,5 @@
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
-import 'package:flutter_lab/domain/models/pet/pet.dart';
+import 'package:flutter_lab/domain/entity/pet/pet.dart';
 import 'package:result_dart/result_dart.dart';
 
 class PetRepositoryLocal implements PetRepository {

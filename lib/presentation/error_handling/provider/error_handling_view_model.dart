@@ -1,4 +1,4 @@
-import 'package:flutter_lab/domain/models/todo/todo.dart';
+import 'package:flutter_lab/domain/entity/todo/todo.dart';
 import 'package:flutter_lab/presentation/error_handling/state/error_handling_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

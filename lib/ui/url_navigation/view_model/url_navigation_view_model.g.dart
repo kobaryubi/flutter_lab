@@ -15,11 +15,7 @@ const urlNavigationViewModelProvider = UrlNavigationViewModelProvider._();
 
 /// ViewModel that fetches the URL navigation list.
 final class UrlNavigationViewModelProvider
-    extends
-        $NotifierProvider<
-          UrlNavigationViewModel,
-          AsyncValue<UrlNavigationList>
-        > {
+    extends $NotifierProvider<UrlNavigationViewModel, UrlNavigationUiState> {
   /// ViewModel that fetches the URL navigation list.
   const UrlNavigationViewModelProvider._()
     : super(
@@ -40,42 +36,32 @@ final class UrlNavigationViewModelProvider
   UrlNavigationViewModel create() => UrlNavigationViewModel();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AsyncValue<UrlNavigationList> value) {
+  Override overrideWithValue(UrlNavigationUiState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<AsyncValue<UrlNavigationList>>(
-        value,
-      ),
+      providerOverride: $SyncValueProvider<UrlNavigationUiState>(value),
     );
   }
 }
 
 String _$urlNavigationViewModelHash() =>
-    r'91aad19202f7c048f4b1794f5b158c117dd5640e';
+    r'b8e24859e5f1ac21d467de5e685675a637c6973d';
 
 /// ViewModel that fetches the URL navigation list.
 
 abstract class _$UrlNavigationViewModel
-    extends $Notifier<AsyncValue<UrlNavigationList>> {
-  AsyncValue<UrlNavigationList> build();
+    extends $Notifier<UrlNavigationUiState> {
+  UrlNavigationUiState build();
   @$mustCallSuper
   @override
   void runBuild() {
     final created = build();
-    final ref =
-        this.ref
-            as $Ref<
-              AsyncValue<UrlNavigationList>,
-              AsyncValue<UrlNavigationList>
-            >;
+    final ref = this.ref as $Ref<UrlNavigationUiState, UrlNavigationUiState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<
-                AsyncValue<UrlNavigationList>,
-                AsyncValue<UrlNavigationList>
-              >,
-              AsyncValue<UrlNavigationList>,
+              AnyNotifier<UrlNavigationUiState, UrlNavigationUiState>,
+              UrlNavigationUiState,
               Object?,
               Object?
             >;

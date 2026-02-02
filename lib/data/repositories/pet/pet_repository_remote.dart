@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_lab/data/mapper/pet/pet_mapper.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/service/dio/petstore_client.dart' as api;
-import 'package:flutter_lab/domain/models/pet/pet.dart';
+import 'package:flutter_lab/domain/entity/pet/pet.dart';
 import 'package:petstore/petstore.dart' as petstore;
 import 'package:result_dart/result_dart.dart';
 

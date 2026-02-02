@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_lab/domain/models/exception/domain_exception.dart';
-import 'package:flutter_lab/domain/models/todo/todo.dart';
+import 'package:flutter_lab/domain/entity/exception/domain_exception.dart';
+import 'package:flutter_lab/domain/entity/todo/todo.dart';
 import 'package:flutter_lab/presentation/core/provider/global_error_widget_notifier.dart';
 import 'package:flutter_lab/presentation/core/widget/error_screen.dart';
 import 'package:flutter_lab/presentation/error_handling/provider/error_handling_view_model.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter_lab/domain/models/todo/todo.dart';
+import 'package:flutter_lab/domain/entity/todo/todo.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
