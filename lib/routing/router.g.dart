@@ -580,10 +580,14 @@ RouteBase get $webViewRoute =>
     GoRouteData.$route(path: '/web_view', factory: $WebViewRoute._fromState);
 
 mixin $WebViewRoute on GoRouteData {
-  static WebViewRoute _fromState(GoRouterState state) => WebViewRoute();
+  static WebViewRoute _fromState(GoRouterState state) =>
+      WebViewRoute(url: state.uri.queryParameters['url']!);
+
+  WebViewRoute get _self => this as WebViewRoute;
 
   @override
-  String get location => GoRouteData.$location('/web_view');
+  String get location =>
+      GoRouteData.$location('/web_view', queryParams: {'url': _self.url});
 
   @override
   void go(BuildContext context) => context.go(location);
