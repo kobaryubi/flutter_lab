@@ -1,4 +1,4 @@
-import 'package:flutter_lab/domain/models/pet/pet.dart';
+import 'package:flutter_lab/domain/entity/pet/pet.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

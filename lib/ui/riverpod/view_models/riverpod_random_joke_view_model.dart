@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_lab/domain/models/joke/joke.dart';
+import 'package:flutter_lab/domain/entity/joke/joke.dart';
 import 'package:flutter_lab/ui/riverpod/view_models/riverpod_random_joke_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

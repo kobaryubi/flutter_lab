@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user.dart';
+part of 'continent.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,42 +13,42 @@ part of 'user.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$User {
+mixin _$Continent {
 
- String get name; String get picture;
-/// Create a copy of User
+ String get name; String get imageUrl;
+/// Create a copy of Continent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$identity);
+$ContinentCopyWith<Continent> get copyWith => _$ContinentCopyWithImpl<Continent>(this as Continent, _$identity);
 
-  /// Serializes this User to a JSON map.
+  /// Serializes this Continent to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.name, name) || other.name == name)&&(identical(other.picture, picture) || other.picture == picture));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Continent&&(identical(other.name, name) || other.name == name)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,picture);
+int get hashCode => Object.hash(runtimeType,name,imageUrl);
 
 @override
 String toString() {
-  return 'User(name: $name, picture: $picture)';
+  return 'Continent(name: $name, imageUrl: $imageUrl)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $UserCopyWith<$Res>  {
-  factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
+abstract mixin class $ContinentCopyWith<$Res>  {
+  factory $ContinentCopyWith(Continent value, $Res Function(Continent) _then) = _$ContinentCopyWithImpl;
 @useResult
 $Res call({
- String name, String picture
+ String name, String imageUrl
 });
 
 
@@ -56,19 +56,19 @@ $Res call({
 
 }
 /// @nodoc
-class _$UserCopyWithImpl<$Res>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._self, this._then);
+class _$ContinentCopyWithImpl<$Res>
+    implements $ContinentCopyWith<$Res> {
+  _$ContinentCopyWithImpl(this._self, this._then);
 
-  final User _self;
-  final $Res Function(User) _then;
+  final Continent _self;
+  final $Res Function(Continent) _then;
 
-/// Create a copy of User
+/// Create a copy of Continent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? picture = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? imageUrl = null,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,picture: null == picture ? _self.picture : picture // ignore: cast_nullable_to_non_nullable
+as String,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -76,8 +76,8 @@ as String,
 }
 
 
-/// Adds pattern-matching-related methods to [User].
-extension UserPatterns on User {
+/// Adds pattern-matching-related methods to [Continent].
+extension ContinentPatterns on Continent {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -90,10 +90,10 @@ extension UserPatterns on User {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _User value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Continent value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _User() when $default != null:
+case _Continent() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -112,10 +112,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _User value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Continent value)  $default,){
 final _that = this;
 switch (_that) {
-case _User():
+case _Continent():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -133,10 +133,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _User value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Continent value)?  $default,){
 final _that = this;
 switch (_that) {
-case _User() when $default != null:
+case _Continent() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -154,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String picture)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _User() when $default != null:
-return $default(_that.name,_that.picture);case _:
+case _Continent() when $default != null:
+return $default(_that.name,_that.imageUrl);case _:
   return orElse();
 
 }
@@ -175,10 +175,10 @@ return $default(_that.name,_that.picture);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String picture)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String imageUrl)  $default,) {final _that = this;
 switch (_that) {
-case _User():
-return $default(_that.name,_that.picture);case _:
+case _Continent():
+return $default(_that.name,_that.imageUrl);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +195,10 @@ return $default(_that.name,_that.picture);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String picture)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String imageUrl)?  $default,) {final _that = this;
 switch (_that) {
-case _User() when $default != null:
-return $default(_that.name,_that.picture);case _:
+case _Continent() when $default != null:
+return $default(_that.name,_that.imageUrl);case _:
   return null;
 
 }
@@ -209,47 +209,47 @@ return $default(_that.name,_that.picture);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _User implements User {
-  const _User({required this.name, required this.picture});
-  factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+class _Continent implements Continent {
+  const _Continent({required this.name, required this.imageUrl});
+  factory _Continent.fromJson(Map<String, dynamic> json) => _$ContinentFromJson(json);
 
 @override final  String name;
-@override final  String picture;
+@override final  String imageUrl;
 
-/// Create a copy of User
+/// Create a copy of Continent
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$UserCopyWith<_User> get copyWith => __$UserCopyWithImpl<_User>(this, _$identity);
+_$ContinentCopyWith<_Continent> get copyWith => __$ContinentCopyWithImpl<_Continent>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$UserToJson(this, );
+  return _$ContinentToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.name, name) || other.name == name)&&(identical(other.picture, picture) || other.picture == picture));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Continent&&(identical(other.name, name) || other.name == name)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,picture);
+int get hashCode => Object.hash(runtimeType,name,imageUrl);
 
 @override
 String toString() {
-  return 'User(name: $name, picture: $picture)';
+  return 'Continent(name: $name, imageUrl: $imageUrl)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
+abstract mixin class _$ContinentCopyWith<$Res> implements $ContinentCopyWith<$Res> {
+  factory _$ContinentCopyWith(_Continent value, $Res Function(_Continent) _then) = __$ContinentCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String picture
+ String name, String imageUrl
 });
 
 
@@ -257,19 +257,19 @@ $Res call({
 
 }
 /// @nodoc
-class __$UserCopyWithImpl<$Res>
-    implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(this._self, this._then);
+class __$ContinentCopyWithImpl<$Res>
+    implements _$ContinentCopyWith<$Res> {
+  __$ContinentCopyWithImpl(this._self, this._then);
 
-  final _User _self;
-  final $Res Function(_User) _then;
+  final _Continent _self;
+  final $Res Function(_Continent) _then;
 
-/// Create a copy of User
+/// Create a copy of Continent
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? picture = null,}) {
-  return _then(_User(
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? imageUrl = null,}) {
+  return _then(_Continent(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,picture: null == picture ? _self.picture : picture // ignore: cast_nullable_to_non_nullable
+as String,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

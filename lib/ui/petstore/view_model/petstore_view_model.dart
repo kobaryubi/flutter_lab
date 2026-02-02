@@ -1,5 +1,5 @@
 import 'package:flutter_lab/application/di/provider.dart';
-import 'package:flutter_lab/domain/models/pet/pet.dart';
+import 'package:flutter_lab/domain/entity/pet/pet.dart';
 import 'package:flutter_lab/ui/petstore/ui_state/petstore_ui_state.dart';
 import 'package:result_dart/result_dart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

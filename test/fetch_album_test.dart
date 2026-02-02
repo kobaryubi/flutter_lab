@@ -1,4 +1,4 @@
-import 'package:flutter_lab/domain/models/album/album.dart';
+import 'package:flutter_lab/domain/entity/album/album.dart';
 import 'package:flutter_lab/ui/cookbook/widgets/cookbook_networking_fetch_data_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
