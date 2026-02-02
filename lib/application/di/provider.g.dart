@@ -560,3 +560,146 @@ final class SharedPreferencesAsyncProvider
 
 String _$sharedPreferencesAsyncHash() =>
     r'05e887bc85127af92d1c449c66e8909cea753690';
+
+@ProviderFor(arutanaAdService)
+const arutanaAdServiceProvider = ArutanaAdServiceProvider._();
+
+final class ArutanaAdServiceProvider
+    extends
+        $FunctionalProvider<
+          ArutanaAdService,
+          ArutanaAdService,
+          ArutanaAdService
+        >
+    with $Provider<ArutanaAdService> {
+  const ArutanaAdServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'arutanaAdServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$arutanaAdServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ArutanaAdService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  ArutanaAdService create(Ref ref) {
+    return arutanaAdService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ArutanaAdService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ArutanaAdService>(value),
+    );
+  }
+}
+
+String _$arutanaAdServiceHash() => r'6954d432bfeea759b2142fe762aee151a58da075';
+
+@ProviderFor(arutanaAdRepository)
+const arutanaAdRepositoryProvider = ArutanaAdRepositoryProvider._();
+
+final class ArutanaAdRepositoryProvider
+    extends
+        $FunctionalProvider<
+          ArutanaAdRepository,
+          ArutanaAdRepository,
+          ArutanaAdRepository
+        >
+    with $Provider<ArutanaAdRepository> {
+  const ArutanaAdRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'arutanaAdRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$arutanaAdRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<ArutanaAdRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ArutanaAdRepository create(Ref ref) {
+    return arutanaAdRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ArutanaAdRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ArutanaAdRepository>(value),
+    );
+  }
+}
+
+String _$arutanaAdRepositoryHash() =>
+    r'945535d5e7e9bfbb20da78cd01dd41b300bbd4b6';
+
+@ProviderFor(urlNavigationListRepository)
+const urlNavigationListRepositoryProvider =
+    UrlNavigationListRepositoryProvider._();
+
+final class UrlNavigationListRepositoryProvider
+    extends
+        $FunctionalProvider<
+          UrlNavigationListRepository,
+          UrlNavigationListRepository,
+          UrlNavigationListRepository
+        >
+    with $Provider<UrlNavigationListRepository> {
+  const UrlNavigationListRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'urlNavigationListRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$urlNavigationListRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<UrlNavigationListRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  UrlNavigationListRepository create(Ref ref) {
+    return urlNavigationListRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(UrlNavigationListRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<UrlNavigationListRepository>(value),
+    );
+  }
+}
+
+String _$urlNavigationListRepositoryHash() =>
+    r'5124892cbf23713e8bd25a2b708532c3d227d50a';
