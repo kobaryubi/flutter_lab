@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_lab/domain/models/album/album.dart';
+import 'package:flutter_lab/domain/entity/album/album.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:http/http.dart' as http;
 
