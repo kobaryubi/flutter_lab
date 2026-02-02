@@ -24,7 +24,7 @@ abstract class UrlNavigationList with _$UrlNavigationList {
   /// 5. URL host+path does NOT start with any whitelist entry
   ///    → external browser
   /// 6. Otherwise (matches whitelist) → WebView
-  NavigationDestination determine({required String url}) {
+  NavigationDestination destinationFor({required String url}) {
     final uri = Uri.tryParse(url);
     if (uri == null) {
       return NavigationDestination.externalBrowser;
