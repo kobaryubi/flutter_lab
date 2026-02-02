@@ -7,23 +7,29 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 /// Screen demonstrating the useWebView hook.
 class WebViewScreen extends StatelessWidget {
-  const WebViewScreen({super.key});
+  const WebViewScreen({required this.url, super.key});
+
+  /// The URL to load in the web view.
+  final String url;
 
   @override
   Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('Web View')),
-      child: _Body(),
+    return Layout(
+      appBar: const AppBar(title: Text('Web View')),
+      child: _Body(url: url),
     );
   }
 }
 
 class _Body extends HookWidget {
-  const _Body();
+  const _Body({required this.url});
+
+  /// The URL to load in the web view.
+  final String url;
 
   @override
   Widget build(BuildContext context) {
-    final webView = useWebView(initialUrl: 'https://flutter.dev');
+    final webView = useWebView(initialUrl: url);
 
     return Column(
       children: [
