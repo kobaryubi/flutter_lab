@@ -29,7 +29,7 @@ class UrlNavigationViewModel extends _$UrlNavigationViewModel {
   /// Falls back to [NavigationDestination.externalBrowser] when
   /// the navigation list is not yet loaded.
   NavigationDestination determineDestination({required String url}) {
-    return state.urlNavigationList.value?.determine(url: url) ??
+    return state.urlNavigationList.value?.destinationFor(url: url) ??
         .externalBrowser;
   }
 }
