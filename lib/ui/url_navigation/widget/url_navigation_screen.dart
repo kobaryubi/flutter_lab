@@ -36,6 +36,7 @@ class _Body extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.read(urlNavigationViewModelProvider.notifier);
+    final uiState = ref.watch(urlNavigationViewModelProvider);
 
     useEffect(() {
       unawaited(viewModel.fetch());
@@ -43,7 +44,8 @@ class _Body extends HookConsumerWidget {
     }, []);
 
     final urlNavigationState = useUrlNavigation(
-      viewModel.determineDestination,
+      viewModel.determineNavigationDestination,
+      urlNavigationList: uiState.urlNavigationList.value,
     );
 
     return Column(
