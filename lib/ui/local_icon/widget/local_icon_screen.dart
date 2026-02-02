@@ -1,11 +1,12 @@
 import 'dart:io';
 
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter_lab/ui/local_icon/view_model/local_icon_view_model.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:result_dart/result_dart.dart';
 
 /// Screen that copies a bundled asset to the Application Documents directory
 /// on mount, then displays the icon from the local file path.
@@ -21,39 +22,52 @@ class LocalIconScreen extends StatelessWidget {
   }
 }
 
-class _Body extends HookWidget {
+class _Body extends HookConsumerWidget {
   const _Body();
 
   @override
-  Widget build(BuildContext context) {
-    final file = useState<File?>(null);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final viewModel = ref.read(localIconViewModelProvider.notifier);
+    final copyResult = useState<Result<File>?>(null);
 
-    /// Copies the bundled search.png asset to the Application Documents
-    /// directory and updates state with the resulting file.
-    Future<void> copyAsset() async {
-      final byteData = await rootBundle.load('assets/images/search.png');
-      final directory = await getApplicationDocumentsDirectory();
-      final localFile = File('${directory.path}/search.png');
-      await localFile.writeAsBytes(
-        byteData.buffer.asUint8List(),
-        flush: true,
-      );
-      file.value = localFile;
-    }
-
+    /// Copies the asset on mount and stores the result.
     useEffect(
       () {
-        copyAsset();
+        Future<void> load() async {
+          copyResult.value = await viewModel.copyAsset();
+        }
+
+        load();
         return null;
       },
       [],
     );
 
-    final localFile = file.value;
-    if (localFile == null) {
+    /// Deletes all shortcut icons.
+    void handleDeleteAll() {
+      viewModel.deleteAllShortcutIcons();
+    }
+
+    final result = copyResult.value;
+    if (result == null) {
       return const Center(child: Text('Copying asset...'));
     }
 
-    return Center(child: Image.file(localFile));
+    return result.fold(
+      (localFile) => ListView(
+        children: [
+          Text(localFile.parent.path),
+          Image.file(localFile),
+          GestureDetector(
+            onTap: handleDeleteAll,
+            child: const Text(
+              'Delete All',
+              style: TextStyle(color: Color(0xFF000000)),
+            ),
+          ),
+        ],
+      ),
+      (exception) => Center(child: Text('Error: $exception')),
+    );
   }
 }
