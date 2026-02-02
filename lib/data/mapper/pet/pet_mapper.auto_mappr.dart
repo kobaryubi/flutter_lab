@@ -9,7 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
-import 'package:flutter_lab/domain/models/pet/pet.dart' as _i3;
+import 'package:flutter_lab/domain/entity/pet/pet.dart' as _i3;
 import 'package:petstore/src/model/pet.dart' as _i2;
 
 /// {@template package:flutter_lab/data/mapper/pet/pet_mapper.dart}
