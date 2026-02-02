@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/presentation/core/hook/use_url_navigation.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
-import 'package:flutter_lab/ui/url_navigation/hook/use_url_navigation.dart';
+import 'package:flutter_lab/ui/url_navigation/view_model/url_navigation_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Screen for testing URL navigation determination.
@@ -33,7 +35,16 @@ class _Body extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final determineNavigation = useUrlNavigation(ref, context);
+    final viewModel = ref.read(urlNavigationViewModelProvider.notifier);
+
+    useEffect(() {
+      unawaited(viewModel.fetch());
+      return null;
+    }, []);
+
+    final urlNavigationState = useUrlNavigation(
+      viewModel.determineDestination,
+    );
 
     return Column(
       crossAxisAlignment: .start,
@@ -46,7 +57,9 @@ class _Body extends HookConsumerWidget {
 
               /// Determines navigation for the tapped URL.
               void handleTap() {
-                unawaited(determineNavigation(url: url));
+                unawaited(
+                  urlNavigationState.handleUrlNavigation(url: url),
+                );
               }
 
               return GestureDetector(

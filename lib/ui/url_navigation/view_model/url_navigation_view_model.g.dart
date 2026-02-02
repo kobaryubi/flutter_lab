@@ -45,7 +45,7 @@ final class UrlNavigationViewModelProvider
 }
 
 String _$urlNavigationViewModelHash() =>
-    r'b8e24859e5f1ac21d467de5e685675a637c6973d';
+    r'2eff021c0d28b01a9e0df7bbbf8aeceb5719bf42';
 
 /// ViewModel that fetches the URL navigation list.
 

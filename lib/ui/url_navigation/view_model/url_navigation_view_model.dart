@@ -1,3 +1,4 @@
+import 'package:flutter_lab/domain/entity/navigation/url_navigation_list.dart';
 import 'package:flutter_lab/presentation/core/mixin/url_navigation_mixin.dart';
 import 'package:flutter_lab/ui/url_navigation/ui_state/url_navigation_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -12,6 +13,9 @@ class UrlNavigationViewModel extends _$UrlNavigationViewModel
   UrlNavigationUiState build() {
     return const UrlNavigationUiState(urlNavigationList: .loading());
   }
+
+  @override
+  UrlNavigationList? get urlNavigationList => state.urlNavigationList.value;
 
   /// Fetches the navigation list using [UrlNavigationMixin].
   Future<void> fetch() async {
