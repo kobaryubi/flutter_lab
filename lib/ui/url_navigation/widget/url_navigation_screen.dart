@@ -56,10 +56,8 @@ class _Body extends HookConsumerWidget {
               final url = _testUrls[index];
 
               /// Determines navigation for the tapped URL.
-              void handleTap() {
-                unawaited(
-                  urlNavigationState.handleUrlNavigation(url: url),
-                );
+              Future<void> handleTap() async {
+                await urlNavigationState.handleUrlNavigation(url: url);
               }
 
               return GestureDetector(
