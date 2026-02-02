@@ -90,8 +90,8 @@ abstract class MyUIState with _$MyUIState {
 // Consuming in UI
 class MyScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(myViewModelProvider);
-    return state.data?.when(...);
+    final uiState = ref.watch(myViewModelProvider);
+    return uiState.data?.when(...);
   }
 }
 ```
@@ -196,6 +196,7 @@ This approach makes it easier to understand, debug, and learn from the implement
 - **No git -C option** - Do not use the `-C` option in git commands; run git commands from the working directory instead
 - **Named parameters** - Use named parameters for function arguments to improve readability (e.g., `saveDate({required DateTime date})` instead of `saveDate(DateTime date)`)
 - **Ternary operator** - Prefer ternary operator over if-else for simple conditional returns (e.g., `return value == null ? Failure() : Success(value)`)
+- **UI state variable naming** - Name the variable `uiState` when watching a ViewModel provider (e.g., `final uiState = ref.watch(myViewModelProvider)` instead of `final state = ref.watch(myViewModelProvider)`)
 
 ## Commit Message Convention
 
