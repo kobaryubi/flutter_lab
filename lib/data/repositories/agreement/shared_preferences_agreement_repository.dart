@@ -1,7 +1,7 @@
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_lab/data/shared_preferences/shared_preferences_keys.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
-import 'package:flutter_lab/domain/models/exception/domain_exception.dart';
+import 'package:flutter_lab/domain/entity/exception/domain_exception.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Implementation of [AgreementRepository] using SharedPreferences.
