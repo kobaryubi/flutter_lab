@@ -1,11 +1,12 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/app_store/view_model/app_store_view_model.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-/// Screen that opens the platform's app store page.
+/// Screen that displays the platform's app store URL.
 class AppStoreScreen extends StatelessWidget {
   const AppStoreScreen({super.key});
 
@@ -18,23 +19,39 @@ class AppStoreScreen extends StatelessWidget {
   }
 }
 
-class _Body extends ConsumerWidget {
+class _Body extends HookConsumerWidget {
   const _Body();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final uiState = ref.watch(appStoreViewModelProvider);
     final viewModel = ref.read(appStoreViewModelProvider.notifier);
 
-    /// Opens the app store URL in the platform handler.
+    useEffect(() {
+      viewModel.fetchAppStoreUrl();
+      return null;
+    }, const []);
+
+    final appStoreUrl = uiState.appStoreUrl;
+
+    /// Opens the app store URL in the browser.
     Future<void> handleOpenAppStore() async {
-      final url = viewModel.getAppStoreUrl().getOrNull();
-      if (url == null) return;
-      await launchUrl(url);
+      if (appStoreUrl case AsyncData(:final value)) {
+        await launchUrl(value);
+      }
     }
 
-    return GestureDetector(
-      onTap: handleOpenAppStore,
-      child: const Text('Open App Store'),
+    return Column(
+      crossAxisAlignment: .stretch,
+      children: [
+        if (appStoreUrl case AsyncData(:final value)) ...[
+          Text('App Store URL: $value'),
+          GestureDetector(
+            onTap: handleOpenAppStore,
+            child: const Text('Open App Store'),
+          ),
+        ],
+      ],
     );
   }
 }
