@@ -1,15 +1,16 @@
-import 'package:flutter_lab/domain/entity/push_notification/push_notification_setup.dart';
+import 'package:flutter_lab/domain/entity/push_notification/push_notification_permission.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 part 'push_notification_ui_state.freezed.dart';
 
 /// UI state for the PushNotificationScreen.
 ///
-/// `setup` is `null` for the initial state before the user taps the button.
+/// `permission` is `null` for the initial state before the user
+/// taps the button.
 @freezed
 abstract class PushNotificationUiState with _$PushNotificationUiState {
   const factory PushNotificationUiState({
-    PushNotificationSetup? setup,
-    String? error,
+    AsyncValue<PushNotificationPermission>? permission,
   }) = _PushNotificationUiState;
 }
