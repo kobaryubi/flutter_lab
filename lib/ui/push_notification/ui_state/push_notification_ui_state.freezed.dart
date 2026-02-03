@@ -14,30 +14,74 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PushNotificationUiState {
 
-
+ PushNotificationSetup? get setup; String? get error;
+/// Create a copy of PushNotificationUiState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PushNotificationUiStateCopyWith<PushNotificationUiState> get copyWith => _$PushNotificationUiStateCopyWithImpl<PushNotificationUiState>(this as PushNotificationUiState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotificationUiState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotificationUiState&&(identical(other.setup, setup) || other.setup == setup)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,setup,error);
 
 @override
 String toString() {
-  return 'PushNotificationUiState()';
+  return 'PushNotificationUiState(setup: $setup, error: $error)';
 }
 
 
 }
 
 /// @nodoc
-class $PushNotificationUiStateCopyWith<$Res>  {
-$PushNotificationUiStateCopyWith(PushNotificationUiState _, $Res Function(PushNotificationUiState) __);
+abstract mixin class $PushNotificationUiStateCopyWith<$Res>  {
+  factory $PushNotificationUiStateCopyWith(PushNotificationUiState value, $Res Function(PushNotificationUiState) _then) = _$PushNotificationUiStateCopyWithImpl;
+@useResult
+$Res call({
+ PushNotificationSetup? setup, String? error
+});
+
+
+$PushNotificationSetupCopyWith<$Res>? get setup;
+
+}
+/// @nodoc
+class _$PushNotificationUiStateCopyWithImpl<$Res>
+    implements $PushNotificationUiStateCopyWith<$Res> {
+  _$PushNotificationUiStateCopyWithImpl(this._self, this._then);
+
+  final PushNotificationUiState _self;
+  final $Res Function(PushNotificationUiState) _then;
+
+/// Create a copy of PushNotificationUiState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? setup = freezed,Object? error = freezed,}) {
+  return _then(_self.copyWith(
+setup: freezed == setup ? _self.setup : setup // ignore: cast_nullable_to_non_nullable
+as PushNotificationSetup?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+/// Create a copy of PushNotificationUiState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PushNotificationSetupCopyWith<$Res>? get setup {
+    if (_self.setup == null) {
+    return null;
+  }
+
+  return $PushNotificationSetupCopyWith<$Res>(_self.setup!, (value) {
+    return _then(_self.copyWith(setup: value));
+  });
+}
 }
 
 
@@ -119,10 +163,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function()?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( PushNotificationSetup? setup,  String? error)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState() when $default != null:
-return $default();case _:
+return $default(_that.setup,_that.error);case _:
   return orElse();
 
 }
@@ -140,10 +184,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function()  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( PushNotificationSetup? setup,  String? error)  $default,) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState():
-return $default();case _:
+return $default(_that.setup,_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +204,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function()?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( PushNotificationSetup? setup,  String? error)?  $default,) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState() when $default != null:
-return $default();case _:
+return $default(_that.setup,_that.error);case _:
   return null;
 
 }
@@ -175,32 +219,80 @@ return $default();case _:
 
 
 class _PushNotificationUiState implements PushNotificationUiState {
-  const _PushNotificationUiState();
+  const _PushNotificationUiState({this.setup, this.error});
   
 
+@override final  PushNotificationSetup? setup;
+@override final  String? error;
 
-
+/// Create a copy of PushNotificationUiState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PushNotificationUiStateCopyWith<_PushNotificationUiState> get copyWith => __$PushNotificationUiStateCopyWithImpl<_PushNotificationUiState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotificationUiState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotificationUiState&&(identical(other.setup, setup) || other.setup == setup)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,setup,error);
 
 @override
 String toString() {
-  return 'PushNotificationUiState()';
+  return 'PushNotificationUiState(setup: $setup, error: $error)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$PushNotificationUiStateCopyWith<$Res> implements $PushNotificationUiStateCopyWith<$Res> {
+  factory _$PushNotificationUiStateCopyWith(_PushNotificationUiState value, $Res Function(_PushNotificationUiState) _then) = __$PushNotificationUiStateCopyWithImpl;
+@override @useResult
+$Res call({
+ PushNotificationSetup? setup, String? error
+});
 
 
+@override $PushNotificationSetupCopyWith<$Res>? get setup;
+
+}
+/// @nodoc
+class __$PushNotificationUiStateCopyWithImpl<$Res>
+    implements _$PushNotificationUiStateCopyWith<$Res> {
+  __$PushNotificationUiStateCopyWithImpl(this._self, this._then);
+
+  final _PushNotificationUiState _self;
+  final $Res Function(_PushNotificationUiState) _then;
+
+/// Create a copy of PushNotificationUiState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? setup = freezed,Object? error = freezed,}) {
+  return _then(_PushNotificationUiState(
+setup: freezed == setup ? _self.setup : setup // ignore: cast_nullable_to_non_nullable
+as PushNotificationSetup?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+/// Create a copy of PushNotificationUiState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PushNotificationSetupCopyWith<$Res>? get setup {
+    if (_self.setup == null) {
+    return null;
+  }
+
+  return $PushNotificationSetupCopyWith<$Res>(_self.setup!, (value) {
+    return _then(_self.copyWith(setup: value));
+  });
+}
+}
 
 // dart format on
