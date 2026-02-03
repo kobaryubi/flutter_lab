@@ -19,6 +19,7 @@ List<RouteBase> get $appRoutes => [
   $locationRoute,
   $notFoundRoute,
   $portalRoute,
+  $pushNotificationRoute,
   $routingCupertinoFullscreenDialogRoute,
   $routingCupertinoRoute,
   $routingRoute,
@@ -308,6 +309,32 @@ mixin $PortalRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/portal');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $pushNotificationRoute => GoRouteData.$route(
+  path: '/push_notification',
+  factory: $PushNotificationRoute._fromState,
+);
+
+mixin $PushNotificationRoute on GoRouteData {
+  static PushNotificationRoute _fromState(GoRouterState state) =>
+      PushNotificationRoute();
+
+  @override
+  String get location => GoRouteData.$location('/push_notification');
 
   @override
   void go(BuildContext context) => context.go(location);
