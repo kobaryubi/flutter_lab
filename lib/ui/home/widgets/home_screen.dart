@@ -30,6 +30,8 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'url navigation', route: UrlNavigationRoute()),
     AppLink(title: 'dio cache', route: DioCacheRoute()),
     AppLink(title: 'arutana ad', route: ArutanaAdRoute()),
+    AppLink(title: 'push notification', route: PushNotificationRoute()),
+    AppLink(title: 'app store', route: AppStoreRoute()),
   ];
 
   @override
