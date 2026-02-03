@@ -24,6 +24,12 @@ class LocalIconViewModel extends _$LocalIconViewModel {
     );
   }
 
+  /// Copies the asset icon to all version/fileName combinations.
+  AsyncResult<Unit> copyShortcutIcons() async {
+    final useCase = ref.read(copyShortcutIconsUseCaseProvider);
+    return useCase.call();
+  }
+
   /// Deletes all shortcut icons.
   AsyncResult<Unit> deleteAllShortcutIcons() async {
     final useCase = ref.read(deleteAllShortcutIconsUseCaseProvider);

@@ -45,7 +45,7 @@ final class LocalIconViewModelProvider
 }
 
 String _$localIconViewModelHash() =>
-    r'c634ff66b10b9fd895d4b952898734a957a1b27e';
+    r'f3052e93174709dc00ce5cb6e8d394241b8ac560';
 
 /// ViewModel that manages copying and deleting shortcut icons.
 
