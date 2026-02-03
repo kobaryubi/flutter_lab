@@ -39,7 +39,8 @@ class _Body extends ConsumerWidget {
           onTap: handleCheckConnectivity,
           child: const Text('Check Connectivity'),
         ),
-        if (status != null) Text('Connectivity: ${status.connectivityResult}'),
+        if (status case AsyncData(:final value))
+          Text('Connectivity: ${value.connectivityResult}'),
       ],
     );
   }
