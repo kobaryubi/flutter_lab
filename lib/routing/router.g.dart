@@ -18,6 +18,7 @@ List<RouteBase> get $appRoutes => [
   $localIconRoute,
   $localPathsRoute,
   $locationRoute,
+  $networkRoute,
   $notFoundRoute,
   $portalRoute,
   $pushNotificationRoute,
@@ -287,6 +288,29 @@ mixin $LocationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/location');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $networkRoute =>
+    GoRouteData.$route(path: '/network', factory: $NetworkRoute._fromState);
+
+mixin $NetworkRoute on GoRouteData {
+  static NetworkRoute _fromState(GoRouterState state) => NetworkRoute();
+
+  @override
+  String get location => GoRouteData.$location('/network');
 
   @override
   void go(BuildContext context) => context.go(location);

@@ -32,6 +32,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'arutana ad', route: ArutanaAdRoute()),
     AppLink(title: 'push notification', route: PushNotificationRoute()),
     AppLink(title: 'app store', route: AppStoreRoute()),
+    AppLink(title: 'network', route: NetworkRoute()),
   ];
 
   @override
