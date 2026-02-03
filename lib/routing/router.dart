@@ -4,6 +4,7 @@ import 'package:flutter_lab/presentation/core/widget/branch_scope.dart';
 import 'package:flutter_lab/presentation/error_handling/screen/error_handling_screen.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/app_lifecycle/widget/app_lifecycle_screen.dart';
+import 'package:flutter_lab/ui/app_store/widget/app_store_screen.dart';
 import 'package:flutter_lab/ui/arutana_ad/widget/arutana_ad_screen.dart';
 import 'package:flutter_lab/ui/camera/widget/camera_screen.dart';
 import 'package:flutter_lab/ui/dio_cache/widget/dio_cache_screen.dart';
@@ -29,6 +30,7 @@ import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_lifecycle_route.dart';
+part 'app_store_route.dart';
 part 'arutana_ad_route.dart';
 part 'camera_route.dart';
 part 'dio_cache_route.dart';
