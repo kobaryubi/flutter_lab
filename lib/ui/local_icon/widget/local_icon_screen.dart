@@ -43,6 +43,11 @@ class _Body extends HookConsumerWidget {
       [],
     );
 
+    /// Copies the asset icon to all version/fileName combinations.
+    Future<void> handleCopyShortcutIcons() async {
+      await viewModel.copyShortcutIcons();
+    }
+
     /// Deletes all shortcut icons.
     void handleDeleteAll() {
       viewModel.deleteAllShortcutIcons();
@@ -58,6 +63,13 @@ class _Body extends HookConsumerWidget {
         children: [
           Text(localFile.parent.path),
           Image.file(localFile),
+          GestureDetector(
+            onTap: handleCopyShortcutIcons,
+            child: const Text(
+              'Copy Shortcut Icons',
+              style: TextStyle(color: Color(0xFF000000)),
+            ),
+          ),
           GestureDetector(
             onTap: handleDeleteAll,
             child: const Text(
