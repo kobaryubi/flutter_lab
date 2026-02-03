@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
-import 'package:flutter_lab/presentation/core/widget/branch_scope.dart';
+
 import 'package:flutter_lab/presentation/error_handling/screen/error_handling_screen.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/app_lifecycle/widget/app_lifecycle_screen.dart';
