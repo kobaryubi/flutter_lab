@@ -197,6 +197,7 @@ This approach makes it easier to understand, debug, and learn from the implement
 - **Named parameters** - Use named parameters for function arguments to improve readability (e.g., `saveDate({required DateTime date})` instead of `saveDate(DateTime date)`)
 - **Ternary operator** - Prefer ternary operator over if-else for simple conditional returns (e.g., `return value == null ? Failure() : Success(value)`)
 - **UI state variable naming** - Name the variable `uiState` when watching a ViewModel provider (e.g., `final uiState = ref.watch(myViewModelProvider)` instead of `final state = ref.watch(myViewModelProvider)`)
+- **Target platforms** - This project targets iOS and Android only. Do not consider web-specific parameters or platform handling
 
 ## Commit Message Convention
 
