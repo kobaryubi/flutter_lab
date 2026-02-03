@@ -14,30 +14,61 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppStoreUiState {
 
-
+ AsyncValue<Uri> get appStoreUrl;
+/// Create a copy of AppStoreUiState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AppStoreUiStateCopyWith<AppStoreUiState> get copyWith => _$AppStoreUiStateCopyWithImpl<AppStoreUiState>(this as AppStoreUiState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppStoreUiState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppStoreUiState&&(identical(other.appStoreUrl, appStoreUrl) || other.appStoreUrl == appStoreUrl));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,appStoreUrl);
 
 @override
 String toString() {
-  return 'AppStoreUiState()';
+  return 'AppStoreUiState(appStoreUrl: $appStoreUrl)';
 }
 
 
 }
 
 /// @nodoc
-class $AppStoreUiStateCopyWith<$Res>  {
-$AppStoreUiStateCopyWith(AppStoreUiState _, $Res Function(AppStoreUiState) __);
+abstract mixin class $AppStoreUiStateCopyWith<$Res>  {
+  factory $AppStoreUiStateCopyWith(AppStoreUiState value, $Res Function(AppStoreUiState) _then) = _$AppStoreUiStateCopyWithImpl;
+@useResult
+$Res call({
+ AsyncValue<Uri> appStoreUrl
+});
+
+
+
+
+}
+/// @nodoc
+class _$AppStoreUiStateCopyWithImpl<$Res>
+    implements $AppStoreUiStateCopyWith<$Res> {
+  _$AppStoreUiStateCopyWithImpl(this._self, this._then);
+
+  final AppStoreUiState _self;
+  final $Res Function(AppStoreUiState) _then;
+
+/// Create a copy of AppStoreUiState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? appStoreUrl = null,}) {
+  return _then(_self.copyWith(
+appStoreUrl: null == appStoreUrl ? _self.appStoreUrl : appStoreUrl // ignore: cast_nullable_to_non_nullable
+as AsyncValue<Uri>,
+  ));
+}
+
 }
 
 
@@ -119,10 +150,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function()?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Uri> appStoreUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppStoreUiState() when $default != null:
-return $default();case _:
+return $default(_that.appStoreUrl);case _:
   return orElse();
 
 }
@@ -140,10 +171,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function()  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Uri> appStoreUrl)  $default,) {final _that = this;
 switch (_that) {
 case _AppStoreUiState():
-return $default();case _:
+return $default(_that.appStoreUrl);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +191,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function()?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Uri> appStoreUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _AppStoreUiState() when $default != null:
-return $default();case _:
+return $default(_that.appStoreUrl);case _:
   return null;
 
 }
@@ -175,32 +206,66 @@ return $default();case _:
 
 
 class _AppStoreUiState implements AppStoreUiState {
-  const _AppStoreUiState();
+  const _AppStoreUiState({this.appStoreUrl = const AsyncValue<Uri>.loading()});
   
 
+@override@JsonKey() final  AsyncValue<Uri> appStoreUrl;
 
-
+/// Create a copy of AppStoreUiState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AppStoreUiStateCopyWith<_AppStoreUiState> get copyWith => __$AppStoreUiStateCopyWithImpl<_AppStoreUiState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppStoreUiState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppStoreUiState&&(identical(other.appStoreUrl, appStoreUrl) || other.appStoreUrl == appStoreUrl));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,appStoreUrl);
 
 @override
 String toString() {
-  return 'AppStoreUiState()';
+  return 'AppStoreUiState(appStoreUrl: $appStoreUrl)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$AppStoreUiStateCopyWith<$Res> implements $AppStoreUiStateCopyWith<$Res> {
+  factory _$AppStoreUiStateCopyWith(_AppStoreUiState value, $Res Function(_AppStoreUiState) _then) = __$AppStoreUiStateCopyWithImpl;
+@override @useResult
+$Res call({
+ AsyncValue<Uri> appStoreUrl
+});
 
 
+
+
+}
+/// @nodoc
+class __$AppStoreUiStateCopyWithImpl<$Res>
+    implements _$AppStoreUiStateCopyWith<$Res> {
+  __$AppStoreUiStateCopyWithImpl(this._self, this._then);
+
+  final _AppStoreUiState _self;
+  final $Res Function(_AppStoreUiState) _then;
+
+/// Create a copy of AppStoreUiState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? appStoreUrl = null,}) {
+  return _then(_AppStoreUiState(
+appStoreUrl: null == appStoreUrl ? _self.appStoreUrl : appStoreUrl // ignore: cast_nullable_to_non_nullable
+as AsyncValue<Uri>,
+  ));
+}
+
+
+}
 
 // dart format on

@@ -44,7 +44,7 @@ final class AppStoreViewModelProvider
   }
 }
 
-String _$appStoreViewModelHash() => r'059ff0389a60dc3606d1a441e8f3e44cb74de555';
+String _$appStoreViewModelHash() => r'70b63e10a18d57b9cb3a6b451f6512cb5fa4e61b';
 
 /// ViewModel that manages the app store screen state.
 
