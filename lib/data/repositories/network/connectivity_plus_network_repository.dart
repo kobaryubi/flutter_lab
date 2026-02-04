@@ -15,10 +15,19 @@ class ConnectivityPlusNetworkRepository implements NetworkRepository {
   AsyncResult<ConnectivityStatus> checkConnectivity() async {
     try {
       final results = await _connectivity.checkConnectivity();
-      final connectivities = results.map((result) => result.name).toList();
-      return ConnectivityStatus(connectivities: connectivities).toSuccess();
+      return _toConnectivityStatus(results).toSuccess();
     } on Exception catch (exception) {
       return exception.toFailure();
     }
+  }
+
+  @override
+  Stream<ConnectivityStatus> get onConnectivityChanged {
+    return _connectivity.onConnectivityChanged.map(_toConnectivityStatus);
+  }
+
+  ConnectivityStatus _toConnectivityStatus(List<ConnectivityResult> results) {
+    final connectivities = results.map((result) => result.name).toList();
+    return ConnectivityStatus(connectivities: connectivities);
   }
 }
