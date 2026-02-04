@@ -20,6 +20,8 @@ abstract final class Routes {
   static const pushNotification = '/push_notification';
   static const appStore = '/app_store';
   static const network = '/network';
+  static const brightness = '/brightness';
+  static const inAppReview = '/in_app_review';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';

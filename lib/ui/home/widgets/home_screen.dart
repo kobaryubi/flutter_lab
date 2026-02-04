@@ -33,6 +33,8 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'push notification', route: PushNotificationRoute()),
     AppLink(title: 'app store', route: AppStoreRoute()),
     AppLink(title: 'network', route: NetworkRoute()),
+    AppLink(title: 'brightness', route: BrightnessRoute()),
+    AppLink(title: 'in-app review', route: InAppReviewRoute()),
   ];
 
   @override

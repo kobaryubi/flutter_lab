@@ -10,10 +10,12 @@ List<RouteBase> get $appRoutes => [
   $appLifecycleRoute,
   $appStoreRoute,
   $arutanaAdRoute,
+  $brightnessRoute,
   $cameraRoute,
   $dioCacheRoute,
   $errorHandlingRoute,
   $homeRoute,
+  $inAppReviewRoute,
   $launchUrlRoute,
   $localIconRoute,
   $localPathsRoute,
@@ -91,6 +93,31 @@ mixin $ArutanaAdRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/arutana_ad');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $brightnessRoute => GoRouteData.$route(
+  path: '/brightness',
+  factory: $BrightnessRoute._fromState,
+);
+
+mixin $BrightnessRoute on GoRouteData {
+  static BrightnessRoute _fromState(GoRouterState state) => BrightnessRoute();
+
+  @override
+  String get location => GoRouteData.$location('/brightness');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -186,6 +213,31 @@ mixin $HomeRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $inAppReviewRoute => GoRouteData.$route(
+  path: '/in_app_review',
+  factory: $InAppReviewRoute._fromState,
+);
+
+mixin $InAppReviewRoute on GoRouteData {
+  static InAppReviewRoute _fromState(GoRouterState state) => InAppReviewRoute();
+
+  @override
+  String get location => GoRouteData.$location('/in_app_review');
 
   @override
   void go(BuildContext context) => context.go(location);
