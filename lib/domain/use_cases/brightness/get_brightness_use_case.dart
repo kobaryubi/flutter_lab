@@ -11,6 +11,6 @@ class GetBrightnessUseCase {
 
   /// Returns the current brightness as a value between 0.0 and 1.0.
   AsyncResult<double> call() {
-    return _brightnessRepository.getCurrentBrightness();
+    return _brightnessRepository.getBrightness();
   }
 }
