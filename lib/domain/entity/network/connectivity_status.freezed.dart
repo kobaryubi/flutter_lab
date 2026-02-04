@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ConnectivityStatus {
 
- String get connectivityResult;
+ List<String> get connectivities;
 /// Create a copy of ConnectivityStatus
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ConnectivityStatusCopyWith<ConnectivityStatus> get copyWith => _$ConnectivitySt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConnectivityStatus&&(identical(other.connectivityResult, connectivityResult) || other.connectivityResult == connectivityResult));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConnectivityStatus&&const DeepCollectionEquality().equals(other.connectivities, connectivities));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,connectivityResult);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(connectivities));
 
 @override
 String toString() {
-  return 'ConnectivityStatus(connectivityResult: $connectivityResult)';
+  return 'ConnectivityStatus(connectivities: $connectivities)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ConnectivityStatusCopyWith<$Res>  {
   factory $ConnectivityStatusCopyWith(ConnectivityStatus value, $Res Function(ConnectivityStatus) _then) = _$ConnectivityStatusCopyWithImpl;
 @useResult
 $Res call({
- String connectivityResult
+ List<String> connectivities
 });
 
 
@@ -62,10 +62,10 @@ class _$ConnectivityStatusCopyWithImpl<$Res>
 
 /// Create a copy of ConnectivityStatus
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? connectivityResult = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? connectivities = null,}) {
   return _then(_self.copyWith(
-connectivityResult: null == connectivityResult ? _self.connectivityResult : connectivityResult // ignore: cast_nullable_to_non_nullable
-as String,
+connectivities: null == connectivities ? _self.connectivities : connectivities // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 
@@ -150,10 +150,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String connectivityResult)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> connectivities)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ConnectivityStatus() when $default != null:
-return $default(_that.connectivityResult);case _:
+return $default(_that.connectivities);case _:
   return orElse();
 
 }
@@ -171,10 +171,10 @@ return $default(_that.connectivityResult);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String connectivityResult)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> connectivities)  $default,) {final _that = this;
 switch (_that) {
 case _ConnectivityStatus():
-return $default(_that.connectivityResult);case _:
+return $default(_that.connectivities);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +191,10 @@ return $default(_that.connectivityResult);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String connectivityResult)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> connectivities)?  $default,) {final _that = this;
 switch (_that) {
 case _ConnectivityStatus() when $default != null:
-return $default(_that.connectivityResult);case _:
+return $default(_that.connectivities);case _:
   return null;
 
 }
@@ -206,10 +206,16 @@ return $default(_that.connectivityResult);case _:
 
 
 class _ConnectivityStatus implements ConnectivityStatus {
-  const _ConnectivityStatus({required this.connectivityResult});
+  const _ConnectivityStatus({required final  List<String> connectivities}): _connectivities = connectivities;
   
 
-@override final  String connectivityResult;
+ final  List<String> _connectivities;
+@override List<String> get connectivities {
+  if (_connectivities is EqualUnmodifiableListView) return _connectivities;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_connectivities);
+}
+
 
 /// Create a copy of ConnectivityStatus
 /// with the given fields replaced by the non-null parameter values.
@@ -221,16 +227,16 @@ _$ConnectivityStatusCopyWith<_ConnectivityStatus> get copyWith => __$Connectivit
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConnectivityStatus&&(identical(other.connectivityResult, connectivityResult) || other.connectivityResult == connectivityResult));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConnectivityStatus&&const DeepCollectionEquality().equals(other._connectivities, _connectivities));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,connectivityResult);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_connectivities));
 
 @override
 String toString() {
-  return 'ConnectivityStatus(connectivityResult: $connectivityResult)';
+  return 'ConnectivityStatus(connectivities: $connectivities)';
 }
 
 
@@ -241,7 +247,7 @@ abstract mixin class _$ConnectivityStatusCopyWith<$Res> implements $Connectivity
   factory _$ConnectivityStatusCopyWith(_ConnectivityStatus value, $Res Function(_ConnectivityStatus) _then) = __$ConnectivityStatusCopyWithImpl;
 @override @useResult
 $Res call({
- String connectivityResult
+ List<String> connectivities
 });
 
 
@@ -258,10 +264,10 @@ class __$ConnectivityStatusCopyWithImpl<$Res>
 
 /// Create a copy of ConnectivityStatus
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? connectivityResult = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? connectivities = null,}) {
   return _then(_ConnectivityStatus(
-connectivityResult: null == connectivityResult ? _self.connectivityResult : connectivityResult // ignore: cast_nullable_to_non_nullable
-as String,
+connectivities: null == connectivities ? _self._connectivities : connectivities // ignore: cast_nullable_to_non_nullable
+as List<String>,
   ));
 }
 

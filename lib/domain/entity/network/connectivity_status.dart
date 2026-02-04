@@ -6,6 +6,6 @@ part 'connectivity_status.freezed.dart';
 @freezed
 abstract class ConnectivityStatus with _$ConnectivityStatus {
   const factory ConnectivityStatus({
-    required String connectivityResult,
+    required List<String> connectivities,
   }) = _ConnectivityStatus;
 }
