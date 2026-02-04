@@ -5,4 +5,7 @@ import 'package:result_dart/result_dart.dart';
 abstract class NetworkRepository {
   /// Checks the current network connectivity status.
   AsyncResult<ConnectivityStatus> checkConnectivity();
+
+  /// Stream that emits a new status whenever connectivity changes.
+  Stream<ConnectivityStatus> get onConnectivityChanged;
 }
