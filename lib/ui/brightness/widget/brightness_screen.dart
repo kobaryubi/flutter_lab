@@ -36,14 +36,14 @@ class _Body extends HookConsumerWidget {
 
     /// Increases the brightness by 0.1, clamped to 1.0.
     void handleIncrease() {
-      if (uiState.currentBrightness case AsyncData(:final value)) {
+      if (uiState.brightness case AsyncData(:final value)) {
         viewModel.setBrightness(brightness: (value + 0.1).clamp(0.0, 1.0));
       }
     }
 
     /// Decreases the brightness by 0.1, clamped to 0.0.
     void handleDecrease() {
-      if (uiState.currentBrightness case AsyncData(:final value)) {
+      if (uiState.brightness case AsyncData(:final value)) {
         viewModel.setBrightness(brightness: (value - 0.1).clamp(0.0, 1.0));
       }
     }
@@ -56,7 +56,7 @@ class _Body extends HookConsumerWidget {
     return Column(
       crossAxisAlignment: .stretch,
       children: [
-        if (uiState.currentBrightness case AsyncData(:final value))
+        if (uiState.brightness case AsyncData(:final value))
           Text('Current Brightness: ${(value * 100).round()}%'),
         Row(
           children: [
