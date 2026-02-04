@@ -1,5 +1,6 @@
 import 'package:flutter_lab/domain/app_store/app_store_repository.dart';
 import 'package:flutter_lab/domain/entity/app_store/target_platform_type.dart';
+import 'package:result_dart/result_dart.dart';
 
 /// [AppStoreRepository] implementation that resolves the app store URL
 /// based on the target platform.
@@ -17,12 +18,14 @@ class PlatformAppStoreRepository implements AppStoreRepository {
   final String _packageName;
 
   @override
-  Uri getUrl() => switch (_targetPlatformType) {
-    .iOS => Uri.parse(
-      'https://apps.apple.com/app/id$_appId',
-    ),
-    .android => Uri.parse(
-      'https://play.google.com/store/apps/details?id=$_packageName',
-    ),
-  };
+  Result<Uri> getUrl() => Success(
+    switch (_targetPlatformType) {
+      .iOS => Uri.parse(
+        'https://apps.apple.com/app/id$_appId',
+      ),
+      .android => Uri.parse(
+        'https://play.google.com/store/apps/details?id=$_packageName',
+      ),
+    },
+  );
 }

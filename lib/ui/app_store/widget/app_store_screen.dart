@@ -37,7 +37,7 @@ class _Body extends HookConsumerWidget {
     /// Opens the app store URL in the browser.
     Future<void> handleOpenAppStore() async {
       if (appStoreUrl case AsyncData(:final value)) {
-        await launchUrl(value);
+        await launchUrl(value, mode: .externalApplication);
       }
     }
 
