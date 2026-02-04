@@ -200,6 +200,7 @@ This approach makes it easier to understand, debug, and learn from the implement
 - **Target platforms** - This project targets iOS and Android only. Do not consider web-specific parameters or platform handling
 - **Use AsyncValue.guard in ViewModel** - ViewModel methods that call use cases should use `AsyncValue.guard` to wrap the call, updating UI state with `state = state.copyWith(field: await AsyncValue.guard(() => useCase.call().getOrThrow()))`. The UI state field type should be `AsyncValue<T>?` (nullable for initial state). The ViewModel method should return `Future<void>`
 - **Use if-case pattern matching for AsyncValue** - In the UI layer, use `if (field case AsyncData(:final value))` to extract data from `AsyncValue` fields instead of `.when()` or `switch`
+- **Use result_dart in repositories** - Repository methods should return `Result<T>` or `AsyncResult<T>` from `result_dart` instead of raw types. This ensures error handling is explicit at the domain boundary (e.g., `Result<Uri> getUrl()` instead of `Uri getUrl()`)
 
 ## Commit Message Convention
 
