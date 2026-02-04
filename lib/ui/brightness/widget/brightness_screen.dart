@@ -57,7 +57,7 @@ class _Body extends HookConsumerWidget {
       crossAxisAlignment: .stretch,
       children: [
         if (uiState.brightness case AsyncData(:final value))
-          Text('Current Brightness: ${(value * 100).round()}%'),
+          Text('Brightness: ${(value * 100).round()}%'),
         Row(
           children: [
             GestureDetector(
