@@ -40,7 +40,7 @@ class _Body extends ConsumerWidget {
           child: const Text('Check Connectivity'),
         ),
         if (status case AsyncData(:final value))
-          Text('Connectivity: ${value.connectivityResult}'),
+          Text('Connectivity: ${value.connectivities.join(', ')}'),
       ],
     );
   }
