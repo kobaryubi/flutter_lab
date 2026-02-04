@@ -28,7 +28,7 @@ class _Body extends HookConsumerWidget {
 
     useEffect(
       () {
-        viewModel.fetchCurrentBrightness();
+        viewModel.fetchBrightness();
         return null;
       },
       [],
