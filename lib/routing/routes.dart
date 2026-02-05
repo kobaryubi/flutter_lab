@@ -22,6 +22,7 @@ abstract final class Routes {
   static const network = '/network';
   static const brightness = '/brightness';
   static const inAppReview = '/in_app_review';
+  static const screenshotPrevention = '/screenshot_prevention';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';

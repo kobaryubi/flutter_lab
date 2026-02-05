@@ -28,6 +28,7 @@ List<RouteBase> get $appRoutes => [
   $routingCupertinoRoute,
   $routingRoute,
   $s3EtagCacheRoute,
+  $screenshotPreventionRoute,
   $sharedPreferencesRoute,
   $shellDemoRoute,
   $urlNavigationRoute,
@@ -537,6 +538,32 @@ mixin $S3EtagCacheRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/s3_etag_cache');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $screenshotPreventionRoute => GoRouteData.$route(
+  path: '/screenshot_prevention',
+  factory: $ScreenshotPreventionRoute._fromState,
+);
+
+mixin $ScreenshotPreventionRoute on GoRouteData {
+  static ScreenshotPreventionRoute _fromState(GoRouterState state) =>
+      ScreenshotPreventionRoute();
+
+  @override
+  String get location => GoRouteData.$location('/screenshot_prevention');
 
   @override
   void go(BuildContext context) => context.go(location);

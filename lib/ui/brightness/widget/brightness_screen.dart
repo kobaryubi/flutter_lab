@@ -53,6 +53,11 @@ class _Body extends HookConsumerWidget {
       viewModel.resetBrightness();
     }
 
+    /// Fetches the current brightness from the system.
+    void handleFetch() {
+      viewModel.fetchBrightness();
+    }
+
     return Column(
       crossAxisAlignment: .stretch,
       spacing: 16,
@@ -75,6 +80,10 @@ class _Body extends HookConsumerWidget {
         GestureDetector(
           onTap: handleReset,
           child: const Text('Reset'),
+        ),
+        GestureDetector(
+          onTap: handleFetch,
+          child: const Text('Fetch'),
         ),
       ],
     );

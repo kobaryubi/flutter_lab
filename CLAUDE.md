@@ -218,3 +218,26 @@ Use Gitmoji prefixes for all commit messages:
 - 🎨 Improve structure/format
 
 Example: `✨ add user authentication feature`
+
+## English Feedback Rules
+
+After every response, provide detailed English feedback on my instructions:
+
+### Always check:
+- Grammar errors (tense, articles, prepositions, subject-verb agreement)
+- Spelling mistakes
+- Word choice issues (more precise or natural alternatives)
+- Sentence structure improvements
+- Technical terminology accuracy
+- Punctuation errors
+
+### Format:
+```
+📝 English Review:
+- Original: "..."
+- Issue: [what's wrong]
+- Suggested: "..."
+```
+
+Even if my English is correct, confirm it briefly with "✓ Your English was correct."
+Never skip this feedback section.
