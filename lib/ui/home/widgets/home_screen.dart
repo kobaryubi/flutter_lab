@@ -16,7 +16,6 @@ class HomeScreen extends StatelessWidget {
     ),
     AppLink(title: 'camera', route: CameraRoute()),
     AppLink(title: 'overlay example', route: PortalRoute()),
-    AppLink(title: 'error handling', route: ErrorHandlingRoute()),
     AppLink(title: 'shared preferences', route: SharedPreferencesRoute()),
     AppLink(title: 'S3 ETag cache', route: S3EtagCacheRoute()),
     AppLink(title: 'app lifecycle hooks', route: AppLifecycleRoute()),
@@ -35,6 +34,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'network', route: NetworkRoute()),
     AppLink(title: 'brightness', route: BrightnessRoute()),
     AppLink(title: 'in-app review', route: InAppReviewRoute()),
+    AppLink(title: 'OCR', route: OcrRoute()),
   ];
 
   @override

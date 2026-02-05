@@ -13,7 +13,6 @@ List<RouteBase> get $appRoutes => [
   $brightnessRoute,
   $cameraRoute,
   $dioCacheRoute,
-  $errorHandlingRoute,
   $homeRoute,
   $inAppReviewRoute,
   $launchUrlRoute,
@@ -22,6 +21,7 @@ List<RouteBase> get $appRoutes => [
   $locationRoute,
   $networkRoute,
   $notFoundRoute,
+  $ocrRoute,
   $portalRoute,
   $pushNotificationRoute,
   $routingCupertinoFullscreenDialogRoute,
@@ -165,32 +165,6 @@ mixin $DioCacheRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/dio_cache');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $errorHandlingRoute => GoRouteData.$route(
-  path: '/error_handling',
-  factory: $ErrorHandlingRoute._fromState,
-);
-
-mixin $ErrorHandlingRoute on GoRouteData {
-  static ErrorHandlingRoute _fromState(GoRouterState state) =>
-      ErrorHandlingRoute();
-
-  @override
-  String get location => GoRouteData.$location('/error_handling');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -387,6 +361,29 @@ mixin $NotFoundRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/404');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $ocrRoute =>
+    GoRouteData.$route(path: '/ocr', factory: $OcrRoute._fromState);
+
+mixin $OcrRoute on GoRouteData {
+  static OcrRoute _fromState(GoRouterState state) => OcrRoute();
+
+  @override
+  String get location => GoRouteData.$location('/ocr');
 
   @override
   void go(BuildContext context) => context.go(location);
