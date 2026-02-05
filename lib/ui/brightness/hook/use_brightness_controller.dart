@@ -17,8 +17,7 @@ class UseBrightnessState {
 
 /// Hook that manages screen brightness operations.
 ///
-/// Uses [ScreenBrightness] directly to get, set, and reset brightness.
-/// Fetches the current brightness on mount.
+/// Uses [ScreenBrightness] directly to max and reset brightness.
 UseBrightnessState useBrightnessController() {
   final screenBrightness = useMemoized(ScreenBrightness.new, []);
 
