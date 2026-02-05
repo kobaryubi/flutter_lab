@@ -23,6 +23,7 @@ abstract final class Routes {
   static const inAppReview = '/in_app_review';
   static const screenshotPrevention = '/screenshot_prevention';
   static const ocr = '/ocr';
+  static const loading = '/loading';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';

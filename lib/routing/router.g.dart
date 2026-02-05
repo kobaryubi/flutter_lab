@@ -16,6 +16,7 @@ List<RouteBase> get $appRoutes => [
   $homeRoute,
   $inAppReviewRoute,
   $launchUrlRoute,
+  $loadingRoute,
   $localIconRoute,
   $localPathsRoute,
   $locationRoute,
@@ -242,6 +243,29 @@ mixin $LaunchUrlRoute on GoRouteData {
   @override
   String get location =>
       GoRouteData.$location('/launch_url', queryParams: {'url': _self.url});
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $loadingRoute =>
+    GoRouteData.$route(path: '/loading', factory: $LoadingRoute._fromState);
+
+mixin $LoadingRoute on GoRouteData {
+  static LoadingRoute _fromState(GoRouterState state) => LoadingRoute();
+
+  @override
+  String get location => GoRouteData.$location('/loading');
 
   @override
   void go(BuildContext context) => context.go(location);
