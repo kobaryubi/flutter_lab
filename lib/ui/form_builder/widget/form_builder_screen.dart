@@ -44,6 +44,7 @@ class _Body extends HookWidget {
         crossAxisAlignment: .start,
         spacing: 16,
         children: [
+          const Text('Name'),
           FormBuilderField<String>(
             name: 'name',
             initialValue: nameController.text,
@@ -58,6 +59,7 @@ class _Body extends HookWidget {
               );
             },
           ),
+          const Text('Email'),
           FormBuilderField<String>(
             name: 'email',
             initialValue: emailController.text,
