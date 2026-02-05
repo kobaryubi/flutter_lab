@@ -7,7 +7,4 @@ abstract class InAppReviewRepository {
 
   /// Requests the native in-app review dialog.
   AsyncResult<Unit> requestReview();
-
-  /// Opens the app's store listing page.
-  AsyncResult<Unit> openStoreListing();
 }
