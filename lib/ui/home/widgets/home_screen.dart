@@ -36,6 +36,10 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'in-app review', route: InAppReviewRoute()),
     AppLink(title: 'OCR', route: OcrRoute()),
     AppLink(title: 'loading', route: LoadingRoute()),
+    AppLink(
+      title: 'screenshot prevention',
+      route: ScreenshotPreventionRoute(),
+    ),
   ];
 
   @override

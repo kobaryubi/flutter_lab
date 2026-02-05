@@ -13,6 +13,7 @@ List<RouteBase> get $appRoutes => [
   $brightnessRoute,
   $cameraRoute,
   $dioCacheRoute,
+  $formBuilderRoute,
   $homeRoute,
   $inAppReviewRoute,
   $launchUrlRoute,
@@ -166,6 +167,31 @@ mixin $DioCacheRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/dio_cache');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $formBuilderRoute => GoRouteData.$route(
+  path: '/form_builder',
+  factory: $FormBuilderRoute._fromState,
+);
+
+mixin $FormBuilderRoute on GoRouteData {
+  static FormBuilderRoute _fromState(GoRouterState state) => FormBuilderRoute();
+
+  @override
+  String get location => GoRouteData.$location('/form_builder');
 
   @override
   void go(BuildContext context) => context.go(location);
