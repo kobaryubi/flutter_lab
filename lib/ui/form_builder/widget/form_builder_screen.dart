@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/form_builder/hook/use_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 /// Screen that demonstrates `flutter_form_builder` with a custom hook.
 class FormBuilderScreen extends StatelessWidget {
@@ -40,6 +41,7 @@ class _Body extends HookWidget {
 
     return FormBuilder(
       key: form.formKey,
+      autovalidateMode: .onUserInteraction,
       child: Column(
         crossAxisAlignment: .start,
         spacing: 16,
@@ -48,14 +50,23 @@ class _Body extends HookWidget {
           FormBuilderField<String>(
             name: 'name',
             initialValue: nameController.text,
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(),
+            ]),
             builder: (field) {
-              return EditableText(
-                controller: nameController,
-                focusNode: nameFocusNode,
-                style: DefaultTextStyle.of(field.context).style,
-                cursorColor: const Color(0xFF000000),
-                backgroundCursorColor: const Color(0xFF808080),
-                onChanged: field.didChange,
+              return Column(
+                crossAxisAlignment: .start,
+                children: [
+                  EditableText(
+                    controller: nameController,
+                    focusNode: nameFocusNode,
+                    style: DefaultTextStyle.of(field.context).style,
+                    cursorColor: const Color(0xFF000000),
+                    backgroundCursorColor: const Color(0xFF808080),
+                    onChanged: field.didChange,
+                  ),
+                  if (field.errorText case final errorText?) Text(errorText),
+                ],
               );
             },
           ),
@@ -63,14 +74,24 @@ class _Body extends HookWidget {
           FormBuilderField<String>(
             name: 'email',
             initialValue: emailController.text,
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(),
+              FormBuilderValidators.email(),
+            ]),
             builder: (field) {
-              return EditableText(
-                controller: emailController,
-                focusNode: emailFocusNode,
-                style: DefaultTextStyle.of(field.context).style,
-                cursorColor: const Color(0xFF000000),
-                backgroundCursorColor: const Color(0xFF808080),
-                onChanged: field.didChange,
+              return Column(
+                crossAxisAlignment: .start,
+                children: [
+                  EditableText(
+                    controller: emailController,
+                    focusNode: emailFocusNode,
+                    style: DefaultTextStyle.of(field.context).style,
+                    cursorColor: const Color(0xFF000000),
+                    backgroundCursorColor: const Color(0xFF808080),
+                    onChanged: field.didChange,
+                  ),
+                  if (field.errorText case final errorText?) Text(errorText),
+                ],
               );
             },
           ),
