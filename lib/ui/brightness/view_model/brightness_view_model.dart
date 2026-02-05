@@ -23,22 +23,31 @@ class BrightnessViewModel extends _$BrightnessViewModel {
     );
   }
 
-  /// Sets the screen brightness to the given value and refreshes the display.
+  /// Sets the screen brightness to the given value.
   Future<void> setBrightness({required double brightness}) async {
-    final useCase = ref.read(setBrightnessUseCaseProvider);
-    await AsyncValue.guard(
-      () => useCase.call(brightness: brightness).getOrThrow(),
+    final setUseCase = ref.read(setBrightnessUseCaseProvider);
+    final getUseCase = ref.read(getBrightnessUseCaseProvider);
+    state = state.copyWith(
+      brightness: await AsyncValue.guard(
+        () async {
+          await setUseCase.call(brightness: brightness).getOrThrow();
+          return getUseCase.call().getOrThrow();
+        },
+      ),
     );
-    await fetchBrightness();
   }
 
-  /// Resets the screen brightness to the system default and
-  /// refreshes the display.
+  /// Resets the screen brightness to the system default.
   Future<void> resetBrightness() async {
-    final useCase = ref.read(resetBrightnessUseCaseProvider);
-    await AsyncValue.guard(
-      () => useCase.call().getOrThrow(),
+    final resetUseCase = ref.read(resetBrightnessUseCaseProvider);
+    final getUseCase = ref.read(getBrightnessUseCaseProvider);
+    state = state.copyWith(
+      brightness: await AsyncValue.guard(
+        () async {
+          await resetUseCase.call().getOrThrow();
+          return getUseCase.call().getOrThrow();
+        },
+      ),
     );
-    await fetchBrightness();
   }
 }

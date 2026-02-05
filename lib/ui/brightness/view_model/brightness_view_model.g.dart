@@ -45,7 +45,7 @@ final class BrightnessViewModelProvider
 }
 
 String _$brightnessViewModelHash() =>
-    r'1761e683ca1a50cef141467bd4e39d2267e47512';
+    r'9f39e4d59fbcf6e88b6bbd236d4fa253964a286f';
 
 /// ViewModel that manages screen brightness operations.
 
