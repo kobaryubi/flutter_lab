@@ -42,6 +42,7 @@ class _Body extends HookWidget {
     return FormBuilder(
       key: form.formKey,
       autovalidateMode: .onUserInteraction,
+      onChanged: form.onChanged,
       child: Column(
         crossAxisAlignment: .start,
         spacing: 16,
@@ -96,8 +97,15 @@ class _Body extends HookWidget {
             },
           ),
           GestureDetector(
-            onTap: handleSubmit,
-            child: const Text('Submit'),
+            onTap: form.isValid ? handleSubmit : null,
+            child: Text(
+              'Submit',
+              style: TextStyle(
+                color: form.isValid
+                    ? const Color(0xFF000000)
+                    : const Color(0xFF808080),
+              ),
+            ),
           ),
           if (submittedValues.value case final values?)
             Text('Submitted: $values'),
