@@ -21,6 +21,7 @@ List<RouteBase> get $appRoutes => [
   $localIconRoute,
   $localPathsRoute,
   $locationRoute,
+  $maxSdkRoute,
   $networkRoute,
   $notFoundRoute,
   $ocrRoute,
@@ -365,6 +366,29 @@ mixin $LocationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/location');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $maxSdkRoute =>
+    GoRouteData.$route(path: '/max_sdk', factory: $MaxSdkRoute._fromState);
+
+mixin $MaxSdkRoute on GoRouteData {
+  static MaxSdkRoute _fromState(GoRouterState state) => MaxSdkRoute();
+
+  @override
+  String get location => GoRouteData.$location('/max_sdk');
 
   @override
   void go(BuildContext context) => context.go(location);
