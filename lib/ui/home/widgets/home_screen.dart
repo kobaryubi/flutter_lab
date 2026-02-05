@@ -40,6 +40,7 @@ class HomeScreen extends StatelessWidget {
       title: 'screenshot prevention',
       route: ScreenshotPreventionRoute(),
     ),
+    AppLink(title: 'form builder', route: FormBuilderRoute()),
   ];
 
   @override
