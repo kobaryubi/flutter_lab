@@ -22,9 +22,8 @@ class ConnectivityPlusNetworkRepository implements NetworkRepository {
   }
 
   @override
-  Stream<ConnectivityStatus> get onConnectivityChanged {
-    return _connectivity.onConnectivityChanged.map(_toConnectivityStatus);
-  }
+  Stream<ConnectivityStatus> get onConnectivityChanged =>
+      _connectivity.onConnectivityChanged.map(_toConnectivityStatus);
 
   ConnectivityStatus _toConnectivityStatus(List<ConnectivityResult> results) {
     final connectivities = results.map((result) => result.name).toList();

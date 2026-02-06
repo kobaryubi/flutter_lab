@@ -18,17 +18,12 @@ class FileSystemShortcutRepository implements ShortcutRepository {
   AsyncResult<File> saveShortcutIcon({
     required String assetPath,
     required String fileName,
-  }) {
-    return _gateway.saveIcon(assetPath: assetPath, fileName: fileName);
-  }
+  }) => _gateway.saveIcon(assetPath: assetPath, fileName: fileName);
 
   @override
-  AsyncResult<Unit> deleteShortcutIcon({required String fileName}) {
-    return _gateway.deleteIcon(fileName: fileName);
-  }
+  AsyncResult<Unit> deleteShortcutIcon({required String fileName}) =>
+      _gateway.deleteIcon(fileName: fileName);
 
   @override
-  AsyncResult<Unit> deleteAllShortcutIcons() {
-    return _gateway.deleteAllIcons();
-  }
+  AsyncResult<Unit> deleteAllShortcutIcons() => _gateway.deleteAllIcons();
 }

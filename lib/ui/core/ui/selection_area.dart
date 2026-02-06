@@ -9,7 +9,5 @@ class SelectionArea extends StatefulWidget {
 
 class _SelectionAreaState extends State<SelectionArea> {
   @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+  Widget build(BuildContext context) => Container();
 }

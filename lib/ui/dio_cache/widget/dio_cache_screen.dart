@@ -9,12 +9,10 @@ class DioCacheScreen extends StatelessWidget {
   const DioCacheScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('Dio Cache')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('Dio Cache')),
+    child: _Body(),
+  );
 }
 
 class _Body extends ConsumerWidget {
@@ -72,20 +70,18 @@ class _ActionButtons extends StatelessWidget {
   final VoidCallback onClearCache;
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        GestureDetector(
-          onTap: onSendRequest,
-          child: const Text('Send Request'),
-        ),
-        GestureDetector(
-          onTap: onClearCache,
-          child: const Text('Clear Cache'),
-        ),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => Row(
+    children: [
+      GestureDetector(
+        onTap: onSendRequest,
+        child: const Text('Send Request'),
+      ),
+      GestureDetector(
+        onTap: onClearCache,
+        child: const Text('Clear Cache'),
+      ),
+    ],
+  );
 }
 
 class _ResponseInfo extends StatelessWidget {
@@ -98,13 +94,11 @@ class _ResponseInfo extends StatelessWidget {
   final bool isFromCache;
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: .start,
-      children: [
-        Text('Status: $status'),
-        Text('From cache: $isFromCache'),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: .start,
+    children: [
+      Text('Status: $status'),
+      Text('From cache: $isFromCache'),
+    ],
+  );
 }

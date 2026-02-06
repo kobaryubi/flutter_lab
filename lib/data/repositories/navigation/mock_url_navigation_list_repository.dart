@@ -5,16 +5,15 @@ import 'package:result_dart/result_dart.dart';
 /// Mock implementation that returns hardcoded blacklist and whitelist data.
 class MockUrlNavigationListRepository extends UrlNavigationListRepository {
   @override
-  AsyncResult<UrlNavigationList> getNavigationList() async {
-    return const UrlNavigationList(
-      blackList: [
-        'evil.com/malware',
-        'phishing.example.com',
-      ],
-      whiteList: [
-        'myapp.com',
-        'trusted.example.com/content',
-      ],
-    ).toSuccess();
-  }
+  AsyncResult<UrlNavigationList> getNavigationList() async =>
+      const UrlNavigationList(
+        blackList: [
+          'evil.com/malware',
+          'phishing.example.com',
+        ],
+        whiteList: [
+          'myapp.com',
+          'trusted.example.com/content',
+        ],
+      ).toSuccess();
 }

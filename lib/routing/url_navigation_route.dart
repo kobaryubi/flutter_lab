@@ -6,7 +6,6 @@ part of 'router.dart';
 @immutable
 class UrlNavigationRoute extends GoRouteData with $UrlNavigationRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const UrlNavigationScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const UrlNavigationScreen();
 }

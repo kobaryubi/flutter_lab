@@ -8,12 +8,10 @@ class AppLifecycleScreen extends StatelessWidget {
   const AppLifecycleScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('App Lifecycle Hooks')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('App Lifecycle Hooks')),
+    child: _Body(),
+  );
 }
 
 class _Body extends HookWidget {

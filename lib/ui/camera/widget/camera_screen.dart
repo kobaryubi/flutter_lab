@@ -1,44 +1,40 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_lab/hook/use_camera_manager.dart';
+import 'package:flutter_lab/hook/use_camera_controller.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CameraScreen extends StatelessWidget {
   const CameraScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Layout(
-      appBar: const AppBar(title: Text('camera')),
-      child: Column(children: [Expanded(child: _Body())]),
-    );
-  }
+  Widget build(BuildContext context) => Layout(
+    appBar: const AppBar(title: Text('camera')),
+    child: Column(children: [Expanded(child: _Body())]),
+  );
 }
 
 class _Body extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final cameraManager = useCameraManager();
+    final cameraController = useCameraController();
 
-    final controller = cameraManager.cameraController;
-
-    if (cameraManager.camera == null || controller == null) {
-      return const Center(
-        child: Text('no camera found'),
+    if (cameraController case AsyncData(:final value)) {
+      return Center(
+        child: CameraPreview(value),
       );
     }
 
-    if (cameraManager.isInitializedSnapshot.connectionState ==
-        ConnectionState.waiting) {
-      return const Center(
-        child: Text('initializing camera...'),
+    if (cameraController case AsyncError(:final error)) {
+      return Center(
+        child: Text('$error'),
       );
     }
 
-    return Center(
-      child: CameraPreview(controller),
+    return const Center(
+      child: Text('initializing camera...'),
     );
   }
 }

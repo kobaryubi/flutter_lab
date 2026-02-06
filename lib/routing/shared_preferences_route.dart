@@ -6,7 +6,6 @@ part of 'router.dart';
 @immutable
 class SharedPreferencesRoute extends GoRouteData with $SharedPreferencesRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const SharedPreferencesScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SharedPreferencesScreen();
 }

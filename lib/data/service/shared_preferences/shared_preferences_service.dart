@@ -16,7 +16,6 @@ class SharedPreferencesService {
   }
 
   /// Sets a DateTime value for the given key.
-  Future<void> setDateTime({required String key, required DateTime value}) {
-    return _sharedPreferencesAsync.setString(key, value.toIso8601String());
-  }
+  Future<void> setDateTime({required String key, required DateTime value}) =>
+      _sharedPreferencesAsync.setString(key, value.toIso8601String());
 }

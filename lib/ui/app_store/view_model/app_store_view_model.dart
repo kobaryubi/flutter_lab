@@ -8,9 +8,7 @@ part 'app_store_view_model.g.dart';
 @riverpod
 class AppStoreViewModel extends _$AppStoreViewModel {
   @override
-  AppStoreUiState build() {
-    return const AppStoreUiState();
-  }
+  AppStoreUiState build() => const AppStoreUiState();
 
   /// Fetches the app store URL for the current platform.
   Future<void> fetchAppStoreUrl() async {

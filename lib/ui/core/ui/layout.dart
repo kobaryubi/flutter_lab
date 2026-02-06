@@ -14,21 +14,19 @@ class Layout extends StatelessWidget {
   final Widget? bottomNavigationBar;
 
   @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: AppColors.primary,
-      child: SafeArea(
-        child: ColoredBox(
-          color: AppColors.white1,
-          child: Column(
-            children: [
-              appBar,
-              Expanded(child: child),
-              if (bottomNavigationBar != null) bottomNavigationBar!,
-            ],
-          ),
+  Widget build(BuildContext context) => ColoredBox(
+    color: AppColors.primary,
+    child: SafeArea(
+      child: ColoredBox(
+        color: AppColors.white1,
+        child: Column(
+          children: [
+            appBar,
+            Expanded(child: child),
+            if (bottomNavigationBar != null) bottomNavigationBar!,
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
 }

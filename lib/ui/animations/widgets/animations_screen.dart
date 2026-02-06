@@ -31,12 +31,10 @@ class LogoWidget extends StatelessWidget {
   const LogoWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      child: const FlutterLogo(),
-    );
-  }
+  Widget build(BuildContext context) => Container(
+    margin: const EdgeInsets.symmetric(vertical: 10),
+    child: const FlutterLogo(),
+  );
 }
 
 class GrowTransition extends StatelessWidget {
@@ -50,21 +48,17 @@ class GrowTransition extends StatelessWidget {
   final Animation<double> animation;
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: AnimatedBuilder(
-        animation: animation,
-        builder: (context, child) {
-          return SizedBox(
-            height: animation.value,
-            width: animation.value,
-            child: child,
-          );
-        },
+  Widget build(BuildContext context) => Center(
+    child: AnimatedBuilder(
+      animation: animation,
+      builder: (context, child) => SizedBox(
+        height: animation.value,
+        width: animation.value,
         child: child,
       ),
-    );
-  }
+      child: child,
+    ),
+  );
 }
 
 class AnimationsScreen extends StatefulWidget {
@@ -98,12 +92,10 @@ class _AnimationsScreenState extends State<AnimationsScreen>
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AppBar(title: Text('Animations')),
-      body: AnimatedLogo(animation: animation),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+    appBar: const AppBar(title: Text('Animations')),
+    body: AnimatedLogo(animation: animation),
+  );
 
   @override
   void dispose() {

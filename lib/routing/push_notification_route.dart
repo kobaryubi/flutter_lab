@@ -6,7 +6,6 @@ part of 'router.dart';
 @immutable
 class PushNotificationRoute extends GoRouteData with $PushNotificationRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const PushNotificationScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const PushNotificationScreen();
 }

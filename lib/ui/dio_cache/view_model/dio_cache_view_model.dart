@@ -10,9 +10,7 @@ part 'dio_cache_view_model.g.dart';
 @riverpod
 class DioCacheViewModel extends _$DioCacheViewModel {
   @override
-  DioCacheUiState build() {
-    return const DioCacheUiState();
-  }
+  DioCacheUiState build() => const DioCacheUiState();
 
   /// Sends a GET request through the cache repository.
   AsyncResult<CachedResponse> fetch() async {

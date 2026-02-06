@@ -44,7 +44,7 @@ final class DioCacheViewModelProvider
   }
 }
 
-String _$dioCacheViewModelHash() => r'd4c5a4ee77e26b0d48fae127bc11eeae7fc216f8';
+String _$dioCacheViewModelHash() => r'72fcad8b9163a34dbb9089944a405925b4ae068c';
 
 /// ViewModel that manages dio cache fetch and clear operations.
 

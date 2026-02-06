@@ -8,7 +8,5 @@ class PlatformBatteryRepository extends BatteryRepository {
   static const platform = MethodChannel(MethodChannelNames.battery);
 
   @override
-  AsyncResult<Battery> get() async {
-    return const Battery(level: 85).toSuccess();
-  }
+  AsyncResult<Battery> get() async => const Battery(level: 85).toSuccess();
 }

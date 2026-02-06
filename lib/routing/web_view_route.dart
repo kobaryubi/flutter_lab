@@ -9,7 +9,6 @@ class WebViewRoute extends GoRouteData with $WebViewRoute {
   final String url;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return WebViewScreen(url: url);
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      WebViewScreen(url: url);
 }

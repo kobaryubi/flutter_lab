@@ -11,12 +11,10 @@ class FormBuilderScreen extends StatelessWidget {
   const FormBuilderScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('Form Builder')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('Form Builder')),
+    child: _Body(),
+  );
 }
 
 class _Body extends HookWidget {
@@ -53,22 +51,20 @@ class _Body extends HookWidget {
             validator: FormBuilderValidators.compose([
               FormBuilderValidators.required(),
             ]),
-            builder: (field) {
-              return Column(
-                crossAxisAlignment: .start,
-                children: [
-                  EditableText(
-                    controller: nameController,
-                    focusNode: nameFocusNode,
-                    style: DefaultTextStyle.of(field.context).style,
-                    cursorColor: const Color(0xFF000000),
-                    backgroundCursorColor: const Color(0xFF808080),
-                    onChanged: field.didChange,
-                  ),
-                  if (field.errorText case final errorText?) Text(errorText),
-                ],
-              );
-            },
+            builder: (field) => Column(
+              crossAxisAlignment: .start,
+              children: [
+                EditableText(
+                  controller: nameController,
+                  focusNode: nameFocusNode,
+                  style: DefaultTextStyle.of(field.context).style,
+                  cursorColor: const Color(0xFF000000),
+                  backgroundCursorColor: const Color(0xFF808080),
+                  onChanged: field.didChange,
+                ),
+                if (field.errorText case final errorText?) Text(errorText),
+              ],
+            ),
           ),
           const Text('Email'),
           FormBuilderField<String>(
@@ -77,22 +73,20 @@ class _Body extends HookWidget {
               FormBuilderValidators.required(),
               FormBuilderValidators.email(),
             ]),
-            builder: (field) {
-              return Column(
-                crossAxisAlignment: .start,
-                children: [
-                  EditableText(
-                    controller: emailController,
-                    focusNode: emailFocusNode,
-                    style: DefaultTextStyle.of(field.context).style,
-                    cursorColor: const Color(0xFF000000),
-                    backgroundCursorColor: const Color(0xFF808080),
-                    onChanged: field.didChange,
-                  ),
-                  if (field.errorText case final errorText?) Text(errorText),
-                ],
-              );
-            },
+            builder: (field) => Column(
+              crossAxisAlignment: .start,
+              children: [
+                EditableText(
+                  controller: emailController,
+                  focusNode: emailFocusNode,
+                  style: DefaultTextStyle.of(field.context).style,
+                  cursorColor: const Color(0xFF000000),
+                  backgroundCursorColor: const Color(0xFF808080),
+                  onChanged: field.didChange,
+                ),
+                if (field.errorText case final errorText?) Text(errorText),
+              ],
+            ),
           ),
           GestureDetector(
             onTap: form.isValid ? handleSubmit : null,

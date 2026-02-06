@@ -16,10 +16,8 @@ abstract class ButtonStyleButton extends StatefulWidget {
 
 class _ButtonStyleButtonState extends State<ButtonStyleButton> {
   @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      child: GestureDetector(onTap: widget.onPressed, child: widget.child),
-    );
-  }
+  Widget build(BuildContext context) => Semantics(
+    button: true,
+    child: GestureDetector(onTap: widget.onPressed, child: widget.child),
+  );
 }

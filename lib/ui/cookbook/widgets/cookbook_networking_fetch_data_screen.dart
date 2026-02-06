@@ -36,26 +36,24 @@ class _CookbookNetworkingFetchDataScreenState
   }
 
   @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: AppColors.white1,
-      child: Center(
-        child: FutureBuilder<Album>(
-          future: futureAlbum,
-          builder: (context, snapshot) {
-            final data = snapshot.data;
-            if (snapshot.hasData && data != null) {
-              return Text(data.title);
-            }
+  Widget build(BuildContext context) => ColoredBox(
+    color: AppColors.white1,
+    child: Center(
+      child: FutureBuilder<Album>(
+        future: futureAlbum,
+        builder: (context, snapshot) {
+          final data = snapshot.data;
+          if (snapshot.hasData && data != null) {
+            return Text(data.title);
+          }
 
-            if (snapshot.hasError) {
-              return Text('${snapshot.error}');
-            }
+          if (snapshot.hasError) {
+            return Text('${snapshot.error}');
+          }
 
-            return const Text('Loading...');
-          },
-        ),
+          return const Text('Loading...');
+        },
       ),
-    );
-  }
+    ),
+  );
 }

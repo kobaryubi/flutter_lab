@@ -11,12 +11,10 @@ class AppStoreScreen extends StatelessWidget {
   const AppStoreScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('App Store')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('App Store')),
+    child: _Body(),
+  );
 }
 
 class _Body extends HookConsumerWidget {
