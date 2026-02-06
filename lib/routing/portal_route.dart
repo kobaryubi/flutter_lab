@@ -4,7 +4,6 @@ part of 'router.dart';
 @immutable
 class PortalRoute extends GoRouteData with $PortalRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const PortalScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const PortalScreen();
 }

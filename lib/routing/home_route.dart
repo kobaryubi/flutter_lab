@@ -6,7 +6,5 @@ part of 'router.dart';
 @immutable
 class HomeRoute extends GoRouteData with $HomeRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const HomeScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) => const HomeScreen();
 }

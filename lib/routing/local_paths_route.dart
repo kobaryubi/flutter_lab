@@ -4,7 +4,6 @@ part of 'router.dart';
 @immutable
 class LocalPathsRoute extends GoRouteData with $LocalPathsRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const LocalPathsScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const LocalPathsScreen();
 }

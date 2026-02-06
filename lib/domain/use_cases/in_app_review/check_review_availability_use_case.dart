@@ -10,7 +10,5 @@ class CheckReviewAvailabilityUseCase {
   final InAppReviewRepository _inAppReviewRepository;
 
   /// Returns whether the in-app review is available.
-  AsyncResult<bool> call() {
-    return _inAppReviewRepository.isAvailable();
-  }
+  AsyncResult<bool> call() => _inAppReviewRepository.isAvailable();
 }

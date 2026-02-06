@@ -4,7 +4,6 @@ part of 'router.dart';
 @immutable
 class ArutanaAdRoute extends GoRouteData with $ArutanaAdRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const ArutanaAdScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ArutanaAdScreen();
 }

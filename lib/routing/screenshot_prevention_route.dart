@@ -7,7 +7,6 @@ part of 'router.dart';
 class ScreenshotPreventionRoute extends GoRouteData
     with $ScreenshotPreventionRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const ScreenshotPreventionScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ScreenshotPreventionScreen();
 }

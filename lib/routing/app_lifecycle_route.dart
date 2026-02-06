@@ -4,7 +4,6 @@ part of 'router.dart';
 @immutable
 class AppLifecycleRoute extends GoRouteData with $AppLifecycleRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const AppLifecycleScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AppLifecycleScreen();
 }

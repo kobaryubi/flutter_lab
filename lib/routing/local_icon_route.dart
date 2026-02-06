@@ -4,7 +4,6 @@ part of 'router.dart';
 @immutable
 class LocalIconRoute extends GoRouteData with $LocalIconRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const LocalIconScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const LocalIconScreen();
 }

@@ -6,7 +6,6 @@ part of 'router.dart';
 @immutable
 class LocationRoute extends GoRouteData with $LocationRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const LocationScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const LocationScreen();
 }

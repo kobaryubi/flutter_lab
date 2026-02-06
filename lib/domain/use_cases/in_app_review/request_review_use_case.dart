@@ -10,7 +10,5 @@ class RequestReviewUseCase {
   final InAppReviewRepository _inAppReviewRepository;
 
   /// Triggers the in-app review flow.
-  AsyncResult<Unit> call() {
-    return _inAppReviewRepository.requestReview();
-  }
+  AsyncResult<Unit> call() => _inAppReviewRepository.requestReview();
 }

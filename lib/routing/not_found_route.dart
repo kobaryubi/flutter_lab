@@ -6,7 +6,6 @@ part of 'router.dart';
 @immutable
 class NotFoundRoute extends GoRouteData with $NotFoundRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const NotFoundScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const NotFoundScreen();
 }

@@ -6,7 +6,6 @@ part of 'router.dart';
 @immutable
 class AppStoreRoute extends GoRouteData with $AppStoreRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const AppStoreScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AppStoreScreen();
 }

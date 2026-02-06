@@ -4,7 +4,5 @@ part of 'router.dart';
 @immutable
 class OcrRoute extends GoRouteData with $OcrRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const OcrScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) => const OcrScreen();
 }

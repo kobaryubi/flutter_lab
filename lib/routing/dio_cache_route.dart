@@ -6,7 +6,6 @@ part of 'router.dart';
 @immutable
 class DioCacheRoute extends GoRouteData with $DioCacheRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const DioCacheScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const DioCacheScreen();
 }

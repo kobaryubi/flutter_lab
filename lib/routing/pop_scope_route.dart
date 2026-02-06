@@ -6,7 +6,6 @@ part of 'router.dart';
 @immutable
 class PopScopeRoute extends GoRouteData with $PopScopeRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const PopScopeScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const PopScopeScreen();
 }

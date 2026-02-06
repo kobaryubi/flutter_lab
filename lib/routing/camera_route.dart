@@ -4,7 +4,6 @@ part of 'router.dart';
 @immutable
 class CameraRoute extends GoRouteData with $CameraRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const CameraScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const CameraScreen();
 }

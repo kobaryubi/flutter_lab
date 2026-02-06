@@ -6,7 +6,6 @@ part of 'router.dart';
 @immutable
 class FormBuilderRoute extends GoRouteData with $FormBuilderRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const FormBuilderScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const FormBuilderScreen();
 }

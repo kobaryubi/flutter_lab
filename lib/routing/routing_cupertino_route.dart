@@ -7,9 +7,7 @@ class RoutingCupertinoRoute extends GoRouteData with $RoutingCupertinoRoute {
   CupertinoPage<void> buildPage(
     BuildContext context,
     GoRouterState state,
-  ) {
-    return const CupertinoPage(
-      child: RoutingCupertinoScreen(),
-    );
-  }
+  ) => const CupertinoPage(
+    child: RoutingCupertinoScreen(),
+  );
 }

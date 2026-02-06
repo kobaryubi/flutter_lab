@@ -6,7 +6,6 @@ part of 'router.dart';
 @immutable
 class NetworkRoute extends GoRouteData with $NetworkRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const NetworkScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const NetworkScreen();
 }

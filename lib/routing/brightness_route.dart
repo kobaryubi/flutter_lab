@@ -6,7 +6,6 @@ part of 'router.dart';
 @immutable
 class BrightnessRoute extends GoRouteData with $BrightnessRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const BrightnessScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const BrightnessScreen();
 }

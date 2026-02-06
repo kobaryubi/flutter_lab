@@ -7,7 +7,6 @@ class LaunchUrlRoute extends GoRouteData with $LaunchUrlRoute {
   final String url;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return LaunchUrlScreen(url: url);
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      LaunchUrlScreen(url: url);
 }

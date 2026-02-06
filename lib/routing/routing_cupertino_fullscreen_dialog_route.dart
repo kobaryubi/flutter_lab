@@ -10,10 +10,8 @@ class RoutingCupertinoFullscreenDialogRoute extends GoRouteData
   CupertinoPage<void> buildPage(
     BuildContext context,
     GoRouterState state,
-  ) {
-    return const CupertinoPage(
-      fullscreenDialog: true,
-      child: RoutingCupertinoFullscreenDialogScreen(),
-    );
-  }
+  ) => const CupertinoPage(
+    fullscreenDialog: true,
+    child: RoutingCupertinoFullscreenDialogScreen(),
+  );
 }

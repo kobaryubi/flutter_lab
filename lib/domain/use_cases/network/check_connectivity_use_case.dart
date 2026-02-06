@@ -11,7 +11,6 @@ class CheckConnectivityUseCase {
   final NetworkRepository _networkRepository;
 
   /// Returns the current connectivity status.
-  AsyncResult<ConnectivityStatus> call() {
-    return _networkRepository.checkConnectivity();
-  }
+  AsyncResult<ConnectivityStatus> call() =>
+      _networkRepository.checkConnectivity();
 }

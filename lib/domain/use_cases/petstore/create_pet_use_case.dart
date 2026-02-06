@@ -8,7 +8,5 @@ class CreatePetUseCase {
 
   final PetRepository _petRepository;
 
-  AsyncResult<Unit> call(Pet pet) async {
-    return _petRepository.createPet(pet);
-  }
+  AsyncResult<Unit> call(Pet pet) async => _petRepository.createPet(pet);
 }

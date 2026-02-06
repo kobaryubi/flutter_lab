@@ -4,7 +4,6 @@ part of 'router.dart';
 @immutable
 class RoutingRoute extends GoRouteData with $RoutingRoute {
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return const RoutingScreen();
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      const RoutingScreen();
 }

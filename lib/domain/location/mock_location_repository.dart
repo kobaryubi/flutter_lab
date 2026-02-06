@@ -4,7 +4,6 @@ import 'package:result_dart/result_dart.dart';
 
 class MockLocationRepository extends LocationRepository {
   @override
-  AsyncResult<Location> get() async {
-    return const Location(latitude: 35, longitude: 135).toSuccess();
-  }
+  AsyncResult<Location> get() async =>
+      const Location(latitude: 35, longitude: 135).toSuccess();
 }
