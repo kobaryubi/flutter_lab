@@ -8,9 +8,8 @@ part 'shared_preferences_view_model.g.dart';
 @riverpod
 class SharedPreferencesViewModel extends _$SharedPreferencesViewModel {
   @override
-  SharedPreferencesUiState build() {
-    return const SharedPreferencesUiState(latestAgreedDate: null);
-  }
+  SharedPreferencesUiState build() =>
+      const SharedPreferencesUiState(latestAgreedDate: null);
 
   /// Loads the latest agreed date.
   Future<void> load() async {

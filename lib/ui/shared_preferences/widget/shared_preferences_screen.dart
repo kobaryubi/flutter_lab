@@ -10,12 +10,10 @@ class SharedPreferencesScreen extends StatelessWidget {
   const SharedPreferencesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('Shared Preferences')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('Shared Preferences')),
+    child: _Body(),
+  );
 }
 
 class _Body extends HookConsumerWidget {

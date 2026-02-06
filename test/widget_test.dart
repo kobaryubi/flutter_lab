@@ -35,8 +35,7 @@ class MyWidget extends StatelessWidget {
   final String message;
 
   @override
-  Widget build(BuildContext context) {
-    return WidgetsApp.router(
+  Widget build(BuildContext context) => WidgetsApp.router(
       routerConfig: GoRouter(
         routes: [
           GoRoute(
@@ -52,5 +51,4 @@ class MyWidget extends StatelessWidget {
       ),
       color: const Color(0xFFFFFFFF),
     );
-  }
 }
