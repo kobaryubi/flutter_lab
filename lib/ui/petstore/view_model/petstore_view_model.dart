@@ -10,20 +10,7 @@ part 'petstore_view_model.g.dart';
 class PetStoreViewModel extends _$PetStoreViewModel {
   @override
   PetStoreUiState build() {
-    return const PetStoreUiState(
-      pets: null,
-    );
-  }
-
-  Future<void> listPets() async {
-    final listPetsUseCase = ref.read(listPetsUseCaseProvider);
-
-    state = state.copyWith(
-      pets: await AsyncValue.guard(() async {
-        final petsResult = await listPetsUseCase.call();
-        return petsResult.getOrThrow();
-      }),
-    );
+    return const PetStoreUiState();
   }
 
   Future<Unit> createPet(Pet pet) async {

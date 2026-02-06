@@ -41,7 +41,7 @@ final class PetStoreViewModelProvider
   }
 }
 
-String _$petStoreViewModelHash() => r'6fcec887f978ff236cf72a64895d7183895ec88d';
+String _$petStoreViewModelHash() => r'2faca7cad1b95cc40879eca5f7da7aba7948f83a';
 
 abstract class _$PetStoreViewModel extends $Notifier<PetStoreUiState> {
   PetStoreUiState build();

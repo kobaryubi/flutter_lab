@@ -14,61 +14,30 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PetStoreUiState {
 
- AsyncValue<List<Pet>>? get pets;
-/// Create a copy of PetStoreUiState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$PetStoreUiStateCopyWith<PetStoreUiState> get copyWith => _$PetStoreUiStateCopyWithImpl<PetStoreUiState>(this as PetStoreUiState, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PetStoreUiState&&(identical(other.pets, pets) || other.pets == pets));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PetStoreUiState);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,pets);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'PetStoreUiState(pets: $pets)';
+  return 'PetStoreUiState()';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $PetStoreUiStateCopyWith<$Res>  {
-  factory $PetStoreUiStateCopyWith(PetStoreUiState value, $Res Function(PetStoreUiState) _then) = _$PetStoreUiStateCopyWithImpl;
-@useResult
-$Res call({
- AsyncValue<List<Pet>>? pets
-});
-
-
-
-
-}
-/// @nodoc
-class _$PetStoreUiStateCopyWithImpl<$Res>
-    implements $PetStoreUiStateCopyWith<$Res> {
-  _$PetStoreUiStateCopyWithImpl(this._self, this._then);
-
-  final PetStoreUiState _self;
-  final $Res Function(PetStoreUiState) _then;
-
-/// Create a copy of PetStoreUiState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? pets = freezed,}) {
-  return _then(_self.copyWith(
-pets: freezed == pets ? _self.pets : pets // ignore: cast_nullable_to_non_nullable
-as AsyncValue<List<Pet>>?,
-  ));
-}
-
+class $PetStoreUiStateCopyWith<$Res>  {
+$PetStoreUiStateCopyWith(PetStoreUiState _, $Res Function(PetStoreUiState) __);
 }
 
 
@@ -150,10 +119,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<List<Pet>>? pets)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function()?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PetStoreUiState() when $default != null:
-return $default(_that.pets);case _:
+return $default();case _:
   return orElse();
 
 }
@@ -171,10 +140,10 @@ return $default(_that.pets);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<List<Pet>>? pets)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function()  $default,) {final _that = this;
 switch (_that) {
 case _PetStoreUiState():
-return $default(_that.pets);case _:
+return $default();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +160,10 @@ return $default(_that.pets);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<List<Pet>>? pets)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function()?  $default,) {final _that = this;
 switch (_that) {
 case _PetStoreUiState() when $default != null:
-return $default(_that.pets);case _:
+return $default();case _:
   return null;
 
 }
@@ -206,66 +175,32 @@ return $default(_that.pets);case _:
 
 
 class _PetStoreUiState implements PetStoreUiState {
-  const _PetStoreUiState({required this.pets});
+  const _PetStoreUiState();
   
 
-@override final  AsyncValue<List<Pet>>? pets;
 
-/// Create a copy of PetStoreUiState
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$PetStoreUiStateCopyWith<_PetStoreUiState> get copyWith => __$PetStoreUiStateCopyWithImpl<_PetStoreUiState>(this, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PetStoreUiState&&(identical(other.pets, pets) || other.pets == pets));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PetStoreUiState);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,pets);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'PetStoreUiState(pets: $pets)';
+  return 'PetStoreUiState()';
 }
 
 
 }
 
-/// @nodoc
-abstract mixin class _$PetStoreUiStateCopyWith<$Res> implements $PetStoreUiStateCopyWith<$Res> {
-  factory _$PetStoreUiStateCopyWith(_PetStoreUiState value, $Res Function(_PetStoreUiState) _then) = __$PetStoreUiStateCopyWithImpl;
-@override @useResult
-$Res call({
- AsyncValue<List<Pet>>? pets
-});
 
 
-
-
-}
-/// @nodoc
-class __$PetStoreUiStateCopyWithImpl<$Res>
-    implements _$PetStoreUiStateCopyWith<$Res> {
-  __$PetStoreUiStateCopyWithImpl(this._self, this._then);
-
-  final _PetStoreUiState _self;
-  final $Res Function(_PetStoreUiState) _then;
-
-/// Create a copy of PetStoreUiState
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? pets = freezed,}) {
-  return _then(_PetStoreUiState(
-pets: freezed == pets ? _self.pets : pets // ignore: cast_nullable_to_non_nullable
-as AsyncValue<List<Pet>>?,
-  ));
-}
-
-
-}
 
 // dart format on

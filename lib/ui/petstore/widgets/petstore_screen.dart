@@ -25,42 +25,16 @@ class _Body extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final petsAsyncValue = ref.watch(
-      petStoreViewModelProvider.select((it) => it.pets),
-    );
     final vm = ref.read(petStoreViewModelProvider.notifier);
 
-    useEffect(() {
-      vm.listPets();
-      return null;
-    }, []);
-
-    if (petsAsyncValue == null || petsAsyncValue.isLoading) {
-      return const Text('Loading...');
-    }
-
-    if (petsAsyncValue.hasError) {
-      return Text('Error: ${petsAsyncValue.error}');
-    }
-
-    final pets = petsAsyncValue.value ?? [];
-
+    /// Handles the add pet button press.
     final onAddPetButtonPressed = useCallback(() {
       vm.createPet(const Pet(id: 1, name: 'New Pet'));
     }, [vm]);
 
-    final listView = ListView.builder(
-      itemCount: pets.length,
-      itemBuilder: (context, index) {
-        final pet = pets[index];
-        return Text(pet.name);
-      },
-    );
-
     return Column(
       children: [
         Button(onTap: onAddPetButtonPressed, label: 'Add Pet'),
-        Expanded(child: listView),
       ],
     );
   }
