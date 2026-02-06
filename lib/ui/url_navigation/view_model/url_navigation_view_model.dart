@@ -9,9 +9,8 @@ part 'url_navigation_view_model.g.dart';
 class UrlNavigationViewModel extends _$UrlNavigationViewModel
     with UrlNavigationMixin {
   @override
-  UrlNavigationUiState build() {
-    return const UrlNavigationUiState(urlNavigationList: .loading());
-  }
+  UrlNavigationUiState build() =>
+      const UrlNavigationUiState(urlNavigationList: .loading());
 
   /// Fetches the navigation list using [UrlNavigationMixin].
   Future<void> fetch() async {

@@ -13,12 +13,10 @@ class UrlNavigationScreen extends StatelessWidget {
   const UrlNavigationScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('URL Navigation')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('URL Navigation')),
+    child: _Body(),
+  );
 }
 
 class _Body extends HookConsumerWidget {

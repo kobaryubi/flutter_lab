@@ -13,12 +13,10 @@ class WebViewScreen extends StatelessWidget {
   final String url;
 
   @override
-  Widget build(BuildContext context) {
-    return Layout(
-      appBar: const AppBar(title: Text('Web View')),
-      child: _Body(url: url),
-    );
-  }
+  Widget build(BuildContext context) => Layout(
+    appBar: const AppBar(title: Text('Web View')),
+    child: _Body(url: url),
+  );
 }
 
 class _Body extends HookWidget {
