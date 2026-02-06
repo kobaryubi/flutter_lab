@@ -50,7 +50,6 @@ class _Body extends HookWidget {
           const Text('Name'),
           FormBuilderField<String>(
             name: 'name',
-            initialValue: nameController.text,
             validator: FormBuilderValidators.compose([
               FormBuilderValidators.required(),
             ]),
@@ -74,7 +73,6 @@ class _Body extends HookWidget {
           const Text('Email'),
           FormBuilderField<String>(
             name: 'email',
-            initialValue: emailController.text,
             validator: FormBuilderValidators.compose([
               FormBuilderValidators.required(),
               FormBuilderValidators.email(),
