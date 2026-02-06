@@ -14,3 +14,7 @@ analyzer:
     avoid_print: error
     public_member_api_docs: ignore
     one_member_abstracts: ignore
+
+linter:
+  rules:
+    - prefer_expression_function_bodies
