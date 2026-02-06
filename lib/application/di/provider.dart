@@ -109,13 +109,6 @@ SharedPreferencesService sharedPreferencesService(Ref ref) {
 
 // use case
 @riverpod
-ListPetsUseCase listPetsUseCase(Ref ref) {
-  return ListPetsUseCase(
-    petRepository: ref.read(petRepositoryProvider),
-  );
-}
-
-@riverpod
 CreatePetUseCase createPetUseCase(Ref ref) {
   return CreatePetUseCase(
     petRepository: ref.read(petRepositoryProvider),

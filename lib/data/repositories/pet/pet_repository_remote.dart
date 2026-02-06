@@ -19,20 +19,6 @@ class PetRepositoryRemote implements PetRepository {
   );
 
   @override
-  AsyncResult<List<Pet>> listPets() async {
-    try {
-      final response = await _petsApi.petsGet(limit: 10);
-      final petDtos = response.data?.toList() ?? [];
-
-      final pets = _petMapper.convertList<petstore.Pet, Pet>(petDtos);
-
-      return pets.toSuccess();
-    } on DioException catch (e) {
-      return e.toFailure();
-    }
-  }
-
-  @override
   AsyncResult<Unit> createPet(Pet pet) async {
     final dto = _petMapper.convert<Pet, petstore.Pet>(pet);
     await _petsApi.petsPost(pet: dto);
