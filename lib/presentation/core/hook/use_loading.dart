@@ -24,9 +24,7 @@ UseLoadingState useLoading(WidgetRef ref) {
   final notifier = ref.read(globalLoadingProvider.notifier);
 
   useEffect(
-    () {
-      return notifier.hide;
-    },
+    () => notifier.hide,
     [],
   );
 

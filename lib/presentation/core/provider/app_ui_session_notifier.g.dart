@@ -54,7 +54,7 @@ final class AppUiSessionNotifierProvider
 }
 
 String _$appUiSessionNotifierHash() =>
-    r'7e186de4d7d6d0ad46c54a1f0604c02118984654';
+    r'867887bb0df8222663b59e4a2a0d4ccc292d656b';
 
 /// Manages the UI session state that persists while the app is running.
 ///

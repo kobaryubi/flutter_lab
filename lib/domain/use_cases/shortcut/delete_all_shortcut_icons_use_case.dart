@@ -10,7 +10,6 @@ class DeleteAllShortcutIconsUseCase {
   final ShortcutRepository _shortcutRepository;
 
   /// Removes every shortcut icon by delegating to the repository.
-  AsyncResult<Unit> call() async {
-    return _shortcutRepository.deleteAllShortcutIcons();
-  }
+  AsyncResult<Unit> call() async =>
+      _shortcutRepository.deleteAllShortcutIcons();
 }

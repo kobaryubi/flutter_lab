@@ -13,9 +13,8 @@ class AppUiSessionNotifier extends _$AppUiSessionNotifier {
   AppUiSession build() => const AppUiSession();
 
   /// Returns whether the screen has been viewed in this session.
-  bool hasViewed({required String screenName}) {
-    return state.viewedScreens.contains(screenName);
-  }
+  bool hasViewed({required String screenName}) =>
+      state.viewedScreens.contains(screenName);
 
   /// Marks the screen as viewed in this session.
   void markAsViewed({required String screenName}) {

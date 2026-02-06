@@ -176,30 +176,28 @@ class ErrorScreen extends StatelessWidget {
   final VoidCallback onButtonTap;
 
   @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: const Color(0x80000000),
-      child: Center(
-        child: Container(
-          margin: const .all(32),
-          padding: const .all(24),
-          decoration: BoxDecoration(
-            color: const Color(0xFFFFFFFF),
-            borderRadius: .circular(16),
-          ),
-          child: Column(
-            mainAxisSize: .min,
-            children: [
-              Text(message ?? 'An error occurred'),
-              const SizedBox(height: 16),
-              GestureDetector(
-                onTap: onButtonTap,
-                child: const Text('Retry'),
-              ),
-            ],
-          ),
+  Widget build(BuildContext context) => ColoredBox(
+    color: const Color(0x80000000),
+    child: Center(
+      child: Container(
+        margin: const .all(32),
+        padding: const .all(24),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFFFFF),
+          borderRadius: .circular(16),
+        ),
+        child: Column(
+          mainAxisSize: .min,
+          children: [
+            Text(message ?? 'An error occurred'),
+            const SizedBox(height: 16),
+            GestureDetector(
+              onTap: onButtonTap,
+              child: const Text('Retry'),
+            ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
 }

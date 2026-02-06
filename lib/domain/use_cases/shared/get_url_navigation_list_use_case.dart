@@ -11,7 +11,6 @@ class GetUrlNavigationListUseCase {
   final UrlNavigationListRepository _urlNavigationListRepository;
 
   /// Returns the navigation list containing blacklist and whitelist.
-  AsyncResult<UrlNavigationList> call() {
-    return _urlNavigationListRepository.getNavigationList();
-  }
+  AsyncResult<UrlNavigationList> call() =>
+      _urlNavigationListRepository.getNavigationList();
 }
