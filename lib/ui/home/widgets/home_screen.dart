@@ -42,6 +42,7 @@ class HomeScreen extends StatelessWidget {
     ),
     AppLink(title: 'form builder', route: FormBuilderRoute()),
     AppLink(title: 'MAX SDK', route: MaxSdkRoute()),
+    AppLink(title: 'pop scope', route: PopScopeRoute()),
   ];
 
   @override

@@ -44,7 +44,7 @@ final class LoadingViewModelProvider
   }
 }
 
-String _$loadingViewModelHash() => r'1af966d2a8f313fe51db7e1722ee97f78bea4346';
+String _$loadingViewModelHash() => r'79f77def15778afabcbe064babf6b5dc4c310d13';
 
 /// ViewModel that simulates a data fetch with a delay.
 
