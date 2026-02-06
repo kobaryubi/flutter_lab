@@ -10,7 +10,5 @@ class GetAppStoreUrlUseCase {
   final AppStoreRepository _appStoreRepository;
 
   /// Returns the store URL for the configured platform.
-  Result<Uri> call() {
-    return _appStoreRepository.getUrl();
-  }
+  Result<Uri> call() => _appStoreRepository.getUrl();
 }
