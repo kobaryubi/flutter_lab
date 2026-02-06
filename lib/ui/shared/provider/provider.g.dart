@@ -62,7 +62,7 @@ final class DetermineNavigationDestinationUseCaseProvider
 }
 
 String _$determineNavigationDestinationUseCaseHash() =>
-    r'd5d2357f5f59f89ac3e6bd2dc558f8dd1a39e634';
+    r'bb8d43d461ace8ddbbd0551d4c515917abe458af';
 
 /// Provides [GetUrlNavigationListUseCase] with its dependencies.
 
@@ -116,4 +116,4 @@ final class GetUrlNavigationListUseCaseProvider
 }
 
 String _$getUrlNavigationListUseCaseHash() =>
-    r'76a6fdc358ee889c1b7c91422a398d8bdf5bdce6';
+    r'20dfcf0e136d72bc55854482b102e27850d530cc';

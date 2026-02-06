@@ -6,12 +6,10 @@ class RoutingCupertinoFullscreenDialogScreen extends StatelessWidget {
   const RoutingCupertinoFullscreenDialogScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(
-        title: Text('routing cupertino fullscreen dialog'),
-      ),
-      child: Placeholder(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(
+      title: Text('routing cupertino fullscreen dialog'),
+    ),
+    child: Placeholder(),
+  );
 }

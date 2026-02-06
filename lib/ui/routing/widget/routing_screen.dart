@@ -8,27 +8,25 @@ class RoutingScreen extends StatelessWidget {
   const RoutingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Layout(
-      appBar: const AppBar(title: Text('routing')),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Button(
-            label: 'cupertino',
-            onTap: () {
-              RoutingCupertinoRoute().push<void>(context);
-            },
-          ),
-          Button(
-            label: 'cupertino fullscreen dialog',
-            onTap: () {
-              RoutingCupertinoFullscreenDialogRoute().push<void>(context);
-            },
-          ),
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Layout(
+    appBar: const AppBar(title: Text('routing')),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Button(
+          label: 'cupertino',
+          onTap: () {
+            RoutingCupertinoRoute().push<void>(context);
+          },
+        ),
+        Button(
+          label: 'cupertino fullscreen dialog',
+          onTap: () {
+            RoutingCupertinoFullscreenDialogRoute().push<void>(context);
+          },
+        ),
+      ],
+    ),
+  );
 }

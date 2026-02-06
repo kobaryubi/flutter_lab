@@ -9,16 +9,13 @@ part 'provider.g.dart';
 @riverpod
 DetermineNavigationDestinationUseCase determineNavigationDestinationUseCase(
   Ref ref,
-) {
-  return DetermineNavigationDestinationUseCase();
-}
+) => DetermineNavigationDestinationUseCase();
 
 /// Provides [GetUrlNavigationListUseCase] with its dependencies.
 @riverpod
-GetUrlNavigationListUseCase getUrlNavigationListUseCase(Ref ref) {
-  return GetUrlNavigationListUseCase(
-    urlNavigationListRepository: ref.read(
-      urlNavigationListRepositoryProvider,
-    ),
-  );
-}
+GetUrlNavigationListUseCase getUrlNavigationListUseCase(Ref ref) =>
+    GetUrlNavigationListUseCase(
+      urlNavigationListRepository: ref.read(
+        urlNavigationListRepositoryProvider,
+      ),
+    );

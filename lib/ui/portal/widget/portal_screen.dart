@@ -8,19 +8,17 @@ class PortalScreen extends StatelessWidget {
   const PortalScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('portal')),
-      child: Column(
-        mainAxisAlignment: .center,
-        children: [
-          _SimpleOverlay(),
-          SizedBox(height: 32),
-          _ContextualMenu(),
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('portal')),
+    child: Column(
+      mainAxisAlignment: .center,
+      children: [
+        _SimpleOverlay(),
+        SizedBox(height: 32),
+        _ContextualMenu(),
+      ],
+    ),
+  );
 }
 
 class _SimpleOverlay extends HookWidget {
@@ -87,19 +85,17 @@ class _Menu extends StatelessWidget {
   final VoidCallback onClose;
 
   @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: const Color(0xFFFFFFFF),
-      child: Column(
-        mainAxisSize: .min,
-        crossAxisAlignment: .start,
-        children: [
-          _MenuItem(text: 'First', onTap: onClose),
-          _MenuItem(text: 'Second', onTap: onClose),
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => ColoredBox(
+    color: const Color(0xFFFFFFFF),
+    child: Column(
+      mainAxisSize: .min,
+      crossAxisAlignment: .start,
+      children: [
+        _MenuItem(text: 'First', onTap: onClose),
+        _MenuItem(text: 'Second', onTap: onClose),
+      ],
+    ),
+  );
 }
 
 /// Individual menu item.
@@ -110,15 +106,13 @@ class _MenuItem extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: const .all(12),
-        child: Text(text),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => GestureDetector(
+    onTap: onTap,
+    child: Padding(
+      padding: const .all(12),
+      child: Text(text),
+    ),
+  );
 }
 
 /// Reusable modal entry widget for showing overlay content.
@@ -136,22 +130,20 @@ class _ModalEntry extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
-    return PortalTarget(
+  Widget build(BuildContext context) => PortalTarget(
+    visible: visible,
+    portalFollower: ModalBarrier(
+      onDismiss: onClose,
+      color: const Color(0x80000000),
+    ),
+    child: PortalTarget(
       visible: visible,
-      portalFollower: ModalBarrier(
-        onDismiss: onClose,
-        color: const Color(0x80000000),
+      anchor: const Aligned(
+        follower: .topLeft,
+        target: .bottomLeft,
       ),
-      child: PortalTarget(
-        visible: visible,
-        anchor: const Aligned(
-          follower: .topLeft,
-          target: .bottomLeft,
-        ),
-        portalFollower: modal,
-        child: child,
-      ),
-    );
-  }
+      portalFollower: modal,
+      child: child,
+    ),
+  );
 }

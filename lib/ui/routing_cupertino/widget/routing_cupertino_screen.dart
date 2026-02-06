@@ -6,12 +6,10 @@ class RoutingCupertinoScreen extends StatelessWidget {
   const RoutingCupertinoScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(
-        title: Text('routing cupertino'),
-      ),
-      child: Placeholder(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(
+      title: Text('routing cupertino'),
+    ),
+    child: Placeholder(),
+  );
 }

@@ -66,21 +66,19 @@ class _Body extends StatelessWidget {
   final VoidCallback onPop;
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: .start,
-      spacing: 16,
-      children: [
-        Text('canPop: $canPop'),
-        GestureDetector(
-          onTap: onToggleCanPop,
-          child: const Text('Toggle canPop'),
-        ),
-        GestureDetector(
-          onTap: onPop,
-          child: const Text('Pop'),
-        ),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => Column(
+    crossAxisAlignment: .start,
+    spacing: 16,
+    children: [
+      Text('canPop: $canPop'),
+      GestureDetector(
+        onTap: onToggleCanPop,
+        child: const Text('Toggle canPop'),
+      ),
+      GestureDetector(
+        onTap: onPop,
+        child: const Text('Pop'),
+      ),
+    ],
+  );
 }

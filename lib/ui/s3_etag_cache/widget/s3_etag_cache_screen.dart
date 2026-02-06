@@ -11,12 +11,10 @@ class S3EtagCacheScreen extends StatelessWidget {
   const S3EtagCacheScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('S3 ETag Cache')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('S3 ETag Cache')),
+    child: _Body(),
+  );
 }
 
 class _Body extends HookConsumerWidget {
@@ -72,18 +70,16 @@ class _ActionButtons extends StatelessWidget {
   final Future<void> Function() onClearCache;
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        GestureDetector(
-          onTap: onReload,
-          child: const Text('Reload Image'),
-        ),
-        GestureDetector(
-          onTap: onClearCache,
-          child: const Text('Clear Cache'),
-        ),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => Row(
+    children: [
+      GestureDetector(
+        onTap: onReload,
+        child: const Text('Reload Image'),
+      ),
+      GestureDetector(
+        onTap: onClearCache,
+        child: const Text('Clear Cache'),
+      ),
+    ],
+  );
 }

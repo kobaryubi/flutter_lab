@@ -12,12 +12,10 @@ class PetStoreScreen extends HookWidget {
   const PetStoreScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: AppBar(title: Text('PetStore')),
-      body: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Scaffold(
+    appBar: AppBar(title: Text('PetStore')),
+    body: _Body(),
+  );
 }
 
 class _Body extends HookConsumerWidget {

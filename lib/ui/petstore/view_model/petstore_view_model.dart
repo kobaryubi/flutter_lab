@@ -9,9 +9,7 @@ part 'petstore_view_model.g.dart';
 @riverpod
 class PetStoreViewModel extends _$PetStoreViewModel {
   @override
-  PetStoreUiState build() {
-    return const PetStoreUiState();
-  }
+  PetStoreUiState build() => const PetStoreUiState();
 
   Future<Unit> createPet(Pet pet) async {
     final createPetUseCase = ref.read(createPetUseCaseProvider);
