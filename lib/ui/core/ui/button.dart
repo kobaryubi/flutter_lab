@@ -12,10 +12,8 @@ class Button extends ConsumerWidget {
   final String label;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Semantics(
-      button: true,
-      child: GestureDetector(onTap: onTap, child: Text(label)),
-    );
-  }
+  Widget build(BuildContext context, WidgetRef ref) => Semantics(
+    button: true,
+    child: GestureDetector(onTap: onTap, child: Text(label)),
+  );
 }
