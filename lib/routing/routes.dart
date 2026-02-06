@@ -26,6 +26,7 @@ abstract final class Routes {
   static const loading = '/loading';
   static const formBuilder = '/form_builder';
   static const maxSdk = '/max_sdk';
+  static const popScope = '/pop_scope';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';

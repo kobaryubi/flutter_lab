@@ -25,6 +25,7 @@ List<RouteBase> get $appRoutes => [
   $networkRoute,
   $notFoundRoute,
   $ocrRoute,
+  $popScopeRoute,
   $portalRoute,
   $pushNotificationRoute,
   $routingCupertinoFullscreenDialogRoute,
@@ -458,6 +459,29 @@ mixin $OcrRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/ocr');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $popScopeRoute =>
+    GoRouteData.$route(path: '/pop_scope', factory: $PopScopeRoute._fromState);
+
+mixin $PopScopeRoute on GoRouteData {
+  static PopScopeRoute _fromState(GoRouterState state) => PopScopeRoute();
+
+  @override
+  String get location => GoRouteData.$location('/pop_scope');
 
   @override
   void go(BuildContext context) => context.go(location);
