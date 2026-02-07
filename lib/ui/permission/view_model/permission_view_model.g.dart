@@ -45,7 +45,7 @@ final class PermissionViewModelProvider
 }
 
 String _$permissionViewModelHash() =>
-    r'0e4fe98fba4a8734586f36fe810b22f9a1ba384a';
+    r'61f61c67aae9210152a5dbc473ee38bee93ef8f1';
 
 /// ViewModel for the permission handler demonstration screen.
 
