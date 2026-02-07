@@ -41,7 +41,7 @@ final class LocationViewModelProvider
   }
 }
 
-String _$locationViewModelHash() => r'5af73fb52287c1918e00b4a4b1af8fa8d82f3d76';
+String _$locationViewModelHash() => r'cdd0927977022a80674a84cac7241180dfde85e9';
 
 abstract class _$LocationViewModel extends $Notifier<LocationUiState> {
   LocationUiState build();

@@ -9,12 +9,10 @@ class InAppReviewScreen extends StatelessWidget {
   const InAppReviewScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('In-App Review')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('In-App Review')),
+    child: _Body(),
+  );
 }
 
 class _Body extends HookConsumerWidget {

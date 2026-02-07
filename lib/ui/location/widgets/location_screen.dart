@@ -9,12 +9,10 @@ class LocationScreen extends StatelessWidget {
   const LocationScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('Location')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('Location')),
+    child: _Body(),
+  );
 }
 
 class _Body extends HookConsumerWidget {

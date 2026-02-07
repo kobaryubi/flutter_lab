@@ -7,9 +7,8 @@ part 'location_view_model.g.dart';
 @riverpod
 class LocationViewModel extends _$LocationViewModel {
   @override
-  LocationUiState build() {
-    return const LocationUiState(location: null, battery: null);
-  }
+  LocationUiState build() =>
+      const LocationUiState(location: null, battery: null);
 
   Future<void> getLocation() async {
     final getLocationUseCase = ref.read(getLocationUseCaseProvider);

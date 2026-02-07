@@ -45,7 +45,7 @@ final class InAppReviewViewModelProvider
 }
 
 String _$inAppReviewViewModelHash() =>
-    r'128c2ede9ac40077d9ba0665d255efa6c44ad255';
+    r'fde8955f7fea62174904e5983be84b057e96100e';
 
 /// ViewModel that manages in-app review operations.
 

@@ -11,12 +11,10 @@ class InAppReviewViewModel extends _$InAppReviewViewModel {
   void build() {}
 
   /// Checks whether the in-app review dialog is available.
-  AsyncResult<bool> checkAvailability() {
-    return ref.read(checkReviewAvailabilityUseCaseProvider).call();
-  }
+  AsyncResult<bool> checkAvailability() =>
+      ref.read(checkReviewAvailabilityUseCaseProvider).call();
 
   /// Requests the native in-app review dialog.
-  AsyncResult<Unit> requestReview() {
-    return ref.read(requestReviewUseCaseProvider).call();
-  }
+  AsyncResult<Unit> requestReview() =>
+      ref.read(requestReviewUseCaseProvider).call();
 }
