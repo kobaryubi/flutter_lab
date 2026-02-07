@@ -2,7 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Repository interface for text recognition from camera images.
-abstract class TextRecognitionRepository {
+abstract class TextRecognitionGateway {
   /// Recognizes text from a [CameraImage] captured by the camera.
   ///
   /// [sensorOrientation] is the camera sensor orientation in degrees,
