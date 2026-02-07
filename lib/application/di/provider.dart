@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
 import 'package:flutter_lab/data/gateway/file_system_shortcut_icon_gateway.dart';
+import 'package:flutter_lab/data/gateway/text_recognition/mlkit_text_recognition_gateway.dart';
 import 'package:flutter_lab/data/platform/arutana_ad_service.dart';
 import 'package:flutter_lab/data/repositories/agreement/shared_preferences_agreement_repository.dart';
 import 'package:flutter_lab/data/repositories/navigation/mock_url_navigation_list_repository.dart';
@@ -17,8 +18,9 @@ import 'package:flutter_lab/domain/location/location_repository.dart';
 import 'package:flutter_lab/domain/location/mock_location_repository.dart';
 import 'package:flutter_lab/domain/navigation/url_navigation_list_repository.dart';
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
+import 'package:flutter_lab/domain/text_recognition/text_recognition_gateway.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/petstore/list_pets_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/text_recognition/recognize_text_use_case.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -63,8 +65,8 @@ Dio dio(Ref ref) {
 // repository
 @riverpod
 PetRepository petRepository(Ref ref) => PetRepositoryRemote(
-    dio: ref.read(dioProvider),
-  );
+  dio: ref.read(dioProvider),
+);
 
 @riverpod
 LocationRepository locationRepository(Ref ref) => MockLocationRepository();
@@ -73,34 +75,38 @@ LocationRepository locationRepository(Ref ref) => MockLocationRepository();
 BatteryRepository batteryRepository(Ref ref) => PlatformBatteryRepository();
 
 @riverpod
-AgreementRepository agreementRepository(Ref ref) => SharedPreferencesAgreementRepository(
-    sharedPreferencesService: ref.read(sharedPreferencesServiceProvider),
-  );
+AgreementRepository agreementRepository(Ref ref) =>
+    SharedPreferencesAgreementRepository(
+      sharedPreferencesService: ref.read(sharedPreferencesServiceProvider),
+    );
 
 // gateway
 @riverpod
-ShortcutIconGateway shortcutIconGateway(Ref ref) => FileSystemShortcutIconGateway();
+ShortcutIconGateway shortcutIconGateway(Ref ref) =>
+    FileSystemShortcutIconGateway();
 
 @riverpod
 ShortcutRepository shortcutRepository(Ref ref) => FileSystemShortcutRepository(
-    gateway: ref.read(shortcutIconGatewayProvider),
-  );
+  gateway: ref.read(shortcutIconGatewayProvider),
+);
 
 // service
 @riverpod
-SharedPreferencesService sharedPreferencesService(Ref ref) => SharedPreferencesService(
-    sharedPreferencesAsync: ref.read(sharedPreferencesAsyncProvider),
-  );
+SharedPreferencesService sharedPreferencesService(Ref ref) =>
+    SharedPreferencesService(
+      sharedPreferencesAsync: ref.read(sharedPreferencesAsyncProvider),
+    );
 
 // use case
 
 @riverpod
 GetLocationUseCase getLocationUseCase(Ref ref) => GetLocationUseCase(
-    locationRepository: ref.read(locationRepositoryProvider),
-  );
+  locationRepository: ref.read(locationRepositoryProvider),
+);
 
 @riverpod
-SharedPreferencesAsync sharedPreferencesAsync(Ref ref) => SharedPreferencesAsync();
+SharedPreferencesAsync sharedPreferencesAsync(Ref ref) =>
+    SharedPreferencesAsync();
 
 // arutana ad
 @riverpod
@@ -108,9 +114,23 @@ ArutanaAdService arutanaAdService(Ref ref) => ArutanaAdService();
 
 @riverpod
 ArutanaAdRepository arutanaAdRepository(Ref ref) => PlatformArutanaAdRepository(
-    service: ref.read(arutanaAdServiceProvider),
-  );
+  service: ref.read(arutanaAdServiceProvider),
+);
 
 // navigation
 @riverpod
-UrlNavigationListRepository urlNavigationListRepository(Ref ref) => MockUrlNavigationListRepository();
+UrlNavigationListRepository urlNavigationListRepository(Ref ref) =>
+    MockUrlNavigationListRepository();
+
+// text recognition
+@riverpod
+TextRecognitionGateway textRecognitionGateway(Ref ref) {
+  final gateway = MlkitTextRecognitionGateway();
+  ref.onDispose(gateway.dispose);
+  return gateway;
+}
+
+@riverpod
+RecognizeTextUseCase recognizeTextUseCase(Ref ref) => RecognizeTextUseCase(
+  textRecognitionGateway: ref.read(textRecognitionGatewayProvider),
+);

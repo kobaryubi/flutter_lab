@@ -88,7 +88,7 @@ final class PetRepositoryProvider
   }
 }
 
-String _$petRepositoryHash() => r'94f470db974f59901abf6bc501364a3b4fdde52e';
+String _$petRepositoryHash() => r'224a4aa0fc38326d588fbcbb4759763feb8e5ba6';
 
 @ProviderFor(locationRepository)
 const locationRepositoryProvider = LocationRepositoryProvider._();
@@ -136,7 +136,7 @@ final class LocationRepositoryProvider
 }
 
 String _$locationRepositoryHash() =>
-    r'25e9486d167a99c3851da2909fd4cb1d70042b24';
+    r'8cd54defa00c37ad1965aabafabc9c84577a695e';
 
 @ProviderFor(batteryRepository)
 const batteryRepositoryProvider = BatteryRepositoryProvider._();
@@ -183,7 +183,7 @@ final class BatteryRepositoryProvider
   }
 }
 
-String _$batteryRepositoryHash() => r'a0c5fdca34fa0de5278b57c8640d108dd163cc13';
+String _$batteryRepositoryHash() => r'7d3f0ab26a500f2228a6cefecd5c694fa29ab4e2';
 
 @ProviderFor(agreementRepository)
 const agreementRepositoryProvider = AgreementRepositoryProvider._();
@@ -231,7 +231,7 @@ final class AgreementRepositoryProvider
 }
 
 String _$agreementRepositoryHash() =>
-    r'9533be4ae8a2dfc74c6b105d55cc21ad553be2f6';
+    r'42511147cf3e2a5fc99bfbedb32f9a9ea822feb2';
 
 @ProviderFor(shortcutIconGateway)
 const shortcutIconGatewayProvider = ShortcutIconGatewayProvider._();
@@ -279,7 +279,7 @@ final class ShortcutIconGatewayProvider
 }
 
 String _$shortcutIconGatewayHash() =>
-    r'5c7071db96b2fa82b3104ab046f057ee12f65b99';
+    r'2fc913d3abb50acfeaa14ce5a5148e0d292d24c6';
 
 @ProviderFor(shortcutRepository)
 const shortcutRepositoryProvider = ShortcutRepositoryProvider._();
@@ -327,7 +327,7 @@ final class ShortcutRepositoryProvider
 }
 
 String _$shortcutRepositoryHash() =>
-    r'91e04e6423dd3276fc01ddb4543d4343fa2b08f8';
+    r'5f497928f3b59631c23c9826ce37a43b14c1b14a';
 
 @ProviderFor(sharedPreferencesService)
 const sharedPreferencesServiceProvider = SharedPreferencesServiceProvider._();
@@ -375,95 +375,7 @@ final class SharedPreferencesServiceProvider
 }
 
 String _$sharedPreferencesServiceHash() =>
-    r'ff3d722c3d22209355ab8b5865a9c6d116a6b305';
-
-@ProviderFor(listPetsUseCase)
-const listPetsUseCaseProvider = ListPetsUseCaseProvider._();
-
-final class ListPetsUseCaseProvider
-    extends
-        $FunctionalProvider<ListPetsUseCase, ListPetsUseCase, ListPetsUseCase>
-    with $Provider<ListPetsUseCase> {
-  const ListPetsUseCaseProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'listPetsUseCaseProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$listPetsUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<ListPetsUseCase> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  ListPetsUseCase create(Ref ref) {
-    return listPetsUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ListPetsUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ListPetsUseCase>(value),
-    );
-  }
-}
-
-String _$listPetsUseCaseHash() => r'e21a2d4ad0c4f1a75b234748472c84959659c703';
-
-@ProviderFor(createPetUseCase)
-const createPetUseCaseProvider = CreatePetUseCaseProvider._();
-
-final class CreatePetUseCaseProvider
-    extends
-        $FunctionalProvider<
-          CreatePetUseCase,
-          CreatePetUseCase,
-          CreatePetUseCase
-        >
-    with $Provider<CreatePetUseCase> {
-  const CreatePetUseCaseProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'createPetUseCaseProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$createPetUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<CreatePetUseCase> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  CreatePetUseCase create(Ref ref) {
-    return createPetUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(CreatePetUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<CreatePetUseCase>(value),
-    );
-  }
-}
-
-String _$createPetUseCaseHash() => r'aad94a395f0d8f780d7a19578c3346c771ef6ba0';
+    r'90da7b6ed2dfb4278077cd27bcfcf8d7828e8db4';
 
 @ProviderFor(getLocationUseCase)
 const getLocationUseCaseProvider = GetLocationUseCaseProvider._();
@@ -511,7 +423,7 @@ final class GetLocationUseCaseProvider
 }
 
 String _$getLocationUseCaseHash() =>
-    r'f87973883bed086591df7a5a02dd45bb75d0bda6';
+    r'd04a80e796a6b4c824e70d5c29e0de887088ad78';
 
 @ProviderFor(sharedPreferencesAsync)
 const sharedPreferencesAsyncProvider = SharedPreferencesAsyncProvider._();
@@ -559,7 +471,7 @@ final class SharedPreferencesAsyncProvider
 }
 
 String _$sharedPreferencesAsyncHash() =>
-    r'05e887bc85127af92d1c449c66e8909cea753690';
+    r'4185ee00922a4901388f3e7566511208cbbe626b';
 
 @ProviderFor(arutanaAdService)
 const arutanaAdServiceProvider = ArutanaAdServiceProvider._();
@@ -605,7 +517,7 @@ final class ArutanaAdServiceProvider
   }
 }
 
-String _$arutanaAdServiceHash() => r'6954d432bfeea759b2142fe762aee151a58da075';
+String _$arutanaAdServiceHash() => r'da501e8f14440da176c0008f50cf51d9bca6c56b';
 
 @ProviderFor(arutanaAdRepository)
 const arutanaAdRepositoryProvider = ArutanaAdRepositoryProvider._();
@@ -653,7 +565,7 @@ final class ArutanaAdRepositoryProvider
 }
 
 String _$arutanaAdRepositoryHash() =>
-    r'945535d5e7e9bfbb20da78cd01dd41b300bbd4b6';
+    r'c49fa96f5eec1977979d6c1158b7507b5fb87cd1';
 
 @ProviderFor(urlNavigationListRepository)
 const urlNavigationListRepositoryProvider =
@@ -702,4 +614,100 @@ final class UrlNavigationListRepositoryProvider
 }
 
 String _$urlNavigationListRepositoryHash() =>
-    r'5124892cbf23713e8bd25a2b708532c3d227d50a';
+    r'd24d6654cf7a56cfd23c797f2f986299a9c96968';
+
+@ProviderFor(textRecognitionGateway)
+const textRecognitionGatewayProvider = TextRecognitionGatewayProvider._();
+
+final class TextRecognitionGatewayProvider
+    extends
+        $FunctionalProvider<
+          TextRecognitionGateway,
+          TextRecognitionGateway,
+          TextRecognitionGateway
+        >
+    with $Provider<TextRecognitionGateway> {
+  const TextRecognitionGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'textRecognitionGatewayProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$textRecognitionGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<TextRecognitionGateway> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  TextRecognitionGateway create(Ref ref) {
+    return textRecognitionGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(TextRecognitionGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<TextRecognitionGateway>(value),
+    );
+  }
+}
+
+String _$textRecognitionGatewayHash() =>
+    r'ae3004ea99d40abda6f84ef91c986421c86ca54d';
+
+@ProviderFor(recognizeTextUseCase)
+const recognizeTextUseCaseProvider = RecognizeTextUseCaseProvider._();
+
+final class RecognizeTextUseCaseProvider
+    extends
+        $FunctionalProvider<
+          RecognizeTextUseCase,
+          RecognizeTextUseCase,
+          RecognizeTextUseCase
+        >
+    with $Provider<RecognizeTextUseCase> {
+  const RecognizeTextUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'recognizeTextUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$recognizeTextUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<RecognizeTextUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  RecognizeTextUseCase create(Ref ref) {
+    return recognizeTextUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(RecognizeTextUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<RecognizeTextUseCase>(value),
+    );
+  }
+}
+
+String _$recognizeTextUseCaseHash() =>
+    r'f63b260e9ef1cc1f39774c72c71e2b51153572f6';
