@@ -11,62 +11,58 @@ class AppBar extends StatelessWidget {
   final Widget title;
 
   @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: AppColors.primary,
-      child: SafeArea(
-        bottom: false,
-        child: Container(
-          height: Dimens.appBarHeight,
-          padding: const EdgeInsets.symmetric(horizontal: Dimens.padding),
-          child: Stack(
-            children: [
-              Center(
-                child: DefaultTextStyle(
-                  style: TextStyles.headlineLarge.copyWith(
-                    color: AppColors.onPrimary,
-                  ),
-                  child: title,
+  Widget build(BuildContext context) => ColoredBox(
+    color: AppColors.primary,
+    child: SafeArea(
+      bottom: false,
+      child: Container(
+        height: Dimens.appBarHeight,
+        padding: const EdgeInsets.symmetric(horizontal: Dimens.padding),
+        child: Stack(
+          children: [
+            Center(
+              child: DefaultTextStyle(
+                style: TextStyles.headlineLarge.copyWith(
+                  color: AppColors.onPrimary,
                 ),
+                child: title,
               ),
-              if (context.canPop())
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: _BackButton(),
-                ),
-            ],
-          ),
+            ),
+            if (context.canPop())
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: _BackButton(),
+              ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
 }
 
 class _BackButton extends StatelessWidget {
   const _BackButton();
 
   @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      label: 'back',
-      child: GestureDetector(
-        onTap: () => context.pop(),
-        behavior: HitTestBehavior.opaque,
-        child: SizedBox.square(
-          dimension: Dimens.actionSize,
-          child: Center(
-            child: Assets.icons.arrowBack.svg(
-              width: Dimens.iconWidth,
-              height: Dimens.iconHeight,
-              colorFilter: const ColorFilter.mode(
-                AppColors.onPrimary,
-                BlendMode.srcIn,
-              ),
+  Widget build(BuildContext context) => Semantics(
+    button: true,
+    label: 'back',
+    child: GestureDetector(
+      onTap: () => context.pop(),
+      behavior: HitTestBehavior.opaque,
+      child: SizedBox.square(
+        dimension: Dimens.actionSize,
+        child: Center(
+          child: Assets.icons.arrowBack.svg(
+            width: Dimens.iconWidth,
+            height: Dimens.iconHeight,
+            colorFilter: const ColorFilter.mode(
+              AppColors.onPrimary,
+              BlendMode.srcIn,
             ),
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }
