@@ -44,7 +44,7 @@ final class OcrViewModelProvider
   }
 }
 
-String _$ocrViewModelHash() => r'8d5db9fc8fcc4fa5e8284bd626003e0029f69a8e';
+String _$ocrViewModelHash() => r'887a85c4b7412e0729b8d952d47909d5d638fd2e';
 
 /// ViewModel that manages OCR text recognition from camera frames.
 

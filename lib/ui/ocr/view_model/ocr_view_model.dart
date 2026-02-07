@@ -17,7 +17,6 @@ class OcrViewModel extends _$OcrViewModel {
     required CameraImage cameraImage,
     required int sensorOrientation,
     required DeviceOrientation deviceOrientation,
-    required CameraLensDirection lensDirection,
   }) async {
     final useCase = ref.read(recognizeTextUseCaseProvider);
     state = state.copyWith(
@@ -26,7 +25,6 @@ class OcrViewModel extends _$OcrViewModel {
           cameraImage: cameraImage,
           sensorOrientation: sensorOrientation,
           deviceOrientation: deviceOrientation,
-          lensDirection: lensDirection,
         )).getOrThrow(),
       ),
     );
