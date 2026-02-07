@@ -36,6 +36,8 @@ class _Body extends HookConsumerWidget {
             .processFrame(
               cameraImage: cameraImage,
               sensorOrientation: value.description.sensorOrientation,
+              deviceOrientation: value.value.deviceOrientation,
+              lensDirection: value.description.lensDirection,
             )
             .whenComplete(() => processingRef.value = false);
       }
