@@ -26,7 +26,7 @@ class NetworkViewModel extends _$NetworkViewModel {
     final useCase = ref.read(checkConnectivityUseCaseProvider);
     state = state.copyWith(
       status: await AsyncValue.guard(
-        () => useCase.call().getOrThrow(),
+        () async => (await useCase.call()).getOrThrow(),
       ),
     );
   }

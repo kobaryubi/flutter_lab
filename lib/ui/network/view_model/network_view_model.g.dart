@@ -44,7 +44,7 @@ final class NetworkViewModelProvider
   }
 }
 
-String _$networkViewModelHash() => r'be8fcf9d56cf25bda2bff6fdead2630d05dac154';
+String _$networkViewModelHash() => r'5a9fe979385db064d50a0e96a7525fdb7fe3e21c';
 
 /// ViewModel that manages network connectivity checks.
 
