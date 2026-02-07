@@ -26,13 +26,12 @@ AsyncValue<CameraController> useCameraController() {
             throw Exception('No camera found');
           }
 
+          // Uses the first camera, which is typically the back camera.
           final newController = CameraController(
             cameras.first,
-            ResolutionPreset.high,
+            .high,
             enableAudio: false,
-            imageFormatGroup: Platform.isAndroid
-                ? ImageFormatGroup.nv21
-                : ImageFormatGroup.bgra8888,
+            imageFormatGroup: Platform.isAndroid ? .nv21 : .bgra8888,
           );
           controller = newController;
 
