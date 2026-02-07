@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/presentation/core/widget/spinning_indicator.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/loading/view_model/loading_view_model.dart';
@@ -10,12 +11,10 @@ class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('Loading')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('Loading')),
+    child: _Body(),
+  );
 }
 
 class _Body extends HookConsumerWidget {
@@ -43,7 +42,7 @@ class _Body extends HookConsumerWidget {
       mainAxisAlignment: .center,
       spacing: 16,
       children: [
-        if (uiState.data case AsyncLoading()) const Text('Loading...'),
+        if (uiState.data case AsyncLoading()) const SpinningIndicator(),
         if (uiState.data case AsyncData(:final value)) Text(value),
         if (uiState.data case AsyncError(:final error)) Text('Error: $error'),
         GestureDetector(
