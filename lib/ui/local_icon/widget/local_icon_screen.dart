@@ -14,12 +14,10 @@ class LocalIconScreen extends StatelessWidget {
   const LocalIconScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('Local Icon')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('Local Icon')),
+    child: _Body(),
+  );
 }
 
 class _Body extends HookConsumerWidget {

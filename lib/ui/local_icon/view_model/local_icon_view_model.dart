@@ -11,9 +11,7 @@ part 'local_icon_view_model.g.dart';
 @riverpod
 class LocalIconViewModel extends _$LocalIconViewModel {
   @override
-  LocalIconUiState build() {
-    return const LocalIconUiState();
-  }
+  LocalIconUiState build() => const LocalIconUiState();
 
   /// Copies the bundled asset to the local file system.
   AsyncResult<File> copyAsset() async {

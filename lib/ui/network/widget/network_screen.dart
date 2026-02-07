@@ -9,12 +9,10 @@ class NetworkScreen extends StatelessWidget {
   const NetworkScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('Network')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('Network')),
+    child: _Body(),
+  );
 }
 
 class _Body extends ConsumerWidget {

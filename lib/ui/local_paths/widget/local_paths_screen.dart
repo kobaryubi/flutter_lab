@@ -11,12 +11,10 @@ class LocalPathsScreen extends StatelessWidget {
   const LocalPathsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Layout(
-      appBar: AppBar(title: Text('Local Paths')),
-      child: _Body(),
-    );
-  }
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('Local Paths')),
+    child: _Body(),
+  );
 }
 
 /// Entry representing a labeled directory path.
