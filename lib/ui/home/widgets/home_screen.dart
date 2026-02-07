@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
       title: 'launch url',
       route: LaunchUrlRoute(url: 'https://flutter.dev'),
     ),
-    AppLink(title: 'camera', route: CameraRoute()),
     AppLink(title: 'overlay example', route: PortalRoute()),
     AppLink(title: 'shared preferences', route: SharedPreferencesRoute()),
     AppLink(title: 'S3 ETag cache', route: S3EtagCacheRoute()),
@@ -42,47 +41,46 @@ class HomeScreen extends StatelessWidget {
     ),
     AppLink(title: 'form builder', route: FormBuilderRoute()),
     AppLink(title: 'MAX SDK', route: MaxSdkRoute()),
+    AppLink(title: 'permission', route: PermissionRoute()),
     AppLink(title: 'pop scope', route: PopScopeRoute()),
   ];
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(color: AppColors.white1),
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              const AppBar(title: Text('Home')),
-              Expanded(
-                child: SafeArea(
-                  top: false,
-                  bottom: false,
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ListView.separated(
-                      itemCount: _links.length,
-                      separatorBuilder: (_, _) => const SizedBox(
-                        height: 1,
-                        child: ColoredBox(color: AppColors.gray1),
-                      ),
-                      itemBuilder: (BuildContext context, int index) {
-                        final link = _links[index];
-                        return LauncherRow(
-                          title: link.title,
-                          onTap: () {
-                            link.route.push<void>(context);
-                          },
-                        );
-                      },
+  Widget build(BuildContext context) => Container(
+    decoration: const BoxDecoration(color: AppColors.white1),
+    child: Stack(
+      children: [
+        Column(
+          children: [
+            const AppBar(title: Text('Home')),
+            Expanded(
+              child: SafeArea(
+                top: false,
+                bottom: false,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ListView.separated(
+                    itemCount: _links.length,
+                    separatorBuilder: (_, _) => const SizedBox(
+                      height: 1,
+                      child: ColoredBox(color: AppColors.gray1),
                     ),
+                    itemBuilder: (BuildContext context, int index) {
+                      final link = _links[index];
+                      return LauncherRow(
+                        title: link.title,
+                        onTap: () {
+                          link.route.push<void>(context);
+                        },
+                      );
+                    },
                   ),
                 ),
               ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }
