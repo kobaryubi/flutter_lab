@@ -8,12 +8,10 @@ abstract class TextRecognitionGateway {
   ///
   /// [sensorOrientation] is the camera sensor orientation in degrees.
   /// [deviceOrientation] is the current device orientation.
-  /// [lensDirection] is the camera lens direction (front or back).
   AsyncResult<String> recognizeText({
     required CameraImage cameraImage,
     required int sensorOrientation,
     required DeviceOrientation deviceOrientation,
-    required CameraLensDirection lensDirection,
   });
 
   /// Releases resources held by the text recognizer.
