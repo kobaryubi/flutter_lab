@@ -31,6 +31,7 @@ AsyncValue<CameraController> useCameraController() {
             cameras.first,
             .high,
             enableAudio: false,
+            // NV21 for Android, BGRA8888 for iOS (required by ML Kit).
             imageFormatGroup: Platform.isAndroid ? .nv21 : .bgra8888,
           );
           controller = newController;
