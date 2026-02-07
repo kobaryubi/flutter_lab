@@ -6,7 +6,6 @@ abstract final class Routes {
   static const webView = '/web_view';
   static const location = '/location';
   static const launchUrl = '/launch_url';
-  static const camera = '/camera';
   static const portal = '/portal';
   static const sharedPreferences = '/shared_preferences';
   static const s3EtagCache = '/s3_etag_cache';
@@ -26,6 +25,7 @@ abstract final class Routes {
   static const loading = '/loading';
   static const formBuilder = '/form_builder';
   static const maxSdk = '/max_sdk';
+  static const permission = '/permission';
   static const popScope = '/pop_scope';
 
   static const shellDemoTabA = '/shell_demo/tab_a';

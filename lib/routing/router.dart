@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_lab/data/repositories/auth/auth_repository.dart';
-
+import 'package:flutter_lab/presentation/core/provider/global_loading_notifier.dart';
+import 'package:flutter_lab/routing/loading_navigation_observer.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/app_lifecycle/widget/app_lifecycle_screen.dart';
 import 'package:flutter_lab/ui/app_store/widget/app_store_screen.dart';
 import 'package:flutter_lab/ui/arutana_ad/widget/arutana_ad_screen.dart';
 import 'package:flutter_lab/ui/brightness/widget/brightness_screen.dart';
-import 'package:flutter_lab/ui/camera/widget/camera_screen.dart';
 import 'package:flutter_lab/ui/dio_cache/widget/dio_cache_screen.dart';
 import 'package:flutter_lab/ui/error/widgets/not_found_screen.dart';
 import 'package:flutter_lab/ui/form_builder/widget/form_builder_screen.dart';
@@ -20,6 +19,7 @@ import 'package:flutter_lab/ui/location/widgets/location_screen.dart';
 import 'package:flutter_lab/ui/max_sdk/widget/max_sdk_screen.dart';
 import 'package:flutter_lab/ui/network/widget/network_screen.dart';
 import 'package:flutter_lab/ui/ocr/widget/ocr_screen.dart';
+import 'package:flutter_lab/ui/permission/widget/permission_screen.dart';
 import 'package:flutter_lab/ui/pop_scope/widget/pop_scope_screen.dart';
 import 'package:flutter_lab/ui/portal/widget/portal_screen.dart';
 import 'package:flutter_lab/ui/push_notification/widget/push_notification_screen.dart';
@@ -34,14 +34,12 @@ import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_scaffold.dart';
 import 'package:flutter_lab/ui/url_navigation/widget/url_navigation_screen.dart';
 import 'package:flutter_lab/ui/web_view/widgets/web_view_screen.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_lifecycle_route.dart';
 part 'app_store_route.dart';
 part 'arutana_ad_route.dart';
 part 'brightness_route.dart';
-part 'camera_route.dart';
 part 'dio_cache_route.dart';
 part 'form_builder_route.dart';
 part 'home_route.dart';
@@ -55,6 +53,7 @@ part 'max_sdk_route.dart';
 part 'network_route.dart';
 part 'not_found_route.dart';
 part 'ocr_route.dart';
+part 'permission_route.dart';
 part 'pop_scope_route.dart';
 part 'portal_route.dart';
 part 'push_notification_route.dart';
@@ -71,90 +70,20 @@ part 'web_view_route.dart';
 
 @riverpod
 GoRouter router(Ref ref) {
+  final loadingNotifier = ref.read(globalLoadingProvider.notifier);
+
   return GoRouter(
     initialLocation: Routes.home,
     onException: (context, state, router) {
       router.go(Routes.notFound);
     },
     debugLogDiagnostics: true,
-    redirect: _redirect,
     routes: $appRoutes,
-    // [
-    //   GoRoute(
-    //     routes: [
-    //       //             final viewModel = BookingViewModel(
-    //       //               itineraryConfigRepository: context.read(),
-    //       //               createBookingUseCase: context.read(),
-    //       //               shareBookingUseCase: context.read(),
-    //       //             );
-
-    //       //             // When opening the booking screen directly
-    //       //             // create a new booking from the stored ItineraryConfig.
-    //       //             viewModel.createBooking.execute();
-
-    //       //                 final viewModel = BookingViewModel(
-    //       //                   itineraryConfigRepository: context.read(),
-    //       //                   createBookingUseCase: context.read(),
-    //       //                   shareBookingUseCase: context.read(),
-    //       //                 );
-
-    //       // /webview
-    //       GoRoute(
-    //         path: Routes.webviewRelative,
-    //         builder: (context, state) {
-    //           return const WebViewScreen();
-    //         },
-    //       ),
-    //       // /petstore
-    //       GoRoute(
-    //         path: Routes.petstoreRelative,
-    //         builder: (context, state) {
-    //           return const PetStoreScreen();
-    //         },
-    //       ),
-    //       GoRoute(
-    //         path: Routes.optimisticStateRelative,
-    //         builder: (context, state) {
-    //           final viewModel = OptimisticStateViewModel(
-    //             subscriptionRepository: context.read(),
-    //           );
-    //           return OptimisticStateScreen(viewModel: viewModel);
-    //         },
-    //       ),
-    //     ],
-    //   ),
-    //   // riverpod
-    //   GoRoute(
-    //     routes: [
-    //       GoRoute(
-    //         path: Routes.randomJokeRelative,
-    //         builder: (context, state) {
-    //           return const RiverpodRandomJokeScreen();
-    //         },
-    //       ),
-    //     ],
-    //   ),
-    //   // animations
-    //   GoRoute(
-    //     path: Routes.animations,
-    //     builder: (context, state) {
-    //       return const AnimationsScreen();
-    //     },
-    //   ),
-    // ],
+    observers: [
+      LoadingNavigationObserver(
+        onShowLoading: loadingNotifier.show,
+        onHideLoading: loadingNotifier.hide,
+      ),
+    ],
   );
-}
-
-Future<String?> _redirect(BuildContext context, GoRouterState state) async {
-  final loggedIn = await context.read<AuthRepository>().isAuthenticated;
-  final loggingIn = state.matchedLocation == Routes.login;
-  if (!loggedIn) {
-    return Routes.login;
-  }
-
-  if (loggingIn) {
-    return Routes.home;
-  }
-
-  return null;
 }

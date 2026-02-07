@@ -25,6 +25,7 @@ List<RouteBase> get $appRoutes => [
   $networkRoute,
   $notFoundRoute,
   $ocrRoute,
+  $permissionRoute,
   $popScopeRoute,
   $portalRoute,
   $pushNotificationRoute,
@@ -474,6 +475,31 @@ mixin $OcrRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $permissionRoute => GoRouteData.$route(
+  path: '/permission',
+  factory: $PermissionRoute._fromState,
+);
+
+mixin $PermissionRoute on GoRouteData {
+  static PermissionRoute _fromState(GoRouterState state) => PermissionRoute();
+
+  @override
+  String get location => GoRouteData.$location('/permission');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $popScopeRoute =>
     GoRouteData.$route(path: '/pop_scope', factory: $PopScopeRoute._fromState);
 
@@ -898,4 +924,4 @@ final class RouterProvider
   }
 }
 
-String _$routerHash() => r'c233fb038bfb42f2edc8fe88817930fb11b2b742';
+String _$routerHash() => r'4e7f85b60f680747f48b3d548c5d6c9fbd8e4db7';
