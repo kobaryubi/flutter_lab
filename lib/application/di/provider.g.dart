@@ -567,6 +567,153 @@ final class ArutanaAdRepositoryProvider
 String _$arutanaAdRepositoryHash() =>
     r'c49fa96f5eec1977979d6c1158b7507b5fb87cd1';
 
+@ProviderFor(copyShortcutIconsUseCase)
+const copyShortcutIconsUseCaseProvider = CopyShortcutIconsUseCaseProvider._();
+
+final class CopyShortcutIconsUseCaseProvider
+    extends
+        $FunctionalProvider<
+          CopyShortcutIconsUseCase,
+          CopyShortcutIconsUseCase,
+          CopyShortcutIconsUseCase
+        >
+    with $Provider<CopyShortcutIconsUseCase> {
+  const CopyShortcutIconsUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'copyShortcutIconsUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$copyShortcutIconsUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<CopyShortcutIconsUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  CopyShortcutIconsUseCase create(Ref ref) {
+    return copyShortcutIconsUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(CopyShortcutIconsUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<CopyShortcutIconsUseCase>(value),
+    );
+  }
+}
+
+String _$copyShortcutIconsUseCaseHash() =>
+    r'80315198a9cbca844d1416b028e0bead6ad8ffd3';
+
+@ProviderFor(deleteAllShortcutIconsUseCase)
+const deleteAllShortcutIconsUseCaseProvider =
+    DeleteAllShortcutIconsUseCaseProvider._();
+
+final class DeleteAllShortcutIconsUseCaseProvider
+    extends
+        $FunctionalProvider<
+          DeleteAllShortcutIconsUseCase,
+          DeleteAllShortcutIconsUseCase,
+          DeleteAllShortcutIconsUseCase
+        >
+    with $Provider<DeleteAllShortcutIconsUseCase> {
+  const DeleteAllShortcutIconsUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'deleteAllShortcutIconsUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$deleteAllShortcutIconsUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<DeleteAllShortcutIconsUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  DeleteAllShortcutIconsUseCase create(Ref ref) {
+    return deleteAllShortcutIconsUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(DeleteAllShortcutIconsUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<DeleteAllShortcutIconsUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$deleteAllShortcutIconsUseCaseHash() =>
+    r'8e1cbef06a76fb3ee53c7e43169bc19844e69e76';
+
+@ProviderFor(httpCacheRepository)
+const httpCacheRepositoryProvider = HttpCacheRepositoryProvider._();
+
+final class HttpCacheRepositoryProvider
+    extends
+        $FunctionalProvider<
+          HttpCacheRepository,
+          HttpCacheRepository,
+          HttpCacheRepository
+        >
+    with $Provider<HttpCacheRepository> {
+  const HttpCacheRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'httpCacheRepositoryProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$httpCacheRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<HttpCacheRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  HttpCacheRepository create(Ref ref) {
+    return httpCacheRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(HttpCacheRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<HttpCacheRepository>(value),
+    );
+  }
+}
+
+String _$httpCacheRepositoryHash() =>
+    r'a03bba825f0d7767f20a781fbc95023ddb8e6e6d';
+
 @ProviderFor(urlNavigationListRepository)
 const urlNavigationListRepositoryProvider =
     UrlNavigationListRepositoryProvider._();
@@ -615,6 +762,150 @@ final class UrlNavigationListRepositoryProvider
 
 String _$urlNavigationListRepositoryHash() =>
     r'd24d6654cf7a56cfd23c797f2f986299a9c96968';
+
+@ProviderFor(networkRepository)
+const networkRepositoryProvider = NetworkRepositoryProvider._();
+
+final class NetworkRepositoryProvider
+    extends
+        $FunctionalProvider<
+          NetworkRepository,
+          NetworkRepository,
+          NetworkRepository
+        >
+    with $Provider<NetworkRepository> {
+  const NetworkRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'networkRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$networkRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<NetworkRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  NetworkRepository create(Ref ref) {
+    return networkRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(NetworkRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<NetworkRepository>(value),
+    );
+  }
+}
+
+String _$networkRepositoryHash() => r'ac49ebc8ce33b0c66e18a0766703767210ac81e0';
+
+@ProviderFor(checkConnectivityUseCase)
+const checkConnectivityUseCaseProvider = CheckConnectivityUseCaseProvider._();
+
+final class CheckConnectivityUseCaseProvider
+    extends
+        $FunctionalProvider<
+          CheckConnectivityUseCase,
+          CheckConnectivityUseCase,
+          CheckConnectivityUseCase
+        >
+    with $Provider<CheckConnectivityUseCase> {
+  const CheckConnectivityUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'checkConnectivityUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$checkConnectivityUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<CheckConnectivityUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  CheckConnectivityUseCase create(Ref ref) {
+    return checkConnectivityUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(CheckConnectivityUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<CheckConnectivityUseCase>(value),
+    );
+  }
+}
+
+String _$checkConnectivityUseCaseHash() =>
+    r'2c71f2e18e38d9d7b2305703565022db3aac5192';
+
+@ProviderFor(onConnectivityChangedUseCase)
+const onConnectivityChangedUseCaseProvider =
+    OnConnectivityChangedUseCaseProvider._();
+
+final class OnConnectivityChangedUseCaseProvider
+    extends
+        $FunctionalProvider<
+          OnConnectivityChangedUseCase,
+          OnConnectivityChangedUseCase,
+          OnConnectivityChangedUseCase
+        >
+    with $Provider<OnConnectivityChangedUseCase> {
+  const OnConnectivityChangedUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'onConnectivityChangedUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$onConnectivityChangedUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<OnConnectivityChangedUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  OnConnectivityChangedUseCase create(Ref ref) {
+    return onConnectivityChangedUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(OnConnectivityChangedUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<OnConnectivityChangedUseCase>(value),
+    );
+  }
+}
+
+String _$onConnectivityChangedUseCaseHash() =>
+    r'fb5d968142755958cd49863064864aef30464050';
 
 @ProviderFor(textRecognitionGateway)
 const textRecognitionGatewayProvider = TextRecognitionGatewayProvider._();
