@@ -26,9 +26,10 @@ class PulsingDotsAnimation extends HookWidget {
 
     return Row(
       mainAxisSize: .min,
-      children: List.generate(_dotCount, (index) {
-        return _buildDot(controller: controller, index: index);
-      }),
+      children: List.generate(
+        _dotCount,
+        (index) => _buildDot(controller: controller, index: index),
+      ),
     );
   }
 
@@ -55,18 +56,16 @@ class PulsingDotsAnimation extends HookWidget {
 
     return AnimatedBuilder(
       animation: controller,
-      builder: (context, child) {
-        return Padding(
-          padding: const .symmetric(horizontal: _dotSpacing / 2),
-          child: Transform.scale(
-            scale: scaleAnimation.value,
-            child: Opacity(
-              opacity: opacityAnimation.value,
-              child: child,
-            ),
+      builder: (context, child) => Padding(
+        padding: const .symmetric(horizontal: _dotSpacing / 2),
+        child: Transform.scale(
+          scale: scaleAnimation.value,
+          child: Opacity(
+            opacity: opacityAnimation.value,
+            child: child,
           ),
-        );
-      },
+        ),
+      ),
       child: Container(
         width: _dotSize,
         height: _dotSize,
