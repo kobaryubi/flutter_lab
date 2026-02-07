@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/domain/entity/network/connectivity_status.dart';
 import 'package:flutter_lab/ui/network/ui_state/network_ui_state.dart';
-import 'package:result_dart/result_dart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'network_view_model.g.dart';
