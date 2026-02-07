@@ -18,7 +18,6 @@ import 'package:flutter_lab/domain/location/mock_location_repository.dart';
 import 'package:flutter_lab/domain/navigation/url_navigation_list_repository.dart';
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/petstore/create_pet_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/petstore/list_pets_use_case.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -63,85 +62,55 @@ Dio dio(Ref ref) {
 
 // repository
 @riverpod
-PetRepository petRepository(Ref ref) {
-  return PetRepositoryRemote(
+PetRepository petRepository(Ref ref) => PetRepositoryRemote(
     dio: ref.read(dioProvider),
   );
-}
 
 @riverpod
-LocationRepository locationRepository(Ref ref) {
-  return MockLocationRepository();
-}
+LocationRepository locationRepository(Ref ref) => MockLocationRepository();
 
 @riverpod
-BatteryRepository batteryRepository(Ref ref) {
-  return PlatformBatteryRepository();
-}
+BatteryRepository batteryRepository(Ref ref) => PlatformBatteryRepository();
 
 @riverpod
-AgreementRepository agreementRepository(Ref ref) {
-  return SharedPreferencesAgreementRepository(
+AgreementRepository agreementRepository(Ref ref) => SharedPreferencesAgreementRepository(
     sharedPreferencesService: ref.read(sharedPreferencesServiceProvider),
   );
-}
 
 // gateway
 @riverpod
-ShortcutIconGateway shortcutIconGateway(Ref ref) {
-  return FileSystemShortcutIconGateway();
-}
+ShortcutIconGateway shortcutIconGateway(Ref ref) => FileSystemShortcutIconGateway();
 
 @riverpod
-ShortcutRepository shortcutRepository(Ref ref) {
-  return FileSystemShortcutRepository(
+ShortcutRepository shortcutRepository(Ref ref) => FileSystemShortcutRepository(
     gateway: ref.read(shortcutIconGatewayProvider),
   );
-}
 
 // service
 @riverpod
-SharedPreferencesService sharedPreferencesService(Ref ref) {
-  return SharedPreferencesService(
+SharedPreferencesService sharedPreferencesService(Ref ref) => SharedPreferencesService(
     sharedPreferencesAsync: ref.read(sharedPreferencesAsyncProvider),
   );
-}
 
 // use case
-@riverpod
-CreatePetUseCase createPetUseCase(Ref ref) {
-  return CreatePetUseCase(
-    petRepository: ref.read(petRepositoryProvider),
-  );
-}
 
 @riverpod
-GetLocationUseCase getLocationUseCase(Ref ref) {
-  return GetLocationUseCase(
+GetLocationUseCase getLocationUseCase(Ref ref) => GetLocationUseCase(
     locationRepository: ref.read(locationRepositoryProvider),
   );
-}
 
 @riverpod
-SharedPreferencesAsync sharedPreferencesAsync(Ref ref) {
-  return SharedPreferencesAsync();
-}
+SharedPreferencesAsync sharedPreferencesAsync(Ref ref) => SharedPreferencesAsync();
 
 // arutana ad
 @riverpod
-ArutanaAdService arutanaAdService(Ref ref) {
-  return ArutanaAdService();
-}
+ArutanaAdService arutanaAdService(Ref ref) => ArutanaAdService();
 
 @riverpod
-ArutanaAdRepository arutanaAdRepository(Ref ref) {
-  return PlatformArutanaAdRepository(
+ArutanaAdRepository arutanaAdRepository(Ref ref) => PlatformArutanaAdRepository(
     service: ref.read(arutanaAdServiceProvider),
   );
-}
 
 // navigation
 @riverpod
-UrlNavigationListRepository urlNavigationListRepository(Ref ref) {
-  return MockUrlNavigationListRepository();
-}
+UrlNavigationListRepository urlNavigationListRepository(Ref ref) => MockUrlNavigationListRepository();
