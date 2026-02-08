@@ -14,36 +14,32 @@ class ShellDemoScaffold extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
 
   @override
-  Widget build(BuildContext context) {
-    return Layout(
-      appBar: const AppBar(title: Text('Shell Demo')),
-      bottomNavigationBar: _buildBottomNavigationBar(),
-      child: navigationShell,
-    );
-  }
+  Widget build(BuildContext context) => Layout(
+    appBar: const AppBar(title: Text('Shell Demo')),
+    bottomNavigationBar: _buildBottomNavigationBar(),
+    child: navigationShell,
+  );
 
   /// Builds the bottom navigation bar for tab switching.
-  Widget _buildBottomNavigationBar() {
-    return Row(
-      children: [
-        _TabButton(
-          label: 'Tab A',
-          isSelected: navigationShell.currentIndex == 0,
-          onTap: () => _handleTap(0),
-        ),
-        _TabButton(
-          label: 'Tab B',
-          isSelected: navigationShell.currentIndex == 1,
-          onTap: () => _handleTap(1),
-        ),
-        _TabButton(
-          label: 'Tab C',
-          isSelected: navigationShell.currentIndex == 2,
-          onTap: () => _handleTap(2),
-        ),
-      ],
-    );
-  }
+  Widget _buildBottomNavigationBar() => Row(
+    children: [
+      _TabButton(
+        label: 'Tab A',
+        isSelected: navigationShell.currentIndex == 0,
+        onTap: () => _handleTap(0),
+      ),
+      _TabButton(
+        label: 'Tab B',
+        isSelected: navigationShell.currentIndex == 1,
+        onTap: () => _handleTap(1),
+      ),
+      _TabButton(
+        label: 'Tab C',
+        isSelected: navigationShell.currentIndex == 2,
+        onTap: () => _handleTap(2),
+      ),
+    ],
+  );
 
   /// Handles tab selection by navigating to the corresponding branch.
   void _handleTap(int index) {
@@ -66,18 +62,16 @@ class _TabButton extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        child: Text(
-          label,
-          textAlign: .center,
-          style: TextStyle(
-            fontWeight: isSelected ? .bold : .normal,
-          ),
+  Widget build(BuildContext context) => Expanded(
+    child: GestureDetector(
+      onTap: onTap,
+      child: Text(
+        label,
+        textAlign: .center,
+        style: TextStyle(
+          fontWeight: isSelected ? .bold : .normal,
         ),
       ),
-    );
-  }
+    ),
+  );
 }
