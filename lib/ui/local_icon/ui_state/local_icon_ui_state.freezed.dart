@@ -14,30 +14,61 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LocalIconUiState {
 
-
+ AsyncValue<File>? get copyAsset;
+/// Create a copy of LocalIconUiState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LocalIconUiStateCopyWith<LocalIconUiState> get copyWith => _$LocalIconUiStateCopyWithImpl<LocalIconUiState>(this as LocalIconUiState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocalIconUiState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LocalIconUiState&&(identical(other.copyAsset, copyAsset) || other.copyAsset == copyAsset));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,copyAsset);
 
 @override
 String toString() {
-  return 'LocalIconUiState()';
+  return 'LocalIconUiState(copyAsset: $copyAsset)';
 }
 
 
 }
 
 /// @nodoc
-class $LocalIconUiStateCopyWith<$Res>  {
-$LocalIconUiStateCopyWith(LocalIconUiState _, $Res Function(LocalIconUiState) __);
+abstract mixin class $LocalIconUiStateCopyWith<$Res>  {
+  factory $LocalIconUiStateCopyWith(LocalIconUiState value, $Res Function(LocalIconUiState) _then) = _$LocalIconUiStateCopyWithImpl;
+@useResult
+$Res call({
+ AsyncValue<File>? copyAsset
+});
+
+
+
+
+}
+/// @nodoc
+class _$LocalIconUiStateCopyWithImpl<$Res>
+    implements $LocalIconUiStateCopyWith<$Res> {
+  _$LocalIconUiStateCopyWithImpl(this._self, this._then);
+
+  final LocalIconUiState _self;
+  final $Res Function(LocalIconUiState) _then;
+
+/// Create a copy of LocalIconUiState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? copyAsset = freezed,}) {
+  return _then(_self.copyWith(
+copyAsset: freezed == copyAsset ? _self.copyAsset : copyAsset // ignore: cast_nullable_to_non_nullable
+as AsyncValue<File>?,
+  ));
+}
+
 }
 
 
@@ -119,10 +150,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function()?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<File>? copyAsset)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LocalIconUiState() when $default != null:
-return $default();case _:
+return $default(_that.copyAsset);case _:
   return orElse();
 
 }
@@ -140,10 +171,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function()  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<File>? copyAsset)  $default,) {final _that = this;
 switch (_that) {
 case _LocalIconUiState():
-return $default();case _:
+return $default(_that.copyAsset);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +191,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function()?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<File>? copyAsset)?  $default,) {final _that = this;
 switch (_that) {
 case _LocalIconUiState() when $default != null:
-return $default();case _:
+return $default(_that.copyAsset);case _:
   return null;
 
 }
@@ -175,32 +206,66 @@ return $default();case _:
 
 
 class _LocalIconUiState implements LocalIconUiState {
-  const _LocalIconUiState();
+  const _LocalIconUiState({this.copyAsset});
   
 
+@override final  AsyncValue<File>? copyAsset;
 
-
+/// Create a copy of LocalIconUiState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LocalIconUiStateCopyWith<_LocalIconUiState> get copyWith => __$LocalIconUiStateCopyWithImpl<_LocalIconUiState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocalIconUiState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LocalIconUiState&&(identical(other.copyAsset, copyAsset) || other.copyAsset == copyAsset));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,copyAsset);
 
 @override
 String toString() {
-  return 'LocalIconUiState()';
+  return 'LocalIconUiState(copyAsset: $copyAsset)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$LocalIconUiStateCopyWith<$Res> implements $LocalIconUiStateCopyWith<$Res> {
+  factory _$LocalIconUiStateCopyWith(_LocalIconUiState value, $Res Function(_LocalIconUiState) _then) = __$LocalIconUiStateCopyWithImpl;
+@override @useResult
+$Res call({
+ AsyncValue<File>? copyAsset
+});
 
 
+
+
+}
+/// @nodoc
+class __$LocalIconUiStateCopyWithImpl<$Res>
+    implements _$LocalIconUiStateCopyWith<$Res> {
+  __$LocalIconUiStateCopyWithImpl(this._self, this._then);
+
+  final _LocalIconUiState _self;
+  final $Res Function(_LocalIconUiState) _then;
+
+/// Create a copy of LocalIconUiState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? copyAsset = freezed,}) {
+  return _then(_LocalIconUiState(
+copyAsset: freezed == copyAsset ? _self.copyAsset : copyAsset // ignore: cast_nullable_to_non_nullable
+as AsyncValue<File>?,
+  ));
+}
+
+
+}
 
 // dart format on

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/ui/local_icon/ui_state/local_icon_ui_state.dart';
 import 'package:result_dart/result_dart.dart';
@@ -14,11 +12,16 @@ class LocalIconViewModel extends _$LocalIconViewModel {
   LocalIconUiState build() => const LocalIconUiState();
 
   /// Copies the bundled asset to the local file system.
-  AsyncResult<File> copyAsset() async {
-    final repository = ref.read(shortcutRepositoryProvider);
-    return repository.saveShortcutIcon(
-      assetPath: 'assets/images/search.png',
-      fileName: 'search.png',
+  Future<void> copyAsset() async {
+    state = state.copyWith(
+      copyAsset: await AsyncValue.guard(() async {
+        final repository = ref.read(shortcutRepositoryProvider);
+        final result = await repository.saveShortcutIcon(
+          assetPath: 'assets/images/search.png',
+          fileName: 'search.png',
+        );
+        return result.getOrThrow();
+      }),
     );
   }
 

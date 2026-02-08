@@ -326,6 +326,7 @@ class $AutoMapprDemoMapper implements _i2.AutoMapprInterface {
       age: model.ageInYears,
       displayName: _i4.AutoMapprDemoMapper.computeDisplayName(model),
       nickname: model.nickname ?? r'N/A',
+      role: _map__i3$SourceRole_To__i1$TargetRole(model.role),
     );
   }
 
