@@ -7,13 +7,10 @@ part 'loading_view_model.g.dart';
 @riverpod
 class LoadingViewModel extends _$LoadingViewModel {
   @override
-  LoadingUiState build() {
-    return const LoadingUiState(data: AsyncLoading());
-  }
+  LoadingUiState build() => const LoadingUiState(data: AsyncLoading());
 
   /// Simulates fetching data with a 2-second delay.
   Future<void> fetchData() async {
-    state = state.copyWith(data: const AsyncLoading());
     state = state.copyWith(
       data: await AsyncValue.guard(
         () => Future.delayed(
