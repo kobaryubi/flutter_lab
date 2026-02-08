@@ -20,15 +20,14 @@ class _Body extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vm = ref.read(locationViewModelProvider.notifier);
     final locationAsyncValue = ref.watch(
       locationViewModelProvider.select((it) => it.location),
     );
 
     useEffect(() {
-      vm.getLocation();
+      ref.read(locationViewModelProvider.notifier).getLocation();
       return null;
-    }, []);
+    }, const []);
 
     if (locationAsyncValue == null || locationAsyncValue.isLoading) {
       return const Text('Loading...');
