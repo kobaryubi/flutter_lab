@@ -23,10 +23,9 @@ class _Body extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final uiState = ref.watch(appStoreViewModelProvider);
-    final viewModel = ref.read(appStoreViewModelProvider.notifier);
 
     useEffect(() {
-      viewModel.fetchAppStoreUrl();
+      ref.read(appStoreViewModelProvider.notifier).fetchAppStoreUrl();
       return null;
     }, const []);
 

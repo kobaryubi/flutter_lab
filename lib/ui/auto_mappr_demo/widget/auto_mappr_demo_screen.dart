@@ -28,6 +28,7 @@ class _Body extends StatelessWidget {
     firstName: 'John',
     lastName: 'Doe',
     ageInYears: 30,
+    role: SourceRole.alien,
   );
 
   static const _sourcePersonWithNickname = SourcePerson(
@@ -36,6 +37,7 @@ class _Body extends StatelessWidget {
     lastName: 'Smith',
     ageInYears: 25,
     nickname: 'Janey',
+    role: SourceRole.student,
   );
 
   static const _sourceEmployee = SourceEmployee(
@@ -85,6 +87,7 @@ class _Body extends StatelessWidget {
               value: '${_sourcePerson.ageInYears}',
             ),
             _FieldRow(label: 'nickname', value: '${_sourcePerson.nickname}'),
+            _FieldRow(label: 'role', value: _sourcePerson.role.name),
           ],
         ),
         const SizedBox(height: 16),
@@ -97,6 +100,7 @@ class _Body extends StatelessWidget {
             _FieldRow(label: 'age', value: '${targetPerson.age}'),
             _FieldRow(label: 'displayName', value: targetPerson.displayName),
             _FieldRow(label: 'nickname', value: targetPerson.nickname),
+            _FieldRow(label: 'role', value: targetPerson.role.name),
           ],
         ),
         const SizedBox(height: 16),
@@ -119,6 +123,10 @@ class _Body extends StatelessWidget {
             _FieldRow(
               label: 'nickname',
               value: '${_sourcePersonWithNickname.nickname}',
+            ),
+            _FieldRow(
+              label: 'role',
+              value: _sourcePersonWithNickname.role.name,
             ),
           ],
         ),
@@ -143,6 +151,10 @@ class _Body extends StatelessWidget {
             _FieldRow(
               label: 'nickname',
               value: targetPersonWithNickname.nickname,
+            ),
+            _FieldRow(
+              label: 'role',
+              value: targetPersonWithNickname.role.name,
             ),
           ],
         ),
