@@ -43,6 +43,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'MAX SDK', route: MaxSdkRoute()),
     AppLink(title: 'permission', route: PermissionRoute()),
     AppLink(title: 'pop scope', route: PopScopeRoute()),
+    AppLink(title: 'auto_mappr demo', route: AutoMapprDemoRoute()),
   ];
 
   @override
