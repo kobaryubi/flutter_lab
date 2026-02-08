@@ -29,7 +29,9 @@ class _Body extends HookConsumerWidget {
 
     useEffect(
       () {
-        ref.read(loadingViewModelProvider.notifier).fetchData();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ref.read(loadingViewModelProvider.notifier).fetchData();
+        });
         return null;
       },
       const [],

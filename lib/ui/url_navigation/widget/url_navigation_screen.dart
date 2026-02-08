@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/presentation/core/hook/use_url_navigation.dart';
@@ -37,9 +35,9 @@ class _Body extends HookConsumerWidget {
     final uiState = ref.watch(urlNavigationViewModelProvider);
 
     useEffect(() {
-      unawaited(viewModel.fetch());
+      viewModel.fetch();
       return null;
-    }, []);
+    }, const []);
 
     final urlNavigationState = useUrlNavigation(
       viewModel.determineNavigationDestination,

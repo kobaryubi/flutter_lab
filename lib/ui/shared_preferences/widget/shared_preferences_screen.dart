@@ -21,8 +21,13 @@ class _Body extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(sharedPreferencesViewModelProvider);
+    final uiState = ref.watch(sharedPreferencesViewModelProvider);
     final viewModel = ref.read(sharedPreferencesViewModelProvider.notifier);
+
+    useEffect(() {
+      viewModel.load();
+      return null;
+    }, const []);
 
     /// Saves the current datetime to shared preferences.
     void handleSave() {
@@ -34,14 +39,8 @@ class _Body extends HookConsumerWidget {
       viewModel.load();
     }
 
-    // Load latest agreed date on initial render.
-    useEffect(() {
-      viewModel.load();
-      return null;
-    }, []);
-
     final displayText =
-        state.latestAgreedDate?.when(
+        uiState.latestAgreedDate?.when(
           data: (datetime) => 'Stored: ${datetime.toIso8601String()}',
           loading: () => 'Loading...',
           error: (error, _) => 'No value',
