@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/presentation/core/hook/use_loading.dart';
+import 'package:flutter_lab/presentation/core/provider/global_loading_notifier.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/loading/view_model/loading_view_model.dart';
@@ -25,7 +26,18 @@ class _Body extends HookConsumerWidget {
     final uiState = ref.watch(loadingViewModelProvider);
 
     /// Shows or hides the global loading overlay based on the data state.
-    useLoading(ref: ref, isLoading: uiState.data is AsyncLoading);
+    ref.listen(
+      loadingViewModelProvider.select(
+        (uiState) => uiState.data is AsyncLoading,
+      ),
+      (previous, isLoading) {
+        final notifier = ref.read(globalLoadingProvider.notifier);
+        isLoading ? notifier.show() : notifier.hide();
+      },
+    );
+
+    /// Hides the global loading overlay when the widget is disposed.
+    useLoading(ref: ref);
 
     useEffect(
       () {

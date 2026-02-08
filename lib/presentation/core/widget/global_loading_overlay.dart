@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/presentation/core/provider/global_loading_notifier.dart';
-import 'package:flutter_lab/presentation/core/widget/pulsing_dots_animation.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -19,7 +18,10 @@ class GlobalLoadingOverlay extends ConsumerWidget {
       portalFollower: const ColoredBox(
         color: Color(0x80000000),
         child: Center(
-          child: PulsingDotsAnimation(),
+          child: SizedBox.square(
+            dimension: 40,
+            child: ColoredBox(color: Color(0xFF666666)),
+          ),
         ),
       ),
       child: child,

@@ -11,6 +11,7 @@ class LoadingViewModel extends _$LoadingViewModel {
 
   /// Simulates fetching data with a 2-second delay.
   Future<void> fetchData() async {
+    state = state.copyWith(data: const AsyncLoading());
     state = state.copyWith(
       data: await AsyncValue.guard(
         () => Future.delayed(
