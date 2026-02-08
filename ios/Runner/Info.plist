@@ -3,7 +3,7 @@
 <plist version="1.0">
   <dict>
     <key>CADisableMinimumFrameDurationOnPhone</key>
-    <true/>
+    <true />
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
@@ -25,11 +25,13 @@
     <key>CFBundleVersion</key>
     <string>$(FLUTTER_BUILD_NUMBER)</string>
     <key>LSRequiresIPhoneOS</key>
-    <true/>
+    <true />
     <key>NSCameraUsageDescription</key>
     <string>写真を撮影するためにカメラのアクセスが必要です。</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Always and when in use!</string>
     <key>UIApplicationSupportsIndirectInputEvents</key>
-    <true/>
+    <true />
     <key>UIBackgroundModes</key>
     <array>
       <string>fetch</string>
