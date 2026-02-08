@@ -15,7 +15,7 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
     final useCase = ref.read(requestPushNotificationUseCaseProvider);
     state = state.copyWith(
       permission: await AsyncValue.guard(
-        () => useCase.call().getOrThrow(),
+        () async => (await useCase.call()).getOrThrow(),
       ),
     );
   }

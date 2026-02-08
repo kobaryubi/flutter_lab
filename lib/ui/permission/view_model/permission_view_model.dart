@@ -10,7 +10,9 @@ part 'permission_view_model.g.dart';
 const List<Permission> _permissions = [
   Permission.camera,
   Permission.location,
+  Permission.locationAlways,
   Permission.notification,
+  Permission.appTrackingTransparency,
 ];
 
 /// ViewModel for the permission handler demonstration screen.
