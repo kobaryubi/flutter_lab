@@ -1,0 +1,5 @@
+[versions]
+browser = "1.9.0"
+
+[libraries]
+androidx-browser = { group = "androidx.browser", name = "browser", version.ref = "browser" }
