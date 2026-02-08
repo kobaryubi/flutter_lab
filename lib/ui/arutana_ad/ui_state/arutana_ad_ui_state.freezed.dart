@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ArutanaAdUiState {
 
- String get interstitialStatus; String get movieStatus; bool get isInterstitialLoading; bool get isMovieLoading;
+ InterstitialStatus get interstitialStatus;
 /// Create a copy of ArutanaAdUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ArutanaAdUiStateCopyWith<ArutanaAdUiState> get copyWith => _$ArutanaAdUiStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ArutanaAdUiState&&(identical(other.interstitialStatus, interstitialStatus) || other.interstitialStatus == interstitialStatus)&&(identical(other.movieStatus, movieStatus) || other.movieStatus == movieStatus)&&(identical(other.isInterstitialLoading, isInterstitialLoading) || other.isInterstitialLoading == isInterstitialLoading)&&(identical(other.isMovieLoading, isMovieLoading) || other.isMovieLoading == isMovieLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ArutanaAdUiState&&(identical(other.interstitialStatus, interstitialStatus) || other.interstitialStatus == interstitialStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,interstitialStatus,movieStatus,isInterstitialLoading,isMovieLoading);
+int get hashCode => Object.hash(runtimeType,interstitialStatus);
 
 @override
 String toString() {
-  return 'ArutanaAdUiState(interstitialStatus: $interstitialStatus, movieStatus: $movieStatus, isInterstitialLoading: $isInterstitialLoading, isMovieLoading: $isMovieLoading)';
+  return 'ArutanaAdUiState(interstitialStatus: $interstitialStatus)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ArutanaAdUiStateCopyWith<$Res>  {
   factory $ArutanaAdUiStateCopyWith(ArutanaAdUiState value, $Res Function(ArutanaAdUiState) _then) = _$ArutanaAdUiStateCopyWithImpl;
 @useResult
 $Res call({
- String interstitialStatus, String movieStatus, bool isInterstitialLoading, bool isMovieLoading
+ InterstitialStatus interstitialStatus
 });
 
 
@@ -62,13 +62,10 @@ class _$ArutanaAdUiStateCopyWithImpl<$Res>
 
 /// Create a copy of ArutanaAdUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? interstitialStatus = null,Object? movieStatus = null,Object? isInterstitialLoading = null,Object? isMovieLoading = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? interstitialStatus = null,}) {
   return _then(_self.copyWith(
 interstitialStatus: null == interstitialStatus ? _self.interstitialStatus : interstitialStatus // ignore: cast_nullable_to_non_nullable
-as String,movieStatus: null == movieStatus ? _self.movieStatus : movieStatus // ignore: cast_nullable_to_non_nullable
-as String,isInterstitialLoading: null == isInterstitialLoading ? _self.isInterstitialLoading : isInterstitialLoading // ignore: cast_nullable_to_non_nullable
-as bool,isMovieLoading: null == isMovieLoading ? _self.isMovieLoading : isMovieLoading // ignore: cast_nullable_to_non_nullable
-as bool,
+as InterstitialStatus,
   ));
 }
 
@@ -153,10 +150,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String interstitialStatus,  String movieStatus,  bool isInterstitialLoading,  bool isMovieLoading)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( InterstitialStatus interstitialStatus)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ArutanaAdUiState() when $default != null:
-return $default(_that.interstitialStatus,_that.movieStatus,_that.isInterstitialLoading,_that.isMovieLoading);case _:
+return $default(_that.interstitialStatus);case _:
   return orElse();
 
 }
@@ -174,10 +171,10 @@ return $default(_that.interstitialStatus,_that.movieStatus,_that.isInterstitialL
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String interstitialStatus,  String movieStatus,  bool isInterstitialLoading,  bool isMovieLoading)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( InterstitialStatus interstitialStatus)  $default,) {final _that = this;
 switch (_that) {
 case _ArutanaAdUiState():
-return $default(_that.interstitialStatus,_that.movieStatus,_that.isInterstitialLoading,_that.isMovieLoading);case _:
+return $default(_that.interstitialStatus);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +191,10 @@ return $default(_that.interstitialStatus,_that.movieStatus,_that.isInterstitialL
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String interstitialStatus,  String movieStatus,  bool isInterstitialLoading,  bool isMovieLoading)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( InterstitialStatus interstitialStatus)?  $default,) {final _that = this;
 switch (_that) {
 case _ArutanaAdUiState() when $default != null:
-return $default(_that.interstitialStatus,_that.movieStatus,_that.isInterstitialLoading,_that.isMovieLoading);case _:
+return $default(_that.interstitialStatus);case _:
   return null;
 
 }
@@ -209,13 +206,10 @@ return $default(_that.interstitialStatus,_that.movieStatus,_that.isInterstitialL
 
 
 class _ArutanaAdUiState implements ArutanaAdUiState {
-  const _ArutanaAdUiState({required this.interstitialStatus, required this.movieStatus, required this.isInterstitialLoading, required this.isMovieLoading});
+  const _ArutanaAdUiState({required this.interstitialStatus});
   
 
-@override final  String interstitialStatus;
-@override final  String movieStatus;
-@override final  bool isInterstitialLoading;
-@override final  bool isMovieLoading;
+@override final  InterstitialStatus interstitialStatus;
 
 /// Create a copy of ArutanaAdUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -227,16 +221,16 @@ _$ArutanaAdUiStateCopyWith<_ArutanaAdUiState> get copyWith => __$ArutanaAdUiStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ArutanaAdUiState&&(identical(other.interstitialStatus, interstitialStatus) || other.interstitialStatus == interstitialStatus)&&(identical(other.movieStatus, movieStatus) || other.movieStatus == movieStatus)&&(identical(other.isInterstitialLoading, isInterstitialLoading) || other.isInterstitialLoading == isInterstitialLoading)&&(identical(other.isMovieLoading, isMovieLoading) || other.isMovieLoading == isMovieLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ArutanaAdUiState&&(identical(other.interstitialStatus, interstitialStatus) || other.interstitialStatus == interstitialStatus));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,interstitialStatus,movieStatus,isInterstitialLoading,isMovieLoading);
+int get hashCode => Object.hash(runtimeType,interstitialStatus);
 
 @override
 String toString() {
-  return 'ArutanaAdUiState(interstitialStatus: $interstitialStatus, movieStatus: $movieStatus, isInterstitialLoading: $isInterstitialLoading, isMovieLoading: $isMovieLoading)';
+  return 'ArutanaAdUiState(interstitialStatus: $interstitialStatus)';
 }
 
 
@@ -247,7 +241,7 @@ abstract mixin class _$ArutanaAdUiStateCopyWith<$Res> implements $ArutanaAdUiSta
   factory _$ArutanaAdUiStateCopyWith(_ArutanaAdUiState value, $Res Function(_ArutanaAdUiState) _then) = __$ArutanaAdUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- String interstitialStatus, String movieStatus, bool isInterstitialLoading, bool isMovieLoading
+ InterstitialStatus interstitialStatus
 });
 
 
@@ -264,13 +258,10 @@ class __$ArutanaAdUiStateCopyWithImpl<$Res>
 
 /// Create a copy of ArutanaAdUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? interstitialStatus = null,Object? movieStatus = null,Object? isInterstitialLoading = null,Object? isMovieLoading = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? interstitialStatus = null,}) {
   return _then(_ArutanaAdUiState(
 interstitialStatus: null == interstitialStatus ? _self.interstitialStatus : interstitialStatus // ignore: cast_nullable_to_non_nullable
-as String,movieStatus: null == movieStatus ? _self.movieStatus : movieStatus // ignore: cast_nullable_to_non_nullable
-as String,isInterstitialLoading: null == isInterstitialLoading ? _self.isInterstitialLoading : isInterstitialLoading // ignore: cast_nullable_to_non_nullable
-as bool,isMovieLoading: null == isMovieLoading ? _self.isMovieLoading : isMovieLoading // ignore: cast_nullable_to_non_nullable
-as bool,
+as InterstitialStatus,
   ));
 }
 
