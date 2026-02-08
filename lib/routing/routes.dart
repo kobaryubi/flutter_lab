@@ -27,6 +27,7 @@ abstract final class Routes {
   static const maxSdk = '/max_sdk';
   static const permission = '/permission';
   static const popScope = '/pop_scope';
+  static const autoMapprDemo = '/auto_mappr_demo';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';

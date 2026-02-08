@@ -9,6 +9,7 @@ part of 'router.dart';
 List<RouteBase> get $appRoutes => [
   $appLifecycleRoute,
   $appStoreRoute,
+  $autoMapprDemoRoute,
   $arutanaAdRoute,
   $brightnessRoute,
   $dioCacheRoute,
@@ -73,6 +74,32 @@ mixin $AppStoreRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/app_store');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $autoMapprDemoRoute => GoRouteData.$route(
+  path: '/auto_mappr_demo',
+  factory: $AutoMapprDemoRoute._fromState,
+);
+
+mixin $AutoMapprDemoRoute on GoRouteData {
+  static AutoMapprDemoRoute _fromState(GoRouterState state) =>
+      AutoMapprDemoRoute();
+
+  @override
+  String get location => GoRouteData.$location('/auto_mappr_demo');
 
   @override
   void go(BuildContext context) => context.go(location);
