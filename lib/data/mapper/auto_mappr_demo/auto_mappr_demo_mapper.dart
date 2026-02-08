@@ -25,6 +25,7 @@ import 'package:flutter_lab/domain/entity/auto_mappr_demo/target_models.dart';
       ),
     ],
   ),
+  MapType<SourceRole, TargetRole>(whenSourceIsNull: TargetRole.unknown),
 ])
 class AutoMapprDemoMapper extends $AutoMapprDemoMapper {
   const AutoMapprDemoMapper();

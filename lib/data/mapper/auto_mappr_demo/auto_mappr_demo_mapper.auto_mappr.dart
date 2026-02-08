@@ -8,26 +8,27 @@
 // ignore_for_file: type=lint, unnecessary_cast, unused_local_variable
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i1;
+import 'package:auto_mappr_annotation/auto_mappr_annotation.dart' as _i2;
 import 'package:flutter_lab/data/mapper/auto_mappr_demo/auto_mappr_demo_mapper.dart'
     as _i4;
 import 'package:flutter_lab/domain/entity/auto_mappr_demo/source_models.dart'
-    as _i2;
-import 'package:flutter_lab/domain/entity/auto_mappr_demo/target_models.dart'
     as _i3;
+import 'package:flutter_lab/domain/entity/auto_mappr_demo/target_models.dart'
+    as _i1;
 
 /// {@template package:flutter_lab/data/mapper/auto_mappr_demo/auto_mappr_demo_mapper.dart}
 /// Available mappings:
 /// - `SourcePerson` → `TargetPerson`.
 /// - `SourceAddress` → `TargetAddress`.
 /// - `SourceEmployee` → `TargetEmployee`.
+/// - `SourceRole` → `TargetRole` -- With default value.
 /// {@endtemplate}
-class $AutoMapprDemoMapper implements _i1.AutoMapprInterface {
+class $AutoMapprDemoMapper implements _i2.AutoMapprInterface {
   const $AutoMapprDemoMapper();
 
   Type _typeOf<T>() => T;
 
-  List<_i1.AutoMapprInterface> get _delegates => const [];
+  List<_i2.AutoMapprInterface> get _delegates => const [];
 
   /// {@macro AutoMapprInterface:canConvert}
   /// {@macro package:flutter_lab/data/mapper/auto_mappr_demo/auto_mappr_demo_mapper.dart}
@@ -35,22 +36,28 @@ class $AutoMapprDemoMapper implements _i1.AutoMapprInterface {
   bool canConvert<SOURCE, TARGET>({bool recursive = true}) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.SourcePerson>() ||
-            sourceTypeOf == _typeOf<_i2.SourcePerson?>()) &&
-        (targetTypeOf == _typeOf<_i3.TargetPerson>() ||
-            targetTypeOf == _typeOf<_i3.TargetPerson?>())) {
+    if ((sourceTypeOf == _typeOf<_i3.SourcePerson>() ||
+            sourceTypeOf == _typeOf<_i3.SourcePerson?>()) &&
+        (targetTypeOf == _typeOf<_i1.TargetPerson>() ||
+            targetTypeOf == _typeOf<_i1.TargetPerson?>())) {
       return true;
     }
-    if ((sourceTypeOf == _typeOf<_i2.SourceAddress>() ||
-            sourceTypeOf == _typeOf<_i2.SourceAddress?>()) &&
-        (targetTypeOf == _typeOf<_i3.TargetAddress>() ||
-            targetTypeOf == _typeOf<_i3.TargetAddress?>())) {
+    if ((sourceTypeOf == _typeOf<_i3.SourceAddress>() ||
+            sourceTypeOf == _typeOf<_i3.SourceAddress?>()) &&
+        (targetTypeOf == _typeOf<_i1.TargetAddress>() ||
+            targetTypeOf == _typeOf<_i1.TargetAddress?>())) {
       return true;
     }
-    if ((sourceTypeOf == _typeOf<_i2.SourceEmployee>() ||
-            sourceTypeOf == _typeOf<_i2.SourceEmployee?>()) &&
-        (targetTypeOf == _typeOf<_i3.TargetEmployee>() ||
-            targetTypeOf == _typeOf<_i3.TargetEmployee?>())) {
+    if ((sourceTypeOf == _typeOf<_i3.SourceEmployee>() ||
+            sourceTypeOf == _typeOf<_i3.SourceEmployee?>()) &&
+        (targetTypeOf == _typeOf<_i1.TargetEmployee>() ||
+            targetTypeOf == _typeOf<_i1.TargetEmployee?>())) {
+      return true;
+    }
+    if ((sourceTypeOf == _typeOf<_i3.SourceRole>() ||
+            sourceTypeOf == _typeOf<_i3.SourceRole?>()) &&
+        (targetTypeOf == _typeOf<_i1.TargetRole>() ||
+            targetTypeOf == _typeOf<_i1.TargetRole?>())) {
       return true;
     }
     if (recursive) {
@@ -230,40 +237,50 @@ class $AutoMapprDemoMapper implements _i1.AutoMapprInterface {
   }) {
     final sourceTypeOf = _typeOf<SOURCE>();
     final targetTypeOf = _typeOf<TARGET>();
-    if ((sourceTypeOf == _typeOf<_i2.SourcePerson>() ||
-            sourceTypeOf == _typeOf<_i2.SourcePerson?>()) &&
-        (targetTypeOf == _typeOf<_i3.TargetPerson>() ||
-            targetTypeOf == _typeOf<_i3.TargetPerson?>())) {
+    if ((sourceTypeOf == _typeOf<_i3.SourcePerson>() ||
+            sourceTypeOf == _typeOf<_i3.SourcePerson?>()) &&
+        (targetTypeOf == _typeOf<_i1.TargetPerson>() ||
+            targetTypeOf == _typeOf<_i1.TargetPerson?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i2$SourcePerson_To__i3$TargetPerson(
-            (model as _i2.SourcePerson?),
+      return (_map__i3$SourcePerson_To__i1$TargetPerson(
+            (model as _i3.SourcePerson?),
           )
           as TARGET);
     }
-    if ((sourceTypeOf == _typeOf<_i2.SourceAddress>() ||
-            sourceTypeOf == _typeOf<_i2.SourceAddress?>()) &&
-        (targetTypeOf == _typeOf<_i3.TargetAddress>() ||
-            targetTypeOf == _typeOf<_i3.TargetAddress?>())) {
+    if ((sourceTypeOf == _typeOf<_i3.SourceAddress>() ||
+            sourceTypeOf == _typeOf<_i3.SourceAddress?>()) &&
+        (targetTypeOf == _typeOf<_i1.TargetAddress>() ||
+            targetTypeOf == _typeOf<_i1.TargetAddress?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i2$SourceAddress_To__i3$TargetAddress(
-            (model as _i2.SourceAddress?),
+      return (_map__i3$SourceAddress_To__i1$TargetAddress(
+            (model as _i3.SourceAddress?),
           )
           as TARGET);
     }
-    if ((sourceTypeOf == _typeOf<_i2.SourceEmployee>() ||
-            sourceTypeOf == _typeOf<_i2.SourceEmployee?>()) &&
-        (targetTypeOf == _typeOf<_i3.TargetEmployee>() ||
-            targetTypeOf == _typeOf<_i3.TargetEmployee?>())) {
+    if ((sourceTypeOf == _typeOf<_i3.SourceEmployee>() ||
+            sourceTypeOf == _typeOf<_i3.SourceEmployee?>()) &&
+        (targetTypeOf == _typeOf<_i1.TargetEmployee>() ||
+            targetTypeOf == _typeOf<_i1.TargetEmployee?>())) {
       if (canReturnNull && model == null) {
         return null;
       }
-      return (_map__i2$SourceEmployee_To__i3$TargetEmployee(
-            (model as _i2.SourceEmployee?),
+      return (_map__i3$SourceEmployee_To__i1$TargetEmployee(
+            (model as _i3.SourceEmployee?),
           )
+          as TARGET);
+    }
+    if ((sourceTypeOf == _typeOf<_i3.SourceRole>() ||
+            sourceTypeOf == _typeOf<_i3.SourceRole?>()) &&
+        (targetTypeOf == _typeOf<_i1.TargetRole>() ||
+            targetTypeOf == _typeOf<_i1.TargetRole?>())) {
+      if (canReturnNull && model == null) {
+        return (_i1.TargetRole.unknown as TARGET);
+      }
+      return (_map__i3$SourceRole_To__i1$TargetRole((model as _i3.SourceRole?))
           as TARGET);
     }
     throw Exception('No ${model.runtimeType} -> $targetTypeOf mapping.');
@@ -292,8 +309,8 @@ class $AutoMapprDemoMapper implements _i1.AutoMapprInterface {
     return false;
   }
 
-  _i3.TargetPerson _map__i2$SourcePerson_To__i3$TargetPerson(
-    _i2.SourcePerson? input,
+  _i1.TargetPerson _map__i3$SourcePerson_To__i1$TargetPerson(
+    _i3.SourcePerson? input,
   ) {
     final model = input;
     if (model == null) {
@@ -302,7 +319,7 @@ class $AutoMapprDemoMapper implements _i1.AutoMapprInterface {
         r'Consider setting the whenSourceIsNull parameter on the MapType<SourcePerson, TargetPerson> to handle null values during mapping.',
       );
     }
-    return _i3.TargetPerson(
+    return _i1.TargetPerson(
       id: model.id,
       firstName: model.firstName,
       lastName: model.lastName,
@@ -312,8 +329,8 @@ class $AutoMapprDemoMapper implements _i1.AutoMapprInterface {
     );
   }
 
-  _i3.TargetAddress _map__i2$SourceAddress_To__i3$TargetAddress(
-    _i2.SourceAddress? input,
+  _i1.TargetAddress _map__i3$SourceAddress_To__i1$TargetAddress(
+    _i3.SourceAddress? input,
   ) {
     final model = input;
     if (model == null) {
@@ -322,15 +339,15 @@ class $AutoMapprDemoMapper implements _i1.AutoMapprInterface {
         r'Consider setting the whenSourceIsNull parameter on the MapType<SourceAddress, TargetAddress> to handle null values during mapping.',
       );
     }
-    return _i3.TargetAddress(
+    return _i1.TargetAddress(
       street: model.street,
       city: model.city,
       zipCode: model.zipCode,
     );
   }
 
-  _i3.TargetEmployee _map__i2$SourceEmployee_To__i3$TargetEmployee(
-    _i2.SourceEmployee? input,
+  _i1.TargetEmployee _map__i3$SourceEmployee_To__i1$TargetEmployee(
+    _i3.SourceEmployee? input,
   ) {
     final model = input;
     if (model == null) {
@@ -339,11 +356,22 @@ class $AutoMapprDemoMapper implements _i1.AutoMapprInterface {
         r'Consider setting the whenSourceIsNull parameter on the MapType<SourceEmployee, TargetEmployee> to handle null values during mapping.',
       );
     }
-    return _i3.TargetEmployee(
+    return _i1.TargetEmployee(
       name: model.name,
-      address: _map__i2$SourceAddress_To__i3$TargetAddress(model.address),
+      address: _map__i3$SourceAddress_To__i1$TargetAddress(model.address),
       skills: model.skills,
       skillCount: _i4.AutoMapprDemoMapper.computeSkillCount(model),
+    );
+  }
+
+  _i1.TargetRole _map__i3$SourceRole_To__i1$TargetRole(_i3.SourceRole? input) {
+    final model = input;
+    if (model == null) {
+      return _i1.TargetRole.unknown;
+    }
+    return _i1.TargetRole.values.firstWhere(
+      (x) => x.name == model.name,
+      orElse: () => _i1.TargetRole.unknown,
     );
   }
 }

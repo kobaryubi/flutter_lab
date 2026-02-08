@@ -64,6 +64,12 @@ class _Body extends StatelessWidget {
     final targetPersonList = _mapper.convertList<SourcePerson, TargetPerson>(
       sourcePersonList,
     );
+    final enumMappings = SourceRole.values.map(
+      (source) => (
+        source: source,
+        target: _mapper.convert<SourceRole, TargetRole>(source),
+      ),
+    );
 
     return ListView(
       padding: const .all(16),
@@ -199,6 +205,17 @@ class _Body extends StatelessWidget {
               label: 'Target count',
               value: '${targetPersonList.length}',
             ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        _DemoSection(
+          title: 'Enum Mapping (whenSourceIsNull)',
+          children: [
+            for (final mapping in enumMappings)
+              _FieldRow(
+                label: mapping.source.name,
+                value: mapping.target.name,
+              ),
           ],
         ),
       ],
