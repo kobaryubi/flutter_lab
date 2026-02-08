@@ -25,6 +25,18 @@ abstract class TargetAddress with _$TargetAddress {
   }) = _TargetAddress;
 }
 
+/// Target role representing a person's role after mapping.
+enum TargetRole {
+  /// Student role.
+  student,
+
+  /// Employee role.
+  employee,
+
+  /// Unknown role — fallback for unmatched source values.
+  unknown,
+}
+
 /// Target model representing an employee after mapping.
 @freezed
 abstract class TargetEmployee with _$TargetEmployee {

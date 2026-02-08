@@ -24,6 +24,18 @@ abstract class SourceAddress with _$SourceAddress {
   }) = _SourceAddress;
 }
 
+/// Source role representing a person's role before mapping.
+enum SourceRole {
+  /// Student role.
+  student,
+
+  /// Employee role.
+  employee,
+
+  /// Alien role — has no matching target value.
+  alien,
+}
+
 /// Source model representing an employee before mapping.
 @freezed
 abstract class SourceEmployee with _$SourceEmployee {
