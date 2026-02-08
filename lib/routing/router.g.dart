@@ -13,6 +13,7 @@ List<RouteBase> get $appRoutes => [
   $arutanaAdRoute,
   $brightnessRoute,
   $dioCacheRoute,
+  $effectVsListenRoute,
   $formBuilderRoute,
   $homeRoute,
   $inAppReviewRoute,
@@ -173,6 +174,32 @@ mixin $DioCacheRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/dio_cache');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $effectVsListenRoute => GoRouteData.$route(
+  path: '/effect_vs_listen',
+  factory: $EffectVsListenRoute._fromState,
+);
+
+mixin $EffectVsListenRoute on GoRouteData {
+  static EffectVsListenRoute _fromState(GoRouterState state) =>
+      EffectVsListenRoute();
+
+  @override
+  String get location => GoRouteData.$location('/effect_vs_listen');
 
   @override
   void go(BuildContext context) => context.go(location);
