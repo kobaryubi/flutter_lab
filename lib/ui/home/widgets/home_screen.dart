@@ -44,6 +44,10 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'permission', route: PermissionRoute()),
     AppLink(title: 'pop scope', route: PopScopeRoute()),
     AppLink(title: 'auto_mappr demo', route: AutoMapprDemoRoute()),
+    AppLink(
+      title: 'useEffect vs ref.listen',
+      route: EffectVsListenRoute(),
+    ),
   ];
 
   @override
