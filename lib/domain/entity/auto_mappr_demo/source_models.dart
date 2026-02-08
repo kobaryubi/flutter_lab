@@ -10,6 +10,7 @@ abstract class SourcePerson with _$SourcePerson {
     required String firstName,
     required String lastName,
     required int ageInYears,
+    required SourceRole role,
     String? nickname,
   }) = _SourcePerson;
 }

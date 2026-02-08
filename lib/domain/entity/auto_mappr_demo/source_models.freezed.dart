@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SourcePerson {
 
- int get id; String get firstName; String get lastName; int get ageInYears; String? get nickname;
+ int get id; String get firstName; String get lastName; int get ageInYears; SourceRole get role; String? get nickname;
 /// Create a copy of SourcePerson
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $SourcePersonCopyWith<SourcePerson> get copyWith => _$SourcePersonCopyWithImpl<S
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SourcePerson&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.ageInYears, ageInYears) || other.ageInYears == ageInYears)&&(identical(other.nickname, nickname) || other.nickname == nickname));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SourcePerson&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.ageInYears, ageInYears) || other.ageInYears == ageInYears)&&(identical(other.role, role) || other.role == role)&&(identical(other.nickname, nickname) || other.nickname == nickname));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,ageInYears,nickname);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,ageInYears,role,nickname);
 
 @override
 String toString() {
-  return 'SourcePerson(id: $id, firstName: $firstName, lastName: $lastName, ageInYears: $ageInYears, nickname: $nickname)';
+  return 'SourcePerson(id: $id, firstName: $firstName, lastName: $lastName, ageInYears: $ageInYears, role: $role, nickname: $nickname)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $SourcePersonCopyWith<$Res>  {
   factory $SourcePersonCopyWith(SourcePerson value, $Res Function(SourcePerson) _then) = _$SourcePersonCopyWithImpl;
 @useResult
 $Res call({
- int id, String firstName, String lastName, int ageInYears, String? nickname
+ int id, String firstName, String lastName, int ageInYears, SourceRole role, String? nickname
 });
 
 
@@ -62,13 +62,14 @@ class _$SourcePersonCopyWithImpl<$Res>
 
 /// Create a copy of SourcePerson
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? ageInYears = null,Object? nickname = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? ageInYears = null,Object? role = null,Object? nickname = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String,ageInYears: null == ageInYears ? _self.ageInYears : ageInYears // ignore: cast_nullable_to_non_nullable
-as int,nickname: freezed == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
+as int,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as SourceRole,nickname: freezed == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  int ageInYears,  String? nickname)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  int ageInYears,  SourceRole role,  String? nickname)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SourcePerson() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.ageInYears,_that.nickname);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.ageInYears,_that.role,_that.nickname);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.ageInYears,_that.n
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  int ageInYears,  String? nickname)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String firstName,  String lastName,  int ageInYears,  SourceRole role,  String? nickname)  $default,) {final _that = this;
 switch (_that) {
 case _SourcePerson():
-return $default(_that.id,_that.firstName,_that.lastName,_that.ageInYears,_that.nickname);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.ageInYears,_that.role,_that.nickname);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +196,10 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.ageInYears,_that.n
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String firstName,  String lastName,  int ageInYears,  String? nickname)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String firstName,  String lastName,  int ageInYears,  SourceRole role,  String? nickname)?  $default,) {final _that = this;
 switch (_that) {
 case _SourcePerson() when $default != null:
-return $default(_that.id,_that.firstName,_that.lastName,_that.ageInYears,_that.nickname);case _:
+return $default(_that.id,_that.firstName,_that.lastName,_that.ageInYears,_that.role,_that.nickname);case _:
   return null;
 
 }
@@ -210,13 +211,14 @@ return $default(_that.id,_that.firstName,_that.lastName,_that.ageInYears,_that.n
 
 
 class _SourcePerson implements SourcePerson {
-  const _SourcePerson({required this.id, required this.firstName, required this.lastName, required this.ageInYears, this.nickname});
+  const _SourcePerson({required this.id, required this.firstName, required this.lastName, required this.ageInYears, required this.role, this.nickname});
   
 
 @override final  int id;
 @override final  String firstName;
 @override final  String lastName;
 @override final  int ageInYears;
+@override final  SourceRole role;
 @override final  String? nickname;
 
 /// Create a copy of SourcePerson
@@ -229,16 +231,16 @@ _$SourcePersonCopyWith<_SourcePerson> get copyWith => __$SourcePersonCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SourcePerson&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.ageInYears, ageInYears) || other.ageInYears == ageInYears)&&(identical(other.nickname, nickname) || other.nickname == nickname));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SourcePerson&&(identical(other.id, id) || other.id == id)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.ageInYears, ageInYears) || other.ageInYears == ageInYears)&&(identical(other.role, role) || other.role == role)&&(identical(other.nickname, nickname) || other.nickname == nickname));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,firstName,lastName,ageInYears,nickname);
+int get hashCode => Object.hash(runtimeType,id,firstName,lastName,ageInYears,role,nickname);
 
 @override
 String toString() {
-  return 'SourcePerson(id: $id, firstName: $firstName, lastName: $lastName, ageInYears: $ageInYears, nickname: $nickname)';
+  return 'SourcePerson(id: $id, firstName: $firstName, lastName: $lastName, ageInYears: $ageInYears, role: $role, nickname: $nickname)';
 }
 
 
@@ -249,7 +251,7 @@ abstract mixin class _$SourcePersonCopyWith<$Res> implements $SourcePersonCopyWi
   factory _$SourcePersonCopyWith(_SourcePerson value, $Res Function(_SourcePerson) _then) = __$SourcePersonCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String firstName, String lastName, int ageInYears, String? nickname
+ int id, String firstName, String lastName, int ageInYears, SourceRole role, String? nickname
 });
 
 
@@ -266,13 +268,14 @@ class __$SourcePersonCopyWithImpl<$Res>
 
 /// Create a copy of SourcePerson
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? ageInYears = null,Object? nickname = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? firstName = null,Object? lastName = null,Object? ageInYears = null,Object? role = null,Object? nickname = freezed,}) {
   return _then(_SourcePerson(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
 as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
 as String,ageInYears: null == ageInYears ? _self.ageInYears : ageInYears // ignore: cast_nullable_to_non_nullable
-as int,nickname: freezed == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
+as int,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as SourceRole,nickname: freezed == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

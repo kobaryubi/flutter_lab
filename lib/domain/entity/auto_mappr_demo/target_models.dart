@@ -12,6 +12,7 @@ abstract class TargetPerson with _$TargetPerson {
     required int age,
     required String displayName,
     required String nickname,
+    required TargetRole role,
   }) = _TargetPerson;
 }
 
