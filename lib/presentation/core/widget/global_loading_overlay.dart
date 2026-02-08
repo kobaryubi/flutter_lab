@@ -17,12 +17,6 @@ class GlobalLoadingOverlay extends ConsumerWidget {
       visible: isLoading,
       portalFollower: const ColoredBox(
         color: Color(0x80000000),
-        child: Center(
-          child: SizedBox.square(
-            dimension: 40,
-            child: ColoredBox(color: Color(0xFF666666)),
-          ),
-        ),
       ),
       child: child,
     );
