@@ -48,6 +48,7 @@ class HomeScreen extends StatelessWidget {
       title: 'useEffect vs ref.listen',
       route: EffectVsListenRoute(),
     ),
+    AppLink(title: 'method channel', route: MethodChannelRoute()),
   ];
 
   @override
