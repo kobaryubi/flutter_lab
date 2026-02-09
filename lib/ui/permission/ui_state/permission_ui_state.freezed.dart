@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PermissionUiState {
 
- AsyncValue<PermissionStatuses>? get statuses;
+ AsyncValue<Map<Permission, PermissionStatus>>? get statuses;
 /// Create a copy of PermissionUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $PermissionUiStateCopyWith<$Res>  {
   factory $PermissionUiStateCopyWith(PermissionUiState value, $Res Function(PermissionUiState) _then) = _$PermissionUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<PermissionStatuses>? statuses
+ AsyncValue<Map<Permission, PermissionStatus>>? statuses
 });
 
 
@@ -65,7 +65,7 @@ class _$PermissionUiStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? statuses = freezed,}) {
   return _then(_self.copyWith(
 statuses: freezed == statuses ? _self.statuses : statuses // ignore: cast_nullable_to_non_nullable
-as AsyncValue<PermissionStatuses>?,
+as AsyncValue<Map<Permission, PermissionStatus>>?,
   ));
 }
 
@@ -150,7 +150,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<PermissionStatuses>? statuses)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Map<Permission, PermissionStatus>>? statuses)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PermissionUiState() when $default != null:
 return $default(_that.statuses);case _:
@@ -171,7 +171,7 @@ return $default(_that.statuses);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<PermissionStatuses>? statuses)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Map<Permission, PermissionStatus>>? statuses)  $default,) {final _that = this;
 switch (_that) {
 case _PermissionUiState():
 return $default(_that.statuses);case _:
@@ -191,7 +191,7 @@ return $default(_that.statuses);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<PermissionStatuses>? statuses)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Map<Permission, PermissionStatus>>? statuses)?  $default,) {final _that = this;
 switch (_that) {
 case _PermissionUiState() when $default != null:
 return $default(_that.statuses);case _:
@@ -209,7 +209,7 @@ class _PermissionUiState implements PermissionUiState {
   const _PermissionUiState({this.statuses});
   
 
-@override final  AsyncValue<PermissionStatuses>? statuses;
+@override final  AsyncValue<Map<Permission, PermissionStatus>>? statuses;
 
 /// Create a copy of PermissionUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -241,7 +241,7 @@ abstract mixin class _$PermissionUiStateCopyWith<$Res> implements $PermissionUiS
   factory _$PermissionUiStateCopyWith(_PermissionUiState value, $Res Function(_PermissionUiState) _then) = __$PermissionUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<PermissionStatuses>? statuses
+ AsyncValue<Map<Permission, PermissionStatus>>? statuses
 });
 
 
@@ -261,7 +261,7 @@ class __$PermissionUiStateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? statuses = freezed,}) {
   return _then(_PermissionUiState(
 statuses: freezed == statuses ? _self.statuses : statuses // ignore: cast_nullable_to_non_nullable
-as AsyncValue<PermissionStatuses>?,
+as AsyncValue<Map<Permission, PermissionStatus>>?,
   ));
 }
 
