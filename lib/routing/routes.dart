@@ -29,6 +29,7 @@ abstract final class Routes {
   static const popScope = '/pop_scope';
   static const autoMapprDemo = '/auto_mappr_demo';
   static const effectVsListen = '/effect_vs_listen';
+  static const methodChannel = '/method_channel';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';

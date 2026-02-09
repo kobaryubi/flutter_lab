@@ -23,6 +23,7 @@ List<RouteBase> get $appRoutes => [
   $localPathsRoute,
   $locationRoute,
   $maxSdkRoute,
+  $methodChannelRoute,
   $networkRoute,
   $notFoundRoute,
   $ocrRoute,
@@ -421,6 +422,32 @@ mixin $MaxSdkRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/max_sdk');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $methodChannelRoute => GoRouteData.$route(
+  path: '/method_channel',
+  factory: $MethodChannelRoute._fromState,
+);
+
+mixin $MethodChannelRoute on GoRouteData {
+  static MethodChannelRoute _fromState(GoRouterState state) =>
+      MethodChannelRoute();
+
+  @override
+  String get location => GoRouteData.$location('/method_channel');
 
   @override
   void go(BuildContext context) => context.go(location);
