@@ -1,5 +1,5 @@
 /// Represents the permissions that the app can request.
-enum AppPermission {
+enum Permission {
   /// Camera access.
   camera,
 
