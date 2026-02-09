@@ -1,12 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_lab/domain/entity/permission/app_permission.dart';
-import 'package:flutter_lab/domain/entity/permission/permission_statuses.dart';
+import 'package:flutter_lab/domain/entity/permission/permission.dart';
+import 'package:flutter_lab/domain/entity/permission/permission_status.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/permission/view_model/permission_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 /// Screen to demonstrate the permission_handler package.
 class PermissionScreen extends StatelessWidget {
@@ -29,20 +28,20 @@ class _Body extends HookConsumerWidget {
 
     useEffect(
       () {
-        viewModel.checkStatuses();
+        viewModel.fetchPermissionStatuses();
         return null;
       },
       const [],
     );
 
     /// Handles tapping on a permission row to request it.
-    void handleRequest(AppPermission permission) {
+    void handleRequest(Permission permission) {
       viewModel.requestPermission(permission: permission);
     }
 
     /// Handles tapping the "Open Settings" button.
     void handleOpenSettings() {
-      openAppSettings();
+      viewModel.openAppSettings();
     }
 
     final statuses = uiState.statuses;
@@ -76,12 +75,12 @@ class _PermissionList extends StatelessWidget {
     required this.onRequest,
   });
 
-  final PermissionStatuses statuses;
-  final ValueChanged<AppPermission> onRequest;
+  final Map<Permission, PermissionStatus> statuses;
+  final ValueChanged<Permission> onRequest;
 
   @override
   Widget build(BuildContext context) => ListView(
-    children: statuses.statuses.entries.map((entry) {
+    children: statuses.entries.map((entry) {
       final permissionName = entry.key.name;
       final statusName = entry.value.name;
       return GestureDetector(
