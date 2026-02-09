@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/domain/entity/permission/app_permission.dart';
+import 'package:flutter_lab/domain/entity/permission/permission_statuses.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/permission/view_model/permission_view_model.dart';
@@ -34,7 +36,7 @@ class _Body extends HookConsumerWidget {
     );
 
     /// Handles tapping on a permission row to request it.
-    void handleRequest(Permission permission) {
+    void handleRequest(AppPermission permission) {
       viewModel.requestPermission(permission: permission);
     }
 
@@ -48,23 +50,11 @@ class _Body extends HookConsumerWidget {
     return Column(
       crossAxisAlignment: .stretch,
       children: [
-        if (statuses != null)
+        if (statuses case AsyncData(:final value))
           Expanded(
-            child: ListView(
-              children: statuses.entries.map((entry) {
-                final permissionName = entry.key.toString();
-                final statusName = entry.value.name;
-                return GestureDetector(
-                  behavior: .opaque,
-                  onTap: () => handleRequest(entry.key),
-                  child: Row(
-                    children: [
-                      Expanded(child: Text(permissionName)),
-                      Text(statusName),
-                    ],
-                  ),
-                );
-              }).toList(),
+            child: _PermissionList(
+              statuses: value,
+              onRequest: handleRequest,
             ),
           )
         else
@@ -78,4 +68,32 @@ class _Body extends HookConsumerWidget {
       ],
     );
   }
+}
+
+class _PermissionList extends StatelessWidget {
+  const _PermissionList({
+    required this.statuses,
+    required this.onRequest,
+  });
+
+  final PermissionStatuses statuses;
+  final ValueChanged<AppPermission> onRequest;
+
+  @override
+  Widget build(BuildContext context) => ListView(
+    children: statuses.statuses.entries.map((entry) {
+      final permissionName = entry.key.name;
+      final statusName = entry.value.name;
+      return GestureDetector(
+        behavior: .opaque,
+        onTap: () => onRequest(entry.key),
+        child: Row(
+          children: [
+            Expanded(child: Text(permissionName)),
+            Text(statusName),
+          ],
+        ),
+      );
+    }).toList(),
+  );
 }

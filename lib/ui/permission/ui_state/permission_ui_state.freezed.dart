@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PermissionUiState {
 
- Map<Permission, PermissionStatus>? get statuses;
+ AsyncValue<PermissionStatuses>? get statuses;
 /// Create a copy of PermissionUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,12 +25,12 @@ $PermissionUiStateCopyWith<PermissionUiState> get copyWith => _$PermissionUiStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PermissionUiState&&const DeepCollectionEquality().equals(other.statuses, statuses));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PermissionUiState&&(identical(other.statuses, statuses) || other.statuses == statuses));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(statuses));
+int get hashCode => Object.hash(runtimeType,statuses);
 
 @override
 String toString() {
@@ -45,7 +45,7 @@ abstract mixin class $PermissionUiStateCopyWith<$Res>  {
   factory $PermissionUiStateCopyWith(PermissionUiState value, $Res Function(PermissionUiState) _then) = _$PermissionUiStateCopyWithImpl;
 @useResult
 $Res call({
- Map<Permission, PermissionStatus>? statuses
+ AsyncValue<PermissionStatuses>? statuses
 });
 
 
@@ -65,7 +65,7 @@ class _$PermissionUiStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? statuses = freezed,}) {
   return _then(_self.copyWith(
 statuses: freezed == statuses ? _self.statuses : statuses // ignore: cast_nullable_to_non_nullable
-as Map<Permission, PermissionStatus>?,
+as AsyncValue<PermissionStatuses>?,
   ));
 }
 
@@ -150,7 +150,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<Permission, PermissionStatus>? statuses)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<PermissionStatuses>? statuses)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PermissionUiState() when $default != null:
 return $default(_that.statuses);case _:
@@ -171,7 +171,7 @@ return $default(_that.statuses);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<Permission, PermissionStatus>? statuses)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<PermissionStatuses>? statuses)  $default,) {final _that = this;
 switch (_that) {
 case _PermissionUiState():
 return $default(_that.statuses);case _:
@@ -191,7 +191,7 @@ return $default(_that.statuses);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<Permission, PermissionStatus>? statuses)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<PermissionStatuses>? statuses)?  $default,) {final _that = this;
 switch (_that) {
 case _PermissionUiState() when $default != null:
 return $default(_that.statuses);case _:
@@ -206,18 +206,10 @@ return $default(_that.statuses);case _:
 
 
 class _PermissionUiState implements PermissionUiState {
-  const _PermissionUiState({final  Map<Permission, PermissionStatus>? statuses}): _statuses = statuses;
+  const _PermissionUiState({this.statuses});
   
 
- final  Map<Permission, PermissionStatus>? _statuses;
-@override Map<Permission, PermissionStatus>? get statuses {
-  final value = _statuses;
-  if (value == null) return null;
-  if (_statuses is EqualUnmodifiableMapView) return _statuses;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(value);
-}
-
+@override final  AsyncValue<PermissionStatuses>? statuses;
 
 /// Create a copy of PermissionUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -229,12 +221,12 @@ _$PermissionUiStateCopyWith<_PermissionUiState> get copyWith => __$PermissionUiS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PermissionUiState&&const DeepCollectionEquality().equals(other._statuses, _statuses));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PermissionUiState&&(identical(other.statuses, statuses) || other.statuses == statuses));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_statuses));
+int get hashCode => Object.hash(runtimeType,statuses);
 
 @override
 String toString() {
@@ -249,7 +241,7 @@ abstract mixin class _$PermissionUiStateCopyWith<$Res> implements $PermissionUiS
   factory _$PermissionUiStateCopyWith(_PermissionUiState value, $Res Function(_PermissionUiState) _then) = __$PermissionUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- Map<Permission, PermissionStatus>? statuses
+ AsyncValue<PermissionStatuses>? statuses
 });
 
 
@@ -268,8 +260,8 @@ class __$PermissionUiStateCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? statuses = freezed,}) {
   return _then(_PermissionUiState(
-statuses: freezed == statuses ? _self._statuses : statuses // ignore: cast_nullable_to_non_nullable
-as Map<Permission, PermissionStatus>?,
+statuses: freezed == statuses ? _self.statuses : statuses // ignore: cast_nullable_to_non_nullable
+as AsyncValue<PermissionStatuses>?,
   ));
 }
 
