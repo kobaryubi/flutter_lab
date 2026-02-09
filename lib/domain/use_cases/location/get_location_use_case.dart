@@ -9,5 +9,5 @@ class GetLocationUseCase {
 
   final LocationRepository _locationRepository;
 
-  AsyncResult<Location> call() async => _locationRepository.get();
+  AsyncResult<Location> call() async => _locationRepository.getLocation();
 }
