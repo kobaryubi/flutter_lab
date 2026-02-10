@@ -1,10 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/domain/entity/network/connectivity_status.dart';
+import 'package:flutter_lab/presentation/core/hook/use_connectivity.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
-import 'package:flutter_lab/ui/network/view_model/network_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-/// Screen to check and display network connectivity status.
+/// Screen to display network connectivity status.
 class NetworkScreen extends StatelessWidget {
   const NetworkScreen({super.key});
 
@@ -15,30 +16,18 @@ class NetworkScreen extends StatelessWidget {
   );
 }
 
-class _Body extends ConsumerWidget {
+class _Body extends HookConsumerWidget {
   const _Body();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final uiState = ref.watch(networkViewModelProvider);
-    final viewModel = ref.read(networkViewModelProvider.notifier);
-
-    /// Gets connectivity and displays the result.
-    Future<void> handleGetConnectivity() async {
-      await viewModel.getConnectivity();
-    }
-
-    final status = uiState.status;
+    final connectivity = useConnectivity(ref: ref);
 
     return Column(
       crossAxisAlignment: .stretch,
       children: [
-        GestureDetector(
-          onTap: handleGetConnectivity,
-          child: const Text('Check Connectivity'),
-        ),
-        if (status case AsyncData(:final value))
-          Text('Connectivity: ${value.connectivities.join(', ')}'),
+        if (connectivity case ConnectivityStatus(:final connectivities))
+          Text('Connectivity: ${connectivities.join(', ')}'),
       ],
     );
   }
