@@ -1,8 +1,8 @@
 import 'package:flutter_lab/domain/entity/network/connectivity_status.dart';
 import 'package:result_dart/result_dart.dart';
 
-/// Repository interface for checking network connectivity.
-abstract class NetworkRepository {
+/// Gateway interface for checking network connectivity.
+abstract class NetworkGateway {
   /// Checks the current network connectivity status.
   AsyncResult<ConnectivityStatus> checkConnectivity();
 
