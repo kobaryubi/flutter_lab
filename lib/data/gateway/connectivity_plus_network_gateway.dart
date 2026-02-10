@@ -1,11 +1,11 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_lab/domain/entity/network/connectivity_status.dart';
-import 'package:flutter_lab/domain/network/network_repository.dart';
+import 'package:flutter_lab/domain/network/network_gateway.dart';
 import 'package:result_dart/result_dart.dart';
 
-/// [NetworkRepository] implementation using `connectivity_plus`.
-class ConnectivityPlusNetworkRepository implements NetworkRepository {
-  ConnectivityPlusNetworkRepository({
+/// [NetworkGateway] implementation using `connectivity_plus`.
+class ConnectivityPlusNetworkGateway implements NetworkGateway {
+  ConnectivityPlusNetworkGateway({
     required Connectivity connectivity,
   }) : _connectivity = connectivity;
 
