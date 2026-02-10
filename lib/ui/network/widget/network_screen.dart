@@ -23,9 +23,9 @@ class _Body extends ConsumerWidget {
     final uiState = ref.watch(networkViewModelProvider);
     final viewModel = ref.read(networkViewModelProvider.notifier);
 
-    /// Checks connectivity and displays the result.
-    Future<void> handleCheckConnectivity() async {
-      await viewModel.checkConnectivity();
+    /// Gets connectivity and displays the result.
+    Future<void> handleGetConnectivity() async {
+      await viewModel.getConnectivity();
     }
 
     final status = uiState.status;
@@ -34,7 +34,7 @@ class _Body extends ConsumerWidget {
       crossAxisAlignment: .stretch,
       children: [
         GestureDetector(
-          onTap: handleCheckConnectivity,
+          onTap: handleGetConnectivity,
           child: const Text('Check Connectivity'),
         ),
         if (status case AsyncData(:final value))
