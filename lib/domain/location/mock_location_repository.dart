@@ -1,9 +1,0 @@
-import 'package:flutter_lab/domain/location/location.dart';
-import 'package:flutter_lab/domain/location/location_repository.dart';
-import 'package:result_dart/result_dart.dart';
-
-class MockLocationRepository extends LocationRepository {
-  @override
-  AsyncResult<Location> get() async =>
-      const Location(latitude: 35, longitude: 135).toSuccess();
-}
