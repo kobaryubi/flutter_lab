@@ -205,8 +205,8 @@ return $default(_that.connectivities);case _:
 /// @nodoc
 
 
-class _ConnectivityStatus implements ConnectivityStatus {
-  const _ConnectivityStatus({required final  List<String> connectivities}): _connectivities = connectivities;
+class _ConnectivityStatus extends ConnectivityStatus {
+  const _ConnectivityStatus({required final  List<String> connectivities}): _connectivities = connectivities,super._();
   
 
  final  List<String> _connectivities;
