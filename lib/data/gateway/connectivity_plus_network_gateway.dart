@@ -12,7 +12,7 @@ class ConnectivityPlusNetworkGateway implements NetworkGateway {
   final Connectivity _connectivity;
 
   @override
-  AsyncResult<ConnectivityStatus> checkConnectivity() async {
+  AsyncResult<ConnectivityStatus> getConnectivity() async {
     try {
       final results = await _connectivity.checkConnectivity();
       return _toConnectivityStatus(results).toSuccess();
