@@ -5,11 +5,13 @@ import 'package:flutter_lab/domain/location/location.dart';
 import 'package:flutter_lab/domain/location/location_repository.dart';
 import 'package:result_dart/result_dart.dart';
 
+/// [LocationRepository] implementation that retrieves the device's GPS
+/// location via the platform method channel.
 class PlatformLocationRepository extends LocationRepository {
   static const platform = MethodChannel(MethodChannelNames.location);
 
   @override
-  AsyncResult<Location> get() async {
+  AsyncResult<Location> getLocation() async {
     final dto = await platform.invokeMapMethod<String, double>(
       MethodNames.getLocation,
     );
