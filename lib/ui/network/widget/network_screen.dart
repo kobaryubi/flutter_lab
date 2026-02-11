@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_lab/domain/entity/network/connectivity_status.dart';
 import 'package:flutter_lab/presentation/core/hook/use_connectivity.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
@@ -26,8 +25,9 @@ class _Body extends HookConsumerWidget {
     return Column(
       crossAxisAlignment: .stretch,
       children: [
-        if (connectivity case ConnectivityStatus(:final connectivities))
-          Text('Connectivity: ${connectivities.join(', ')}'),
+        Text(
+          'Connectivity: ${connectivity.connectivities.join(', ')}',
+        ),
       ],
     );
   }
