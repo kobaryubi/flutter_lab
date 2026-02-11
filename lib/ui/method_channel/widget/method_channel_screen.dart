@@ -30,7 +30,7 @@ class _Body extends HookConsumerWidget {
       return null;
     }, const []);
 
-    if (location == null || location.isLoading) {
+    if (location.isLoading) {
       return const Center(child: Text('Loading...'));
     }
 

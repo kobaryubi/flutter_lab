@@ -24,6 +24,8 @@ List<RouteBase> get $appRoutes => [
   $locationRoute,
   $maxSdkRoute,
   $methodChannelRoute,
+  $navigationScreenARoute,
+  $navigationScreenBRoute,
   $networkRoute,
   $notFoundRoute,
   $ocrRoute,
@@ -448,6 +450,58 @@ mixin $MethodChannelRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/method_channel');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $navigationScreenARoute => GoRouteData.$route(
+  path: '/navigation/screen_a',
+  factory: $NavigationScreenARoute._fromState,
+);
+
+mixin $NavigationScreenARoute on GoRouteData {
+  static NavigationScreenARoute _fromState(GoRouterState state) =>
+      NavigationScreenARoute();
+
+  @override
+  String get location => GoRouteData.$location('/navigation/screen_a');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $navigationScreenBRoute => GoRouteData.$route(
+  path: '/navigation/screen_b',
+  factory: $NavigationScreenBRoute._fromState,
+);
+
+mixin $NavigationScreenBRoute on GoRouteData {
+  static NavigationScreenBRoute _fromState(GoRouterState state) =>
+      NavigationScreenBRoute();
+
+  @override
+  String get location => GoRouteData.$location('/navigation/screen_b');
 
   @override
   void go(BuildContext context) => context.go(location);

@@ -35,6 +35,9 @@ abstract final class Routes {
   static const shellDemoTabB = '/shell_demo/tab_b';
   static const shellDemoTabC = '/shell_demo/tab_c';
 
+  static const navigationScreenA = '/navigation/screen_a';
+  static const navigationScreenB = '/navigation/screen_b';
+
   static const routing = '/routing';
   static const routingCupertino = '/routing/cupertino';
   static const routingCupertinoFullscreenDialog =

@@ -49,6 +49,7 @@ class HomeScreen extends StatelessWidget {
       route: EffectVsListenRoute(),
     ),
     AppLink(title: 'method channel', route: MethodChannelRoute()),
+    AppLink(title: 'navigation', route: NavigationScreenARoute()),
   ];
 
   @override
