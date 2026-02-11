@@ -50,13 +50,6 @@ final class LocationHandler: NSObject {
     }
   }
   
-  // MARK: - Public Methods
-  
-  /// Request location permissions from the user
-  func requestLocationPermission() {
-    locationManager.requestWhenInUseAuthorization()
-  }
-  
   // MARK: - Private Methods
   
   private func getLocation(result: @escaping FlutterResult) {
@@ -86,22 +79,5 @@ final class LocationHandler: NSObject {
     ]
     
     result(locationData)
-  }
-}
-
-// MARK: - CLLocationManagerDelegate
-
-extension LocationHandler: CLLocationManagerDelegate {
-  func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-    // Handle authorization changes if needed
-    let status = manager.authorizationStatus
-    print("Location authorization status changed: \(status.rawValue)")
-  }
-  
-  func locationManager(
-    _ manager: CLLocationManager,
-    didFailWithError error: Error
-  ) {
-    print("Location manager failed with error: \(error.localizedDescription)")
   }
 }
