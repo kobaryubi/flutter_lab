@@ -10,4 +10,23 @@ final class LocationHandler: NSObject {
   private enum MethodName {
     static let getLocation = "getLocation"
   }
+  
+  // MARK: - Properties
+  
+  private let methodChannel: FlutterMethodChannel
+  private let locationManager: CLLocationManager
+  
+  // MARK: - Initialization
+  
+  init(binaryMessenger: any FlutterBinaryMessenger) {
+    self.methodChannel = FlutterMethodChannel(
+      name: Self.channelName,
+      binaryMessenger: binaryMessenger
+    )
+    self.locationManager = CLLocationManager()
+    
+    super.init()
+    
+    locationManager.delegate = self
+  }
 }
