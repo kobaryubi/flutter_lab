@@ -16,7 +16,7 @@ class ConnectivityNotifier extends _$ConnectivityNotifier {
 
   @override
   ConnectivityStatus build() {
-    final useCase = ref.read(onConnectivityChangedUseCaseProvider);
+    final useCase = ref.read(watchConnectivityUseCaseProvider);
     _subscription = useCase.call().listen(
       (connectivityStatus) => state = connectivityStatus,
     );

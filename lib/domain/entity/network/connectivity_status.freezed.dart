@@ -206,11 +206,11 @@ return $default(_that.connectivities);case _:
 
 
 class _ConnectivityStatus extends ConnectivityStatus {
-  const _ConnectivityStatus({required final  List<String> connectivities}): _connectivities = connectivities,super._();
+  const _ConnectivityStatus({final  List<String> connectivities = const []}): _connectivities = connectivities,super._();
   
 
  final  List<String> _connectivities;
-@override List<String> get connectivities {
+@override@JsonKey() List<String> get connectivities {
   if (_connectivities is EqualUnmodifiableListView) return _connectivities;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_connectivities);
