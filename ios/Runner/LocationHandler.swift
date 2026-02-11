@@ -81,3 +81,7 @@ final class LocationHandler: NSObject {
     result(locationData)
   }
 }
+
+// MARK: - CLLocationManagerDelegate
+
+extension LocationHandler: CLLocationManagerDelegate {}
