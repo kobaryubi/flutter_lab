@@ -22,13 +22,8 @@ class _Body extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final connectivity = ref.watch(connectivityProvider);
 
-    return Column(
-      crossAxisAlignment: .stretch,
-      children: [
-        Text(
-          'Connectivity: ${connectivity.connectivities.join(', ')}',
-        ),
-      ],
+    return Text(
+      'Connectivity: ${connectivity.connectivities.join(', ')}',
     );
   }
 }
