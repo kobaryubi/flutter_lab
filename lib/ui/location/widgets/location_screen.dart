@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_lab/domain/location/location.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/location/view_model/location_view_model.dart';
@@ -24,9 +23,6 @@ class _Body extends HookConsumerWidget {
     final locationAsyncValue = ref.watch(
       locationViewModelProvider.select((it) => it.location),
     );
-    final watchedLocationAsyncValue = ref.watch(
-      locationViewModelProvider.select((it) => it.watchedLocation),
-    );
 
     useEffect(() {
       ref.read(locationViewModelProvider.notifier).getLocation();
@@ -49,11 +45,6 @@ class _Body extends HookConsumerWidget {
       oppositeLongitude -= 360;
     }
 
-    /// Starts watching for continuous location updates.
-    void handleWatchLocation() {
-      ref.read(locationViewModelProvider.notifier).watchLocation();
-    }
-
     return Column(
       crossAxisAlignment: .start,
       children: [
@@ -69,47 +60,7 @@ class _Body extends HookConsumerWidget {
             '反転緯度: ${oppositeLatitude.toStringAsFixed(2)}, 反転経度: ${oppositeLongitude.toStringAsFixed(2)}',
           ),
         ),
-        Padding(
-          padding: const .symmetric(horizontal: 16),
-          child: GestureDetector(
-            onTap: handleWatchLocation,
-            child: const Text('Watch Location'),
-          ),
-        ),
-        if (watchedLocationAsyncValue != null)
-          Padding(
-            padding: const .all(16),
-            child: _WatchedLocationText(
-              watchedLocation: watchedLocationAsyncValue,
-            ),
-          ),
       ],
     );
-  }
-}
-
-class _WatchedLocationText extends StatelessWidget {
-  const _WatchedLocationText({required this.watchedLocation});
-
-  final AsyncValue<Location> watchedLocation;
-
-  @override
-  Widget build(BuildContext context) {
-    if (watchedLocation.isLoading) {
-      return const Text('Watching...');
-    }
-
-    if (watchedLocation.hasError) {
-      return Text('Watch Error: ${watchedLocation.error}');
-    }
-
-    if (watchedLocation case AsyncData(:final value)) {
-      return Text(
-        'Watched 緯度: ${value.latitude.toStringAsFixed(2)}, '
-        '経度: ${value.longitude.toStringAsFixed(2)}',
-      );
-    }
-
-    return const SizedBox.shrink();
   }
 }

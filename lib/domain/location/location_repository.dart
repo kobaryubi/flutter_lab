@@ -3,4 +3,7 @@ import 'package:result_dart/result_dart.dart';
 
 abstract class LocationRepository {
   AsyncResult<Location> getLocation();
+
+  /// Returns a continuous stream of location updates.
+  Stream<Location> watchLocation();
 }
