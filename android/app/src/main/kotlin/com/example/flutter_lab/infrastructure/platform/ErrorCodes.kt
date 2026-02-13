@@ -1,0 +1,7 @@
+package com.example.flutter_lab.infrastructure.platform
+
+/// Error codes returned via MethodChannel result.
+object ErrorCodes {
+    const val PERMISSION_DENIED = "PERMISSION_DENIED"
+    const val UNAVAILABLE = "UNAVAILABLE"
+}

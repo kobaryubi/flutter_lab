@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.LocationManager
 import androidx.core.content.ContextCompat
+import com.example.flutter_lab.infrastructure.platform.ErrorCodes
 import com.example.flutter_lab.infrastructure.platform.MethodChannelNames
 import com.example.flutter_lab.infrastructure.platform.MethodNames
 import io.flutter.embedding.android.FlutterActivity
@@ -31,7 +32,7 @@ class MainActivity : FlutterActivity() {
         ) == PackageManager.PERMISSION_GRANTED
 
         if (!hasPermission) {
-            result.error("PERMISSION_DENIED", "Location permission denied.", null)
+            result.error(ErrorCodes.PERMISSION_DENIED, "Location permission denied.", null)
             return
         }
 
@@ -39,7 +40,7 @@ class MainActivity : FlutterActivity() {
         val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
 
         if (location == null) {
-            result.error("UNAVAILABLE", "Location not available.", null)
+            result.error(ErrorCodes.UNAVAILABLE, "Location not available.", null)
             return
         }
 
