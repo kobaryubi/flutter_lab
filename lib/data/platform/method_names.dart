@@ -1,6 +1,7 @@
 class MethodNames {
   static const String getBatteryLevel = 'getBatteryLevel';
   static const String getLocation = 'getLocation';
+  static const String watchLocation = 'watchLocation';
 
   // Arutana Ad - commands (Flutter -> Native)
   static const String showInterstitial = 'showInterstitial';
