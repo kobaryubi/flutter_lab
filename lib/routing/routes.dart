@@ -4,7 +4,6 @@ abstract final class Routes {
   static const notFound = '/404';
 
   static const webView = '/web_view';
-  static const location = '/location';
   static const launchUrl = '/launch_url';
   static const portal = '/portal';
   static const sharedPreferences = '/shared_preferences';

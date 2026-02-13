@@ -22,7 +22,6 @@ List<RouteBase> get $appRoutes => [
   $loadingRoute,
   $localIconRoute,
   $localPathsRoute,
-  $locationRoute,
   $maxSdkRoute,
   $methodChannelRoute,
   $navigationScreenARoute,
@@ -404,29 +403,6 @@ mixin $LocalPathsRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/local_paths');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $locationRoute =>
-    GoRouteData.$route(path: '/location', factory: $LocationRoute._fromState);
-
-mixin $LocationRoute on GoRouteData {
-  static LocationRoute _fromState(GoRouterState state) => LocationRoute();
-
-  @override
-  String get location => GoRouteData.$location('/location');
 
   @override
   void go(BuildContext context) => context.go(location);
