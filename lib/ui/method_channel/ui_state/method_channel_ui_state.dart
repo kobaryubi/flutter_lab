@@ -9,5 +9,6 @@ part 'method_channel_ui_state.freezed.dart';
 abstract class MethodChannelUiState with _$MethodChannelUiState {
   const factory MethodChannelUiState({
     @Default(AsyncLoading<Location>()) AsyncValue<Location> location,
+    AsyncValue<Location>? watchedLocation,
   }) = _MethodChannelUiState;
 }

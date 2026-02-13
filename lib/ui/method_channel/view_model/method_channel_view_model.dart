@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter_lab/application/di/provider.dart';
+import 'package:flutter_lab/domain/location/location.dart';
 import 'package:flutter_lab/ui/method_channel/ui_state/method_channel_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -8,7 +11,12 @@ part 'method_channel_view_model.g.dart';
 @riverpod
 class MethodChannelViewModel extends _$MethodChannelViewModel {
   @override
-  MethodChannelUiState build() => const MethodChannelUiState();
+  MethodChannelUiState build() {
+    ref.onDispose(() => _watchSubscription?.cancel());
+    return const MethodChannelUiState();
+  }
+
+  StreamSubscription<Location>? _watchSubscription;
 
   /// Fetches the current location via platform method channel.
   Future<void> getLocation() async {
@@ -19,6 +27,39 @@ class MethodChannelViewModel extends _$MethodChannelViewModel {
         final result = await getLocationUseCase.call();
         return result.getOrThrow();
       }),
+    );
+  }
+
+  /// Starts watching for continuous location updates via EventChannel.
+  void watchLocation() {
+    if (_watchSubscription != null) return;
+
+    final watchLocationUseCase = ref.read(watchLocationUseCaseProvider);
+
+    state = state.copyWith(
+      watchedLocation: const AsyncValue.loading(),
+    );
+
+    _watchSubscription = watchLocationUseCase.call().listen(
+      _handleLocationUpdate,
+      onError: _handleLocationError,
+    );
+  }
+
+  /// Handles a new location from the watch stream.
+  void _handleLocationUpdate(Location location) {
+    state = state.copyWith(
+      watchedLocation: AsyncValue.data(location),
+    );
+  }
+
+  /// Handles an error from the watch stream.
+  void _handleLocationError(
+    Object error,
+    StackTrace stackTrace,
+  ) {
+    state = state.copyWith(
+      watchedLocation: AsyncValue.error(error, stackTrace),
     );
   }
 }

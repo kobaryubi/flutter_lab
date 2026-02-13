@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MethodChannelUiState {
 
- AsyncValue<Location> get location;
+ AsyncValue<Location> get location; AsyncValue<Location>? get watchedLocation;
 /// Create a copy of MethodChannelUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $MethodChannelUiStateCopyWith<MethodChannelUiState> get copyWith => _$MethodChan
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MethodChannelUiState&&(identical(other.location, location) || other.location == location));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MethodChannelUiState&&(identical(other.location, location) || other.location == location)&&(identical(other.watchedLocation, watchedLocation) || other.watchedLocation == watchedLocation));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,location);
+int get hashCode => Object.hash(runtimeType,location,watchedLocation);
 
 @override
 String toString() {
-  return 'MethodChannelUiState(location: $location)';
+  return 'MethodChannelUiState(location: $location, watchedLocation: $watchedLocation)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $MethodChannelUiStateCopyWith<$Res>  {
   factory $MethodChannelUiStateCopyWith(MethodChannelUiState value, $Res Function(MethodChannelUiState) _then) = _$MethodChannelUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<Location> location
+ AsyncValue<Location> location, AsyncValue<Location>? watchedLocation
 });
 
 
@@ -62,10 +62,11 @@ class _$MethodChannelUiStateCopyWithImpl<$Res>
 
 /// Create a copy of MethodChannelUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? location = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? location = null,Object? watchedLocation = freezed,}) {
   return _then(_self.copyWith(
 location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as AsyncValue<Location>,
+as AsyncValue<Location>,watchedLocation: freezed == watchedLocation ? _self.watchedLocation : watchedLocation // ignore: cast_nullable_to_non_nullable
+as AsyncValue<Location>?,
   ));
 }
 
@@ -150,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Location> location)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Location> location,  AsyncValue<Location>? watchedLocation)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MethodChannelUiState() when $default != null:
-return $default(_that.location);case _:
+return $default(_that.location,_that.watchedLocation);case _:
   return orElse();
 
 }
@@ -171,10 +172,10 @@ return $default(_that.location);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Location> location)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Location> location,  AsyncValue<Location>? watchedLocation)  $default,) {final _that = this;
 switch (_that) {
 case _MethodChannelUiState():
-return $default(_that.location);case _:
+return $default(_that.location,_that.watchedLocation);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +192,10 @@ return $default(_that.location);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Location> location)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Location> location,  AsyncValue<Location>? watchedLocation)?  $default,) {final _that = this;
 switch (_that) {
 case _MethodChannelUiState() when $default != null:
-return $default(_that.location);case _:
+return $default(_that.location,_that.watchedLocation);case _:
   return null;
 
 }
@@ -206,10 +207,11 @@ return $default(_that.location);case _:
 
 
 class _MethodChannelUiState implements MethodChannelUiState {
-  const _MethodChannelUiState({this.location = const AsyncLoading<Location>()});
+  const _MethodChannelUiState({this.location = const AsyncLoading<Location>(), this.watchedLocation});
   
 
 @override@JsonKey() final  AsyncValue<Location> location;
+@override final  AsyncValue<Location>? watchedLocation;
 
 /// Create a copy of MethodChannelUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -221,16 +223,16 @@ _$MethodChannelUiStateCopyWith<_MethodChannelUiState> get copyWith => __$MethodC
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MethodChannelUiState&&(identical(other.location, location) || other.location == location));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MethodChannelUiState&&(identical(other.location, location) || other.location == location)&&(identical(other.watchedLocation, watchedLocation) || other.watchedLocation == watchedLocation));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,location);
+int get hashCode => Object.hash(runtimeType,location,watchedLocation);
 
 @override
 String toString() {
-  return 'MethodChannelUiState(location: $location)';
+  return 'MethodChannelUiState(location: $location, watchedLocation: $watchedLocation)';
 }
 
 
@@ -241,7 +243,7 @@ abstract mixin class _$MethodChannelUiStateCopyWith<$Res> implements $MethodChan
   factory _$MethodChannelUiStateCopyWith(_MethodChannelUiState value, $Res Function(_MethodChannelUiState) _then) = __$MethodChannelUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<Location> location
+ AsyncValue<Location> location, AsyncValue<Location>? watchedLocation
 });
 
 
@@ -258,10 +260,11 @@ class __$MethodChannelUiStateCopyWithImpl<$Res>
 
 /// Create a copy of MethodChannelUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? location = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? location = null,Object? watchedLocation = freezed,}) {
   return _then(_MethodChannelUiState(
 location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
-as AsyncValue<Location>,
+as AsyncValue<Location>,watchedLocation: freezed == watchedLocation ? _self.watchedLocation : watchedLocation // ignore: cast_nullable_to_non_nullable
+as AsyncValue<Location>?,
   ));
 }
 
