@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_lab/data/platform/event_channel_names.dart';
 import 'package:flutter_lab/data/platform/method_channel_names.dart';
 import 'package:flutter_lab/data/platform/method_names.dart';
 import 'package:flutter_lab/domain/location/location.dart';
@@ -11,7 +12,7 @@ import 'package:result_dart/result_dart.dart';
 /// location via the platform method channel.
 class PlatformLocationRepository extends LocationRepository {
   static const _methodChannel = MethodChannel(MethodChannelNames.location);
-  static const _eventChannel = EventChannel(MethodChannelNames.location);
+  static const _eventChannel = EventChannel(EventChannelNames.locationUpdates);
 
   StreamController<Location>? _controller;
   StreamSubscription<dynamic>? _subscription;

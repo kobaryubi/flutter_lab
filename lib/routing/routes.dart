@@ -38,6 +38,8 @@ abstract final class Routes {
   static const navigationScreenA = '/navigation/screen_a';
   static const navigationScreenB = '/navigation/screen_b';
 
+  static const deviceInfo = '/device_info';
+
   static const routing = '/routing';
   static const routingCupertino = '/routing/cupertino';
   static const routingCupertinoFullscreenDialog =

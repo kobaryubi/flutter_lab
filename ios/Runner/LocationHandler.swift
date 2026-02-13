@@ -6,6 +6,7 @@ final class LocationHandler: NSObject {
   // MARK: - Constants
   
   static let channelName = "com.masahikokobayashi/location"
+  static let eventChannelName = "com.masahikokobayashi/locationUpdates"
   
   private enum MethodName {
     static let getLocation = "getLocation"
@@ -32,7 +33,7 @@ final class LocationHandler: NSObject {
       binaryMessenger: binaryMessenger
     )
     self.eventChannel = FlutterEventChannel(
-      name: Self.channelName,
+      name: Self.eventChannelName,
       binaryMessenger: binaryMessenger
     )
     self.locationManager = CLLocationManager()

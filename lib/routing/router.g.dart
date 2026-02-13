@@ -12,6 +12,7 @@ List<RouteBase> get $appRoutes => [
   $autoMapprDemoRoute,
   $arutanaAdRoute,
   $brightnessRoute,
+  $deviceInfoRoute,
   $dioCacheRoute,
   $effectVsListenRoute,
   $formBuilderRoute,
@@ -154,6 +155,31 @@ mixin $BrightnessRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/brightness');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $deviceInfoRoute => GoRouteData.$route(
+  path: '/device_info',
+  factory: $DeviceInfoRoute._fromState,
+);
+
+mixin $DeviceInfoRoute on GoRouteData {
+  static DeviceInfoRoute _fromState(GoRouterState state) => DeviceInfoRoute();
+
+  @override
+  String get location => GoRouteData.$location('/device_info');
 
   @override
   void go(BuildContext context) => context.go(location);
