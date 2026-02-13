@@ -29,9 +29,21 @@ class UseFormBuilderState {
 
 /// Hook that provides a stable [GlobalKey] for [FormBuilder] and a
 /// submit function that validates, saves, and returns form values.
+///
+/// Validates initial values after the first frame so that the
+/// validity state reflects the preset values immediately.
 UseFormBuilderState useFormBuilder() {
   final formKey = useMemoized(GlobalKey<FormBuilderState>.new);
-  final isValid = useState(true);
+  final isValid = useState(false);
+
+  // Checks validity after the form is first built so that preset
+  // initial values are reflected in the validity state.
+  useEffect(() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      isValid.value = formKey.currentState?.isValid ?? false;
+    });
+    return null;
+  }, const []);
 
   void onChanged() {
     isValid.value = formKey.currentState?.isValid ?? false;
