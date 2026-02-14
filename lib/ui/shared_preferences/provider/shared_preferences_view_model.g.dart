@@ -50,7 +50,7 @@ final class SharedPreferencesViewModelProvider
 }
 
 String _$sharedPreferencesViewModelHash() =>
-    r'6ee0b40ab30615e91111b778f561d6c6fc9bd1fe';
+    r'f4a0d134d67efd4702ed9428c42b9c2911459b15';
 
 /// View model for shared preferences screen.
 

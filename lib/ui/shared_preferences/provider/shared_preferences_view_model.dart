@@ -11,13 +11,18 @@ class SharedPreferencesViewModel extends _$SharedPreferencesViewModel {
   SharedPreferencesUiState build() =>
       const SharedPreferencesUiState(latestAgreedDate: null);
 
-  /// Loads the latest agreed date.
+  /// Initializes and loads the latest agreed date.
+  ///
+  /// If no value is stored, saves the current date as the default
+  /// and returns it.
   Future<void> load() async {
-    final repository = ref.read(agreementRepositoryProvider);
+    final initializeLatestAgreedDateUseCase = ref.read(
+      initializeLatestAgreedDateUseCaseProvider,
+    );
 
     state = state.copyWith(
       latestAgreedDate: await AsyncValue.guard(() async {
-        final result = await repository.getLatestAgreedDate();
+        final result = await initializeLatestAgreedDateUseCase.call();
         return result.getOrThrow();
       }),
     );
