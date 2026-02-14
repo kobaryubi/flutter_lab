@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_lab/application/di/provider.dart';
-import 'package:flutter_lab/domain/location/platform_location_repository.dart';
 import 'package:flutter_lab/firebase_options.dart';
 import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/flutter_lab_app.dart';
@@ -30,13 +28,8 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(
-    ProviderScope(
-      overrides: [
-        locationRepositoryProvider.overrideWithValue(
-          PlatformLocationRepository(),
-        ),
-      ],
-      child: const FlutterLabApp(),
+    const ProviderScope(
+      child: FlutterLabApp(),
     ),
   );
 }
