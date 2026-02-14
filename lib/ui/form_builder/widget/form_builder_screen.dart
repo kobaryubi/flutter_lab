@@ -45,9 +45,13 @@ class _Body extends HookWidget {
         crossAxisAlignment: .start,
         spacing: 16,
         children: [
+          Text(
+            form.isValid ? 'Valid' : 'Not Valid',
+          ),
           const Text('Name'),
           FormBuilderField<String>(
             name: 'name',
+            initialValue: 'Flutter',
             validator: FormBuilderValidators.compose([
               FormBuilderValidators.required(),
             ]),
@@ -69,6 +73,7 @@ class _Body extends HookWidget {
           const Text('Email'),
           FormBuilderField<String>(
             name: 'email',
+            initialValue: 'flutter@example.com',
             validator: FormBuilderValidators.compose([
               FormBuilderValidators.required(),
               FormBuilderValidators.email(),
