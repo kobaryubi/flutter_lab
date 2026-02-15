@@ -4,6 +4,7 @@ import 'package:flutter_lab/domain/location/location.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/method_channel/view_model/method_channel_view_model.dart';
+import 'package:flutter_lab/ui/method_channel/widget/map.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Screen for learning method channel communication with native platforms.
@@ -25,48 +26,58 @@ class _Body extends HookConsumerWidget {
     final uiState = ref.watch(methodChannelViewModelProvider);
 
     useEffect(() {
-      ref.read(methodChannelViewModelProvider.notifier).getLocation();
+      ref.read(methodChannelViewModelProvider.notifier)
+        ..getLocation()
+        ..getBatteryLevel();
       return null;
     }, const []);
-
-    final location = uiState.location;
-
-    if (location.isLoading) {
-      return const Center(child: Text('Loading...'));
-    }
-
-    if (location case AsyncError(:final error)) {
-      return Center(child: Text('Error: $error'));
-    }
 
     /// Starts watching for continuous location updates.
     void handleWatchLocation() {
       ref.read(methodChannelViewModelProvider.notifier).watchLocation();
     }
 
-    if (location case AsyncData(:final value)) {
-      return Column(
-        crossAxisAlignment: .start,
-        children: [
+    final location = uiState.location;
+    final batteryLevel = uiState.batteryLevel;
+
+    return Column(
+      crossAxisAlignment: .start,
+      children: [
+        if (location.isLoading) const Text('Loading location...'),
+        if (location case AsyncError(:final error))
+          Text('Location Error: $error'),
+        if (location case AsyncData(:final value)) ...[
           Text('Latitude: ${value.latitude}'),
           Text('Longitude: ${value.longitude}'),
-          const SizedBox(height: 16),
-          GestureDetector(
-            onTap: handleWatchLocation,
-            child: const Text('Watch Location'),
-          ),
-          if (uiState.watchedLocation != null)
-            Padding(
-              padding: const .only(top: 16),
-              child: _WatchedLocationText(
-                watchedLocation: uiState.watchedLocation!,
-              ),
+          SizedBox(
+            height: 200,
+            width: double.infinity,
+            child: Map(
+              latitude: value.latitude,
+              longitude: value.longitude,
             ),
+          ),
         ],
-      );
-    }
-
-    return const SizedBox.shrink();
+        const SizedBox(height: 16),
+        if (batteryLevel.isLoading) const Text('Loading battery level...'),
+        if (batteryLevel case AsyncError(:final error))
+          Text('Battery Error: $error'),
+        if (batteryLevel case AsyncData(:final value))
+          Text('Battery level at ${value.level}%.'),
+        const SizedBox(height: 16),
+        GestureDetector(
+          onTap: handleWatchLocation,
+          child: const Text('Watch Location'),
+        ),
+        if (uiState.watchedLocation case AsyncData() || AsyncError())
+          Padding(
+            padding: const .only(top: 16),
+            child: _WatchedLocationText(
+              watchedLocation: uiState.watchedLocation!,
+            ),
+          ),
+      ],
+    );
   }
 }
 
