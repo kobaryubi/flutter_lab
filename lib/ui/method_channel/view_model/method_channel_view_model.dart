@@ -30,6 +30,18 @@ class MethodChannelViewModel extends _$MethodChannelViewModel {
     );
   }
 
+  /// Fetches the current battery level via platform method channel.
+  Future<void> getBatteryLevel() async {
+    final getBatteryLevelUseCase = ref.read(getBatteryLevelUseCaseProvider);
+
+    state = state.copyWith(
+      batteryLevel: await AsyncValue.guard(() async {
+        final result = await getBatteryLevelUseCase.call();
+        return result.getOrThrow();
+      }),
+    );
+  }
+
   /// Starts watching for continuous location updates via EventChannel.
   void watchLocation() {
     if (_watchSubscription != null) return;
