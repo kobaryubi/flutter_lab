@@ -12,6 +12,7 @@ List<RouteBase> get $appRoutes => [
   $autoMapprDemoRoute,
   $arutanaAdRoute,
   $brightnessRoute,
+  $clockRoute,
   $deviceInfoRoute,
   $dioCacheRoute,
   $effectVsListenRoute,
@@ -154,6 +155,29 @@ mixin $BrightnessRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/brightness');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $clockRoute =>
+    GoRouteData.$route(path: '/clock', factory: $ClockRoute._fromState);
+
+mixin $ClockRoute on GoRouteData {
+  static ClockRoute _fromState(GoRouterState state) => ClockRoute();
+
+  @override
+  String get location => GoRouteData.$location('/clock');
 
   @override
   void go(BuildContext context) => context.go(location);
