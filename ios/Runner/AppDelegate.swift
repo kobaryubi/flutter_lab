@@ -3,6 +3,11 @@ import UIKit
 
 @main
 @objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
+  // MARK: - Constants
+  
+  private static let mapViewPluginName = "MapViewPlugin"
+  private static let mapViewId = "map"
+  
   // MARK: - Properties
   
   private var locationHandler: LocationHandler?
@@ -24,6 +29,17 @@ import UIKit
     // Initialize location handler
     locationHandler = LocationHandler(
       binaryMessenger: engineBridge.applicationRegistrar.messenger()
+    )
+
+    // Register map platform view
+    let registrar = engineBridge.pluginRegistry.registrar(
+      forPlugin: Self.mapViewPluginName
+    )
+    
+    let mapViewFactory = MapViewFactory(messenger: registrar!.messenger())
+    registrar!.register(
+      mapViewFactory,
+      withId: Self.mapViewId
     )
   }
 }
