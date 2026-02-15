@@ -13,7 +13,10 @@ class MethodChannelViewModel extends _$MethodChannelViewModel {
   @override
   MethodChannelUiState build() {
     ref.onDispose(() => _watchSubscription?.cancel());
-    return const MethodChannelUiState();
+    return const MethodChannelUiState(
+      location: AsyncLoading(),
+      batteryLevel: AsyncLoading(),
+    );
   }
 
   StreamSubscription<Location>? _watchSubscription;
