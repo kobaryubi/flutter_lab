@@ -12,7 +12,11 @@ part 'method_channel_view_model.g.dart';
 class MethodChannelViewModel extends _$MethodChannelViewModel {
   @override
   MethodChannelUiState build() {
-    ref.onDispose(() => _watchSubscription?.cancel());
+    _subscribeToNativeButtonTaps();
+    ref.onDispose(() {
+      _watchSubscription?.cancel();
+      _buttonTapSubscription?.cancel();
+    });
     return const MethodChannelUiState(
       location: AsyncLoading(),
       batteryLevel: AsyncLoading(),
@@ -20,6 +24,25 @@ class MethodChannelViewModel extends _$MethodChannelViewModel {
   }
 
   StreamSubscription<Location>? _watchSubscription;
+  StreamSubscription<void>? _buttonTapSubscription;
+
+  /// Subscribes to native button tap events.
+  void _subscribeToNativeButtonTaps() {
+    final watchNativeButtonTapUseCase = ref.read(
+      watchNativeButtonTapUseCaseProvider,
+    );
+
+    _buttonTapSubscription = watchNativeButtonTapUseCase.call().listen(
+      _handleButtonTap,
+    );
+  }
+
+  /// Handles a native button tap event by incrementing the count.
+  void _handleButtonTap(void _) {
+    state = state.copyWith(
+      buttonTapCount: state.buttonTapCount + 1,
+    );
+  }
 
   /// Fetches the current location via platform method channel.
   Future<void> getLocation() async {

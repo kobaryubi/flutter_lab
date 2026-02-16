@@ -45,7 +45,7 @@ final class MethodChannelViewModelProvider
 }
 
 String _$methodChannelViewModelHash() =>
-    r'881d022b9fce34c96e4164e6d86cf7f9e178a4e8';
+    r'a25ac53a12a2f34d6e397e3945f8ae495146af99';
 
 /// ViewModel for the method channel screen.
 
