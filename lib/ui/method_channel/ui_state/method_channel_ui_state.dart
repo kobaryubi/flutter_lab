@@ -12,5 +12,6 @@ abstract class MethodChannelUiState with _$MethodChannelUiState {
     required AsyncValue<Location> location,
     required AsyncValue<Battery> batteryLevel,
     AsyncValue<Location>? watchedLocation,
+    @Default(0) int buttonTapCount,
   }) = _MethodChannelUiState;
 }

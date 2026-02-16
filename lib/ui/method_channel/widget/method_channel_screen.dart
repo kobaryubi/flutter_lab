@@ -5,6 +5,7 @@ import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/method_channel/view_model/method_channel_view_model.dart';
 import 'package:flutter_lab/ui/method_channel/widget/map.dart';
+import 'package:flutter_lab/ui/method_channel/widget/native_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Screen for learning method channel communication with native platforms.
@@ -35,6 +36,13 @@ class _Body extends HookConsumerWidget {
     /// Starts watching for continuous location updates.
     void handleWatchLocation() {
       ref.read(methodChannelViewModelProvider.notifier).watchLocation();
+    }
+
+    /// Increments the native button tap count.
+    void onNativeButtonTap() {
+      ref
+          .read(methodChannelViewModelProvider.notifier)
+          .incrementButtonTapCount();
     }
 
     final location = uiState.location;
@@ -69,6 +77,14 @@ class _Body extends HookConsumerWidget {
           onTap: handleWatchLocation,
           child: const Text('Watch Location'),
         ),
+        const SizedBox(height: 16),
+        SizedBox(
+          height: 44,
+          width: double.infinity,
+          child: NativeButton(onTap: onNativeButtonTap),
+        ),
+        Text('Button tap count: ${uiState.buttonTapCount}'),
+        const SizedBox(height: 16),
         if (uiState.watchedLocation case AsyncData() || AsyncError())
           Padding(
             padding: const .only(top: 16),
