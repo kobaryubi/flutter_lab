@@ -5,6 +5,7 @@ import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/app_lifecycle/widget/app_lifecycle_screen.dart';
 import 'package:flutter_lab/ui/app_store/widget/app_store_screen.dart';
 import 'package:flutter_lab/ui/arutana_ad/widget/arutana_ad_screen.dart';
+import 'package:flutter_lab/ui/async_state_race/widget/async_state_race_screen.dart';
 import 'package:flutter_lab/ui/auto_mappr_demo/widget/auto_mappr_demo_screen.dart';
 import 'package:flutter_lab/ui/brightness/widget/brightness_screen.dart';
 import 'package:flutter_lab/ui/clock/widget/clock_screen.dart';
@@ -43,6 +44,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_lifecycle_route.dart';
+part 'async_state_race_route.dart';
 part 'app_store_route.dart';
 part 'auto_mappr_demo_route.dart';
 part 'arutana_ad_route.dart';

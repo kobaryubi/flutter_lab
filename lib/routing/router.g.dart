@@ -8,6 +8,7 @@ part of 'router.dart';
 
 List<RouteBase> get $appRoutes => [
   $appLifecycleRoute,
+  $asyncStateRaceRoute,
   $appStoreRoute,
   $autoMapprDemoRoute,
   $arutanaAdRoute,
@@ -56,6 +57,32 @@ mixin $AppLifecycleRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/app_lifecycle');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $asyncStateRaceRoute => GoRouteData.$route(
+  path: '/async_state_race',
+  factory: $AsyncStateRaceRoute._fromState,
+);
+
+mixin $AsyncStateRaceRoute on GoRouteData {
+  static AsyncStateRaceRoute _fromState(GoRouterState state) =>
+      AsyncStateRaceRoute();
+
+  @override
+  String get location => GoRouteData.$location('/async_state_race');
 
   @override
   void go(BuildContext context) => context.go(location);
