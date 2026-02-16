@@ -38,13 +38,6 @@ class _Body extends HookConsumerWidget {
       ref.read(methodChannelViewModelProvider.notifier).watchLocation();
     }
 
-    /// Increments the native button tap count.
-    void onNativeButtonTap() {
-      ref
-          .read(methodChannelViewModelProvider.notifier)
-          .incrementButtonTapCount();
-    }
-
     final location = uiState.location;
     final batteryLevel = uiState.batteryLevel;
 
@@ -78,10 +71,10 @@ class _Body extends HookConsumerWidget {
           child: const Text('Watch Location'),
         ),
         const SizedBox(height: 16),
-        SizedBox(
+        const SizedBox(
           height: 44,
           width: double.infinity,
-          child: NativeButton(onTap: onNativeButtonTap),
+          child: NativeButton(),
         ),
         Text('Button tap count: ${uiState.buttonTapCount}'),
         const SizedBox(height: 16),
