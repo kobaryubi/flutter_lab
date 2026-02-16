@@ -3,4 +3,5 @@ class MethodChannelNames {
   static const location = '$_base/location';
   static const battery = '$_base/battery';
   static const arutanaAd = '$_base/arutana_ad';
+  static const nativeButton = '$_base/nativeButton';
 }
