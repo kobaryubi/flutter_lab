@@ -96,6 +96,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - lib/data/json/
     - path: assets/icons/
       transformers:
         - package: vector_graphics_compiler
