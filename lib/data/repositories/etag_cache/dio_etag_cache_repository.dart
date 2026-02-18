@@ -6,6 +6,7 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:etag_cache/etag_cache.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_lab/domain/entity/etag_cache/etag_cached_response.dart';
+import 'package:flutter_lab/domain/entity/exception/domain_exception.dart';
 import 'package:flutter_lab/domain/etag_cache/etag_cache_repository.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:result_dart/result_dart.dart';
@@ -99,11 +100,15 @@ class DioEtagCacheRepository implements EtagCacheRepository {
   ) async {
     try {
       final response = await apiCall();
-      final body = const JsonEncoder.withIndent('  ').convert(response.data);
+      final products = response.data;
+      if (products == null) {
+        return const DomainException.notFound().toFailure();
+      }
+      final productNames = products.map((product) => product.name).toList();
       final isFromCache = response.extra[extraFromNetworkKey] == false;
       return EtagCachedResponse(
         statusCode: response.statusCode ?? 0,
-        body: body,
+        products: productNames,
         isFromCache: isFromCache,
       ).toSuccess();
     } on DioException catch (exception) {
