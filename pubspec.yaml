@@ -45,6 +45,8 @@ dependencies:
   path: ^1.9.1
   permission_handler: ^11.3.1
   path_provider: ^2.1.5
+  etag_cache:
+    path: package/etag_cache
   petstore:
     path: package/petstore
   provider: ^6.1.5
