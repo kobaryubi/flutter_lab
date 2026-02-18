@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/data/platform/view_type_names.dart';
 
 /// Displays a native map view centered on the given coordinates.
 ///
@@ -14,8 +15,6 @@ class Map extends StatelessWidget {
     required this.longitude,
     super.key,
   });
-
-  static const _viewType = 'map';
 
   /// The latitude to center the map on.
   final double latitude;
@@ -33,14 +32,14 @@ class Map extends StatelessWidget {
 
     if (Platform.isIOS) {
       return UiKitView(
-        viewType: _viewType,
+        viewType: ViewTypeNames.map,
         creationParams: creationParams,
         creationParamsCodec: codec,
       );
     }
 
     return AndroidView(
-      viewType: _viewType,
+      viewType: ViewTypeNames.map,
       creationParams: creationParams,
       creationParamsCodec: codec,
     );
