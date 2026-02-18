@@ -52,6 +52,9 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'navigation', route: NavigationScreenARoute()),
     AppLink(title: 'device info', route: DeviceInfoRoute()),
     AppLink(title: 'clock', route: ClockRoute()),
+    AppLink(title: 'async state race', route: AsyncStateRaceRoute()),
+    AppLink(title: 'future provider', route: FutureProviderRoute()),
+    AppLink(title: 'ETag cache', route: EtagCacheRoute()),
   ];
 
   @override
