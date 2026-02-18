@@ -1,8 +1,6 @@
 import 'package:flutter_lab/application/di/provider.dart';
-import 'package:flutter_lab/domain/entity/etag_cache/etag_cached_response.dart';
 import 'package:flutter_lab/ui/etag_cache/ui_state/etag_cache_ui_state.dart';
-import 'package:result_dart/result_dart.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart' hide AsyncResult;
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'etag_cache_view_model.g.dart';
 
@@ -13,20 +11,28 @@ class EtagCacheViewModel extends _$EtagCacheViewModel {
   EtagCacheUiState build() => const EtagCacheUiState();
 
   /// Fetches products from the endpoint with an ETag header.
-  AsyncResult<EtagCachedResponse> fetchWithEtag() async {
+  Future<void> fetchWithEtag() async {
     final repository = ref.read(etagCacheRepositoryProvider);
-    return repository.fetchWithEtag();
+    state = state.copyWith(
+      withEtagResponse: await AsyncValue.guard(
+        () async => (await repository.fetchWithEtag()).getOrThrow(),
+      ),
+    );
   }
 
   /// Fetches products from the endpoint without an ETag header.
-  AsyncResult<EtagCachedResponse> fetchWithoutEtag() async {
+  Future<void> fetchWithoutEtag() async {
     final repository = ref.read(etagCacheRepositoryProvider);
-    return repository.fetchWithoutEtag();
+    state = state.copyWith(
+      withoutEtagResponse: await AsyncValue.guard(
+        () async => (await repository.fetchWithoutEtag()).getOrThrow(),
+      ),
+    );
   }
 
   /// Clears the cache store.
-  AsyncResult<Unit> clearCache() async {
-    final repository = ref.read(etagCacheRepositoryProvider);
-    return repository.clearCache();
+  Future<void> clearCache() async {
+    await ref.read(etagCacheRepositoryProvider).clearCache();
+    state = const EtagCacheUiState();
   }
 }
