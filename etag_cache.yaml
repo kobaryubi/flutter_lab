@@ -1,0 +1,54 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: ETag Cache Demo
+paths:
+  /products/with-etag:
+    get:
+      tags:
+        - products
+      summary: Returns products with an ETag header
+      responses:
+        200:
+          description: OK
+          headers:
+            ETag:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+  /products/without-etag:
+    get:
+      tags:
+        - products
+      summary: Returns products without an ETag header
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - id
+        - name
+        - price
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        price:
+          type: number
+          format: double
+    Products:
+      type: array
+      items:
+        $ref: '#/components/schemas/Product'
