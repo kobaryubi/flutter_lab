@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$EtagCachedResponse {
 
- int get statusCode; String get body; bool get isFromCache;
+ int get statusCode; List<String> get products; bool get isFromCache;
 /// Create a copy of EtagCachedResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $EtagCachedResponseCopyWith<EtagCachedResponse> get copyWith => _$EtagCachedResp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EtagCachedResponse&&(identical(other.statusCode, statusCode) || other.statusCode == statusCode)&&(identical(other.body, body) || other.body == body)&&(identical(other.isFromCache, isFromCache) || other.isFromCache == isFromCache));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EtagCachedResponse&&(identical(other.statusCode, statusCode) || other.statusCode == statusCode)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.isFromCache, isFromCache) || other.isFromCache == isFromCache));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,statusCode,body,isFromCache);
+int get hashCode => Object.hash(runtimeType,statusCode,const DeepCollectionEquality().hash(products),isFromCache);
 
 @override
 String toString() {
-  return 'EtagCachedResponse(statusCode: $statusCode, body: $body, isFromCache: $isFromCache)';
+  return 'EtagCachedResponse(statusCode: $statusCode, products: $products, isFromCache: $isFromCache)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $EtagCachedResponseCopyWith<$Res>  {
   factory $EtagCachedResponseCopyWith(EtagCachedResponse value, $Res Function(EtagCachedResponse) _then) = _$EtagCachedResponseCopyWithImpl;
 @useResult
 $Res call({
- int statusCode, String body, bool isFromCache
+ int statusCode, List<String> products, bool isFromCache
 });
 
 
@@ -62,11 +62,11 @@ class _$EtagCachedResponseCopyWithImpl<$Res>
 
 /// Create a copy of EtagCachedResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? statusCode = null,Object? body = null,Object? isFromCache = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? statusCode = null,Object? products = null,Object? isFromCache = null,}) {
   return _then(_self.copyWith(
 statusCode: null == statusCode ? _self.statusCode : statusCode // ignore: cast_nullable_to_non_nullable
-as int,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
-as String,isFromCache: null == isFromCache ? _self.isFromCache : isFromCache // ignore: cast_nullable_to_non_nullable
+as int,products: null == products ? _self.products : products // ignore: cast_nullable_to_non_nullable
+as List<String>,isFromCache: null == isFromCache ? _self.isFromCache : isFromCache // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -152,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int statusCode,  String body,  bool isFromCache)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int statusCode,  List<String> products,  bool isFromCache)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EtagCachedResponse() when $default != null:
-return $default(_that.statusCode,_that.body,_that.isFromCache);case _:
+return $default(_that.statusCode,_that.products,_that.isFromCache);case _:
   return orElse();
 
 }
@@ -173,10 +173,10 @@ return $default(_that.statusCode,_that.body,_that.isFromCache);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int statusCode,  String body,  bool isFromCache)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int statusCode,  List<String> products,  bool isFromCache)  $default,) {final _that = this;
 switch (_that) {
 case _EtagCachedResponse():
-return $default(_that.statusCode,_that.body,_that.isFromCache);case _:
+return $default(_that.statusCode,_that.products,_that.isFromCache);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -193,10 +193,10 @@ return $default(_that.statusCode,_that.body,_that.isFromCache);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int statusCode,  String body,  bool isFromCache)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int statusCode,  List<String> products,  bool isFromCache)?  $default,) {final _that = this;
 switch (_that) {
 case _EtagCachedResponse() when $default != null:
-return $default(_that.statusCode,_that.body,_that.isFromCache);case _:
+return $default(_that.statusCode,_that.products,_that.isFromCache);case _:
   return null;
 
 }
@@ -208,11 +208,17 @@ return $default(_that.statusCode,_that.body,_that.isFromCache);case _:
 
 
 class _EtagCachedResponse implements EtagCachedResponse {
-  const _EtagCachedResponse({required this.statusCode, required this.body, required this.isFromCache});
+  const _EtagCachedResponse({required this.statusCode, required final  List<String> products, required this.isFromCache}): _products = products;
   
 
 @override final  int statusCode;
-@override final  String body;
+ final  List<String> _products;
+@override List<String> get products {
+  if (_products is EqualUnmodifiableListView) return _products;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_products);
+}
+
 @override final  bool isFromCache;
 
 /// Create a copy of EtagCachedResponse
@@ -225,16 +231,16 @@ _$EtagCachedResponseCopyWith<_EtagCachedResponse> get copyWith => __$EtagCachedR
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EtagCachedResponse&&(identical(other.statusCode, statusCode) || other.statusCode == statusCode)&&(identical(other.body, body) || other.body == body)&&(identical(other.isFromCache, isFromCache) || other.isFromCache == isFromCache));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EtagCachedResponse&&(identical(other.statusCode, statusCode) || other.statusCode == statusCode)&&const DeepCollectionEquality().equals(other._products, _products)&&(identical(other.isFromCache, isFromCache) || other.isFromCache == isFromCache));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,statusCode,body,isFromCache);
+int get hashCode => Object.hash(runtimeType,statusCode,const DeepCollectionEquality().hash(_products),isFromCache);
 
 @override
 String toString() {
-  return 'EtagCachedResponse(statusCode: $statusCode, body: $body, isFromCache: $isFromCache)';
+  return 'EtagCachedResponse(statusCode: $statusCode, products: $products, isFromCache: $isFromCache)';
 }
 
 
@@ -245,7 +251,7 @@ abstract mixin class _$EtagCachedResponseCopyWith<$Res> implements $EtagCachedRe
   factory _$EtagCachedResponseCopyWith(_EtagCachedResponse value, $Res Function(_EtagCachedResponse) _then) = __$EtagCachedResponseCopyWithImpl;
 @override @useResult
 $Res call({
- int statusCode, String body, bool isFromCache
+ int statusCode, List<String> products, bool isFromCache
 });
 
 
@@ -262,11 +268,11 @@ class __$EtagCachedResponseCopyWithImpl<$Res>
 
 /// Create a copy of EtagCachedResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? statusCode = null,Object? body = null,Object? isFromCache = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? statusCode = null,Object? products = null,Object? isFromCache = null,}) {
   return _then(_EtagCachedResponse(
 statusCode: null == statusCode ? _self.statusCode : statusCode // ignore: cast_nullable_to_non_nullable
-as int,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
-as String,isFromCache: null == isFromCache ? _self.isFromCache : isFromCache // ignore: cast_nullable_to_non_nullable
+as int,products: null == products ? _self._products : products // ignore: cast_nullable_to_non_nullable
+as List<String>,isFromCache: null == isFromCache ? _self.isFromCache : isFromCache // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

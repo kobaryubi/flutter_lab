@@ -7,7 +7,7 @@ part 'etag_cached_response.freezed.dart';
 abstract class EtagCachedResponse with _$EtagCachedResponse {
   const factory EtagCachedResponse({
     required int statusCode,
-    required String body,
+    required List<String> products,
     required bool isFromCache,
   }) = _EtagCachedResponse;
 }

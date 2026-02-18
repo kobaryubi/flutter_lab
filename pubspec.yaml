@@ -13,6 +13,7 @@ dependencies:
   applovin_max: ^4.5.0
   auto_mappr_annotation: ^2.3.0
   built_collection: ^5.1.1
+  built_value: ^8.12.1
   cached_network_image: ^3.4.1
   clock: ^1.1.0
   camera: ^0.11.3

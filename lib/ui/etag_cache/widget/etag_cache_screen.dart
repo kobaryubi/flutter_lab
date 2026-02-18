@@ -115,7 +115,7 @@ class _ResponseSection extends StatelessWidget {
         children: [
           Text('Status: ${value.statusCode}'),
           Text('From cache: ${value.isFromCache}'),
-          Text(value.body),
+          ...value.products.map(Text.new),
         ],
       );
     }
