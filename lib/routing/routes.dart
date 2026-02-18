@@ -13,6 +13,7 @@ abstract final class Routes {
   static const localIcon = '/local_icon';
   static const urlNavigation = '/url_navigation';
   static const dioCache = '/dio_cache';
+  static const etagCache = '/etag_cache';
   static const arutanaAd = '/arutana_ad';
   static const pushNotification = '/push_notification';
   static const appStore = '/app_store';
@@ -30,6 +31,7 @@ abstract final class Routes {
   static const effectVsListen = '/effect_vs_listen';
   static const methodChannel = '/method_channel';
   static const asyncStateRace = '/async_state_race';
+  static const futureProvider = '/future_provider';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';
