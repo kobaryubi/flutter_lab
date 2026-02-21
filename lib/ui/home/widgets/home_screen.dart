@@ -55,6 +55,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'async state race', route: AsyncStateRaceRoute()),
     AppLink(title: 'future provider', route: FutureProviderRoute()),
     AppLink(title: 'ETag cache', route: EtagCacheRoute()),
+    AppLink(title: 'Google API', route: GoogleApiRoute()),
   ];
 
   @override
