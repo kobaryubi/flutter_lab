@@ -32,6 +32,7 @@ abstract final class Routes {
   static const methodChannel = '/method_channel';
   static const asyncStateRace = '/async_state_race';
   static const futureProvider = '/future_provider';
+  static const googleApi = '/google_api';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';

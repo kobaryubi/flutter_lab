@@ -20,6 +20,7 @@ List<RouteBase> get $appRoutes => [
   $etagCacheRoute,
   $formBuilderRoute,
   $futureProviderRoute,
+  $googleApiRoute,
   $homeRoute,
   $inAppReviewRoute,
   $launchUrlRoute,
@@ -357,6 +358,31 @@ mixin $FutureProviderRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/future_provider');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $googleApiRoute => GoRouteData.$route(
+  path: '/google_api',
+  factory: $GoogleApiRoute._fromState,
+);
+
+mixin $GoogleApiRoute on GoRouteData {
+  static GoogleApiRoute _fromState(GoRouterState state) => GoogleApiRoute();
+
+  @override
+  String get location => GoRouteData.$location('/google_api');
 
   @override
   void go(BuildContext context) => context.go(location);
