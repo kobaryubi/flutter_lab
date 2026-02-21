@@ -30,10 +30,6 @@ class _Body extends HookConsumerWidget {
 
     final availability = uiState.availability;
 
-    if (availability == null) {
-      return const Text('Checking...');
-    }
-
     if (availability.isLoading) {
       return const Text('Loading...');
     }
@@ -49,8 +45,7 @@ class _Body extends HookConsumerWidget {
           crossAxisAlignment: .start,
           children: [
             Text('Available: ${value.isAvailable}'),
-            Text('Status Code: ${value.statusCode}'),
-            Text('Status Message: ${value.statusMessage}'),
+            Text('Status: ${value.status.name}'),
           ],
         ),
       );
