@@ -8,7 +8,8 @@ part 'google_api_view_model.g.dart';
 @riverpod
 class GoogleApiViewModel extends _$GoogleApiViewModel {
   @override
-  GoogleApiUiState build() => const GoogleApiUiState();
+  GoogleApiUiState build() =>
+      const GoogleApiUiState(availability: AsyncValue.loading());
 
   /// Checks Google Play Services availability and updates the UI state.
   Future<void> checkAvailability() async {

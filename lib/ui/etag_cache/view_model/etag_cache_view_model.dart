@@ -13,21 +13,21 @@ class EtagCacheViewModel extends _$EtagCacheViewModel {
   /// Fetches products from the endpoint with an ETag header.
   Future<void> fetchWithEtag() async {
     final repository = ref.read(etagCacheRepositoryProvider);
-    state = state.copyWith(
-      withEtagResponse: await AsyncValue.guard(
-        () async => (await repository.fetchWithEtag()).getOrThrow(),
-      ),
+    final withEtagResponse = await AsyncValue.guard(
+      () async => (await repository.fetchWithEtag()).getOrThrow(),
     );
+
+    state = state.copyWith(withEtagResponse: withEtagResponse);
   }
 
   /// Fetches products from the endpoint without an ETag header.
   Future<void> fetchWithoutEtag() async {
     final repository = ref.read(etagCacheRepositoryProvider);
-    state = state.copyWith(
-      withoutEtagResponse: await AsyncValue.guard(
-        () async => (await repository.fetchWithoutEtag()).getOrThrow(),
-      ),
+    final withoutEtagResponse = await AsyncValue.guard(
+      () async => (await repository.fetchWithoutEtag()).getOrThrow(),
     );
+
+    state = state.copyWith(withoutEtagResponse: withoutEtagResponse);
   }
 
   /// Clears the cache store.

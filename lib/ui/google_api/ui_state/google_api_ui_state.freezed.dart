@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$GoogleApiUiState {
 
- AsyncValue<GoogleApiAvailability>? get availability;
+ AsyncValue<GoogleApiAvailability> get availability;
 /// Create a copy of GoogleApiUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $GoogleApiUiStateCopyWith<$Res>  {
   factory $GoogleApiUiStateCopyWith(GoogleApiUiState value, $Res Function(GoogleApiUiState) _then) = _$GoogleApiUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<GoogleApiAvailability>? availability
+ AsyncValue<GoogleApiAvailability> availability
 });
 
 
@@ -62,10 +62,10 @@ class _$GoogleApiUiStateCopyWithImpl<$Res>
 
 /// Create a copy of GoogleApiUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? availability = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? availability = null,}) {
   return _then(_self.copyWith(
-availability: freezed == availability ? _self.availability : availability // ignore: cast_nullable_to_non_nullable
-as AsyncValue<GoogleApiAvailability>?,
+availability: null == availability ? _self.availability : availability // ignore: cast_nullable_to_non_nullable
+as AsyncValue<GoogleApiAvailability>,
   ));
 }
 
@@ -150,7 +150,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<GoogleApiAvailability>? availability)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<GoogleApiAvailability> availability)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GoogleApiUiState() when $default != null:
 return $default(_that.availability);case _:
@@ -171,7 +171,7 @@ return $default(_that.availability);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<GoogleApiAvailability>? availability)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<GoogleApiAvailability> availability)  $default,) {final _that = this;
 switch (_that) {
 case _GoogleApiUiState():
 return $default(_that.availability);case _:
@@ -191,7 +191,7 @@ return $default(_that.availability);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<GoogleApiAvailability>? availability)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<GoogleApiAvailability> availability)?  $default,) {final _that = this;
 switch (_that) {
 case _GoogleApiUiState() when $default != null:
 return $default(_that.availability);case _:
@@ -206,10 +206,10 @@ return $default(_that.availability);case _:
 
 
 class _GoogleApiUiState implements GoogleApiUiState {
-  const _GoogleApiUiState({this.availability});
+  const _GoogleApiUiState({required this.availability});
   
 
-@override final  AsyncValue<GoogleApiAvailability>? availability;
+@override final  AsyncValue<GoogleApiAvailability> availability;
 
 /// Create a copy of GoogleApiUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -241,7 +241,7 @@ abstract mixin class _$GoogleApiUiStateCopyWith<$Res> implements $GoogleApiUiSta
   factory _$GoogleApiUiStateCopyWith(_GoogleApiUiState value, $Res Function(_GoogleApiUiState) _then) = __$GoogleApiUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<GoogleApiAvailability>? availability
+ AsyncValue<GoogleApiAvailability> availability
 });
 
 
@@ -258,10 +258,10 @@ class __$GoogleApiUiStateCopyWithImpl<$Res>
 
 /// Create a copy of GoogleApiUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? availability = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? availability = null,}) {
   return _then(_GoogleApiUiState(
-availability: freezed == availability ? _self.availability : availability // ignore: cast_nullable_to_non_nullable
-as AsyncValue<GoogleApiAvailability>?,
+availability: null == availability ? _self.availability : availability // ignore: cast_nullable_to_non_nullable
+as AsyncValue<GoogleApiAvailability>,
   ));
 }
 

@@ -45,7 +45,7 @@ final class GoogleApiViewModelProvider
 }
 
 String _$googleApiViewModelHash() =>
-    r'f3855325d4399a29169d011cd2c81c9697201f66';
+    r'4290e4fcade57860b91bb04724cae0f944eb337e';
 
 /// ViewModel for the Google API availability screen.
 
