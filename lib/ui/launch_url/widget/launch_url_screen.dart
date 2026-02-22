@@ -1,18 +1,28 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/domain/entity/launch_url/launch_url_mode.dart';
+import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/button.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
-import 'package:flutter_lab/ui/launch_url/hook/use_launch_url.dart';
 
-class LaunchUrlScreen extends HookWidget {
+/// Screen that navigates to the launch URL detail screen with
+/// a selected [LaunchUrlMode].
+class LaunchUrlScreen extends StatelessWidget {
   const LaunchUrlScreen({required this.url, super.key});
 
   final String url;
 
   @override
   Widget build(BuildContext context) {
-    final launchUrlState = useLaunchUrl(url: url);
+    /// Navigates to the detail screen with [LaunchUrlMode.externalApplication].
+    void handleExternalApplication() {
+      LaunchUrlDetailRoute(url: url, mode: .externalApplication).go(context);
+    }
+
+    /// Navigates to the detail screen with [LaunchUrlMode.inAppBrowserView].
+    void handleInAppBrowserView() {
+      LaunchUrlDetailRoute(url: url, mode: .inAppBrowserView).go(context);
+    }
 
     return Layout(
       appBar: const AppBar(
@@ -25,11 +35,11 @@ class LaunchUrlScreen extends HookWidget {
           children: [
             Button(
               label: 'external application',
-              onTap: launchUrlState.launchExternalApplication,
+              onTap: handleExternalApplication,
             ),
             Button(
               label: 'in app browser view',
-              onTap: launchUrlState.launchInAppBrowserView,
+              onTap: handleInAppBrowserView,
             ),
           ],
         ),

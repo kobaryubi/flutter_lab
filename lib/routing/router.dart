@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_lab/domain/entity/launch_url/launch_url_mode.dart';
 import 'package:flutter_lab/presentation/core/provider/global_loading_notifier.dart';
 import 'package:flutter_lab/routing/loading_navigation_observer.dart';
 import 'package:flutter_lab/routing/routes.dart';
@@ -19,6 +20,7 @@ import 'package:flutter_lab/ui/future_provider/widget/future_provider_screen.dar
 import 'package:flutter_lab/ui/google_api/widget/google_api_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/in_app_review/widget/in_app_review_screen.dart';
+import 'package:flutter_lab/ui/launch_url/widget/launch_url_detail_screen.dart';
 import 'package:flutter_lab/ui/launch_url/widget/launch_url_screen.dart';
 import 'package:flutter_lab/ui/loading/widget/loading_screen.dart';
 import 'package:flutter_lab/ui/local_icon/widget/local_icon_screen.dart';
@@ -62,6 +64,7 @@ part 'future_provider_route.dart';
 part 'google_api_route.dart';
 part 'home_route.dart';
 part 'in_app_review_route.dart';
+part 'launch_url_detail_route.dart';
 part 'launch_url_route.dart';
 part 'loading_route.dart';
 part 'local_icon_route.dart';

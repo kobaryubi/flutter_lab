@@ -5,6 +5,7 @@ abstract final class Routes {
 
   static const webView = '/web_view';
   static const launchUrl = '/launch_url';
+  static const launchUrlDetail = '/launch_url_detail';
   static const portal = '/portal';
   static const sharedPreferences = '/shared_preferences';
   static const s3EtagCache = '/s3_etag_cache';

@@ -23,6 +23,7 @@ List<RouteBase> get $appRoutes => [
   $googleApiRoute,
   $homeRoute,
   $inAppReviewRoute,
+  $launchUrlDetailRoute,
   $launchUrlRoute,
   $loadingRoute,
   $localIconRoute,
@@ -444,6 +445,52 @@ mixin $InAppReviewRoute on GoRouteData {
 
   @override
   void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $launchUrlDetailRoute => GoRouteData.$route(
+  path: '/launch_url_detail',
+  factory: $LaunchUrlDetailRoute._fromState,
+);
+
+mixin $LaunchUrlDetailRoute on GoRouteData {
+  static LaunchUrlDetailRoute _fromState(GoRouterState state) =>
+      LaunchUrlDetailRoute(
+        url: state.uri.queryParameters['url']!,
+        mode: _$LaunchUrlModeEnumMap._$fromName(
+          state.uri.queryParameters['mode']!,
+        )!,
+      );
+
+  LaunchUrlDetailRoute get _self => this as LaunchUrlDetailRoute;
+
+  @override
+  String get location => GoRouteData.$location(
+    '/launch_url_detail',
+    queryParams: {'url': _self.url, 'mode': _$LaunchUrlModeEnumMap[_self.mode]},
+  );
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+const _$LaunchUrlModeEnumMap = {
+  LaunchUrlMode.externalApplication: 'external-application',
+  LaunchUrlMode.inAppBrowserView: 'in-app-browser-view',
+};
+
+extension<T extends Enum> on Map<T, String> {
+  T? _$fromName(String? value) =>
+      entries.where((element) => element.value == value).firstOrNull?.key;
 }
 
 RouteBase get $launchUrlRoute => GoRouteData.$route(
