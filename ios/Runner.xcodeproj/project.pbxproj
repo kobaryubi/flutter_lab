@@ -14,6 +14,7 @@
 		22FEA0ABC8A27EFBB13CEF59 /* localProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 069C700E7C8D9850010D105F /* localProfile.xcconfig */; };
 		23260A162A731EC258EB6925 /* localRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 038257F5B488E734EF1B3DE9 /* localRelease.xcconfig */; };
 		2CC8F1472F3C67BA00D8C03B /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8F1462F3C67BA00D8C03B /* LocationHandler.swift */; };
+		2CDA48FC2F4C4C810058F663 /* BatteryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */; };
 		2CF4BB392F429445009A86A1 /* MapViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4BB382F429445009A86A1 /* MapViewFactory.swift */; };
 		2CF4BB3B2F42960C009A86A1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4BB3A2F42960C009A86A1 /* MapView.swift */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
@@ -66,6 +67,7 @@
 		29917FC1536C13FCCC3CCDCB /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CB1C7CC2F2EC0A90057E8C0 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		2CC8F1462F3C67BA00D8C03B /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
+		2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryHandler.swift; sourceTree = "<group>"; };
 		2CF4BB382F429445009A86A1 /* MapViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewFactory.swift; sourceTree = "<group>"; };
 		2CF4BB3A2F42960C009A86A1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				2CC8F1462F3C67BA00D8C03B /* LocationHandler.swift */,
 				2CF4BB382F429445009A86A1 /* MapViewFactory.swift */,
 				2CF4BB3A2F42960C009A86A1 /* MapView.swift */,
+				2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -349,9 +352,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -426,9 +433,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -469,6 +480,7 @@
 				2CF4BB392F429445009A86A1 /* MapViewFactory.swift in Sources */,
 				2CF4BB3B2F42960C009A86A1 /* MapView.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				2CDA48FC2F4C4C810058F663 /* BatteryHandler.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
