@@ -30,6 +30,7 @@ import 'package:flutter_lab/ui/method_channel/widget/method_channel_screen.dart'
 import 'package:flutter_lab/ui/navigation/widget/navigation_screen_a.dart';
 import 'package:flutter_lab/ui/navigation/widget/navigation_screen_b.dart';
 import 'package:flutter_lab/ui/network/widget/network_screen.dart';
+import 'package:flutter_lab/ui/ocr/widget/ocr_result_screen.dart';
 import 'package:flutter_lab/ui/ocr/widget/ocr_screen.dart';
 import 'package:flutter_lab/ui/permission/widget/permission_screen.dart';
 import 'package:flutter_lab/ui/pop_scope/widget/pop_scope_screen.dart';
@@ -75,6 +76,7 @@ part 'navigation_screen_a_route.dart';
 part 'navigation_screen_b_route.dart';
 part 'network_route.dart';
 part 'not_found_route.dart';
+part 'ocr_result_route.dart';
 part 'ocr_route.dart';
 part 'permission_route.dart';
 part 'pop_scope_route.dart';

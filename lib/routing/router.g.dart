@@ -34,6 +34,7 @@ List<RouteBase> get $appRoutes => [
   $navigationScreenBRoute,
   $networkRoute,
   $notFoundRoute,
+  $ocrResultRoute,
   $ocrRoute,
   $permissionRoute,
   $popScopeRoute,
@@ -727,6 +728,35 @@ mixin $NotFoundRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/404');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $ocrResultRoute => GoRouteData.$route(
+  path: '/ocr_result',
+  factory: $OcrResultRoute._fromState,
+);
+
+mixin $OcrResultRoute on GoRouteData {
+  static OcrResultRoute _fromState(GoRouterState state) =>
+      OcrResultRoute(text: state.uri.queryParameters['text']!);
+
+  OcrResultRoute get _self => this as OcrResultRoute;
+
+  @override
+  String get location =>
+      GoRouteData.$location('/ocr_result', queryParams: {'text': _self.text});
 
   @override
   void go(BuildContext context) => context.go(location);

@@ -23,6 +23,7 @@ abstract final class Routes {
   static const inAppReview = '/in_app_review';
   static const screenshotPrevention = '/screenshot_prevention';
   static const ocr = '/ocr';
+  static const ocrResult = '/ocr_result';
   static const loading = '/loading';
   static const formBuilder = '/form_builder';
   static const maxSdk = '/max_sdk';
