@@ -12,6 +12,7 @@ import com.example.flutter_lab.infrastructure.platform.ErrorCodes
 import com.example.flutter_lab.infrastructure.platform.EventChannelNames
 import com.example.flutter_lab.infrastructure.platform.MethodChannelNames
 import com.example.flutter_lab.infrastructure.platform.MethodNames
+import com.example.flutter_lab.infrastructure.platform.NativeButtonFactory
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.EventChannel
@@ -42,6 +43,11 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
                     else -> result.notImplemented()
                 }
             }
+
+        flutterEngine.platformViewsController.registry.registerViewFactory(
+            "nativeButton",
+            NativeButtonFactory(flutterEngine.dartExecutor.binaryMessenger)
+        )
 
         EventChannel(flutterEngine.dartExecutor.binaryMessenger, EventChannelNames.LOCATION_UPDATES)
             .setStreamHandler(this)
