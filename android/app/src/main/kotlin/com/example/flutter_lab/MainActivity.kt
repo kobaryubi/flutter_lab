@@ -1,10 +1,12 @@
 package com.example.flutter_lab
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.os.BatteryManager
 import androidx.core.content.ContextCompat
 import com.example.flutter_lab.infrastructure.platform.ErrorCodes
 import com.example.flutter_lab.infrastructure.platform.EventChannelNames
@@ -33,8 +35,28 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
                 }
             }
 
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, MethodChannelNames.BATTERY)
+            .setMethodCallHandler { call, result ->
+                when (call.method) {
+                    MethodNames.GET_BATTERY_LEVEL -> getBatteryLevel(result)
+                    else -> result.notImplemented()
+                }
+            }
+
         EventChannel(flutterEngine.dartExecutor.binaryMessenger, EventChannelNames.LOCATION_UPDATES)
             .setStreamHandler(this)
+    }
+
+    /// Retrieves the device's current battery level as a percentage.
+    private fun getBatteryLevel(result: MethodChannel.Result) {
+        val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
+        val batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+
+        if (batteryLevel != Int.MIN_VALUE) {
+            result.success(batteryLevel)
+        } else {
+            result.error(ErrorCodes.UNAVAILABLE, "Battery level not available.", null)
+        }
     }
 
     /// Retrieves the device's last known GPS location.
