@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 
@@ -45,9 +46,18 @@ class _Body extends HookWidget {
       return null;
     }, [lifecycleState]);
 
+    /// Pushes a screen to observe lifecycle behavior during in-app navigation.
+    void handlePushScreen() {
+      NotFoundRoute().push<void>(context);
+    }
+
     return Column(
       children: [
         Text('Current State: ${lifecycleState?.name ?? 'unknown'}'),
+        GestureDetector(
+          onTap: handlePushScreen,
+          child: const Text('Push Screen'),
+        ),
         const Text('Event Log:'),
         Expanded(
           child: ListView.builder(
