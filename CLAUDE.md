@@ -6,32 +6,35 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Run the app (with flavor)
-flutter run --flavor local lib/main.dart
+fvm flutter run --flavor local lib/main.dart
 
 # Code generation (required after modifying freezed/riverpod/retrofit files)
 fvm dart run build_runner build
 fvm dart run build_runner watch -d  # Watch mode
 
 # Linting and formatting
-flutter analyze
-dart format .
-dart run custom_lint
+fvm flutter analyze
+fvm dart format .
+fvm dart run custom_lint
 
 # Testing
-flutter test test/counter_test.dart  # Single test
-flutter test                          # All tests
+fvm flutter test test/counter_test.dart  # Single test
+fvm flutter test                          # All tests
 
 # Generate localization
-flutter gen-l10n
+fvm flutter gen-l10n
 
 # Generate assets (flutter_gen)
 fluttergen
+
+# Generate Pigeon platform channel code
+fvm dart run pigeon --input pigeons/pigeon_api.dart
 
 # Generate API client from OpenAPI spec
 docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \
   -i /local/petstore.yaml -g dart-dio -o /local/package/petstore \
   --additional-properties pubName=petstore,pubLibrary=petstore
-cd package/petstore && dart run build_runner build --delete-conflicting-outputs
+cd package/petstore && fvm dart run build_runner build --delete-conflicting-outputs
 ```
 
 ## Architecture Overview
@@ -146,7 +149,7 @@ Run `fvm dart run build_runner build` after modifying annotated files.
 ## Flavors
 
 Two flavors: `local` and `production`
-- Set via: `flutter run --flavor local`
+- Set via: `fvm flutter run --flavor local`
 - Config in `lib/flavors.dart`
 
 ## Platform Integration
@@ -194,6 +197,7 @@ This approach makes it easier to understand, debug, and learn from the implement
 - **Comment handlers** - Add dartdoc comments to handler functions to explain what they do
 - **No automatic commits** - Do not commit changes automatically; only commit when explicitly requested
 - **No git -C option** - Do not use the `-C` option in git commands; run git commands from the working directory instead
+- **Use fvm for all CLI commands** - Always use `fvm flutter` instead of `flutter` and `fvm dart` instead of `dart` when running CLI commands (e.g., `fvm flutter analyze` instead of `flutter analyze`, `fvm dart run pigeon` instead of `dart run pigeon`)
 - **Named parameters** - Use named parameters for function arguments to improve readability (e.g., `saveDate({required DateTime date})` instead of `saveDate(DateTime date)`)
 - **Ternary operator** - Prefer ternary operator over if-else for simple conditional returns (e.g., `return value == null ? Failure() : Success(value)`)
 - **UI state variable naming** - Name the variable `uiState` when watching a ViewModel provider (e.g., `final uiState = ref.watch(myViewModelProvider)` instead of `final state = ref.watch(myViewModelProvider)`)
