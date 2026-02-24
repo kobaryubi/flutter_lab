@@ -68,7 +68,7 @@ private func nilOrValue<T>(_ value: Any?) -> T? {
   return value as! T?
 }
 
-func deepEqualsMessages(_ lhs: Any?, _ rhs: Any?) -> Bool {
+func deepEqualsPigeonApi(_ lhs: Any?, _ rhs: Any?) -> Bool {
   let cleanLhs = nilOrValue(lhs) as Any?
   let cleanRhs = nilOrValue(rhs) as Any?
   switch (cleanLhs, cleanRhs) {
@@ -87,7 +87,7 @@ func deepEqualsMessages(_ lhs: Any?, _ rhs: Any?) -> Bool {
   case let (cleanLhsArray, cleanRhsArray) as ([Any?], [Any?]):
     guard cleanLhsArray.count == cleanRhsArray.count else { return false }
     for (index, element) in cleanLhsArray.enumerated() {
-      if !deepEqualsMessages(element, cleanRhsArray[index]) {
+      if !deepEqualsPigeonApi(element, cleanRhsArray[index]) {
         return false
       }
     }
@@ -97,7 +97,7 @@ func deepEqualsMessages(_ lhs: Any?, _ rhs: Any?) -> Bool {
     guard cleanLhsDictionary.count == cleanRhsDictionary.count else { return false }
     for (key, cleanLhsValue) in cleanLhsDictionary {
       guard cleanRhsDictionary.index(forKey: key) != nil else { return false }
-      if !deepEqualsMessages(cleanLhsValue, cleanRhsDictionary[key]!) {
+      if !deepEqualsPigeonApi(cleanLhsValue, cleanRhsDictionary[key]!) {
         return false
       }
     }
@@ -109,16 +109,16 @@ func deepEqualsMessages(_ lhs: Any?, _ rhs: Any?) -> Bool {
   }
 }
 
-func deepHashMessages(value: Any?, hasher: inout Hasher) {
+func deepHashPigeonApi(value: Any?, hasher: inout Hasher) {
   if let valueList = value as? [AnyHashable] {
-     for item in valueList { deepHashMessages(value: item, hasher: &hasher) }
+     for item in valueList { deepHashPigeonApi(value: item, hasher: &hasher) }
      return
   }
 
   if let valueDict = value as? [AnyHashable: AnyHashable] {
     for key in valueDict.keys { 
       hasher.combine(key)
-      deepHashMessages(value: valueDict[key]!, hasher: &hasher)
+      deepHashPigeonApi(value: valueDict[key]!, hasher: &hasher)
     }
     return
   }
@@ -171,13 +171,13 @@ struct MessageData: Hashable {
     ]
   }
   static func == (lhs: MessageData, rhs: MessageData) -> Bool {
-    return deepEqualsMessages(lhs.toList(), rhs.toList())  }
+    return deepEqualsPigeonApi(lhs.toList(), rhs.toList())  }
   func hash(into hasher: inout Hasher) {
-    deepHashMessages(value: toList(), hasher: &hasher)
+    deepHashPigeonApi(value: toList(), hasher: &hasher)
   }
 }
 
-private class MessagesPigeonCodecReader: FlutterStandardReader {
+private class PigeonApiPigeonCodecReader: FlutterStandardReader {
   override func readValue(ofType type: UInt8) -> Any? {
     switch type {
     case 129:
@@ -194,7 +194,7 @@ private class MessagesPigeonCodecReader: FlutterStandardReader {
   }
 }
 
-private class MessagesPigeonCodecWriter: FlutterStandardWriter {
+private class PigeonApiPigeonCodecWriter: FlutterStandardWriter {
   override func writeValue(_ value: Any) {
     if let value = value as? Code {
       super.writeByte(129)
@@ -208,21 +208,55 @@ private class MessagesPigeonCodecWriter: FlutterStandardWriter {
   }
 }
 
-private class MessagesPigeonCodecReaderWriter: FlutterStandardReaderWriter {
+private class PigeonApiPigeonCodecReaderWriter: FlutterStandardReaderWriter {
   override func reader(with data: Data) -> FlutterStandardReader {
-    return MessagesPigeonCodecReader(data: data)
+    return PigeonApiPigeonCodecReader(data: data)
   }
 
   override func writer(with data: NSMutableData) -> FlutterStandardWriter {
-    return MessagesPigeonCodecWriter(data: data)
+    return PigeonApiPigeonCodecWriter(data: data)
   }
 }
 
-class MessagesPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
-  static let shared = MessagesPigeonCodec(readerWriter: MessagesPigeonCodecReaderWriter())
+class PigeonApiPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
+  static let shared = PigeonApiPigeonCodec(readerWriter: PigeonApiPigeonCodecReaderWriter())
 }
 
 
+/// Type-safe Pigeon API for greeting messages.
+///
+/// The native host returns `"Hello, {name}!"` for a given name.
+///
+/// Generated protocol from Pigeon that represents a handler of messages from Flutter.
+protocol GreetingApi {
+  /// Returns a greeting message for the given [name].
+  func greet(name: String) throws -> String
+}
+
+/// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
+class GreetingApiSetup {
+  static var codec: FlutterStandardMessageCodec { PigeonApiPigeonCodec.shared }
+  /// Sets up an instance of `GreetingApi` to handle messages through the `binaryMessenger`.
+  static func setUp(binaryMessenger: FlutterBinaryMessenger, api: GreetingApi?, messageChannelSuffix: String = "") {
+    let channelSuffix = messageChannelSuffix.count > 0 ? ".\(messageChannelSuffix)" : ""
+    /// Returns a greeting message for the given [name].
+    let greetChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_lab.GreetingApi.greet\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      greetChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let nameArg = args[0] as! String
+        do {
+          let result = try api.greet(name: nameArg)
+          reply(wrapResult(result))
+        } catch {
+          reply(wrapError(error))
+        }
+      }
+    } else {
+      greetChannel.setMessageHandler(nil)
+    }
+  }
+}
 /// Host API demonstrating Pigeon's HostApi pattern.
 ///
 /// Methods are called from Dart and implemented on the native side.
@@ -239,7 +273,7 @@ protocol ExampleHostApi {
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
 class ExampleHostApiSetup {
-  static var codec: FlutterStandardMessageCodec { MessagesPigeonCodec.shared }
+  static var codec: FlutterStandardMessageCodec { PigeonApiPigeonCodec.shared }
   /// Sets up an instance of `ExampleHostApi` to handle messages through the `binaryMessenger`.
   static func setUp(binaryMessenger: FlutterBinaryMessenger, api: ExampleHostApi?, messageChannelSuffix: String = "") {
     let channelSuffix = messageChannelSuffix.count > 0 ? ".\(messageChannelSuffix)" : ""
@@ -310,8 +344,8 @@ class MessageFlutterApi: MessageFlutterApiProtocol {
     self.binaryMessenger = binaryMessenger
     self.messageChannelSuffix = messageChannelSuffix.count > 0 ? ".\(messageChannelSuffix)" : ""
   }
-  var codec: MessagesPigeonCodec {
-    return MessagesPigeonCodec.shared
+  var codec: PigeonApiPigeonCodec {
+    return PigeonApiPigeonCodec.shared
   }
   /// Echoes the given string back to the host.
   func flutterMethod(aString aStringArg: String?, completion: @escaping (Result<String, PigeonError>) -> Void) {
