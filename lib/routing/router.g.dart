@@ -15,6 +15,7 @@ List<RouteBase> get $appRoutes => [
   $brightnessRoute,
   $clockRoute,
   $deviceInfoRoute,
+  $dialogStateRoute,
   $dioCacheRoute,
   $effectVsListenRoute,
   $etagCacheRoute,
@@ -37,6 +38,7 @@ List<RouteBase> get $appRoutes => [
   $ocrResultRoute,
   $ocrRoute,
   $permissionRoute,
+  $pigeonRoute,
   $popScopeRoute,
   $portalRoute,
   $pushNotificationRoute,
@@ -235,6 +237,31 @@ mixin $DeviceInfoRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/device_info');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $dialogStateRoute => GoRouteData.$route(
+  path: '/dialog_state',
+  factory: $DialogStateRoute._fromState,
+);
+
+mixin $DialogStateRoute on GoRouteData {
+  static DialogStateRoute _fromState(GoRouterState state) => DialogStateRoute();
+
+  @override
+  String get location => GoRouteData.$location('/dialog_state');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -805,6 +832,29 @@ mixin $PermissionRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/permission');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $pigeonRoute =>
+    GoRouteData.$route(path: '/pigeon', factory: $PigeonRoute._fromState);
+
+mixin $PigeonRoute on GoRouteData {
+  static PigeonRoute _fromState(GoRouterState state) => PigeonRoute();
+
+  @override
+  String get location => GoRouteData.$location('/pigeon');
 
   @override
   void go(BuildContext context) => context.go(location);
