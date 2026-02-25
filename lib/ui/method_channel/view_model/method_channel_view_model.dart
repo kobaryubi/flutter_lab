@@ -48,24 +48,24 @@ class MethodChannelViewModel extends _$MethodChannelViewModel {
   Future<void> getLocation() async {
     final getLocationUseCase = ref.read(getLocationUseCaseProvider);
 
-    state = state.copyWith(
-      location: await AsyncValue.guard(() async {
-        final result = await getLocationUseCase.call();
-        return result.getOrThrow();
-      }),
-    );
+    final location = await AsyncValue.guard(() async {
+      final result = await getLocationUseCase.call();
+      return result.getOrThrow();
+    });
+
+    state = state.copyWith(location: location);
   }
 
   /// Fetches the current battery level via platform method channel.
   Future<void> getBatteryLevel() async {
     final getBatteryLevelUseCase = ref.read(getBatteryLevelUseCaseProvider);
 
-    state = state.copyWith(
-      batteryLevel: await AsyncValue.guard(() async {
-        final result = await getBatteryLevelUseCase.call();
-        return result.getOrThrow();
-      }),
-    );
+    final batteryLevel = await AsyncValue.guard(() async {
+      final result = await getBatteryLevelUseCase.call();
+      return result.getOrThrow();
+    });
+
+    state = state.copyWith(batteryLevel: batteryLevel);
   }
 
   /// Starts watching for continuous location updates via EventChannel.
