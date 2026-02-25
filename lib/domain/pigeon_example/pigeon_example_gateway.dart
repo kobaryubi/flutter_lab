@@ -13,4 +13,7 @@ abstract class PigeonExampleGateway {
 
   /// Sends a structured message to the host and returns success.
   AsyncResult<bool> sendMessage({required MessageData message});
+
+  /// Triggers the native host to call Dart's [MessageFlutterApi.flutterMethod].
+  AsyncResult<String> callFlutterMethod({required String message});
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
+import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/dialog_state/view_model/dialog_state_view_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,11 +14,9 @@ class DialogStateScreen extends StatelessWidget {
   const DialogStateScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => const Column(
-    children: [
-      AppBar(title: Text('Dialog State')),
-      Expanded(child: _Body()),
-    ],
+  Widget build(BuildContext context) => const Layout(
+    appBar: AppBar(title: Text('Dialog State')),
+    child: _Body(),
   );
 }
 
