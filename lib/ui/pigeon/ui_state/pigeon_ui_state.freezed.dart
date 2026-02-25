@@ -14,7 +14,12 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PigeonUiState {
 
- AsyncValue<String>? get greeting; AsyncValue<String>? get hostLanguage; AsyncValue<int>? get addResult; AsyncValue<bool>? get sendMessageResult; AsyncValue<String>? get flutterMethodResult;
+/// Greeting result from GreetingApi.greet.
+ AsyncValue<String>? get greeting;/// Host language from ExampleHostApi.getHostLanguage.
+ AsyncValue<String>? get hostLanguage;/// Addition result from ExampleHostApi.add.
+ AsyncValue<int>? get addResult;/// Send message result from ExampleHostApi.sendMessage.
+ AsyncValue<bool>? get sendMessageResult;/// Flutter method callback result from MessageFlutterApi.
+ AsyncValue<String>? get flutterMethodResult;
 /// Create a copy of PigeonUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -78,6 +83,18 @@ as AsyncValue<String>?,
 
 /// Adds pattern-matching-related methods to [PigeonUiState].
 extension PigeonUiStatePatterns on PigeonUiState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
 @optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PigeonUiState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
@@ -87,6 +104,19 @@ return $default(_that);case _:
 
 }
 }
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
 @optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PigeonUiState value)  $default,){
 final _that = this;
 switch (_that) {
@@ -96,6 +126,18 @@ return $default(_that);case _:
 
 }
 }
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
 @optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PigeonUiState value)?  $default,){
 final _that = this;
 switch (_that) {
@@ -105,7 +147,19 @@ return $default(_that);case _:
 
 }
 }
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<String>? greeting, AsyncValue<String>? hostLanguage, AsyncValue<int>? addResult, AsyncValue<bool>? sendMessageResult, AsyncValue<String>? flutterMethodResult)?  $default,{required TResult orElse(),}) {final _that = this;
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<String>? greeting,  AsyncValue<String>? hostLanguage,  AsyncValue<int>? addResult,  AsyncValue<bool>? sendMessageResult,  AsyncValue<String>? flutterMethodResult)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PigeonUiState() when $default != null:
 return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMessageResult,_that.flutterMethodResult);case _:
@@ -113,7 +167,20 @@ return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMess
 
 }
 }
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<String>? greeting, AsyncValue<String>? hostLanguage, AsyncValue<int>? addResult, AsyncValue<bool>? sendMessageResult, AsyncValue<String>? flutterMethodResult)  $default,) {final _that = this;
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<String>? greeting,  AsyncValue<String>? hostLanguage,  AsyncValue<int>? addResult,  AsyncValue<bool>? sendMessageResult,  AsyncValue<String>? flutterMethodResult)  $default,) {final _that = this;
 switch (_that) {
 case _PigeonUiState():
 return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMessageResult,_that.flutterMethodResult);case _:
@@ -121,7 +188,19 @@ return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMess
 
 }
 }
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<String>? greeting, AsyncValue<String>? hostLanguage, AsyncValue<int>? addResult, AsyncValue<bool>? sendMessageResult, AsyncValue<String>? flutterMethodResult)?  $default,) {final _that = this;
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<String>? greeting,  AsyncValue<String>? hostLanguage,  AsyncValue<int>? addResult,  AsyncValue<bool>? sendMessageResult,  AsyncValue<String>? flutterMethodResult)?  $default,) {final _that = this;
 switch (_that) {
 case _PigeonUiState() when $default != null:
 return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMessageResult,_that.flutterMethodResult);case _:
@@ -137,12 +216,17 @@ return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMess
 
 class _PigeonUiState implements PigeonUiState {
   const _PigeonUiState({this.greeting, this.hostLanguage, this.addResult, this.sendMessageResult, this.flutterMethodResult});
+  
 
-
+/// Greeting result from GreetingApi.greet.
 @override final  AsyncValue<String>? greeting;
+/// Host language from ExampleHostApi.getHostLanguage.
 @override final  AsyncValue<String>? hostLanguage;
+/// Addition result from ExampleHostApi.add.
 @override final  AsyncValue<int>? addResult;
+/// Send message result from ExampleHostApi.sendMessage.
 @override final  AsyncValue<bool>? sendMessageResult;
+/// Flutter method callback result from MessageFlutterApi.
 @override final  AsyncValue<String>? flutterMethodResult;
 
 /// Create a copy of PigeonUiState
