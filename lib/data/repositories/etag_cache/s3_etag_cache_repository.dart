@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:etag_cache/etag_cache.dart';
+import 'package:flutter_lab/data/interceptor/etag_interceptor.dart';
 import 'package:flutter_lab/domain/entity/etag_cache/etag_cached_response.dart';
 import 'package:flutter_lab/domain/entity/exception/domain_exception.dart';
 import 'package:flutter_lab/domain/etag_cache/etag_cache_repository.dart';
@@ -11,8 +12,8 @@ import 'package:result_dart/result_dart.dart';
 /// Repository that demonstrates real ETag-based HTTP caching using S3 and
 /// httpbin.org.
 ///
-/// Uses [DioCacheInterceptor] to automatically handle ETag headers and
-/// `If-None-Match` / 304 responses.
+/// Uses [EtagInterceptor] to add `If-None-Match` headers and
+/// [DioCacheInterceptor] to handle caching and 304 responses.
 ///
 /// - [fetchWithEtag] fetches from S3 via the [ProductsApi] client. S3
 ///   returns ETag headers, so the interceptor caches responses and
@@ -21,10 +22,9 @@ import 'package:result_dart/result_dart.dart';
 ///   headers, so responses are always from network.
 class S3EtagCacheRepository implements EtagCacheRepository {
   S3EtagCacheRepository() {
-    final cacheOptions = CacheOptions(store: _cacheStore);
-    _dio.interceptors.add(
-      DioCacheInterceptor(options: cacheOptions),
-    );
+    _dio.interceptors
+      ..add(_etagInterceptor)
+      ..add(DioCacheInterceptor(options: _cacheOptions));
   }
 
   /// S3 base URL for the ETag cache API.
@@ -36,6 +36,10 @@ class S3EtagCacheRepository implements EtagCacheRepository {
   static const _httpbinUrl = 'https://httpbin.org/json';
 
   final MemCacheStore _cacheStore = MemCacheStore();
+  late final CacheOptions _cacheOptions = CacheOptions(store: _cacheStore);
+  late final EtagInterceptor _etagInterceptor = EtagInterceptor(
+    store: _cacheStore,
+  );
   final Dio _dio = Dio(BaseOptions(baseUrl: _s3BaseUrl));
 
   late final ProductsApi _productsApi = EtagCache(dio: _dio).getProductsApi();
