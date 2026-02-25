@@ -1,4 +1,4 @@
-import 'package:flutter_lab/data/gateway/pigeon_example/messages.g.dart';
+import 'package:flutter_lab/data/gateway/pigeon/pigeon_api.g.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Gateway for the Pigeon ExampleHostApi demo.
