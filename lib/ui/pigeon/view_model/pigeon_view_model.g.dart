@@ -50,7 +50,7 @@ final class PigeonViewModelProvider
   }
 }
 
-String _$pigeonViewModelHash() => r'86e9bb1ed60c4d0fdc7bf39bf6f147e4c178d245';
+String _$pigeonViewModelHash() => r'62fb25362760210770088f3a595ced26a6c0e49f';
 
 /// ViewModel for the Pigeon demo screen.
 ///

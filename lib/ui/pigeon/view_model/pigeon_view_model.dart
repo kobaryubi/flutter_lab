@@ -71,6 +71,27 @@ class PigeonViewModel extends _$PigeonViewModel {
     state = state.copyWith(sendMessageResult: sendMessageResult);
   }
 
+  /// Triggers native to call Dart's [MessageFlutterApi.flutterMethod] via
+  /// MethodChannel.
+  ///
+  /// The native side receives the message, calls back to Dart via Pigeon
+  /// FlutterApi, and returns the echoed result.
+  Future<void> callFlutterMethod() async {
+    final gateway = ref.read(pigeonExampleGatewayProvider);
+
+    final callFlutterMethodResult = await AsyncValue.guard(
+      () async {
+        final result = await gateway.callFlutterMethod(
+          message: 'Hello from Dart',
+        );
+
+        return result.getOrThrow();
+      },
+    );
+
+    state = state.copyWith(callFlutterMethodResult: callFlutterMethodResult);
+  }
+
   /// Sets up [MessageFlutterApi] handler to receive calls from native.
   ///
   /// When native invokes [flutterMethod], the result is shown in the UI.
