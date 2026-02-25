@@ -19,6 +19,10 @@ abstract class PigeonUiState with _$PigeonUiState {
     /// Send message result from ExampleHostApi.sendMessage.
     AsyncValue<bool>? sendMessageResult,
 
+    /// Result from triggering native to call Dart's FlutterApi via
+    /// MethodChannel.
+    AsyncValue<String>? callFlutterMethodResult,
+
     /// Flutter method callback result from MessageFlutterApi.
     AsyncValue<String>? flutterMethodResult,
   }) = _PigeonUiState;

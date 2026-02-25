@@ -18,7 +18,9 @@ mixin _$PigeonUiState {
  AsyncValue<String>? get greeting;/// Host language from ExampleHostApi.getHostLanguage.
  AsyncValue<String>? get hostLanguage;/// Addition result from ExampleHostApi.add.
  AsyncValue<int>? get addResult;/// Send message result from ExampleHostApi.sendMessage.
- AsyncValue<bool>? get sendMessageResult;/// Flutter method callback result from MessageFlutterApi.
+ AsyncValue<bool>? get sendMessageResult;/// Result from triggering native to call Dart's FlutterApi via
+/// MethodChannel.
+ AsyncValue<String>? get callFlutterMethodResult;/// Flutter method callback result from MessageFlutterApi.
  AsyncValue<String>? get flutterMethodResult;
 /// Create a copy of PigeonUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -30,16 +32,16 @@ $PigeonUiStateCopyWith<PigeonUiState> get copyWith => _$PigeonUiStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PigeonUiState&&(identical(other.greeting, greeting) || other.greeting == greeting)&&(identical(other.hostLanguage, hostLanguage) || other.hostLanguage == hostLanguage)&&(identical(other.addResult, addResult) || other.addResult == addResult)&&(identical(other.sendMessageResult, sendMessageResult) || other.sendMessageResult == sendMessageResult)&&(identical(other.flutterMethodResult, flutterMethodResult) || other.flutterMethodResult == flutterMethodResult));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PigeonUiState&&(identical(other.greeting, greeting) || other.greeting == greeting)&&(identical(other.hostLanguage, hostLanguage) || other.hostLanguage == hostLanguage)&&(identical(other.addResult, addResult) || other.addResult == addResult)&&(identical(other.sendMessageResult, sendMessageResult) || other.sendMessageResult == sendMessageResult)&&(identical(other.callFlutterMethodResult, callFlutterMethodResult) || other.callFlutterMethodResult == callFlutterMethodResult)&&(identical(other.flutterMethodResult, flutterMethodResult) || other.flutterMethodResult == flutterMethodResult));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,greeting,hostLanguage,addResult,sendMessageResult,flutterMethodResult);
+int get hashCode => Object.hash(runtimeType,greeting,hostLanguage,addResult,sendMessageResult,callFlutterMethodResult,flutterMethodResult);
 
 @override
 String toString() {
-  return 'PigeonUiState(greeting: $greeting, hostLanguage: $hostLanguage, addResult: $addResult, sendMessageResult: $sendMessageResult, flutterMethodResult: $flutterMethodResult)';
+  return 'PigeonUiState(greeting: $greeting, hostLanguage: $hostLanguage, addResult: $addResult, sendMessageResult: $sendMessageResult, callFlutterMethodResult: $callFlutterMethodResult, flutterMethodResult: $flutterMethodResult)';
 }
 
 
@@ -50,7 +52,7 @@ abstract mixin class $PigeonUiStateCopyWith<$Res>  {
   factory $PigeonUiStateCopyWith(PigeonUiState value, $Res Function(PigeonUiState) _then) = _$PigeonUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<String>? greeting, AsyncValue<String>? hostLanguage, AsyncValue<int>? addResult, AsyncValue<bool>? sendMessageResult, AsyncValue<String>? flutterMethodResult
+ AsyncValue<String>? greeting, AsyncValue<String>? hostLanguage, AsyncValue<int>? addResult, AsyncValue<bool>? sendMessageResult, AsyncValue<String>? callFlutterMethodResult, AsyncValue<String>? flutterMethodResult
 });
 
 
@@ -67,13 +69,14 @@ class _$PigeonUiStateCopyWithImpl<$Res>
 
 /// Create a copy of PigeonUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? greeting = freezed,Object? hostLanguage = freezed,Object? addResult = freezed,Object? sendMessageResult = freezed,Object? flutterMethodResult = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? greeting = freezed,Object? hostLanguage = freezed,Object? addResult = freezed,Object? sendMessageResult = freezed,Object? callFlutterMethodResult = freezed,Object? flutterMethodResult = freezed,}) {
   return _then(_self.copyWith(
 greeting: freezed == greeting ? _self.greeting : greeting // ignore: cast_nullable_to_non_nullable
 as AsyncValue<String>?,hostLanguage: freezed == hostLanguage ? _self.hostLanguage : hostLanguage // ignore: cast_nullable_to_non_nullable
 as AsyncValue<String>?,addResult: freezed == addResult ? _self.addResult : addResult // ignore: cast_nullable_to_non_nullable
 as AsyncValue<int>?,sendMessageResult: freezed == sendMessageResult ? _self.sendMessageResult : sendMessageResult // ignore: cast_nullable_to_non_nullable
-as AsyncValue<bool>?,flutterMethodResult: freezed == flutterMethodResult ? _self.flutterMethodResult : flutterMethodResult // ignore: cast_nullable_to_non_nullable
+as AsyncValue<bool>?,callFlutterMethodResult: freezed == callFlutterMethodResult ? _self.callFlutterMethodResult : callFlutterMethodResult // ignore: cast_nullable_to_non_nullable
+as AsyncValue<String>?,flutterMethodResult: freezed == flutterMethodResult ? _self.flutterMethodResult : flutterMethodResult // ignore: cast_nullable_to_non_nullable
 as AsyncValue<String>?,
   ));
 }
@@ -159,10 +162,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<String>? greeting,  AsyncValue<String>? hostLanguage,  AsyncValue<int>? addResult,  AsyncValue<bool>? sendMessageResult,  AsyncValue<String>? flutterMethodResult)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<String>? greeting,  AsyncValue<String>? hostLanguage,  AsyncValue<int>? addResult,  AsyncValue<bool>? sendMessageResult,  AsyncValue<String>? callFlutterMethodResult,  AsyncValue<String>? flutterMethodResult)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PigeonUiState() when $default != null:
-return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMessageResult,_that.flutterMethodResult);case _:
+return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMessageResult,_that.callFlutterMethodResult,_that.flutterMethodResult);case _:
   return orElse();
 
 }
@@ -180,10 +183,10 @@ return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMess
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<String>? greeting,  AsyncValue<String>? hostLanguage,  AsyncValue<int>? addResult,  AsyncValue<bool>? sendMessageResult,  AsyncValue<String>? flutterMethodResult)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<String>? greeting,  AsyncValue<String>? hostLanguage,  AsyncValue<int>? addResult,  AsyncValue<bool>? sendMessageResult,  AsyncValue<String>? callFlutterMethodResult,  AsyncValue<String>? flutterMethodResult)  $default,) {final _that = this;
 switch (_that) {
 case _PigeonUiState():
-return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMessageResult,_that.flutterMethodResult);case _:
+return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMessageResult,_that.callFlutterMethodResult,_that.flutterMethodResult);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -200,10 +203,10 @@ return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMess
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<String>? greeting,  AsyncValue<String>? hostLanguage,  AsyncValue<int>? addResult,  AsyncValue<bool>? sendMessageResult,  AsyncValue<String>? flutterMethodResult)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<String>? greeting,  AsyncValue<String>? hostLanguage,  AsyncValue<int>? addResult,  AsyncValue<bool>? sendMessageResult,  AsyncValue<String>? callFlutterMethodResult,  AsyncValue<String>? flutterMethodResult)?  $default,) {final _that = this;
 switch (_that) {
 case _PigeonUiState() when $default != null:
-return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMessageResult,_that.flutterMethodResult);case _:
+return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMessageResult,_that.callFlutterMethodResult,_that.flutterMethodResult);case _:
   return null;
 
 }
@@ -215,7 +218,7 @@ return $default(_that.greeting,_that.hostLanguage,_that.addResult,_that.sendMess
 
 
 class _PigeonUiState implements PigeonUiState {
-  const _PigeonUiState({this.greeting, this.hostLanguage, this.addResult, this.sendMessageResult, this.flutterMethodResult});
+  const _PigeonUiState({this.greeting, this.hostLanguage, this.addResult, this.sendMessageResult, this.callFlutterMethodResult, this.flutterMethodResult});
   
 
 /// Greeting result from GreetingApi.greet.
@@ -226,6 +229,9 @@ class _PigeonUiState implements PigeonUiState {
 @override final  AsyncValue<int>? addResult;
 /// Send message result from ExampleHostApi.sendMessage.
 @override final  AsyncValue<bool>? sendMessageResult;
+/// Result from triggering native to call Dart's FlutterApi via
+/// MethodChannel.
+@override final  AsyncValue<String>? callFlutterMethodResult;
 /// Flutter method callback result from MessageFlutterApi.
 @override final  AsyncValue<String>? flutterMethodResult;
 
@@ -239,16 +245,16 @@ _$PigeonUiStateCopyWith<_PigeonUiState> get copyWith => __$PigeonUiStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PigeonUiState&&(identical(other.greeting, greeting) || other.greeting == greeting)&&(identical(other.hostLanguage, hostLanguage) || other.hostLanguage == hostLanguage)&&(identical(other.addResult, addResult) || other.addResult == addResult)&&(identical(other.sendMessageResult, sendMessageResult) || other.sendMessageResult == sendMessageResult)&&(identical(other.flutterMethodResult, flutterMethodResult) || other.flutterMethodResult == flutterMethodResult));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PigeonUiState&&(identical(other.greeting, greeting) || other.greeting == greeting)&&(identical(other.hostLanguage, hostLanguage) || other.hostLanguage == hostLanguage)&&(identical(other.addResult, addResult) || other.addResult == addResult)&&(identical(other.sendMessageResult, sendMessageResult) || other.sendMessageResult == sendMessageResult)&&(identical(other.callFlutterMethodResult, callFlutterMethodResult) || other.callFlutterMethodResult == callFlutterMethodResult)&&(identical(other.flutterMethodResult, flutterMethodResult) || other.flutterMethodResult == flutterMethodResult));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,greeting,hostLanguage,addResult,sendMessageResult,flutterMethodResult);
+int get hashCode => Object.hash(runtimeType,greeting,hostLanguage,addResult,sendMessageResult,callFlutterMethodResult,flutterMethodResult);
 
 @override
 String toString() {
-  return 'PigeonUiState(greeting: $greeting, hostLanguage: $hostLanguage, addResult: $addResult, sendMessageResult: $sendMessageResult, flutterMethodResult: $flutterMethodResult)';
+  return 'PigeonUiState(greeting: $greeting, hostLanguage: $hostLanguage, addResult: $addResult, sendMessageResult: $sendMessageResult, callFlutterMethodResult: $callFlutterMethodResult, flutterMethodResult: $flutterMethodResult)';
 }
 
 
@@ -259,7 +265,7 @@ abstract mixin class _$PigeonUiStateCopyWith<$Res> implements $PigeonUiStateCopy
   factory _$PigeonUiStateCopyWith(_PigeonUiState value, $Res Function(_PigeonUiState) _then) = __$PigeonUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<String>? greeting, AsyncValue<String>? hostLanguage, AsyncValue<int>? addResult, AsyncValue<bool>? sendMessageResult, AsyncValue<String>? flutterMethodResult
+ AsyncValue<String>? greeting, AsyncValue<String>? hostLanguage, AsyncValue<int>? addResult, AsyncValue<bool>? sendMessageResult, AsyncValue<String>? callFlutterMethodResult, AsyncValue<String>? flutterMethodResult
 });
 
 
@@ -276,13 +282,14 @@ class __$PigeonUiStateCopyWithImpl<$Res>
 
 /// Create a copy of PigeonUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? greeting = freezed,Object? hostLanguage = freezed,Object? addResult = freezed,Object? sendMessageResult = freezed,Object? flutterMethodResult = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? greeting = freezed,Object? hostLanguage = freezed,Object? addResult = freezed,Object? sendMessageResult = freezed,Object? callFlutterMethodResult = freezed,Object? flutterMethodResult = freezed,}) {
   return _then(_PigeonUiState(
 greeting: freezed == greeting ? _self.greeting : greeting // ignore: cast_nullable_to_non_nullable
 as AsyncValue<String>?,hostLanguage: freezed == hostLanguage ? _self.hostLanguage : hostLanguage // ignore: cast_nullable_to_non_nullable
 as AsyncValue<String>?,addResult: freezed == addResult ? _self.addResult : addResult // ignore: cast_nullable_to_non_nullable
 as AsyncValue<int>?,sendMessageResult: freezed == sendMessageResult ? _self.sendMessageResult : sendMessageResult // ignore: cast_nullable_to_non_nullable
-as AsyncValue<bool>?,flutterMethodResult: freezed == flutterMethodResult ? _self.flutterMethodResult : flutterMethodResult // ignore: cast_nullable_to_non_nullable
+as AsyncValue<bool>?,callFlutterMethodResult: freezed == callFlutterMethodResult ? _self.callFlutterMethodResult : callFlutterMethodResult // ignore: cast_nullable_to_non_nullable
+as AsyncValue<String>?,flutterMethodResult: freezed == flutterMethodResult ? _self.flutterMethodResult : flutterMethodResult // ignore: cast_nullable_to_non_nullable
 as AsyncValue<String>?,
   ));
 }
