@@ -18,12 +18,47 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
 
+/// Pigeon GreetingApi implementation for Android.
+private class GreetingApiImpl : GreetingApi {
+    override fun greet(name: String): String {
+        return "Hello, $name!"
+    }
+}
+
+/// Pigeon ExampleHostApi implementation for Android.
+private class ExampleHostApiImpl : ExampleHostApi {
+    override fun getHostLanguage(): String {
+        return "Kotlin"
+    }
+
+    override fun add(a: Long, b: Long): Long {
+        if (a < 0L || b < 0L) {
+            throw FlutterError("code", "message", "details")
+        }
+        return a + b
+    }
+
+    override fun sendMessage(message: MessageData, callback: (Result<Boolean>) -> Unit) {
+        if (message.code == Code.ONE) {
+            callback(Result.failure(FlutterError("code", "message", "details")))
+            return
+        }
+        callback(Result.success(true))
+    }
+}
+
 class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationListener {
     private var eventSink: EventChannel.EventSink? = null
     private var locationManager: LocationManager? = null
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+
+        // Register Pigeon GreetingApi
+        GreetingApi.setUp(flutterEngine.dartExecutor.binaryMessenger, GreetingApiImpl())
+
+        // Register Pigeon ExampleHostApi
+        ExampleHostApi.setUp(flutterEngine.dartExecutor.binaryMessenger, ExampleHostApiImpl())
 
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
 
