@@ -20,14 +20,30 @@ import com.example.flutter_lab.infrastructure.platform.MethodChannelNames
 import com.example.flutter_lab.infrastructure.platform.MethodNames
 import com.example.flutter_lab.infrastructure.platform.NativeButtonFactory
 import io.flutter.embedding.android.FlutterActivity
+import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.EventChannel
+import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 
 /// Pigeon GreetingApi implementation for Android.
 private class GreetingApiImpl : GreetingApi {
     override fun greet(name: String): String {
         return "Hello, $name!"
+    }
+}
+
+/// Pigeon FlutterApi wrapper for calling Dart-side methods from native.
+private class PigeonFlutterApi(binaryMessenger: BinaryMessenger) {
+    var flutterApi: MessageFlutterApi? = null
+
+    init {
+        flutterApi = MessageFlutterApi(binaryMessenger)
+    }
+
+    /// Calls the Dart-side flutterMethod and returns the result via callback.
+    fun callFlutterMethod(aString: String, callback: (Result<String>) -> Unit) {
+        flutterApi!!.flutterMethod(aString) { echo -> callback(echo) }
     }
 }
 
@@ -56,6 +72,7 @@ private class ExampleHostApiImpl : ExampleHostApi {
 class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationListener {
     private var eventSink: EventChannel.EventSink? = null
     private var locationManager: LocationManager? = null
+    private var pigeonFlutterApi: PigeonFlutterApi? = null
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -65,6 +82,9 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
 
         // Register Pigeon ExampleHostApi
         ExampleHostApi.setUp(flutterEngine.dartExecutor.binaryMessenger, ExampleHostApiImpl())
+
+        // Register Pigeon FlutterApi (native → Dart)
+        pigeonFlutterApi = PigeonFlutterApi(flutterEngine.dartExecutor.binaryMessenger)
 
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
 
@@ -81,6 +101,14 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
             .setMethodCallHandler { call, result ->
                 when (call.method) {
                     MethodNames.GET_BATTERY_LEVEL -> getBatteryLevel(result)
+                    else -> result.notImplemented()
+                }
+            }
+
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, MethodChannelNames.PIGEON)
+            .setMethodCallHandler { call, result ->
+                when (call.method) {
+                    MethodNames.CALL_FLUTTER_METHOD -> callFlutterMethod(call, result)
                     else -> result.notImplemented()
                 }
             }
@@ -103,6 +131,24 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
             result.success(batteryLevel)
         } else {
             result.error(ErrorCodes.UNAVAILABLE, "Battery level not available.", null)
+        }
+    }
+
+    /// Calls the Dart-side flutterMethod via Pigeon FlutterApi.
+    private fun callFlutterMethod(call: MethodCall, result: MethodChannel.Result) {
+        val message = call.argument<String>("message")
+
+        if (message == null) {
+            result.error(ErrorCodes.INVALID_ARGUMENT, "Missing 'message' argument.", null)
+            return
+        }
+
+        pigeonFlutterApi?.callFlutterMethod(message) { echoResult ->
+            echoResult.onSuccess { value ->
+                result.success(value)
+            }.onFailure { error ->
+                result.error(ErrorCodes.UNAVAILABLE, error.message, null)
+            }
         }
     }
 
