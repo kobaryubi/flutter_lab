@@ -43,9 +43,9 @@ class _Body extends HookConsumerWidget {
       vm.sendMessage();
     }
 
-    /// Sets up MessageFlutterApi handler.
-    void handleCallFlutterMethod() {
-      vm.callFlutterMethod();
+    /// Sets up MessageFlutterApi handler to receive calls from native.
+    void handleSetUpFlutterMethod() {
+      vm.setUpFlutterMethod();
     }
 
     return SingleChildScrollView(
@@ -90,8 +90,8 @@ class _Body extends HookConsumerWidget {
             Text('Error: $error'),
           const SizedBox(height: 16),
           GestureDetector(
-            onTap: handleCallFlutterMethod,
-            child: const Text('Call Flutter Method'),
+            onTap: handleSetUpFlutterMethod,
+            child: const Text('Set Up Flutter Method'),
           ),
           if (uiState.flutterMethodResult case AsyncData(:final value))
             Text('Flutter Method Result: $value'),
