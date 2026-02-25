@@ -45,7 +45,7 @@ final class EtagCacheViewModelProvider
 }
 
 String _$etagCacheViewModelHash() =>
-    r'819520e04ec704ccd6746d6d9556c355bf55e169';
+    r'3b9a597496366482309c3c0b4b009deebda7876e';
 
 /// ViewModel that manages ETag cache fetch and clear operations.
 

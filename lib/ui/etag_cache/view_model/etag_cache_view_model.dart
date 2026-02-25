@@ -12,6 +12,8 @@ class EtagCacheViewModel extends _$EtagCacheViewModel {
 
   /// Fetches products from the endpoint with an ETag header.
   Future<void> fetchWithEtag() async {
+    state = state.copyWith(withEtagResponse: const AsyncLoading());
+
     final repository = ref.read(etagCacheRepositoryProvider);
     final withEtagResponse = await AsyncValue.guard(
       () async => (await repository.fetchWithEtag()).getOrThrow(),

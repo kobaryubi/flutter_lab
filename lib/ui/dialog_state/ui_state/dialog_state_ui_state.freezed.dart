@@ -207,9 +207,9 @@ return $default(_that.counter);case _:
 
 class _DialogStateUiState implements DialogStateUiState {
   const _DialogStateUiState({this.counter = 0});
+  
 
-
-@override @JsonKey(defaultValue: 0) final  int counter;
+@override@JsonKey() final  int counter;
 
 /// Create a copy of DialogStateUiState
 /// with the given fields replaced by the non-null parameter values.

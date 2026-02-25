@@ -54,7 +54,7 @@ final class DialogStateViewModelProvider
 }
 
 String _$dialogStateViewModelHash() =>
-    r'0000000000000000000000000000000000000000';
+    r'aa79a4f8bb362167aea7853ee3fa31d0353dfc7f';
 
 /// ViewModel for the dialog state closure experiment.
 ///
