@@ -4,4 +4,5 @@ package com.example.flutter_lab.infrastructure.platform
 object ErrorCodes {
     const val PERMISSION_DENIED = "PERMISSION_DENIED"
     const val UNAVAILABLE = "UNAVAILABLE"
+    const val INVALID_ARGUMENT = "INVALID_ARGUMENT"
 }

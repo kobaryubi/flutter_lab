@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/data/http/dev_http_overrides.dart';
 import 'package:flutter_lab/firebase_options.dart';
 import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/flutter_lab_app.dart';
@@ -25,7 +26,13 @@ Future<void> main() async {
     (element) => element.name == appFlavor,
   );
 
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  if (F.appFlavor == .local) {
+    HttpOverrides.global = DevHttpOverrides();
+  }
+
+  await SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp],
+  );
 
   runApp(
     const ProviderScope(

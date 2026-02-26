@@ -43,6 +43,11 @@ class _Body extends HookConsumerWidget {
       vm.sendMessage();
     }
 
+    /// Triggers native to call Dart's FlutterApi via MethodChannel.
+    void handleCallFlutterMethod() {
+      vm.callFlutterMethod();
+    }
+
     /// Sets up MessageFlutterApi handler to receive calls from native.
     void handleSetUpFlutterMethod() {
       vm.setUpFlutterMethod();
@@ -87,6 +92,15 @@ class _Body extends HookConsumerWidget {
           if (uiState.sendMessageResult case AsyncData(:final value))
             Text('Send Message Result: $value'),
           if (uiState.sendMessageResult case AsyncError(:final error))
+            Text('Error: $error'),
+          const SizedBox(height: 16),
+          GestureDetector(
+            onTap: handleCallFlutterMethod,
+            child: const Text('Call Flutter Method'),
+          ),
+          if (uiState.callFlutterMethodResult case AsyncData(:final value))
+            Text('Call Flutter Method Result: $value'),
+          if (uiState.callFlutterMethodResult case AsyncError(:final error))
             Text('Error: $error'),
           const SizedBox(height: 16),
           GestureDetector(
