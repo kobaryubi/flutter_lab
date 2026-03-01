@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_lab/domain/entity/launch_url/launch_url_mode.dart';
 import 'package:flutter_lab/presentation/core/provider/global_loading_notifier.dart';
+import 'package:flutter_lab/routing/app_route_observer.dart';
 import 'package:flutter_lab/routing/loading_navigation_observer.dart';
 import 'package:flutter_lab/routing/routes.dart';
+import 'package:flutter_lab/ui/ad_url_resolver/widget/ad_url_resolver_screen.dart';
 import 'package:flutter_lab/ui/app_lifecycle/widget/app_lifecycle_screen.dart';
 import 'package:flutter_lab/ui/app_store/widget/app_store_screen.dart';
 import 'package:flutter_lab/ui/arutana_ad/widget/arutana_ad_screen.dart';
@@ -11,6 +13,7 @@ import 'package:flutter_lab/ui/auto_mappr_demo/widget/auto_mappr_demo_screen.dar
 import 'package:flutter_lab/ui/brightness/widget/brightness_screen.dart';
 import 'package:flutter_lab/ui/clock/widget/clock_screen.dart';
 import 'package:flutter_lab/ui/device_info/widget/device_info_screen.dart';
+import 'package:flutter_lab/ui/dialog_state/widget/dialog_state_screen.dart';
 import 'package:flutter_lab/ui/dio_cache/widget/dio_cache_screen.dart';
 import 'package:flutter_lab/ui/effect_vs_listen/widget/effect_vs_listen_screen.dart';
 import 'package:flutter_lab/ui/error/widgets/not_found_screen.dart';
@@ -33,6 +36,7 @@ import 'package:flutter_lab/ui/network/widget/network_screen.dart';
 import 'package:flutter_lab/ui/ocr/widget/ocr_result_screen.dart';
 import 'package:flutter_lab/ui/ocr/widget/ocr_screen.dart';
 import 'package:flutter_lab/ui/permission/widget/permission_screen.dart';
+import 'package:flutter_lab/ui/pigeon/widget/pigeon_screen.dart';
 import 'package:flutter_lab/ui/pop_scope/widget/pop_scope_screen.dart';
 import 'package:flutter_lab/ui/portal/widget/portal_screen.dart';
 import 'package:flutter_lab/ui/push_notification/widget/push_notification_screen.dart';
@@ -49,6 +53,7 @@ import 'package:flutter_lab/ui/web_view/widgets/web_view_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'ad_url_resolver_route.dart';
 part 'app_lifecycle_route.dart';
 part 'async_state_race_route.dart';
 part 'app_store_route.dart';
@@ -57,6 +62,7 @@ part 'arutana_ad_route.dart';
 part 'brightness_route.dart';
 part 'clock_route.dart';
 part 'device_info_route.dart';
+part 'dialog_state_route.dart';
 part 'dio_cache_route.dart';
 part 'effect_vs_listen_route.dart';
 part 'etag_cache_route.dart';
@@ -79,6 +85,7 @@ part 'not_found_route.dart';
 part 'ocr_result_route.dart';
 part 'ocr_route.dart';
 part 'permission_route.dart';
+part 'pigeon_route.dart';
 part 'pop_scope_route.dart';
 part 'portal_route.dart';
 part 'push_notification_route.dart';
@@ -105,6 +112,7 @@ GoRouter router(Ref ref) {
     debugLogDiagnostics: true,
     routes: $appRoutes,
     observers: [
+      appRouteObserver,
       LoadingNavigationObserver(
         onShowLoading: loadingNotifier.show,
         onHideLoading: loadingNotifier.hide,

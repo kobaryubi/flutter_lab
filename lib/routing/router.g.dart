@@ -7,6 +7,7 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
+  $adUrlResolverRoute,
   $appLifecycleRoute,
   $asyncStateRaceRoute,
   $appStoreRoute,
@@ -52,6 +53,32 @@ List<RouteBase> get $appRoutes => [
   $urlNavigationRoute,
   $webViewRoute,
 ];
+
+RouteBase get $adUrlResolverRoute => GoRouteData.$route(
+  path: '/ad_url_resolver',
+  factory: $AdUrlResolverRoute._fromState,
+);
+
+mixin $AdUrlResolverRoute on GoRouteData {
+  static AdUrlResolverRoute _fromState(GoRouterState state) =>
+      AdUrlResolverRoute();
+
+  @override
+  String get location => GoRouteData.$location('/ad_url_resolver');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
 
 RouteBase get $appLifecycleRoute => GoRouteData.$route(
   path: '/app_lifecycle',

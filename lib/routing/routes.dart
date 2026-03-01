@@ -37,6 +37,7 @@ abstract final class Routes {
   static const googleApi = '/google_api';
   static const pigeon = '/pigeon';
   static const dialogState = '/dialog_state';
+  static const adUrlResolver = '/ad_url_resolver';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';
