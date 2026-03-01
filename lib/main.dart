@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/data/http/dev_http_overrides.dart';
-import 'package:flutter_lab/firebase_options.dart';
+import 'package:flutter_lab/firebase_options_local.dart';
 import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/flutter_lab_app.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,12 +13,9 @@ import 'package:logging/logging.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // TODO(masahiko): Configure Firebase for Android and remove this guard.
-  if (Platform.isIOS) {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-  }
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   Logger.root.level = Level.ALL;
 
