@@ -1,12 +1,15 @@
 plugins {
     id("com.android.application")
+    // START: FlutterFire Configuration
+    id("com.google.gms.google-services")
+    // END: FlutterFire Configuration
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
-    namespace = "com.example.flutter_lab"
+    namespace = "com.masahikokobayashi.flutterlab"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +24,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.flutter_lab"
+        applicationId = "com.masahikokobayashi.flutterlab"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 29
@@ -43,6 +46,9 @@ dependencies {
     implementation(files("libs/arutana-0.1.4.aar"))
     implementation(libs.androidx.browser)
     implementation(libs.androidx.lifecycle.process)
+    implementation(libs.kotlinx.coroutines.play.services)
+    implementation(libs.material)
+    implementation(libs.play.services.location)
 }
 
 flutter {
