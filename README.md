@@ -123,7 +123,8 @@ fvm dart pub global run flutterfire_cli:flutterfire configure \
   --ios-build-config=Debug-local \
   --ios-out=ios/Runner/Firebase/local/GoogleService-Info.plist \
   --android-out=android/app/src/local/google-services.json \
-  --android-package-name=com.masahikokobayashi.flutterlab.local
+  --android-package-name=com.masahikokobayashi.flutterlab.local \
+  --ios-bundle-id=com.masahikokobayashi.flutterlab.local
 
 # Configure for production flavor
 fvm dart pub global run flutterfire_cli:flutterfire configure \
@@ -132,7 +133,8 @@ fvm dart pub global run flutterfire_cli:flutterfire configure \
   --ios-build-config=Debug-production \
   --ios-out=ios/Runner/Firebase/production/GoogleService-Info.plist \
   --android-out=android/app/src/production/google-services.json \
-  --android-package-name=com.masahikokobayashi.flutterlab
+  --android-package-name=com.masahikokobayashi.flutterlab \
+  --ios-bundle-id=com.masahikokobayashi.flutterlab
 ```
 
 ### flutter flavorizr
