@@ -3,6 +3,7 @@ import 'package:flutter_lab/domain/entity/launch_url/launch_url_mode.dart';
 import 'package:flutter_lab/presentation/core/provider/global_loading_notifier.dart';
 import 'package:flutter_lab/routing/app_route_observer.dart';
 import 'package:flutter_lab/routing/loading_navigation_observer.dart';
+import 'package:flutter_lab/routing/observer_demo_observer.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/ad_url_resolver/widget/ad_url_resolver_screen.dart';
 import 'package:flutter_lab/ui/app_lifecycle/widget/app_lifecycle_screen.dart';
@@ -33,6 +34,9 @@ import 'package:flutter_lab/ui/method_channel/widget/method_channel_screen.dart'
 import 'package:flutter_lab/ui/navigation/widget/navigation_screen_a.dart';
 import 'package:flutter_lab/ui/navigation/widget/navigation_screen_b.dart';
 import 'package:flutter_lab/ui/network/widget/network_screen.dart';
+import 'package:flutter_lab/ui/observer_demo/provider/observer_demo_view_model.dart';
+import 'package:flutter_lab/ui/observer_demo/widget/observer_demo_detail_screen.dart';
+import 'package:flutter_lab/ui/observer_demo/widget/observer_demo_screen.dart';
 import 'package:flutter_lab/ui/ocr/widget/ocr_result_screen.dart';
 import 'package:flutter_lab/ui/ocr/widget/ocr_screen.dart';
 import 'package:flutter_lab/ui/permission/widget/permission_screen.dart';
@@ -55,10 +59,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'ad_url_resolver_route.dart';
 part 'app_lifecycle_route.dart';
-part 'async_state_race_route.dart';
 part 'app_store_route.dart';
-part 'auto_mappr_demo_route.dart';
 part 'arutana_ad_route.dart';
+part 'async_state_race_route.dart';
+part 'auto_mappr_demo_route.dart';
 part 'brightness_route.dart';
 part 'clock_route.dart';
 part 'device_info_route.dart';
@@ -82,6 +86,7 @@ part 'navigation_screen_a_route.dart';
 part 'navigation_screen_b_route.dart';
 part 'network_route.dart';
 part 'not_found_route.dart';
+part 'observer_demo_route.dart';
 part 'ocr_result_route.dart';
 part 'ocr_route.dart';
 part 'permission_route.dart';
@@ -103,6 +108,7 @@ part 'web_view_route.dart';
 @riverpod
 GoRouter router(Ref ref) {
   final loadingNotifier = ref.read(globalLoadingProvider.notifier);
+  final observerDemoNotifier = ref.read(observerDemoViewModelProvider.notifier);
 
   return GoRouter(
     initialLocation: Routes.home,
@@ -116,6 +122,9 @@ GoRouter router(Ref ref) {
       LoadingNavigationObserver(
         onShowLoading: loadingNotifier.show,
         onHideLoading: loadingNotifier.hide,
+      ),
+      ObserverDemoObserver(
+        onEvent: (event) => observerDemoNotifier.addEvent(event: event),
       ),
     ],
   );

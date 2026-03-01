@@ -9,10 +9,10 @@ part of 'router.dart';
 List<RouteBase> get $appRoutes => [
   $adUrlResolverRoute,
   $appLifecycleRoute,
-  $asyncStateRaceRoute,
   $appStoreRoute,
-  $autoMapprDemoRoute,
   $arutanaAdRoute,
+  $asyncStateRaceRoute,
+  $autoMapprDemoRoute,
   $brightnessRoute,
   $clockRoute,
   $deviceInfoRoute,
@@ -36,6 +36,8 @@ List<RouteBase> get $appRoutes => [
   $navigationScreenBRoute,
   $networkRoute,
   $notFoundRoute,
+  $observerDemoRoute,
+  $observerDemoDetailRoute,
   $ocrResultRoute,
   $ocrRoute,
   $permissionRoute,
@@ -106,6 +108,54 @@ mixin $AppLifecycleRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $appStoreRoute =>
+    GoRouteData.$route(path: '/app_store', factory: $AppStoreRoute._fromState);
+
+mixin $AppStoreRoute on GoRouteData {
+  static AppStoreRoute _fromState(GoRouterState state) => AppStoreRoute();
+
+  @override
+  String get location => GoRouteData.$location('/app_store');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $arutanaAdRoute => GoRouteData.$route(
+  path: '/arutana_ad',
+  factory: $ArutanaAdRoute._fromState,
+);
+
+mixin $ArutanaAdRoute on GoRouteData {
+  static ArutanaAdRoute _fromState(GoRouterState state) => ArutanaAdRoute();
+
+  @override
+  String get location => GoRouteData.$location('/arutana_ad');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $asyncStateRaceRoute => GoRouteData.$route(
   path: '/async_state_race',
   factory: $AsyncStateRaceRoute._fromState,
@@ -132,29 +182,6 @@ mixin $AsyncStateRaceRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $appStoreRoute =>
-    GoRouteData.$route(path: '/app_store', factory: $AppStoreRoute._fromState);
-
-mixin $AppStoreRoute on GoRouteData {
-  static AppStoreRoute _fromState(GoRouterState state) => AppStoreRoute();
-
-  @override
-  String get location => GoRouteData.$location('/app_store');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
 RouteBase get $autoMapprDemoRoute => GoRouteData.$route(
   path: '/auto_mappr_demo',
   factory: $AutoMapprDemoRoute._fromState,
@@ -166,31 +193,6 @@ mixin $AutoMapprDemoRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/auto_mappr_demo');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $arutanaAdRoute => GoRouteData.$route(
-  path: '/arutana_ad',
-  factory: $ArutanaAdRoute._fromState,
-);
-
-mixin $ArutanaAdRoute on GoRouteData {
-  static ArutanaAdRoute _fromState(GoRouterState state) => ArutanaAdRoute();
-
-  @override
-  String get location => GoRouteData.$location('/arutana_ad');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -797,6 +799,58 @@ mixin $NotFoundRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $observerDemoRoute => GoRouteData.$route(
+  path: '/observer_demo',
+  factory: $ObserverDemoRoute._fromState,
+);
+
+mixin $ObserverDemoRoute on GoRouteData {
+  static ObserverDemoRoute _fromState(GoRouterState state) =>
+      ObserverDemoRoute();
+
+  @override
+  String get location => GoRouteData.$location('/observer_demo');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $observerDemoDetailRoute => GoRouteData.$route(
+  path: '/observer_demo/detail',
+  factory: $ObserverDemoDetailRoute._fromState,
+);
+
+mixin $ObserverDemoDetailRoute on GoRouteData {
+  static ObserverDemoDetailRoute _fromState(GoRouterState state) =>
+      ObserverDemoDetailRoute();
+
+  @override
+  String get location => GoRouteData.$location('/observer_demo/detail');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $ocrResultRoute => GoRouteData.$route(
   path: '/ocr_result',
   factory: $OcrResultRoute._fromState,
@@ -1321,4 +1375,4 @@ final class RouterProvider
   }
 }
 
-String _$routerHash() => r'90462118c803a98cbad02bc41cd77d5cbcec9c6e';
+String _$routerHash() => r'79fb4215e25a91903d0963f7d2ad353c6f470375';
