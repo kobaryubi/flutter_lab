@@ -47,7 +47,3 @@ migrate_working_dir/
 
 # FVM Version Cache
 .fvm/
-
-# Firebase config
-**/firebase_options.dart
-**/GoogleService-Info.plist
