@@ -208,6 +208,16 @@ This approach makes it easier to understand, debug, and learn from the implement
 - **No StatefulWidget** - Do not use `StatefulWidget`. Use `HookConsumerWidget`, `HookWidget`, `ConsumerWidget`, or `ConsumerStatefulWidget` instead. Manage lifecycle with hooks (e.g., `useEffect` for init/dispose)
 - **Blank lines for readability** - Add blank lines before and after control flow statements (`if`, `for`, `switch`, `return`, early returns) and before the final statement in a method to improve readability
 
+## Rule Management
+
+When noticing a project-specific rule during a session (from corrections, feedback, or explicit instructions):
+
+1. Determine if it's always-applicable (→ CLAUDE.md) or task-specific guidance (→ `.claude/skills/<topic>/SKILL.md`)
+2. Ask: "I noticed a rule: [rule]. Add to [CLAUDE.md / Skill name]?"
+3. Write only after confirmation
+
+For new Skills, create a proper SKILL.md with YAML frontmatter (`name`, `description`) and clear instructions.
+
 ## Commit Message Convention
 
 Use Gitmoji prefixes for all commit messages:
