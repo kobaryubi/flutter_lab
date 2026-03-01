@@ -38,6 +38,8 @@ abstract final class Routes {
   static const pigeon = '/pigeon';
   static const dialogState = '/dialog_state';
   static const adUrlResolver = '/ad_url_resolver';
+  static const observerDemo = '/observer_demo';
+  static const observerDemoDetail = '/observer_demo/detail';
 
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';
