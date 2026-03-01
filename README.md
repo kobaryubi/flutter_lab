@@ -107,6 +107,16 @@ lefthook install
 lefthook validate
 ```
 
+### FlutterFire CLI
+
+```sh
+# Activate with fvm's Dart
+fvm dart pub global activate flutterfire_cli
+
+# Run with fvm's Dart
+fvm dart pub global run flutterfire_cli:flutterfire configure --help
+```
+
 ### flutter flavorizr
 
 ```sh
