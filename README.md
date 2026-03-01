@@ -153,6 +153,24 @@ fvm dart pub global run flutterfire_cli:flutterfire configure \
   --android-out=android/app/src/production/google-services.json \
   --android-package-name=com.masahikokobayashi.flutterlab \
   --ios-bundle-id=com.masahikokobayashi.flutterlab
+
+fvm dart pub global run flutterfire_cli:flutterfire configure \
+  --project=flutter-lab-production \
+  --out=lib/firebase_options_production.dart \
+  --ios-build-config=Release-production \
+  --ios-out=ios/Runner/Firebase/production/GoogleService-Info.plist \
+  --android-out=android/app/src/production/google-services.json \
+  --android-package-name=com.masahikokobayashi.flutterlab \
+  --ios-bundle-id=com.masahikokobayashi.flutterlab
+
+fvm dart pub global run flutterfire_cli:flutterfire configure \
+  --project=flutter-lab-production \
+  --out=lib/firebase_options_production.dart \
+  --ios-build-config=Profile-production \
+  --ios-out=ios/Runner/Firebase/production/GoogleService-Info.plist \
+  --android-out=android/app/src/production/google-services.json \
+  --android-package-name=com.masahikokobayashi.flutterlab \
+  --ios-bundle-id=com.masahikokobayashi.flutterlab
 ```
 
 ### flutter flavorizr
