@@ -187,6 +187,16 @@ Step 5: Add animations if needed
 
 This approach makes it easier to understand, debug, and learn from the implementation.
 
+## Code Change Workflow
+
+- **Never apply all changes at once.** Break changes into small, logical steps.
+- For each step:
+  1. Explain what you are about to change and why.
+  2. Apply only that single change.
+  3. **Stop and wait** for the user to review, confirm, and commit before proceeding.
+- Do not move to the next step until explicitly told to continue.
+- Each step should be small enough to result in a meaningful, standalone commit.
+
 ## Coding Rules
 
 - **Dartdoc comments** - Add dartdoc (`///`) to public APIs and functions to explain their purpose
