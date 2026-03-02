@@ -124,7 +124,8 @@ GoRouter router(Ref ref) {
         onHideLoading: loadingNotifier.hide,
       ),
       ObserverDemoObserver(
-        onEvent: (event) => observerDemoNotifier.addEvent(event: event),
+        onEvent: (event) =>
+            Future(() => observerDemoNotifier.addEvent(event: event)),
       ),
     ],
   );
