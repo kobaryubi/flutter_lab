@@ -1,4 +1,4 @@
-package com.example.flutter_lab.infrastructure.platform
+package com.masahikokobayashi.flutterlab.infrastructure.platform
 
 import android.content.Context
 import io.flutter.plugin.common.BinaryMessenger

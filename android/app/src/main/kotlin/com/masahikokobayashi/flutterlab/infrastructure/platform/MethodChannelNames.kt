@@ -1,4 +1,4 @@
-package com.example.flutter_lab.infrastructure.platform
+package com.masahikokobayashi.flutterlab.infrastructure.platform
 
 object MethodChannelNames {
     private const val BASE = "com.masahikokobayashi"

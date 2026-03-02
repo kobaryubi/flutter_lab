@@ -1,4 +1,4 @@
-package com.example.flutter_lab.infrastructure.platform
+package com.masahikokobayashi.flutterlab.infrastructure.platform
 
 object MethodNames {
     const val GET_BATTERY_LEVEL = "getBatteryLevel"

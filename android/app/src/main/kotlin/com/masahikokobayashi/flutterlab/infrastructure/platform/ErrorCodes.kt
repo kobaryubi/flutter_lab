@@ -1,4 +1,4 @@
-package com.example.flutter_lab.infrastructure.platform
+package com.masahikokobayashi.flutterlab.infrastructure.platform
 
 /// Error codes returned via MethodChannel result.
 object ErrorCodes {
