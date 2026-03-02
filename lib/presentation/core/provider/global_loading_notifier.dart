@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'global_loading_notifier.g.dart';
 
 /// Notifier that controls the visibility of the global loading overlay.
-@riverpod
+@Riverpod(keepAlive: true)
 class GlobalLoadingNotifier extends _$GlobalLoadingNotifier {
   @override
   bool build() => false;

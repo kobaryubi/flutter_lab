@@ -23,7 +23,7 @@ final class GlobalLoadingNotifierProvider
         argument: null,
         retry: null,
         name: r'globalLoadingProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -45,7 +45,7 @@ final class GlobalLoadingNotifierProvider
 }
 
 String _$globalLoadingNotifierHash() =>
-    r'37c6bd5a43fa6e146ff7d543402ea18084d4cbf0';
+    r'508fd75d47a358ee6996a52d77b11a541ca8d712';
 
 /// Notifier that controls the visibility of the global loading overlay.
 
