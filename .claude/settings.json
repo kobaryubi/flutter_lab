@@ -22,7 +22,8 @@
       "Bash(fvm dart format:*)",
       "Bash(fvm dart pub upgrade:*)",
       "Bash(ls:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(git mv:*)"
     ]
   }
 }
