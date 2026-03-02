@@ -5,7 +5,7 @@ import 'package:pigeon/pigeon.dart';
     dartOut: 'lib/data/gateway/pigeon/pigeon_api.g.dart',
     swiftOut: 'ios/Runner/PigeonApi.g.swift',
     kotlinOut:
-        'android/app/src/main/kotlin/com/example/flutter_lab/PigeonApi.g.kt',
+        'android/app/src/main/kotlin/com/masahikokobayashi/flutterlab/PigeonApi.g.kt',
     kotlinOptions: KotlinOptions(),
     swiftOptions: SwiftOptions(),
     dartPackageName: 'flutter_lab',
