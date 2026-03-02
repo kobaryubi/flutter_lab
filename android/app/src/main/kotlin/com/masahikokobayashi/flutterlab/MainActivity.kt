@@ -1,4 +1,4 @@
-package com.example.flutter_lab
+package com.masahikokobayashi.flutterlab
 
 import android.Manifest
 import android.content.Context
@@ -14,11 +14,11 @@ import GreetingApi
 import MessageData
 import MessageFlutterApi
 import androidx.core.content.ContextCompat
-import com.example.flutter_lab.infrastructure.platform.ErrorCodes
-import com.example.flutter_lab.infrastructure.platform.EventChannelNames
-import com.example.flutter_lab.infrastructure.platform.MethodChannelNames
-import com.example.flutter_lab.infrastructure.platform.MethodNames
-import com.example.flutter_lab.infrastructure.platform.NativeButtonFactory
+import com.masahikokobayashi.flutterlab.infrastructure.platform.ErrorCodes
+import com.masahikokobayashi.flutterlab.infrastructure.platform.EventChannelNames
+import com.masahikokobayashi.flutterlab.infrastructure.platform.MethodChannelNames
+import com.masahikokobayashi.flutterlab.infrastructure.platform.MethodNames
+import com.masahikokobayashi.flutterlab.infrastructure.platform.NativeButtonFactory
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.embedding.engine.FlutterEngine

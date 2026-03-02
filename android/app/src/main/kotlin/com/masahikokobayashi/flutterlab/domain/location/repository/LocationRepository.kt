@@ -1,6 +1,6 @@
-package com.example.flutter_lab.domain.location.repository
+package com.masahikokobayashi.flutterlab.domain.location.repository
 
-import com.example.flutter_lab.domain.location.entity.Location
+import com.masahikokobayashi.flutterlab.domain.location.entity.Location
 
 interface LocationRepository {
     suspend fun get(): Location
