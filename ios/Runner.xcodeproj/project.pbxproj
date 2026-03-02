@@ -17,6 +17,7 @@
 		2CDA48FC2F4C4C810058F663 /* BatteryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */; };
 		2CDA48FE2F4C4D010058F663 /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FD2F4C4D010058F663 /* NativeButton.swift */; };
 		2CDA49002F4C4D020058F663 /* NativeButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FF2F4C4D020058F663 /* NativeButtonFactory.swift */; };
+		2CE0A1012FA5B00100A1B2C3 /* PigeonApi.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE0A1002FA5B00100A1B2C3 /* PigeonApi.g.swift */; };
 		2CF4BB392F429445009A86A1 /* MapViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4BB382F429445009A86A1 /* MapViewFactory.swift */; };
 		2CF4BB3B2F42960C009A86A1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4BB3A2F42960C009A86A1 /* MapView.swift */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
@@ -72,6 +73,7 @@
 		2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryHandler.swift; sourceTree = "<group>"; };
 		2CDA48FD2F4C4D010058F663 /* NativeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
 		2CDA48FF2F4C4D020058F663 /* NativeButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeButtonFactory.swift; sourceTree = "<group>"; };
+		2CE0A1002FA5B00100A1B2C3 /* PigeonApi.g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PigeonApi.g.swift"; sourceTree = "<group>"; };
 		2CF4BB382F429445009A86A1 /* MapViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewFactory.swift; sourceTree = "<group>"; };
 		2CF4BB3A2F42960C009A86A1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */,
 				2CDA48FD2F4C4D010058F663 /* NativeButton.swift */,
 				2CDA48FF2F4C4D020058F663 /* NativeButtonFactory.swift */,
+				2CE0A1002FA5B00100A1B2C3 /* PigeonApi.g.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				2CDA48FC2F4C4C810058F663 /* BatteryHandler.swift in Sources */,
 				2CDA48FE2F4C4D010058F663 /* NativeButton.swift in Sources */,
 				2CDA49002F4C4D020058F663 /* NativeButtonFactory.swift in Sources */,
+				2CE0A1012FA5B00100A1B2C3 /* PigeonApi.g.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

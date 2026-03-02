@@ -54,6 +54,9 @@ class _Body extends HookWidget {
     return Column(
       children: [
         Text('Current State: ${lifecycleState?.name ?? 'unknown'}'),
+        Text(
+          'Is Current: ${ModalRoute.of(context)?.isCurrent ?? false}',
+        ),
         GestureDetector(
           onTap: handlePushScreen,
           child: const Text('Push Screen'),
