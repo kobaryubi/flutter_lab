@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_lab/domain/entity/launch_url/launch_url_mode.dart';
 import 'package:flutter_lab/presentation/core/provider/global_loading_notifier.dart';
-import 'package:flutter_lab/routing/app_route_observer.dart';
 import 'package:flutter_lab/routing/loading_navigation_observer.dart';
 import 'package:flutter_lab/routing/observer_demo_observer.dart';
+import 'package:flutter_lab/routing/route_observer.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/ad_url_resolver/widget/ad_url_resolver_screen.dart';
 import 'package:flutter_lab/ui/app_lifecycle/widget/app_lifecycle_screen.dart';
@@ -111,7 +111,6 @@ part 'web_view_route.dart';
 @riverpod
 GoRouter router(Ref ref) {
   final loadingNotifier = ref.read(globalLoadingProvider.notifier);
-  final observerDemoNotifier = ref.read(observerDemoViewModelProvider.notifier);
 
   return GoRouter(
     initialLocation: Routes.home,
@@ -121,14 +120,19 @@ GoRouter router(Ref ref) {
     debugLogDiagnostics: true,
     routes: $appRoutes,
     observers: [
-      appRouteObserver,
+      ref.read(routeObserverProvider),
       LoadingNavigationObserver(
         onShowLoading: loadingNotifier.show,
         onHideLoading: loadingNotifier.hide,
       ),
       ObserverDemoObserver(
-        onEvent: (event) =>
-            Future(() => observerDemoNotifier.addEvent(event: event)),
+        onEvent: (event) => Future(() {
+          if (!ref.exists(observerDemoViewModelProvider)) return;
+
+          ref
+              .read(observerDemoViewModelProvider.notifier)
+              .addEvent(event: event);
+        }),
       ),
     ],
   );
