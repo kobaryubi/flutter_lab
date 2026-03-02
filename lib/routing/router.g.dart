@@ -38,6 +38,8 @@ List<RouteBase> get $appRoutes => [
   $notFoundRoute,
   $observerDemoRoute,
   $observerDemoDetailRoute,
+  $routeAwareDemoRoute,
+  $routeAwareDemoDetailRoute,
   $ocrResultRoute,
   $ocrRoute,
   $permissionRoute,
@@ -851,6 +853,58 @@ mixin $ObserverDemoDetailRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $routeAwareDemoRoute => GoRouteData.$route(
+  path: '/route_aware_demo',
+  factory: $RouteAwareDemoRoute._fromState,
+);
+
+mixin $RouteAwareDemoRoute on GoRouteData {
+  static RouteAwareDemoRoute _fromState(GoRouterState state) =>
+      RouteAwareDemoRoute();
+
+  @override
+  String get location => GoRouteData.$location('/route_aware_demo');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $routeAwareDemoDetailRoute => GoRouteData.$route(
+  path: '/route_aware_demo/detail',
+  factory: $RouteAwareDemoDetailRoute._fromState,
+);
+
+mixin $RouteAwareDemoDetailRoute on GoRouteData {
+  static RouteAwareDemoDetailRoute _fromState(GoRouterState state) =>
+      RouteAwareDemoDetailRoute();
+
+  @override
+  String get location => GoRouteData.$location('/route_aware_demo/detail');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $ocrResultRoute => GoRouteData.$route(
   path: '/ocr_result',
   factory: $OcrResultRoute._fromState,
@@ -1375,4 +1429,4 @@ final class RouterProvider
   }
 }
 
-String _$routerHash() => r'79fb4215e25a91903d0963f7d2ad353c6f470375';
+String _$routerHash() => r'8ef8816aa4f065caf5abbb65139ed740630d32d6';

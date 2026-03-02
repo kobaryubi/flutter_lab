@@ -41,6 +41,9 @@ abstract final class Routes {
   static const observerDemo = '/observer_demo';
   static const observerDemoDetail = '/observer_demo/detail';
 
+  static const routeAwareDemo = '/route_aware_demo';
+  static const routeAwareDemoDetail = '/route_aware_demo/detail';
+
   static const shellDemoTabA = '/shell_demo/tab_a';
   static const shellDemoTabB = '/shell_demo/tab_b';
   static const shellDemoTabC = '/shell_demo/tab_c';
