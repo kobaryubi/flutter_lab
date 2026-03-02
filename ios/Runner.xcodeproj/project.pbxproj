@@ -17,8 +17,6 @@
 		2CDA48FC2F4C4C810058F663 /* BatteryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */; };
 		2CDA48FE2F4C4D010058F663 /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FD2F4C4D010058F663 /* NativeButton.swift */; };
 		2CDA49002F4C4D020058F663 /* NativeButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FF2F4C4D020058F663 /* NativeButtonFactory.swift */; };
-		2CE0A0012FA2000100000001 /* GreetingApi.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE0A0002FA2000100000001 /* GreetingApi.g.swift */; };
-		2CE0A0032FA2000100000002 /* Messages.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE0A0022FA2000100000002 /* Messages.g.swift */; };
 		2CF4BB392F429445009A86A1 /* MapViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4BB382F429445009A86A1 /* MapViewFactory.swift */; };
 		2CF4BB3B2F42960C009A86A1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4BB3A2F42960C009A86A1 /* MapView.swift */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
@@ -74,8 +72,6 @@
 		2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryHandler.swift; sourceTree = "<group>"; };
 		2CDA48FD2F4C4D010058F663 /* NativeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
 		2CDA48FF2F4C4D020058F663 /* NativeButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeButtonFactory.swift; sourceTree = "<group>"; };
-		2CE0A0002FA2000100000001 /* GreetingApi.g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingApi.g.swift; sourceTree = "<group>"; };
-		2CE0A0022FA2000100000002 /* Messages.g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.g.swift; sourceTree = "<group>"; };
 		2CF4BB382F429445009A86A1 /* MapViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewFactory.swift; sourceTree = "<group>"; };
 		2CF4BB3A2F42960C009A86A1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
@@ -226,8 +222,6 @@
 				2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */,
 				2CDA48FD2F4C4D010058F663 /* NativeButton.swift */,
 				2CDA48FF2F4C4D020058F663 /* NativeButtonFactory.swift */,
-				2CE0A0002FA2000100000001 /* GreetingApi.g.swift */,
-				2CE0A0022FA2000100000002 /* Messages.g.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -276,7 +270,7 @@
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				859134077D822528C2DB6081 /* [CP] Embed Pods Frameworks */,
 				08C7C49CCF0103D00E5AEBAF /* [CP] Copy Pods Resources */,
-				91F2519E195699F1EFE2C818 /* FlutterFire: "flutterfire bundle-service-file" */,
+				3DDB63D69CD3CBFC2D290095 /* FlutterFire: "flutterfire bundle-service-file" */,
 			);
 			buildRules = (
 			);
@@ -390,6 +384,24 @@
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
 		};
+		3DDB63D69CD3CBFC2D290095 /* FlutterFire: "flutterfire bundle-service-file" */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "FlutterFire: \"flutterfire bundle-service-file\"";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n#!/bin/bash\nPATH=\"${PATH}:$FLUTTER_ROOT/bin:${PUB_CACHE}/bin:$HOME/.pub-cache/bin\"\nflutterfire bundle-service-file --plist-destination=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\" --build-configuration=${CONFIGURATION} --platform=ios --apple-project-path=\"${SRCROOT}\"\n";
+		};
 		6303934FC694C9BCF39E2E3A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -451,24 +463,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		91F2519E195699F1EFE2C818 /* FlutterFire: "flutterfire bundle-service-file" */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "FlutterFire: \"flutterfire bundle-service-file\"";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\n#!/bin/bash\nPATH=\"${PATH}:$FLUTTER_ROOT/bin:${PUB_CACHE}/bin:$HOME/.pub-cache/bin\"\nflutterfire bundle-service-file --plist-destination=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\" --build-configuration=${CONFIGURATION} --platform=ios --apple-project-path=\"${SRCROOT}\"\n";
-		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -506,8 +500,6 @@
 				2CDA48FC2F4C4C810058F663 /* BatteryHandler.swift in Sources */,
 				2CDA48FE2F4C4D010058F663 /* NativeButton.swift in Sources */,
 				2CDA49002F4C4D020058F663 /* NativeButtonFactory.swift in Sources */,
-				2CE0A0012FA2000100000001 /* GreetingApi.g.swift in Sources */,
-				2CE0A0032FA2000100000002 /* Messages.g.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

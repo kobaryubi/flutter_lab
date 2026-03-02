@@ -24,7 +24,10 @@ Future<void> main() async {
       ? local.DefaultFirebaseOptions.currentPlatform
       : production.DefaultFirebaseOptions.currentPlatform;
 
-  await Firebase.initializeApp(options: firebaseOptions);
+  // TODO(masahiko): Fix Firebase initialization on Android.
+  if (Platform.isIOS) {
+    await Firebase.initializeApp(options: firebaseOptions);
+  }
 
   if (F.appFlavor == .local) {
     HttpOverrides.global = DevHttpOverrides();
