@@ -8,7 +8,7 @@ import 'package:flutter/foundation.dart'
 ///
 /// Example:
 /// ```dart
-/// import 'firebase_options_local.dart';
+/// import 'firebase_options_production.dart';
 /// // ...
 /// await Firebase.initializeApp(
 ///   options: DefaultFirebaseOptions.currentPlatform,
@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBaVFj1YVzAS-UYoWrihHzUfNsI64_Y_PM',
-    appId: '1:490238734395:android:385e232a494372b834ac1e',
-    messagingSenderId: '490238734395',
-    projectId: 'flutter-lab-local',
-    storageBucket: 'flutter-lab-local.firebasestorage.app',
+    apiKey: 'AIzaSyBrf9MifzYxX3twbtiUgWYrk74BEGOBs7o',
+    appId: '1:981414646881:android:4300ea58eb702e1ad1c620',
+    messagingSenderId: '981414646881',
+    projectId: 'flutter-lab-production',
+    storageBucket: 'flutter-lab-production.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyARVrlb34oC5ARegCKX7TjdiswVQVY011E',
-    appId: '1:490238734395:ios:cd7e391d2cc360fe34ac1e',
-    messagingSenderId: '490238734395',
-    projectId: 'flutter-lab-local',
-    storageBucket: 'flutter-lab-local.firebasestorage.app',
-    iosBundleId: 'com.masahikokobayashi.flutterlab.local',
+    apiKey: 'AIzaSyCoYsf2aWCT5wJH7neJjJiecOsmXuli-ok',
+    appId: '1:981414646881:ios:4aa48de2553c8076d1c620',
+    messagingSenderId: '981414646881',
+    projectId: 'flutter-lab-production',
+    storageBucket: 'flutter-lab-production.firebasestorage.app',
+    iosBundleId: 'com.masahikokobayashi.flutterlab',
   );
 }
