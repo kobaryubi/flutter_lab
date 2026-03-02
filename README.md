@@ -120,57 +120,69 @@ fvm dart pub global run flutterfire_cli:flutterfire configure --help
 fvm dart pub global run flutterfire_cli:flutterfire configure \
   --project=flutter-lab-local \
   --out=lib/firebase_options_local.dart \
+  --platforms=android,ios \
   --ios-build-config=Debug-local \
   --ios-out=ios/Runner/Firebase/local/GoogleService-Info.plist \
   --android-out=android/app/src/local/google-services.json \
   --android-package-name=com.masahikokobayashi.flutterlab.local \
-  --ios-bundle-id=com.masahikokobayashi.flutterlab.local
+  --ios-bundle-id=com.masahikokobayashi.flutterlab.local \
+  -y
 
 fvm dart pub global run flutterfire_cli:flutterfire configure \
   --project=flutter-lab-local \
   --out=lib/firebase_options_local.dart \
+  --platforms=android,ios \
   --ios-build-config=Release-local \
   --ios-out=ios/Runner/Firebase/local/GoogleService-Info.plist \
   --android-out=android/app/src/local/google-services.json \
   --android-package-name=com.masahikokobayashi.flutterlab.local \
-  --ios-bundle-id=com.masahikokobayashi.flutterlab.local
+  --ios-bundle-id=com.masahikokobayashi.flutterlab.local \
+  -y
 
 fvm dart pub global run flutterfire_cli:flutterfire configure \
   --project=flutter-lab-local \
   --out=lib/firebase_options_local.dart \
+  --platforms=android,ios \
   --ios-build-config=Profile-local \
   --ios-out=ios/Runner/Firebase/local/GoogleService-Info.plist \
   --android-out=android/app/src/local/google-services.json \
   --android-package-name=com.masahikokobayashi.flutterlab.local \
-  --ios-bundle-id=com.masahikokobayashi.flutterlab.local
+  --ios-bundle-id=com.masahikokobayashi.flutterlab.local \
+  -y
 
 # Configure for production flavor
 fvm dart pub global run flutterfire_cli:flutterfire configure \
   --project=flutter-lab-production \
   --out=lib/firebase_options_production.dart \
+  --platforms=android,ios \
   --ios-build-config=Debug-production \
   --ios-out=ios/Runner/Firebase/production/GoogleService-Info.plist \
   --android-out=android/app/src/production/google-services.json \
   --android-package-name=com.masahikokobayashi.flutterlab \
-  --ios-bundle-id=com.masahikokobayashi.flutterlab
+  --ios-bundle-id=com.masahikokobayashi.flutterlab \
+  -y
 
 fvm dart pub global run flutterfire_cli:flutterfire configure \
   --project=flutter-lab-production \
   --out=lib/firebase_options_production.dart \
+  --platforms=android,ios \
   --ios-build-config=Release-production \
   --ios-out=ios/Runner/Firebase/production/GoogleService-Info.plist \
   --android-out=android/app/src/production/google-services.json \
   --android-package-name=com.masahikokobayashi.flutterlab \
-  --ios-bundle-id=com.masahikokobayashi.flutterlab
+  --ios-bundle-id=com.masahikokobayashi.flutterlab \
+  -y
 
 fvm dart pub global run flutterfire_cli:flutterfire configure \
   --project=flutter-lab-production \
   --out=lib/firebase_options_production.dart \
+  --platforms=android,ios \
   --ios-build-config=Profile-production \
   --ios-out=ios/Runner/Firebase/production/GoogleService-Info.plist \
   --android-out=android/app/src/production/google-services.json \
   --android-package-name=com.masahikokobayashi.flutterlab \
-  --ios-bundle-id=com.masahikokobayashi.flutterlab
+  --ios-bundle-id=com.masahikokobayashi.flutterlab \
+  -y
 ```
 
 ### flutter flavorizr
