@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/hook/use_route_aware.dart';
-import 'package:flutter_lab/routing/app_route_observer.dart';
+import 'package:flutter_lab/routing/route_observer.dart';
 import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
@@ -43,7 +43,7 @@ class _Body extends HookConsumerWidget {
     }
 
     useRouteAware(
-      appRouteObserver,
+      ref.read(routeObserverProvider),
       didPush: () => handleEvent('didPush'),
       didPop: () => handleEvent('didPop'),
       didPushNext: () => handleEvent('didPushNext'),

@@ -60,6 +60,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'dialog state', route: DialogStateRoute()),
     AppLink(title: 'ad URL resolver', route: AdUrlResolverRoute()),
     AppLink(title: 'observer demo', route: ObserverDemoRoute()),
+    AppLink(title: 'route aware demo', route: RouteAwareDemoRoute()),
   ];
 
   @override
