@@ -46,6 +46,8 @@ abstract final class Routes {
   static const clock = '/clock';
   static const deviceInfo = '/device_info';
 
+  static const horizontalLayout = '/horizontal_layout';
+
   static const routing = '/routing';
   static const routingCupertino = '/routing/cupertino';
   static const routingCupertinoFullscreenDialog =
