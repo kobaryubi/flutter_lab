@@ -7,10 +7,8 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-  $adUrlResolverRoute,
   $appLifecycleRoute,
   $appStoreRoute,
-  $arutanaAdRoute,
   $asyncStateRaceRoute,
   $autoMapprDemoRoute,
   $brightnessRoute,
@@ -29,7 +27,6 @@ List<RouteBase> get $appRoutes => [
   $loadingRoute,
   $localIconRoute,
   $localPathsRoute,
-  $maxSdkRoute,
   $methodChannelRoute,
   $navigationScreenARoute,
   $navigationScreenBRoute,
@@ -56,32 +53,6 @@ List<RouteBase> get $appRoutes => [
   $urlNavigationRoute,
   $webViewRoute,
 ];
-
-RouteBase get $adUrlResolverRoute => GoRouteData.$route(
-  path: '/ad_url_resolver',
-  factory: $AdUrlResolverRoute._fromState,
-);
-
-mixin $AdUrlResolverRoute on GoRouteData {
-  static AdUrlResolverRoute _fromState(GoRouterState state) =>
-      AdUrlResolverRoute();
-
-  @override
-  String get location => GoRouteData.$location('/ad_url_resolver');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
 
 RouteBase get $appLifecycleRoute => GoRouteData.$route(
   path: '/app_lifecycle',
@@ -117,31 +88,6 @@ mixin $AppStoreRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/app_store');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $arutanaAdRoute => GoRouteData.$route(
-  path: '/arutana_ad',
-  factory: $ArutanaAdRoute._fromState,
-);
-
-mixin $ArutanaAdRoute on GoRouteData {
-  static ArutanaAdRoute _fromState(GoRouterState state) => ArutanaAdRoute();
-
-  @override
-  String get location => GoRouteData.$location('/arutana_ad');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -612,29 +558,6 @@ mixin $LocalPathsRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/local_paths');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $maxSdkRoute =>
-    GoRouteData.$route(path: '/max_sdk', factory: $MaxSdkRoute._fromState);
-
-mixin $MaxSdkRoute on GoRouteData {
-  static MaxSdkRoute _fromState(GoRouterState state) => MaxSdkRoute();
-
-  @override
-  String get location => GoRouteData.$location('/max_sdk');
 
   @override
   void go(BuildContext context) => context.go(location);

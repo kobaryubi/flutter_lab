@@ -15,7 +15,6 @@ abstract final class Routes {
   static const urlNavigation = '/url_navigation';
   static const dioCache = '/dio_cache';
   static const etagCache = '/etag_cache';
-  static const arutanaAd = '/arutana_ad';
   static const pushNotification = '/push_notification';
   static const appStore = '/app_store';
   static const network = '/network';
@@ -26,7 +25,6 @@ abstract final class Routes {
   static const ocrResult = '/ocr_result';
   static const loading = '/loading';
   static const formBuilder = '/form_builder';
-  static const maxSdk = '/max_sdk';
   static const permission = '/permission';
   static const popScope = '/pop_scope';
   static const autoMapprDemo = '/auto_mappr_demo';
@@ -36,7 +34,6 @@ abstract final class Routes {
   static const googleApi = '/google_api';
   static const pigeon = '/pigeon';
   static const dialogState = '/dialog_state';
-  static const adUrlResolver = '/ad_url_resolver';
   static const observerDemo = '/observer_demo';
   static const observerDemoDetail = '/observer_demo/detail';
 
