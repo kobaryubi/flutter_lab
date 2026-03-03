@@ -1,36 +1,73 @@
+import 'dart:io';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
+import 'package:flutter_lab/data/gateway/clock/clock_clock_gateway.dart';
+import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart';
+import 'package:flutter_lab/data/gateway/device_info/device_info_plus_device_info_gateway.dart';
 import 'package:flutter_lab/data/gateway/file_system_shortcut_icon_gateway.dart';
+import 'package:flutter_lab/data/gateway/google_api/plugin_google_api_gateway.dart';
+import 'package:flutter_lab/data/gateway/native_button/platform_native_button_gateway.dart';
+import 'package:flutter_lab/data/gateway/permission/permission_handler_gateway.dart';
+import 'package:flutter_lab/data/gateway/pigeon/pigeon_api.g.dart';
+import 'package:flutter_lab/data/gateway/pigeon_example/pigeon_example_gateway_impl.dart';
 import 'package:flutter_lab/data/gateway/text_recognition/mlkit_text_recognition_gateway.dart';
-import 'package:flutter_lab/data/platform/arutana_ad_service.dart';
 import 'package:flutter_lab/data/repositories/agreement/shared_preferences_agreement_repository.dart';
+import 'package:flutter_lab/data/repositories/app_store/platform_app_store_repository.dart';
 import 'package:flutter_lab/data/repositories/dio_cache/dio_http_cache_repository.dart';
+import 'package:flutter_lab/data/repositories/etag_cache/s3_etag_cache_repository.dart';
+import 'package:flutter_lab/data/repositories/in_app_review/plugin_in_app_review_repository.dart';
+import 'package:flutter_lab/data/repositories/location/platform_location_repository.dart';
 import 'package:flutter_lab/data/repositories/navigation/mock_url_navigation_list_repository.dart';
-import 'package:flutter_lab/data/repositories/network/connectivity_plus_network_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository_remote.dart';
+import 'package:flutter_lab/data/repositories/push_notification/firebase_messaging_push_notification_repository.dart';
 import 'package:flutter_lab/data/repositories/shortcut/file_system_shortcut_repository.dart';
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
-import 'package:flutter_lab/domain/arutana_ad/arutana_ad_repository.dart';
-import 'package:flutter_lab/domain/arutana_ad/platform_arutana_ad_repository.dart';
-import 'package:flutter_lab/domain/battery/battery_repository.dart';
-import 'package:flutter_lab/domain/battery/platform_battery_repository.dart';
+import 'package:flutter_lab/domain/app_store/app_store_repository.dart';
+import 'package:flutter_lab/domain/battery/battery_gateway.dart';
+import 'package:flutter_lab/domain/battery/platform_battery_gateway.dart';
+import 'package:flutter_lab/domain/clock/clock_gateway.dart';
+import 'package:flutter_lab/domain/device_info/device_info_gateway.dart';
+import 'package:flutter_lab/domain/entity/app_store/target_platform_type.dart';
+import 'package:flutter_lab/domain/etag_cache/etag_cache_repository.dart';
+import 'package:flutter_lab/domain/google_api/google_api_gateway.dart';
 import 'package:flutter_lab/domain/http_cache/http_cache_repository.dart';
+import 'package:flutter_lab/domain/in_app_review/in_app_review_repository.dart';
 import 'package:flutter_lab/domain/location/location_repository.dart';
-import 'package:flutter_lab/domain/location/mock_location_repository.dart';
+import 'package:flutter_lab/domain/native_button/native_button_gateway.dart';
 import 'package:flutter_lab/domain/navigation/url_navigation_list_repository.dart';
-import 'package:flutter_lab/domain/network/network_repository.dart';
+import 'package:flutter_lab/domain/network/network_gateway.dart';
+import 'package:flutter_lab/domain/permission/permission_gateway.dart';
+import 'package:flutter_lab/domain/pigeon_example/pigeon_example_gateway.dart';
+import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/text_recognition/text_recognition_gateway.dart';
+import 'package:flutter_lab/domain/use_cases/agreement/initialize_latest_agreed_date_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/app_store/get_app_store_url_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/battery/get_battery_level_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/clock/get_current_time_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/device_info/get_device_info_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/google_api/check_google_api_availability_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/in_app_review/check_review_availability_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/in_app_review/request_review_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/network/check_connectivity_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/network/on_connectivity_changed_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/location/watch_location_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/native_button/watch_native_button_tap_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/network/watch_connectivity_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/permission/get_permission_status_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/permission/open_app_settings_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/permission/request_permission_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/push_notification/on_token_refresh_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/push_notification/register_token_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/push_notification/request_push_notification_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/copy_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/delete_all_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/text_recognition/recognize_text_use_case.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -78,16 +115,29 @@ PetRepository petRepository(Ref ref) => PetRepositoryRemote(
 );
 
 @riverpod
-LocationRepository locationRepository(Ref ref) => MockLocationRepository();
+LocationRepository locationRepository(Ref ref) => PlatformLocationRepository();
 
 @riverpod
-BatteryRepository batteryRepository(Ref ref) => PlatformBatteryRepository();
+BatteryGateway batteryGateway(Ref ref) => PlatformBatteryGateway();
+
+@riverpod
+GetBatteryLevelUseCase getBatteryLevelUseCase(Ref ref) =>
+    GetBatteryLevelUseCase(
+      batteryGateway: ref.read(batteryGatewayProvider),
+    );
 
 @riverpod
 AgreementRepository agreementRepository(Ref ref) =>
     SharedPreferencesAgreementRepository(
       sharedPreferencesService: ref.read(sharedPreferencesServiceProvider),
     );
+
+@riverpod
+InitializeLatestAgreedDateUseCase initializeLatestAgreedDateUseCase(
+  Ref ref,
+) => InitializeLatestAgreedDateUseCase(
+  agreementRepository: ref.read(agreementRepositoryProvider),
+);
 
 // gateway
 @riverpod
@@ -114,17 +164,50 @@ GetLocationUseCase getLocationUseCase(Ref ref) => GetLocationUseCase(
 );
 
 @riverpod
+WatchLocationUseCase watchLocationUseCase(Ref ref) => WatchLocationUseCase(
+  locationRepository: ref.read(locationRepositoryProvider),
+);
+
+@riverpod
 SharedPreferencesAsync sharedPreferencesAsync(Ref ref) =>
     SharedPreferencesAsync();
 
-// arutana ad
+// native button
 @riverpod
-ArutanaAdService arutanaAdService(Ref ref) => ArutanaAdService();
+NativeButtonGateway nativeButtonGateway(Ref ref) =>
+    PlatformNativeButtonGateway();
 
 @riverpod
-ArutanaAdRepository arutanaAdRepository(Ref ref) => PlatformArutanaAdRepository(
-  service: ref.read(arutanaAdServiceProvider),
+WatchNativeButtonTapUseCase watchNativeButtonTapUseCase(Ref ref) =>
+    WatchNativeButtonTapUseCase(
+      nativeButtonGateway: ref.read(nativeButtonGatewayProvider),
+    );
+
+// push notification
+@riverpod
+PushNotificationRepository pushNotificationRepository(Ref ref) =>
+    FirebaseMessagingPushNotificationRepository();
+
+@riverpod
+RequestPushNotificationUseCase requestPushNotificationUseCase(Ref ref) =>
+    RequestPushNotificationUseCase(
+      pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
+    );
+
+@riverpod
+OnTokenRefreshUseCase onTokenRefreshUseCase(Ref ref) => OnTokenRefreshUseCase(
+  pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
 );
+
+@riverpod
+RegisterTokenUseCase registerTokenUseCase(Ref ref) => RegisterTokenUseCase(
+  pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
+);
+
+/// Stream of FCM token refresh events.
+@riverpod
+Stream<String> onTokenRefresh(Ref ref) =>
+    ref.read(onTokenRefreshUseCaseProvider).call();
 
 @riverpod
 CopyShortcutIconsUseCase copyShortcutIconsUseCase(Ref ref) =>
@@ -142,6 +225,10 @@ DeleteAllShortcutIconsUseCase deleteAllShortcutIconsUseCase(Ref ref) =>
 @Riverpod(keepAlive: true)
 HttpCacheRepository httpCacheRepository(Ref ref) => DioHttpCacheRepository();
 
+// etag cache
+@Riverpod(keepAlive: true)
+EtagCacheRepository etagCacheRepository(Ref ref) => S3EtagCacheRepository();
+
 // navigation
 @riverpod
 UrlNavigationListRepository urlNavigationListRepository(Ref ref) =>
@@ -149,22 +236,50 @@ UrlNavigationListRepository urlNavigationListRepository(Ref ref) =>
 
 // network
 @riverpod
-NetworkRepository networkRepository(Ref ref) =>
-    ConnectivityPlusNetworkRepository(
-      connectivity: Connectivity(),
+NetworkGateway networkGateway(Ref ref) => ConnectivityPlusNetworkGateway(
+  connectivity: Connectivity(),
+);
+
+@riverpod
+WatchConnectivityUseCase watchConnectivityUseCase(Ref ref) =>
+    WatchConnectivityUseCase(
+      networkGateway: ref.read(networkGatewayProvider),
+    );
+
+// app store
+@riverpod
+TargetPlatformType targetPlatformType(Ref ref) =>
+    Platform.isIOS ? TargetPlatformType.iOS : TargetPlatformType.android;
+
+@riverpod
+AppStoreRepository appStoreRepository(Ref ref) => PlatformAppStoreRepository(
+  targetPlatformType: ref.read(targetPlatformTypeProvider),
+  appId: '',
+  packageName: 'com.example.flutter_lab',
+);
+
+@riverpod
+GetAppStoreUrlUseCase getAppStoreUrlUseCase(Ref ref) => GetAppStoreUrlUseCase(
+  appStoreRepository: ref.read(appStoreRepositoryProvider),
+);
+
+// in-app review
+@riverpod
+InAppReviewRepository inAppReviewRepository(Ref ref) =>
+    PluginInAppReviewRepository(
+      inAppReview: InAppReview.instance,
     );
 
 @riverpod
-CheckConnectivityUseCase checkConnectivityUseCase(Ref ref) =>
-    CheckConnectivityUseCase(
-      networkRepository: ref.read(networkRepositoryProvider),
+CheckReviewAvailabilityUseCase checkReviewAvailabilityUseCase(Ref ref) =>
+    CheckReviewAvailabilityUseCase(
+      inAppReviewRepository: ref.read(inAppReviewRepositoryProvider),
     );
 
 @riverpod
-OnConnectivityChangedUseCase onConnectivityChangedUseCase(Ref ref) =>
-    OnConnectivityChangedUseCase(
-      networkRepository: ref.read(networkRepositoryProvider),
-    );
+RequestReviewUseCase requestReviewUseCase(Ref ref) => RequestReviewUseCase(
+  inAppReviewRepository: ref.read(inAppReviewRepositoryProvider),
+);
 
 // text recognition
 @riverpod
@@ -177,4 +292,64 @@ TextRecognitionGateway textRecognitionGateway(Ref ref) {
 @riverpod
 RecognizeTextUseCase recognizeTextUseCase(Ref ref) => RecognizeTextUseCase(
   textRecognitionGateway: ref.read(textRecognitionGatewayProvider),
+);
+
+// permission
+@riverpod
+PermissionGateway permissionGateway(Ref ref) => PermissionHandlerGateway();
+
+@riverpod
+GetPermissionStatusUseCase getPermissionStatusUseCase(Ref ref) =>
+    GetPermissionStatusUseCase(
+      permissionGateway: ref.read(permissionGatewayProvider),
+    );
+
+@riverpod
+RequestPermissionUseCase requestPermissionUseCase(Ref ref) =>
+    RequestPermissionUseCase(
+      permissionGateway: ref.read(permissionGatewayProvider),
+    );
+
+@riverpod
+OpenAppSettingsUseCase openAppSettingsUseCase(Ref ref) =>
+    OpenAppSettingsUseCase(
+      permissionGateway: ref.read(permissionGatewayProvider),
+    );
+
+// clock
+@riverpod
+ClockGateway clockGateway(Ref ref) => ClockClockGateway();
+
+@riverpod
+GetCurrentTimeUseCase getCurrentTimeUseCase(Ref ref) => GetCurrentTimeUseCase(
+  clockGateway: ref.read(clockGatewayProvider),
+);
+
+// device info
+@riverpod
+DeviceInfoGateway deviceInfoGateway(Ref ref) =>
+    DeviceInfoPlusDeviceInfoGateway();
+
+@riverpod
+GetDeviceInfoUseCase getDeviceInfoUseCase(Ref ref) => GetDeviceInfoUseCase(
+  deviceInfoGateway: ref.read(deviceInfoGatewayProvider),
+);
+
+// pigeon
+@riverpod
+GreetingApi greetingApi(Ref ref) => GreetingApi();
+
+@riverpod
+PigeonExampleGateway pigeonExampleGateway(Ref ref) =>
+    PigeonExampleGatewayImpl();
+
+// google api
+@riverpod
+GoogleApiGateway googleApiGateway(Ref ref) => PluginGoogleApiGateway();
+
+@riverpod
+CheckGoogleApiAvailabilityUseCase checkGoogleApiAvailabilityUseCase(
+  Ref ref,
+) => CheckGoogleApiAvailabilityUseCase(
+  googleApiGateway: ref.read(googleApiGatewayProvider),
 );
