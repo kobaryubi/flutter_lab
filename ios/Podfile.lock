@@ -1,10 +1,6 @@
 PODS:
   - app_links (6.4.1):
     - Flutter
-  - applovin_max (4.6.1):
-    - AppLovinSDK (= 13.5.1)
-    - Flutter
-  - AppLovinSDK (13.5.1)
   - camera_avfoundation (0.0.1):
     - Flutter
   - connectivity_plus (0.0.1):
@@ -145,7 +141,6 @@ PODS:
 
 DEPENDENCIES:
   - app_links (from `.symlinks/plugins/app_links/ios`)
-  - applovin_max (from `.symlinks/plugins/applovin_max/ios`)
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
@@ -167,7 +162,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AppLovinSDK
     - Firebase
     - FirebaseCore
     - FirebaseCoreInternal
@@ -190,8 +184,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   app_links:
     :path: ".symlinks/plugins/app_links/ios"
-  applovin_max:
-    :path: ".symlinks/plugins/applovin_max/ios"
   camera_avfoundation:
     :path: ".symlinks/plugins/camera_avfoundation/ios"
   connectivity_plus:
@@ -231,8 +223,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   app_links: 585674be3c6661708e6cd794ab4f39fb9d8356f9
-  applovin_max: 901479f7d07d956631091d27a34bbc98e8d92c3f
-  AppLovinSDK: 8d9af6c7617e4d35b38aa8393a3e9d161a74b230
   camera_avfoundation: 281867ff09f1da66f031a184ecfbc6f2e625c9f5
   connectivity_plus: 2a701ffec2c0ae28a48cf7540e279787e77c447d
   device_info_plus: bf2e3232933866d73fe290f2942f2156cdd10342

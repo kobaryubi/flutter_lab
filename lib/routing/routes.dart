@@ -40,10 +40,6 @@ abstract final class Routes {
   static const routeAwareDemo = '/route_aware_demo';
   static const routeAwareDemoDetail = '/route_aware_demo/detail';
 
-  static const shellDemoTabA = '/shell_demo/tab_a';
-  static const shellDemoTabB = '/shell_demo/tab_b';
-  static const shellDemoTabC = '/shell_demo/tab_c';
-
   static const navigationScreenA = '/navigation/screen_a';
   static const navigationScreenB = '/navigation/screen_b';
 

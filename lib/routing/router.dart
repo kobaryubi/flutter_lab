@@ -48,8 +48,6 @@ import 'package:flutter_lab/ui/routing_cupertino_fullscreen_dialog/widget/routin
 import 'package:flutter_lab/ui/s3_etag_cache/widget/s3_etag_cache_screen.dart';
 import 'package:flutter_lab/ui/screenshot_prevention/widget/screenshot_prevention_screen.dart';
 import 'package:flutter_lab/ui/shared_preferences/widget/shared_preferences_screen.dart';
-import 'package:flutter_lab/ui/shell_demo/widget/branch_screen.dart';
-import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_scaffold.dart';
 import 'package:flutter_lab/ui/url_navigation/widget/url_navigation_screen.dart';
 import 'package:flutter_lab/ui/web_view/widgets/web_view_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -96,7 +94,6 @@ part 'routing_route.dart';
 part 's3_etag_cache_route.dart';
 part 'screenshot_prevention_route.dart';
 part 'shared_preferences_route.dart';
-part 'shell_demo_route.dart';
 part 'url_navigation_route.dart';
 part 'web_view_route.dart';
 

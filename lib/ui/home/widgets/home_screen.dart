@@ -22,7 +22,6 @@ class HomeScreen extends StatelessWidget {
       title: 'web view',
       route: WebViewRoute(url: 'https://flutter.dev'),
     ),
-    AppLink(title: 'shell demo', route: ShellDemoTabARoute()),
     AppLink(title: 'local paths', route: LocalPathsRoute()),
     AppLink(title: 'local icon', route: LocalIconRoute()),
     AppLink(title: 'url navigation', route: UrlNavigationRoute()),

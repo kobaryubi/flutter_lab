@@ -43,12 +43,8 @@ android {
 }
 
 dependencies {
-    implementation(files("libs/arutana-0.1.4.aar"))
     implementation(libs.androidx.browser)
     implementation(libs.androidx.lifecycle.process)
-    implementation(libs.kotlinx.coroutines.play.services)
-    implementation(libs.material)
-    implementation(libs.play.services.location)
 }
 
 flutter {
