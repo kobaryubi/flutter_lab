@@ -21,7 +21,6 @@ List<RouteBase> get $appRoutes => [
   $effectVsListenRoute,
   $etagCacheRoute,
   $formBuilderRoute,
-  $futureProviderRoute,
   $googleApiRoute,
   $homeRoute,
   $inAppReviewRoute,
@@ -392,32 +391,6 @@ mixin $FormBuilderRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/form_builder');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $futureProviderRoute => GoRouteData.$route(
-  path: '/future_provider',
-  factory: $FutureProviderRoute._fromState,
-);
-
-mixin $FutureProviderRoute on GoRouteData {
-  static FutureProviderRoute _fromState(GoRouterState state) =>
-      FutureProviderRoute();
-
-  @override
-  String get location => GoRouteData.$location('/future_provider');
 
   @override
   void go(BuildContext context) => context.go(location);

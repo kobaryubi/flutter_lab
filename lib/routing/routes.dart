@@ -33,7 +33,6 @@ abstract final class Routes {
   static const effectVsListen = '/effect_vs_listen';
   static const methodChannel = '/method_channel';
   static const asyncStateRace = '/async_state_race';
-  static const futureProvider = '/future_provider';
   static const googleApi = '/google_api';
   static const pigeon = '/pigeon';
   static const dialogState = '/dialog_state';

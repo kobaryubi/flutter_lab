@@ -20,7 +20,6 @@ import 'package:flutter_lab/ui/effect_vs_listen/widget/effect_vs_listen_screen.d
 import 'package:flutter_lab/ui/error/widgets/not_found_screen.dart';
 import 'package:flutter_lab/ui/etag_cache/widget/etag_cache_screen.dart';
 import 'package:flutter_lab/ui/form_builder/widget/form_builder_screen.dart';
-import 'package:flutter_lab/ui/future_provider/widget/future_provider_screen.dart';
 import 'package:flutter_lab/ui/google_api/widget/google_api_screen.dart';
 import 'package:flutter_lab/ui/home/widgets/home_screen.dart';
 import 'package:flutter_lab/ui/in_app_review/widget/in_app_review_screen.dart';
@@ -73,7 +72,6 @@ part 'dio_cache_route.dart';
 part 'effect_vs_listen_route.dart';
 part 'etag_cache_route.dart';
 part 'form_builder_route.dart';
-part 'future_provider_route.dart';
 part 'google_api_route.dart';
 part 'home_route.dart';
 part 'in_app_review_route.dart';
