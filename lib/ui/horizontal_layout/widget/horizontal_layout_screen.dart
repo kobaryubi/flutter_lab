@@ -13,33 +13,67 @@ class HorizontalLayoutScreen extends StatelessWidget {
     child: ColoredBox(
       color: Color(0xFF000000),
       child: Center(
-        child: ColoredBox(
-          color: Color(0xFFFFFFFF),
-          child: IntrinsicHeight(
-            child: Row(
-              mainAxisSize: .min,
-              crossAxisAlignment: .stretch,
-              children: [
-                Column(
+        child: Column(
+          mainAxisSize: .min,
+          spacing: 16,
+          children: [
+            ColoredBox(
+              color: Color(0xFFFFFFFF),
+              child: IntrinsicHeight(
+                child: Row(
+                  mainAxisSize: .min,
+                  crossAxisAlignment: .start,
                   children: [
-                    ColoredBox(
-                      color: Color(0xFF2196F3),
-                      child: SizedBox(width: 100, height: 50),
+                    Column(
+                      children: [
+                        ColoredBox(
+                          color: Color(0xFF2196F3),
+                          child: SizedBox(width: 100, height: 50),
+                        ),
+                        Spacer(),
+                        ColoredBox(
+                          color: Color(0xFFF44336),
+                          child: SizedBox(width: 100, height: 50),
+                        ),
+                      ],
                     ),
-                    Spacer(),
                     ColoredBox(
-                      color: Color(0xFFF44336),
-                      child: SizedBox(width: 100, height: 50),
+                      color: Color(0xFF4CAF50),
+                      child: SizedBox(width: 100, height: 200),
                     ),
                   ],
                 ),
-                ColoredBox(
-                  color: Color(0xFF4CAF50),
-                  child: SizedBox(width: 100, height: 200),
-                ),
-              ],
+              ),
             ),
-          ),
+            ColoredBox(
+              color: Color(0xFFFFFFFF),
+              child: IntrinsicHeight(
+                child: Row(
+                  mainAxisSize: .min,
+                  crossAxisAlignment: .start,
+                  children: [
+                    Column(
+                      children: [
+                        ColoredBox(
+                          color: Color(0xFF2196F3),
+                          child: SizedBox(width: 100, height: 120),
+                        ),
+                        Spacer(),
+                        ColoredBox(
+                          color: Color(0xFFF44336),
+                          child: SizedBox(width: 100, height: 120),
+                        ),
+                      ],
+                    ),
+                    ColoredBox(
+                      color: Color(0xFF4CAF50),
+                      child: SizedBox(width: 100, height: 200),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     ),
