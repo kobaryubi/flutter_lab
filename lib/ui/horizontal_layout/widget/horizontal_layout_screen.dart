@@ -10,6 +10,38 @@ class HorizontalLayoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const Layout(
     appBar: AppBar(title: Text('Horizontal Layout')),
-    child: SizedBox(),
+    child: ColoredBox(
+      color: Color(0xFF000000),
+      child: Center(
+        child: ColoredBox(
+          color: Color(0xFFFFFFFF),
+          child: IntrinsicHeight(
+            child: Row(
+              mainAxisSize: .min,
+              crossAxisAlignment: .stretch,
+              children: [
+                Column(
+                  children: [
+                    ColoredBox(
+                      color: Color(0xFF2196F3),
+                      child: SizedBox(width: 100, height: 50),
+                    ),
+                    Spacer(),
+                    ColoredBox(
+                      color: Color(0xFFF44336),
+                      child: SizedBox(width: 100, height: 50),
+                    ),
+                  ],
+                ),
+                ColoredBox(
+                  color: Color(0xFF4CAF50),
+                  child: SizedBox(width: 100, height: 200),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ),
   );
 }
