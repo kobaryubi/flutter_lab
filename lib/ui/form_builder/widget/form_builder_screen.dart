@@ -93,6 +93,25 @@ class _Body extends HookWidget {
               ],
             ),
           ),
+          const Text('Clear Name'),
+          FormBuilderField<bool>(
+            name: 'clearName',
+            initialValue: false,
+            builder: (field) {
+              /// Toggles the checkbox value and triggers form validation.
+              void handleToggle() {
+                final newValue = !(field.value ?? false);
+                field.didChange(newValue);
+              }
+
+              return GestureDetector(
+                onTap: handleToggle,
+                child: Text(
+                  (field.value ?? false) ? '[x]' : '[ ]',
+                ),
+              );
+            },
+          ),
           GestureDetector(
             onTap: form.isValid ? handleSubmit : null,
             child: Text(
