@@ -61,14 +61,21 @@ class _Body extends HookWidget {
             builder: (field) => Column(
               crossAxisAlignment: .start,
               children: [
-                EditableText(
-                  controller: nameController,
-                  focusNode: nameFocusNode,
-                  readOnly: isNameCleared,
-                  style: DefaultTextStyle.of(field.context).style,
-                  cursorColor: const Color(0xFF000000),
-                  backgroundCursorColor: const Color(0xFF808080),
-                  onChanged: field.didChange,
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    border: field.hasError
+                        ? Border.all(color: const Color(0xFFFF0000))
+                        : null,
+                  ),
+                  child: EditableText(
+                    controller: nameController,
+                    focusNode: nameFocusNode,
+                    readOnly: isNameCleared,
+                    style: DefaultTextStyle.of(field.context).style,
+                    cursorColor: const Color(0xFF000000),
+                    backgroundCursorColor: const Color(0xFF808080),
+                    onChanged: field.didChange,
+                  ),
                 ),
                 if (field.errorText case final errorText?) Text(errorText),
               ],
@@ -85,13 +92,20 @@ class _Body extends HookWidget {
             builder: (field) => Column(
               crossAxisAlignment: .start,
               children: [
-                EditableText(
-                  controller: emailController,
-                  focusNode: emailFocusNode,
-                  style: DefaultTextStyle.of(field.context).style,
-                  cursorColor: const Color(0xFF000000),
-                  backgroundCursorColor: const Color(0xFF808080),
-                  onChanged: field.didChange,
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    border: field.hasError
+                        ? Border.all(color: const Color(0xFFFF0000))
+                        : null,
+                  ),
+                  child: EditableText(
+                    controller: emailController,
+                    focusNode: emailFocusNode,
+                    style: DefaultTextStyle.of(field.context).style,
+                    cursorColor: const Color(0xFF000000),
+                    backgroundCursorColor: const Color(0xFF808080),
+                    onChanged: field.didChange,
+                  ),
                 ),
                 if (field.errorText case final errorText?) Text(errorText),
               ],
