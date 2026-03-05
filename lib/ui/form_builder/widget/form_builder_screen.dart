@@ -98,10 +98,16 @@ class _Body extends HookWidget {
             name: 'clearName',
             initialValue: false,
             builder: (field) {
-              /// Toggles the checkbox value and triggers form validation.
+              /// Toggles the checkbox and clears the name field
+              /// when checked on.
               void handleToggle() {
                 final newValue = !(field.value ?? false);
                 field.didChange(newValue);
+
+                if (newValue) {
+                  nameController.clear();
+                  form.formKey.currentState?.fields['name']?.didChange('');
+                }
               }
 
               return GestureDetector(
