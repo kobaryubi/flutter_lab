@@ -30,6 +30,8 @@ class _Body extends HookWidget {
     final nameFocusNode = useFocusNode();
     final emailFocusNode = useFocusNode();
     final submittedValues = useState<Map<String, dynamic>?>(null);
+    final isNameCleared =
+        form.formKey.currentState?.fields['clearName']?.value as bool? ?? false;
 
     /// Validates and submits the form, storing results in state.
     void handleSubmit() {
@@ -52,8 +54,9 @@ class _Body extends HookWidget {
           FormBuilderField<String>(
             name: 'name',
             initialValue: 'Flutter',
+            enabled: !isNameCleared,
             validator: FormBuilderValidators.compose([
-              FormBuilderValidators.required(),
+              if (!isNameCleared) FormBuilderValidators.required(),
             ]),
             builder: (field) => Column(
               crossAxisAlignment: .start,
@@ -61,6 +64,7 @@ class _Body extends HookWidget {
                 EditableText(
                   controller: nameController,
                   focusNode: nameFocusNode,
+                  readOnly: isNameCleared,
                   style: DefaultTextStyle.of(field.context).style,
                   cursorColor: const Color(0xFF000000),
                   backgroundCursorColor: const Color(0xFF808080),
