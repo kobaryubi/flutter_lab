@@ -30,18 +30,6 @@ class _Body extends HookWidget {
     final nameFocusNode = useFocusNode();
     final emailFocusNode = useFocusNode();
     final submittedValues = useState<Map<String, dynamic>?>(null);
-    final isNameCleared = useState(false);
-
-    /// Clears the name controller and syncs the form field value
-    /// when the checkbox is checked on.
-    useEffect(() {
-      if (isNameCleared.value) {
-        nameController.clear();
-        form.formKey.currentState?.fields['name']?.didChange('');
-      }
-
-      return null;
-    }, [isNameCleared.value]);
 
     /// Validates and submits the form, storing results in state.
     void handleSubmit() {
@@ -64,32 +52,47 @@ class _Body extends HookWidget {
           FormBuilderField<String>(
             name: 'name',
             initialValue: 'Flutter',
-            enabled: !isNameCleared.value,
-            validator: FormBuilderValidators.compose([
-              if (!isNameCleared.value) FormBuilderValidators.required(),
-            ]),
-            builder: (field) => Column(
-              crossAxisAlignment: .start,
-              children: [
-                DecoratedBox(
-                  decoration: BoxDecoration(
-                    border: field.hasError
-                        ? Border.all(color: const Color(0xFFFF0000))
-                        : null,
+            validator: (value) {
+              final isClearName =
+                  form.formKey.currentState?.fields['clearName']?.value
+                      as bool? ??
+                  false;
+
+              if (isClearName) {
+                return null;
+              }
+
+              return FormBuilderValidators.required<String>()(value);
+            },
+            builder: (field) {
+              final isClearName =
+                  form.formKey.currentState?.fields['clearName']?.value
+                      as bool? ??
+                  false;
+
+              return Column(
+                crossAxisAlignment: .start,
+                children: [
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      border: field.hasError
+                          ? Border.all(color: const Color(0xFFFF0000))
+                          : null,
+                    ),
+                    child: EditableText(
+                      controller: nameController,
+                      focusNode: nameFocusNode,
+                      readOnly: isClearName,
+                      style: DefaultTextStyle.of(field.context).style,
+                      cursorColor: const Color(0xFF000000),
+                      backgroundCursorColor: const Color(0xFF808080),
+                      onChanged: field.didChange,
+                    ),
                   ),
-                  child: EditableText(
-                    controller: nameController,
-                    focusNode: nameFocusNode,
-                    readOnly: isNameCleared.value,
-                    style: DefaultTextStyle.of(field.context).style,
-                    cursorColor: const Color(0xFF000000),
-                    backgroundCursorColor: const Color(0xFF808080),
-                    onChanged: field.didChange,
-                  ),
-                ),
-                if (field.errorText case final errorText?) Text(errorText),
-              ],
-            ),
+                  if (field.errorText case final errorText?) Text(errorText),
+                ],
+              );
+            },
           ),
           const Text('Email'),
           FormBuilderField<String>(
@@ -122,15 +125,29 @@ class _Body extends HookWidget {
             ),
           ),
           const Text('Clear Name'),
-          GestureDetector(
-            onTap: () {
+          FormBuilderField<bool>(
+            name: 'clearName',
+            initialValue: false,
+            builder: (field) {
               /// Toggles the checkbox and clears the name field
               /// when checked on.
-              isNameCleared.value = !isNameCleared.value;
+              void handleToggle() {
+                final newValue = !(field.value ?? false);
+                field.didChange(newValue);
+
+                if (newValue) {
+                  nameController.clear();
+                  form.formKey.currentState?.fields['name']?.didChange('');
+                }
+              }
+
+              return GestureDetector(
+                onTap: handleToggle,
+                child: Text(
+                  (field.value ?? false) ? '[x]' : '[ ]',
+                ),
+              );
             },
-            child: Text(
-              isNameCleared.value ? '[x]' : '[ ]',
-            ),
           ),
           GestureDetector(
             onTap: form.isValid ? handleSubmit : null,
