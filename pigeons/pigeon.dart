@@ -2,12 +2,17 @@ import 'package:pigeon/pigeon.dart';
 
 @ConfigurePigeon(
   PigeonOptions(
-    dartOut: 'lib/data/gateway/pigeon/pigeon_api.g.dart',
-    swiftOut: 'ios/Runner/PigeonApi.g.swift',
+    dartOut: 'lib/gen/pigeon/pigeon.g.dart',
+    swiftOut: 'ios/Runner/Pigeon/Pigeon.g.swift',
     kotlinOut:
-        'android/app/src/main/kotlin/com/masahikokobayashi/flutterlab/PigeonApi.g.kt',
-    kotlinOptions: KotlinOptions(),
-    swiftOptions: SwiftOptions(),
+        'android/app/src/main/kotlin/com/masahikokobayashi/flutterlab/pigeon/Pigeon.g.kt',
+    kotlinOptions: KotlinOptions(
+      package: 'com.masahikokobayashi.flutterlab.pigeon',
+      includeErrorClass: false,
+    ),
+    swiftOptions: SwiftOptions(
+      includeErrorClass: false,
+    ),
     dartPackageName: 'flutter_lab',
   ),
 )

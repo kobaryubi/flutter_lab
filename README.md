@@ -21,7 +21,9 @@ fvm dart run build_runner watch -d
 fvm dart run build_runner build
 flutter gen-l10n
 fluttergen
-fvm dart run pigeon --input pigeons/pigeon_api.dart
+fvm dart run pigeon --input pigeons/common.dart
+fvm dart run pigeon --input pigeons/pigeon.dart
+fvm dart run pigeon --input pigeons/arutana.dart
 ```
 
 ## Misc

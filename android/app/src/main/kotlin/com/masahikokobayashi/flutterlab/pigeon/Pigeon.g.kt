@@ -2,6 +2,7 @@
 // See also: https://pub.dev/packages/pigeon
 @file:Suppress("UNCHECKED_CAST", "ArrayInDataClass")
 
+package com.masahikokobayashi.flutterlab.pigeon
 
 import android.util.Log
 import io.flutter.plugin.common.BasicMessageChannel
@@ -12,7 +13,7 @@ import io.flutter.plugin.common.StandardMethodCodec
 import io.flutter.plugin.common.StandardMessageCodec
 import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
-private object PigeonApiPigeonUtils {
+private object PigeonPigeonUtils {
 
   fun createConnectionError(channelName: String): FlutterError {
     return FlutterError("channel-error",  "Unable to establish connection on channel: '$channelName'.", "")  }
@@ -68,18 +69,6 @@ private object PigeonApiPigeonUtils {
       
 }
 
-/**
- * Error class for passing custom error details to Flutter via a thrown PlatformException.
- * @property code The error code.
- * @property message The error message.
- * @property details The error details. Must be a datatype supported by the api codec.
- */
-class FlutterError (
-  val code: String,
-  override val message: String? = null,
-  val details: Any? = null
-) : Throwable()
-
 /** Error code for message data. */
 enum class Code(val raw: Int) {
   ONE(0),
@@ -128,11 +117,11 @@ data class MessageData (
     if (this === other) {
       return true
     }
-    return PigeonApiPigeonUtils.deepEquals(toList(), other.toList())  }
+    return PigeonPigeonUtils.deepEquals(toList(), other.toList())  }
 
   override fun hashCode(): Int = toList().hashCode()
 }
-private open class PigeonApiPigeonCodec : StandardMessageCodec() {
+private open class PigeonPigeonCodec : StandardMessageCodec() {
   override fun readValueOfType(type: Byte, buffer: ByteBuffer): Any? {
     return when (type) {
       129.toByte() -> {
@@ -178,7 +167,7 @@ interface GreetingApi {
   companion object {
     /** The codec used by GreetingApi. */
     val codec: MessageCodec<Any?> by lazy {
-      PigeonApiPigeonCodec()
+      PigeonPigeonCodec()
     }
     /** Sets up an instance of `GreetingApi` to handle messages through the `binaryMessenger`. */
     @JvmOverloads
@@ -193,7 +182,7 @@ interface GreetingApi {
             val wrapped: List<Any?> = try {
               listOf(api.greet(nameArg))
             } catch (exception: Throwable) {
-              PigeonApiPigeonUtils.wrapError(exception)
+              PigeonPigeonUtils.wrapError(exception)
             }
             reply.reply(wrapped)
           }
@@ -222,7 +211,7 @@ interface ExampleHostApi {
   companion object {
     /** The codec used by ExampleHostApi. */
     val codec: MessageCodec<Any?> by lazy {
-      PigeonApiPigeonCodec()
+      PigeonPigeonCodec()
     }
     /** Sets up an instance of `ExampleHostApi` to handle messages through the `binaryMessenger`. */
     @JvmOverloads
@@ -235,7 +224,7 @@ interface ExampleHostApi {
             val wrapped: List<Any?> = try {
               listOf(api.getHostLanguage())
             } catch (exception: Throwable) {
-              PigeonApiPigeonUtils.wrapError(exception)
+              PigeonPigeonUtils.wrapError(exception)
             }
             reply.reply(wrapped)
           }
@@ -253,7 +242,7 @@ interface ExampleHostApi {
             val wrapped: List<Any?> = try {
               listOf(api.add(aArg, bArg))
             } catch (exception: Throwable) {
-              PigeonApiPigeonUtils.wrapError(exception)
+              PigeonPigeonUtils.wrapError(exception)
             }
             reply.reply(wrapped)
           }
@@ -270,10 +259,10 @@ interface ExampleHostApi {
             api.sendMessage(messageArg) { result: Result<Boolean> ->
               val error = result.exceptionOrNull()
               if (error != null) {
-                reply.reply(PigeonApiPigeonUtils.wrapError(error))
+                reply.reply(PigeonPigeonUtils.wrapError(error))
               } else {
                 val data = result.getOrNull()
-                reply.reply(PigeonApiPigeonUtils.wrapResult(data))
+                reply.reply(PigeonPigeonUtils.wrapResult(data))
               }
             }
           }
@@ -295,7 +284,7 @@ class MessageFlutterApi(private val binaryMessenger: BinaryMessenger, private va
   companion object {
     /** The codec used by MessageFlutterApi. */
     val codec: MessageCodec<Any?> by lazy {
-      PigeonApiPigeonCodec()
+      PigeonPigeonCodec()
     }
   }
   /** Echoes the given string back to the host. */
@@ -315,7 +304,7 @@ class MessageFlutterApi(private val binaryMessenger: BinaryMessenger, private va
           callback(Result.success(output))
         }
       } else {
-        callback(Result.failure(PigeonApiPigeonUtils.createConnectionError(channelName)))
+        callback(Result.failure(PigeonPigeonUtils.createConnectionError(channelName)))
       } 
     }
   }

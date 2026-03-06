@@ -11,7 +11,6 @@ import 'package:flutter_lab/data/gateway/file_system_shortcut_icon_gateway.dart'
 import 'package:flutter_lab/data/gateway/google_api/plugin_google_api_gateway.dart';
 import 'package:flutter_lab/data/gateway/native_button/platform_native_button_gateway.dart';
 import 'package:flutter_lab/data/gateway/permission/permission_handler_gateway.dart';
-import 'package:flutter_lab/data/gateway/pigeon/pigeon_api.g.dart';
 import 'package:flutter_lab/data/gateway/pigeon_example/pigeon_example_gateway_impl.dart';
 import 'package:flutter_lab/data/gateway/text_recognition/mlkit_text_recognition_gateway.dart';
 import 'package:flutter_lab/data/repositories/agreement/shared_preferences_agreement_repository.dart';
@@ -28,9 +27,9 @@ import 'package:flutter_lab/data/repositories/shortcut/file_system_shortcut_repo
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
 import 'package:flutter_lab/domain/app_store/app_store_repository.dart';
+import 'package:flutter_lab/domain/arutana/arutana_gateway.dart';
 import 'package:flutter_lab/domain/battery/battery_gateway.dart';
 import 'package:flutter_lab/domain/battery/platform_battery_gateway.dart';
-import 'package:flutter_lab/domain/arutana/arutana_gateway.dart';
 import 'package:flutter_lab/domain/clock/clock_gateway.dart';
 import 'package:flutter_lab/domain/device_info/device_info_gateway.dart';
 import 'package:flutter_lab/domain/entity/app_store/target_platform_type.dart';
@@ -68,6 +67,7 @@ import 'package:flutter_lab/domain/use_cases/push_notification/request_push_noti
 import 'package:flutter_lab/domain/use_cases/shortcut/copy_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/delete_all_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/text_recognition/recognize_text_use_case.dart';
+import 'package:flutter_lab/gen/pigeon/pigeon.g.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

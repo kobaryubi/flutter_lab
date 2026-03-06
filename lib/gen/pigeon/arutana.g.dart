@@ -15,7 +15,6 @@ PlatformException _createConnectionError(String channelName) {
   );
 }
 
-
 class _PigeonCodec extends StandardMessageCodec {
   const _PigeonCodec();
   @override
@@ -45,9 +44,13 @@ class ArutanaHostApi {
   /// Constructor for [ArutanaHostApi].  The [binaryMessenger] named argument is
   /// available for dependency injection.  If it is left null, the default
   /// BinaryMessenger will be used which routes to the host platform.
-  ArutanaHostApi({BinaryMessenger? binaryMessenger, String messageChannelSuffix = ''})
-      : pigeonVar_binaryMessenger = binaryMessenger,
-        pigeonVar_messageChannelSuffix = messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
+  ArutanaHostApi({
+    BinaryMessenger? binaryMessenger,
+    String messageChannelSuffix = '',
+  }) : pigeonVar_binaryMessenger = binaryMessenger,
+       pigeonVar_messageChannelSuffix = messageChannelSuffix.isNotEmpty
+           ? '.$messageChannelSuffix'
+           : '';
   final BinaryMessenger? pigeonVar_binaryMessenger;
 
   static const MessageCodec<Object?> pigeonChannelCodec = _PigeonCodec();
@@ -56,7 +59,8 @@ class ArutanaHostApi {
 
   /// Initializes an interstitial ad via the Arutana SDK.
   Future<void> initializeInterstitialAd() async {
-    final pigeonVar_channelName = 'dev.flutter.pigeon.flutter_lab.ArutanaHostApi.initializeInterstitialAd$pigeonVar_messageChannelSuffix';
+    final pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_lab.ArutanaHostApi.initializeInterstitialAd$pigeonVar_messageChannelSuffix';
     final pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
@@ -79,7 +83,8 @@ class ArutanaHostApi {
 
   /// Initializes a movie ad via the Arutana SDK.
   Future<void> initializeMovieAd() async {
-    final pigeonVar_channelName = 'dev.flutter.pigeon.flutter_lab.ArutanaHostApi.initializeMovieAd$pigeonVar_messageChannelSuffix';
+    final pigeonVar_channelName =
+        'dev.flutter.pigeon.flutter_lab.ArutanaHostApi.initializeMovieAd$pigeonVar_messageChannelSuffix';
     final pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
