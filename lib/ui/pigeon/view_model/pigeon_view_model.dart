@@ -1,6 +1,6 @@
 import 'package:flutter_lab/application/di/provider.dart';
-import 'package:flutter_lab/gen/pigeon/pigeon.g.dart';
 import 'package:flutter_lab/data/gateway/pigeon_example/message_flutter_api_handler.dart';
+import 'package:flutter_lab/gen/pigeon/pigeon.g.dart';
 import 'package:flutter_lab/ui/pigeon/ui_state/pigeon_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

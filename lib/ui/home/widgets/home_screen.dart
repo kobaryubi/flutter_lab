@@ -8,6 +8,7 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   static final _links = [
+    AppLink(title: 'arutana', route: ArutanaRoute()),
     AppLink(title: 'not found', route: NotFoundRoute()),
     AppLink(title: 'routing', route: RoutingRoute()),
     const AppLink(
