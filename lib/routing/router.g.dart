@@ -7,6 +7,7 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
+  $arutanaRoute,
   $appLifecycleRoute,
   $appStoreRoute,
   $asyncStateRaceRoute,
@@ -53,6 +54,29 @@ List<RouteBase> get $appRoutes => [
   $urlNavigationRoute,
   $webViewRoute,
 ];
+
+RouteBase get $arutanaRoute =>
+    GoRouteData.$route(path: '/arutana', factory: $ArutanaRoute._fromState);
+
+mixin $ArutanaRoute on GoRouteData {
+  static ArutanaRoute _fromState(GoRouterState state) => ArutanaRoute();
+
+  @override
+  String get location => GoRouteData.$location('/arutana');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
 
 RouteBase get $appLifecycleRoute => GoRouteData.$route(
   path: '/app_lifecycle',

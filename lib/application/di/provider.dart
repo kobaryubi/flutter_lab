@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
+import 'package:flutter_lab/data/gateway/arutana/pigeon_arutana_gateway.dart';
 import 'package:flutter_lab/data/gateway/clock/clock_clock_gateway.dart';
 import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart';
 import 'package:flutter_lab/data/gateway/device_info/device_info_plus_device_info_gateway.dart';
@@ -29,6 +30,7 @@ import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
 import 'package:flutter_lab/domain/app_store/app_store_repository.dart';
 import 'package:flutter_lab/domain/battery/battery_gateway.dart';
 import 'package:flutter_lab/domain/battery/platform_battery_gateway.dart';
+import 'package:flutter_lab/domain/arutana/arutana_gateway.dart';
 import 'package:flutter_lab/domain/clock/clock_gateway.dart';
 import 'package:flutter_lab/domain/device_info/device_info_gateway.dart';
 import 'package:flutter_lab/domain/entity/app_store/target_platform_type.dart';
@@ -342,6 +344,10 @@ GreetingApi greetingApi(Ref ref) => GreetingApi();
 @riverpod
 PigeonExampleGateway pigeonExampleGateway(Ref ref) =>
     PigeonExampleGatewayImpl();
+
+// arutana
+@Riverpod(keepAlive: true)
+ArutanaGateway arutanaGateway(Ref ref) => PigeonArutanaGateway();
 
 // google api
 @riverpod

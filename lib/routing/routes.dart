@@ -52,4 +52,6 @@ abstract final class Routes {
   static const routingCupertino = '/routing/cupertino';
   static const routingCupertinoFullscreenDialog =
       '/routing/cupertino/fullscreen_dialog';
+
+  static const arutana = '/arutana';
 }
