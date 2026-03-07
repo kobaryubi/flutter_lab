@@ -2206,6 +2206,150 @@ final class MaxGatewayProvider
 
 String _$maxGatewayHash() => r'5ef460c02ef99ace90ffd69b8fa54fdafa13eb09';
 
+@ProviderFor(initializeMaxUseCase)
+const initializeMaxUseCaseProvider = InitializeMaxUseCaseProvider._();
+
+final class InitializeMaxUseCaseProvider
+    extends
+        $FunctionalProvider<
+          InitializeMaxUseCase,
+          InitializeMaxUseCase,
+          InitializeMaxUseCase
+        >
+    with $Provider<InitializeMaxUseCase> {
+  const InitializeMaxUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'initializeMaxUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$initializeMaxUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<InitializeMaxUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  InitializeMaxUseCase create(Ref ref) {
+    return initializeMaxUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(InitializeMaxUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<InitializeMaxUseCase>(value),
+    );
+  }
+}
+
+String _$initializeMaxUseCaseHash() =>
+    r'840ab09cb19f10768827431a9bbc0971a5c5f142';
+
+@ProviderFor(loadRewardedAdUseCase)
+const loadRewardedAdUseCaseProvider = LoadRewardedAdUseCaseProvider._();
+
+final class LoadRewardedAdUseCaseProvider
+    extends
+        $FunctionalProvider<
+          LoadRewardedAdUseCase,
+          LoadRewardedAdUseCase,
+          LoadRewardedAdUseCase
+        >
+    with $Provider<LoadRewardedAdUseCase> {
+  const LoadRewardedAdUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'loadRewardedAdUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$loadRewardedAdUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<LoadRewardedAdUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  LoadRewardedAdUseCase create(Ref ref) {
+    return loadRewardedAdUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LoadRewardedAdUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LoadRewardedAdUseCase>(value),
+    );
+  }
+}
+
+String _$loadRewardedAdUseCaseHash() =>
+    r'c49de441fcf9ca3254e2ec6d21478ab6c3f46492';
+
+@ProviderFor(showRewardedAdUseCase)
+const showRewardedAdUseCaseProvider = ShowRewardedAdUseCaseProvider._();
+
+final class ShowRewardedAdUseCaseProvider
+    extends
+        $FunctionalProvider<
+          ShowRewardedAdUseCase,
+          ShowRewardedAdUseCase,
+          ShowRewardedAdUseCase
+        >
+    with $Provider<ShowRewardedAdUseCase> {
+  const ShowRewardedAdUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'showRewardedAdUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$showRewardedAdUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ShowRewardedAdUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ShowRewardedAdUseCase create(Ref ref) {
+    return showRewardedAdUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ShowRewardedAdUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ShowRewardedAdUseCase>(value),
+    );
+  }
+}
+
+String _$showRewardedAdUseCaseHash() =>
+    r'098dd7dc40ba4e2e2d70d424189f5d8dd7335f6c';
+
 @ProviderFor(googleApiGateway)
 const googleApiGatewayProvider = GoogleApiGatewayProvider._();
 

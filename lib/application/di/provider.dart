@@ -58,6 +58,9 @@ import 'package:flutter_lab/domain/use_cases/in_app_review/check_review_availabi
 import 'package:flutter_lab/domain/use_cases/in_app_review/request_review_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/watch_location_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/max/initialize_max_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/max/load_rewarded_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/max/show_rewarded_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/native_button/watch_native_button_tap_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/network/watch_connectivity_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/permission/get_permission_status_use_case.dart';
@@ -355,6 +358,21 @@ ArutanaGateway arutanaGateway(Ref ref) => PigeonArutanaGateway();
 MaxGateway maxGateway(Ref ref) => SdkMaxGateway(
   sdkKey: '',
   rewardedAdUnitId: '',
+);
+
+@riverpod
+InitializeMaxUseCase initializeMaxUseCase(Ref ref) => InitializeMaxUseCase(
+  maxGateway: ref.read(maxGatewayProvider),
+);
+
+@riverpod
+LoadRewardedAdUseCase loadRewardedAdUseCase(Ref ref) => LoadRewardedAdUseCase(
+  maxGateway: ref.read(maxGatewayProvider),
+);
+
+@riverpod
+ShowRewardedAdUseCase showRewardedAdUseCase(Ref ref) => ShowRewardedAdUseCase(
+  maxGateway: ref.read(maxGatewayProvider),
 );
 
 // google api
