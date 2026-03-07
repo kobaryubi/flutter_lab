@@ -10,6 +10,9 @@ abstract class MaxGateway {
   /// Loads a rewarded ad.
   AsyncResult<Unit> loadRewardedAd();
 
+  /// Returns whether a rewarded ad is ready to be shown.
+  AsyncResult<bool> isRewardedAdReady();
+
   /// Shows a rewarded ad if one is ready.
   ///
   /// Returns `true` if the user earned a reward.
