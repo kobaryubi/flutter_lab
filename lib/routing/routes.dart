@@ -54,4 +54,5 @@ abstract final class Routes {
       '/routing/cupertino/fullscreen_dialog';
 
   static const arutana = '/arutana';
+  static const max = '/max';
 }
