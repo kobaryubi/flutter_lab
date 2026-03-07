@@ -8,12 +8,14 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.BatteryManager
 import androidx.core.content.ContextCompat
+import com.masahikokobayashi.flutterlab.pigeon.ArutanaHostApi
 import com.masahikokobayashi.flutterlab.pigeon.Code
 import com.masahikokobayashi.flutterlab.pigeon.ExampleHostApi
 import com.masahikokobayashi.flutterlab.pigeon.FlutterError
 import com.masahikokobayashi.flutterlab.pigeon.GreetingApi
 import com.masahikokobayashi.flutterlab.pigeon.MessageData
 import com.masahikokobayashi.flutterlab.pigeon.MessageFlutterApi
+import com.masahikokobayashi.flutterlab.pigeon.gateway.ArutanaHostApiImpl
 import com.masahikokobayashi.flutterlab.infrastructure.platform.ErrorCodes
 import com.masahikokobayashi.flutterlab.infrastructure.platform.EventChannelNames
 import com.masahikokobayashi.flutterlab.infrastructure.platform.MethodChannelNames
@@ -79,6 +81,9 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
 
         // Register Pigeon GreetingApi
         GreetingApi.setUp(flutterEngine.dartExecutor.binaryMessenger, GreetingApiImpl())
+
+        // Register Pigeon ArutanaHostApi
+        ArutanaHostApi.setUp(flutterEngine.dartExecutor.binaryMessenger, ArutanaHostApiImpl())
 
         // Register Pigeon ExampleHostApi
         ExampleHostApi.setUp(flutterEngine.dartExecutor.binaryMessenger, ExampleHostApiImpl())
