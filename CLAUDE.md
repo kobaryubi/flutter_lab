@@ -28,7 +28,7 @@ fvm flutter gen-l10n
 fluttergen
 
 # Generate Pigeon platform channel code
-fvm dart run pigeon --input pigeons/pigeon_api.dart
+fvm dart run pigeon --input pigeons/pigeon.dart
 
 # Generate API client from OpenAPI spec
 docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate \

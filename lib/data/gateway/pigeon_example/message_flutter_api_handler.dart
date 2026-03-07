@@ -1,4 +1,4 @@
-import 'package:flutter_lab/data/gateway/pigeon/pigeon_api.g.dart';
+import 'package:flutter_lab/gen/pigeon/pigeon.g.dart';
 
 /// Dart-side implementation of [MessageFlutterApi].
 ///

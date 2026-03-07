@@ -27,7 +27,7 @@ class PigeonViewModel extends _$PigeonViewModel {
 
   /// Calls [ExampleHostApi.getHostLanguage] via gateway.
   Future<void> getHostLanguage() async {
-    final gateway = ref.read(pigeonExampleGatewayProvider);
+    final gateway = ref.read(pigeonGatewayProvider);
 
     final hostLanguage = await AsyncValue.guard(
       () async {
@@ -41,7 +41,7 @@ class PigeonViewModel extends _$PigeonViewModel {
 
   /// Calls [ExampleHostApi.add] with sample values (3 + 5) via gateway.
   Future<void> add() async {
-    final gateway = ref.read(pigeonExampleGatewayProvider);
+    final gateway = ref.read(pigeonGatewayProvider);
 
     final addResult = await AsyncValue.guard(
       () async {
@@ -55,7 +55,7 @@ class PigeonViewModel extends _$PigeonViewModel {
 
   /// Calls [ExampleHostApi.sendMessage] with sample [MessageData] via gateway.
   Future<void> sendMessage() async {
-    final gateway = ref.read(pigeonExampleGatewayProvider);
+    final gateway = ref.read(pigeonGatewayProvider);
 
     final sendMessageResult = await AsyncValue.guard(
       () async {
@@ -77,7 +77,7 @@ class PigeonViewModel extends _$PigeonViewModel {
   /// The native side receives the message, calls back to Dart via Pigeon
   /// FlutterApi, and returns the echoed result.
   Future<void> callFlutterMethod() async {
-    final gateway = ref.read(pigeonExampleGatewayProvider);
+    final gateway = ref.read(pigeonGatewayProvider);
 
     final callFlutterMethodResult = await AsyncValue.guard(
       () async {

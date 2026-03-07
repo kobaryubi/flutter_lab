@@ -7,9 +7,9 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-  $arutanaRoute,
   $appLifecycleRoute,
   $appStoreRoute,
+  $arutanaRoute,
   $asyncStateRaceRoute,
   $autoMapprDemoRoute,
   $brightnessRoute,
@@ -38,13 +38,13 @@ List<RouteBase> get $appRoutes => [
   $observerDemoDetailRoute,
   $ocrResultRoute,
   $ocrRoute,
-  $routeAwareDemoRoute,
-  $routeAwareDemoDetailRoute,
   $permissionRoute,
   $pigeonRoute,
   $popScopeRoute,
   $portalRoute,
   $pushNotificationRoute,
+  $routeAwareDemoRoute,
+  $routeAwareDemoDetailRoute,
   $routingCupertinoFullscreenDialogRoute,
   $routingCupertinoRoute,
   $routingRoute,
@@ -54,29 +54,6 @@ List<RouteBase> get $appRoutes => [
   $urlNavigationRoute,
   $webViewRoute,
 ];
-
-RouteBase get $arutanaRoute =>
-    GoRouteData.$route(path: '/arutana', factory: $ArutanaRoute._fromState);
-
-mixin $ArutanaRoute on GoRouteData {
-  static ArutanaRoute _fromState(GoRouterState state) => ArutanaRoute();
-
-  @override
-  String get location => GoRouteData.$location('/arutana');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
 
 RouteBase get $appLifecycleRoute => GoRouteData.$route(
   path: '/app_lifecycle',
@@ -112,6 +89,29 @@ mixin $AppStoreRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/app_store');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $arutanaRoute =>
+    GoRouteData.$route(path: '/arutana', factory: $ArutanaRoute._fromState);
+
+mixin $ArutanaRoute on GoRouteData {
+  static ArutanaRoute _fromState(GoRouterState state) => ArutanaRoute();
+
+  @override
+  String get location => GoRouteData.$location('/arutana');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -851,58 +851,6 @@ mixin $OcrRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $routeAwareDemoRoute => GoRouteData.$route(
-  path: '/route_aware_demo',
-  factory: $RouteAwareDemoRoute._fromState,
-);
-
-mixin $RouteAwareDemoRoute on GoRouteData {
-  static RouteAwareDemoRoute _fromState(GoRouterState state) =>
-      RouteAwareDemoRoute();
-
-  @override
-  String get location => GoRouteData.$location('/route_aware_demo');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $routeAwareDemoDetailRoute => GoRouteData.$route(
-  path: '/route_aware_demo/detail',
-  factory: $RouteAwareDemoDetailRoute._fromState,
-);
-
-mixin $RouteAwareDemoDetailRoute on GoRouteData {
-  static RouteAwareDemoDetailRoute _fromState(GoRouterState state) =>
-      RouteAwareDemoDetailRoute();
-
-  @override
-  String get location => GoRouteData.$location('/route_aware_demo/detail');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
 RouteBase get $permissionRoute => GoRouteData.$route(
   path: '/permission',
   factory: $PermissionRoute._fromState,
@@ -1008,6 +956,58 @@ mixin $PushNotificationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/push_notification');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $routeAwareDemoRoute => GoRouteData.$route(
+  path: '/route_aware_demo',
+  factory: $RouteAwareDemoRoute._fromState,
+);
+
+mixin $RouteAwareDemoRoute on GoRouteData {
+  static RouteAwareDemoRoute _fromState(GoRouterState state) =>
+      RouteAwareDemoRoute();
+
+  @override
+  String get location => GoRouteData.$location('/route_aware_demo');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $routeAwareDemoDetailRoute => GoRouteData.$route(
+  path: '/route_aware_demo/detail',
+  factory: $RouteAwareDemoDetailRoute._fromState,
+);
+
+mixin $RouteAwareDemoDetailRoute on GoRouteData {
+  static RouteAwareDemoDetailRoute _fromState(GoRouterState state) =>
+      RouteAwareDemoDetailRoute();
+
+  @override
+  String get location => GoRouteData.$location('/route_aware_demo/detail');
 
   @override
   void go(BuildContext context) => context.go(location);

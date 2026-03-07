@@ -2083,53 +2083,46 @@ final class GreetingApiProvider
 
 String _$greetingApiHash() => r'ca009d12533450417fc696ceaafcb74dd4a5738a';
 
-@ProviderFor(pigeonExampleGateway)
-const pigeonExampleGatewayProvider = PigeonExampleGatewayProvider._();
+@ProviderFor(pigeonGateway)
+const pigeonGatewayProvider = PigeonGatewayProvider._();
 
-final class PigeonExampleGatewayProvider
-    extends
-        $FunctionalProvider<
-          PigeonExampleGateway,
-          PigeonExampleGateway,
-          PigeonExampleGateway
-        >
-    with $Provider<PigeonExampleGateway> {
-  const PigeonExampleGatewayProvider._()
+final class PigeonGatewayProvider
+    extends $FunctionalProvider<PigeonGateway, PigeonGateway, PigeonGateway>
+    with $Provider<PigeonGateway> {
+  const PigeonGatewayProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'pigeonExampleGatewayProvider',
+        name: r'pigeonGatewayProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$pigeonExampleGatewayHash();
+  String debugGetCreateSourceHash() => _$pigeonGatewayHash();
 
   @$internal
   @override
-  $ProviderElement<PigeonExampleGateway> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+  $ProviderElement<PigeonGateway> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
-  PigeonExampleGateway create(Ref ref) {
-    return pigeonExampleGateway(ref);
+  PigeonGateway create(Ref ref) {
+    return pigeonGateway(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(PigeonExampleGateway value) {
+  Override overrideWithValue(PigeonGateway value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<PigeonExampleGateway>(value),
+      providerOverride: $SyncValueProvider<PigeonGateway>(value),
     );
   }
 }
 
-String _$pigeonExampleGatewayHash() =>
-    r'45edd192ce4750b1376290039cad5cb59068cd79';
+String _$pigeonGatewayHash() => r'e7e9283b95eab8c82494d0c7be649825c797b615';
 
 @ProviderFor(arutanaGateway)
 const arutanaGatewayProvider = ArutanaGatewayProvider._();

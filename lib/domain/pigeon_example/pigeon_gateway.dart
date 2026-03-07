@@ -1,10 +1,10 @@
-import 'package:flutter_lab/data/gateway/pigeon/pigeon_api.g.dart';
+import 'package:flutter_lab/gen/pigeon/pigeon.g.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Gateway for the Pigeon ExampleHostApi demo.
 ///
 /// Abstracts native host API calls behind a domain-layer interface.
-abstract class PigeonExampleGateway {
+abstract class PigeonGateway {
   /// Returns the host platform language name (e.g. "Swift" or "Kotlin").
   AsyncResult<String> getHostLanguage();
 

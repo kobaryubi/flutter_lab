@@ -1,15 +1,15 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_lab/data/gateway/pigeon/pigeon_api.g.dart';
 import 'package:flutter_lab/data/platform/method_channel_names.dart';
 import 'package:flutter_lab/data/platform/method_names.dart';
-import 'package:flutter_lab/domain/pigeon_example/pigeon_example_gateway.dart';
+import 'package:flutter_lab/domain/pigeon_example/pigeon_gateway.dart';
+import 'package:flutter_lab/gen/pigeon/pigeon.g.dart';
 import 'package:result_dart/result_dart.dart';
 
-/// [PigeonExampleGateway] implementation backed by Pigeon-generated
+/// [PigeonGateway] implementation backed by Pigeon-generated
 /// [ExampleHostApi].
 ///
 /// Calls the native host to demonstrate various Pigeon API patterns.
-class PigeonExampleGatewayImpl implements PigeonExampleGateway {
+class PigeonPigeonGateway implements PigeonGateway {
   static const _channel = MethodChannel(MethodChannelNames.pigeon);
 
   final ExampleHostApi _exampleHostApi = ExampleHostApi();

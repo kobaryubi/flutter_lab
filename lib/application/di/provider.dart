@@ -11,7 +11,7 @@ import 'package:flutter_lab/data/gateway/file_system_shortcut_icon_gateway.dart'
 import 'package:flutter_lab/data/gateway/google_api/plugin_google_api_gateway.dart';
 import 'package:flutter_lab/data/gateway/native_button/platform_native_button_gateway.dart';
 import 'package:flutter_lab/data/gateway/permission/permission_handler_gateway.dart';
-import 'package:flutter_lab/data/gateway/pigeon_example/pigeon_example_gateway_impl.dart';
+import 'package:flutter_lab/data/gateway/pigeon_example/pigeon_pigeon_gateway.dart';
 import 'package:flutter_lab/data/gateway/text_recognition/mlkit_text_recognition_gateway.dart';
 import 'package:flutter_lab/data/repositories/agreement/shared_preferences_agreement_repository.dart';
 import 'package:flutter_lab/data/repositories/app_store/platform_app_store_repository.dart';
@@ -42,7 +42,7 @@ import 'package:flutter_lab/domain/native_button/native_button_gateway.dart';
 import 'package:flutter_lab/domain/navigation/url_navigation_list_repository.dart';
 import 'package:flutter_lab/domain/network/network_gateway.dart';
 import 'package:flutter_lab/domain/permission/permission_gateway.dart';
-import 'package:flutter_lab/domain/pigeon_example/pigeon_example_gateway.dart';
+import 'package:flutter_lab/domain/pigeon_example/pigeon_gateway.dart';
 import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/text_recognition/text_recognition_gateway.dart';
@@ -342,8 +342,7 @@ GetDeviceInfoUseCase getDeviceInfoUseCase(Ref ref) => GetDeviceInfoUseCase(
 GreetingApi greetingApi(Ref ref) => GreetingApi();
 
 @riverpod
-PigeonExampleGateway pigeonExampleGateway(Ref ref) =>
-    PigeonExampleGatewayImpl();
+PigeonGateway pigeonGateway(Ref ref) => PigeonPigeonGateway();
 
 // arutana
 @Riverpod(keepAlive: true)
