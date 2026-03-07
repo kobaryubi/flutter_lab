@@ -53,6 +53,18 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   @override
+  AsyncResult<bool> isRewardedAdReady() async {
+    try {
+      final isReady =
+          await AppLovinMAX.isRewardedAdReady(_rewardedAdUnitId) ?? false;
+
+      return Success(isReady);
+    } on Exception catch (exception) {
+      return Failure(exception);
+    }
+  }
+
+  @override
   AsyncResult<bool> showRewardedAd() async {
     try {
       final isReady =
