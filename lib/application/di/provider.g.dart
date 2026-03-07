@@ -2165,6 +2165,47 @@ final class ArutanaGatewayProvider
 
 String _$arutanaGatewayHash() => r'471876ccb0ccd0aa88b1b0857dee0ea1d93dce98';
 
+@ProviderFor(maxGateway)
+const maxGatewayProvider = MaxGatewayProvider._();
+
+final class MaxGatewayProvider
+    extends $FunctionalProvider<MaxGateway, MaxGateway, MaxGateway>
+    with $Provider<MaxGateway> {
+  const MaxGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'maxGatewayProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$maxGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<MaxGateway> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  MaxGateway create(Ref ref) {
+    return maxGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(MaxGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<MaxGateway>(value),
+    );
+  }
+}
+
+String _$maxGatewayHash() => r'5ef460c02ef99ace90ffd69b8fa54fdafa13eb09';
+
 @ProviderFor(googleApiGateway)
 const googleApiGatewayProvider = GoogleApiGatewayProvider._();
 
