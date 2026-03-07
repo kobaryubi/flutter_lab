@@ -34,6 +34,17 @@ class MaxViewModel extends _$MaxViewModel {
     state = state.copyWith(loadRewardedAd: loadRewardedAd);
   }
 
+  /// Checks whether a rewarded ad is ready to be shown.
+  Future<void> isRewardedAdReady() async {
+    final useCase = ref.read(isRewardedAdReadyUseCaseProvider);
+
+    final isRewardedAdReady = await AsyncValue.guard(
+      () async => (await useCase.call()).getOrThrow(),
+    );
+
+    state = state.copyWith(isRewardedAdReady: isRewardedAdReady);
+  }
+
   /// Shows a rewarded ad.
   Future<void> showRewardedAd() async {
     final useCase = ref.read(showRewardedAdUseCaseProvider);

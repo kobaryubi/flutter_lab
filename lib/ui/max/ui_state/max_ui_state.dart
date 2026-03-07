@@ -14,6 +14,9 @@ abstract class MaxUiState with _$MaxUiState {
     /// Result of loading a rewarded ad.
     AsyncValue<Unit>? loadRewardedAd,
 
+    /// Whether a rewarded ad is ready to be shown.
+    AsyncValue<bool>? isRewardedAdReady,
+
     /// Result of showing a rewarded ad.
     ///
     /// `true` if the user earned a reward.

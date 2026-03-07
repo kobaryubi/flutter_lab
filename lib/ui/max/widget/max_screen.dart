@@ -33,6 +33,11 @@ class _Body extends HookConsumerWidget {
       viewModel.loadRewardedAd();
     }
 
+    /// Checks whether a rewarded ad is ready.
+    void handleIsRewardedAdReady() {
+      viewModel.isRewardedAdReady();
+    }
+
     /// Shows a rewarded ad.
     void handleShowRewardedAd() {
       viewModel.showRewardedAd();
@@ -60,6 +65,17 @@ class _Body extends HookConsumerWidget {
           if (uiState.loadRewardedAd case AsyncData())
             const Text('Rewarded Ad: loaded'),
           if (uiState.loadRewardedAd case AsyncError(:final error))
+            Text('Error: $error'),
+
+          const SizedBox(height: 16),
+
+          GestureDetector(
+            onTap: handleIsRewardedAdReady,
+            child: const Text('Is Rewarded Ad Ready'),
+          ),
+          if (uiState.isRewardedAdReady case AsyncData(:final value))
+            Text('Ad ready: $value'),
+          if (uiState.isRewardedAdReady case AsyncError(:final error))
             Text('Error: $error'),
 
           const SizedBox(height: 16),
