@@ -9,6 +9,7 @@ import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart'
 import 'package:flutter_lab/data/gateway/device_info/device_info_plus_device_info_gateway.dart';
 import 'package:flutter_lab/data/gateway/file_system_shortcut_icon_gateway.dart';
 import 'package:flutter_lab/data/gateway/google_api/plugin_google_api_gateway.dart';
+import 'package:flutter_lab/data/gateway/max/sdk_max_gateway.dart';
 import 'package:flutter_lab/data/gateway/native_button/platform_native_button_gateway.dart';
 import 'package:flutter_lab/data/gateway/permission/permission_handler_gateway.dart';
 import 'package:flutter_lab/data/gateway/pigeon_example/pigeon_pigeon_gateway.dart';
@@ -38,6 +39,7 @@ import 'package:flutter_lab/domain/google_api/google_api_gateway.dart';
 import 'package:flutter_lab/domain/http_cache/http_cache_repository.dart';
 import 'package:flutter_lab/domain/in_app_review/in_app_review_repository.dart';
 import 'package:flutter_lab/domain/location/location_repository.dart';
+import 'package:flutter_lab/domain/max/max_gateway.dart';
 import 'package:flutter_lab/domain/native_button/native_button_gateway.dart';
 import 'package:flutter_lab/domain/navigation/url_navigation_list_repository.dart';
 import 'package:flutter_lab/domain/network/network_gateway.dart';
@@ -347,6 +349,13 @@ PigeonGateway pigeonGateway(Ref ref) => PigeonPigeonGateway();
 // arutana
 @Riverpod(keepAlive: true)
 ArutanaGateway arutanaGateway(Ref ref) => PigeonArutanaGateway();
+
+// max
+@Riverpod(keepAlive: true)
+MaxGateway maxGateway(Ref ref) => SdkMaxGateway(
+  sdkKey: '',
+  rewardedAdUnitId: '',
+);
 
 // google api
 @riverpod
