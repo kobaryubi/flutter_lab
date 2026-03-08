@@ -6,24 +6,15 @@ part 'max_view_model.g.dart';
 
 /// ViewModel for the MAX SDK rewarded ads demo screen.
 ///
-/// Provides methods to initialize the SDK, load, and show rewarded ads.
+/// Provides methods to load and show rewarded ads.
 @riverpod
 class MaxViewModel extends _$MaxViewModel {
   @override
   MaxUiState build() => const MaxUiState();
 
-  /// Initializes the AppLovin MAX SDK.
-  Future<void> initialize() async {
-    final useCase = ref.read(initializeMaxUseCaseProvider);
-
-    final initialization = await AsyncValue.guard(
-      () async => (await useCase.call()).getOrThrow(),
-    );
-
-    state = state.copyWith(initialization: initialization);
-  }
-
   /// Loads a rewarded ad.
+  ///
+  /// Completes when the ad is loaded and ready to be shown.
   Future<void> loadRewardedAd() async {
     final useCase = ref.read(loadRewardedAdUseCaseProvider);
 
@@ -32,17 +23,6 @@ class MaxViewModel extends _$MaxViewModel {
     );
 
     state = state.copyWith(loadRewardedAd: loadRewardedAd);
-  }
-
-  /// Checks whether a rewarded ad is ready to be shown.
-  Future<void> isRewardedAdReady() async {
-    final useCase = ref.read(isRewardedAdReadyUseCaseProvider);
-
-    final isRewardedAdReady = await AsyncValue.guard(
-      () async => (await useCase.call()).getOrThrow(),
-    );
-
-    state = state.copyWith(isRewardedAdReady: isRewardedAdReady);
   }
 
   /// Shows a rewarded ad.

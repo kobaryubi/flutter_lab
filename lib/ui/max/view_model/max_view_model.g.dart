@@ -10,19 +10,19 @@ part of 'max_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 /// ViewModel for the MAX SDK rewarded ads demo screen.
 ///
-/// Provides methods to initialize the SDK, load, and show rewarded ads.
+/// Provides methods to load and show rewarded ads.
 
 @ProviderFor(MaxViewModel)
 const maxViewModelProvider = MaxViewModelProvider._();
 
 /// ViewModel for the MAX SDK rewarded ads demo screen.
 ///
-/// Provides methods to initialize the SDK, load, and show rewarded ads.
+/// Provides methods to load and show rewarded ads.
 final class MaxViewModelProvider
     extends $NotifierProvider<MaxViewModel, MaxUiState> {
   /// ViewModel for the MAX SDK rewarded ads demo screen.
   ///
-  /// Provides methods to initialize the SDK, load, and show rewarded ads.
+  /// Provides methods to load and show rewarded ads.
   const MaxViewModelProvider._()
     : super(
         from: null,
@@ -50,11 +50,11 @@ final class MaxViewModelProvider
   }
 }
 
-String _$maxViewModelHash() => r'01dba5b4792b6cc676cb6f7eae1ca05a0afbe7ad';
+String _$maxViewModelHash() => r'91fb20768eea7b13d2bc9956aed099543f559008';
 
 /// ViewModel for the MAX SDK rewarded ads demo screen.
 ///
-/// Provides methods to initialize the SDK, load, and show rewarded ads.
+/// Provides methods to load and show rewarded ads.
 
 abstract class _$MaxViewModel extends $Notifier<MaxUiState> {
   MaxUiState build();
