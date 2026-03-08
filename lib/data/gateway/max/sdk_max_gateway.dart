@@ -83,6 +83,17 @@ class SdkMaxGateway implements MaxGateway {
     }
   }
 
+  @override
+  Result<Unit> showMediationDebugger() {
+    try {
+      AppLovinMAX.showMediationDebugger();
+
+      return const Success(unit);
+    } on Exception catch (exception) {
+      return Failure(exception);
+    }
+  }
+
   /// Handles successful ad load.
   void _handleAdLoaded(MaxAd ad) {
     _loadAdCompleter.complete(true);

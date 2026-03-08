@@ -60,6 +60,7 @@ import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart
 import 'package:flutter_lab/domain/use_cases/location/watch_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/max/initialize_max_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/max/load_rewarded_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/max/show_mediation_debugger_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/max/show_rewarded_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/native_button/watch_native_button_tap_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/network/watch_connectivity_use_case.dart';
@@ -376,6 +377,12 @@ LoadRewardedAdUseCase loadRewardedAdUseCase(Ref ref) => LoadRewardedAdUseCase(
 ShowRewardedAdUseCase showRewardedAdUseCase(Ref ref) => ShowRewardedAdUseCase(
   maxGateway: ref.read(maxGatewayProvider),
 );
+
+@riverpod
+ShowMediationDebuggerUseCase showMediationDebuggerUseCase(Ref ref) =>
+    ShowMediationDebuggerUseCase(
+      maxGateway: ref.read(maxGatewayProvider),
+    );
 
 // google api
 @riverpod

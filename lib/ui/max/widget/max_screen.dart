@@ -44,6 +44,11 @@ class _Body extends HookConsumerWidget {
       viewModel.showRewardedAd();
     }
 
+    /// Opens the mediation debugger overlay.
+    void handleMediationDebugger() {
+      viewModel.showMediationDebugger();
+    }
+
     return Center(
       child: Column(
         mainAxisAlignment: .center,
@@ -71,6 +76,13 @@ class _Body extends HookConsumerWidget {
 
           if (uiState.showRewardedAd case AsyncError(:final error))
             Text('Error: $error'),
+
+          const SizedBox(height: 32),
+
+          GestureDetector(
+            onTap: handleMediationDebugger,
+            child: const Text('Mediation Debugger'),
+          ),
         ],
       ),
     );

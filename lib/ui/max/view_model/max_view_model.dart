@@ -35,4 +35,9 @@ class MaxViewModel extends _$MaxViewModel {
 
     state = state.copyWith(showRewardedAd: showRewardedAd);
   }
+
+  /// Opens the AppLovin mediation debugger overlay.
+  void showMediationDebugger() {
+    ref.read(showMediationDebuggerUseCaseProvider).call();
+  }
 }

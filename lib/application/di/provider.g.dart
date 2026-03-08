@@ -2350,6 +2350,55 @@ final class ShowRewardedAdUseCaseProvider
 String _$showRewardedAdUseCaseHash() =>
     r'098dd7dc40ba4e2e2d70d424189f5d8dd7335f6c';
 
+@ProviderFor(showMediationDebuggerUseCase)
+const showMediationDebuggerUseCaseProvider =
+    ShowMediationDebuggerUseCaseProvider._();
+
+final class ShowMediationDebuggerUseCaseProvider
+    extends
+        $FunctionalProvider<
+          ShowMediationDebuggerUseCase,
+          ShowMediationDebuggerUseCase,
+          ShowMediationDebuggerUseCase
+        >
+    with $Provider<ShowMediationDebuggerUseCase> {
+  const ShowMediationDebuggerUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'showMediationDebuggerUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$showMediationDebuggerUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ShowMediationDebuggerUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ShowMediationDebuggerUseCase create(Ref ref) {
+    return showMediationDebuggerUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ShowMediationDebuggerUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ShowMediationDebuggerUseCase>(value),
+    );
+  }
+}
+
+String _$showMediationDebuggerUseCaseHash() =>
+    r'326d9c73751e8f2688426ad51d1618c4245b577f';
+
 @ProviderFor(googleApiGateway)
 const googleApiGatewayProvider = GoogleApiGatewayProvider._();
 
