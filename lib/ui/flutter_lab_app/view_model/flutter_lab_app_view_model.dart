@@ -13,11 +13,19 @@ class FlutterLabAppViewModel extends _$FlutterLabAppViewModel {
 
   @override
   FlutterLabAppUiState build() {
-    final useCase = ref.read(onTokenRefreshUseCaseProvider);
-    _subscription = useCase.call().listen(_handleTokenRefresh);
+    final onTokenRefreshUseCase = ref.read(onTokenRefreshUseCaseProvider);
+    _subscription = onTokenRefreshUseCase.call().listen(_handleTokenRefresh);
     ref.onDispose(() => _subscription?.cancel());
 
+    _initializeMax();
+
     return const FlutterLabAppUiState();
+  }
+
+  /// Initializes the AppLovin MAX SDK at app startup (fire-and-forget).
+  Future<void> _initializeMax() async {
+    final useCase = ref.read(initializeMaxUseCaseProvider);
+    await useCase.call();
   }
 
   /// Handles token refresh events by registering the new token.
