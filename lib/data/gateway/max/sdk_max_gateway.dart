@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:applovin_max/applovin_max.dart';
 import 'package:flutter_lab/domain/max/max_gateway.dart';
 import 'package:result_dart/result_dart.dart';
@@ -17,6 +19,7 @@ class SdkMaxGateway implements MaxGateway {
   final String _sdkKey;
   final String _rewardedAdUnitId;
 
+  Completer<bool> _loadAdCompleter = Completer<bool>();
   bool _isRewardEarned = false;
 
   @override
@@ -31,8 +34,9 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   @override
-  AsyncResult<Unit> loadRewardedAd() async {
+  AsyncResult<bool> loadRewardedAd() async {
     try {
+      _loadAdCompleter = Completer<bool>();
       AppLovinMAX.setRewardedAdListener(
         RewardedAdListener(
           onAdLoadedCallback: _handleAdLoaded,
@@ -46,19 +50,9 @@ class SdkMaxGateway implements MaxGateway {
       );
       AppLovinMAX.loadRewardedAd(_rewardedAdUnitId);
 
-      return const Success(unit);
-    } on Exception catch (exception) {
-      return Failure(exception);
-    }
-  }
+      final isLoaded = await _loadAdCompleter.future;
 
-  @override
-  AsyncResult<bool> isRewardedAdReady() async {
-    try {
-      final isReady =
-          await AppLovinMAX.isRewardedAdReady(_rewardedAdUnitId) ?? false;
-
-      return Success(isReady);
+      return Success(isLoaded);
     } on Exception catch (exception) {
       return Failure(exception);
     }
@@ -84,10 +78,16 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   /// Handles successful ad load.
-  void _handleAdLoaded(MaxAd ad) {}
+  void _handleAdLoaded(MaxAd ad) {
+    _loadAdCompleter.complete(true);
+  }
 
   /// Handles ad load failure.
-  void _handleAdLoadFailed(String adUnitId, MaxError error) {}
+  void _handleAdLoadFailed(String adUnitId, MaxError error) {
+    _loadAdCompleter.completeError(
+      Exception('Failed to load ad: ${error.message}'),
+    );
+  }
 
   /// Handles ad displayed event.
   void _handleAdDisplayed(MaxAd ad) {}
