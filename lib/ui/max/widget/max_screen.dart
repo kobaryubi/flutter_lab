@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/max/view_model/max_view_model.dart';
@@ -23,69 +24,51 @@ class _Body extends HookConsumerWidget {
     final uiState = ref.watch(maxViewModelProvider);
     final viewModel = ref.read(maxViewModelProvider.notifier);
 
-    /// Initializes the AppLovin MAX SDK.
-    void handleInitialize() {
-      viewModel.initialize();
-    }
+    /// Automatically loads a rewarded ad when the screen opens.
+    useEffect(
+      () {
+        viewModel.loadRewardedAd();
 
-    /// Loads a rewarded ad.
-    void handleLoadRewardedAd() {
-      viewModel.loadRewardedAd();
-    }
+        return null;
+      },
+      [],
+    );
 
-    /// Checks whether a rewarded ad is ready.
-    void handleIsRewardedAdReady() {
-      viewModel.isRewardedAdReady();
-    }
+    final isAdReady = switch (uiState.loadRewardedAd) {
+      AsyncData(value: true) => true,
+      _ => false,
+    };
 
-    /// Shows a rewarded ad.
-    void handleShowRewardedAd() {
+    /// Shows the rewarded ad.
+    void handleWatchAd() {
       viewModel.showRewardedAd();
     }
 
-    return SingleChildScrollView(
+    return Center(
       child: Column(
-        crossAxisAlignment: .start,
+        mainAxisAlignment: .center,
         children: [
-          GestureDetector(
-            onTap: handleInitialize,
-            child: const Text('Initialize SDK'),
-          ),
-          if (uiState.initialization case AsyncData())
-            const Text('SDK: initialized'),
-          if (uiState.initialization case AsyncError(:final error))
-            Text('Error: $error'),
+          if (uiState.loadRewardedAd is AsyncLoading)
+            const Text('Loading ad...'),
 
-          const SizedBox(height: 16),
-
-          GestureDetector(
-            onTap: handleLoadRewardedAd,
-            child: const Text('Load Rewarded Ad'),
-          ),
-          if (uiState.loadRewardedAd case AsyncData())
-            const Text('Rewarded Ad: loaded'),
           if (uiState.loadRewardedAd case AsyncError(:final error))
             Text('Error: $error'),
 
-          const SizedBox(height: 16),
-
           GestureDetector(
-            onTap: handleIsRewardedAdReady,
-            child: const Text('Is Rewarded Ad Ready'),
+            onTap: isAdReady ? handleWatchAd : null,
+            child: Text(
+              'Watch Ad',
+              style: TextStyle(
+                color: isAdReady
+                    ? const Color(0xFF000000)
+                    : const Color(0xFF999999),
+              ),
+            ),
           ),
-          if (uiState.isRewardedAdReady case AsyncData(:final value))
-            Text('Ad ready: $value'),
-          if (uiState.isRewardedAdReady case AsyncError(:final error))
-            Text('Error: $error'),
 
-          const SizedBox(height: 16),
-
-          GestureDetector(
-            onTap: handleShowRewardedAd,
-            child: const Text('Show Rewarded Ad'),
-          ),
           if (uiState.showRewardedAd case AsyncData(:final value))
             Text('Reward earned: $value'),
+
           if (uiState.showRewardedAd case AsyncError(:final error))
             Text('Error: $error'),
         ],
