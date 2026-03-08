@@ -9,5 +9,7 @@ class LoadRewardedAdUseCase {
   final MaxGateway _maxGateway;
 
   /// Loads a rewarded ad.
-  AsyncResult<Unit> call() => _maxGateway.loadRewardedAd();
+  ///
+  /// Completes with `true` when the ad is loaded and ready to be shown.
+  AsyncResult<bool> call() => _maxGateway.loadRewardedAd();
 }
