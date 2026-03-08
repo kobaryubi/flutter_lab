@@ -59,7 +59,6 @@ import 'package:flutter_lab/domain/use_cases/in_app_review/request_review_use_ca
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/watch_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/max/initialize_max_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/max/is_rewarded_ad_ready_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/max/load_rewarded_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/max/show_rewarded_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/native_button/watch_native_button_tap_use_case.dart';
@@ -365,12 +364,6 @@ MaxGateway maxGateway(Ref ref) => SdkMaxGateway(
 InitializeMaxUseCase initializeMaxUseCase(Ref ref) => InitializeMaxUseCase(
   maxGateway: ref.read(maxGatewayProvider),
 );
-
-@riverpod
-IsRewardedAdReadyUseCase isRewardedAdReadyUseCase(Ref ref) =>
-    IsRewardedAdReadyUseCase(
-      maxGateway: ref.read(maxGatewayProvider),
-    );
 
 @riverpod
 LoadRewardedAdUseCase loadRewardedAdUseCase(Ref ref) => LoadRewardedAdUseCase(

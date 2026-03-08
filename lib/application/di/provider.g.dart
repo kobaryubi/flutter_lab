@@ -2254,54 +2254,6 @@ final class InitializeMaxUseCaseProvider
 String _$initializeMaxUseCaseHash() =>
     r'840ab09cb19f10768827431a9bbc0971a5c5f142';
 
-@ProviderFor(isRewardedAdReadyUseCase)
-const isRewardedAdReadyUseCaseProvider = IsRewardedAdReadyUseCaseProvider._();
-
-final class IsRewardedAdReadyUseCaseProvider
-    extends
-        $FunctionalProvider<
-          IsRewardedAdReadyUseCase,
-          IsRewardedAdReadyUseCase,
-          IsRewardedAdReadyUseCase
-        >
-    with $Provider<IsRewardedAdReadyUseCase> {
-  const IsRewardedAdReadyUseCaseProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'isRewardedAdReadyUseCaseProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$isRewardedAdReadyUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<IsRewardedAdReadyUseCase> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  IsRewardedAdReadyUseCase create(Ref ref) {
-    return isRewardedAdReadyUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(IsRewardedAdReadyUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<IsRewardedAdReadyUseCase>(value),
-    );
-  }
-}
-
-String _$isRewardedAdReadyUseCaseHash() =>
-    r'7b4a9b8de138b73189fdadc10d4dc87a591e1d74';
-
 @ProviderFor(loadRewardedAdUseCase)
 const loadRewardedAdUseCaseProvider = LoadRewardedAdUseCaseProvider._();
 
