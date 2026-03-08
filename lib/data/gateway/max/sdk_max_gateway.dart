@@ -10,14 +10,19 @@ class SdkMaxGateway implements MaxGateway {
   ///
   /// [sdkKey] is the AppLovin SDK key. Pass an empty string for template mode.
   /// [rewardedAdUnitId] is the ad unit ID for rewarded ads per platform.
+  /// [testDeviceAdvertisingIds] is a list of device advertising IDs
+  /// for test mode.
   SdkMaxGateway({
     required String sdkKey,
     required String rewardedAdUnitId,
+    List<String> testDeviceAdvertisingIds = const [],
   }) : _sdkKey = sdkKey,
-       _rewardedAdUnitId = rewardedAdUnitId;
+       _rewardedAdUnitId = rewardedAdUnitId,
+       _testDeviceAdvertisingIds = testDeviceAdvertisingIds;
 
   final String _sdkKey;
   final String _rewardedAdUnitId;
+  final List<String> _testDeviceAdvertisingIds;
 
   Completer<bool> _loadAdCompleter = Completer<bool>();
   bool _isRewardEarned = false;
@@ -25,6 +30,7 @@ class SdkMaxGateway implements MaxGateway {
   @override
   AsyncResult<Unit> initialize() async {
     try {
+      AppLovinMAX.setTestDeviceAdvertisingIds(_testDeviceAdvertisingIds);
       await AppLovinMAX.initialize(_sdkKey);
 
       return const Success(unit);

@@ -16,4 +16,14 @@ class F {
         return 'Flutter Lab';
     }
   }
+
+  /// Test device advertising IDs for AppLovin MAX SDK test mode.
+  static List<String> get testDeviceAdvertisingIds {
+    switch (appFlavor) {
+      case Flavor.local:
+        return ['TODO-IDFA', 'TODO-GAID'];
+      case Flavor.production:
+        return [];
+    }
+  }
 }

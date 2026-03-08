@@ -72,6 +72,7 @@ import 'package:flutter_lab/domain/use_cases/push_notification/request_push_noti
 import 'package:flutter_lab/domain/use_cases/shortcut/copy_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/delete_all_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/text_recognition/recognize_text_use_case.dart';
+import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/gen/pigeon/pigeon.g.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -358,6 +359,7 @@ ArutanaGateway arutanaGateway(Ref ref) => PigeonArutanaGateway();
 MaxGateway maxGateway(Ref ref) => SdkMaxGateway(
   sdkKey: '',
   rewardedAdUnitId: '',
+  testDeviceAdvertisingIds: F.testDeviceAdvertisingIds,
 );
 
 @riverpod
