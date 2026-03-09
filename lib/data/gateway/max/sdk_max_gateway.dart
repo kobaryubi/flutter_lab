@@ -28,6 +28,7 @@ class SdkMaxGateway implements MaxGateway {
   final bool _isVerboseLoggingEnabled;
 
   Completer<Unit> _loadAdCompleter = Completer<Unit>();
+  Completer<Unit> _showAdCompleter = Completer<Unit>();
   bool _isRewardEarned = false;
 
   @override
@@ -79,7 +80,10 @@ class SdkMaxGateway implements MaxGateway {
       }
 
       _isRewardEarned = false;
+      _showAdCompleter = Completer<Unit>();
       AppLovinMAX.showRewardedAd(_rewardedAdUnitId);
+
+      await _showAdCompleter.future;
 
       return Success(_isRewardEarned);
     } on Exception catch (exception) {
@@ -114,13 +118,19 @@ class SdkMaxGateway implements MaxGateway {
   void _handleAdDisplayed(MaxAd ad) {}
 
   /// Handles ad display failure.
-  void _handleAdDisplayFailed(MaxAd ad, MaxError error) {}
+  void _handleAdDisplayFailed(MaxAd ad, MaxError error) {
+    _showAdCompleter.completeError(
+      Exception('Failed to display ad: ${error.code.value}'),
+    );
+  }
 
   /// Handles ad clicked event.
   void _handleAdClicked(MaxAd ad) {}
 
   /// Handles ad hidden event.
-  void _handleAdHidden(MaxAd ad) {}
+  void _handleAdHidden(MaxAd ad) {
+    _showAdCompleter.complete(unit);
+  }
 
   /// Handles reward received event.
   void _handleAdReceivedReward(MaxAd ad, MaxReward reward) {
