@@ -13,6 +13,7 @@ import 'package:flutter_lab/data/gateway/max/sdk_max_gateway.dart';
 import 'package:flutter_lab/data/gateway/native_button/platform_native_button_gateway.dart';
 import 'package:flutter_lab/data/gateway/permission/permission_handler_gateway.dart';
 import 'package:flutter_lab/data/gateway/pigeon_example/pigeon_pigeon_gateway.dart';
+import 'package:flutter_lab/data/gateway/profile_passport/pigeon_profile_passport_gateway.dart';
 import 'package:flutter_lab/data/gateway/text_recognition/mlkit_text_recognition_gateway.dart';
 import 'package:flutter_lab/data/repositories/agreement/shared_preferences_agreement_repository.dart';
 import 'package:flutter_lab/data/repositories/app_store/platform_app_store_repository.dart';
@@ -45,6 +46,7 @@ import 'package:flutter_lab/domain/navigation/url_navigation_list_repository.dar
 import 'package:flutter_lab/domain/network/network_gateway.dart';
 import 'package:flutter_lab/domain/permission/permission_gateway.dart';
 import 'package:flutter_lab/domain/pigeon_example/pigeon_gateway.dart';
+import 'package:flutter_lab/domain/profile_passport/profile_passport_gateway.dart';
 import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/text_recognition/text_recognition_gateway.dart';
@@ -354,6 +356,11 @@ PigeonGateway pigeonGateway(Ref ref) => PigeonPigeonGateway();
 // arutana
 @Riverpod(keepAlive: true)
 ArutanaGateway arutanaGateway(Ref ref) => PigeonArutanaGateway();
+
+// profile passport
+@Riverpod(keepAlive: true)
+ProfilePassportGateway profilePassportGateway(Ref ref) =>
+    PigeonProfilePassportGateway();
 
 // max
 @Riverpod(keepAlive: true)

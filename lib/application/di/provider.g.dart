@@ -2165,6 +2165,54 @@ final class ArutanaGatewayProvider
 
 String _$arutanaGatewayHash() => r'471876ccb0ccd0aa88b1b0857dee0ea1d93dce98';
 
+@ProviderFor(profilePassportGateway)
+const profilePassportGatewayProvider = ProfilePassportGatewayProvider._();
+
+final class ProfilePassportGatewayProvider
+    extends
+        $FunctionalProvider<
+          ProfilePassportGateway,
+          ProfilePassportGateway,
+          ProfilePassportGateway
+        >
+    with $Provider<ProfilePassportGateway> {
+  const ProfilePassportGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'profilePassportGatewayProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$profilePassportGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<ProfilePassportGateway> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ProfilePassportGateway create(Ref ref) {
+    return profilePassportGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ProfilePassportGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ProfilePassportGateway>(value),
+    );
+  }
+}
+
+String _$profilePassportGatewayHash() =>
+    r'09d67170f7bebd1c749ac795de264952ff3d5df5';
+
 @ProviderFor(maxGateway)
 const maxGatewayProvider = MaxGatewayProvider._();
 
