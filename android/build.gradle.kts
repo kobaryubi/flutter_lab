@@ -1,3 +1,17 @@
+buildscript {
+    repositories {
+        maven {
+            url = uri("https://storage.googleapis.com/r8-releases/raw")
+        }
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.9.0")
+        classpath("com.android.tools:r8:8.9.35")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
+        classpath("com.google.gms:google-services:4.3.15")
+    }
+}
+
 allprojects {
     repositories {
         google()
