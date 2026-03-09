@@ -2213,6 +2213,58 @@ final class ProfilePassportGatewayProvider
 String _$profilePassportGatewayHash() =>
     r'09d67170f7bebd1c749ac795de264952ff3d5df5';
 
+@ProviderFor(startProfilePassportServiceUseCase)
+const startProfilePassportServiceUseCaseProvider =
+    StartProfilePassportServiceUseCaseProvider._();
+
+final class StartProfilePassportServiceUseCaseProvider
+    extends
+        $FunctionalProvider<
+          StartProfilePassportServiceUseCase,
+          StartProfilePassportServiceUseCase,
+          StartProfilePassportServiceUseCase
+        >
+    with $Provider<StartProfilePassportServiceUseCase> {
+  const StartProfilePassportServiceUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'startProfilePassportServiceUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$startProfilePassportServiceUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<StartProfilePassportServiceUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  StartProfilePassportServiceUseCase create(Ref ref) {
+    return startProfilePassportServiceUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(StartProfilePassportServiceUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<StartProfilePassportServiceUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$startProfilePassportServiceUseCaseHash() =>
+    r'e3fb27f915b286fd9310e0347139f47794d2faf6';
+
 @ProviderFor(maxGateway)
 const maxGatewayProvider = MaxGatewayProvider._();
 
