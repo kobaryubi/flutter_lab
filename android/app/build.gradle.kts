@@ -45,6 +45,8 @@ android {
 dependencies {
     implementation(libs.androidx.browser)
     implementation(libs.androidx.lifecycle.process)
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.android.gms:play-services-ads-identifier:18.0.1")
 }
 
 flutter {
