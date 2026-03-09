@@ -41,9 +41,9 @@ List<RouteBase> get $appRoutes => [
   $ocrRoute,
   $permissionRoute,
   $pigeonRoute,
-  $profilePassportRoute,
   $popScopeRoute,
   $portalRoute,
+  $profilePassportRoute,
   $pushNotificationRoute,
   $routeAwareDemoRoute,
   $routeAwareDemoDetailRoute,
@@ -924,32 +924,6 @@ mixin $PigeonRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $profilePassportRoute => GoRouteData.$route(
-  path: '/profile_passport',
-  factory: $ProfilePassportRoute._fromState,
-);
-
-mixin $ProfilePassportRoute on GoRouteData {
-  static ProfilePassportRoute _fromState(GoRouterState state) =>
-      ProfilePassportRoute();
-
-  @override
-  String get location => GoRouteData.$location('/profile_passport');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
 RouteBase get $popScopeRoute =>
     GoRouteData.$route(path: '/pop_scope', factory: $PopScopeRoute._fromState);
 
@@ -981,6 +955,32 @@ mixin $PortalRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/portal');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $profilePassportRoute => GoRouteData.$route(
+  path: '/profile_passport',
+  factory: $ProfilePassportRoute._fromState,
+);
+
+mixin $ProfilePassportRoute on GoRouteData {
+  static ProfilePassportRoute _fromState(GoRouterState state) =>
+      ProfilePassportRoute();
+
+  @override
+  String get location => GoRouteData.$location('/profile_passport');
 
   @override
   void go(BuildContext context) => context.go(location);
