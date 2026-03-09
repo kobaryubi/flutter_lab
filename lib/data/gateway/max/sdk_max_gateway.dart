@@ -27,7 +27,7 @@ class SdkMaxGateway implements MaxGateway {
   final List<String> _testDeviceAdvertisingIds;
   final bool _isVerboseLoggingEnabled;
 
-  Completer<bool> _loadAdCompleter = Completer<bool>();
+  Completer<Unit> _loadAdCompleter = Completer<Unit>();
   bool _isRewardEarned = false;
 
   @override
@@ -44,9 +44,9 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   @override
-  AsyncResult<bool> loadRewardedAd() async {
+  AsyncResult<Unit> loadRewardedAd() async {
     try {
-      _loadAdCompleter = Completer<bool>();
+      _loadAdCompleter = Completer<Unit>();
       AppLovinMAX.setRewardedAdListener(
         RewardedAdListener(
           onAdLoadedCallback: _handleAdLoaded,
@@ -60,9 +60,9 @@ class SdkMaxGateway implements MaxGateway {
       );
       AppLovinMAX.loadRewardedAd(_rewardedAdUnitId);
 
-      final isLoaded = await _loadAdCompleter.future;
+      await _loadAdCompleter.future;
 
-      return Success(isLoaded);
+      return const Success(unit);
     } on Exception catch (exception) {
       return Failure(exception);
     }
@@ -100,13 +100,13 @@ class SdkMaxGateway implements MaxGateway {
 
   /// Handles successful ad load.
   void _handleAdLoaded(MaxAd ad) {
-    _loadAdCompleter.complete(true);
+    _loadAdCompleter.complete(unit);
   }
 
   /// Handles ad load failure.
   void _handleAdLoadFailed(String adUnitId, MaxError error) {
     _loadAdCompleter.completeError(
-      Exception('Failed to load ad: ${error.message}'),
+      Exception('Failed to load ad: ${error.code.value}'),
     );
   }
 

@@ -34,10 +34,7 @@ class _Body extends HookConsumerWidget {
       [],
     );
 
-    final isAdReady = switch (uiState.loadRewardedAd) {
-      AsyncData(value: true) => true,
-      _ => false,
-    };
+    final isAdReady = uiState.loadRewardedAd is AsyncData;
 
     /// Shows the rewarded ad.
     void handleWatchAd() {

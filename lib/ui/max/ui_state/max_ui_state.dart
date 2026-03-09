@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:result_dart/result_dart.dart';
 
 part 'max_ui_state.freezed.dart';
 
@@ -8,9 +9,7 @@ part 'max_ui_state.freezed.dart';
 abstract class MaxUiState with _$MaxUiState {
   const factory MaxUiState({
     /// Result of loading a rewarded ad.
-    ///
-    /// `true` when the ad is loaded and ready to be shown.
-    AsyncValue<bool>? loadRewardedAd,
+    AsyncValue<Unit>? loadRewardedAd,
 
     /// Result of showing a rewarded ad.
     ///
