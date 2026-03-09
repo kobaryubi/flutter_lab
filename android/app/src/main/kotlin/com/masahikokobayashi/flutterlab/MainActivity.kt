@@ -15,7 +15,9 @@ import com.masahikokobayashi.flutterlab.pigeon.FlutterError
 import com.masahikokobayashi.flutterlab.pigeon.GreetingApi
 import com.masahikokobayashi.flutterlab.pigeon.MessageData
 import com.masahikokobayashi.flutterlab.pigeon.MessageFlutterApi
+import com.masahikokobayashi.flutterlab.pigeon.ProfilePassportHostApi
 import com.masahikokobayashi.flutterlab.pigeon.gateway.ArutanaHostApiImpl
+import com.masahikokobayashi.flutterlab.pigeon.gateway.ProfilePassportHostApiImpl
 import com.masahikokobayashi.flutterlab.infrastructure.platform.ErrorCodes
 import com.masahikokobayashi.flutterlab.infrastructure.platform.EventChannelNames
 import com.masahikokobayashi.flutterlab.infrastructure.platform.MethodChannelNames
@@ -87,6 +89,9 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
 
         // Register Pigeon ExampleHostApi
         ExampleHostApi.setUp(flutterEngine.dartExecutor.binaryMessenger, ExampleHostApiImpl())
+
+        // Register Pigeon ProfilePassportHostApi
+        ProfilePassportHostApi.setUp(flutterEngine.dartExecutor.binaryMessenger, ProfilePassportHostApiImpl(this))
 
         // Register Pigeon FlutterApi (native → Dart)
         pigeonFlutterApi = PigeonFlutterApi(flutterEngine.dartExecutor.binaryMessenger)
