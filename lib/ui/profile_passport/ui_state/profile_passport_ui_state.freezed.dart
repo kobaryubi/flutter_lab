@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 mixin _$ProfilePassportUiState {
 
 /// Result of starting the PPSDK service.
- AsyncValue<void>? get startService;
+ AsyncValue<Unit>? get startService;
 /// Create a copy of ProfilePassportUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46,7 +46,7 @@ abstract mixin class $ProfilePassportUiStateCopyWith<$Res>  {
   factory $ProfilePassportUiStateCopyWith(ProfilePassportUiState value, $Res Function(ProfilePassportUiState) _then) = _$ProfilePassportUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<void>? startService
+ AsyncValue<Unit>? startService
 });
 
 
@@ -66,7 +66,7 @@ class _$ProfilePassportUiStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? startService = freezed,}) {
   return _then(_self.copyWith(
 startService: freezed == startService ? _self.startService : startService // ignore: cast_nullable_to_non_nullable
-as AsyncValue<void>?,
+as AsyncValue<Unit>?,
   ));
 }
 
@@ -151,7 +151,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<void>? startService)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Unit>? startService)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfilePassportUiState() when $default != null:
 return $default(_that.startService);case _:
@@ -172,7 +172,7 @@ return $default(_that.startService);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<void>? startService)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Unit>? startService)  $default,) {final _that = this;
 switch (_that) {
 case _ProfilePassportUiState():
 return $default(_that.startService);case _:
@@ -192,7 +192,7 @@ return $default(_that.startService);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<void>? startService)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Unit>? startService)?  $default,) {final _that = this;
 switch (_that) {
 case _ProfilePassportUiState() when $default != null:
 return $default(_that.startService);case _:
@@ -211,7 +211,7 @@ class _ProfilePassportUiState implements ProfilePassportUiState {
   
 
 /// Result of starting the PPSDK service.
-@override final  AsyncValue<void>? startService;
+@override final  AsyncValue<Unit>? startService;
 
 /// Create a copy of ProfilePassportUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -243,7 +243,7 @@ abstract mixin class _$ProfilePassportUiStateCopyWith<$Res> implements $ProfileP
   factory _$ProfilePassportUiStateCopyWith(_ProfilePassportUiState value, $Res Function(_ProfilePassportUiState) _then) = __$ProfilePassportUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<void>? startService
+ AsyncValue<Unit>? startService
 });
 
 
@@ -263,7 +263,7 @@ class __$ProfilePassportUiStateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? startService = freezed,}) {
   return _then(_ProfilePassportUiState(
 startService: freezed == startService ? _self.startService : startService // ignore: cast_nullable_to_non_nullable
-as AsyncValue<void>?,
+as AsyncValue<Unit>?,
   ));
 }
 
