@@ -2304,7 +2304,7 @@ final class MaxGatewayProvider
   }
 }
 
-String _$maxGatewayHash() => r'069c0aefe6bcef06ce3c12fd7c30150f0756c983';
+String _$maxGatewayHash() => r'9f4080c6763c7c94423018b8fb7dc0ca77a97163';
 
 @ProviderFor(initializeMaxUseCase)
 const initializeMaxUseCaseProvider = InitializeMaxUseCaseProvider._();

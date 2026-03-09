@@ -374,8 +374,9 @@ StartProfilePassportServiceUseCase startProfilePassportServiceUseCase(
 @Riverpod(keepAlive: true)
 MaxGateway maxGateway(Ref ref) => SdkMaxGateway(
   sdkKey: '',
-  rewardedAdUnitId: '',
+  rewardedAdUnitId: Platform.isIOS ? '' : '',
   testDeviceAdvertisingIds: F.testDeviceAdvertisingIds,
+  isVerboseLoggingEnabled: F.appFlavor == Flavor.local,
 );
 
 @riverpod

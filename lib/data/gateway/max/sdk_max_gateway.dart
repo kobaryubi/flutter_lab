@@ -16,13 +16,16 @@ class SdkMaxGateway implements MaxGateway {
     required String sdkKey,
     required String rewardedAdUnitId,
     List<String> testDeviceAdvertisingIds = const [],
+    bool isVerboseLoggingEnabled = false,
   }) : _sdkKey = sdkKey,
        _rewardedAdUnitId = rewardedAdUnitId,
-       _testDeviceAdvertisingIds = testDeviceAdvertisingIds;
+       _testDeviceAdvertisingIds = testDeviceAdvertisingIds,
+       _isVerboseLoggingEnabled = isVerboseLoggingEnabled;
 
   final String _sdkKey;
   final String _rewardedAdUnitId;
   final List<String> _testDeviceAdvertisingIds;
+  final bool _isVerboseLoggingEnabled;
 
   Completer<bool> _loadAdCompleter = Completer<bool>();
   bool _isRewardEarned = false;
@@ -30,6 +33,7 @@ class SdkMaxGateway implements MaxGateway {
   @override
   AsyncResult<Unit> initialize() async {
     try {
+      AppLovinMAX.setVerboseLogging(_isVerboseLoggingEnabled);
       AppLovinMAX.setTestDeviceAdvertisingIds(_testDeviceAdvertisingIds);
       await AppLovinMAX.initialize(_sdkKey);
 
