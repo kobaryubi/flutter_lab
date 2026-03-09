@@ -54,6 +54,11 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
+    implementation(files("libs/ProfilePassportCore_Release_PRO_3.7.2.aar"))
+    implementation(files("libs/ProfilePassportNotice_Release_PRO_3.7.2.aar"))
+    implementation(files("libs/ProfilePassportGeofence_Release_PRO_3.7.2.aar"))
+    implementation(files("libs/ProfilePassportADID_Release_PRO_3.7.2.aar"))
 }
 
 flutter {
