@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter_lab/data/mapper/pet/pet_mapper.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
-import 'package:flutter_lab/data/service/dio/petstore_client.dart' as api;
 import 'package:flutter_lab/domain/entity/pet/pet.dart';
 import 'package:petstore/petstore.dart' as petstore;
 import 'package:result_dart/result_dart.dart';
@@ -12,27 +11,58 @@ class PetRepositoryRemote implements PetRepository {
     : _petsApi = petstore.Petstore(
         dio: dio,
       ).getPetsApi() {
-    final options = CacheOptions(store: _cacheStore);
-    dio.interceptors.add(DioCacheInterceptor(options: options));
+    final globalOptions = CacheOptions(
+      store: _cacheStore,
+      policy: .noCache,
+    );
+    dio.interceptors.add(DioCacheInterceptor(options: globalOptions));
   }
 
   final MemCacheStore _cacheStore = MemCacheStore();
   final petstore.PetsApi _petsApi;
   final PetMapper _petMapper = PetMapper();
-  final petStoreClient = api.PetStoreClient(
-    Dio(BaseOptions(baseUrl: 'http://localhost:3000')),
+
+  /// Per-request cache options for petsGet only.
+  CacheOptions get _petsGetCacheOptions => CacheOptions(
+    store: _cacheStore,
+    maxStale: const Duration(seconds: 10),
   );
 
   @override
-  AsyncResult<Unit> createPet(Pet pet) async {
-    final dto = _petMapper.convert<Pet, petstore.Pet>(pet);
-    await _petsApi.petsPost(pet: dto);
+  AsyncResult<List<Pet>> listPets() async {
+    try {
+      final response = await _petsApi.petsGet(
+        limit: 100,
+        extra: _petsGetCacheOptions.toExtra(),
+      );
+      final pets =
+          response.data
+              ?.map(
+                (dto) => _petMapper.convert<petstore.Pet, Pet>(dto),
+              )
+              .toList() ??
+          [];
 
-    return const Success(unit);
+      return pets.toSuccess();
+    } on DioException catch (exception) {
+      return exception.toFailure();
+    }
   }
 
   @override
-  AsyncResult<Unit> clearCache() async {
+  AsyncResult<Unit> createPet(Pet pet) async {
+    try {
+      final dto = _petMapper.convert<Pet, petstore.Pet>(pet);
+      await _petsApi.petsPost(pet: dto);
+
+      return const Success(unit);
+    } on DioException catch (exception) {
+      return exception.toFailure();
+    }
+  }
+
+  @override
+  AsyncResult<Unit> clearPetsGetCache() async {
     try {
       await _cacheStore.clean();
 
