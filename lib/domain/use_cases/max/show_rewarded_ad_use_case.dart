@@ -8,6 +8,8 @@ class ShowRewardedAdUseCase {
 
   final MaxGateway _maxGateway;
 
-  /// Shows a rewarded ad and returns whether the user earned a reward.
-  AsyncResult<bool> call() => _maxGateway.showRewardedAd();
+  /// Shows a rewarded ad.
+  ///
+  /// After completion, check [MaxGateway.isRewardEarned] for the result.
+  AsyncResult<Unit> call() => _maxGateway.showRewardedAd();
 }

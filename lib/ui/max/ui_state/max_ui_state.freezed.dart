@@ -16,9 +16,8 @@ mixin _$MaxUiState {
 
 /// Result of loading a rewarded ad.
  AsyncValue<Unit>? get loadRewardedAd;/// Result of showing a rewarded ad.
-///
-/// `true` if the user earned a reward.
- AsyncValue<bool>? get showRewardedAd;
+ AsyncValue<Unit>? get showRewardedAd;/// Whether the user earned a reward from the last shown ad.
+ bool get isRewardEarned;
 /// Create a copy of MaxUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +28,16 @@ $MaxUiStateCopyWith<MaxUiState> get copyWith => _$MaxUiStateCopyWithImpl<MaxUiSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MaxUiState&&(identical(other.loadRewardedAd, loadRewardedAd) || other.loadRewardedAd == loadRewardedAd)&&(identical(other.showRewardedAd, showRewardedAd) || other.showRewardedAd == showRewardedAd));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MaxUiState&&(identical(other.loadRewardedAd, loadRewardedAd) || other.loadRewardedAd == loadRewardedAd)&&(identical(other.showRewardedAd, showRewardedAd) || other.showRewardedAd == showRewardedAd)&&(identical(other.isRewardEarned, isRewardEarned) || other.isRewardEarned == isRewardEarned));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,loadRewardedAd,showRewardedAd);
+int get hashCode => Object.hash(runtimeType,loadRewardedAd,showRewardedAd,isRewardEarned);
 
 @override
 String toString() {
-  return 'MaxUiState(loadRewardedAd: $loadRewardedAd, showRewardedAd: $showRewardedAd)';
+  return 'MaxUiState(loadRewardedAd: $loadRewardedAd, showRewardedAd: $showRewardedAd, isRewardEarned: $isRewardEarned)';
 }
 
 
@@ -49,7 +48,7 @@ abstract mixin class $MaxUiStateCopyWith<$Res>  {
   factory $MaxUiStateCopyWith(MaxUiState value, $Res Function(MaxUiState) _then) = _$MaxUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<Unit>? loadRewardedAd, AsyncValue<bool>? showRewardedAd
+ AsyncValue<Unit>? loadRewardedAd, AsyncValue<Unit>? showRewardedAd, bool isRewardEarned
 });
 
 
@@ -66,11 +65,12 @@ class _$MaxUiStateCopyWithImpl<$Res>
 
 /// Create a copy of MaxUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? loadRewardedAd = freezed,Object? showRewardedAd = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? loadRewardedAd = freezed,Object? showRewardedAd = freezed,Object? isRewardEarned = null,}) {
   return _then(_self.copyWith(
 loadRewardedAd: freezed == loadRewardedAd ? _self.loadRewardedAd : loadRewardedAd // ignore: cast_nullable_to_non_nullable
 as AsyncValue<Unit>?,showRewardedAd: freezed == showRewardedAd ? _self.showRewardedAd : showRewardedAd // ignore: cast_nullable_to_non_nullable
-as AsyncValue<bool>?,
+as AsyncValue<Unit>?,isRewardEarned: null == isRewardEarned ? _self.isRewardEarned : isRewardEarned // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -155,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Unit>? loadRewardedAd,  AsyncValue<bool>? showRewardedAd)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Unit>? loadRewardedAd,  AsyncValue<Unit>? showRewardedAd,  bool isRewardEarned)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MaxUiState() when $default != null:
-return $default(_that.loadRewardedAd,_that.showRewardedAd);case _:
+return $default(_that.loadRewardedAd,_that.showRewardedAd,_that.isRewardEarned);case _:
   return orElse();
 
 }
@@ -176,10 +176,10 @@ return $default(_that.loadRewardedAd,_that.showRewardedAd);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Unit>? loadRewardedAd,  AsyncValue<bool>? showRewardedAd)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Unit>? loadRewardedAd,  AsyncValue<Unit>? showRewardedAd,  bool isRewardEarned)  $default,) {final _that = this;
 switch (_that) {
 case _MaxUiState():
-return $default(_that.loadRewardedAd,_that.showRewardedAd);case _:
+return $default(_that.loadRewardedAd,_that.showRewardedAd,_that.isRewardEarned);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +196,10 @@ return $default(_that.loadRewardedAd,_that.showRewardedAd);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Unit>? loadRewardedAd,  AsyncValue<bool>? showRewardedAd)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Unit>? loadRewardedAd,  AsyncValue<Unit>? showRewardedAd,  bool isRewardEarned)?  $default,) {final _that = this;
 switch (_that) {
 case _MaxUiState() when $default != null:
-return $default(_that.loadRewardedAd,_that.showRewardedAd);case _:
+return $default(_that.loadRewardedAd,_that.showRewardedAd,_that.isRewardEarned);case _:
   return null;
 
 }
@@ -211,15 +211,15 @@ return $default(_that.loadRewardedAd,_that.showRewardedAd);case _:
 
 
 class _MaxUiState implements MaxUiState {
-  const _MaxUiState({this.loadRewardedAd, this.showRewardedAd});
+  const _MaxUiState({this.loadRewardedAd, this.showRewardedAd, this.isRewardEarned = false});
   
 
 /// Result of loading a rewarded ad.
 @override final  AsyncValue<Unit>? loadRewardedAd;
 /// Result of showing a rewarded ad.
-///
-/// `true` if the user earned a reward.
-@override final  AsyncValue<bool>? showRewardedAd;
+@override final  AsyncValue<Unit>? showRewardedAd;
+/// Whether the user earned a reward from the last shown ad.
+@override@JsonKey() final  bool isRewardEarned;
 
 /// Create a copy of MaxUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -231,16 +231,16 @@ _$MaxUiStateCopyWith<_MaxUiState> get copyWith => __$MaxUiStateCopyWithImpl<_Max
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MaxUiState&&(identical(other.loadRewardedAd, loadRewardedAd) || other.loadRewardedAd == loadRewardedAd)&&(identical(other.showRewardedAd, showRewardedAd) || other.showRewardedAd == showRewardedAd));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MaxUiState&&(identical(other.loadRewardedAd, loadRewardedAd) || other.loadRewardedAd == loadRewardedAd)&&(identical(other.showRewardedAd, showRewardedAd) || other.showRewardedAd == showRewardedAd)&&(identical(other.isRewardEarned, isRewardEarned) || other.isRewardEarned == isRewardEarned));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,loadRewardedAd,showRewardedAd);
+int get hashCode => Object.hash(runtimeType,loadRewardedAd,showRewardedAd,isRewardEarned);
 
 @override
 String toString() {
-  return 'MaxUiState(loadRewardedAd: $loadRewardedAd, showRewardedAd: $showRewardedAd)';
+  return 'MaxUiState(loadRewardedAd: $loadRewardedAd, showRewardedAd: $showRewardedAd, isRewardEarned: $isRewardEarned)';
 }
 
 
@@ -251,7 +251,7 @@ abstract mixin class _$MaxUiStateCopyWith<$Res> implements $MaxUiStateCopyWith<$
   factory _$MaxUiStateCopyWith(_MaxUiState value, $Res Function(_MaxUiState) _then) = __$MaxUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<Unit>? loadRewardedAd, AsyncValue<bool>? showRewardedAd
+ AsyncValue<Unit>? loadRewardedAd, AsyncValue<Unit>? showRewardedAd, bool isRewardEarned
 });
 
 
@@ -268,11 +268,12 @@ class __$MaxUiStateCopyWithImpl<$Res>
 
 /// Create a copy of MaxUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? loadRewardedAd = freezed,Object? showRewardedAd = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? loadRewardedAd = freezed,Object? showRewardedAd = freezed,Object? isRewardEarned = null,}) {
   return _then(_MaxUiState(
 loadRewardedAd: freezed == loadRewardedAd ? _self.loadRewardedAd : loadRewardedAd // ignore: cast_nullable_to_non_nullable
 as AsyncValue<Unit>?,showRewardedAd: freezed == showRewardedAd ? _self.showRewardedAd : showRewardedAd // ignore: cast_nullable_to_non_nullable
-as AsyncValue<bool>?,
+as AsyncValue<Unit>?,isRewardEarned: null == isRewardEarned ? _self.isRewardEarned : isRewardEarned // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

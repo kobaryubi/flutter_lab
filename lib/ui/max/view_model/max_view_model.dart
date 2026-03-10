@@ -28,12 +28,16 @@ class MaxViewModel extends _$MaxViewModel {
   /// Shows a rewarded ad.
   Future<void> showRewardedAd() async {
     final useCase = ref.read(showRewardedAdUseCaseProvider);
+    final gateway = ref.read(maxGatewayProvider);
 
     final showRewardedAd = await AsyncValue.guard(
       () async => (await useCase.call()).getOrThrow(),
     );
 
-    state = state.copyWith(showRewardedAd: showRewardedAd);
+    state = state.copyWith(
+      showRewardedAd: showRewardedAd,
+      isRewardEarned: gateway.isRewardEarned,
+    );
   }
 
   /// Opens the AppLovin mediation debugger overlay.

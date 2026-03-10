@@ -12,8 +12,9 @@ abstract class MaxUiState with _$MaxUiState {
     AsyncValue<Unit>? loadRewardedAd,
 
     /// Result of showing a rewarded ad.
-    ///
-    /// `true` if the user earned a reward.
-    AsyncValue<bool>? showRewardedAd,
+    AsyncValue<Unit>? showRewardedAd,
+
+    /// Whether the user earned a reward from the last shown ad.
+    @Default(false) bool isRewardEarned,
   }) = _MaxUiState;
 }

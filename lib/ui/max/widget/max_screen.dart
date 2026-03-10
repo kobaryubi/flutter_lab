@@ -68,8 +68,8 @@ class _Body extends HookConsumerWidget {
             ),
           ),
 
-          if (uiState.showRewardedAd case AsyncData(:final value))
-            Text('Reward earned: $value'),
+          if (uiState.showRewardedAd is AsyncData)
+            Text('Reward earned: ${uiState.isRewardEarned}'),
 
           if (uiState.showRewardedAd case AsyncError(:final error))
             Text('Error: $error'),
