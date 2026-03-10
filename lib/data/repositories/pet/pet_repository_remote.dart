@@ -25,6 +25,7 @@ class PetRepositoryRemote implements PetRepository {
   /// Per-request cache options for petsGet only.
   CacheOptions get _petsGetCacheOptions => CacheOptions(
     store: _cacheStore,
+    policy: .forceCache,
     maxStale: const Duration(seconds: 10),
   );
 
