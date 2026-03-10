@@ -53,6 +53,7 @@ abstract final class Routes {
   static const routingCupertinoFullscreenDialog =
       '/routing/cupertino/fullscreen_dialog';
 
+  static const petCache = '/pet_cache';
   static const arutana = '/arutana';
   static const max = '/max';
   static const profilePassport = '/profile_passport';

@@ -40,6 +40,7 @@ List<RouteBase> get $appRoutes => [
   $ocrResultRoute,
   $ocrRoute,
   $permissionRoute,
+  $petCacheRoute,
   $pigeonRoute,
   $popScopeRoute,
   $portalRoute,
@@ -886,6 +887,29 @@ mixin $PermissionRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/permission');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $petCacheRoute =>
+    GoRouteData.$route(path: '/pet_cache', factory: $PetCacheRoute._fromState);
+
+mixin $PetCacheRoute on GoRouteData {
+  static PetCacheRoute _fromState(GoRouterState state) => PetCacheRoute();
+
+  @override
+  String get location => GoRouteData.$location('/pet_cache');
 
   @override
   void go(BuildContext context) => context.go(location);
