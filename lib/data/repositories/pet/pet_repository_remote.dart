@@ -22,8 +22,8 @@ class PetRepositoryRemote implements PetRepository {
   final petstore.PetsApi _petsApi;
   final PetMapper _petMapper = PetMapper();
 
-  /// Per-request cache options for petsGet only.
-  CacheOptions get _petsGetCacheOptions => CacheOptions(
+  /// Per-request cache options with 10-second expiry.
+  CacheOptions get _cacheOptions => CacheOptions(
     store: _cacheStore,
     policy: .forceCache,
     maxStale: const Duration(seconds: 10),
@@ -34,7 +34,7 @@ class PetRepositoryRemote implements PetRepository {
     try {
       final response = await _petsApi.petsGet(
         limit: 100,
-        extra: _petsGetCacheOptions.toExtra(),
+        extra: _cacheOptions.toExtra(),
       );
       final pets =
           response.data
@@ -45,6 +45,21 @@ class PetRepositoryRemote implements PetRepository {
           [];
 
       return pets.toSuccess();
+    } on DioException catch (exception) {
+      return exception.toFailure();
+    }
+  }
+
+  @override
+  AsyncResult<Pet> getPet({required int petId}) async {
+    try {
+      final response = await _petsApi.petsPetIdGet(
+        petId: petId,
+        extra: _cacheOptions.toExtra(),
+      );
+      final pet = _petMapper.convert<petstore.Pet, Pet>(response.data);
+
+      return pet.toSuccess();
     } on DioException catch (exception) {
       return exception.toFailure();
     }
@@ -63,9 +78,20 @@ class PetRepositoryRemote implements PetRepository {
   }
 
   @override
-  AsyncResult<Unit> clearPetsGetCache() async {
+  AsyncResult<Unit> clearListPetsCache() async {
     try {
-      await _cacheStore.clean();
+      await _cacheStore.deleteFromPath(RegExp(r'/pets(\?|$)'));
+
+      return unit.toSuccess();
+    } on Exception catch (exception) {
+      return exception.toFailure();
+    }
+  }
+
+  @override
+  AsyncResult<Unit> clearGetPetCache() async {
+    try {
+      await _cacheStore.deleteFromPath(RegExp(r'/pets/\d+$'));
 
       return unit.toSuccess();
     } on Exception catch (exception) {

@@ -134,9 +134,16 @@ ListPetsUseCase listPetsUseCase(Ref ref) => ListPetsUseCase(
 );
 
 @riverpod
-ClearPetCacheUseCase clearPetCacheUseCase(Ref ref) => ClearPetCacheUseCase(
-  petRepository: ref.read(petRepositoryProvider),
-);
+ClearListPetsCacheUseCase clearListPetsCacheUseCase(Ref ref) =>
+    ClearListPetsCacheUseCase(
+      petRepository: ref.read(petRepositoryProvider),
+    );
+
+@riverpod
+ClearGetPetCacheUseCase clearGetPetCacheUseCase(Ref ref) =>
+    ClearGetPetCacheUseCase(
+      petRepository: ref.read(petRepositoryProvider),
+    );
 
 @riverpod
 LocationRepository locationRepository(Ref ref) => PlatformLocationRepository();

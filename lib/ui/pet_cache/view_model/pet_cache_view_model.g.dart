@@ -44,7 +44,7 @@ final class PetCacheViewModelProvider
   }
 }
 
-String _$petCacheViewModelHash() => r'5e0385d3365f316e47e0206b2b13ebab0c577bb2';
+String _$petCacheViewModelHash() => r'72a1b25a1b3548abd4f8795f2c6be019443de225';
 
 /// ViewModel that manages pet list fetching with cache and cache clearing.
 

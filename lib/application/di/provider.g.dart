@@ -132,53 +132,101 @@ final class ListPetsUseCaseProvider
 
 String _$listPetsUseCaseHash() => r'33f296bdd95cd1569069e92b9ac8ffcb466a867d';
 
-@ProviderFor(clearPetCacheUseCase)
-const clearPetCacheUseCaseProvider = ClearPetCacheUseCaseProvider._();
+@ProviderFor(clearListPetsCacheUseCase)
+const clearListPetsCacheUseCaseProvider = ClearListPetsCacheUseCaseProvider._();
 
-final class ClearPetCacheUseCaseProvider
+final class ClearListPetsCacheUseCaseProvider
     extends
         $FunctionalProvider<
-          ClearPetCacheUseCase,
-          ClearPetCacheUseCase,
-          ClearPetCacheUseCase
+          ClearListPetsCacheUseCase,
+          ClearListPetsCacheUseCase,
+          ClearListPetsCacheUseCase
         >
-    with $Provider<ClearPetCacheUseCase> {
-  const ClearPetCacheUseCaseProvider._()
+    with $Provider<ClearListPetsCacheUseCase> {
+  const ClearListPetsCacheUseCaseProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'clearPetCacheUseCaseProvider',
+        name: r'clearListPetsCacheUseCaseProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$clearPetCacheUseCaseHash();
+  String debugGetCreateSourceHash() => _$clearListPetsCacheUseCaseHash();
 
   @$internal
   @override
-  $ProviderElement<ClearPetCacheUseCase> $createElement(
+  $ProviderElement<ClearListPetsCacheUseCase> $createElement(
     $ProviderPointer pointer,
   ) => $ProviderElement(pointer);
 
   @override
-  ClearPetCacheUseCase create(Ref ref) {
-    return clearPetCacheUseCase(ref);
+  ClearListPetsCacheUseCase create(Ref ref) {
+    return clearListPetsCacheUseCase(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ClearPetCacheUseCase value) {
+  Override overrideWithValue(ClearListPetsCacheUseCase value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<ClearPetCacheUseCase>(value),
+      providerOverride: $SyncValueProvider<ClearListPetsCacheUseCase>(value),
     );
   }
 }
 
-String _$clearPetCacheUseCaseHash() =>
-    r'f720bb3bcf4cfa69a3caba733c32c0ae72990697';
+String _$clearListPetsCacheUseCaseHash() =>
+    r'c26051e451a7b2d0c9796f09ff1f214e360f6b8e';
+
+@ProviderFor(clearGetPetCacheUseCase)
+const clearGetPetCacheUseCaseProvider = ClearGetPetCacheUseCaseProvider._();
+
+final class ClearGetPetCacheUseCaseProvider
+    extends
+        $FunctionalProvider<
+          ClearGetPetCacheUseCase,
+          ClearGetPetCacheUseCase,
+          ClearGetPetCacheUseCase
+        >
+    with $Provider<ClearGetPetCacheUseCase> {
+  const ClearGetPetCacheUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'clearGetPetCacheUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$clearGetPetCacheUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ClearGetPetCacheUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ClearGetPetCacheUseCase create(Ref ref) {
+    return clearGetPetCacheUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ClearGetPetCacheUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ClearGetPetCacheUseCase>(value),
+    );
+  }
+}
+
+String _$clearGetPetCacheUseCaseHash() =>
+    r'cf97f458af95e4b84b30b2131ed6c06922f991a9';
 
 @ProviderFor(locationRepository)
 const locationRepositoryProvider = LocationRepositoryProvider._();

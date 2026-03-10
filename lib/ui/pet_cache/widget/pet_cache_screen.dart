@@ -29,9 +29,14 @@ class _Body extends ConsumerWidget {
       viewModel.listPets();
     }
 
-    /// Clears the petsGet cache and resets the state.
-    void handleClearCache() {
-      viewModel.clearCache();
+    /// Clears the listPets cache and resets the state.
+    void handleClearListPetsCache() {
+      viewModel.clearListPetsCache();
+    }
+
+    /// Clears the getPet cache.
+    void handleClearGetPetCache() {
+      viewModel.clearGetPetCache();
     }
 
     return Column(
@@ -39,7 +44,8 @@ class _Body extends ConsumerWidget {
       children: [
         _ActionButtons(
           onFetchPets: handleFetchPets,
-          onClearCache: handleClearCache,
+          onClearListPetsCache: handleClearListPetsCache,
+          onClearGetPetCache: handleClearGetPetCache,
         ),
         if (uiState.pets case AsyncLoading()) const Text('Loading...'),
         if (uiState.pets case AsyncData(:final value))
@@ -60,11 +66,13 @@ class _Body extends ConsumerWidget {
 class _ActionButtons extends StatelessWidget {
   const _ActionButtons({
     required this.onFetchPets,
-    required this.onClearCache,
+    required this.onClearListPetsCache,
+    required this.onClearGetPetCache,
   });
 
   final VoidCallback onFetchPets;
-  final VoidCallback onClearCache;
+  final VoidCallback onClearListPetsCache;
+  final VoidCallback onClearGetPetCache;
 
   @override
   Widget build(BuildContext context) => Row(
@@ -74,8 +82,12 @@ class _ActionButtons extends StatelessWidget {
         child: const Text('Fetch Pets'),
       ),
       GestureDetector(
-        onTap: onClearCache,
-        child: const Text('Clear Cache'),
+        onTap: onClearListPetsCache,
+        child: const Text('Clear List Cache'),
+      ),
+      GestureDetector(
+        onTap: onClearGetPetCache,
+        child: const Text('Clear Get Cache'),
       ),
     ],
   );

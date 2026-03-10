@@ -22,11 +22,17 @@ class PetCacheViewModel extends _$PetCacheViewModel {
     state = state.copyWith(pets: pets);
   }
 
-  /// Clears the petsGet cache and resets the pets state.
-  Future<void> clearCache() async {
-    final useCase = ref.read(clearPetCacheUseCaseProvider);
+  /// Clears the listPets cache and resets the pets state.
+  Future<void> clearListPetsCache() async {
+    final useCase = ref.read(clearListPetsCacheUseCaseProvider);
     await useCase.call();
 
     state = const PetCacheUiState();
+  }
+
+  /// Clears the getPet cache.
+  Future<void> clearGetPetCache() async {
+    final useCase = ref.read(clearGetPetCacheUseCaseProvider);
+    await useCase.call();
   }
 }
