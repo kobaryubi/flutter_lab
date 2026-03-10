@@ -14,8 +14,11 @@ abstract class MaxGateway {
 
   /// Shows a rewarded ad if one is ready.
   ///
-  /// Returns `true` if the user earned a reward.
-  AsyncResult<bool> showRewardedAd();
+  /// Completes with [Unit] when the ad is hidden.
+  AsyncResult<Unit> showRewardedAd();
+
+  /// Whether the user earned a reward from the last shown ad.
+  bool get isRewardEarned;
 
   /// Opens the AppLovin mediation debugger overlay.
   Result<Unit> showMediationDebugger();

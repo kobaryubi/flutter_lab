@@ -70,7 +70,10 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   @override
-  AsyncResult<bool> showRewardedAd() async {
+  bool get isRewardEarned => _isRewardEarned;
+
+  @override
+  AsyncResult<Unit> showRewardedAd() async {
     try {
       final isReady =
           await AppLovinMAX.isRewardedAdReady(_rewardedAdUnitId) ?? false;
@@ -85,7 +88,7 @@ class SdkMaxGateway implements MaxGateway {
 
       await _showAdCompleter.future;
 
-      return Success(_isRewardEarned);
+      return const Success(unit);
     } on Exception catch (exception) {
       return Failure(exception);
     }
