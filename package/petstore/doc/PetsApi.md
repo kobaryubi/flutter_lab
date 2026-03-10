@@ -10,6 +10,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**petsGet**](PetsApi.md#petsget) | **GET** /pets | 
+[**petsPetIdGet**](PetsApi.md#petspetidget) | **GET** /pets/{petId} | get a pet by id
 [**petsPost**](PetsApi.md#petspost) | **POST** /pets | create a pet
 
 
@@ -28,7 +29,7 @@ final int limit = 56; // int |
 try {
     final response = api.petsGet(limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PetsApi->petsGet: $e\n');
 }
 ```
@@ -42,6 +43,47 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BuiltList&lt;Pet&gt;**](Pet.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **petsPetIdGet**
+> Pet petsPetIdGet(petId)
+
+get a pet by id
+
+### Example
+```dart
+import 'package:petstore/api.dart';
+
+final api = Petstore().getPetsApi();
+final int petId = 789; // int | 
+
+try {
+    final response = api.petsPetIdGet(petId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PetsApi->petsPetIdGet: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **petId** | **int**|  | 
+
+### Return type
+
+[**Pet**](Pet.md)
 
 ### Authorization
 
@@ -68,7 +110,7 @@ final Pet pet = ; // Pet |
 
 try {
     api.petsPost(pet);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PetsApi->petsPost: $e\n');
 }
 ```

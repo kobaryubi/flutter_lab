@@ -41,6 +41,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /pets/{petId}:
+    get:
+      summary: get a pet by id
+      tags:
+        - pets
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Pet:
