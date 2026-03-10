@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter_lab/data/mapper/pet/pet_mapper.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/service/dio/petstore_client.dart' as api;
@@ -10,8 +11,12 @@ class PetRepositoryRemote implements PetRepository {
   PetRepositoryRemote({required Dio dio})
     : _petsApi = petstore.Petstore(
         dio: dio,
-      ).getPetsApi();
+      ).getPetsApi() {
+    final options = CacheOptions(store: _cacheStore);
+    dio.interceptors.add(DioCacheInterceptor(options: options));
+  }
 
+  final MemCacheStore _cacheStore = MemCacheStore();
   final petstore.PetsApi _petsApi;
   final PetMapper _petMapper = PetMapper();
   final petStoreClient = api.PetStoreClient(
@@ -24,5 +29,16 @@ class PetRepositoryRemote implements PetRepository {
     await _petsApi.petsPost(pet: dto);
 
     return const Success(unit);
+  }
+
+  @override
+  AsyncResult<Unit> clearCache() async {
+    try {
+      await _cacheStore.clean();
+
+      return unit.toSuccess();
+    } on Exception catch (exception) {
+      return exception.toFailure();
+    }
   }
 }
