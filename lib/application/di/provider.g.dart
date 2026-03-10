@@ -90,6 +90,96 @@ final class PetRepositoryProvider
 
 String _$petRepositoryHash() => r'224a4aa0fc38326d588fbcbb4759763feb8e5ba6';
 
+@ProviderFor(listPetsUseCase)
+const listPetsUseCaseProvider = ListPetsUseCaseProvider._();
+
+final class ListPetsUseCaseProvider
+    extends
+        $FunctionalProvider<ListPetsUseCase, ListPetsUseCase, ListPetsUseCase>
+    with $Provider<ListPetsUseCase> {
+  const ListPetsUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'listPetsUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$listPetsUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ListPetsUseCase> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  ListPetsUseCase create(Ref ref) {
+    return listPetsUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ListPetsUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ListPetsUseCase>(value),
+    );
+  }
+}
+
+String _$listPetsUseCaseHash() => r'33f296bdd95cd1569069e92b9ac8ffcb466a867d';
+
+@ProviderFor(clearPetCacheUseCase)
+const clearPetCacheUseCaseProvider = ClearPetCacheUseCaseProvider._();
+
+final class ClearPetCacheUseCaseProvider
+    extends
+        $FunctionalProvider<
+          ClearPetCacheUseCase,
+          ClearPetCacheUseCase,
+          ClearPetCacheUseCase
+        >
+    with $Provider<ClearPetCacheUseCase> {
+  const ClearPetCacheUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'clearPetCacheUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$clearPetCacheUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ClearPetCacheUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ClearPetCacheUseCase create(Ref ref) {
+    return clearPetCacheUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ClearPetCacheUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ClearPetCacheUseCase>(value),
+    );
+  }
+}
+
+String _$clearPetCacheUseCaseHash() =>
+    r'f720bb3bcf4cfa69a3caba733c32c0ae72990697';
+
 @ProviderFor(locationRepository)
 const locationRepositoryProvider = LocationRepositoryProvider._();
 

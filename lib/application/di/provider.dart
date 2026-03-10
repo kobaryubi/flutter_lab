@@ -69,6 +69,8 @@ import 'package:flutter_lab/domain/use_cases/network/watch_connectivity_use_case
 import 'package:flutter_lab/domain/use_cases/permission/get_permission_status_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/permission/open_app_settings_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/permission/request_permission_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/pet/clear_pet_cache_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/pet/list_pets_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/profile_passport/start_profile_passport_service_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/on_token_refresh_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/register_token_use_case.dart';
@@ -124,6 +126,16 @@ Dio dio(Ref ref) {
 @riverpod
 PetRepository petRepository(Ref ref) => PetRepositoryRemote(
   dio: ref.read(dioProvider),
+);
+
+@riverpod
+ListPetsUseCase listPetsUseCase(Ref ref) => ListPetsUseCase(
+  petRepository: ref.read(petRepositoryProvider),
+);
+
+@riverpod
+ClearPetCacheUseCase clearPetCacheUseCase(Ref ref) => ClearPetCacheUseCase(
+  petRepository: ref.read(petRepositoryProvider),
 );
 
 @riverpod
