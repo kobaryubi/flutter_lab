@@ -101,7 +101,9 @@ class _Body extends HookWidget {
                 return null;
               }
 
-              return FormBuilderValidators.required<String>()(value);
+              return FormBuilderValidators.required<String>(
+                errorText: 'Name is required.',
+              )(value);
             },
             builder: (field) {
               final isClearName =
@@ -138,8 +140,12 @@ class _Body extends HookWidget {
             name: 'email',
             initialValue: 'flutter@example.com',
             validator: FormBuilderValidators.compose([
-              FormBuilderValidators.required(),
-              FormBuilderValidators.email(),
+              FormBuilderValidators.required(
+                errorText: 'Email is required.',
+              ),
+              FormBuilderValidators.email(
+                errorText: 'Please enter a valid email address.',
+              ),
             ]),
             builder: (field) => Column(
               crossAxisAlignment: .start,
