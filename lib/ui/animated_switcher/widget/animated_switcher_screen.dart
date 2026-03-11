@@ -75,8 +75,8 @@ class _Body extends HookWidget {
 
 /// Sequential fade using useAnimationController hook.
 ///
-/// Fades out the old value first, then fades in the new value
-/// by chaining animations via status listener.
+/// Fades out the current widget first, then swaps to the next widget
+/// and fades it in by chaining animations via status listener.
 class _HookControllerCase extends HookWidget {
   const _HookControllerCase({required this.counter});
 
@@ -84,7 +84,7 @@ class _HookControllerCase extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final displayValue = useState(0);
+    final displayIndex = useState(0);
     final controller = useAnimationController(
       duration: const Duration(milliseconds: 1500),
       initialValue: 1,
@@ -94,13 +94,20 @@ class _HookControllerCase extends HookWidget {
       [controller],
     );
     final opacity = useAnimation(curvedAnimation);
+    final isFirstBuild = useRef(true);
 
     useEffect(
       () {
-        /// Handles animation completion to swap value and fade back in.
+        if (isFirstBuild.value) {
+          isFirstBuild.value = false;
+
+          return null;
+        }
+
+        /// Swaps the displayed widget and starts fade-in after fade-out ends.
         void handleStatusChange(AnimationStatus status) {
           if (status == AnimationStatus.dismissed) {
-            displayValue.value = counter;
+            displayIndex.value = counter % _widgets.length;
             controller.forward();
           }
         }
@@ -117,10 +124,35 @@ class _HookControllerCase extends HookWidget {
 
     return Opacity(
       opacity: opacity,
-      child: Text(
-        '${displayValue.value}',
-        style: const TextStyle(fontSize: 48),
-      ),
+      child: _widgets[displayIndex.value],
     );
   }
+
+  static const _widgets = <Widget>[
+    SizedBox.square(
+      dimension: 80,
+      child: DecoratedBox(
+        decoration: BoxDecoration(shape: .circle, color: Color(0xFF4285F4)),
+        child: Center(child: Text('A', style: TextStyle(fontSize: 32))),
+      ),
+    ),
+    SizedBox.square(
+      dimension: 80,
+      child: DecoratedBox(
+        decoration: BoxDecoration(color: Color(0xFFEA4335)),
+        child: Center(child: Text('B', style: TextStyle(fontSize: 32))),
+      ),
+    ),
+    SizedBox(
+      width: 120,
+      height: 60,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: .all(.circular(16)),
+          color: Color(0xFF34A853),
+        ),
+        child: Center(child: Text('C', style: TextStyle(fontSize: 32))),
+      ),
+    ),
+  ];
 }
