@@ -7,10 +7,11 @@ import 'package:petstore/petstore.dart' as petstore;
 import 'package:result_dart/result_dart.dart';
 
 class PetRepositoryRemote implements PetRepository {
-  PetRepositoryRemote({required Dio dio})
-    : _petsApi = petstore.Petstore(
-        dio: dio,
-      ).getPetsApi() {
+  PetRepositoryRemote({
+    required Dio dio,
+    Duration maxStale = const Duration(seconds: 10),
+  }) : _petsApi = petstore.Petstore(dio: dio).getPetsApi(),
+       _maxStale = maxStale {
     final globalOptions = CacheOptions(
       store: _cacheStore,
       policy: .noCache,
@@ -24,12 +25,13 @@ class PetRepositoryRemote implements PetRepository {
   final MemCacheStore _cacheStore = MemCacheStore();
   final petstore.PetsApi _petsApi;
   final PetMapper _petMapper = PetMapper();
+  final Duration _maxStale;
 
-  /// Per-request cache options with 10-second expiry.
+  /// Per-request cache options.
   CacheOptions get _cacheOptions => CacheOptions(
     store: _cacheStore,
     policy: .forceCache,
-    maxStale: const Duration(seconds: 10),
+    maxStale: _maxStale,
   );
 
   @override

@@ -160,6 +160,117 @@ void main() {
     });
   });
 
+  group('cache expiry', () {
+    late PetRepositoryRemote expiredRepository;
+
+    setUp(() {
+      expiredRepository = PetRepositoryRemote(
+        dio: dio,
+        maxStale: .zero,
+      );
+    });
+
+    test('listPets returns fresh data after zero maxStale', () async {
+      dioAdapter.onGet(
+        '/pets',
+        (server) => server.reply(200, [
+          {'id': 1, 'name': 'dog'},
+        ]),
+        queryParameters: {'limit': 100},
+      );
+
+      await expiredRepository.listPets();
+
+      // Register a different response.
+      dioAdapter.onGet(
+        '/pets',
+        (server) => server.reply(200, [
+          {'id': 99, 'name': 'new animal'},
+        ]),
+        queryParameters: {'limit': 100},
+      );
+
+      final secondResult = await expiredRepository.listPets();
+
+      // Cache expired immediately, so the new server data should be returned.
+      expect(
+        secondResult.getOrThrow().first,
+        const Pet(id: 99, name: 'new animal'),
+      );
+    });
+
+    test('getPet returns fresh data after zero maxStale', () async {
+      dioAdapter.onGet(
+        '/pets/1',
+        (server) => server.reply(200, {'id': 1, 'name': 'dog'}),
+      );
+
+      await expiredRepository.getPet(petId: 1);
+
+      // Register a different response.
+      dioAdapter.onGet(
+        '/pets/1',
+        (server) => server.reply(200, {'id': 1, 'name': 'updated dog'}),
+      );
+
+      final secondResult = await expiredRepository.getPet(petId: 1);
+
+      // Cache expired immediately, so the new server data should be returned.
+      expect(
+        secondResult.getOrThrow(),
+        const Pet(id: 1, name: 'updated dog'),
+      );
+    });
+
+    test(
+      'listPets returns cached data within maxStale then fresh data after',
+      () async {
+        final shortCacheRepository = PetRepositoryRemote(
+          dio: dio,
+          maxStale: const Duration(seconds: 1),
+        );
+
+        dioAdapter.onGet(
+          '/pets',
+          (server) => server.reply(200, [
+            {'id': 1, 'name': 'dog'},
+          ]),
+          queryParameters: {'limit': 100},
+        );
+
+        await shortCacheRepository.listPets();
+
+        // Register a different response.
+        dioAdapter.onGet(
+          '/pets',
+          (server) => server.reply(200, [
+            {'id': 99, 'name': 'new animal'},
+          ]),
+          queryParameters: {'limit': 100},
+        );
+
+        // Within cache window, should return cached data.
+        final cachedResult = await shortCacheRepository.listPets();
+
+        expect(
+          cachedResult.getOrThrow().first,
+          const Pet(id: 1, name: 'dog'),
+        );
+
+        // Wait for cache to expire.
+        await Future<void>.delayed(const Duration(seconds: 2));
+
+        final freshResult = await shortCacheRepository.listPets();
+
+        // After cache expired, the new server data should be returned.
+        expect(
+          freshResult.getOrThrow().first,
+          const Pet(id: 99, name: 'new animal'),
+        );
+      },
+    );
+  });
+
   group('clearGetPetCache', () {
     test('clears cache so next getPet hits server again', () async {
       dioAdapter.onGet(
