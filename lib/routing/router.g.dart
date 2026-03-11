@@ -7,6 +7,7 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
+  $animatedSwitcherRoute,
   $appLifecycleRoute,
   $appStoreRoute,
   $arutanaRoute,
@@ -57,6 +58,32 @@ List<RouteBase> get $appRoutes => [
   $urlNavigationRoute,
   $webViewRoute,
 ];
+
+RouteBase get $animatedSwitcherRoute => GoRouteData.$route(
+  path: '/animated_switcher',
+  factory: $AnimatedSwitcherRoute._fromState,
+);
+
+mixin $AnimatedSwitcherRoute on GoRouteData {
+  static AnimatedSwitcherRoute _fromState(GoRouterState state) =>
+      AnimatedSwitcherRoute();
+
+  @override
+  String get location => GoRouteData.$location('/animated_switcher');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
 
 RouteBase get $appLifecycleRoute => GoRouteData.$route(
   path: '/app_lifecycle',

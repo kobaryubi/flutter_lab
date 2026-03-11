@@ -57,4 +57,5 @@ abstract final class Routes {
   static const arutana = '/arutana';
   static const max = '/max';
   static const profilePassport = '/profile_passport';
+  static const animatedSwitcher = '/animated_switcher';
 }
