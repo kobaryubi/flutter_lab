@@ -21,6 +21,14 @@ class NavigationScreenB extends StatelessWidget {
       context.pop();
     }
 
+    /// Pops two screens back to Home, then pushes Screen C.
+    void handlePopTwoAndPush() {
+      context
+        ..pop()
+        ..pop();
+      NavigationScreenCRoute().push<void>(context);
+    }
+
     return Layout(
       appBar: const AppBar(title: Text('Screen B')),
       child: Center(
@@ -35,6 +43,10 @@ class NavigationScreenB extends StatelessWidget {
             Button(
               onTap: handleClose,
               label: 'Close (pop to Screen A)',
+            ),
+            Button(
+              onTap: handlePopTwoAndPush,
+              label: 'Pop 2 + Push Screen C',
             ),
           ],
         ),
