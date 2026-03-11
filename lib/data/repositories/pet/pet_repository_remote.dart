@@ -18,6 +18,9 @@ class PetRepositoryRemote implements PetRepository {
     dio.interceptors.add(DioCacheInterceptor(options: globalOptions));
   }
 
+  static final _listPetsPathPattern = RegExp(r'/pets(\?|$)');
+  static final _getPetPathPattern = RegExp(r'/pets/\d+$');
+
   final MemCacheStore _cacheStore = MemCacheStore();
   final petstore.PetsApi _petsApi;
   final PetMapper _petMapper = PetMapper();
@@ -80,7 +83,7 @@ class PetRepositoryRemote implements PetRepository {
   @override
   AsyncResult<Unit> clearListPetsCache() async {
     try {
-      await _cacheStore.deleteFromPath(RegExp(r'/pets(\?|$)'));
+      await _cacheStore.deleteFromPath(_listPetsPathPattern);
 
       return unit.toSuccess();
     } on Exception catch (exception) {
@@ -91,7 +94,7 @@ class PetRepositoryRemote implements PetRepository {
   @override
   AsyncResult<Unit> clearGetPetCache() async {
     try {
-      await _cacheStore.deleteFromPath(RegExp(r'/pets/\d+$'));
+      await _cacheStore.deleteFromPath(_getPetPathPattern);
 
       return unit.toSuccess();
     } on Exception catch (exception) {
