@@ -31,6 +31,45 @@ class _Body extends HookWidget {
     final emailFocusNode = useFocusNode();
     final submittedValues = useState<Map<String, dynamic>?>(null);
 
+    /// Validates the specified field when it loses focus.
+    void handleFocusChange({
+      required String fieldName,
+      required bool hasFocus,
+    }) {
+      if (!hasFocus) {
+        form.formKey.currentState?.fields[fieldName]?.validate();
+      }
+    }
+
+    useEffect(
+      () {
+        /// Validates the name field on unfocus.
+        void handleNameFocusChange() {
+          handleFocusChange(
+            fieldName: 'name',
+            hasFocus: nameFocusNode.hasFocus,
+          );
+        }
+
+        /// Validates the email field on unfocus.
+        void handleEmailFocusChange() {
+          handleFocusChange(
+            fieldName: 'email',
+            hasFocus: emailFocusNode.hasFocus,
+          );
+        }
+
+        nameFocusNode.addListener(handleNameFocusChange);
+        emailFocusNode.addListener(handleEmailFocusChange);
+
+        return () {
+          nameFocusNode.removeListener(handleNameFocusChange);
+          emailFocusNode.removeListener(handleEmailFocusChange);
+        };
+      },
+      [nameFocusNode, emailFocusNode],
+    );
+
     /// Validates and submits the form, storing results in state.
     void handleSubmit() {
       final values = form.submit();
@@ -39,7 +78,7 @@ class _Body extends HookWidget {
 
     return FormBuilder(
       key: form.formKey,
-      autovalidateMode: .onUserInteraction,
+      autovalidateMode: .disabled,
       onChanged: form.onChanged,
       child: Column(
         crossAxisAlignment: .start,
