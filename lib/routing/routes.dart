@@ -59,4 +59,9 @@ abstract final class Routes {
   static const max = '/max';
   static const profilePassport = '/profile_passport';
   static const animatedSwitcher = '/animated_switcher';
+
+  static const shellDemo = '/shell_demo';
+  static const shellDemoTab1 = '/shell_demo/tab1';
+  static const shellDemoTab2 = '/shell_demo/tab2';
+  static const shellDemoDetail = '/shell_demo_detail';
 }
