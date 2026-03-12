@@ -57,6 +57,7 @@ import 'package:flutter_lab/ui/screenshot_prevention/widget/screenshot_preventio
 import 'package:flutter_lab/ui/shared_preferences/widget/shared_preferences_screen.dart';
 import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_detail_screen.dart';
 import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_screen.dart';
+import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_sub_screen.dart';
 import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_tab1_screen.dart';
 import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_tab2_screen.dart';
 import 'package:flutter_lab/ui/url_navigation/widget/url_navigation_screen.dart';
@@ -114,6 +115,7 @@ part 'screenshot_prevention_route.dart';
 part 'shared_preferences_route.dart';
 part 'shell_demo_detail_route.dart';
 part 'shell_demo_route.dart';
+part 'shell_demo_sub_route.dart';
 part 'url_navigation_route.dart';
 part 'web_view_route.dart';
 

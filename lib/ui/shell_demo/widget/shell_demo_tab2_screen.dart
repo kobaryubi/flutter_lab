@@ -8,15 +8,15 @@ class ShellDemoTab2Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// Pushes the detail screen onto the navigation stack.
-    void handlePushDetail() {
-      ShellDemoDetailRoute().push<void>(context);
+    /// Pushes the Sub screen onto the navigation stack.
+    void handlePushSub() {
+      ShellDemoSubRoute().push<void>(context);
     }
 
     return Center(
       child: Button(
-        onTap: handlePushDetail,
-        label: 'Push Detail',
+        onTap: handlePushSub,
+        label: 'Push Sub',
       ),
     );
   }

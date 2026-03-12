@@ -58,6 +58,7 @@ List<RouteBase> get $appRoutes => [
   $sharedPreferencesRoute,
   $shellDemoDetailRoute,
   $shellDemoRoute,
+  $shellDemoSubRoute,
   $urlNavigationRoute,
   $webViewRoute,
 ];
@@ -1388,6 +1389,32 @@ mixin $ShellDemoTab2Route on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/shell_demo/tab2');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $shellDemoSubRoute => GoRouteData.$route(
+  path: '/shell_demo_sub',
+  factory: $ShellDemoSubRoute._fromState,
+);
+
+mixin $ShellDemoSubRoute on GoRouteData {
+  static ShellDemoSubRoute _fromState(GoRouterState state) =>
+      ShellDemoSubRoute();
+
+  @override
+  String get location => GoRouteData.$location('/shell_demo_sub');
 
   @override
   void go(BuildContext context) => context.go(location);

@@ -64,4 +64,5 @@ abstract final class Routes {
   static const shellDemoTab1 = '/shell_demo/tab1';
   static const shellDemoTab2 = '/shell_demo/tab2';
   static const shellDemoDetail = '/shell_demo_detail';
+  static const shellDemoSub = '/shell_demo_sub';
 }
