@@ -27,8 +27,10 @@ class _Body extends HookWidget {
     final emailController = useTextEditingController(
       text: 'flutter@example.com',
     );
+    final codeController = useTextEditingController();
     final nameFocusNode = useFocusNode();
     final emailFocusNode = useFocusNode();
+    final codeFocusNode = useFocusNode();
     final submittedValues = useState<Map<String, dynamic>?>(null);
 
     /// Validates the specified field when it loses focus.
@@ -59,15 +61,25 @@ class _Body extends HookWidget {
           );
         }
 
+        /// Validates the code field on unfocus.
+        void handleCodeFocusChange() {
+          handleFocusChange(
+            fieldName: 'code',
+            hasFocus: codeFocusNode.hasFocus,
+          );
+        }
+
         nameFocusNode.addListener(handleNameFocusChange);
         emailFocusNode.addListener(handleEmailFocusChange);
+        codeFocusNode.addListener(handleCodeFocusChange);
 
         return () {
           nameFocusNode.removeListener(handleNameFocusChange);
           emailFocusNode.removeListener(handleEmailFocusChange);
+          codeFocusNode.removeListener(handleCodeFocusChange);
         };
       },
-      [nameFocusNode, emailFocusNode],
+      [nameFocusNode, emailFocusNode, codeFocusNode],
     );
 
     /// Validates and submits the form, storing results in state.
@@ -193,6 +205,36 @@ class _Body extends HookWidget {
                 ),
               );
             },
+          ),
+          const Text('Code (4 characters)'),
+          FormBuilderField<String>(
+            name: 'code',
+            initialValue: '',
+            validator: FormBuilderValidators.equalLength(
+              4,
+              errorText: 'Code must be exactly 4 characters.',
+            ),
+            builder: (field) => Column(
+              crossAxisAlignment: .start,
+              children: [
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    border: field.hasError
+                        ? Border.all(color: const Color(0xFFFF0000))
+                        : null,
+                  ),
+                  child: EditableText(
+                    controller: codeController,
+                    focusNode: codeFocusNode,
+                    style: DefaultTextStyle.of(field.context).style,
+                    cursorColor: const Color(0xFF000000),
+                    backgroundCursorColor: const Color(0xFF808080),
+                    onChanged: field.didChange,
+                  ),
+                ),
+                if (field.errorText case final errorText?) Text(errorText),
+              ],
+            ),
           ),
           GestureDetector(
             onTap: form.isValid ? handleSubmit : null,
