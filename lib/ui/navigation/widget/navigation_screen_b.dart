@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/routing/pop_until.dart';
 import 'package:flutter_lab/routing/router.dart';
+import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/button.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
@@ -29,6 +31,11 @@ class NavigationScreenB extends StatelessWidget {
       NavigationScreenCRoute().push<void>(context);
     }
 
+    /// Pops routes until reaching the Home screen using popUntil.
+    void handlePopUntilHome() {
+      context.popUntil((route) => route.path == Routes.home);
+    }
+
     return Layout(
       appBar: const AppBar(title: Text('Screen B')),
       child: Center(
@@ -47,6 +54,10 @@ class NavigationScreenB extends StatelessWidget {
             Button(
               onTap: handlePopTwoAndPush,
               label: 'Pop 2 + Push Screen C',
+            ),
+            Button(
+              onTap: handlePopUntilHome,
+              label: 'popUntil Home',
             ),
           ],
         ),
