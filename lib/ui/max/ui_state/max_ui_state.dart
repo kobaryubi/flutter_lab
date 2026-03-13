@@ -8,6 +8,9 @@ part 'max_ui_state.freezed.dart';
 @freezed
 abstract class MaxUiState with _$MaxUiState {
   const factory MaxUiState({
+    /// Result of initializing the AppLovin MAX SDK.
+    AsyncValue<Unit>? initialize,
+
     /// Result of loading a rewarded ad.
     AsyncValue<Unit>? loadRewardedAd,
 

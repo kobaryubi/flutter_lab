@@ -12,6 +12,17 @@ class MaxViewModel extends _$MaxViewModel {
   @override
   MaxUiState build() => const MaxUiState();
 
+  /// Initializes the AppLovin MAX SDK.
+  Future<void> initialize() async {
+    final useCase = ref.read(initializeMaxUseCaseProvider);
+
+    final initialize = await AsyncValue.guard(
+      () async => (await useCase.call()).getOrThrow(),
+    );
+
+    state = state.copyWith(initialize: initialize);
+  }
+
   /// Loads a rewarded ad.
   ///
   /// Completes when the ad is loaded and ready to be shown.
