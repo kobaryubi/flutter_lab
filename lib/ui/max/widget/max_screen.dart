@@ -24,10 +24,10 @@ class _Body extends HookConsumerWidget {
     final uiState = ref.watch(maxViewModelProvider);
     final viewModel = ref.read(maxViewModelProvider.notifier);
 
-    /// Automatically loads a rewarded ad when the screen opens.
+    /// Initializes the AppLovin MAX SDK when the screen opens.
     useEffect(
       () {
-        viewModel.loadRewardedAd();
+        viewModel.initialize();
 
         return null;
       },
