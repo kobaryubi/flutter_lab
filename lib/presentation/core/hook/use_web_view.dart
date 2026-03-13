@@ -27,12 +27,22 @@ class WebViewState {
   final WebViewLoadStatus status;
 }
 
+/// Callback type for intercepting navigation requests.
+///
+/// Receives the [NavigationRequest] and returns a [NavigationDecision]
+/// to allow or prevent the navigation.
+typedef OnNavigationRequest =
+    NavigationDecision Function(
+      NavigationRequest request,
+    );
+
 /// Hook that manages WebView state and provides load status.
 ///
 /// Returns a [WebViewState] with the controller, load status,
 /// and navigation actions.
 WebViewState useWebView({
   String? initialUrl,
+  OnNavigationRequest? onNavigationRequest,
 }) {
   final status = useState(WebViewLoadStatus.loading);
   final controller = useMemoized(WebViewController.new, []);
@@ -62,6 +72,7 @@ WebViewState useWebView({
 
   useEffect(() {
     final delegate = NavigationDelegate(
+      onNavigationRequest: onNavigationRequest,
       onPageStarted: handlePageStarted,
       onPageFinished: handlePageFinished,
       onWebResourceError: handleWebResourceError,
