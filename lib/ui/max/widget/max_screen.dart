@@ -34,6 +34,7 @@ class _Body extends HookConsumerWidget {
       [],
     );
 
+    final isInitialized = uiState.initialize is AsyncData;
     final isAdReady = uiState.loadRewardedAd is AsyncData;
 
     /// Shows the rewarded ad.
@@ -50,6 +51,12 @@ class _Body extends HookConsumerWidget {
       child: Column(
         mainAxisAlignment: .center,
         children: [
+          if (uiState.initialize is AsyncLoading)
+            const Text('Initializing SDK...'),
+
+          if (uiState.initialize case AsyncError(:final error))
+            Text('Initialize error: $error'),
+
           if (uiState.loadRewardedAd is AsyncLoading)
             const Text('Loading ad...'),
 
@@ -77,8 +84,15 @@ class _Body extends HookConsumerWidget {
           const SizedBox(height: 32),
 
           GestureDetector(
-            onTap: handleMediationDebugger,
-            child: const Text('Mediation Debugger'),
+            onTap: isInitialized ? handleMediationDebugger : null,
+            child: Text(
+              'Mediation Debugger',
+              style: TextStyle(
+                color: isInitialized
+                    ? const Color(0xFF000000)
+                    : const Color(0xFF999999),
+              ),
+            ),
           ),
         ],
       ),
