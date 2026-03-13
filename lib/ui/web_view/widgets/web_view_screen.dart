@@ -27,15 +27,38 @@ class _Body extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final webView = useWebView(initialUrl: url);
+    final interceptedUrl = useState<String?>(null);
+
+    /// Handles navigation requests by intercepting YouTube URLs.
+    NavigationDecision handleNavigationRequest(NavigationRequest request) {
+      final url = request.url;
+      final isYouTube = url.contains('youtube.com');
+
+      if (isYouTube) {
+        interceptedUrl.value = url;
+        return NavigationDecision.prevent;
+      }
+
+      return NavigationDecision.navigate;
+    }
+
+    final webView = useWebView(
+      initialUrl: url,
+      onNavigationRequest: handleNavigationRequest,
+    );
 
     return Column(
       children: [
         Text('Status: ${webView.status.name}'),
+
+        if (interceptedUrl.value != null)
+          Text('Intercepted YouTube URL: ${interceptedUrl.value}'),
+
         Expanded(
           child: Stack(
             children: [
               WebViewWidget(controller: webView.controller),
+
               if (webView.status == .loading) const Text('Loading...'),
             ],
           ),
