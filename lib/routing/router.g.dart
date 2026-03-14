@@ -7,6 +7,7 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
+  $analyticsRoute,
   $animatedSwitcherRoute,
   $appLifecycleRoute,
   $appStoreRoute,
@@ -62,6 +63,29 @@ List<RouteBase> get $appRoutes => [
   $urlNavigationRoute,
   $webViewRoute,
 ];
+
+RouteBase get $analyticsRoute =>
+    GoRouteData.$route(path: '/analytics', factory: $AnalyticsRoute._fromState);
+
+mixin $AnalyticsRoute on GoRouteData {
+  static AnalyticsRoute _fromState(GoRouterState state) => AnalyticsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/analytics');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
 
 RouteBase get $animatedSwitcherRoute => GoRouteData.$route(
   path: '/animated_switcher',

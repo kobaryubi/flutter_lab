@@ -60,6 +60,7 @@ abstract final class Routes {
   static const profilePassport = '/profile_passport';
   static const animatedSwitcher = '/animated_switcher';
 
+  static const analytics = '/analytics';
   static const shellDemo = '/shell_demo';
   static const shellDemoTab1 = '/shell_demo/tab1';
   static const shellDemoTab2 = '/shell_demo/tab2';
