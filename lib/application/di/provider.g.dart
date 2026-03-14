@@ -2637,6 +2637,145 @@ final class ShowMediationDebuggerUseCaseProvider
 String _$showMediationDebuggerUseCaseHash() =>
     r'326d9c73751e8f2688426ad51d1618c4245b577f';
 
+@ProviderFor(analyticsGateway)
+const analyticsGatewayProvider = AnalyticsGatewayProvider._();
+
+final class AnalyticsGatewayProvider
+    extends
+        $FunctionalProvider<
+          AnalyticsGateway,
+          AnalyticsGateway,
+          AnalyticsGateway
+        >
+    with $Provider<AnalyticsGateway> {
+  const AnalyticsGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'analyticsGatewayProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$analyticsGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<AnalyticsGateway> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AnalyticsGateway create(Ref ref) {
+    return analyticsGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AnalyticsGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AnalyticsGateway>(value),
+    );
+  }
+}
+
+String _$analyticsGatewayHash() => r'29b4363e414fec7137a2cb848983e9a9aa19f8f3';
+
+@ProviderFor(setDefaultEventParametersUseCase)
+const setDefaultEventParametersUseCaseProvider =
+    SetDefaultEventParametersUseCaseProvider._();
+
+final class SetDefaultEventParametersUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SetDefaultEventParametersUseCase,
+          SetDefaultEventParametersUseCase,
+          SetDefaultEventParametersUseCase
+        >
+    with $Provider<SetDefaultEventParametersUseCase> {
+  const SetDefaultEventParametersUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'setDefaultEventParametersUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$setDefaultEventParametersUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<SetDefaultEventParametersUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SetDefaultEventParametersUseCase create(Ref ref) {
+    return setDefaultEventParametersUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SetDefaultEventParametersUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SetDefaultEventParametersUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$setDefaultEventParametersUseCaseHash() =>
+    r'fcfc6df82cf7c0fdd69096a988dee36d70ea4601';
+
+@ProviderFor(logEventUseCase)
+const logEventUseCaseProvider = LogEventUseCaseProvider._();
+
+final class LogEventUseCaseProvider
+    extends
+        $FunctionalProvider<LogEventUseCase, LogEventUseCase, LogEventUseCase>
+    with $Provider<LogEventUseCase> {
+  const LogEventUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'logEventUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$logEventUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<LogEventUseCase> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  LogEventUseCase create(Ref ref) {
+    return logEventUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LogEventUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LogEventUseCase>(value),
+    );
+  }
+}
+
+String _$logEventUseCaseHash() => r'124463b33bd152a5bb89adeff3aa6121528d2333';
+
 @ProviderFor(googleApiGateway)
 const googleApiGatewayProvider = GoogleApiGatewayProvider._();
 

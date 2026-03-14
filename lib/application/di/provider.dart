@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
+import 'package:flutter_lab/data/gateway/analytics/firebase_analytics_gateway.dart';
 import 'package:flutter_lab/data/gateway/arutana/pigeon_arutana_gateway.dart';
 import 'package:flutter_lab/data/gateway/clock/clock_clock_gateway.dart';
 import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart';
@@ -28,6 +29,7 @@ import 'package:flutter_lab/data/repositories/push_notification/firebase_messagi
 import 'package:flutter_lab/data/repositories/shortcut/file_system_shortcut_repository.dart';
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
+import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
 import 'package:flutter_lab/domain/app_store/app_store_repository.dart';
 import 'package:flutter_lab/domain/arutana/arutana_gateway.dart';
 import 'package:flutter_lab/domain/battery/battery_gateway.dart';
@@ -51,6 +53,8 @@ import 'package:flutter_lab/domain/push_notification/push_notification_repositor
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/text_recognition/text_recognition_gateway.dart';
 import 'package:flutter_lab/domain/use_cases/agreement/initialize_latest_agreed_date_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/analytics/log_event_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/analytics/set_default_event_parameters_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/app_store/get_app_store_url_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/battery/get_battery_level_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/clock/get_current_time_use_case.dart';
@@ -418,6 +422,22 @@ ShowMediationDebuggerUseCase showMediationDebuggerUseCase(Ref ref) =>
     ShowMediationDebuggerUseCase(
       maxGateway: ref.read(maxGatewayProvider),
     );
+
+// analytics
+@riverpod
+AnalyticsGateway analyticsGateway(Ref ref) => FirebaseAnalyticsGateway();
+
+@riverpod
+SetDefaultEventParametersUseCase setDefaultEventParametersUseCase(
+  Ref ref,
+) => SetDefaultEventParametersUseCase(
+  analyticsGateway: ref.read(analyticsGatewayProvider),
+);
+
+@riverpod
+LogEventUseCase logEventUseCase(Ref ref) => LogEventUseCase(
+  analyticsGateway: ref.read(analyticsGatewayProvider),
+);
 
 // google api
 @riverpod
