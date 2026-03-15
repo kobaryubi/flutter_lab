@@ -2776,6 +2776,102 @@ final class LogEventUseCaseProvider
 
 String _$logEventUseCaseHash() => r'124463b33bd152a5bb89adeff3aa6121528d2333';
 
+@ProviderFor(logTapEventUseCase)
+const logTapEventUseCaseProvider = LogTapEventUseCaseProvider._();
+
+final class LogTapEventUseCaseProvider
+    extends
+        $FunctionalProvider<
+          LogTapEventUseCase,
+          LogTapEventUseCase,
+          LogTapEventUseCase
+        >
+    with $Provider<LogTapEventUseCase> {
+  const LogTapEventUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'logTapEventUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$logTapEventUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<LogTapEventUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  LogTapEventUseCase create(Ref ref) {
+    return logTapEventUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LogTapEventUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LogTapEventUseCase>(value),
+    );
+  }
+}
+
+String _$logTapEventUseCaseHash() =>
+    r'd17bf8a345e45c93ebb485d52fcbcf7fb254baec';
+
+@ProviderFor(logViewEventUseCase)
+const logViewEventUseCaseProvider = LogViewEventUseCaseProvider._();
+
+final class LogViewEventUseCaseProvider
+    extends
+        $FunctionalProvider<
+          LogViewEventUseCase,
+          LogViewEventUseCase,
+          LogViewEventUseCase
+        >
+    with $Provider<LogViewEventUseCase> {
+  const LogViewEventUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'logViewEventUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$logViewEventUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<LogViewEventUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  LogViewEventUseCase create(Ref ref) {
+    return logViewEventUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LogViewEventUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LogViewEventUseCase>(value),
+    );
+  }
+}
+
+String _$logViewEventUseCaseHash() =>
+    r'a9fa3606d669dfb8ff3d4f671b264cf5620cad20';
+
 @ProviderFor(googleApiGateway)
 const googleApiGatewayProvider = GoogleApiGatewayProvider._();
 

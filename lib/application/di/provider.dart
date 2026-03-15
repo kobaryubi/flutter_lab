@@ -54,6 +54,8 @@ import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/text_recognition/text_recognition_gateway.dart';
 import 'package:flutter_lab/domain/use_cases/agreement/initialize_latest_agreed_date_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_event_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/analytics/log_tap_event_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/analytics/log_view_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/set_default_event_parameters_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/app_store/get_app_store_url_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/battery/get_battery_level_use_case.dart';
@@ -436,6 +438,16 @@ SetDefaultEventParametersUseCase setDefaultEventParametersUseCase(
 
 @riverpod
 LogEventUseCase logEventUseCase(Ref ref) => LogEventUseCase(
+  analyticsGateway: ref.read(analyticsGatewayProvider),
+);
+
+@riverpod
+LogTapEventUseCase logTapEventUseCase(Ref ref) => LogTapEventUseCase(
+  analyticsGateway: ref.read(analyticsGatewayProvider),
+);
+
+@riverpod
+LogViewEventUseCase logViewEventUseCase(Ref ref) => LogViewEventUseCase(
   analyticsGateway: ref.read(analyticsGatewayProvider),
 );
 
