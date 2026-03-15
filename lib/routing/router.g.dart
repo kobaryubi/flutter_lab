@@ -460,7 +460,7 @@ mixin $GoogleApiRoute on GoRouteData {
 }
 
 RouteBase get $homeRoute =>
-    GoRouteData.$route(path: '/', factory: $HomeRoute._fromState);
+    GoRouteData.$route(path: '/', name: 'home', factory: $HomeRoute._fromState);
 
 mixin $HomeRoute on GoRouteData {
   static HomeRoute _fromState(GoRouterState state) => HomeRoute();

@@ -2,6 +2,7 @@ part of 'router.dart';
 
 @TypedGoRoute<HomeRoute>(
   path: Routes.home,
+  name: 'home',
 )
 @immutable
 class HomeRoute extends GoRouteData with $HomeRoute {
