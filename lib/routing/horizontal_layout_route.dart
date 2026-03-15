@@ -2,6 +2,7 @@ part of 'router.dart';
 
 @TypedGoRoute<HorizontalLayoutRoute>(
   path: Routes.horizontalLayout,
+  name: 'horizontal_layout',
 )
 @immutable
 class HorizontalLayoutRoute extends GoRouteData with $HorizontalLayoutRoute {

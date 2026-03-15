@@ -2,6 +2,7 @@ part of 'router.dart';
 
 @TypedGoRoute<DioCacheRoute>(
   path: Routes.dioCache,
+  name: 'dio_cache',
 )
 @immutable
 class DioCacheRoute extends GoRouteData with $DioCacheRoute {

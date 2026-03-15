@@ -1,6 +1,9 @@
 part of 'router.dart';
 
-@TypedGoRoute<RoutingCupertinoRoute>(path: Routes.routingCupertino)
+@TypedGoRoute<RoutingCupertinoRoute>(
+  path: Routes.routingCupertino,
+  name: 'routing_cupertino',
+)
 @immutable
 class RoutingCupertinoRoute extends GoRouteData with $RoutingCupertinoRoute {
   @override

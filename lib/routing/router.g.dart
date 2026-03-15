@@ -64,8 +64,11 @@ List<RouteBase> get $appRoutes => [
   $webViewRoute,
 ];
 
-RouteBase get $analyticsRoute =>
-    GoRouteData.$route(path: '/analytics', factory: $AnalyticsRoute._fromState);
+RouteBase get $analyticsRoute => GoRouteData.$route(
+  path: '/analytics',
+  name: 'analytics',
+  factory: $AnalyticsRoute._fromState,
+);
 
 mixin $AnalyticsRoute on GoRouteData {
   static AnalyticsRoute _fromState(GoRouterState state) => AnalyticsRoute();
@@ -89,6 +92,7 @@ mixin $AnalyticsRoute on GoRouteData {
 
 RouteBase get $animatedSwitcherRoute => GoRouteData.$route(
   path: '/animated_switcher',
+  name: 'animated_switcher',
   factory: $AnimatedSwitcherRoute._fromState,
 );
 
@@ -115,6 +119,7 @@ mixin $AnimatedSwitcherRoute on GoRouteData {
 
 RouteBase get $appLifecycleRoute => GoRouteData.$route(
   path: '/app_lifecycle',
+  name: 'app_lifecycle',
   factory: $AppLifecycleRoute._fromState,
 );
 
@@ -139,8 +144,11 @@ mixin $AppLifecycleRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $appStoreRoute =>
-    GoRouteData.$route(path: '/app_store', factory: $AppStoreRoute._fromState);
+RouteBase get $appStoreRoute => GoRouteData.$route(
+  path: '/app_store',
+  name: 'app_store',
+  factory: $AppStoreRoute._fromState,
+);
 
 mixin $AppStoreRoute on GoRouteData {
   static AppStoreRoute _fromState(GoRouterState state) => AppStoreRoute();
@@ -162,8 +170,11 @@ mixin $AppStoreRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $arutanaRoute =>
-    GoRouteData.$route(path: '/arutana', factory: $ArutanaRoute._fromState);
+RouteBase get $arutanaRoute => GoRouteData.$route(
+  path: '/arutana',
+  name: 'arutana',
+  factory: $ArutanaRoute._fromState,
+);
 
 mixin $ArutanaRoute on GoRouteData {
   static ArutanaRoute _fromState(GoRouterState state) => ArutanaRoute();
@@ -187,6 +198,7 @@ mixin $ArutanaRoute on GoRouteData {
 
 RouteBase get $asyncStateRaceRoute => GoRouteData.$route(
   path: '/async_state_race',
+  name: 'async_state_race',
   factory: $AsyncStateRaceRoute._fromState,
 );
 
@@ -213,6 +225,7 @@ mixin $AsyncStateRaceRoute on GoRouteData {
 
 RouteBase get $autoMapprDemoRoute => GoRouteData.$route(
   path: '/auto_mappr_demo',
+  name: 'auto_mappr_demo',
   factory: $AutoMapprDemoRoute._fromState,
 );
 
@@ -239,6 +252,7 @@ mixin $AutoMapprDemoRoute on GoRouteData {
 
 RouteBase get $brightnessRoute => GoRouteData.$route(
   path: '/brightness',
+  name: 'brightness',
   factory: $BrightnessRoute._fromState,
 );
 
@@ -262,8 +276,11 @@ mixin $BrightnessRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $clockRoute =>
-    GoRouteData.$route(path: '/clock', factory: $ClockRoute._fromState);
+RouteBase get $clockRoute => GoRouteData.$route(
+  path: '/clock',
+  name: 'clock',
+  factory: $ClockRoute._fromState,
+);
 
 mixin $ClockRoute on GoRouteData {
   static ClockRoute _fromState(GoRouterState state) => ClockRoute();
@@ -287,6 +304,7 @@ mixin $ClockRoute on GoRouteData {
 
 RouteBase get $deviceInfoRoute => GoRouteData.$route(
   path: '/device_info',
+  name: 'device_info',
   factory: $DeviceInfoRoute._fromState,
 );
 
@@ -312,6 +330,7 @@ mixin $DeviceInfoRoute on GoRouteData {
 
 RouteBase get $dialogStateRoute => GoRouteData.$route(
   path: '/dialog_state',
+  name: 'dialog_state',
   factory: $DialogStateRoute._fromState,
 );
 
@@ -335,8 +354,11 @@ mixin $DialogStateRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $dioCacheRoute =>
-    GoRouteData.$route(path: '/dio_cache', factory: $DioCacheRoute._fromState);
+RouteBase get $dioCacheRoute => GoRouteData.$route(
+  path: '/dio_cache',
+  name: 'dio_cache',
+  factory: $DioCacheRoute._fromState,
+);
 
 mixin $DioCacheRoute on GoRouteData {
   static DioCacheRoute _fromState(GoRouterState state) => DioCacheRoute();
@@ -360,6 +382,7 @@ mixin $DioCacheRoute on GoRouteData {
 
 RouteBase get $effectVsListenRoute => GoRouteData.$route(
   path: '/effect_vs_listen',
+  name: 'effect_vs_listen',
   factory: $EffectVsListenRoute._fromState,
 );
 
@@ -386,6 +409,7 @@ mixin $EffectVsListenRoute on GoRouteData {
 
 RouteBase get $etagCacheRoute => GoRouteData.$route(
   path: '/etag_cache',
+  name: 'etag_cache',
   factory: $EtagCacheRoute._fromState,
 );
 
@@ -411,6 +435,7 @@ mixin $EtagCacheRoute on GoRouteData {
 
 RouteBase get $formBuilderRoute => GoRouteData.$route(
   path: '/form_builder',
+  name: 'form_builder',
   factory: $FormBuilderRoute._fromState,
 );
 
@@ -436,6 +461,7 @@ mixin $FormBuilderRoute on GoRouteData {
 
 RouteBase get $googleApiRoute => GoRouteData.$route(
   path: '/google_api',
+  name: 'google_api',
   factory: $GoogleApiRoute._fromState,
 );
 
@@ -484,6 +510,7 @@ mixin $HomeRoute on GoRouteData {
 
 RouteBase get $horizontalLayoutRoute => GoRouteData.$route(
   path: '/horizontal_layout',
+  name: 'horizontal_layout',
   factory: $HorizontalLayoutRoute._fromState,
 );
 
@@ -510,6 +537,7 @@ mixin $HorizontalLayoutRoute on GoRouteData {
 
 RouteBase get $inAppReviewRoute => GoRouteData.$route(
   path: '/in_app_review',
+  name: 'in_app_review',
   factory: $InAppReviewRoute._fromState,
 );
 
@@ -535,6 +563,7 @@ mixin $InAppReviewRoute on GoRouteData {
 
 RouteBase get $launchUrlDetailRoute => GoRouteData.$route(
   path: '/launch_url_detail',
+  name: 'launch_url_detail',
   factory: $LaunchUrlDetailRoute._fromState,
 );
 
@@ -581,6 +610,7 @@ extension<T extends Enum> on Map<T, String> {
 
 RouteBase get $launchUrlRoute => GoRouteData.$route(
   path: '/launch_url',
+  name: 'launch_url',
   factory: $LaunchUrlRoute._fromState,
 );
 
@@ -608,8 +638,11 @@ mixin $LaunchUrlRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $loadingRoute =>
-    GoRouteData.$route(path: '/loading', factory: $LoadingRoute._fromState);
+RouteBase get $loadingRoute => GoRouteData.$route(
+  path: '/loading',
+  name: 'loading',
+  factory: $LoadingRoute._fromState,
+);
 
 mixin $LoadingRoute on GoRouteData {
   static LoadingRoute _fromState(GoRouterState state) => LoadingRoute();
@@ -633,6 +666,7 @@ mixin $LoadingRoute on GoRouteData {
 
 RouteBase get $localIconRoute => GoRouteData.$route(
   path: '/local_icon',
+  name: 'local_icon',
   factory: $LocalIconRoute._fromState,
 );
 
@@ -658,6 +692,7 @@ mixin $LocalIconRoute on GoRouteData {
 
 RouteBase get $localPathsRoute => GoRouteData.$route(
   path: '/local_paths',
+  name: 'local_paths',
   factory: $LocalPathsRoute._fromState,
 );
 
@@ -681,8 +716,11 @@ mixin $LocalPathsRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $maxRoute =>
-    GoRouteData.$route(path: '/max', factory: $MaxRoute._fromState);
+RouteBase get $maxRoute => GoRouteData.$route(
+  path: '/max',
+  name: 'max',
+  factory: $MaxRoute._fromState,
+);
 
 mixin $MaxRoute on GoRouteData {
   static MaxRoute _fromState(GoRouterState state) => MaxRoute();
@@ -706,6 +744,7 @@ mixin $MaxRoute on GoRouteData {
 
 RouteBase get $methodChannelRoute => GoRouteData.$route(
   path: '/method_channel',
+  name: 'method_channel',
   factory: $MethodChannelRoute._fromState,
 );
 
@@ -732,6 +771,7 @@ mixin $MethodChannelRoute on GoRouteData {
 
 RouteBase get $navigationScreenARoute => GoRouteData.$route(
   path: '/navigation/screen_a',
+  name: 'navigation_screen_a',
   factory: $NavigationScreenARoute._fromState,
 );
 
@@ -758,6 +798,7 @@ mixin $NavigationScreenARoute on GoRouteData {
 
 RouteBase get $navigationScreenBRoute => GoRouteData.$route(
   path: '/navigation/screen_b',
+  name: 'navigation_screen_b',
   factory: $NavigationScreenBRoute._fromState,
 );
 
@@ -784,6 +825,7 @@ mixin $NavigationScreenBRoute on GoRouteData {
 
 RouteBase get $navigationScreenCRoute => GoRouteData.$route(
   path: '/navigation/screen_c',
+  name: 'navigation_screen_c',
   factory: $NavigationScreenCRoute._fromState,
 );
 
@@ -808,8 +850,11 @@ mixin $NavigationScreenCRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $networkRoute =>
-    GoRouteData.$route(path: '/network', factory: $NetworkRoute._fromState);
+RouteBase get $networkRoute => GoRouteData.$route(
+  path: '/network',
+  name: 'network',
+  factory: $NetworkRoute._fromState,
+);
 
 mixin $NetworkRoute on GoRouteData {
   static NetworkRoute _fromState(GoRouterState state) => NetworkRoute();
@@ -831,8 +876,11 @@ mixin $NetworkRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $notFoundRoute =>
-    GoRouteData.$route(path: '/404', factory: $NotFoundRoute._fromState);
+RouteBase get $notFoundRoute => GoRouteData.$route(
+  path: '/404',
+  name: 'not_found',
+  factory: $NotFoundRoute._fromState,
+);
 
 mixin $NotFoundRoute on GoRouteData {
   static NotFoundRoute _fromState(GoRouterState state) => NotFoundRoute();
@@ -856,6 +904,7 @@ mixin $NotFoundRoute on GoRouteData {
 
 RouteBase get $observerDemoRoute => GoRouteData.$route(
   path: '/observer_demo',
+  name: 'observer_demo',
   factory: $ObserverDemoRoute._fromState,
 );
 
@@ -882,6 +931,7 @@ mixin $ObserverDemoRoute on GoRouteData {
 
 RouteBase get $observerDemoDetailRoute => GoRouteData.$route(
   path: '/observer_demo/detail',
+  name: 'observer_demo_detail',
   factory: $ObserverDemoDetailRoute._fromState,
 );
 
@@ -908,6 +958,7 @@ mixin $ObserverDemoDetailRoute on GoRouteData {
 
 RouteBase get $ocrResultRoute => GoRouteData.$route(
   path: '/ocr_result',
+  name: 'ocr_result',
   factory: $OcrResultRoute._fromState,
 );
 
@@ -935,8 +986,11 @@ mixin $OcrResultRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $ocrRoute =>
-    GoRouteData.$route(path: '/ocr', factory: $OcrRoute._fromState);
+RouteBase get $ocrRoute => GoRouteData.$route(
+  path: '/ocr',
+  name: 'ocr',
+  factory: $OcrRoute._fromState,
+);
 
 mixin $OcrRoute on GoRouteData {
   static OcrRoute _fromState(GoRouterState state) => OcrRoute();
@@ -960,6 +1014,7 @@ mixin $OcrRoute on GoRouteData {
 
 RouteBase get $permissionRoute => GoRouteData.$route(
   path: '/permission',
+  name: 'permission',
   factory: $PermissionRoute._fromState,
 );
 
@@ -983,8 +1038,11 @@ mixin $PermissionRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $petCacheRoute =>
-    GoRouteData.$route(path: '/pet_cache', factory: $PetCacheRoute._fromState);
+RouteBase get $petCacheRoute => GoRouteData.$route(
+  path: '/pet_cache',
+  name: 'pet_cache',
+  factory: $PetCacheRoute._fromState,
+);
 
 mixin $PetCacheRoute on GoRouteData {
   static PetCacheRoute _fromState(GoRouterState state) => PetCacheRoute();
@@ -1006,8 +1064,11 @@ mixin $PetCacheRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $pigeonRoute =>
-    GoRouteData.$route(path: '/pigeon', factory: $PigeonRoute._fromState);
+RouteBase get $pigeonRoute => GoRouteData.$route(
+  path: '/pigeon',
+  name: 'pigeon',
+  factory: $PigeonRoute._fromState,
+);
 
 mixin $PigeonRoute on GoRouteData {
   static PigeonRoute _fromState(GoRouterState state) => PigeonRoute();
@@ -1029,8 +1090,11 @@ mixin $PigeonRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $popScopeRoute =>
-    GoRouteData.$route(path: '/pop_scope', factory: $PopScopeRoute._fromState);
+RouteBase get $popScopeRoute => GoRouteData.$route(
+  path: '/pop_scope',
+  name: 'pop_scope',
+  factory: $PopScopeRoute._fromState,
+);
 
 mixin $PopScopeRoute on GoRouteData {
   static PopScopeRoute _fromState(GoRouterState state) => PopScopeRoute();
@@ -1052,8 +1116,11 @@ mixin $PopScopeRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $portalRoute =>
-    GoRouteData.$route(path: '/portal', factory: $PortalRoute._fromState);
+RouteBase get $portalRoute => GoRouteData.$route(
+  path: '/portal',
+  name: 'portal',
+  factory: $PortalRoute._fromState,
+);
 
 mixin $PortalRoute on GoRouteData {
   static PortalRoute _fromState(GoRouterState state) => PortalRoute();
@@ -1077,6 +1144,7 @@ mixin $PortalRoute on GoRouteData {
 
 RouteBase get $profilePassportRoute => GoRouteData.$route(
   path: '/profile_passport',
+  name: 'profile_passport',
   factory: $ProfilePassportRoute._fromState,
 );
 
@@ -1103,6 +1171,7 @@ mixin $ProfilePassportRoute on GoRouteData {
 
 RouteBase get $pushNotificationRoute => GoRouteData.$route(
   path: '/push_notification',
+  name: 'push_notification',
   factory: $PushNotificationRoute._fromState,
 );
 
@@ -1129,6 +1198,7 @@ mixin $PushNotificationRoute on GoRouteData {
 
 RouteBase get $routeAwareDemoRoute => GoRouteData.$route(
   path: '/route_aware_demo',
+  name: 'route_aware_demo',
   factory: $RouteAwareDemoRoute._fromState,
 );
 
@@ -1155,6 +1225,7 @@ mixin $RouteAwareDemoRoute on GoRouteData {
 
 RouteBase get $routeAwareDemoDetailRoute => GoRouteData.$route(
   path: '/route_aware_demo/detail',
+  name: 'route_aware_demo_detail',
   factory: $RouteAwareDemoDetailRoute._fromState,
 );
 
@@ -1181,6 +1252,7 @@ mixin $RouteAwareDemoDetailRoute on GoRouteData {
 
 RouteBase get $routingCupertinoFullscreenDialogRoute => GoRouteData.$route(
   path: '/routing/cupertino/fullscreen_dialog',
+  name: 'routing_cupertino_fullscreen_dialog',
   factory: $RoutingCupertinoFullscreenDialogRoute._fromState,
 );
 
@@ -1209,6 +1281,7 @@ mixin $RoutingCupertinoFullscreenDialogRoute on GoRouteData {
 
 RouteBase get $routingCupertinoRoute => GoRouteData.$route(
   path: '/routing/cupertino',
+  name: 'routing_cupertino',
   factory: $RoutingCupertinoRoute._fromState,
 );
 
@@ -1233,8 +1306,11 @@ mixin $RoutingCupertinoRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $routingRoute =>
-    GoRouteData.$route(path: '/routing', factory: $RoutingRoute._fromState);
+RouteBase get $routingRoute => GoRouteData.$route(
+  path: '/routing',
+  name: 'routing',
+  factory: $RoutingRoute._fromState,
+);
 
 mixin $RoutingRoute on GoRouteData {
   static RoutingRoute _fromState(GoRouterState state) => RoutingRoute();
@@ -1258,6 +1334,7 @@ mixin $RoutingRoute on GoRouteData {
 
 RouteBase get $s3EtagCacheRoute => GoRouteData.$route(
   path: '/s3_etag_cache',
+  name: 's3_etag_cache',
   factory: $S3EtagCacheRoute._fromState,
 );
 
@@ -1283,6 +1360,7 @@ mixin $S3EtagCacheRoute on GoRouteData {
 
 RouteBase get $screenshotPreventionRoute => GoRouteData.$route(
   path: '/screenshot_prevention',
+  name: 'screenshot_prevention',
   factory: $ScreenshotPreventionRoute._fromState,
 );
 
@@ -1309,6 +1387,7 @@ mixin $ScreenshotPreventionRoute on GoRouteData {
 
 RouteBase get $sharedPreferencesRoute => GoRouteData.$route(
   path: '/shared_preferences',
+  name: 'shared_preferences',
   factory: $SharedPreferencesRoute._fromState,
 );
 
@@ -1335,6 +1414,7 @@ mixin $SharedPreferencesRoute on GoRouteData {
 
 RouteBase get $shellDemoDetailRoute => GoRouteData.$route(
   path: '/shell_demo_detail',
+  name: 'shell_demo_detail',
   factory: $ShellDemoDetailRoute._fromState,
 );
 
@@ -1366,6 +1446,7 @@ RouteBase get $shellDemoRoute => StatefulShellRouteData.$route(
       routes: [
         GoRouteData.$route(
           path: '/shell_demo/tab1',
+          name: 'shell_demo_tab1',
           factory: $ShellDemoTab1Route._fromState,
         ),
       ],
@@ -1374,6 +1455,7 @@ RouteBase get $shellDemoRoute => StatefulShellRouteData.$route(
       routes: [
         GoRouteData.$route(
           path: '/shell_demo/tab2',
+          name: 'shell_demo_tab2',
           factory: $ShellDemoTab2Route._fromState,
         ),
       ],
@@ -1430,6 +1512,7 @@ mixin $ShellDemoTab2Route on GoRouteData {
 
 RouteBase get $shellDemoSubRoute => GoRouteData.$route(
   path: '/shell_demo_sub',
+  name: 'shell_demo_sub',
   factory: $ShellDemoSubRoute._fromState,
 );
 
@@ -1456,6 +1539,7 @@ mixin $ShellDemoSubRoute on GoRouteData {
 
 RouteBase get $urlNavigationRoute => GoRouteData.$route(
   path: '/url_navigation',
+  name: 'url_navigation',
   factory: $UrlNavigationRoute._fromState,
 );
 

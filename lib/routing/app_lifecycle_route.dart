@@ -1,6 +1,9 @@
 part of 'router.dart';
 
-@TypedGoRoute<AppLifecycleRoute>(path: Routes.appLifecycle)
+@TypedGoRoute<AppLifecycleRoute>(
+  path: Routes.appLifecycle,
+  name: 'app_lifecycle',
+)
 @immutable
 class AppLifecycleRoute extends GoRouteData with $AppLifecycleRoute {
   @override

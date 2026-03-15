@@ -2,6 +2,7 @@ part of 'router.dart';
 
 @TypedGoRoute<AnalyticsRoute>(
   path: Routes.analytics,
+  name: 'analytics',
 )
 @immutable
 class AnalyticsRoute extends GoRouteData with $AnalyticsRoute {

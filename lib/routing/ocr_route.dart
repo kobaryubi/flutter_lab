@@ -1,6 +1,6 @@
 part of 'router.dart';
 
-@TypedGoRoute<OcrRoute>(path: Routes.ocr)
+@TypedGoRoute<OcrRoute>(path: Routes.ocr, name: 'ocr')
 @immutable
 class OcrRoute extends GoRouteData with $OcrRoute {
   @override

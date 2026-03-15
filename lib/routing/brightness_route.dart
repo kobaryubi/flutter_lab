@@ -2,6 +2,7 @@ part of 'router.dart';
 
 @TypedGoRoute<BrightnessRoute>(
   path: Routes.brightness,
+  name: 'brightness',
 )
 @immutable
 class BrightnessRoute extends GoRouteData with $BrightnessRoute {

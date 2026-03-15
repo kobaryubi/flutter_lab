@@ -2,6 +2,7 @@ part of 'router.dart';
 
 @TypedGoRoute<PermissionRoute>(
   path: Routes.permission,
+  name: 'permission',
 )
 @immutable
 class PermissionRoute extends GoRouteData with $PermissionRoute {

@@ -2,6 +2,7 @@ part of 'router.dart';
 
 @TypedGoRoute<MaxRoute>(
   path: Routes.max,
+  name: 'max',
 )
 @immutable
 class MaxRoute extends GoRouteData with $MaxRoute {

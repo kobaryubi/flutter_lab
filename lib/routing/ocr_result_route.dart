@@ -1,6 +1,6 @@
 part of 'router.dart';
 
-@TypedGoRoute<OcrResultRoute>(path: Routes.ocrResult)
+@TypedGoRoute<OcrResultRoute>(path: Routes.ocrResult, name: 'ocr_result')
 @immutable
 class OcrResultRoute extends GoRouteData with $OcrResultRoute {
   const OcrResultRoute({required this.text});

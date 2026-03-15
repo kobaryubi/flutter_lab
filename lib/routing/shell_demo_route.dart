@@ -4,12 +4,18 @@ part of 'router.dart';
   branches: [
     TypedStatefulShellBranch<ShellDemoTab1Branch>(
       routes: [
-        TypedGoRoute<ShellDemoTab1Route>(path: Routes.shellDemoTab1),
+        TypedGoRoute<ShellDemoTab1Route>(
+          path: Routes.shellDemoTab1,
+          name: 'shell_demo_tab1',
+        ),
       ],
     ),
     TypedStatefulShellBranch<ShellDemoTab2Branch>(
       routes: [
-        TypedGoRoute<ShellDemoTab2Route>(path: Routes.shellDemoTab2),
+        TypedGoRoute<ShellDemoTab2Route>(
+          path: Routes.shellDemoTab2,
+          name: 'shell_demo_tab2',
+        ),
       ],
     ),
   ],

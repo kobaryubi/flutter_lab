@@ -2,6 +2,7 @@ part of 'router.dart';
 
 @TypedGoRoute<RoutingCupertinoFullscreenDialogRoute>(
   path: Routes.routingCupertinoFullscreenDialog,
+  name: 'routing_cupertino_fullscreen_dialog',
 )
 @immutable
 class RoutingCupertinoFullscreenDialogRoute extends GoRouteData

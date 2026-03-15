@@ -2,6 +2,7 @@ part of 'router.dart';
 
 @TypedGoRoute<EffectVsListenRoute>(
   path: Routes.effectVsListen,
+  name: 'effect_vs_listen',
 )
 @immutable
 class EffectVsListenRoute extends GoRouteData with $EffectVsListenRoute {

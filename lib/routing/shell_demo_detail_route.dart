@@ -1,6 +1,9 @@
 part of 'router.dart';
 
-@TypedGoRoute<ShellDemoDetailRoute>(path: Routes.shellDemoDetail)
+@TypedGoRoute<ShellDemoDetailRoute>(
+  path: Routes.shellDemoDetail,
+  name: 'shell_demo_detail',
+)
 @immutable
 class ShellDemoDetailRoute extends GoRouteData with $ShellDemoDetailRoute {
   @override

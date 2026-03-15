@@ -2,6 +2,7 @@ part of 'router.dart';
 
 @TypedGoRoute<NetworkRoute>(
   path: Routes.network,
+  name: 'network',
 )
 @immutable
 class NetworkRoute extends GoRouteData with $NetworkRoute {

@@ -2,6 +2,7 @@ part of 'router.dart';
 
 @TypedGoRoute<ProfilePassportRoute>(
   path: Routes.profilePassport,
+  name: 'profile_passport',
 )
 @immutable
 class ProfilePassportRoute extends GoRouteData with $ProfilePassportRoute {

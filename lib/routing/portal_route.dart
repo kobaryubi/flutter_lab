@@ -1,6 +1,6 @@
 part of 'router.dart';
 
-@TypedGoRoute<PortalRoute>(path: Routes.portal)
+@TypedGoRoute<PortalRoute>(path: Routes.portal, name: 'portal')
 @immutable
 class PortalRoute extends GoRouteData with $PortalRoute {
   @override

@@ -1,6 +1,6 @@
 part of 'router.dart';
 
-@TypedGoRoute<LaunchUrlRoute>(path: Routes.launchUrl)
+@TypedGoRoute<LaunchUrlRoute>(path: Routes.launchUrl, name: 'launch_url')
 @immutable
 class LaunchUrlRoute extends GoRouteData with $LaunchUrlRoute {
   const LaunchUrlRoute({required this.url});
