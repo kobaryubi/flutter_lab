@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/domain/entity/launch_url/launch_url_mode.dart';
 import 'package:flutter_lab/presentation/core/provider/global_loading_notifier.dart';
+import 'package:flutter_lab/routing/analytics_navigation_observer.dart';
 import 'package:flutter_lab/routing/loading_navigation_observer.dart';
 import 'package:flutter_lab/routing/observer_demo_observer.dart';
 import 'package:flutter_lab/routing/route_observer.dart';
@@ -133,6 +135,9 @@ GoRouter router(Ref ref) {
     debugLogDiagnostics: true,
     routes: $appRoutes,
     observers: [
+      AnalyticsNavigationObserver(
+        logViewEventUseCase: ref.read(logViewEventUseCaseProvider),
+      ),
       ref.read(routeObserverProvider),
       LoadingNavigationObserver(
         onShowLoading: loadingNotifier.show,
