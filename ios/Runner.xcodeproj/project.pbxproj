@@ -17,21 +17,24 @@
 		2CDA48FC2F4C4C810058F663 /* BatteryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */; };
 		2CDA48FE2F4C4D010058F663 /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FD2F4C4D010058F663 /* NativeButton.swift */; };
 		2CDA49002F4C4D020058F663 /* NativeButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FF2F4C4D020058F663 /* NativeButtonFactory.swift */; };
-		2CE0A1012FA5B00100A1B2C3 /* PigeonApi.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE0A1002FA5B00100A1B2C3 /* PigeonApi.g.swift */; };
 		2CF4BB392F429445009A86A1 /* MapViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4BB382F429445009A86A1 /* MapViewFactory.swift */; };
 		2CF4BB3B2F42960C009A86A1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF4BB3A2F42960C009A86A1 /* MapView.swift */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		56AFD568DB62B45AB777A49C /* Common.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB3E70D64ABE43B038FB54D /* Common.g.swift */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		813A886414AAAF3D0468F5FC /* productionDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6DC5FA0FA71EFF7A4BA0292D /* productionDebug.xcconfig */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		A0D2DFE98C33206F4DF7C5B5 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29917FC1536C13FCCC3CCDCB /* Pods_Runner.framework */; };
+		BA2A2ED396453D9E9C974C5E /* Arutana.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5F808094AC318FCCE10E64 /* Arutana.g.swift */; };
 		BE3D6F5050B3990F8487BE6D /* productionProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6E344E0E8E9B99C96DC8E7C8 /* productionProfile.xcconfig */; };
 		BF518F236FA2850E23CAD3FB /* productionLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 710B271BCAB934A6E0591F72 /* productionLaunchScreen.storyboard */; };
 		CC3F0D35DB476BC1D2578502 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5039E0447E872AD25032EEC5 /* GoogleService-Info.plist */; };
+		CCCDCE0C59971E1E23640507 /* Pigeon.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B2EC443D9AAE00C6292EC /* Pigeon.g.swift */; };
 		D5DCCB908ED8D4BCCE3B733B /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C0FA0DA9E9148C8F838AC1 /* Pods_RunnerTests.framework */; };
+		DFC2A85AD18171FE93518E5E /* ProfilePassport.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF0DF39C4AAEA4880EE23CB /* ProfilePassport.g.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,13 +76,13 @@
 		2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryHandler.swift; sourceTree = "<group>"; };
 		2CDA48FD2F4C4D010058F663 /* NativeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
 		2CDA48FF2F4C4D020058F663 /* NativeButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeButtonFactory.swift; sourceTree = "<group>"; };
-		2CE0A1002FA5B00100A1B2C3 /* PigeonApi.g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PigeonApi.g.swift; sourceTree = "<group>"; };
 		2CF4BB382F429445009A86A1 /* MapViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewFactory.swift; sourceTree = "<group>"; };
 		2CF4BB3A2F42960C009A86A1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		475B1F519526FB574DFCD4A6 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		4C5F808094AC318FCCE10E64 /* Arutana.g.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Arutana.g.swift; sourceTree = "<group>"; };
 		4C6F9497D04811DE20C66330 /* Pods-RunnerTests.debug-local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug-local.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug-local.xcconfig"; sourceTree = "<group>"; };
 		5039E0447E872AD25032EEC5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Runner/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5F42CE795953FF6DC7FA3CC8 /* Pods-RunnerTests.release-local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release-local.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release-local.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +96,7 @@
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77C0FA0DA9E9148C8F838AC1 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
+		8CF0DF39C4AAEA4880EE23CB /* ProfilePassport.g.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProfilePassport.g.swift; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +108,9 @@
 		C1B5C82FF871BC791C4F9F33 /* Pods-RunnerTests.profile-local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-local.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-local.xcconfig"; sourceTree = "<group>"; };
 		C2A41741DE1E868B879FC489 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
 		CBA05FA0D8F66EF4EC2A8A64 /* Pods-RunnerTests.profile-production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile-production.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile-production.xcconfig"; sourceTree = "<group>"; };
+		CDB3E70D64ABE43B038FB54D /* Common.g.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Common.g.swift; sourceTree = "<group>"; };
 		D2CE461CE7AD847A68585AE0 /* Pods-Runner.profile-production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-production.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-production.xcconfig"; sourceTree = "<group>"; };
+		DA6B2EC443D9AAE00C6292EC /* Pigeon.g.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Pigeon.g.swift; sourceTree = "<group>"; };
 		E4A69D002003CBAA66BBF2A8 /* Pods-Runner.release-local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-local.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-local.xcconfig"; sourceTree = "<group>"; };
 		EFD1C195C4D541E7615F1311 /* Pods-Runner.debug-local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-local.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-local.xcconfig"; sourceTree = "<group>"; };
 		F5825E6C29D6AC7A54029B2C /* Pods-Runner.release-production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-production.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-production.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +138,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11130780962B4E8E67EE4F66 /* Pigeon */ = {
+			isa = PBXGroup;
+			children = (
+				CDB3E70D64ABE43B038FB54D /* Common.g.swift */,
+				4C5F808094AC318FCCE10E64 /* Arutana.g.swift */,
+				8CF0DF39C4AAEA4880EE23CB /* ProfilePassport.g.swift */,
+				DA6B2EC443D9AAE00C6292EC /* Pigeon.g.swift */,
+			);
+			name = Pigeon;
+			path = Pigeon;
+			sourceTree = "<group>";
+		};
 		331C8082294A63A400263BE5 /* RunnerTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,7 +242,7 @@
 				2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */,
 				2CDA48FD2F4C4D010058F663 /* NativeButton.swift */,
 				2CDA48FF2F4C4D020058F663 /* NativeButtonFactory.swift */,
-				2CE0A1002FA5B00100A1B2C3 /* PigeonApi.g.swift */,
+				11130780962B4E8E67EE4F66 /* Pigeon */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -503,8 +521,11 @@
 				2CDA48FC2F4C4C810058F663 /* BatteryHandler.swift in Sources */,
 				2CDA48FE2F4C4D010058F663 /* NativeButton.swift in Sources */,
 				2CDA49002F4C4D020058F663 /* NativeButtonFactory.swift in Sources */,
-				2CE0A1012FA5B00100A1B2C3 /* PigeonApi.g.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				56AFD568DB62B45AB777A49C /* Common.g.swift in Sources */,
+				BA2A2ED396453D9E9C974C5E /* Arutana.g.swift in Sources */,
+				DFC2A85AD18171FE93518E5E /* ProfilePassport.g.swift in Sources */,
+				CCCDCE0C59971E1E23640507 /* Pigeon.g.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
