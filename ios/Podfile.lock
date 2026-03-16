@@ -42,6 +42,9 @@ PODS:
   - applovin_max (4.6.2):
     - AppLovinSDK (= 13.6.0)
     - Flutter
+  - AppLovinMediationByteDanceAdapter (7.8.0.5.0):
+    - Ads-Global (= 7.8.0.5)
+    - AppLovinSDK (>= 13.0.0)
   - AppLovinMediationInMobiAdapter (11.1.0.0):
     - AppLovinSDK (>= 13.0.0)
     - InMobiSDK (= 11.1.0)
@@ -217,6 +220,7 @@ DEPENDENCIES:
   - adjust_sdk (from `.symlinks/plugins/adjust_sdk/ios`)
   - app_links (from `.symlinks/plugins/app_links/ios`)
   - applovin_max (from `.symlinks/plugins/applovin_max/ios`)
+  - AppLovinMediationByteDanceAdapter (= 7.8.0.5.0)
   - AppLovinMediationInMobiAdapter (= 11.1.0.0)
   - AppLovinMediationLineAdapter (= 2.9.20251119.0)
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
@@ -244,6 +248,7 @@ SPEC REPOS:
     - AdjustSignature
     - Ads-Global
     - AMoAd
+    - AppLovinMediationByteDanceAdapter
     - AppLovinMediationInMobiAdapter
     - AppLovinMediationLineAdapter
     - AppLovinSDK
@@ -320,6 +325,7 @@ SPEC CHECKSUMS:
   AMoAd: e63ccfe84d9cefe07e03442c2e63753cc0a5f729
   app_links: 585674be3c6661708e6cd794ab4f39fb9d8356f9
   applovin_max: c35d2258c497fc52cffa13022e48efedf524c457
+  AppLovinMediationByteDanceAdapter: 7b4cc00ecd2cc856a3b9ec6c456f5570dd770276
   AppLovinMediationInMobiAdapter: 08523b56427250dae5e79408134461504ec50fe0
   AppLovinMediationLineAdapter: 0f1217d3e32f1ad5b46eb1f714d76c7a8854251a
   AppLovinSDK: c516661fbeb9d7ba1ec8c10c8da60581178a6204
@@ -359,6 +365,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: bb13df5870e8c4234ca12609d04010a21be43dfa
   webview_flutter_wkwebview: 29eb20d43355b48fe7d07113835b9128f84e3af4
 
-PODFILE CHECKSUM: 49382c5f73134df7f6dfc57af7e886904c74f8eb
+PODFILE CHECKSUM: 9c122754f9f6ae4c795345eb81b9315f5da2e1d2
 
 COCOAPODS: 1.16.2

@@ -44,6 +44,7 @@ target 'Runner' do
 
   pod 'AppLovinMediationInMobiAdapter', '11.1.0.0'
   pod 'AppLovinMediationLineAdapter', '2.9.20251119.0'
+  pod 'AppLovinMediationByteDanceAdapter', '7.8.0.5.0'
 
   target 'RunnerTests' do
     inherit! :search_paths
