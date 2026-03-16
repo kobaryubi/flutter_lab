@@ -43,6 +43,7 @@ target 'Runner' do
   pod 'AdfurikunSDK-iOS/InMobi', '4.3.0'
 
   pod 'AppLovinMediationInMobiAdapter', '11.1.0.0'
+  pod 'AppLovinMediationLineAdapter', '2.9.20251119.0'
 
   target 'RunnerTests' do
     inherit! :search_paths
