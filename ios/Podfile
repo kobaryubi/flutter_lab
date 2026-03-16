@@ -35,16 +35,18 @@ target 'Runner' do
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 
-  pod 'AdfurikunSDK-iOS/Maio', '4.3.0'
-  pod 'AdfurikunSDK-iOS/Five', '4.3.0'
-  pod 'AdfurikunSDK-iOS/Afio', '4.3.0'
-  pod 'AdfurikunSDK-iOS/Pangle', '4.3.0'
-  pod 'AdfurikunSDK-iOS/AdMob', '4.3.0'
-  pod 'AdfurikunSDK-iOS/InMobi', '4.3.0'
+  pod 'AdfurikunSDK-iOS/Maio', '4.2.0'
+  pod 'AdfurikunSDK-iOS/Five', '4.2.0'
+  pod 'AdfurikunSDK-iOS/Afio', '4.2.0'
+  pod 'AdfurikunSDK-iOS/Pangle', '4.2.0'
+  pod 'AdfurikunSDK-iOS/AdMob', '4.2.0'
+  pod 'AdfurikunSDK-iOS/InMobi', '4.2.0'
 
-  pod 'AppLovinMediationInMobiAdapter', '11.1.0.0'
-  pod 'AppLovinMediationLineAdapter', '2.9.20251119.0'
-  pod 'AppLovinMediationByteDanceAdapter', '7.8.0.5.0'
+  pod 'AppLovinMediationInMobiAdapter', '10.8.3.0'
+  pod 'AppLovinMediationLineAdapter', '2.9.20250512.0'
+  pod 'AppLovinMediationByteDanceAdapter', '7.1.1.1.0'
+  pod 'AppLovinMediationGoogleAdManagerAdapter', '12.14.0.0'
+  pod 'AppLovinMediationMaioAdapter', '2.1.6.0'
 
   target 'RunnerTests' do
     inherit! :search_paths
