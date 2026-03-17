@@ -188,6 +188,29 @@ fvm dart pub global run flutterfire_cli:flutterfire configure \
   -y
 ```
 
+### Firebase Analytics DebugView
+
+#### iOS
+
+`-FIRDebugEnabled` is configured as a launch argument in the `local.xcscheme`.
+Events are sent to DebugView automatically when running with the local scheme.
+
+To disable:
+
+```sh
+# Add -FIRDebugDisabled to the scheme's launch arguments in Xcode
+```
+
+#### Android
+
+```sh
+# Enable debug mode
+adb shell setprop debug.firebase.analytics.app com.masahikokobayashi.flutterlab.local
+
+# Disable debug mode
+adb shell setprop debug.firebase.analytics.app .none.
+```
+
 ### flutter flavorizr
 
 ```sh
