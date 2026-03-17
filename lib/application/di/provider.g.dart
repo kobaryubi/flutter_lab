@@ -2637,6 +2637,207 @@ final class ShowMediationDebuggerUseCaseProvider
 String _$showMediationDebuggerUseCaseHash() =>
     r'326d9c73751e8f2688426ad51d1618c4245b577f';
 
+@ProviderFor(adfurikunGateway)
+const adfurikunGatewayProvider = AdfurikunGatewayProvider._();
+
+final class AdfurikunGatewayProvider
+    extends
+        $FunctionalProvider<
+          AdfurikunGateway,
+          AdfurikunGateway,
+          AdfurikunGateway
+        >
+    with $Provider<AdfurikunGateway> {
+  const AdfurikunGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'adfurikunGatewayProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$adfurikunGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<AdfurikunGateway> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AdfurikunGateway create(Ref ref) {
+    return adfurikunGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AdfurikunGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AdfurikunGateway>(value),
+    );
+  }
+}
+
+String _$adfurikunGatewayHash() => r'91bcfdc6b0817e120135fdeb1855f328e9d7a60e';
+
+@ProviderFor(initializeAdfurikunInterstitialAdUseCase)
+const initializeAdfurikunInterstitialAdUseCaseProvider =
+    InitializeAdfurikunInterstitialAdUseCaseProvider._();
+
+final class InitializeAdfurikunInterstitialAdUseCaseProvider
+    extends
+        $FunctionalProvider<
+          InitializeAdfurikunInterstitialAdUseCase,
+          InitializeAdfurikunInterstitialAdUseCase,
+          InitializeAdfurikunInterstitialAdUseCase
+        >
+    with $Provider<InitializeAdfurikunInterstitialAdUseCase> {
+  const InitializeAdfurikunInterstitialAdUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'initializeAdfurikunInterstitialAdUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$initializeAdfurikunInterstitialAdUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<InitializeAdfurikunInterstitialAdUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  InitializeAdfurikunInterstitialAdUseCase create(Ref ref) {
+    return initializeAdfurikunInterstitialAdUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(InitializeAdfurikunInterstitialAdUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride:
+          $SyncValueProvider<InitializeAdfurikunInterstitialAdUseCase>(value),
+    );
+  }
+}
+
+String _$initializeAdfurikunInterstitialAdUseCaseHash() =>
+    r'fa53d475e5e0383352083704ac591a2a674f6437';
+
+@ProviderFor(loadAdfurikunInterstitialAdUseCase)
+const loadAdfurikunInterstitialAdUseCaseProvider =
+    LoadAdfurikunInterstitialAdUseCaseProvider._();
+
+final class LoadAdfurikunInterstitialAdUseCaseProvider
+    extends
+        $FunctionalProvider<
+          LoadAdfurikunInterstitialAdUseCase,
+          LoadAdfurikunInterstitialAdUseCase,
+          LoadAdfurikunInterstitialAdUseCase
+        >
+    with $Provider<LoadAdfurikunInterstitialAdUseCase> {
+  const LoadAdfurikunInterstitialAdUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'loadAdfurikunInterstitialAdUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$loadAdfurikunInterstitialAdUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<LoadAdfurikunInterstitialAdUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  LoadAdfurikunInterstitialAdUseCase create(Ref ref) {
+    return loadAdfurikunInterstitialAdUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LoadAdfurikunInterstitialAdUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LoadAdfurikunInterstitialAdUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$loadAdfurikunInterstitialAdUseCaseHash() =>
+    r'65b9c1b55ee9fc38e0e01ee5f5c931e0585954a4';
+
+@ProviderFor(showAdfurikunInterstitialAdUseCase)
+const showAdfurikunInterstitialAdUseCaseProvider =
+    ShowAdfurikunInterstitialAdUseCaseProvider._();
+
+final class ShowAdfurikunInterstitialAdUseCaseProvider
+    extends
+        $FunctionalProvider<
+          ShowAdfurikunInterstitialAdUseCase,
+          ShowAdfurikunInterstitialAdUseCase,
+          ShowAdfurikunInterstitialAdUseCase
+        >
+    with $Provider<ShowAdfurikunInterstitialAdUseCase> {
+  const ShowAdfurikunInterstitialAdUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'showAdfurikunInterstitialAdUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$showAdfurikunInterstitialAdUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ShowAdfurikunInterstitialAdUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ShowAdfurikunInterstitialAdUseCase create(Ref ref) {
+    return showAdfurikunInterstitialAdUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ShowAdfurikunInterstitialAdUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ShowAdfurikunInterstitialAdUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$showAdfurikunInterstitialAdUseCaseHash() =>
+    r'c6b78e80ad6c61706a701e5ad79cbe46d1e08be8';
+
 @ProviderFor(analyticsGateway)
 const analyticsGatewayProvider = AnalyticsGatewayProvider._();
 

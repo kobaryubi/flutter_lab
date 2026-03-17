@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
+import 'package:flutter_lab/data/gateway/adfurikun/sdk_adfurikun_gateway.dart';
 import 'package:flutter_lab/data/gateway/analytics/firebase_analytics_gateway.dart';
 import 'package:flutter_lab/data/gateway/arutana/pigeon_arutana_gateway.dart';
 import 'package:flutter_lab/data/gateway/clock/clock_clock_gateway.dart';
@@ -28,6 +29,7 @@ import 'package:flutter_lab/data/repositories/pet/pet_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/push_notification/firebase_messaging_push_notification_repository.dart';
 import 'package:flutter_lab/data/repositories/shortcut/file_system_shortcut_repository.dart';
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
+import 'package:flutter_lab/domain/adfurikun/adfurikun_gateway.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
 import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
 import 'package:flutter_lab/domain/app_store/app_store_repository.dart';
@@ -52,6 +54,9 @@ import 'package:flutter_lab/domain/profile_passport/profile_passport_gateway.dar
 import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/text_recognition/text_recognition_gateway.dart';
+import 'package:flutter_lab/domain/use_cases/adfurikun/initialize_adfurikun_interstitial_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_interstitial_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/adfurikun/show_adfurikun_interstitial_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/agreement/initialize_latest_agreed_date_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_tap_event_use_case.dart';
@@ -424,6 +429,31 @@ ShowMediationDebuggerUseCase showMediationDebuggerUseCase(Ref ref) =>
     ShowMediationDebuggerUseCase(
       maxGateway: ref.read(maxGatewayProvider),
     );
+
+// adfurikun
+@Riverpod(keepAlive: true)
+AdfurikunGateway adfurikunGateway(Ref ref) => SdkAdfurikunGateway();
+
+@riverpod
+InitializeAdfurikunInterstitialAdUseCase
+initializeAdfurikunInterstitialAdUseCase(Ref ref) =>
+    InitializeAdfurikunInterstitialAdUseCase(
+      adfurikunGateway: ref.read(adfurikunGatewayProvider),
+    );
+
+@riverpod
+LoadAdfurikunInterstitialAdUseCase loadAdfurikunInterstitialAdUseCase(
+  Ref ref,
+) => LoadAdfurikunInterstitialAdUseCase(
+  adfurikunGateway: ref.read(adfurikunGatewayProvider),
+);
+
+@riverpod
+ShowAdfurikunInterstitialAdUseCase showAdfurikunInterstitialAdUseCase(
+  Ref ref,
+) => ShowAdfurikunInterstitialAdUseCase(
+  adfurikunGateway: ref.read(adfurikunGatewayProvider),
+);
 
 // analytics
 @riverpod
