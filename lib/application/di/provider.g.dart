@@ -2838,6 +2838,156 @@ final class ShowAdfurikunInterstitialAdUseCaseProvider
 String _$showAdfurikunInterstitialAdUseCaseHash() =>
     r'c6b78e80ad6c61706a701e5ad79cbe46d1e08be8';
 
+@ProviderFor(initializeAdfurikunRewardAdUseCase)
+const initializeAdfurikunRewardAdUseCaseProvider =
+    InitializeAdfurikunRewardAdUseCaseProvider._();
+
+final class InitializeAdfurikunRewardAdUseCaseProvider
+    extends
+        $FunctionalProvider<
+          InitializeAdfurikunRewardAdUseCase,
+          InitializeAdfurikunRewardAdUseCase,
+          InitializeAdfurikunRewardAdUseCase
+        >
+    with $Provider<InitializeAdfurikunRewardAdUseCase> {
+  const InitializeAdfurikunRewardAdUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'initializeAdfurikunRewardAdUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$initializeAdfurikunRewardAdUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<InitializeAdfurikunRewardAdUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  InitializeAdfurikunRewardAdUseCase create(Ref ref) {
+    return initializeAdfurikunRewardAdUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(InitializeAdfurikunRewardAdUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<InitializeAdfurikunRewardAdUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$initializeAdfurikunRewardAdUseCaseHash() =>
+    r'b7a745ea9735da2640a00e517a7016d10627683b';
+
+@ProviderFor(loadAdfurikunRewardAdUseCase)
+const loadAdfurikunRewardAdUseCaseProvider =
+    LoadAdfurikunRewardAdUseCaseProvider._();
+
+final class LoadAdfurikunRewardAdUseCaseProvider
+    extends
+        $FunctionalProvider<
+          LoadAdfurikunRewardAdUseCase,
+          LoadAdfurikunRewardAdUseCase,
+          LoadAdfurikunRewardAdUseCase
+        >
+    with $Provider<LoadAdfurikunRewardAdUseCase> {
+  const LoadAdfurikunRewardAdUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'loadAdfurikunRewardAdUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$loadAdfurikunRewardAdUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<LoadAdfurikunRewardAdUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  LoadAdfurikunRewardAdUseCase create(Ref ref) {
+    return loadAdfurikunRewardAdUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LoadAdfurikunRewardAdUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LoadAdfurikunRewardAdUseCase>(value),
+    );
+  }
+}
+
+String _$loadAdfurikunRewardAdUseCaseHash() =>
+    r'003a09c72c3a2fce87c8b94197bc90024d298a3f';
+
+@ProviderFor(showAdfurikunRewardAdUseCase)
+const showAdfurikunRewardAdUseCaseProvider =
+    ShowAdfurikunRewardAdUseCaseProvider._();
+
+final class ShowAdfurikunRewardAdUseCaseProvider
+    extends
+        $FunctionalProvider<
+          ShowAdfurikunRewardAdUseCase,
+          ShowAdfurikunRewardAdUseCase,
+          ShowAdfurikunRewardAdUseCase
+        >
+    with $Provider<ShowAdfurikunRewardAdUseCase> {
+  const ShowAdfurikunRewardAdUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'showAdfurikunRewardAdUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$showAdfurikunRewardAdUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ShowAdfurikunRewardAdUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ShowAdfurikunRewardAdUseCase create(Ref ref) {
+    return showAdfurikunRewardAdUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ShowAdfurikunRewardAdUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ShowAdfurikunRewardAdUseCase>(value),
+    );
+  }
+}
+
+String _$showAdfurikunRewardAdUseCaseHash() =>
+    r'60b1c96a0d662f8d57a97efc731434c299f3a785';
+
 @ProviderFor(analyticsGateway)
 const analyticsGatewayProvider = AnalyticsGatewayProvider._();
 

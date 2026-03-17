@@ -55,8 +55,11 @@ import 'package:flutter_lab/domain/push_notification/push_notification_repositor
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/text_recognition/text_recognition_gateway.dart';
 import 'package:flutter_lab/domain/use_cases/adfurikun/initialize_adfurikun_interstitial_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/adfurikun/initialize_adfurikun_reward_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_interstitial_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_reward_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adfurikun/show_adfurikun_interstitial_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/adfurikun/show_adfurikun_reward_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/agreement/initialize_latest_agreed_date_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_tap_event_use_case.dart';
@@ -452,6 +455,27 @@ LoadAdfurikunInterstitialAdUseCase loadAdfurikunInterstitialAdUseCase(
 ShowAdfurikunInterstitialAdUseCase showAdfurikunInterstitialAdUseCase(
   Ref ref,
 ) => ShowAdfurikunInterstitialAdUseCase(
+  adfurikunGateway: ref.read(adfurikunGatewayProvider),
+);
+
+@riverpod
+InitializeAdfurikunRewardAdUseCase initializeAdfurikunRewardAdUseCase(
+  Ref ref,
+) => InitializeAdfurikunRewardAdUseCase(
+  adfurikunGateway: ref.read(adfurikunGatewayProvider),
+);
+
+@riverpod
+LoadAdfurikunRewardAdUseCase loadAdfurikunRewardAdUseCase(
+  Ref ref,
+) => LoadAdfurikunRewardAdUseCase(
+  adfurikunGateway: ref.read(adfurikunGatewayProvider),
+);
+
+@riverpod
+ShowAdfurikunRewardAdUseCase showAdfurikunRewardAdUseCase(
+  Ref ref,
+) => ShowAdfurikunRewardAdUseCase(
   adfurikunGateway: ref.read(adfurikunGatewayProvider),
 );
 
