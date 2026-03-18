@@ -16,13 +16,21 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
   final Map<String, AdfurikunInterstitial> _interstitialAds = {};
   final Map<String, AdfurikunReward> _rewardAds = {};
-  final Map<String, Completer<Unit>> _loadCompleters = {};
-  final Map<String, Completer<Unit>> _showCompleters = {};
+  final Map<String, Completer<Unit>> _interstitialLoadCompleters = {};
+  final Map<String, Completer<Unit>> _interstitialShowCompleters = {};
+  final Map<String, Completer<Unit>> _rewardLoadCompleters = {};
+  final Map<String, Completer<Unit>> _rewardShowCompleters = {};
   final Map<String, bool> _rewardEarnedMap = {};
 
   @override
   AsyncResult<Unit> initializeInterstitialAd({required String appId}) async {
-    if (_interstitialAds.containsKey(appId)) {
+    if (_isInterstitialAdPlaying(appId)) {
+      return Failure(Exception('Interstitial ad is currently playing: $appId'));
+    }
+
+    final existingAd = _interstitialAds[appId];
+
+    if (existingAd != null && await existingAd.isPrepared()) {
       return const Success(unit);
     }
 
@@ -49,7 +57,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
       final completer = Completer<Unit>();
 
-      _loadCompleters[appId] = completer;
+      _interstitialLoadCompleters[appId] = completer;
       interstitial.loadWithTimeout(10);
 
       await completer.future;
@@ -73,7 +81,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
       final completer = Completer<Unit>();
 
-      _showCompleters[appId] = completer;
+      _interstitialShowCompleters[appId] = completer;
       interstitial.play();
 
       await completer.future;
@@ -86,7 +94,13 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
   @override
   AsyncResult<Unit> initializeRewardAd({required String appId}) async {
-    if (_rewardAds.containsKey(appId)) {
+    if (_isRewardAdPlaying(appId)) {
+      return Failure(Exception('Reward ad is currently playing: $appId'));
+    }
+
+    final existingAd = _rewardAds[appId];
+
+    if (existingAd != null && await existingAd.isPrepared()) {
       return const Success(unit);
     }
 
@@ -113,7 +127,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
       final completer = Completer<Unit>();
 
-      _loadCompleters[appId] = completer;
+      _rewardLoadCompleters[appId] = completer;
       reward.loadWithTimeout(10);
 
       await completer.future;
@@ -138,7 +152,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       final completer = Completer<Unit>();
 
       _rewardEarnedMap[appId] = false;
-      _showCompleters[appId] = completer;
+      _rewardShowCompleters[appId] = completer;
       reward.play();
 
       await completer.future;
@@ -169,8 +183,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
     _interstitialAds.clear();
     _rewardAds.clear();
-    _loadCompleters.clear();
-    _showCompleters.clear();
+    _interstitialLoadCompleters.clear();
+    _interstitialShowCompleters.clear();
+    _rewardLoadCompleters.clear();
+    _rewardShowCompleters.clear();
     _rewardEarnedMap.clear();
   }
 
@@ -200,6 +216,20 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
     return reward;
   }
 
+  /// Whether an interstitial ad with the given app ID is currently playing.
+  bool _isInterstitialAdPlaying(String appId) {
+    final completer = _interstitialShowCompleters[appId];
+
+    return completer != null && !completer.isCompleted;
+  }
+
+  /// Whether a reward ad with the given app ID is currently playing.
+  bool _isRewardAdPlaying(String appId) {
+    final completer = _rewardShowCompleters[appId];
+
+    return completer != null && !completer.isCompleted;
+  }
+
   /// Creates a listener for interstitial ad callbacks.
   AdfurikunInterstitialListener _createInterstitialListener(String appId) =>
       (
@@ -212,10 +242,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       ) {
         switch (callback) {
           case .onPrepareSuccess:
-            _loadCompleters[appId]?.complete(unit);
+            _interstitialLoadCompleters[appId]?.complete(unit);
 
           case .onPrepareFailure:
-            _loadCompleters[appId]?.completeError(
+            _interstitialLoadCompleters[appId]?.completeError(
               Exception('Failed to load interstitial ad: $appId'),
             );
 
@@ -224,10 +254,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
             break;
 
           case .onAdClose:
-            _showCompleters[appId]?.complete(unit);
+            _interstitialShowCompleters[appId]?.complete(unit);
 
           case .onFailedPlaying:
-            _showCompleters[appId]?.completeError(
+            _interstitialShowCompleters[appId]?.completeError(
               Exception('Failed to play interstitial ad: $appId'),
             );
 
@@ -249,10 +279,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       ) {
         switch (callback) {
           case .onPrepareSuccess:
-            _loadCompleters[appId]?.complete(unit);
+            _rewardLoadCompleters[appId]?.complete(unit);
 
           case .onPrepareFailure:
-            _loadCompleters[appId]?.completeError(
+            _rewardLoadCompleters[appId]?.completeError(
               Exception('Failed to load reward ad: $appId'),
             );
 
@@ -263,10 +293,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
             _rewardEarnedMap[appId] = isRewarded ?? false;
 
           case .onAdClose:
-            _showCompleters[appId]?.complete(unit);
+            _rewardShowCompleters[appId]?.complete(unit);
 
           case .onFailedPlaying:
-            _showCompleters[appId]?.completeError(
+            _rewardShowCompleters[appId]?.completeError(
               Exception('Failed to play reward ad: $appId'),
             );
 
