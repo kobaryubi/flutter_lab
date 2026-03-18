@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:adfurikunsdk/adfurikun.dart';
 import 'package:adfurikunsdk/interstitial.dart';
 import 'package:adfurikunsdk/reward.dart';
 import 'package:flutter_lab/domain/adfurikun/adfurikun_gateway.dart';
@@ -7,6 +8,12 @@ import 'package:result_dart/result_dart.dart';
 
 /// Adfurikun SDK implementation of [AdfurikunGateway].
 class SdkAdfurikunGateway implements AdfurikunGateway {
+  /// Creates a gateway with test mode and debug mode enabled.
+  SdkAdfurikunGateway() {
+    AdfurikunSdk.setTestMode(true);
+    AdfurikunSdk.setDebugMode(true);
+  }
+
   final Map<String, AdfurikunInterstitial> _interstitialAds = {};
   final Map<String, AdfurikunReward> _rewardAds = {};
   final Map<String, Completer<Unit>> _loadCompleters = {};
