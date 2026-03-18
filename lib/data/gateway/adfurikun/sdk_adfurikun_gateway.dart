@@ -126,6 +126,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
     }
 
     try {
+      existingAd
+        ?..destroy()
+        ..listener = null;
+
       final reward = AdfurikunReward(appId)
         ..listener = _createRewardListener(appId);
 
