@@ -4,6 +4,7 @@ import 'package:adfurikunsdk/adfurikun.dart';
 import 'package:adfurikunsdk/interstitial.dart';
 import 'package:adfurikunsdk/reward.dart';
 import 'package:flutter_lab/domain/adfurikun/adfurikun_gateway.dart';
+import 'package:flutter_lab/domain/entity/exception/domain_exception.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Adfurikun SDK implementation of [AdfurikunGateway].
@@ -25,7 +26,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   @override
   AsyncResult<Unit> initializeInterstitialAd({required String appId}) async {
     if (_isInterstitialAdPlaying(appId)) {
-      return Failure(Exception('Interstitial ad is currently playing: $appId'));
+      return const Failure(DomainException.failedPrecondition());
     }
 
     final existingAd = _interstitialAds[appId];
@@ -53,7 +54,11 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   @override
   AsyncResult<Unit> loadInterstitialAd({required String appId}) async {
     try {
-      final interstitial = _getInterstitial(appId);
+      final interstitial = _interstitialAds[appId];
+
+      if (interstitial == null) {
+        return const Failure(DomainException.notFound());
+      }
 
       if (await interstitial.isPrepared()) {
         return const Success(unit);
@@ -88,16 +93,20 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
     }
 
     if (_isAnyAdPlaying()) {
-      return Failure(Exception('Another ad is currently playing'));
+      return const Failure(DomainException.failedPrecondition());
     }
 
     try {
-      final interstitial = _getInterstitial(appId);
+      final interstitial = _interstitialAds[appId];
+
+      if (interstitial == null) {
+        return const Failure(DomainException.notFound());
+      }
 
       final isPrepared = await interstitial.isPrepared();
 
       if (!isPrepared) {
-        return Failure(Exception('Interstitial ad is not prepared: $appId'));
+        return const Failure(DomainException.failedPrecondition());
       }
 
       final completer = Completer<Unit>();
@@ -116,7 +125,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   @override
   AsyncResult<Unit> initializeRewardAd({required String appId}) async {
     if (_isRewardAdPlaying(appId)) {
-      return Failure(Exception('Reward ad is currently playing: $appId'));
+      return const Failure(DomainException.failedPrecondition());
     }
 
     final existingAd = _rewardAds[appId];
@@ -144,7 +153,11 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   @override
   AsyncResult<Unit> loadRewardAd({required String appId}) async {
     try {
-      final reward = _getReward(appId);
+      final reward = _rewardAds[appId];
+
+      if (reward == null) {
+        return const Failure(DomainException.notFound());
+      }
 
       if (await reward.isPrepared()) {
         return const Success(unit);
@@ -179,16 +192,20 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
     }
 
     if (_isAnyAdPlaying()) {
-      return Failure(Exception('Another ad is currently playing'));
+      return const Failure(DomainException.failedPrecondition());
     }
 
     try {
-      final reward = _getReward(appId);
+      final reward = _rewardAds[appId];
+
+      if (reward == null) {
+        return const Failure(DomainException.notFound());
+      }
 
       final isPrepared = await reward.isPrepared();
 
       if (!isPrepared) {
-        return Failure(Exception('Reward ad is not prepared: $appId'));
+        return const Failure(DomainException.failedPrecondition());
       }
 
       final completer = Completer<Unit>();
@@ -229,32 +246,6 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
     _rewardLoadCompleters.clear();
     _rewardPlayCompleters.clear();
     _rewardEarnedMap.clear();
-  }
-
-  /// Returns the interstitial ad instance for the given app ID.
-  ///
-  /// Throws if the app ID has not been initialized.
-  AdfurikunInterstitial _getInterstitial(String appId) {
-    final interstitial = _interstitialAds[appId];
-
-    if (interstitial == null) {
-      throw Exception('Interstitial ad not initialized: $appId');
-    }
-
-    return interstitial;
-  }
-
-  /// Returns the reward ad instance for the given app ID.
-  ///
-  /// Throws if the app ID has not been initialized.
-  AdfurikunReward _getReward(String appId) {
-    final reward = _rewardAds[appId];
-
-    if (reward == null) {
-      throw Exception('Reward ad not initialized: $appId');
-    }
-
-    return reward;
   }
 
   /// Whether any ad is currently playing.
@@ -298,9 +289,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
               ..listener = null;
             _interstitialLoadCompleters
                 .remove(appId)
-                ?.completeError(
-                  Exception('Failed to load interstitial ad: $appId'),
-                );
+                ?.completeError(const DomainException.unavailable());
 
           case .onStartPlaying:
           case .onFinishedPlaying:
@@ -312,9 +301,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
           case .onFailedPlaying:
             _interstitialPlayCompleters
                 .remove(appId)
-                ?.completeError(
-                  Exception('Failed to play interstitial ad: $appId'),
-                );
+                ?.completeError(const DomainException.internal());
 
           case null:
             break;
@@ -342,9 +329,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
               ..listener = null;
             _rewardLoadCompleters
                 .remove(appId)
-                ?.completeError(
-                  Exception('Failed to load reward ad: $appId'),
-                );
+                ?.completeError(const DomainException.unavailable());
 
           case .onStartPlaying:
             _rewardEarnedMap[appId] = false;
@@ -359,9 +344,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
           case .onFailedPlaying:
             _rewardPlayCompleters
                 .remove(appId)
-                ?.completeError(
-                  Exception('Failed to play reward ad: $appId'),
-                );
+                ?.completeError(const DomainException.internal());
 
           case null:
             break;
