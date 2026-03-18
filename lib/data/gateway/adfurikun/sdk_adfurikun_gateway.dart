@@ -245,7 +245,9 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
             _interstitialLoadCompleters[appId]?.complete(unit);
 
           case .onPrepareFailure:
-            _interstitialAds.remove(appId);
+            _interstitialAds.remove(appId)
+              ?..destroy()
+              ..listener = null;
             _interstitialLoadCompleters[appId]?.completeError(
               Exception('Failed to load interstitial ad: $appId'),
             );
@@ -283,7 +285,9 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
             _rewardLoadCompleters[appId]?.complete(unit);
 
           case .onPrepareFailure:
-            _rewardAds.remove(appId);
+            _rewardAds.remove(appId)
+              ?..destroy()
+              ..listener = null;
             _rewardLoadCompleters[appId]?.completeError(
               Exception('Failed to load reward ad: $appId'),
             );
