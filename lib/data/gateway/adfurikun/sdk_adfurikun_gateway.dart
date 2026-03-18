@@ -35,6 +35,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
     }
 
     try {
+      existingAd
+        ?..destroy()
+        ..listener = null;
+
       final interstitial = AdfurikunInterstitial(appId)
         ..listener = _createInterstitialListener(appId);
 
