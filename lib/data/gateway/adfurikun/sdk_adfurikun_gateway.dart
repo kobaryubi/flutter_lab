@@ -70,6 +70,19 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
   @override
   AsyncResult<Unit> playInterstitialAd({required String appId}) async {
+    final existingInterstitialCompleter = _interstitialPlayCompleters[appId];
+
+    if (existingInterstitialCompleter != null &&
+        !existingInterstitialCompleter.isCompleted) {
+      try {
+        await existingInterstitialCompleter.future;
+
+        return const Success(unit);
+      } on Exception catch (exception) {
+        return Failure(exception);
+      }
+    }
+
     if (_isAnyAdPlaying()) {
       return Failure(Exception('Another ad is currently playing'));
     }
@@ -144,6 +157,19 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
   @override
   AsyncResult<Unit> playRewardAd({required String appId}) async {
+    final existingRewardCompleter = _rewardPlayCompleters[appId];
+
+    if (existingRewardCompleter != null &&
+        !existingRewardCompleter.isCompleted) {
+      try {
+        await existingRewardCompleter.future;
+
+        return const Success(unit);
+      } on Exception catch (exception) {
+        return Failure(exception);
+      }
+    }
+
     if (_isAnyAdPlaying()) {
       return Failure(Exception('Another ad is currently playing'));
     }
@@ -311,9 +337,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
             break;
 
           case .onFinishedPlaying:
-            _rewardEarnedMap[appId] = isRewarded ?? false;
+            break;
 
           case .onAdClose:
+            _rewardEarnedMap[appId] = isRewarded ?? false;
             _rewardPlayCompleters[appId]?.complete(unit);
 
           case .onFailedPlaying:
