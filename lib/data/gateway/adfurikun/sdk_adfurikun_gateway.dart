@@ -305,12 +305,14 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
             break;
 
           case .onAdClose:
-            _interstitialPlayCompleters[appId]?.complete(unit);
+            _interstitialPlayCompleters.remove(appId)?.complete(unit);
 
           case .onFailedPlaying:
-            _interstitialPlayCompleters[appId]?.completeError(
-              Exception('Failed to play interstitial ad: $appId'),
-            );
+            _interstitialPlayCompleters
+                .remove(appId)
+                ?.completeError(
+                  Exception('Failed to play interstitial ad: $appId'),
+                );
 
           case null:
             break;
@@ -348,12 +350,14 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
           case .onAdClose:
             _rewardEarnedMap[appId] = isRewarded ?? false;
-            _rewardPlayCompleters[appId]?.complete(unit);
+            _rewardPlayCompleters.remove(appId)?.complete(unit);
 
           case .onFailedPlaying:
-            _rewardPlayCompleters[appId]?.completeError(
-              Exception('Failed to play reward ad: $appId'),
-            );
+            _rewardPlayCompleters
+                .remove(appId)
+                ?.completeError(
+                  Exception('Failed to play reward ad: $appId'),
+                );
 
           case null:
             break;
