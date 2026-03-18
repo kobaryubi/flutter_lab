@@ -193,7 +193,6 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
       final completer = Completer<Unit>();
 
-      _rewardEarnedMap[appId] = false;
       _rewardPlayCompleters[appId] = completer;
       reward.play();
 
@@ -342,7 +341,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
             );
 
           case .onStartPlaying:
-            break;
+            _rewardEarnedMap[appId] = false;
 
           case .onFinishedPlaying:
             break;
