@@ -17,9 +17,9 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   final Map<String, AdfurikunInterstitial> _interstitialAds = {};
   final Map<String, AdfurikunReward> _rewardAds = {};
   final Map<String, Completer<Unit>> _interstitialLoadCompleters = {};
-  final Map<String, Completer<Unit>> _interstitialShowCompleters = {};
+  final Map<String, Completer<Unit>> _interstitialPlayCompleters = {};
   final Map<String, Completer<Unit>> _rewardLoadCompleters = {};
-  final Map<String, Completer<Unit>> _rewardShowCompleters = {};
+  final Map<String, Completer<Unit>> _rewardPlayCompleters = {};
   final Map<String, bool> _rewardEarnedMap = {};
 
   @override
@@ -69,7 +69,11 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   }
 
   @override
-  AsyncResult<Unit> showInterstitialAd({required String appId}) async {
+  AsyncResult<Unit> playInterstitialAd({required String appId}) async {
+    if (_isAnyAdPlaying()) {
+      return Failure(Exception('Another ad is currently playing'));
+    }
+
     try {
       final interstitial = _getInterstitial(appId);
 
@@ -81,7 +85,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
       final completer = Completer<Unit>();
 
-      _interstitialShowCompleters[appId] = completer;
+      _interstitialPlayCompleters[appId] = completer;
       interstitial.play();
 
       await completer.future;
@@ -139,7 +143,11 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   }
 
   @override
-  AsyncResult<Unit> showRewardAd({required String appId}) async {
+  AsyncResult<Unit> playRewardAd({required String appId}) async {
+    if (_isAnyAdPlaying()) {
+      return Failure(Exception('Another ad is currently playing'));
+    }
+
     try {
       final reward = _getReward(appId);
 
@@ -152,7 +160,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       final completer = Completer<Unit>();
 
       _rewardEarnedMap[appId] = false;
-      _rewardShowCompleters[appId] = completer;
+      _rewardPlayCompleters[appId] = completer;
       reward.play();
 
       await completer.future;
@@ -184,9 +192,9 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
     _interstitialAds.clear();
     _rewardAds.clear();
     _interstitialLoadCompleters.clear();
-    _interstitialShowCompleters.clear();
+    _interstitialPlayCompleters.clear();
     _rewardLoadCompleters.clear();
-    _rewardShowCompleters.clear();
+    _rewardPlayCompleters.clear();
     _rewardEarnedMap.clear();
   }
 
@@ -216,16 +224,23 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
     return reward;
   }
 
+  /// Whether any ad is currently playing.
+  bool _isAnyAdPlaying() =>
+      _interstitialPlayCompleters.values.any(
+        (completer) => !completer.isCompleted,
+      ) ||
+      _rewardPlayCompleters.values.any((completer) => !completer.isCompleted);
+
   /// Whether an interstitial ad with the given app ID is currently playing.
   bool _isInterstitialAdPlaying(String appId) {
-    final completer = _interstitialShowCompleters[appId];
+    final completer = _interstitialPlayCompleters[appId];
 
     return completer != null && !completer.isCompleted;
   }
 
   /// Whether a reward ad with the given app ID is currently playing.
   bool _isRewardAdPlaying(String appId) {
-    final completer = _rewardShowCompleters[appId];
+    final completer = _rewardPlayCompleters[appId];
 
     return completer != null && !completer.isCompleted;
   }
@@ -257,10 +272,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
             break;
 
           case .onAdClose:
-            _interstitialShowCompleters[appId]?.complete(unit);
+            _interstitialPlayCompleters[appId]?.complete(unit);
 
           case .onFailedPlaying:
-            _interstitialShowCompleters[appId]?.completeError(
+            _interstitialPlayCompleters[appId]?.completeError(
               Exception('Failed to play interstitial ad: $appId'),
             );
 
@@ -299,10 +314,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
             _rewardEarnedMap[appId] = isRewarded ?? false;
 
           case .onAdClose:
-            _rewardShowCompleters[appId]?.complete(unit);
+            _rewardPlayCompleters[appId]?.complete(unit);
 
           case .onFailedPlaying:
-            _rewardShowCompleters[appId]?.completeError(
+            _rewardPlayCompleters[appId]?.completeError(
               Exception('Failed to play reward ad: $appId'),
             );
 

@@ -6,7 +6,7 @@ part 'adfurikun_view_model.g.dart';
 
 /// ViewModel for the Adfurikun ads demo screen.
 ///
-/// Provides methods to initialize, load, and show
+/// Provides methods to initialize, load, and play
 /// both interstitial and reward ads.
 @riverpod
 class AdfurikunViewModel extends _$AdfurikunViewModel {
@@ -35,15 +35,15 @@ class AdfurikunViewModel extends _$AdfurikunViewModel {
     state = state.copyWith(loadInterstitialAd: loadInterstitialAd);
   }
 
-  /// Shows an interstitial ad for the given app ID.
-  Future<void> showInterstitialAd({required String appId}) async {
-    final useCase = ref.read(showAdfurikunInterstitialAdUseCaseProvider);
+  /// Plays an interstitial ad for the given app ID.
+  Future<void> playInterstitialAd({required String appId}) async {
+    final useCase = ref.read(playAdfurikunInterstitialAdUseCaseProvider);
 
-    final showInterstitialAd = await AsyncValue.guard(
+    final playInterstitialAd = await AsyncValue.guard(
       () async => (await useCase.call(appId: appId)).getOrThrow(),
     );
 
-    state = state.copyWith(showInterstitialAd: showInterstitialAd);
+    state = state.copyWith(playInterstitialAd: playInterstitialAd);
   }
 
   /// Initializes a reward ad for the given app ID.
@@ -68,17 +68,17 @@ class AdfurikunViewModel extends _$AdfurikunViewModel {
     state = state.copyWith(loadRewardAd: loadRewardAd);
   }
 
-  /// Shows a reward ad for the given app ID.
-  Future<void> showRewardAd({required String appId}) async {
-    final useCase = ref.read(showAdfurikunRewardAdUseCaseProvider);
+  /// Plays a reward ad for the given app ID.
+  Future<void> playRewardAd({required String appId}) async {
+    final useCase = ref.read(playAdfurikunRewardAdUseCaseProvider);
     final gateway = ref.read(adfurikunGatewayProvider);
 
-    final showRewardAd = await AsyncValue.guard(
+    final playRewardAd = await AsyncValue.guard(
       () async => (await useCase.call(appId: appId)).getOrThrow(),
     );
 
     state = state.copyWith(
-      showRewardAd: showRewardAd,
+      playRewardAd: playRewardAd,
       isRewardEarned: gateway.isRewardEarned(appId: appId),
     );
   }

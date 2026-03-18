@@ -14,8 +14,8 @@ abstract class AdfurikunUiState with _$AdfurikunUiState {
     /// Result of loading an interstitial ad.
     AsyncValue<Unit>? loadInterstitialAd,
 
-    /// Result of showing an interstitial ad.
-    AsyncValue<Unit>? showInterstitialAd,
+    /// Result of playing an interstitial ad.
+    AsyncValue<Unit>? playInterstitialAd,
 
     /// Result of initializing a reward ad.
     AsyncValue<Unit>? initializeRewardAd,
@@ -23,10 +23,10 @@ abstract class AdfurikunUiState with _$AdfurikunUiState {
     /// Result of loading a reward ad.
     AsyncValue<Unit>? loadRewardAd,
 
-    /// Result of showing a reward ad.
-    AsyncValue<Unit>? showRewardAd,
+    /// Result of playing a reward ad.
+    AsyncValue<Unit>? playRewardAd,
 
-    /// Whether the user earned a reward from the last shown ad.
+    /// Whether the user earned a reward from the last played ad.
     @Default(false) bool isRewardEarned,
   }) = _AdfurikunUiState;
 }

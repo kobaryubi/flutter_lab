@@ -10,7 +10,7 @@ part of 'adfurikun_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 /// ViewModel for the Adfurikun ads demo screen.
 ///
-/// Provides methods to initialize, load, and show
+/// Provides methods to initialize, load, and play
 /// both interstitial and reward ads.
 
 @ProviderFor(AdfurikunViewModel)
@@ -18,13 +18,13 @@ const adfurikunViewModelProvider = AdfurikunViewModelProvider._();
 
 /// ViewModel for the Adfurikun ads demo screen.
 ///
-/// Provides methods to initialize, load, and show
+/// Provides methods to initialize, load, and play
 /// both interstitial and reward ads.
 final class AdfurikunViewModelProvider
     extends $NotifierProvider<AdfurikunViewModel, AdfurikunUiState> {
   /// ViewModel for the Adfurikun ads demo screen.
   ///
-  /// Provides methods to initialize, load, and show
+  /// Provides methods to initialize, load, and play
   /// both interstitial and reward ads.
   const AdfurikunViewModelProvider._()
     : super(
@@ -54,11 +54,11 @@ final class AdfurikunViewModelProvider
 }
 
 String _$adfurikunViewModelHash() =>
-    r'32473add6743b431774c43906f515f0a18c3917e';
+    r'0d95079bc0aa6aa213a9d6a43e46f5a8ae40faf8';
 
 /// ViewModel for the Adfurikun ads demo screen.
 ///
-/// Provides methods to initialize, load, and show
+/// Provides methods to initialize, load, and play
 /// both interstitial and reward ads.
 
 abstract class _$AdfurikunViewModel extends $Notifier<AdfurikunUiState> {

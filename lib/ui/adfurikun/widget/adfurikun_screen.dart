@@ -50,9 +50,9 @@ class _Body extends HookConsumerWidget {
       viewModel.loadInterstitialAd(appId: _interstitialAppId);
     }
 
-    /// Shows the loaded interstitial ad.
-    void handleShowInterstitialAd() {
-      viewModel.showInterstitialAd(appId: _interstitialAppId);
+    /// Plays the loaded interstitial ad.
+    void handlePlayInterstitialAd() {
+      viewModel.playInterstitialAd(appId: _interstitialAppId);
     }
 
     /// Loads a reward ad.
@@ -60,9 +60,9 @@ class _Body extends HookConsumerWidget {
       viewModel.loadRewardAd(appId: _rewardAppId);
     }
 
-    /// Shows the loaded reward ad.
-    void handleShowRewardAd() {
-      viewModel.showRewardAd(appId: _rewardAppId);
+    /// Plays the loaded reward ad.
+    void handlePlayRewardAd() {
+      viewModel.playRewardAd(appId: _rewardAppId);
     }
 
     return Center(
@@ -96,9 +96,9 @@ class _Body extends HookConsumerWidget {
           ),
 
           GestureDetector(
-            onTap: isInterstitialReady ? handleShowInterstitialAd : null,
+            onTap: isInterstitialReady ? handlePlayInterstitialAd : null,
             child: Text(
-              'Show Interstitial Ad',
+              'Play Interstitial Ad',
               style: TextStyle(
                 color: isInterstitialReady
                     ? const Color(0xFF000000)
@@ -107,11 +107,11 @@ class _Body extends HookConsumerWidget {
             ),
           ),
 
-          if (uiState.showInterstitialAd is AsyncData)
+          if (uiState.playInterstitialAd is AsyncData)
             const Text('Interstitial ad closed'),
 
-          if (uiState.showInterstitialAd case AsyncError(:final error))
-            Text('Show error: $error'),
+          if (uiState.playInterstitialAd case AsyncError(:final error))
+            Text('Play error: $error'),
 
           const SizedBox(height: 32),
           const Text('--- Reward Ad ---'),
@@ -140,9 +140,9 @@ class _Body extends HookConsumerWidget {
           ),
 
           GestureDetector(
-            onTap: isRewardReady ? handleShowRewardAd : null,
+            onTap: isRewardReady ? handlePlayRewardAd : null,
             child: Text(
-              'Show Reward Ad',
+              'Play Reward Ad',
               style: TextStyle(
                 color: isRewardReady
                     ? const Color(0xFF000000)
@@ -151,11 +151,11 @@ class _Body extends HookConsumerWidget {
             ),
           ),
 
-          if (uiState.showRewardAd is AsyncData)
+          if (uiState.playRewardAd is AsyncData)
             Text('Reward earned: ${uiState.isRewardEarned}'),
 
-          if (uiState.showRewardAd case AsyncError(:final error))
-            Text('Show error: $error'),
+          if (uiState.playRewardAd case AsyncError(:final error))
+            Text('Play error: $error'),
         ],
       ),
     );

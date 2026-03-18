@@ -58,8 +58,8 @@ import 'package:flutter_lab/domain/use_cases/adfurikun/initialize_adfurikun_inte
 import 'package:flutter_lab/domain/use_cases/adfurikun/initialize_adfurikun_reward_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_interstitial_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_reward_ad_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/adfurikun/show_adfurikun_interstitial_ad_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/adfurikun/show_adfurikun_reward_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/adfurikun/play_adfurikun_interstitial_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/adfurikun/play_adfurikun_reward_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/agreement/initialize_latest_agreed_date_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_tap_event_use_case.dart';
@@ -452,9 +452,9 @@ LoadAdfurikunInterstitialAdUseCase loadAdfurikunInterstitialAdUseCase(
 );
 
 @riverpod
-ShowAdfurikunInterstitialAdUseCase showAdfurikunInterstitialAdUseCase(
+PlayAdfurikunInterstitialAdUseCase playAdfurikunInterstitialAdUseCase(
   Ref ref,
-) => ShowAdfurikunInterstitialAdUseCase(
+) => PlayAdfurikunInterstitialAdUseCase(
   adfurikunGateway: ref.read(adfurikunGatewayProvider),
 );
 
@@ -473,9 +473,9 @@ LoadAdfurikunRewardAdUseCase loadAdfurikunRewardAdUseCase(
 );
 
 @riverpod
-ShowAdfurikunRewardAdUseCase showAdfurikunRewardAdUseCase(
+PlayAdfurikunRewardAdUseCase playAdfurikunRewardAdUseCase(
   Ref ref,
-) => ShowAdfurikunRewardAdUseCase(
+) => PlayAdfurikunRewardAdUseCase(
   adfurikunGateway: ref.read(adfurikunGatewayProvider),
 );
 

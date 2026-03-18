@@ -14,10 +14,10 @@ abstract class AdfurikunGateway {
   /// Completes with [Unit] when the ad is loaded and ready to be shown.
   AsyncResult<Unit> loadInterstitialAd({required String appId});
 
-  /// Shows an interstitial ad for the given app ID.
+  /// Plays an interstitial ad for the given app ID.
   ///
   /// Completes with [Unit] when the ad is closed.
-  AsyncResult<Unit> showInterstitialAd({required String appId});
+  AsyncResult<Unit> playInterstitialAd({required String appId});
 
   /// Initializes a reward ad instance for the given app ID.
   ///
@@ -29,12 +29,12 @@ abstract class AdfurikunGateway {
   /// Completes with [Unit] when the ad is loaded and ready to be shown.
   AsyncResult<Unit> loadRewardAd({required String appId});
 
-  /// Shows a reward ad for the given app ID.
+  /// Plays a reward ad for the given app ID.
   ///
   /// Completes with [Unit] when the ad is closed.
-  AsyncResult<Unit> showRewardAd({required String appId});
+  AsyncResult<Unit> playRewardAd({required String appId});
 
-  /// Whether the user earned a reward from the last shown ad
+  /// Whether the user earned a reward from the last played ad
   /// for the given app ID.
   bool isRewardEarned({required String appId});
 
