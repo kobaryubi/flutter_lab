@@ -57,6 +57,7 @@ abstract final class Routes {
   static const petCache = '/pet_cache';
   static const arutana = '/arutana';
   static const max = '/max';
+  static const adfurikun = '/adfurikun';
   static const profilePassport = '/profile_passport';
   static const animatedSwitcher = '/animated_switcher';
 

@@ -10,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   static final _links = [
     AppLink(title: 'arutana', route: ArutanaRoute()),
     AppLink(title: 'MAX rewarded ads', route: MaxRoute()),
+    AppLink(title: 'Adfurikun ads', route: AdfurikunRoute()),
     AppLink(title: 'not found', route: NotFoundRoute()),
     AppLink(title: 'routing', route: RoutingRoute()),
     const AppLink(
