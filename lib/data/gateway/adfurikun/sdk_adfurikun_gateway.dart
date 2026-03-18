@@ -290,15 +290,17 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       ) {
         switch (callback) {
           case .onPrepareSuccess:
-            _interstitialLoadCompleters[appId]?.complete(unit);
+            _interstitialLoadCompleters.remove(appId)?.complete(unit);
 
           case .onPrepareFailure:
             _interstitialAds.remove(appId)
               ?..destroy()
               ..listener = null;
-            _interstitialLoadCompleters[appId]?.completeError(
-              Exception('Failed to load interstitial ad: $appId'),
-            );
+            _interstitialLoadCompleters
+                .remove(appId)
+                ?.completeError(
+                  Exception('Failed to load interstitial ad: $appId'),
+                );
 
           case .onStartPlaying:
           case .onFinishedPlaying:
@@ -332,15 +334,17 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       ) {
         switch (callback) {
           case .onPrepareSuccess:
-            _rewardLoadCompleters[appId]?.complete(unit);
+            _rewardLoadCompleters.remove(appId)?.complete(unit);
 
           case .onPrepareFailure:
             _rewardAds.remove(appId)
               ?..destroy()
               ..listener = null;
-            _rewardLoadCompleters[appId]?.completeError(
-              Exception('Failed to load reward ad: $appId'),
-            );
+            _rewardLoadCompleters
+                .remove(appId)
+                ?.completeError(
+                  Exception('Failed to load reward ad: $appId'),
+                );
 
           case .onStartPlaying:
             _rewardEarnedMap[appId] = false;
