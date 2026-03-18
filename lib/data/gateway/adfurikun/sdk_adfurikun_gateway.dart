@@ -15,6 +15,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
   @override
   AsyncResult<Unit> initializeInterstitialAd({required String appId}) async {
+    if (_interstitialAds.containsKey(appId)) {
+      return const Success(unit);
+    }
+
     try {
       final interstitial = AdfurikunInterstitial(appId)
         ..listener = _createInterstitialListener(appId);
@@ -31,6 +35,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   AsyncResult<Unit> loadInterstitialAd({required String appId}) async {
     try {
       final interstitial = _getInterstitial(appId);
+
+      if (await interstitial.isPrepared()) {
+        return const Success(unit);
+      }
 
       final completer = Completer<Unit>();
 
@@ -71,6 +79,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
 
   @override
   AsyncResult<Unit> initializeRewardAd({required String appId}) async {
+    if (_rewardAds.containsKey(appId)) {
+      return const Success(unit);
+    }
+
     try {
       final reward = AdfurikunReward(appId)
         ..listener = _createRewardListener(appId);
@@ -87,6 +99,10 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   AsyncResult<Unit> loadRewardAd({required String appId}) async {
     try {
       final reward = _getReward(appId);
+
+      if (await reward.isPrepared()) {
+        return const Success(unit);
+      }
 
       final completer = Completer<Unit>();
 
