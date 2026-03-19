@@ -21,7 +21,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   final Map<String, Completer<Unit>> _interstitialPlayCompleters = {};
   final Map<String, Completer<Unit>> _rewardLoadCompleters = {};
   final Map<String, Completer<Unit>> _rewardPlayCompleters = {};
-  final Map<String, bool> _rewardEarnedMap = {};
+  final Map<String, bool> _rewardedMap = {};
 
   @override
   AsyncResult<Unit> initializeInterstitialAd({required String appId}) async {
@@ -222,8 +222,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   }
 
   @override
-  bool isRewardEarned({required String appId}) =>
-      _rewardEarnedMap[appId] ?? false;
+  bool isRewarded({required String appId}) => _rewardedMap[appId] ?? false;
 
   @override
   void dispose() {
@@ -245,7 +244,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
     _interstitialPlayCompleters.clear();
     _rewardLoadCompleters.clear();
     _rewardPlayCompleters.clear();
-    _rewardEarnedMap.clear();
+    _rewardedMap.clear();
   }
 
   /// Whether any ad is currently playing.
@@ -332,13 +331,13 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
                 ?.completeError(const DomainException.unavailable());
 
           case .onStartPlaying:
-            _rewardEarnedMap[appId] = false;
+            _rewardedMap[appId] = false;
 
           case .onFinishedPlaying:
             break;
 
           case .onAdClose:
-            _rewardEarnedMap[appId] = isRewarded ?? false;
+            _rewardedMap[appId] = isRewarded ?? false;
             _rewardPlayCompleters.remove(appId)?.complete(unit);
 
           case .onFailedPlaying:

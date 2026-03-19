@@ -36,7 +36,7 @@ abstract class AdfurikunGateway {
 
   /// Whether the user earned a reward from the last played ad
   /// for the given app ID.
-  bool isRewardEarned({required String appId});
+  bool isRewarded({required String appId});
 
   /// Cleans up all ad instances.
   void dispose();
