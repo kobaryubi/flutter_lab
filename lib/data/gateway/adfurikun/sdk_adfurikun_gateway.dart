@@ -41,7 +41,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
         ..listener = null;
 
       final interstitial = AdfurikunInterstitial(appId)
-        ..listener = _createInterstitialListener(appId);
+        ..listener = _createInterstitialListener();
 
       _interstitialAds[appId] = interstitial;
 
@@ -139,8 +139,7 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
         ?..destroy()
         ..listener = null;
 
-      final reward = AdfurikunReward(appId)
-        ..listener = _createRewardListener(appId);
+      final reward = AdfurikunReward(appId)..listener = _createRewardListener();
 
       _rewardAds[appId] = reward;
 
@@ -269,15 +268,19 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
   }
 
   /// Creates a listener for interstitial ad callbacks.
-  AdfurikunInterstitialListener _createInterstitialListener(String appId) =>
+  AdfurikunInterstitialListener _createInterstitialListener() =>
       (
         callback,
-        _,
+        appId,
         adNetworkKey,
         errorCode,
         errorMessage,
         adNetworkErrorList,
       ) {
+        if (appId == null) {
+          return;
+        }
+
         switch (callback) {
           case .onPrepareSuccess:
             _interstitialLoadCompleters.remove(appId)?.complete(unit);
@@ -308,16 +311,20 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       };
 
   /// Creates a listener for reward ad callbacks.
-  AdfurikunRewardListener _createRewardListener(String appId) =>
+  AdfurikunRewardListener _createRewardListener() =>
       (
         callback,
-        _,
+        appId,
         adNetworkKey,
         errorCode,
         errorMessage,
         adNetworkErrorList,
         isRewarded,
       ) {
+        if (appId == null) {
+          return;
+        }
+
         switch (callback) {
           case .onPrepareSuccess:
             _rewardLoadCompleters.remove(appId)?.complete(unit);
