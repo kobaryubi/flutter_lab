@@ -61,6 +61,7 @@ List<RouteBase> get $appRoutes => [
   $shellDemoDetailRoute,
   $shellDemoRoute,
   $shellDemoSubRoute,
+  $tutorialRoute,
   $urlNavigationRoute,
   $webViewRoute,
 ];
@@ -1549,6 +1550,32 @@ mixin $ShellDemoSubRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/shell_demo_sub');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $tutorialRoute => GoRouteData.$route(
+  path: '/tutorial',
+  name: 'tutorial',
+  factory: $TutorialRoute._fromState,
+);
+
+mixin $TutorialRoute on GoRouteData {
+  static TutorialRoute _fromState(GoRouterState state) => TutorialRoute();
+
+  @override
+  String get location => GoRouteData.$location('/tutorial');
 
   @override
   void go(BuildContext context) => context.go(location);
