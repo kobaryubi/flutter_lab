@@ -46,8 +46,8 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       _interstitialAds[appId] = interstitial;
 
       return const Success(unit);
-    } on Exception catch (exception) {
-      return Failure(exception);
+    } on Exception {
+      return const Failure(DomainException.internal());
     }
   }
 
@@ -72,8 +72,8 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       await completer.future;
 
       return const Success(unit);
-    } on Exception catch (exception) {
-      return Failure(exception);
+    } on Exception {
+      return const Failure(DomainException.internal());
     }
   }
 
@@ -117,8 +117,8 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       await completer.future;
 
       return const Success(unit);
-    } on Exception catch (exception) {
-      return Failure(exception);
+    } on Exception {
+      return const Failure(DomainException.internal());
     }
   }
 
@@ -144,8 +144,8 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       _rewardAds[appId] = reward;
 
       return const Success(unit);
-    } on Exception catch (exception) {
-      return Failure(exception);
+    } on Exception {
+      return const Failure(DomainException.internal());
     }
   }
 
@@ -170,8 +170,8 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       await completer.future;
 
       return const Success(unit);
-    } on Exception catch (exception) {
-      return Failure(exception);
+    } on Exception {
+      return const Failure(DomainException.internal());
     }
   }
 
@@ -215,8 +215,8 @@ class SdkAdfurikunGateway implements AdfurikunGateway {
       await completer.future;
 
       return const Success(unit);
-    } on Exception catch (exception) {
-      return Failure(exception);
+    } on Exception {
+      return const Failure(DomainException.internal());
     }
   }
 
