@@ -47,7 +47,7 @@ class MaxViewModel extends _$MaxViewModel {
 
     state = state.copyWith(
       showRewardedAd: showRewardedAd,
-      isRewardEarned: gateway.isRewardEarned,
+      isRewardEarned: gateway.isRewarded,
     );
   }
 

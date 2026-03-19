@@ -79,7 +79,7 @@ class AdfurikunViewModel extends _$AdfurikunViewModel {
 
     state = state.copyWith(
       playRewardAd: playRewardAd,
-      isRewardEarned: gateway.isRewardEarned(appId: appId),
+      isRewardEarned: gateway.isRewarded(appId: appId),
     );
   }
 }

@@ -18,7 +18,7 @@ abstract class MaxGateway {
   AsyncResult<Unit> showRewardedAd();
 
   /// Whether the user earned a reward from the last shown ad.
-  bool get isRewardEarned;
+  bool get isRewarded;
 
   /// Opens the AppLovin mediation debugger overlay.
   Result<Unit> showMediationDebugger();
