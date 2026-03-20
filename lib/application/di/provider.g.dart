@@ -3240,7 +3240,7 @@ final class PerformanceGatewayProvider
         argument: null,
         retry: null,
         name: r'performanceGatewayProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -3269,7 +3269,7 @@ final class PerformanceGatewayProvider
 }
 
 String _$performanceGatewayHash() =>
-    r'702cf583014de6505c29e451ad4b75fa5c0e93a8';
+    r'e9266da56bf6930d7f1034d8de27bece2351fce7';
 
 @ProviderFor(startTraceUseCase)
 const startTraceUseCaseProvider = StartTraceUseCaseProvider._();

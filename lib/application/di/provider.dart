@@ -509,7 +509,7 @@ LogViewEventUseCase logViewEventUseCase(Ref ref) => LogViewEventUseCase(
 );
 
 // performance
-@riverpod
+@Riverpod(keepAlive: true)
 PerformanceGateway performanceGateway(Ref ref) => FirebasePerformanceGateway();
 
 @riverpod
