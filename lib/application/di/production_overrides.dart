@@ -3,7 +3,7 @@ import 'package:flutter_lab/application/di/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 /// Provider overrides for the production flavor.
-List<Override> productionOverrides() => [
+final List<Override> productionOverrides = [
   dioProvider.overrideWithValue(
     Dio(
       BaseOptions(
