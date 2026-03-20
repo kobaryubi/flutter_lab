@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_lab/presentation/core/widget/global_loading_overlay.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 
 /// Screen layout with app bar, content area, and optional bottom navigation.
@@ -24,7 +23,7 @@ class Layout extends StatelessWidget {
         child: Column(
           children: [
             appBar,
-            Expanded(child: GlobalLoadingOverlay(child: child)),
+            Expanded(child: child),
             if (bottomNavigationBar != null) bottomNavigationBar!,
           ],
         ),
