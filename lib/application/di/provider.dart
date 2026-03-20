@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
-import 'package:flutter_lab/data/gateway/adfurikun/sdk_adfurikun_gateway.dart';
+// import 'package:flutter_lab/data/gateway/adfurikun/sdk_adfurikun_gateway.dart';
+import 'package:flutter_lab/data/gateway/adfurikun/mock_adfurikun_gateway.dart';
 import 'package:flutter_lab/data/gateway/analytics/firebase_analytics_gateway.dart';
 import 'package:flutter_lab/data/gateway/arutana/pigeon_arutana_gateway.dart';
 import 'package:flutter_lab/data/gateway/clock/clock_clock_gateway.dart';
@@ -435,7 +436,7 @@ ShowMediationDebuggerUseCase showMediationDebuggerUseCase(Ref ref) =>
 
 // adfurikun
 @Riverpod(keepAlive: true)
-AdfurikunGateway adfurikunGateway(Ref ref) => SdkAdfurikunGateway();
+AdfurikunGateway adfurikunGateway(Ref ref) => MockAdfurikunGateway();
 
 @riverpod
 InitializeAdfurikunInterstitialAdUseCase
