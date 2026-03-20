@@ -3223,6 +3223,243 @@ final class LogViewEventUseCaseProvider
 String _$logViewEventUseCaseHash() =>
     r'a9fa3606d669dfb8ff3d4f671b264cf5620cad20';
 
+@ProviderFor(performanceGateway)
+const performanceGatewayProvider = PerformanceGatewayProvider._();
+
+final class PerformanceGatewayProvider
+    extends
+        $FunctionalProvider<
+          PerformanceGateway,
+          PerformanceGateway,
+          PerformanceGateway
+        >
+    with $Provider<PerformanceGateway> {
+  const PerformanceGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'performanceGatewayProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$performanceGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<PerformanceGateway> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  PerformanceGateway create(Ref ref) {
+    return performanceGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(PerformanceGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<PerformanceGateway>(value),
+    );
+  }
+}
+
+String _$performanceGatewayHash() =>
+    r'702cf583014de6505c29e451ad4b75fa5c0e93a8';
+
+@ProviderFor(startTraceUseCase)
+const startTraceUseCaseProvider = StartTraceUseCaseProvider._();
+
+final class StartTraceUseCaseProvider
+    extends
+        $FunctionalProvider<
+          StartTraceUseCase,
+          StartTraceUseCase,
+          StartTraceUseCase
+        >
+    with $Provider<StartTraceUseCase> {
+  const StartTraceUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'startTraceUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$startTraceUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<StartTraceUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  StartTraceUseCase create(Ref ref) {
+    return startTraceUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(StartTraceUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<StartTraceUseCase>(value),
+    );
+  }
+}
+
+String _$startTraceUseCaseHash() => r'a07c00ffb9776ce0be972ab81d760218607b4ab5';
+
+@ProviderFor(stopTraceUseCase)
+const stopTraceUseCaseProvider = StopTraceUseCaseProvider._();
+
+final class StopTraceUseCaseProvider
+    extends
+        $FunctionalProvider<
+          StopTraceUseCase,
+          StopTraceUseCase,
+          StopTraceUseCase
+        >
+    with $Provider<StopTraceUseCase> {
+  const StopTraceUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'stopTraceUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$stopTraceUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<StopTraceUseCase> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  StopTraceUseCase create(Ref ref) {
+    return stopTraceUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(StopTraceUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<StopTraceUseCase>(value),
+    );
+  }
+}
+
+String _$stopTraceUseCaseHash() => r'f41b7b350d261f698c6c93c5e1ed964718d5dd30';
+
+@ProviderFor(incrementMetricUseCase)
+const incrementMetricUseCaseProvider = IncrementMetricUseCaseProvider._();
+
+final class IncrementMetricUseCaseProvider
+    extends
+        $FunctionalProvider<
+          IncrementMetricUseCase,
+          IncrementMetricUseCase,
+          IncrementMetricUseCase
+        >
+    with $Provider<IncrementMetricUseCase> {
+  const IncrementMetricUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'incrementMetricUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$incrementMetricUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<IncrementMetricUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  IncrementMetricUseCase create(Ref ref) {
+    return incrementMetricUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(IncrementMetricUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<IncrementMetricUseCase>(value),
+    );
+  }
+}
+
+String _$incrementMetricUseCaseHash() =>
+    r'2b29a9190df651e79a56f88fb59c5ea2f83dd340';
+
+@ProviderFor(putAttributeUseCase)
+const putAttributeUseCaseProvider = PutAttributeUseCaseProvider._();
+
+final class PutAttributeUseCaseProvider
+    extends
+        $FunctionalProvider<
+          PutAttributeUseCase,
+          PutAttributeUseCase,
+          PutAttributeUseCase
+        >
+    with $Provider<PutAttributeUseCase> {
+  const PutAttributeUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'putAttributeUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$putAttributeUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<PutAttributeUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  PutAttributeUseCase create(Ref ref) {
+    return putAttributeUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(PutAttributeUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<PutAttributeUseCase>(value),
+    );
+  }
+}
+
+String _$putAttributeUseCaseHash() =>
+    r'58eb4a8503faeb56252903708ef093d0d1e22705';
+
 @ProviderFor(googleApiGateway)
 const googleApiGatewayProvider = GoogleApiGatewayProvider._();
 

@@ -15,6 +15,7 @@ import 'package:flutter_lab/data/gateway/google_api/plugin_google_api_gateway.da
 // import 'package:flutter_lab/data/gateway/max/sdk_max_gateway.dart';
 import 'package:flutter_lab/data/gateway/max/mock_max_gateway.dart';
 import 'package:flutter_lab/data/gateway/native_button/platform_native_button_gateway.dart';
+import 'package:flutter_lab/data/gateway/performance/firebase_performance_gateway.dart';
 import 'package:flutter_lab/data/gateway/permission/permission_handler_gateway.dart';
 import 'package:flutter_lab/data/gateway/pigeon_example/pigeon_pigeon_gateway.dart';
 import 'package:flutter_lab/data/gateway/profile_passport/pigeon_profile_passport_gateway.dart';
@@ -50,6 +51,7 @@ import 'package:flutter_lab/domain/max/max_gateway.dart';
 import 'package:flutter_lab/domain/native_button/native_button_gateway.dart';
 import 'package:flutter_lab/domain/navigation/url_navigation_list_repository.dart';
 import 'package:flutter_lab/domain/network/network_gateway.dart';
+import 'package:flutter_lab/domain/performance/performance_gateway.dart';
 import 'package:flutter_lab/domain/permission/permission_gateway.dart';
 import 'package:flutter_lab/domain/pigeon_example/pigeon_gateway.dart';
 import 'package:flutter_lab/domain/profile_passport/profile_passport_gateway.dart';
@@ -82,6 +84,10 @@ import 'package:flutter_lab/domain/use_cases/max/show_mediation_debugger_use_cas
 import 'package:flutter_lab/domain/use_cases/max/show_rewarded_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/native_button/watch_native_button_tap_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/network/watch_connectivity_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/performance/increment_metric_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/performance/put_attribute_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/performance/start_trace_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/performance/stop_trace_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/permission/get_permission_status_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/permission/open_app_settings_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/permission/request_permission_use_case.dart';
@@ -500,6 +506,31 @@ LogTapEventUseCase logTapEventUseCase(Ref ref) => LogTapEventUseCase(
 @riverpod
 LogViewEventUseCase logViewEventUseCase(Ref ref) => LogViewEventUseCase(
   analyticsGateway: ref.read(analyticsGatewayProvider),
+);
+
+// performance
+@riverpod
+PerformanceGateway performanceGateway(Ref ref) => FirebasePerformanceGateway();
+
+@riverpod
+StartTraceUseCase startTraceUseCase(Ref ref) => StartTraceUseCase(
+  performanceGateway: ref.read(performanceGatewayProvider),
+);
+
+@riverpod
+StopTraceUseCase stopTraceUseCase(Ref ref) => StopTraceUseCase(
+  performanceGateway: ref.read(performanceGatewayProvider),
+);
+
+@riverpod
+IncrementMetricUseCase incrementMetricUseCase(Ref ref) =>
+    IncrementMetricUseCase(
+      performanceGateway: ref.read(performanceGatewayProvider),
+    );
+
+@riverpod
+PutAttributeUseCase putAttributeUseCase(Ref ref) => PutAttributeUseCase(
+  performanceGateway: ref.read(performanceGatewayProvider),
 );
 
 // google api
