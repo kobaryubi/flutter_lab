@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/domain/entity/launch_url/launch_url_mode.dart';
-import 'package:flutter_lab/presentation/core/provider/global_loading_notifier.dart';
 import 'package:flutter_lab/routing/analytics_navigation_observer.dart';
-import 'package:flutter_lab/routing/loading_navigation_observer.dart';
 import 'package:flutter_lab/routing/observer_demo_observer.dart';
 import 'package:flutter_lab/routing/route_observer.dart';
 import 'package:flutter_lab/routing/routes.dart';
@@ -130,34 +128,24 @@ part 'url_navigation_route.dart';
 part 'web_view_route.dart';
 
 @riverpod
-GoRouter router(Ref ref) {
-  final loadingNotifier = ref.read(globalLoadingProvider.notifier);
+GoRouter router(Ref ref) => GoRouter(
+  initialLocation: Routes.home,
+  onException: (context, state, router) {
+    router.go(Routes.notFound);
+  },
+  debugLogDiagnostics: true,
+  routes: $appRoutes,
+  observers: [
+    AnalyticsNavigationObserver(
+      logViewEventUseCase: ref.read(logViewEventUseCaseProvider),
+    ),
+    ref.read(routeObserverProvider),
+    ObserverDemoObserver(
+      onEvent: (event) => Future(() {
+        if (!ref.exists(observerDemoViewModelProvider)) return;
 
-  return GoRouter(
-    initialLocation: Routes.home,
-    onException: (context, state, router) {
-      router.go(Routes.notFound);
-    },
-    debugLogDiagnostics: true,
-    routes: $appRoutes,
-    observers: [
-      AnalyticsNavigationObserver(
-        logViewEventUseCase: ref.read(logViewEventUseCaseProvider),
-      ),
-      ref.read(routeObserverProvider),
-      LoadingNavigationObserver(
-        onShowLoading: loadingNotifier.show,
-        onHideLoading: loadingNotifier.hide,
-      ),
-      ObserverDemoObserver(
-        onEvent: (event) => Future(() {
-          if (!ref.exists(observerDemoViewModelProvider)) return;
-
-          ref
-              .read(observerDemoViewModelProvider.notifier)
-              .addEvent(event: event);
-        }),
-      ),
-    ],
-  );
-}
+        ref.read(observerDemoViewModelProvider.notifier).addEvent(event: event);
+      }),
+    ),
+  ],
+);
