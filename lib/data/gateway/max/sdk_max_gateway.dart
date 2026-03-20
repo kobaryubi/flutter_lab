@@ -29,7 +29,7 @@ class SdkMaxGateway implements MaxGateway {
 
   Completer<Unit> _loadAdCompleter = Completer<Unit>();
   Completer<Unit> _showAdCompleter = Completer<Unit>();
-  bool _isRewardEarned = false;
+  bool _isRewarded = false;
 
   @override
   AsyncResult<Unit> initialize() async {
@@ -70,7 +70,7 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   @override
-  bool get isRewardEarned => _isRewardEarned;
+  bool get isRewarded => _isRewarded;
 
   @override
   AsyncResult<Unit> showRewardedAd() async {
@@ -82,7 +82,7 @@ class SdkMaxGateway implements MaxGateway {
         return Failure(Exception('Rewarded ad is not ready'));
       }
 
-      _isRewardEarned = false;
+      _isRewarded = false;
       _showAdCompleter = Completer<Unit>();
       AppLovinMAX.showRewardedAd(_rewardedAdUnitId);
 
@@ -137,6 +137,6 @@ class SdkMaxGateway implements MaxGateway {
 
   /// Handles reward received event.
   void _handleAdReceivedReward(MaxAd ad, MaxReward reward) {
-    _isRewardEarned = true;
+    _isRewarded = true;
   }
 }
