@@ -12,7 +12,8 @@ import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart'
 import 'package:flutter_lab/data/gateway/device_info/device_info_plus_device_info_gateway.dart';
 import 'package:flutter_lab/data/gateway/file_system_shortcut_icon_gateway.dart';
 import 'package:flutter_lab/data/gateway/google_api/plugin_google_api_gateway.dart';
-import 'package:flutter_lab/data/gateway/max/sdk_max_gateway.dart';
+// import 'package:flutter_lab/data/gateway/max/sdk_max_gateway.dart';
+import 'package:flutter_lab/data/gateway/max/mock_max_gateway.dart';
 import 'package:flutter_lab/data/gateway/native_button/platform_native_button_gateway.dart';
 import 'package:flutter_lab/data/gateway/permission/permission_handler_gateway.dart';
 import 'package:flutter_lab/data/gateway/pigeon_example/pigeon_pigeon_gateway.dart';
@@ -93,7 +94,7 @@ import 'package:flutter_lab/domain/use_cases/push_notification/request_push_noti
 import 'package:flutter_lab/domain/use_cases/shortcut/copy_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/delete_all_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/text_recognition/recognize_text_use_case.dart';
-import 'package:flutter_lab/flavors.dart';
+// import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/gen/pigeon/pigeon.g.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -406,12 +407,7 @@ StartProfilePassportServiceUseCase startProfilePassportServiceUseCase(
 
 // max
 @Riverpod(keepAlive: true)
-MaxGateway maxGateway(Ref ref) => SdkMaxGateway(
-  sdkKey: '',
-  rewardedAdUnitId: Platform.isIOS ? '' : '',
-  testDeviceAdvertisingIds: F.testDeviceAdvertisingIds,
-  isVerboseLoggingEnabled: F.appFlavor == Flavor.local,
-);
+MaxGateway maxGateway(Ref ref) => MockMaxGateway();
 
 @riverpod
 InitializeMaxUseCase initializeMaxUseCase(Ref ref) => InitializeMaxUseCase(
