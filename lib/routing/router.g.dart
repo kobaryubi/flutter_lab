@@ -17,6 +17,7 @@ List<RouteBase> get $appRoutes => [
   $autoMapprDemoRoute,
   $brightnessRoute,
   $clockRoute,
+  $counterRoute,
   $deviceInfoRoute,
   $dialogStateRoute,
   $dioCacheRoute,
@@ -315,6 +316,32 @@ mixin $ClockRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/clock');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $counterRoute => GoRouteData.$route(
+  path: '/counter',
+  name: 'counter',
+  factory: $CounterRoute._fromState,
+);
+
+mixin $CounterRoute on GoRouteData {
+  static CounterRoute _fromState(GoRouterState state) => CounterRoute();
+
+  @override
+  String get location => GoRouteData.$location('/counter');
 
   @override
   void go(BuildContext context) => context.go(location);

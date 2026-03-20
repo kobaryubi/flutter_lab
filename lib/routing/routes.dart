@@ -45,6 +45,7 @@ abstract final class Routes {
   static const navigationScreenC = '/navigation/screen_c';
 
   static const clock = '/clock';
+  static const counter = '/counter';
   static const deviceInfo = '/device_info';
 
   static const horizontalLayout = '/horizontal_layout';
