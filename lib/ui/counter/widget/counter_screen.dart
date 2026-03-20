@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/ui/core/themes/colors.dart';
+import 'package:flutter_lab/ui/core/themes/theme.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 
@@ -31,36 +33,39 @@ class _Body extends HookWidget {
       count.value--;
     }
 
-    return Center(
-      child: Column(
-        mainAxisAlignment: .center,
-        children: [
-          Text(
-            '${count.value}',
-            key: const Key('counter_value'),
-          ),
+    return DefaultTextStyle(
+      style: TextStyles.bodyMedium.copyWith(color: AppColors.black1),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [
+            Text(
+              '${count.value}',
+              key: const Key('counter_value'),
+            ),
 
-          const SizedBox(height: 16),
+            const SizedBox(height: 16),
 
-          Row(
-            mainAxisAlignment: .center,
-            children: [
-              GestureDetector(
-                key: const Key('decrement'),
-                onTap: handleDecrement,
-                child: const Text('-'),
-              ),
+            Row(
+              mainAxisAlignment: .center,
+              children: [
+                GestureDetector(
+                  key: const Key('decrement'),
+                  onTap: handleDecrement,
+                  child: const Text('-'),
+                ),
 
-              const SizedBox(width: 32),
+                const SizedBox(width: 32),
 
-              GestureDetector(
-                key: const Key('increment'),
-                onTap: handleIncrement,
-                child: const Text('+'),
-              ),
-            ],
-          ),
-        ],
+                GestureDetector(
+                  key: const Key('increment'),
+                  onTap: handleIncrement,
+                  child: const Text('+'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
