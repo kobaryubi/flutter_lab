@@ -37,7 +37,7 @@ Future<void> main() async {
   );
 
   final overrides = F.appFlavor == .production
-      ? productionOverrides()
+      ? productionOverrides
       : <Override>[];
 
   runApp(
