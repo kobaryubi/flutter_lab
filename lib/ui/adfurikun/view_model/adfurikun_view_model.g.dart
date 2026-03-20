@@ -54,7 +54,7 @@ final class AdfurikunViewModelProvider
 }
 
 String _$adfurikunViewModelHash() =>
-    r'0d95079bc0aa6aa213a9d6a43e46f5a8ae40faf8';
+    r'fc16d75e7b1148052051bff48e935af5615f2892';
 
 /// ViewModel for the Adfurikun ads demo screen.
 ///
