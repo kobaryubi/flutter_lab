@@ -71,6 +71,7 @@ dependencies:
   firebase_analytics: ^12.1.3
   # adfurikunsdk: ^2.1.0
   firebase_performance: ^0.11.1+5
+  patrol: ^4.3.0
 
 dev_dependencies:
   fake_async: ^1.3.0
