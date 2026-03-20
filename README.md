@@ -63,10 +63,11 @@ dart format .
 ### testing
 
 ```sh
-flutter test test/counter_test.dart
-flutter test test/fetch_album_test.dart
+# Unit tests
 flutter test test/widget_test.dart
-```
+
+# Integration tests (requires a connected device or simulator)
+fvm flutter test integration_test/ui/counter/counter_screen_test.dart -d <deviceId> --flavor local
 
 ### preview
 
