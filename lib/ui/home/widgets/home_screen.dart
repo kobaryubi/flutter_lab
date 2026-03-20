@@ -65,6 +65,10 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'animated switcher', route: AnimatedSwitcherRoute()),
     AppLink(title: 'shell demo', route: ShellDemoTab1Route()),
     AppLink(title: 'analytics', route: AnalyticsRoute()),
+    AppLink(
+      title: 'firebase performance',
+      route: FirebasePerformanceRoute(),
+    ),
     AppLink(title: 'tutorial', route: TutorialRoute()),
   ];
 

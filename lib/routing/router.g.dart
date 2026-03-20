@@ -23,6 +23,7 @@ List<RouteBase> get $appRoutes => [
   $dioCacheRoute,
   $effectVsListenRoute,
   $etagCacheRoute,
+  $firebasePerformanceRoute,
   $formBuilderRoute,
   $googleApiRoute,
   $homeRoute,
@@ -473,6 +474,33 @@ mixin $EtagCacheRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/etag_cache');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $firebasePerformanceRoute => GoRouteData.$route(
+  path: '/firebase_performance',
+  name: 'firebasePerformance',
+  factory: $FirebasePerformanceRoute._fromState,
+);
+
+mixin $FirebasePerformanceRoute on GoRouteData {
+  static FirebasePerformanceRoute _fromState(GoRouterState state) =>
+      FirebasePerformanceRoute();
+
+  @override
+  String get location => GoRouteData.$location('/firebase_performance');
 
   @override
   void go(BuildContext context) => context.go(location);
