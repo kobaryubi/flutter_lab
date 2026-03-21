@@ -100,6 +100,14 @@ dev_dependencies:
   pigeon: ^26.1.7
   build_verify: ^3.1.1
 
+patrol:
+  app_name: Flutter Lab Local
+  flavor: local
+  android:
+    package_name: com.masahikokobayashi.flutterlab.local
+  ios:
+    bundle_id: com.masahikokobayashi.flutterlab.local
+
 flutter_gen:
   integrations:
     flutter_svg: true
