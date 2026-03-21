@@ -68,6 +68,30 @@ flutter test test/widget_test.dart
 
 # Integration tests (requires a connected device or simulator)
 fvm flutter test integration_test/ui/counter/counter_screen_test.dart -d <deviceId> --flavor local
+```
+
+### Patrol
+
+#### Setup
+
+```sh
+# Install Patrol CLI
+dart pub global activate patrol_cli
+
+# Verify setup
+patrol doctor
+```
+
+#### Running tests
+
+```sh
+# Development mode (hot-restart, press "r" to re-run)
+patrol develop --target patrol_test/example_test.dart
+
+# Full test run
+patrol test --target patrol_test/example_test.dart
+
+```
 
 ### preview
 

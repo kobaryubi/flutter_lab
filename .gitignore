@@ -47,3 +47,6 @@ migrate_working_dir/
 
 # FVM Version Cache
 .fvm/
+
+# Patrol auto-generated test bundle
+patrol_test/test_bundle.dart
