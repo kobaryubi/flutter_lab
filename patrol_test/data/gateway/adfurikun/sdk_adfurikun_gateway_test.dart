@@ -1,29 +1,27 @@
 import 'package:flutter_lab/data/gateway/adfurikun/sdk_adfurikun_gateway.dart';
 import 'package:flutter_lab/domain/entity/exception/domain_exception.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
+import 'package:patrol/patrol.dart';
 
 /// Dummy app IDs for testing with SDK test mode enabled.
 const _interstitialAppId = 'test-interstitial-app-id';
 const _rewardAppId = 'test-reward-app-id';
 
 void main() {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-
   late SdkAdfurikunGateway gateway;
 
-  setUp(() {
+  patrolSetUp(() {
     gateway = SdkAdfurikunGateway();
   });
 
-  tearDown(() {
+  patrolTearDown(() {
     gateway.dispose();
   });
 
   group('SdkAdfurikunGateway interstitial ad', () {
-    testWidgets(
+    patrolTest(
       'initialize returns Success',
-      (tester) async {
+      ($) async {
         final result = await gateway.initializeInterstitialAd(
           appId: _interstitialAppId,
         );
@@ -32,9 +30,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'initialize twice returns Success without error',
-      (tester) async {
+      ($) async {
         await gateway.initializeInterstitialAd(
           appId: _interstitialAppId,
         );
@@ -47,9 +45,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'load without initialize returns Failure with notFound',
-      (tester) async {
+      ($) async {
         final result = await gateway.loadInterstitialAd(
           appId: _interstitialAppId,
         );
@@ -62,9 +60,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'initialize and load returns Success',
-      (tester) async {
+      ($) async {
         await gateway.initializeInterstitialAd(
           appId: _interstitialAppId,
         );
@@ -77,9 +75,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'play without initialize returns Failure with notFound',
-      (tester) async {
+      ($) async {
         final result = await gateway.playInterstitialAd(
           appId: _interstitialAppId,
         );
@@ -92,9 +90,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'play without load returns Failure with failedPrecondition',
-      (tester) async {
+      ($) async {
         await gateway.initializeInterstitialAd(
           appId: _interstitialAppId,
         );
@@ -111,9 +109,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'full flow: initialize, load, play returns Success',
-      (tester) async {
+      ($) async {
         final initResult = await gateway.initializeInterstitialAd(
           appId: _interstitialAppId,
         );
@@ -136,9 +134,9 @@ void main() {
   });
 
   group('SdkAdfurikunGateway reward ad', () {
-    testWidgets(
+    patrolTest(
       'initialize returns Success',
-      (tester) async {
+      ($) async {
         final result = await gateway.initializeRewardAd(
           appId: _rewardAppId,
         );
@@ -147,9 +145,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'load without initialize returns Failure with notFound',
-      (tester) async {
+      ($) async {
         final result = await gateway.loadRewardAd(
           appId: _rewardAppId,
         );
@@ -162,9 +160,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'initialize and load returns Success',
-      (tester) async {
+      ($) async {
         await gateway.initializeRewardAd(appId: _rewardAppId);
 
         final result = await gateway.loadRewardAd(
@@ -175,9 +173,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'play without initialize returns Failure with notFound',
-      (tester) async {
+      ($) async {
         final result = await gateway.playRewardAd(
           appId: _rewardAppId,
         );
@@ -190,9 +188,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'play without load returns Failure with failedPrecondition',
-      (tester) async {
+      ($) async {
         await gateway.initializeRewardAd(appId: _rewardAppId);
 
         final result = await gateway.playRewardAd(
@@ -207,9 +205,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'full flow: initialize, load, play returns Success',
-      (tester) async {
+      ($) async {
         final initResult = await gateway.initializeRewardAd(
           appId: _rewardAppId,
         );
@@ -230,9 +228,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'isRewarded returns false before any ad is played',
-      (tester) async {
+      ($) async {
         expect(
           gateway.isRewarded(appId: _rewardAppId),
           isFalse,
@@ -240,9 +238,9 @@ void main() {
       },
     );
 
-    testWidgets(
+    patrolTest(
       'isRewarded returns true after full flow in test mode',
-      (tester) async {
+      ($) async {
         await gateway.initializeRewardAd(appId: _rewardAppId);
 
         await gateway.loadRewardAd(appId: _rewardAppId);
@@ -258,9 +256,9 @@ void main() {
   });
 
   group('SdkAdfurikunGateway dispose', () {
-    testWidgets(
+    patrolTest(
       'load after dispose returns Failure with notFound',
-      (tester) async {
+      ($) async {
         await gateway.initializeInterstitialAd(
           appId: _interstitialAppId,
         );
