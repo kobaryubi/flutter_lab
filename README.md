@@ -80,6 +80,9 @@ dart pub global activate patrol_cli
 
 # Verify setup
 patrol doctor
+
+# Set environment variable for fvm (add to ~/.zshrc)
+export PATROL_FLUTTER_COMMAND="fvm flutter"
 ```
 
 #### Running tests

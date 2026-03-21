@@ -1244,7 +1244,7 @@ packages:
     source: hosted
     version: "2.3.0"
   patrol:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: patrol
       sha256: ca7d659c58ef735e27c4300af43cc367b67a129a0a1720082dc21b5a096efb1c
