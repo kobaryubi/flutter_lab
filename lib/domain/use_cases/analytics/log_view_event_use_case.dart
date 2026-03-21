@@ -14,8 +14,7 @@ class LogViewEventUseCase {
 
   /// Logs a view event for the given [screenName].
   AsyncResult<Unit> call({required String screenName}) =>
-      _analyticsGateway.logEvent(
-        name: 'screen_view',
-        parameters: {'screen_name': screenName},
+      _analyticsGateway.logScreenView(
+        screenName: screenName,
       );
 }

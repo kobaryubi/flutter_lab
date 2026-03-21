@@ -1,4 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -34,6 +35,23 @@ class FirebaseAnalyticsGateway implements AnalyticsGateway {
 
       return const Success(unit);
     } on Exception catch (exception) {
+      debugPrint('FirebaseAnalyticsGateway logEvent error: $exception');
+      return Failure(exception);
+    }
+  }
+
+  @override
+  AsyncResult<Unit> logScreenView({
+    required String screenName,
+  }) async {
+    try {
+      await _firebaseAnalytics.logScreenView(
+        screenName: screenName,
+      );
+
+      return const Success(unit);
+    } on Exception catch (exception) {
+      debugPrint('FirebaseAnalyticsGateway logScreenView error: $exception');
       return Failure(exception);
     }
   }

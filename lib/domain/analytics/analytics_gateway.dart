@@ -21,4 +21,12 @@ abstract class AnalyticsGateway {
     required String name,
     Map<String, Object>? parameters,
   });
+
+  /// Logs a screen view event.
+  ///
+  /// Uses the dedicated screen view API instead of generic [logEvent]
+  /// because `screen_view` is a reserved event name.
+  AsyncResult<Unit> logScreenView({
+    required String screenName,
+  });
 }
