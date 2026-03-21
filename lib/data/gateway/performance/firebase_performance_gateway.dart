@@ -12,6 +12,12 @@ class FirebasePerformanceGateway implements PerformanceGateway {
 
   @override
   AsyncResult<String> startTrace({required String name}) async {
+    if (_activeTraces.containsKey(name)) {
+      return Failure(
+        Exception('Trace already active: $name'),
+      );
+    }
+
     try {
       final trace = _firebasePerformance.newTrace(name);
       await trace.start();
