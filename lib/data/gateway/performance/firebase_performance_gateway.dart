@@ -87,4 +87,13 @@ class FirebasePerformanceGateway implements PerformanceGateway {
       return Failure(exception);
     }
   }
+
+  @override
+  AsyncResult<Unit> cancelTrace({required String traceId}) async {
+    final trace = _activeTraces.remove(traceId);
+
+    return trace == null
+        ? Failure(Exception('Trace not found: $traceId'))
+        : const Success(unit);
+  }
 }
