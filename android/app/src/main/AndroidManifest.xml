@@ -27,6 +27,12 @@
     <meta-data
       android:name="ppsdk3_app_auth_key"
       android:value="DUMMY_PPSDK_AUTH_KEY"/>
+    <meta-data
+      android:name="com.google.android.gms.ads.APPLICATION_ID"
+      android:value="ca-app-pub-1865121718135492~8967821032"/>
+    <meta-data
+      android:name="google_analytics_automatic_screen_reporting_enabled"
+      android:value="false"/>
   </application>
   <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and
