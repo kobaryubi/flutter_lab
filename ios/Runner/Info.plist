@@ -26,6 +26,10 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>FirebaseAutomaticScreenReportingEnabled</key>
+	<false/>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-1865121718135492~6510146254</string>
 	<key>NSCameraUsageDescription</key>
 	<string>写真を撮影するためにカメラのアクセスが必要です。</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
