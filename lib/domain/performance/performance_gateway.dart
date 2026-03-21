@@ -25,4 +25,10 @@ abstract class PerformanceGateway {
     required String attributeName,
     required String attributeValue,
   });
+
+  /// Cancels and removes the trace identified by [traceId].
+  ///
+  /// Use this to clean up orphaned traces when an error occurs
+  /// between [startTrace] and [stopTrace].
+  AsyncResult<Unit> cancelTrace({required String traceId});
 }
