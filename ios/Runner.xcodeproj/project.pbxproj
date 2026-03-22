@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		221A9FE26FF96D7D07377E45 /* productionRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 219F0E1B1A297CB63209DB50 /* productionRelease.xcconfig */; };
 		22FEA0ABC8A27EFBB13CEF59 /* localProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 069C700E7C8D9850010D105F /* localProfile.xcconfig */; };
 		23260A162A731EC258EB6925 /* localRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 038257F5B488E734EF1B3DE9 /* localRelease.xcconfig */; };
+		2CA5BE162F708CA6001585E1 /* PassKit.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5BE152F708CA6001585E1 /* PassKit.g.swift */; };
 		2CC8F1472F3C67BA00D8C03B /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8F1462F3C67BA00D8C03B /* LocationHandler.swift */; };
 		2CDA48FC2F4C4C810058F663 /* BatteryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */; };
 		2CDA48FE2F4C4D010058F663 /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDA48FD2F4C4D010058F663 /* NativeButton.swift */; };
@@ -83,6 +84,7 @@
 		219F0E1B1A297CB63209DB50 /* productionRelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = productionRelease.xcconfig; path = Flutter/productionRelease.xcconfig; sourceTree = "<group>"; };
 		29917FC1536C13FCCC3CCDCB /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA5BDD72F6E690B001585E1 /* RunnerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CA5BE152F708CA6001585E1 /* PassKit.g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassKit.g.swift; sourceTree = "<group>"; };
 		2CB1C7CC2F2EC0A90057E8C0 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		2CC8F1462F3C67BA00D8C03B /* LocationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHandler.swift; sourceTree = "<group>"; };
 		2CDA48FB2F4C4C810058F663 /* BatteryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryHandler.swift; sourceTree = "<group>"; };
@@ -138,17 +140,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		2CA5BDD82F6E690B001585E1 /* RunnerUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = RunnerUITests;
-			sourceTree = "<group>";
-		};
+		2CA5BDD82F6E690B001585E1 /* RunnerUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = RunnerUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +174,7 @@
 		11130780962B4E8E67EE4F66 /* Pigeon */ = {
 			isa = PBXGroup;
 			children = (
+				2CA5BE152F708CA6001585E1 /* PassKit.g.swift */,
 				CDB3E70D64ABE43B038FB54D /* Common.g.swift */,
 				4C5F808094AC318FCCE10E64 /* Arutana.g.swift */,
 				8CF0DF39C4AAEA4880EE23CB /* ProfilePassport.g.swift */,
@@ -470,9 +463,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -583,9 +580,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -615,9 +616,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner-RunnerUITests/Pods-Runner-RunnerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner-RunnerUITests/Pods-Runner-RunnerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -672,9 +677,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner-RunnerUITests/Pods-Runner-RunnerUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner-RunnerUITests/Pods-Runner-RunnerUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -712,6 +721,7 @@
 				2CDA49002F4C4D020058F663 /* NativeButtonFactory.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				56AFD568DB62B45AB777A49C /* Common.g.swift in Sources */,
+				2CA5BE162F708CA6001585E1 /* PassKit.g.swift in Sources */,
 				BA2A2ED396453D9E9C974C5E /* Arutana.g.swift in Sources */,
 				DFC2A85AD18171FE93518E5E /* ProfilePassport.g.swift in Sources */,
 				CCCDCE0C59971E1E23640507 /* Pigeon.g.swift in Sources */,

@@ -1,4 +1,5 @@
 import Flutter
+import PassKit
 import UIKit
 
 // MARK: - Pigeon GreetingApi Implementation
@@ -31,6 +32,28 @@ private class ExampleHostApiImpl: ExampleHostApi {
       return
     }
     completion(.success(true))
+  }
+}
+
+// MARK: - Pigeon PassKitHostApi Implementation
+
+/// Native implementation of the Pigeon-generated PassKitHostApi protocol.
+private class PassKitHostApiImpl: PassKitHostApi {
+  func canAddPass(passTypeIdentifier: String, serialNumber: String) throws -> Bool {
+    guard PKPassLibrary.isPassLibraryAvailable() else {
+      return false
+    }
+
+    guard PKAddPassesViewController.canAddPasses() else {
+      return false
+    }
+
+    let existingPass = PKPassLibrary().pass(
+      withPassTypeIdentifier: passTypeIdentifier,
+      serialNumber: serialNumber
+    )
+
+    return existingPass == nil
   }
 }
 
@@ -99,6 +122,9 @@ private class PigeonFlutterApi {
 
     // Register Pigeon ExampleHostApi
     ExampleHostApiSetup.setUp(binaryMessenger: messenger, api: ExampleHostApiImpl())
+
+    // Register Pigeon PassKitHostApi
+    PassKitHostApiSetup.setUp(binaryMessenger: messenger, api: PassKitHostApiImpl())
 
     // Register map platform view
     let registrar = engineBridge.pluginRegistry.registrar(
