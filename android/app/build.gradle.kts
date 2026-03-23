@@ -67,6 +67,8 @@ dependencies {
     implementation(files("libs/ProfilePassportNotice_Release_PRO_3.7.2.aar"))
     implementation(files("libs/ProfilePassportGeofence_Release_PRO_3.7.2.aar"))
     implementation(files("libs/ProfilePassportADID_Release_PRO_3.7.2.aar"))
+    // MAX mediation adapter (release only to avoid Patrol test conflicts)
+    releaseImplementation("com.applovin.mediation:moloco-adapter:4.6.0.0")
 }
 
 flutter {
