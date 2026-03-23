@@ -3,7 +3,7 @@ import 'package:flutter_lab/presentation/core/provider/global_loading_notifier.d
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-/// Global overlay that displays a full-screen loading indicator.
+/// Global overlay that displays a loading indicator over the content area.
 class GlobalLoadingOverlay extends ConsumerWidget {
   const GlobalLoadingOverlay({required this.child, super.key});
 
@@ -16,7 +16,7 @@ class GlobalLoadingOverlay extends ConsumerWidget {
     return PortalTarget(
       visible: isLoading,
       portalFollower: const ColoredBox(
-        color: Color(0x80000000),
+        color: Color(0x80FFFF00),
       ),
       child: child,
     );

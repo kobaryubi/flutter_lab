@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/presentation/core/widget/global_loading_overlay.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
+import 'package:flutter_portal/flutter_portal.dart';
 
 /// Screen layout with app bar, content area, and optional bottom navigation.
 class Layout extends StatelessWidget {
@@ -21,9 +23,14 @@ class Layout extends StatelessWidget {
       child: ColoredBox(
         color: AppColors.white1,
         child: Column(
+          crossAxisAlignment: .stretch,
           children: [
             appBar,
-            Expanded(child: child),
+            Expanded(
+              child: Portal(
+                child: GlobalLoadingOverlay(child: child),
+              ),
+            ),
             if (bottomNavigationBar != null) bottomNavigationBar!,
           ],
         ),
