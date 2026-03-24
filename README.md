@@ -91,8 +91,11 @@ export PATROL_FLUTTER_COMMAND="fvm flutter"
 # Development mode (hot-restart, press "r" to re-run)
 patrol develop --target patrol_test/example_test.dart
 
-# Full test run
-patrol test --target patrol_test/example_test.dart
+# Full test run (simulator)
+patrol test --target patrol_test/example_test.dart --show-flutter-logs
+
+# Full test run (physical iOS device, requires release mode)
+patrol test --target patrol_test/example_test.dart --release
 
 ```
 

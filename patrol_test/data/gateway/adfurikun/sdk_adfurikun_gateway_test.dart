@@ -5,6 +5,11 @@
 // import 'package:flutter_test/flutter_test.dart';
 // import 'package:patrol/patrol.dart';
 
+/// Placeholder main for patrol bundling.
+///
+/// All tests are commented out because they require manual ad overlay dismissal.
+void main() {}
+
 // /// Set to `false` to run these tests.
 // ///
 // /// These tests require manually closing the ad overlay,
