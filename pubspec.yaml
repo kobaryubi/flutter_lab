@@ -72,6 +72,7 @@ dependencies:
   # adfurikunsdk: ^2.1.0
   firebase_performance: ^0.11.1+5
   google_mobile_ads: ^7.0.0
+  firebase_crashlytics: ^5.1.0
 
 dev_dependencies:
   patrol: ^4.3.0
