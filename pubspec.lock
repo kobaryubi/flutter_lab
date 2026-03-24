@@ -1847,6 +1847,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.12"
+  test_fixture:
+    dependency: "direct dev"
+    description:
+      path: "package/test_fixture"
+      relative: true
+    source: path
+    version: "0.0.0"
   time:
     dependency: transitive
     description:

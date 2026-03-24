@@ -1,0 +1,7 @@
+name: test_fixture
+description: Shared test fixtures for unit and patrol tests.
+
+publish_to: none
+
+environment:
+  sdk: ^3.10.4
