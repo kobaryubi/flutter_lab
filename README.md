@@ -68,6 +68,7 @@ flutter test test/widget_test.dart
 
 # Integration tests (requires a connected device or simulator)
 fvm flutter test integration_test/ui/counter/counter_screen_test.dart -d <deviceId> --flavor local
+fvm flutter test integration_test/data/gateway/adfurikun/sdk_adfurikun_gateway_test.dart --flavor local
 ```
 
 ### Patrol
