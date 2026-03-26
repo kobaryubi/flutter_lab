@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/application/di/production_overrides.dart';
@@ -27,6 +29,25 @@ Future<void> main() async {
       : production.DefaultFirebaseOptions.currentPlatform;
 
   await Firebase.initializeApp(options: firebaseOptions);
+
+  /// Catches Flutter framework errors, presents them on screen,
+  /// and reports to Crashlytics.
+  /// In release mode, terminates the app to avoid showing a broken screen.
+  FlutterError.onError = (details) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(details);
+
+    if (kReleaseMode) {
+      exit(1);
+    }
+  };
+
+  /// Catches asynchronous errors not handled by the Flutter framework
+  /// and reports them to Crashlytics.
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+
+    return true;
+  };
 
   if (F.appFlavor == .local) {
     HttpOverrides.global = DevHttpOverrides();
