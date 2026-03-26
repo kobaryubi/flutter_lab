@@ -1,7 +1,8 @@
 pre-commit:
   parallel: true
   exclude:
-    - "package/*"
+    - "package/etag_cache/*"
+    - "package/petstore/*"
   jobs:
     - name: format
       glob: "*.dart"
