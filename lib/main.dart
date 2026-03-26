@@ -34,6 +34,7 @@ Future<void> main() async {
   /// and reports to Crashlytics.
   /// In release mode, terminates the app to avoid showing a broken screen.
   FlutterError.onError = (details) {
+    debugPrint('FlutterError.onError: ${details.exceptionAsString()}');
     FirebaseCrashlytics.instance.recordFlutterFatalError(details);
 
     if (kReleaseMode) {
@@ -44,6 +45,7 @@ Future<void> main() async {
   /// Catches asynchronous errors not handled by the Flutter framework
   /// and reports them to Crashlytics.
   PlatformDispatcher.instance.onError = (error, stack) {
+    debugPrint('PlatformDispatcher.onError: $error');
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
 
     return true;

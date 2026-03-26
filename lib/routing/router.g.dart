@@ -18,6 +18,7 @@ List<RouteBase> get $appRoutes => [
   $brightnessRoute,
   $clockRoute,
   $counterRoute,
+  $crashlyticsRoute,
   $deviceInfoRoute,
   $dialogStateRoute,
   $dioCacheRoute,
@@ -343,6 +344,32 @@ mixin $CounterRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/counter');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $crashlyticsRoute => GoRouteData.$route(
+  path: '/crashlytics',
+  name: 'crashlytics',
+  factory: $CrashlyticsRoute._fromState,
+);
+
+mixin $CrashlyticsRoute on GoRouteData {
+  static CrashlyticsRoute _fromState(GoRouterState state) => CrashlyticsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/crashlytics');
 
   @override
   void go(BuildContext context) => context.go(location);

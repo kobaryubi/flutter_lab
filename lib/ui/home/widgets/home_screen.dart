@@ -69,6 +69,7 @@ class HomeScreen extends StatelessWidget {
       title: 'firebase performance',
       route: FirebasePerformanceRoute(),
     ),
+    AppLink(title: 'crashlytics', route: CrashlyticsRoute()),
     AppLink(title: 'tutorial', route: TutorialRoute()),
   ];
 

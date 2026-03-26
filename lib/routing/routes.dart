@@ -63,6 +63,7 @@ abstract final class Routes {
   static const animatedSwitcher = '/animated_switcher';
 
   static const analytics = '/analytics';
+  static const crashlytics = '/crashlytics';
   static const firebasePerformance = '/firebase_performance';
   static const shellDemo = '/shell_demo';
   static const shellDemoTab1 = '/shell_demo/tab1';

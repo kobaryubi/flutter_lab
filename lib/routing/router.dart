@@ -16,6 +16,7 @@ import 'package:flutter_lab/ui/auto_mappr_demo/widget/auto_mappr_demo_screen.dar
 import 'package:flutter_lab/ui/brightness/widget/brightness_screen.dart';
 import 'package:flutter_lab/ui/clock/widget/clock_screen.dart';
 import 'package:flutter_lab/ui/counter/widget/counter_screen.dart';
+import 'package:flutter_lab/ui/crashlytics/widget/crashlytics_screen.dart';
 import 'package:flutter_lab/ui/device_info/widget/device_info_screen.dart';
 import 'package:flutter_lab/ui/dialog_state/widget/dialog_state_screen.dart';
 import 'package:flutter_lab/ui/dio_cache/widget/dio_cache_screen.dart';
@@ -81,6 +82,7 @@ part 'auto_mappr_demo_route.dart';
 part 'brightness_route.dart';
 part 'clock_route.dart';
 part 'counter_route.dart';
+part 'crashlytics_route.dart';
 part 'device_info_route.dart';
 part 'dialog_state_route.dart';
 part 'dio_cache_route.dart';
