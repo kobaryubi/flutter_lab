@@ -27,8 +27,8 @@ class SdkMaxGateway implements MaxGateway {
   final List<String> _testDeviceAdvertisingIds;
   final bool _isVerboseLoggingEnabled;
 
-  Completer<Unit> _loadAdCompleter = Completer<Unit>();
-  Completer<Unit> _showAdCompleter = Completer<Unit>();
+  Completer<Unit> _loadRewardedAdCompleter = Completer<Unit>();
+  Completer<Unit> _showRewardedAdCompleter = Completer<Unit>();
   bool _isRewarded = false;
 
   @override
@@ -58,10 +58,10 @@ class SdkMaxGateway implements MaxGateway {
   @override
   AsyncResult<Unit> loadRewardedAd() async {
     try {
-      _loadAdCompleter = Completer<Unit>();
+      _loadRewardedAdCompleter = Completer<Unit>();
       AppLovinMAX.loadRewardedAd(_rewardedAdUnitId);
 
-      await _loadAdCompleter.future;
+      await _loadRewardedAdCompleter.future;
 
       return const Success(unit);
     } on Exception catch (exception) {
@@ -83,10 +83,10 @@ class SdkMaxGateway implements MaxGateway {
       }
 
       _isRewarded = false;
-      _showAdCompleter = Completer<Unit>();
+      _showRewardedAdCompleter = Completer<Unit>();
       AppLovinMAX.showRewardedAd(_rewardedAdUnitId);
 
-      await _showAdCompleter.future;
+      await _showRewardedAdCompleter.future;
 
       return const Success(unit);
     } on Exception catch (exception) {
@@ -107,12 +107,12 @@ class SdkMaxGateway implements MaxGateway {
 
   /// Handles successful ad load.
   void _handleAdLoaded(MaxAd ad) {
-    _loadAdCompleter.complete(unit);
+    _loadRewardedAdCompleter.complete(unit);
   }
 
   /// Handles ad load failure.
   void _handleAdLoadFailed(String adUnitId, MaxError error) {
-    _loadAdCompleter.completeError(
+    _loadRewardedAdCompleter.completeError(
       Exception('Failed to load ad: ${error.code.value}'),
     );
   }
@@ -122,7 +122,7 @@ class SdkMaxGateway implements MaxGateway {
 
   /// Handles ad display failure.
   void _handleAdDisplayFailed(MaxAd ad, MaxError error) {
-    _showAdCompleter.completeError(
+    _showRewardedAdCompleter.completeError(
       Exception('Failed to display ad: ${error.code.value}'),
     );
   }
@@ -132,7 +132,7 @@ class SdkMaxGateway implements MaxGateway {
 
   /// Handles ad hidden event.
   void _handleAdHidden(MaxAd ad) {
-    _showAdCompleter.complete(unit);
+    _showRewardedAdCompleter.complete(unit);
   }
 
   /// Handles reward received event.
