@@ -13,6 +13,9 @@
 		221A9FE26FF96D7D07377E45 /* productionRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 219F0E1B1A297CB63209DB50 /* productionRelease.xcconfig */; };
 		22FEA0ABC8A27EFBB13CEF59 /* localProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 069C700E7C8D9850010D105F /* localProfile.xcconfig */; };
 		23260A162A731EC258EB6925 /* localRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 038257F5B488E734EF1B3DE9 /* localRelease.xcconfig */; };
+		2C6FF53F2F773C810040EE90 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6FF53E2F773C810040EE90 /* AdSupport.framework */; };
+		2C6FF5412F773C8B0040EE90 /* AdServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6FF5402F773C8B0040EE90 /* AdServices.framework */; };
+		2C6FF5432F773C940040EE90 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6FF5422F773C940040EE90 /* StoreKit.framework */; };
 		2C80469F2F73A8DB0088E1A4 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C80469E2F73A8DB0088E1A4 /* AppTrackingTransparency.framework */; };
 		2CA5BE162F708CA6001585E1 /* PassKit.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5BE152F708CA6001585E1 /* PassKit.g.swift */; };
 		2CC8F1472F3C67BA00D8C03B /* LocationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC8F1462F3C67BA00D8C03B /* LocationHandler.swift */; };
@@ -84,6 +87,9 @@
 		1FFD3A6551C07406829E8341 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		219F0E1B1A297CB63209DB50 /* productionRelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = productionRelease.xcconfig; path = Flutter/productionRelease.xcconfig; sourceTree = "<group>"; };
 		29917FC1536C13FCCC3CCDCB /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C6FF53E2F773C810040EE90 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		2C6FF5402F773C8B0040EE90 /* AdServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdServices.framework; path = System/Library/Frameworks/AdServices.framework; sourceTree = SDKROOT; };
+		2C6FF5422F773C940040EE90 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2C80469E2F73A8DB0088E1A4 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		2CA5BDD72F6E690B001585E1 /* RunnerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA5BE152F708CA6001585E1 /* PassKit.g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassKit.g.swift; sourceTree = "<group>"; };
@@ -166,6 +172,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6FF5432F773C940040EE90 /* StoreKit.framework in Frameworks */,
+				2C6FF5412F773C8B0040EE90 /* AdServices.framework in Frameworks */,
+				2C6FF53F2F773C810040EE90 /* AdSupport.framework in Frameworks */,
 				2C80469F2F73A8DB0088E1A4 /* AppTrackingTransparency.framework in Frameworks */,
 				A0D2DFE98C33206F4DF7C5B5 /* Pods_Runner.framework in Frameworks */,
 			);
@@ -297,6 +306,9 @@
 		B2146657AC511419C8EAAFEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C6FF5422F773C940040EE90 /* StoreKit.framework */,
+				2C6FF5402F773C8B0040EE90 /* AdServices.framework */,
+				2C6FF53E2F773C810040EE90 /* AdSupport.framework */,
 				2C80469E2F73A8DB0088E1A4 /* AppTrackingTransparency.framework */,
 				29917FC1536C13FCCC3CCDCB /* Pods_Runner.framework */,
 				77C0FA0DA9E9148C8F838AC1 /* Pods_RunnerTests.framework */,
