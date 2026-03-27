@@ -71,4 +71,5 @@ abstract final class Routes {
   static const shellDemoDetail = '/shell_demo_detail';
   static const shellDemoSub = '/shell_demo_sub';
   static const tutorial = '/tutorial';
+  static const scrollToSection = '/scroll_to_section';
 }

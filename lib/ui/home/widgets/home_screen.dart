@@ -71,6 +71,7 @@ class HomeScreen extends StatelessWidget {
     ),
     AppLink(title: 'crashlytics', route: CrashlyticsRoute()),
     AppLink(title: 'tutorial', route: TutorialRoute()),
+    AppLink(title: 'scroll to section', route: ScrollToSectionRoute()),
   ];
 
   @override

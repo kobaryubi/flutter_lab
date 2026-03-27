@@ -59,6 +59,7 @@ List<RouteBase> get $appRoutes => [
   $routingCupertinoRoute,
   $routingRoute,
   $s3EtagCacheRoute,
+  $scrollToSectionRoute,
   $screenshotPreventionRoute,
   $sharedPreferencesRoute,
   $shellDemoDetailRoute,
@@ -1453,6 +1454,33 @@ mixin $S3EtagCacheRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/s3_etag_cache');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $scrollToSectionRoute => GoRouteData.$route(
+  path: '/scroll_to_section',
+  name: 'scroll_to_section',
+  factory: $ScrollToSectionRoute._fromState,
+);
+
+mixin $ScrollToSectionRoute on GoRouteData {
+  static ScrollToSectionRoute _fromState(GoRouterState state) =>
+      ScrollToSectionRoute();
+
+  @override
+  String get location => GoRouteData.$location('/scroll_to_section');
 
   @override
   void go(BuildContext context) => context.go(location);

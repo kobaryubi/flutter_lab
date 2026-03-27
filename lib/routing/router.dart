@@ -59,6 +59,7 @@ import 'package:flutter_lab/ui/routing_cupertino/widget/routing_cupertino_screen
 import 'package:flutter_lab/ui/routing_cupertino_fullscreen_dialog/widget/routing_cupertino_fullscreen_dialog_screen.dart';
 import 'package:flutter_lab/ui/s3_etag_cache/widget/s3_etag_cache_screen.dart';
 import 'package:flutter_lab/ui/screenshot_prevention/widget/screenshot_prevention_screen.dart';
+import 'package:flutter_lab/ui/scroll_to_section/widget/scroll_to_section_screen.dart';
 import 'package:flutter_lab/ui/shared_preferences/widget/shared_preferences_screen.dart';
 import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_detail_screen.dart';
 import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_screen.dart';
@@ -123,6 +124,7 @@ part 'routing_cupertino_route.dart';
 part 'routing_route.dart';
 part 's3_etag_cache_route.dart';
 part 'screenshot_prevention_route.dart';
+part 'scroll_to_section_route.dart';
 part 'shared_preferences_route.dart';
 part 'shell_demo_detail_route.dart';
 part 'shell_demo_route.dart';
