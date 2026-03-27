@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:applovin_max/applovin_max.dart';
+import 'package:flutter_lab/domain/entity/exception/domain_exception.dart';
 import 'package:flutter_lab/domain/max/max_gateway.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -9,27 +10,23 @@ class SdkMaxGateway implements MaxGateway {
   /// Creates a [SdkMaxGateway].
   ///
   /// [sdkKey] is the AppLovin SDK key. Pass an empty string for template mode.
-  /// [rewardedAdUnitId] is the ad unit ID for rewarded ads per platform.
   /// [testDeviceAdvertisingIds] is a list of device advertising IDs
   /// for test mode.
   SdkMaxGateway({
     required String sdkKey,
-    required String rewardedAdUnitId,
     List<String> testDeviceAdvertisingIds = const [],
     bool isVerboseLoggingEnabled = false,
   }) : _sdkKey = sdkKey,
-       _rewardedAdUnitId = rewardedAdUnitId,
        _testDeviceAdvertisingIds = testDeviceAdvertisingIds,
        _isVerboseLoggingEnabled = isVerboseLoggingEnabled;
 
   final String _sdkKey;
-  final String _rewardedAdUnitId;
   final List<String> _testDeviceAdvertisingIds;
   final bool _isVerboseLoggingEnabled;
 
-  Completer<Unit> _loadRewardedAdCompleter = Completer<Unit>();
-  Completer<Unit> _showRewardedAdCompleter = Completer<Unit>();
-  bool _isRewarded = false;
+  final Map<String, Completer<Unit>> _loadRewardedAdCompleters = {};
+  final Map<String, Completer<Unit>> _showRewardedAdCompleters = {};
+  final Map<String, bool> _isRewardedMap = {};
 
   @override
   AsyncResult<Unit> initialize() async {
@@ -56,12 +53,13 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   @override
-  AsyncResult<Unit> loadRewardedAd() async {
+  AsyncResult<Unit> loadRewardedAd({required String adUnitId}) async {
     try {
-      _loadRewardedAdCompleter = Completer<Unit>();
-      AppLovinMAX.loadRewardedAd(_rewardedAdUnitId);
+      final completer = Completer<Unit>();
+      _loadRewardedAdCompleters[adUnitId] = completer;
+      AppLovinMAX.loadRewardedAd(adUnitId);
 
-      await _loadRewardedAdCompleter.future;
+      await completer.future;
 
       return const Success(unit);
     } on Exception catch (exception) {
@@ -70,23 +68,24 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   @override
-  bool get isRewarded => _isRewarded;
+  bool isRewarded({required String adUnitId}) =>
+      _isRewardedMap[adUnitId] ?? false;
 
   @override
-  AsyncResult<Unit> showRewardedAd() async {
+  AsyncResult<Unit> showRewardedAd({required String adUnitId}) async {
     try {
-      final isReady =
-          await AppLovinMAX.isRewardedAdReady(_rewardedAdUnitId) ?? false;
+      final isReady = await AppLovinMAX.isRewardedAdReady(adUnitId) ?? false;
 
       if (!isReady) {
         return Failure(Exception('Rewarded ad is not ready'));
       }
 
-      _isRewarded = false;
-      _showRewardedAdCompleter = Completer<Unit>();
-      AppLovinMAX.showRewardedAd(_rewardedAdUnitId);
+      _isRewardedMap[adUnitId] = false;
+      final completer = Completer<Unit>();
+      _showRewardedAdCompleters[adUnitId] = completer;
+      AppLovinMAX.showRewardedAd(adUnitId);
 
-      await _showRewardedAdCompleter.future;
+      await completer.future;
 
       return const Success(unit);
     } on Exception catch (exception) {
@@ -107,12 +106,24 @@ class SdkMaxGateway implements MaxGateway {
 
   /// Handles successful ad load.
   void _handleAdLoaded(MaxAd ad) {
-    _loadRewardedAdCompleter.complete(unit);
+    final completer = _loadRewardedAdCompleters[ad.adUnitId];
+
+    if (completer == null) {
+      throw const DomainException.notFound();
+    }
+
+    completer.complete(unit);
   }
 
   /// Handles ad load failure.
   void _handleAdLoadFailed(String adUnitId, MaxError error) {
-    _loadRewardedAdCompleter.completeError(
+    final completer = _loadRewardedAdCompleters[adUnitId];
+
+    if (completer == null) {
+      throw const DomainException.notFound();
+    }
+
+    completer.completeError(
       Exception('Failed to load ad: ${error.code.value}'),
     );
   }
@@ -122,7 +133,13 @@ class SdkMaxGateway implements MaxGateway {
 
   /// Handles ad display failure.
   void _handleAdDisplayFailed(MaxAd ad, MaxError error) {
-    _showRewardedAdCompleter.completeError(
+    final completer = _showRewardedAdCompleters[ad.adUnitId];
+
+    if (completer == null) {
+      throw const DomainException.notFound();
+    }
+
+    completer.completeError(
       Exception('Failed to display ad: ${error.code.value}'),
     );
   }
@@ -132,11 +149,17 @@ class SdkMaxGateway implements MaxGateway {
 
   /// Handles ad hidden event.
   void _handleAdHidden(MaxAd ad) {
-    _showRewardedAdCompleter.complete(unit);
+    final completer = _showRewardedAdCompleters[ad.adUnitId];
+
+    if (completer == null) {
+      throw const DomainException.notFound();
+    }
+
+    completer.complete(unit);
   }
 
   /// Handles reward received event.
   void _handleAdReceivedReward(MaxAd ad, MaxReward reward) {
-    _isRewarded = true;
+    _isRewardedMap[ad.adUnitId] = true;
   }
 }
