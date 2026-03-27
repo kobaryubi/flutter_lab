@@ -37,17 +37,6 @@ class SdkMaxGateway implements MaxGateway {
       AppLovinMAX.setVerboseLogging(_isVerboseLoggingEnabled);
       AppLovinMAX.setTestDeviceAdvertisingIds(_testDeviceAdvertisingIds);
       await AppLovinMAX.initialize(_sdkKey);
-
-      return const Success(unit);
-    } on Exception catch (exception) {
-      return Failure(exception);
-    }
-  }
-
-  @override
-  AsyncResult<Unit> loadRewardedAd() async {
-    try {
-      _loadAdCompleter = Completer<Unit>();
       AppLovinMAX.setRewardedAdListener(
         RewardedAdListener(
           onAdLoadedCallback: _handleAdLoaded,
@@ -59,6 +48,17 @@ class SdkMaxGateway implements MaxGateway {
           onAdReceivedRewardCallback: _handleAdReceivedReward,
         ),
       );
+
+      return const Success(unit);
+    } on Exception catch (exception) {
+      return Failure(exception);
+    }
+  }
+
+  @override
+  AsyncResult<Unit> loadRewardedAd() async {
+    try {
+      _loadAdCompleter = Completer<Unit>();
       AppLovinMAX.loadRewardedAd(_rewardedAdUnitId);
 
       await _loadAdCompleter.future;
