@@ -36,13 +36,13 @@ class SdkMaxGateway implements MaxGateway {
       await AppLovinMAX.initialize(_sdkKey);
       AppLovinMAX.setRewardedAdListener(
         RewardedAdListener(
-          onAdLoadedCallback: _handleAdLoaded,
-          onAdLoadFailedCallback: _handleAdLoadFailed,
-          onAdDisplayedCallback: _handleAdDisplayed,
-          onAdDisplayFailedCallback: _handleAdDisplayFailed,
-          onAdClickedCallback: _handleAdClicked,
-          onAdHiddenCallback: _handleAdHidden,
-          onAdReceivedRewardCallback: _handleAdReceivedReward,
+          onAdLoadedCallback: _handleRewardedAdLoaded,
+          onAdLoadFailedCallback: _handleRewardedAdLoadFailed,
+          onAdDisplayedCallback: _handleRewardedAdDisplayed,
+          onAdDisplayFailedCallback: _handleRewardedAdDisplayFailed,
+          onAdClickedCallback: _handleRewardedAdClicked,
+          onAdHiddenCallback: _handleRewardedAdHidden,
+          onAdReceivedRewardCallback: _handleRewardedAdReceivedReward,
         ),
       );
 
@@ -55,6 +55,12 @@ class SdkMaxGateway implements MaxGateway {
   @override
   AsyncResult<Unit> loadRewardedAd({required String adUnitId}) async {
     try {
+      final isReady = await AppLovinMAX.isRewardedAdReady(adUnitId) ?? false;
+
+      if (isReady) {
+        return const Success(unit);
+      }
+
       final completer = Completer<Unit>();
       _loadRewardedAdCompleters[adUnitId] = completer;
       AppLovinMAX.loadRewardedAd(adUnitId);
@@ -105,7 +111,7 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   /// Handles successful ad load.
-  void _handleAdLoaded(MaxAd ad) {
+  void _handleRewardedAdLoaded(MaxAd ad) {
     final completer = _loadRewardedAdCompleters[ad.adUnitId];
 
     if (completer == null) {
@@ -116,7 +122,7 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   /// Handles ad load failure.
-  void _handleAdLoadFailed(String adUnitId, MaxError error) {
+  void _handleRewardedAdLoadFailed(String adUnitId, MaxError error) {
     final completer = _loadRewardedAdCompleters[adUnitId];
 
     if (completer == null) {
@@ -129,10 +135,10 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   /// Handles ad displayed event.
-  void _handleAdDisplayed(MaxAd ad) {}
+  void _handleRewardedAdDisplayed(MaxAd ad) {}
 
   /// Handles ad display failure.
-  void _handleAdDisplayFailed(MaxAd ad, MaxError error) {
+  void _handleRewardedAdDisplayFailed(MaxAd ad, MaxError error) {
     final completer = _showRewardedAdCompleters[ad.adUnitId];
 
     if (completer == null) {
@@ -145,10 +151,10 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   /// Handles ad clicked event.
-  void _handleAdClicked(MaxAd ad) {}
+  void _handleRewardedAdClicked(MaxAd ad) {}
 
   /// Handles ad hidden event.
-  void _handleAdHidden(MaxAd ad) {
+  void _handleRewardedAdHidden(MaxAd ad) {
     final completer = _showRewardedAdCompleters[ad.adUnitId];
 
     if (completer == null) {
@@ -159,7 +165,7 @@ class SdkMaxGateway implements MaxGateway {
   }
 
   /// Handles reward received event.
-  void _handleAdReceivedReward(MaxAd ad, MaxReward reward) {
+  void _handleRewardedAdReceivedReward(MaxAd ad, MaxReward reward) {
     _isRewardedMap[ad.adUnitId] = true;
   }
 }
