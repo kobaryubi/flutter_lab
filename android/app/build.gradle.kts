@@ -55,7 +55,7 @@ dependencies {
     implementation(libs.androidx.browser)
     implementation(libs.androidx.lifecycle.process)
     implementation("com.google.android.gms:play-services-location:21.0.1")
-    implementation("com.google.android.gms:play-services-ads-identifier:18.0.1")
+    implementation("com.google.android.gms:play-services-ads-identifier:18.1.0")
     implementation("com.google.firebase:firebase-messaging:23.2.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
