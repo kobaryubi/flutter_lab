@@ -11,5 +11,5 @@ abstract class AdjustGateway {
   ///
   /// Push tokens are used for Audiences, client callbacks,
   /// and uninstall/reinstall measurement.
-  Result<Unit> setPushToken({required String token});
+  void setPushToken({required String token});
 }

@@ -36,9 +36,7 @@ class SdkAdjustGateway implements AdjustGateway {
   }
 
   @override
-  Result<Unit> setPushToken({required String token}) {
+  void setPushToken({required String token}) {
     Adjust.setPushToken(token);
-
-    return const Success(unit);
   }
 }
