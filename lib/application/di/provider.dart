@@ -5,6 +5,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
 // import 'package:flutter_lab/data/gateway/adfurikun/sdk_adfurikun_gateway.dart';
 import 'package:flutter_lab/data/gateway/adfurikun/mock_adfurikun_gateway.dart';
+// import 'package:flutter_lab/data/gateway/adjust/sdk_adjust_gateway.dart';
+import 'package:flutter_lab/data/gateway/adjust/mock_adjust_gateway.dart';
 import 'package:flutter_lab/data/gateway/analytics/firebase_analytics_gateway.dart';
 import 'package:flutter_lab/data/gateway/arutana/pigeon_arutana_gateway.dart';
 import 'package:flutter_lab/data/gateway/clock/clock_clock_gateway.dart';
@@ -33,6 +35,7 @@ import 'package:flutter_lab/data/repositories/push_notification/firebase_messagi
 import 'package:flutter_lab/data/repositories/shortcut/file_system_shortcut_repository.dart';
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_lab/domain/adfurikun/adfurikun_gateway.dart';
+import 'package:flutter_lab/domain/adjust/adjust_gateway.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
 import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
 import 'package:flutter_lab/domain/app_store/app_store_repository.dart';
@@ -410,6 +413,10 @@ StartProfilePassportServiceUseCase startProfilePassportServiceUseCase(
 ) => StartProfilePassportServiceUseCase(
   profilePassportGateway: ref.read(profilePassportGatewayProvider),
 );
+
+// adjust
+@Riverpod(keepAlive: true)
+AdjustGateway adjustGateway(Ref ref) => MockAdjustGateway();
 
 // max
 @Riverpod(keepAlive: true)

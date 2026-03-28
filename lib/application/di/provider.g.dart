@@ -2403,6 +2403,47 @@ final class StartProfilePassportServiceUseCaseProvider
 String _$startProfilePassportServiceUseCaseHash() =>
     r'e3fb27f915b286fd9310e0347139f47794d2faf6';
 
+@ProviderFor(adjustGateway)
+const adjustGatewayProvider = AdjustGatewayProvider._();
+
+final class AdjustGatewayProvider
+    extends $FunctionalProvider<AdjustGateway, AdjustGateway, AdjustGateway>
+    with $Provider<AdjustGateway> {
+  const AdjustGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'adjustGatewayProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$adjustGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<AdjustGateway> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AdjustGateway create(Ref ref) {
+    return adjustGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AdjustGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AdjustGateway>(value),
+    );
+  }
+}
+
+String _$adjustGatewayHash() => r'85f60c4344f25093da449c5808636f28782f6b13';
+
 @ProviderFor(maxGateway)
 const maxGatewayProvider = MaxGatewayProvider._();
 
