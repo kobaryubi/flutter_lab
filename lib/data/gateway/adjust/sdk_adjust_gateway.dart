@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:adjust_sdk/adjust.dart';
 import 'package:adjust_sdk/adjust_config.dart';
 import 'package:flutter_lab/domain/adjust/adjust_gateway.dart';
+import 'package:flutter_lab/domain/adjust/app_token.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Adjust SDK implementation of [AdjustGateway].
@@ -19,8 +22,9 @@ class SdkAdjustGateway implements AdjustGateway {
   final AdjustLogLevel? _logLevel;
 
   @override
-  AsyncResult<Unit> initialize({required String appToken}) async {
+  AsyncResult<Unit> initialize() async {
     try {
+      final appToken = Platform.isIOS ? AppToken.ios : AppToken.android;
       final config = AdjustConfig(appToken, _environment);
 
       if (_logLevel != null) {

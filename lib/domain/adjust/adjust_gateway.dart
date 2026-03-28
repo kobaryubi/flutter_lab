@@ -4,8 +4,8 @@ import 'package:result_dart/result_dart.dart';
 ///
 /// Abstracts the Adjust SDK behind a domain-layer interface.
 abstract class AdjustGateway {
-  /// Initializes the Adjust SDK with the given [appToken].
-  AsyncResult<Unit> initialize({required String appToken});
+  /// Initializes the Adjust SDK.
+  AsyncResult<Unit> initialize();
 
   /// Sets the push notification token for Adjust.
   ///

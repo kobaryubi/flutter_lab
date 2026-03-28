@@ -5,8 +5,7 @@ import 'package:result_dart/result_dart.dart';
 /// for all operations without depending on the Adjust SDK.
 class MockAdjustGateway implements AdjustGateway {
   @override
-  AsyncResult<Unit> initialize({required String appToken}) async =>
-      const Success(unit);
+  AsyncResult<Unit> initialize() async => const Success(unit);
 
   @override
   void setPushToken({required String token}) {}
