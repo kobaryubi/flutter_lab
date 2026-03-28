@@ -29,4 +29,14 @@ abstract class AnalyticsGateway {
   AsyncResult<Unit> logScreenView({
     required String screenName,
   });
+
+  /// Sets a user property to a given value.
+  ///
+  /// Up to 25 user properties can be set per project.
+  /// [name] is the property name (case-sensitive).
+  /// [value] is the property value, or `null` to clear it.
+  AsyncResult<Unit> setUserProperty({
+    required String name,
+    required String? value,
+  });
 }
