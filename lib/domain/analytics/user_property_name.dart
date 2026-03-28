@@ -1,9 +1,14 @@
-/// Constants for analytics user property names.
+/// User property names for analytics.
 ///
-/// Define user property names here to ensure consistency
-/// across the codebase. Each name must be registered as a
-/// custom definition in the Firebase Console before use.
-abstract final class UserPropertyName {
+/// Each name must be registered as a custom definition
+/// in the Firebase Console before use.
+enum UserPropertyName {
   /// The user's preferred language.
-  static const preferredLanguage = 'preferred_language';
+  preferredLanguage('preferred_language')
+  ;
+
+  const UserPropertyName(this.value);
+
+  /// The raw string value sent to the analytics SDK.
+  final String value;
 }
