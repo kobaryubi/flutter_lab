@@ -7,4 +7,7 @@ class MockAdjustGateway implements AdjustGateway {
   @override
   AsyncResult<Unit> initialize({required String appToken}) async =>
       const Success(unit);
+
+  @override
+  void setPushToken({required String token}) {}
 }
