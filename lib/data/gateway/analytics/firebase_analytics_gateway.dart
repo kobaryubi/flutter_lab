@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
+import 'package:flutter_lab/domain/analytics/user_property_name.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Firebase Analytics implementation of [AnalyticsGateway].
@@ -58,12 +59,12 @@ class FirebaseAnalyticsGateway implements AnalyticsGateway {
 
   @override
   AsyncResult<Unit> setUserProperty({
-    required String name,
+    required UserPropertyName name,
     required String? value,
   }) async {
     try {
       await _firebaseAnalytics.setUserProperty(
-        name: name,
+        name: name.value,
         value: value,
       );
 

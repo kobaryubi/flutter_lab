@@ -1,3 +1,4 @@
+import 'package:flutter_lab/domain/analytics/user_property_name.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Gateway for analytics event tracking.
@@ -36,7 +37,7 @@ abstract class AnalyticsGateway {
   /// [name] is the property name (case-sensitive).
   /// [value] is the property value, or `null` to clear it.
   AsyncResult<Unit> setUserProperty({
-    required String name,
+    required UserPropertyName name,
     required String? value,
   });
 }
