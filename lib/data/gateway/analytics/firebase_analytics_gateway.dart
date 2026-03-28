@@ -55,4 +55,21 @@ class FirebaseAnalyticsGateway implements AnalyticsGateway {
       return Failure(exception);
     }
   }
+
+  @override
+  AsyncResult<Unit> setUserProperty({
+    required String name,
+    required String? value,
+  }) async {
+    try {
+      await _firebaseAnalytics.setUserProperty(
+        name: name,
+        value: value,
+      );
+
+      return const Success(unit);
+    } on Exception catch (exception) {
+      return Failure(exception);
+    }
+  }
 }
