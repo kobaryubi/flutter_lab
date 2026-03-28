@@ -72,6 +72,7 @@ import 'package:flutter_lab/domain/use_cases/analytics/log_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_tap_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_view_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/set_default_event_parameters_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/analytics/set_user_property_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/app_store/get_app_store_url_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/battery/get_battery_level_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/clock/get_current_time_use_case.dart';
@@ -497,6 +498,13 @@ AnalyticsGateway analyticsGateway(Ref ref) => FirebaseAnalyticsGateway();
 SetDefaultEventParametersUseCase setDefaultEventParametersUseCase(
   Ref ref,
 ) => SetDefaultEventParametersUseCase(
+  analyticsGateway: ref.read(analyticsGatewayProvider),
+);
+
+@riverpod
+SetUserPropertyUseCase setUserPropertyUseCase(
+  Ref ref,
+) => SetUserPropertyUseCase(
   analyticsGateway: ref.read(analyticsGatewayProvider),
 );
 

@@ -3126,6 +3126,54 @@ final class SetDefaultEventParametersUseCaseProvider
 String _$setDefaultEventParametersUseCaseHash() =>
     r'fcfc6df82cf7c0fdd69096a988dee36d70ea4601';
 
+@ProviderFor(setUserPropertyUseCase)
+const setUserPropertyUseCaseProvider = SetUserPropertyUseCaseProvider._();
+
+final class SetUserPropertyUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SetUserPropertyUseCase,
+          SetUserPropertyUseCase,
+          SetUserPropertyUseCase
+        >
+    with $Provider<SetUserPropertyUseCase> {
+  const SetUserPropertyUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'setUserPropertyUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$setUserPropertyUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<SetUserPropertyUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SetUserPropertyUseCase create(Ref ref) {
+    return setUserPropertyUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SetUserPropertyUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SetUserPropertyUseCase>(value),
+    );
+  }
+}
+
+String _$setUserPropertyUseCaseHash() =>
+    r'388e373914b9da6eb4e604993025872deaa1d6b7';
+
 @ProviderFor(logEventUseCase)
 const logEventUseCaseProvider = LogEventUseCaseProvider._();
 
