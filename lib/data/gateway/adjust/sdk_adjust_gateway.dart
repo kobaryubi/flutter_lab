@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:adjust_sdk/adjust.dart';
 import 'package:adjust_sdk/adjust_config.dart';
+import 'package:adjust_sdk/adjust_event.dart';
 import 'package:flutter_lab/domain/adjust/adjust_gateway.dart';
 import 'package:flutter_lab/domain/adjust/app_token.dart';
 import 'package:result_dart/result_dart.dart';
@@ -32,6 +33,19 @@ class SdkAdjustGateway implements AdjustGateway {
       }
 
       Adjust.initSdk(config);
+
+      return const Success(unit);
+    } on Exception catch (exception) {
+      return Failure(exception);
+    }
+  }
+
+  @override
+  AsyncResult<Unit> trackEvent({required String eventToken}) async {
+    try {
+      final event = AdjustEvent(eventToken);
+
+      Adjust.trackEvent(event);
 
       return const Success(unit);
     } on Exception catch (exception) {

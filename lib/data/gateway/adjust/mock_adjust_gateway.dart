@@ -8,5 +8,9 @@ class MockAdjustGateway implements AdjustGateway {
   AsyncResult<Unit> initialize() async => const Success(unit);
 
   @override
+  AsyncResult<Unit> trackEvent({required String eventToken}) async =>
+      const Success(unit);
+
+  @override
   void setPushToken({required String token}) {}
 }
