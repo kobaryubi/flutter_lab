@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
+import 'package:flutter_lab/domain/analytics/event_name.dart';
 import 'package:flutter_lab/domain/analytics/user_property_name.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -25,12 +26,12 @@ class FirebaseAnalyticsGateway implements AnalyticsGateway {
 
   @override
   AsyncResult<Unit> logEvent({
-    required String name,
+    required EventName name,
     Map<String, Object>? parameters,
   }) async {
     try {
       await _firebaseAnalytics.logEvent(
-        name: name,
+        name: name.value,
         parameters: parameters,
       );
 
