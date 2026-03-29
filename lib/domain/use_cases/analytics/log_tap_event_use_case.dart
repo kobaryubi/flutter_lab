@@ -1,4 +1,5 @@
 import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
+import 'package:flutter_lab/domain/analytics/event_name.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Use case that logs a tap analytics event.
@@ -15,7 +16,7 @@ class LogTapEventUseCase {
   /// Logs a tap event for the given [target].
   AsyncResult<Unit> call({required String target}) =>
       _analyticsGateway.logEvent(
-        name: 'tap',
+        name: EventName.tap,
         parameters: {'target': target},
       );
 }
