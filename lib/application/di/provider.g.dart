@@ -2444,6 +2444,53 @@ final class AdjustGatewayProvider
 
 String _$adjustGatewayHash() => r'85f60c4344f25093da449c5808636f28782f6b13';
 
+@ProviderFor(trackEventUseCase)
+const trackEventUseCaseProvider = TrackEventUseCaseProvider._();
+
+final class TrackEventUseCaseProvider
+    extends
+        $FunctionalProvider<
+          TrackEventUseCase,
+          TrackEventUseCase,
+          TrackEventUseCase
+        >
+    with $Provider<TrackEventUseCase> {
+  const TrackEventUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'trackEventUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$trackEventUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<TrackEventUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  TrackEventUseCase create(Ref ref) {
+    return trackEventUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(TrackEventUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<TrackEventUseCase>(value),
+    );
+  }
+}
+
+String _$trackEventUseCaseHash() => r'a5af5c7a742be33c245d00b58cbcce835268efaf';
+
 @ProviderFor(maxGateway)
 const maxGatewayProvider = MaxGatewayProvider._();
 

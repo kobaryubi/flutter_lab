@@ -67,6 +67,7 @@ import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_interstiti
 import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_reward_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adfurikun/play_adfurikun_interstitial_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adfurikun/play_adfurikun_reward_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/adjust/track_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/agreement/initialize_latest_agreed_date_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_tap_event_use_case.dart';
@@ -418,6 +419,11 @@ StartProfilePassportServiceUseCase startProfilePassportServiceUseCase(
 // adjust
 @Riverpod(keepAlive: true)
 AdjustGateway adjustGateway(Ref ref) => MockAdjustGateway();
+
+@riverpod
+TrackEventUseCase trackEventUseCase(Ref ref) => TrackEventUseCase(
+  adjustGateway: ref.read(adjustGatewayProvider),
+);
 
 // max
 @Riverpod(keepAlive: true)
