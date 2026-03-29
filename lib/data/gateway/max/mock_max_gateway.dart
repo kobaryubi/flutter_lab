@@ -8,13 +8,15 @@ class MockMaxGateway implements MaxGateway {
   AsyncResult<Unit> initialize() async => const Success(unit);
 
   @override
-  AsyncResult<Unit> loadRewardedAd() async => const Success(unit);
+  AsyncResult<Unit> loadRewardedAd({required String adUnitId}) async =>
+      const Success(unit);
 
   @override
-  AsyncResult<Unit> showRewardedAd() async => const Success(unit);
+  AsyncResult<Unit> showRewardedAd({required String adUnitId}) async =>
+      const Success(unit);
 
   @override
-  bool get isRewarded => false;
+  bool isRewarded({required String adUnitId}) => false;
 
   @override
   Result<Unit> showMediationDebugger() => const Success(unit);
