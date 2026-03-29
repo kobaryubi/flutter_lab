@@ -1,4 +1,5 @@
 import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
+import 'package:flutter_lab/domain/analytics/event_name.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Use case that logs a custom analytics event.
@@ -11,7 +12,7 @@ class LogEventUseCase {
 
   /// Logs a custom event with the given [name] and [parameters].
   AsyncResult<Unit> call({
-    required String name,
+    required EventName name,
     Map<String, Object>? parameters,
   }) => _analyticsGateway.logEvent(
     name: name,
