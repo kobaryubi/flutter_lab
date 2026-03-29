@@ -8,6 +8,9 @@ enum EventName {
 
   /// A test button tapped event.
   testButtonTapped('test_button_tapped'),
+
+  /// A MAX SDK ad event.
+  maxAdEvent('max_ad_event'),
   ;
 
   const EventName(this.value);
