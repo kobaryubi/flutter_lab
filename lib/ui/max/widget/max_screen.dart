@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/domain/max/ad_unit_id.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/max/view_model/max_view_model.dart';
@@ -39,7 +42,11 @@ class _Body extends HookConsumerWidget {
 
     /// Shows the rewarded ad.
     void handleWatchAd() {
-      viewModel.showRewardedAd(adUnitId: 'TODO-AD-UNIT-ID');
+      final adUnitId = Platform.isIOS
+          ? AdUnitId.rewardedIos
+          : AdUnitId.rewardedAndroid;
+
+      viewModel.showRewardedAd(adUnitId: adUnitId);
     }
 
     /// Opens the mediation debugger overlay.
