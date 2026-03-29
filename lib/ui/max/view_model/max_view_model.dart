@@ -23,31 +23,31 @@ class MaxViewModel extends _$MaxViewModel {
     state = state.copyWith(initialize: initialize);
   }
 
-  /// Loads a rewarded ad.
+  /// Loads a rewarded ad for the given [adUnitId].
   ///
   /// Completes when the ad is loaded and ready to be shown.
-  Future<void> loadRewardedAd() async {
+  Future<void> loadRewardedAd({required String adUnitId}) async {
     final useCase = ref.read(loadRewardedAdUseCaseProvider);
 
     final loadRewardedAd = await AsyncValue.guard(
-      () async => (await useCase.call()).getOrThrow(),
+      () async => (await useCase.call(adUnitId: adUnitId)).getOrThrow(),
     );
 
     state = state.copyWith(loadRewardedAd: loadRewardedAd);
   }
 
-  /// Shows a rewarded ad.
-  Future<void> showRewardedAd() async {
+  /// Shows a rewarded ad for the given [adUnitId].
+  Future<void> showRewardedAd({required String adUnitId}) async {
     final useCase = ref.read(showRewardedAdUseCaseProvider);
     final gateway = ref.read(maxGatewayProvider);
 
     final showRewardedAd = await AsyncValue.guard(
-      () async => (await useCase.call()).getOrThrow(),
+      () async => (await useCase.call(adUnitId: adUnitId)).getOrThrow(),
     );
 
     state = state.copyWith(
       showRewardedAd: showRewardedAd,
-      isRewardEarned: gateway.isRewarded,
+      isRewardEarned: gateway.isRewarded(adUnitId: adUnitId),
     );
   }
 

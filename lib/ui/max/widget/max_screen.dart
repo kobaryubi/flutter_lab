@@ -39,7 +39,7 @@ class _Body extends HookConsumerWidget {
 
     /// Shows the rewarded ad.
     void handleWatchAd() {
-      viewModel.showRewardedAd();
+      viewModel.showRewardedAd(adUnitId: 'TODO-AD-UNIT-ID');
     }
 
     /// Opens the mediation debugger overlay.
