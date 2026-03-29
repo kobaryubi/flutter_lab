@@ -1,3 +1,4 @@
+import 'package:flutter_lab/domain/analytics/event_name.dart';
 import 'package:flutter_lab/domain/analytics/user_property_name.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -19,7 +20,7 @@ abstract class AnalyticsGateway {
   /// [parameters] is an optional map of event parameters
   /// (String or num values).
   AsyncResult<Unit> logEvent({
-    required String name,
+    required EventName name,
     Map<String, Object>? parameters,
   });
 
