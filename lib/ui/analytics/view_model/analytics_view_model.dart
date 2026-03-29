@@ -1,4 +1,5 @@
 import 'package:flutter_lab/application/di/provider.dart';
+import 'package:flutter_lab/domain/analytics/event_name.dart';
 import 'package:flutter_lab/ui/analytics/ui_state/analytics_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -36,7 +37,7 @@ class AnalyticsViewModel extends _$AnalyticsViewModel {
 
     final logEvent = await AsyncValue.guard(
       () async => (await useCase.call(
-        name: 'test_button_tapped',
+        name: EventName.testButtonTapped,
         parameters: {
           'screen': 'analytics',
           'timestamp': DateTime.now().toIso8601String(),
