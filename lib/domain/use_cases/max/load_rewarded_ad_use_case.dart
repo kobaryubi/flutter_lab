@@ -8,8 +8,9 @@ class LoadRewardedAdUseCase {
 
   final MaxGateway _maxGateway;
 
-  /// Loads a rewarded ad.
+  /// Loads a rewarded ad for the given [adUnitId].
   ///
   /// Completes with [Unit] when the ad is loaded and ready to be shown.
-  AsyncResult<Unit> call() => _maxGateway.loadRewardedAd();
+  AsyncResult<Unit> call({required String adUnitId}) =>
+      _maxGateway.loadRewardedAd(adUnitId: adUnitId);
 }

@@ -8,8 +8,9 @@ class ShowRewardedAdUseCase {
 
   final MaxGateway _maxGateway;
 
-  /// Shows a rewarded ad.
+  /// Shows a rewarded ad for the given [adUnitId].
   ///
   /// After completion, check [MaxGateway.isRewarded] for the result.
-  AsyncResult<Unit> call() => _maxGateway.showRewardedAd();
+  AsyncResult<Unit> call({required String adUnitId}) =>
+      _maxGateway.showRewardedAd(adUnitId: adUnitId);
 }
