@@ -5,7 +5,10 @@ import 'package:result_dart/result_dart.dart';
 /// for all operations without depending on the Adjust SDK.
 class MockAdjustGateway implements AdjustGateway {
   @override
-  AsyncResult<Unit> initialize() async => const Success(unit);
+  AsyncResult<Unit> initialize({
+    EventSuccessCallback? onEventSuccess,
+    EventFailureCallback? onEventFailure,
+  }) async => const Success(unit);
 
   @override
   AsyncResult<Unit> trackEvent({required String eventToken}) async =>

@@ -1,10 +1,15 @@
 import 'dart:io';
 
 import 'package:adjust_sdk/adjust.dart';
-import 'package:adjust_sdk/adjust_config.dart';
+import 'package:adjust_sdk/adjust_config.dart'
+    hide EventFailureCallback, EventSuccessCallback;
 import 'package:adjust_sdk/adjust_event.dart';
+import 'package:adjust_sdk/adjust_event_failure.dart';
+import 'package:adjust_sdk/adjust_event_success.dart';
 import 'package:flutter_lab/domain/adjust/adjust_gateway.dart';
 import 'package:flutter_lab/domain/adjust/app_token.dart';
+import 'package:flutter_lab/domain/adjust/event_failure_data.dart';
+import 'package:flutter_lab/domain/adjust/event_success_data.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Adjust SDK implementation of [AdjustGateway].
@@ -23,13 +28,26 @@ class SdkAdjustGateway implements AdjustGateway {
   final AdjustLogLevel? _logLevel;
 
   @override
-  AsyncResult<Unit> initialize() async {
+  AsyncResult<Unit> initialize({
+    EventSuccessCallback? onEventSuccess,
+    EventFailureCallback? onEventFailure,
+  }) async {
     try {
       final appToken = Platform.isIOS ? AppToken.ios : AppToken.android;
       final config = AdjustConfig(appToken, _environment);
 
       if (_logLevel != null) {
         config.logLevel = _logLevel;
+      }
+
+      if (onEventSuccess != null) {
+        config.eventSuccessCallback = (successData) =>
+            onEventSuccess(_mapSuccessData(successData));
+      }
+
+      if (onEventFailure != null) {
+        config.eventFailureCallback = (failureData) =>
+            onEventFailure(_mapFailureData(failureData));
       }
 
       Adjust.initSdk(config);
@@ -39,6 +57,27 @@ class SdkAdjustGateway implements AdjustGateway {
       return Failure(exception);
     }
   }
+
+  /// Maps SDK success data to the domain model.
+  EventSuccessData _mapSuccessData(AdjustEventSuccess data) => EventSuccessData(
+    eventToken: data.eventToken,
+    message: data.message,
+    timestamp: data.timestamp,
+    adid: data.adid,
+    callbackId: data.callbackId,
+    jsonResponse: data.jsonResponse,
+  );
+
+  /// Maps SDK failure data to the domain model.
+  EventFailureData _mapFailureData(AdjustEventFailure data) => EventFailureData(
+    eventToken: data.eventToken,
+    message: data.message,
+    timestamp: data.timestamp,
+    adid: data.adid,
+    callbackId: data.callbackId,
+    willRetry: data.willRetry,
+    jsonResponse: data.jsonResponse,
+  );
 
   @override
   AsyncResult<Unit> trackEvent({required String eventToken}) async {
