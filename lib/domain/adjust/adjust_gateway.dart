@@ -1,11 +1,25 @@
+import 'package:flutter_lab/domain/adjust/event_failure_data.dart';
+import 'package:flutter_lab/domain/adjust/event_success_data.dart';
 import 'package:result_dart/result_dart.dart';
+
+/// Callback invoked when an Adjust event is recorded successfully.
+typedef EventSuccessCallback = void Function(EventSuccessData data);
+
+/// Callback invoked when an Adjust event fails to record.
+typedef EventFailureCallback = void Function(EventFailureData data);
 
 /// Gateway for Adjust SDK operations.
 ///
 /// Abstracts the Adjust SDK behind a domain-layer interface.
 abstract class AdjustGateway {
   /// Initializes the Adjust SDK.
-  AsyncResult<Unit> initialize();
+  ///
+  /// Callbacks must be registered before initialization
+  /// as required by the Adjust SDK.
+  AsyncResult<Unit> initialize({
+    EventSuccessCallback? onEventSuccess,
+    EventFailureCallback? onEventFailure,
+  });
 
   /// Tracks an event with the given [eventToken].
   ///
