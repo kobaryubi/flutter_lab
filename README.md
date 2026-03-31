@@ -106,6 +106,20 @@ patrol test --target patrol_test/example_test.dart --release
 flutter widget-preview start
 ```
 
+### rbenv
+
+```sh
+# Install rbenv (includes ruby-build)
+brew install rbenv
+
+# Install Ruby and set for this project
+rbenv install 4.0.2
+rbenv local 4.0.2
+
+# Verify
+ruby --version
+```
+
 ### fvm
 
 ```sh
