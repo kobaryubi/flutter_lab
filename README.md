@@ -154,6 +154,22 @@ dart run build_runner build --delete-conflicting-outputs
 cd ../..
 ```
 
+### Local Asset Server
+
+A local nginx server that serves static assets (images, etc.) for local development, replacing S3 in production.
+
+```sh
+# Start the asset server
+cd local && docker compose up -d
+
+# Stop the asset server
+cd local && docker compose down
+```
+
+Place asset files in `local/assets/`. They are served at `http://localhost:8080/`.
+
+Example: `local/assets/images/pet.png` → `http://localhost:8080/images/pet.png`
+
 ### add local package
 
 ```sh

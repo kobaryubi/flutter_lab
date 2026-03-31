@@ -17,6 +17,12 @@ class F {
     }
   }
 
+  /// Base URL for loading assets (images, etc.).
+  static String get assetBaseUrl => switch (appFlavor) {
+    .local => 'http://localhost:8080',
+    .production => 'https://your-bucket.s3.amazonaws.com',
+  };
+
   /// Test device advertising IDs for AppLovin MAX SDK test mode.
   static List<String> get testDeviceAdvertisingIds {
     switch (appFlavor) {

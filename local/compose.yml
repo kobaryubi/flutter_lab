@@ -1,0 +1,7 @@
+services:
+  asset-server:
+    image: nginx:alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./assets:/usr/share/nginx/html:ro
