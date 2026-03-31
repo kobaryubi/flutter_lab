@@ -112,12 +112,24 @@ flutter widget-preview start
 # Install rbenv (includes ruby-build)
 brew install rbenv
 
-# Install Ruby and set for this project
-rbenv install 4.0.2
-rbenv local 4.0.2
+# Install Ruby version specified in .ruby-version
+rbenv install
 
 # Verify
 ruby --version
+```
+
+### fastlane
+
+```sh
+# Install Bundler
+gem install bundler
+
+# Install dependencies (fastlane)
+bundle install
+
+# Run fastlane
+bundle exec fastlane [lane]
 ```
 
 ### fvm
