@@ -166,9 +166,9 @@ cd local && docker compose up -d
 cd local && docker compose down
 ```
 
-Place asset files in `local/assets/`. They are served at `http://localhost:8080/`.
+Place asset files in `local/assets/`. They are served at `http://localhost:8081/`.
 
-Example: `local/assets/images/pet.png` → `http://localhost:8080/images/pet.png`
+Example: `local/assets/images/pet.png` → `http://localhost:8081/images/pet.png`
 
 ### add local package
 

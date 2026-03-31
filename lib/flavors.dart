@@ -19,7 +19,7 @@ class F {
 
   /// Base URL for loading assets (images, etc.).
   static String get assetBaseUrl => switch (appFlavor) {
-    .local => 'http://localhost:8080',
+    .local => 'http://localhost:8081',
     .production => 'https://your-bucket.s3.amazonaws.com',
   };
 
