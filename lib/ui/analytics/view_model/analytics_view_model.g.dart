@@ -51,7 +51,7 @@ final class AnalyticsViewModelProvider
 }
 
 String _$analyticsViewModelHash() =>
-    r'30f625d5f6374abc833896bff2de8bd8965d42f5';
+    r'989532d9bcb00988ee2ad771e41048e29721935f';
 
 /// ViewModel for the Firebase Analytics demo screen.
 ///

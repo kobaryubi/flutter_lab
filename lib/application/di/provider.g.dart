@@ -2444,6 +2444,54 @@ final class AdjustGatewayProvider
 
 String _$adjustGatewayHash() => r'85f60c4344f25093da449c5808636f28782f6b13';
 
+@ProviderFor(initializeAdjustUseCase)
+const initializeAdjustUseCaseProvider = InitializeAdjustUseCaseProvider._();
+
+final class InitializeAdjustUseCaseProvider
+    extends
+        $FunctionalProvider<
+          InitializeAdjustUseCase,
+          InitializeAdjustUseCase,
+          InitializeAdjustUseCase
+        >
+    with $Provider<InitializeAdjustUseCase> {
+  const InitializeAdjustUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'initializeAdjustUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$initializeAdjustUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<InitializeAdjustUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  InitializeAdjustUseCase create(Ref ref) {
+    return initializeAdjustUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(InitializeAdjustUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<InitializeAdjustUseCase>(value),
+    );
+  }
+}
+
+String _$initializeAdjustUseCaseHash() =>
+    r'9c85aecbc9dc8c042073a1e4b42373c624dadd07';
+
 @ProviderFor(trackEventUseCase)
 const trackEventUseCaseProvider = TrackEventUseCaseProvider._();
 

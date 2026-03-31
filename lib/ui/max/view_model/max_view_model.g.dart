@@ -50,7 +50,7 @@ final class MaxViewModelProvider
   }
 }
 
-String _$maxViewModelHash() => r'8bd87eb3d6682fb29ed2befa58b7095148c85483';
+String _$maxViewModelHash() => r'4110f6d48c5c32eeee9901712e02f60573de5c84';
 
 /// ViewModel for the MAX SDK rewarded ads demo screen.
 ///
