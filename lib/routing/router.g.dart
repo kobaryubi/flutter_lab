@@ -59,14 +59,15 @@ List<RouteBase> get $appRoutes => [
   $routingCupertinoRoute,
   $routingRoute,
   $s3EtagCacheRoute,
-  $scrollToSectionRoute,
   $screenshotPreventionRoute,
+  $scrollToSectionRoute,
   $sharedPreferencesRoute,
   $shellDemoDetailRoute,
   $shellDemoRoute,
   $shellDemoSubRoute,
   $tutorialRoute,
   $urlNavigationRoute,
+  $visibilityDetectorRoute,
   $webViewRoute,
 ];
 
@@ -1469,18 +1470,18 @@ mixin $S3EtagCacheRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $scrollToSectionRoute => GoRouteData.$route(
-  path: '/scroll_to_section',
-  name: 'scroll_to_section',
-  factory: $ScrollToSectionRoute._fromState,
+RouteBase get $screenshotPreventionRoute => GoRouteData.$route(
+  path: '/screenshot_prevention',
+  name: 'screenshot_prevention',
+  factory: $ScreenshotPreventionRoute._fromState,
 );
 
-mixin $ScrollToSectionRoute on GoRouteData {
-  static ScrollToSectionRoute _fromState(GoRouterState state) =>
-      ScrollToSectionRoute();
+mixin $ScreenshotPreventionRoute on GoRouteData {
+  static ScreenshotPreventionRoute _fromState(GoRouterState state) =>
+      ScreenshotPreventionRoute();
 
   @override
-  String get location => GoRouteData.$location('/scroll_to_section');
+  String get location => GoRouteData.$location('/screenshot_prevention');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -1496,18 +1497,18 @@ mixin $ScrollToSectionRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $screenshotPreventionRoute => GoRouteData.$route(
-  path: '/screenshot_prevention',
-  name: 'screenshot_prevention',
-  factory: $ScreenshotPreventionRoute._fromState,
+RouteBase get $scrollToSectionRoute => GoRouteData.$route(
+  path: '/scroll_to_section',
+  name: 'scroll_to_section',
+  factory: $ScrollToSectionRoute._fromState,
 );
 
-mixin $ScreenshotPreventionRoute on GoRouteData {
-  static ScreenshotPreventionRoute _fromState(GoRouterState state) =>
-      ScreenshotPreventionRoute();
+mixin $ScrollToSectionRoute on GoRouteData {
+  static ScrollToSectionRoute _fromState(GoRouterState state) =>
+      ScrollToSectionRoute();
 
   @override
-  String get location => GoRouteData.$location('/screenshot_prevention');
+  String get location => GoRouteData.$location('/scroll_to_section');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -1713,6 +1714,33 @@ mixin $UrlNavigationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/url_navigation');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $visibilityDetectorRoute => GoRouteData.$route(
+  path: '/visibility_detector',
+  name: 'visibility_detector',
+  factory: $VisibilityDetectorRoute._fromState,
+);
+
+mixin $VisibilityDetectorRoute on GoRouteData {
+  static VisibilityDetectorRoute _fromState(GoRouterState state) =>
+      VisibilityDetectorRoute();
+
+  @override
+  String get location => GoRouteData.$location('/visibility_detector');
 
   @override
   void go(BuildContext context) => context.go(location);

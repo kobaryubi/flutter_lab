@@ -13,8 +13,8 @@ abstract class PushNotificationRepository {
   /// Returns the current device registration token.
   Future<String?> getDeviceToken();
 
-  /// Stream that emits a new token whenever the FCM token is refreshed.
-  Stream<String> get onTokenRefresh;
+  /// Stream that emits a new token whenever the push token is refreshed.
+  Stream<String> get onPushTokenRefresh;
 
   /// Sends the given [token] to the server for registration.
   AsyncResult<Unit> registerToken({required String token});

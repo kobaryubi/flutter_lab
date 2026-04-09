@@ -68,6 +68,7 @@ import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_tab1_screen.dart';
 import 'package:flutter_lab/ui/shell_demo/widget/shell_demo_tab2_screen.dart';
 import 'package:flutter_lab/ui/tutorial/widget/tutorial_screen.dart';
 import 'package:flutter_lab/ui/url_navigation/widget/url_navigation_screen.dart';
+import 'package:flutter_lab/ui/visibility_detector/widget/visibility_detector_screen.dart';
 import 'package:flutter_lab/ui/web_view/widgets/web_view_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -131,6 +132,7 @@ part 'shell_demo_route.dart';
 part 'shell_demo_sub_route.dart';
 part 'tutorial_route.dart';
 part 'url_navigation_route.dart';
+part 'visibility_detector_route.dart';
 part 'web_view_route.dart';
 
 @riverpod

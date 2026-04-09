@@ -100,7 +100,7 @@ import 'package:flutter_lab/domain/use_cases/permission/request_permission_use_c
 import 'package:flutter_lab/domain/use_cases/pet/clear_pet_cache_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/pet/list_pets_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/profile_passport/start_profile_passport_service_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/push_notification/on_token_refresh_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/push_notification/on_push_token_refresh_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/register_token_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/request_push_notification_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/copy_shortcut_icons_use_case.dart';
@@ -254,19 +254,20 @@ RequestPushNotificationUseCase requestPushNotificationUseCase(Ref ref) =>
     );
 
 @riverpod
-OnTokenRefreshUseCase onTokenRefreshUseCase(Ref ref) => OnTokenRefreshUseCase(
-  pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
-);
+OnPushTokenRefreshUseCase onPushTokenRefreshUseCase(Ref ref) =>
+    OnPushTokenRefreshUseCase(
+      pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
+    );
 
 @riverpod
 RegisterTokenUseCase registerTokenUseCase(Ref ref) => RegisterTokenUseCase(
   pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
 );
 
-/// Stream of FCM token refresh events.
+/// Stream of push token refresh events.
 @riverpod
-Stream<String> onTokenRefresh(Ref ref) =>
-    ref.read(onTokenRefreshUseCaseProvider).call();
+Stream<String> onPushTokenRefresh(Ref ref) =>
+    ref.read(onPushTokenRefreshUseCaseProvider).call();
 
 @riverpod
 CopyShortcutIconsUseCase copyShortcutIconsUseCase(Ref ref) =>

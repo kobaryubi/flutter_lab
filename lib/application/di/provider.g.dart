@@ -950,53 +950,53 @@ final class RequestPushNotificationUseCaseProvider
 String _$requestPushNotificationUseCaseHash() =>
     r'1e1d5b9408d9d081d1a4af7f2600a6e7f1aaaf6c';
 
-@ProviderFor(onTokenRefreshUseCase)
-const onTokenRefreshUseCaseProvider = OnTokenRefreshUseCaseProvider._();
+@ProviderFor(onPushTokenRefreshUseCase)
+const onPushTokenRefreshUseCaseProvider = OnPushTokenRefreshUseCaseProvider._();
 
-final class OnTokenRefreshUseCaseProvider
+final class OnPushTokenRefreshUseCaseProvider
     extends
         $FunctionalProvider<
-          OnTokenRefreshUseCase,
-          OnTokenRefreshUseCase,
-          OnTokenRefreshUseCase
+          OnPushTokenRefreshUseCase,
+          OnPushTokenRefreshUseCase,
+          OnPushTokenRefreshUseCase
         >
-    with $Provider<OnTokenRefreshUseCase> {
-  const OnTokenRefreshUseCaseProvider._()
+    with $Provider<OnPushTokenRefreshUseCase> {
+  const OnPushTokenRefreshUseCaseProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'onTokenRefreshUseCaseProvider',
+        name: r'onPushTokenRefreshUseCaseProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$onTokenRefreshUseCaseHash();
+  String debugGetCreateSourceHash() => _$onPushTokenRefreshUseCaseHash();
 
   @$internal
   @override
-  $ProviderElement<OnTokenRefreshUseCase> $createElement(
+  $ProviderElement<OnPushTokenRefreshUseCase> $createElement(
     $ProviderPointer pointer,
   ) => $ProviderElement(pointer);
 
   @override
-  OnTokenRefreshUseCase create(Ref ref) {
-    return onTokenRefreshUseCase(ref);
+  OnPushTokenRefreshUseCase create(Ref ref) {
+    return onPushTokenRefreshUseCase(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(OnTokenRefreshUseCase value) {
+  Override overrideWithValue(OnPushTokenRefreshUseCase value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<OnTokenRefreshUseCase>(value),
+      providerOverride: $SyncValueProvider<OnPushTokenRefreshUseCase>(value),
     );
   }
 }
 
-String _$onTokenRefreshUseCaseHash() =>
-    r'5d98f22ce195f0675c2c18766a69e00ae171af1b';
+String _$onPushTokenRefreshUseCaseHash() =>
+    r'f28bd84ea2ade20d1eeafdb92b13830ce9edbb93';
 
 @ProviderFor(registerTokenUseCase)
 const registerTokenUseCaseProvider = RegisterTokenUseCaseProvider._();
@@ -1046,30 +1046,30 @@ final class RegisterTokenUseCaseProvider
 String _$registerTokenUseCaseHash() =>
     r'b2f98225e13cea9f7b8f150e25d8bad60b94fd65';
 
-/// Stream of FCM token refresh events.
+/// Stream of push token refresh events.
 
-@ProviderFor(onTokenRefresh)
-const onTokenRefreshProvider = OnTokenRefreshProvider._();
+@ProviderFor(onPushTokenRefresh)
+const onPushTokenRefreshProvider = OnPushTokenRefreshProvider._();
 
-/// Stream of FCM token refresh events.
+/// Stream of push token refresh events.
 
-final class OnTokenRefreshProvider
+final class OnPushTokenRefreshProvider
     extends $FunctionalProvider<AsyncValue<String>, String, Stream<String>>
     with $FutureModifier<String>, $StreamProvider<String> {
-  /// Stream of FCM token refresh events.
-  const OnTokenRefreshProvider._()
+  /// Stream of push token refresh events.
+  const OnPushTokenRefreshProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'onTokenRefreshProvider',
+        name: r'onPushTokenRefreshProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$onTokenRefreshHash();
+  String debugGetCreateSourceHash() => _$onPushTokenRefreshHash();
 
   @$internal
   @override
@@ -1078,11 +1078,12 @@ final class OnTokenRefreshProvider
 
   @override
   Stream<String> create(Ref ref) {
-    return onTokenRefresh(ref);
+    return onPushTokenRefresh(ref);
   }
 }
 
-String _$onTokenRefreshHash() => r'af6578b7746340e19f80170588ccc29190fbbc54';
+String _$onPushTokenRefreshHash() =>
+    r'b9f037e932ed73dc073a02fa69d9423c2003b7e1';
 
 @ProviderFor(copyShortcutIconsUseCase)
 const copyShortcutIconsUseCaseProvider = CopyShortcutIconsUseCaseProvider._();

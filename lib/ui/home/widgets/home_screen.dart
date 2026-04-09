@@ -72,6 +72,10 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'crashlytics', route: CrashlyticsRoute()),
     AppLink(title: 'tutorial', route: TutorialRoute()),
     AppLink(title: 'scroll to section', route: ScrollToSectionRoute()),
+    AppLink(
+      title: 'visibility detector',
+      route: VisibilityDetectorRoute(),
+    ),
   ];
 
   @override
