@@ -23,7 +23,7 @@ class FirebaseMessagingPushNotificationRepository
   Future<String?> getDeviceToken() => _instance.getToken();
 
   @override
-  Stream<String> get onTokenRefresh => _instance.onTokenRefresh;
+  Stream<String> get onPushTokenRefresh => _instance.onTokenRefresh;
 
   @override
   AsyncResult<Unit> registerToken({

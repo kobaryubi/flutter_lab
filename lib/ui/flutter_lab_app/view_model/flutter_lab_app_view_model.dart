@@ -13,8 +13,12 @@ class FlutterLabAppViewModel extends _$FlutterLabAppViewModel {
 
   @override
   FlutterLabAppUiState build() {
-    final onTokenRefreshUseCase = ref.read(onTokenRefreshUseCaseProvider);
-    _subscription = onTokenRefreshUseCase.call().listen(_handleTokenRefresh);
+    final onPushTokenRefreshUseCase = ref.read(
+      onPushTokenRefreshUseCaseProvider,
+    );
+    _subscription = onPushTokenRefreshUseCase.call().listen(
+      _handleTokenRefresh,
+    );
     ref.onDispose(() => _subscription?.cancel());
 
     _initializeAdjust();

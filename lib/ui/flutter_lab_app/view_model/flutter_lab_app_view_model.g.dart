@@ -45,7 +45,7 @@ final class FlutterLabAppViewModelProvider
 }
 
 String _$flutterLabAppViewModelHash() =>
-    r'a1e96093c64e3ba60e8d20d16317150299a17ed2';
+    r'46fe88df054ddb7ea80925236ef0620ac417a7b7';
 
 /// ViewModel that manages app-level token refresh registration.
 
