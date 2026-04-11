@@ -19,6 +19,9 @@ import 'package:flutter_lab/ui/core/ui/layout.dart';
 /// `Bad state: Stream has already been listened to` once a second
 /// listener calls `.listen`, because each `useStream` and
 /// `useOnStreamChange` call attaches its own subscription.
+/// Step 5: Builds a transformed stream pipeline (`.where().map()`) on top
+/// of the broadcast source and consumes it with another [useStream],
+/// showing how stream operators compose with hooks.
 class StreamSubscriptionScreen extends HookWidget {
   const StreamSubscriptionScreen({super.key});
 
@@ -28,6 +31,21 @@ class StreamSubscriptionScreen extends HookWidget {
     useEffect(() => controller.close, [controller]);
 
     final snapshot = useStream<int>(controller.stream);
+
+    /// Derived stream that keeps only even values and formats them.
+    ///
+    /// Wrapped in [useMemoized] keyed on [controller] so the transformed
+    /// stream object is stable across rebuilds. Without memoization, each
+    /// build would create a fresh `Stream` wrapper and [useStream] would
+    /// resubscribe every time, dropping in-flight values.
+    final evenLabels = useMemoized(
+      () => controller.stream
+          .where((value) => value.isEven)
+          .map((value) => 'even#$value'),
+      [controller],
+    );
+    final evenSnapshot = useStream<String>(evenLabels);
+
     final counter = useRef<int>(0);
     final sum = useState<int>(0);
     final maxValue = useState<int>(0);
@@ -88,6 +106,7 @@ class StreamSubscriptionScreen extends HookWidget {
         spacing: 16,
         children: [
           Text('Latest value: ${snapshot.data ?? '-'}'),
+          Text('Latest even: ${evenSnapshot.data ?? '-'}'),
           Text('Sum: ${sum.value}'),
           Text('Max: ${maxValue.value}'),
           Text('Periodic tick: ${tick.value}'),
