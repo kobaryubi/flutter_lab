@@ -65,6 +65,7 @@ List<RouteBase> get $appRoutes => [
   $shellDemoDetailRoute,
   $shellDemoRoute,
   $shellDemoSubRoute,
+  $streamSubscriptionRoute,
   $tutorialRoute,
   $urlNavigationRoute,
   $visibilityDetectorRoute,
@@ -1661,6 +1662,33 @@ mixin $ShellDemoSubRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/shell_demo_sub');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $streamSubscriptionRoute => GoRouteData.$route(
+  path: '/stream_subscription',
+  name: 'stream_subscription',
+  factory: $StreamSubscriptionRoute._fromState,
+);
+
+mixin $StreamSubscriptionRoute on GoRouteData {
+  static StreamSubscriptionRoute _fromState(GoRouterState state) =>
+      StreamSubscriptionRoute();
+
+  @override
+  String get location => GoRouteData.$location('/stream_subscription');
 
   @override
   void go(BuildContext context) => context.go(location);

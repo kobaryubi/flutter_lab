@@ -119,6 +119,16 @@ rbenv install
 ruby --version
 ```
 
+### CocoaPods
+
+CocoaPods must be installed under the Ruby version active in this project (see `.ruby-version`). If you switch Ruby versions, reinstall it.
+
+```sh
+gem install cocoapods
+rbenv rehash
+pod --version
+```
+
 ### fastlane
 
 ```sh

@@ -73,4 +73,5 @@ abstract final class Routes {
   static const tutorial = '/tutorial';
   static const scrollToSection = '/scroll_to_section';
   static const visibilityDetector = '/visibility_detector';
+  static const streamSubscription = '/stream_subscription';
 }

@@ -76,6 +76,10 @@ class HomeScreen extends StatelessWidget {
       title: 'visibility detector',
       route: VisibilityDetectorRoute(),
     ),
+    AppLink(
+      title: 'stream & subscription',
+      route: StreamSubscriptionRoute(),
+    ),
   ];
 
   @override
