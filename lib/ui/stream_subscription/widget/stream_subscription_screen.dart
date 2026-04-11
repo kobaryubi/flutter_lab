@@ -6,8 +6,9 @@ import 'package:flutter_lab/ui/core/ui/layout.dart';
 /// Screen that demonstrates Stream and StreamSubscription usage with hooks.
 ///
 /// Step 1: Basic usage of [useStreamController] and [useStream].
-/// A button pushes integers into a stream controller, and the latest
-/// value is displayed by subscribing to the stream via [useStream].
+/// Step 2: Reacts to new stream values as a side effect via
+/// [useOnStreamChange], accumulating a sum without rebuilding from
+/// the snapshot.
 class StreamSubscriptionScreen extends HookWidget {
   const StreamSubscriptionScreen({super.key});
 
@@ -16,6 +17,17 @@ class StreamSubscriptionScreen extends HookWidget {
     final controller = useStreamController<int>();
     final snapshot = useStream<int>(controller.stream);
     final counter = useRef<int>(0);
+    final sum = useState<int>(0);
+
+    /// Accumulates incoming stream values into the running sum.
+    ///
+    /// Runs as a side effect each time the stream emits, independent
+    /// of the snapshot used for display.
+    void handleStreamValue(int value) {
+      sum.value += value;
+    }
+
+    useOnStreamChange<int>(controller.stream, onData: handleStreamValue);
 
     /// Adds the next integer value to the stream controller.
     void handleAdd() {
@@ -30,6 +42,7 @@ class StreamSubscriptionScreen extends HookWidget {
         spacing: 16,
         children: [
           Text('Latest value: ${snapshot.data ?? '-'}'),
+          Text('Sum: ${sum.value}'),
           GestureDetector(
             onTap: handleAdd,
             child: const Text('Add value'),
