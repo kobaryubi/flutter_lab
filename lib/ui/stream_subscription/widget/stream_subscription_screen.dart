@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
@@ -9,6 +11,9 @@ import 'package:flutter_lab/ui/core/ui/layout.dart';
 /// Step 2: Reacts to new stream values as a side effect via
 /// [useOnStreamChange], accumulating a sum without rebuilding from
 /// the snapshot.
+/// Step 3: Manually manages a [StreamSubscription] to a [Stream.periodic]
+/// inside [useEffect], demonstrating the raw subscription lifecycle that
+/// the hooks above wrap.
 class StreamSubscriptionScreen extends HookWidget {
   const StreamSubscriptionScreen({super.key});
 
@@ -18,6 +23,7 @@ class StreamSubscriptionScreen extends HookWidget {
     final snapshot = useStream<int>(controller.stream);
     final counter = useRef<int>(0);
     final sum = useState<int>(0);
+    final tick = useState<int>(0);
 
     /// Accumulates incoming stream values into the running sum.
     ///
@@ -28,6 +34,24 @@ class StreamSubscriptionScreen extends HookWidget {
     }
 
     useOnStreamChange<int>(controller.stream, onData: handleStreamValue);
+
+    /// Subscribes to a periodic stream on mount and cancels on dispose.
+    ///
+    /// Shows the raw [StreamSubscription] lifecycle: the effect creates
+    /// the subscription, and the returned cleanup callback cancels it
+    /// when the widget unmounts. Without this cancel, the timer would
+    /// keep firing after disposal and leak.
+    useEffect(() {
+      final periodic = Stream<int>.periodic(
+        const Duration(seconds: 1),
+        (count) => count + 1,
+      );
+      final subscription = periodic.listen((value) {
+        tick.value = value;
+      });
+
+      return subscription.cancel;
+    }, const []);
 
     /// Adds the next integer value to the stream controller.
     void handleAdd() {
@@ -43,6 +67,7 @@ class StreamSubscriptionScreen extends HookWidget {
         children: [
           Text('Latest value: ${snapshot.data ?? '-'}'),
           Text('Sum: ${sum.value}'),
+          Text('Periodic tick: ${tick.value}'),
           GestureDetector(
             onTap: handleAdd,
             child: const Text('Add value'),
