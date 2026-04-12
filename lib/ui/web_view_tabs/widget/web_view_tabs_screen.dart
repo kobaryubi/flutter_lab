@@ -6,7 +6,7 @@ import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:go_router/go_router.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-const _initialUrl = 'http://localhost:8081/index.html';
+const _initialUrl = 'http://100.64.1.36:8081/index.html';
 
 const _tabPages = ['page_a.html', 'page_b.html'];
 
@@ -16,20 +16,45 @@ class WebViewTabsScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final webView = useWebView(initialUrl: _initialUrl);
+    final controller = useMemoized(WebViewController.new, []);
+
+    /// Intercepts navigation to tab pages and adds token query if missing.
+    NavigationDecision onNavigationRequest(NavigationRequest request) {
+      final uri = Uri.parse(request.url);
+      final isTabPage = _tabPages.any(
+        (page) => request.url.contains(page),
+      );
+
+      if (isTabPage && !uri.queryParameters.containsKey('token')) {
+        final urlWithToken = uri.replace(
+          queryParameters: {...uri.queryParameters, 'token': 'sample-token'},
+        );
+        controller.loadRequest(urlWithToken);
+
+        return NavigationDecision.prevent;
+      }
+
+      return NavigationDecision.navigate;
+    }
+
+    final webView = useWebView(
+      controller: controller,
+      initialUrl: _initialUrl,
+      onNavigationRequest: onNavigationRequest,
+    );
 
     /// Handles back button tap by skipping tab pages in history.
     Future<void> onBackTap() async {
-      final currentUrl = await webView.controller.currentUrl();
+      final currentUrl = await controller.currentUrl();
       final isTabPage = _tabPages.any(
         (page) => currentUrl?.contains(page) ?? false,
       );
 
       if (!isTabPage) {
-        final canGoBack = await webView.controller.canGoBack();
+        final canGoBack = await controller.canGoBack();
 
         if (canGoBack) {
-          await webView.controller.goBack();
+          await controller.goBack();
 
           return;
         }
@@ -41,10 +66,10 @@ class WebViewTabsScreen extends HookWidget {
         return;
       }
 
-      while (await webView.controller.canGoBack()) {
-        await webView.controller.goBack();
+      while (await controller.canGoBack()) {
+        await controller.goBack();
 
-        final url = await webView.controller.currentUrl();
+        final url = await controller.currentUrl();
         final isStillTabPage = _tabPages.any(
           (page) => url?.contains(page) ?? false,
         );
@@ -61,7 +86,7 @@ class WebViewTabsScreen extends HookWidget {
         children: [
           Text('Status: ${webView.status.name}'),
 
-          Expanded(child: WebViewWidget(controller: webView.controller)),
+          Expanded(child: WebViewWidget(controller: controller)),
         ],
       ),
     );
