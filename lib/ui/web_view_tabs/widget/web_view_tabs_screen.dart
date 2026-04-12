@@ -31,16 +31,20 @@ class WebViewTabsScreen extends HookWidget {
         );
         controller.loadRequest(urlWithToken);
 
-        return NavigationDecision.prevent;
+        return .prevent;
       }
 
-      return NavigationDecision.navigate;
+      return .navigate;
     }
 
     final webView = useWebView(
       controller: controller,
       initialUrl: _initialUrl,
       onNavigationRequest: onNavigationRequest,
+    );
+
+    final currentUrl = useFuture(
+      useMemoized(controller.currentUrl, [webView.status]),
     );
 
     /// Handles back button tap by skipping tab pages in history.
@@ -85,6 +89,7 @@ class WebViewTabsScreen extends HookWidget {
       child: Column(
         children: [
           Text('Status: ${webView.status.name}'),
+          Text('URL: ${currentUrl.data ?? ''}'),
 
           Expanded(child: WebViewWidget(controller: controller)),
         ],
