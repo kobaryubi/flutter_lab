@@ -216,7 +216,9 @@ This approach makes it easier to understand, debug, and learn from the implement
 - **Use if-case pattern matching for AsyncValue** - In the UI layer, use `if (field case AsyncData(:final value))` to extract data from `AsyncValue` fields instead of `.when()` or `switch`
 - **Use result_dart in repositories** - Repository methods should return `Result<T>` or `AsyncResult<T>` from `result_dart` instead of raw types. This ensures error handling is explicit at the domain boundary (e.g., `Result<Uri> getUrl()` instead of `Uri getUrl()`)
 - **No StatefulWidget** - Do not use `StatefulWidget`. Use `HookConsumerWidget`, `HookWidget`, `ConsumerWidget`, or `ConsumerStatefulWidget` instead. Manage lifecycle with hooks (e.g., `useEffect` for init/dispose)
+- **Use `spacing` property** - Use the `spacing` property on `Column`, `Row`, and `Flex` instead of inserting `SizedBox` widgets between children for uniform spacing (e.g., `Column(spacing: 8, children: [...])` instead of adding `const SizedBox(height: 8)` between items)
 - **Blank lines for readability** - Add blank lines before and after control flow statements (`if`, `for`, `switch`, `return`, early returns) and before the final statement in a method to improve readability
+- **2-space indentation for markup** - Use 2 spaces for indentation in HTML and other markup files
 
 ## Rule Management
 
