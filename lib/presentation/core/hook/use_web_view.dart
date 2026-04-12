@@ -41,11 +41,11 @@ typedef OnNavigationRequest =
 /// Returns a [WebViewState] with the controller, load status,
 /// and navigation actions.
 WebViewState useWebView({
+  required WebViewController controller,
   String? initialUrl,
   OnNavigationRequest? onNavigationRequest,
 }) {
   final status = useState(WebViewLoadStatus.loading);
-  final controller = useMemoized(WebViewController.new, []);
 
   /// Handles page load started event.
   void handlePageStarted(String url) {

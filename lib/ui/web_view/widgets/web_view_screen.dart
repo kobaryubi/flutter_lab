@@ -27,6 +27,7 @@ class _Body extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = useMemoized(WebViewController.new, []);
     final interceptedUrl = useState<String?>(null);
 
     /// Handles navigation requests by intercepting YouTube URLs.
@@ -43,6 +44,7 @@ class _Body extends HookWidget {
     }
 
     final webView = useWebView(
+      controller: controller,
       initialUrl: url,
       onNavigationRequest: handleNavigationRequest,
     );
