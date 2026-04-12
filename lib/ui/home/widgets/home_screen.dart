@@ -80,6 +80,10 @@ class HomeScreen extends StatelessWidget {
       title: 'stream & subscription',
       route: StreamSubscriptionRoute(),
     ),
+    const AppLink(
+      title: 'web view tabs',
+      route: WebViewTabsRoute(),
+    ),
   ];
 
   @override
