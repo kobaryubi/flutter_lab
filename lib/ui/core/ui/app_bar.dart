@@ -3,12 +3,13 @@ import 'package:flutter_lab/gen/assets.gen.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
-import 'package:go_router/go_router.dart';
 
 class AppBar extends StatelessWidget {
-  const AppBar({required this.title, super.key});
+  const AppBar({required this.title, this.onBackTap, super.key});
 
   final Widget title;
+
+  final VoidCallback? onBackTap;
 
   @override
   Widget build(BuildContext context) => ColoredBox(
@@ -28,10 +29,10 @@ class AppBar extends StatelessWidget {
                 child: title,
               ),
             ),
-            if (context.canPop())
-              const Align(
+            if (onBackTap case final onBackTap?)
+              Align(
                 alignment: Alignment.centerLeft,
-                child: _BackButton(),
+                child: _BackButton(onTap: onBackTap),
               ),
           ],
         ),
@@ -41,14 +42,16 @@ class AppBar extends StatelessWidget {
 }
 
 class _BackButton extends StatelessWidget {
-  const _BackButton();
+  const _BackButton({required this.onTap});
+
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) => Semantics(
     button: true,
     label: 'back',
     child: GestureDetector(
-      onTap: () => context.pop(),
+      onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: SizedBox.square(
         dimension: Dimens.actionSize,
