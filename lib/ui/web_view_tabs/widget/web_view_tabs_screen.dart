@@ -6,7 +6,7 @@ import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:go_router/go_router.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-const _initialUrl = 'http://100.64.1.36:8081/index.html';
+const _initialUrl = 'http://localhost:8081/index.html';
 
 const _tabPages = ['page_a.html', 'page_b.html'];
 
