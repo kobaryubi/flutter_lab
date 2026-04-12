@@ -1819,13 +1819,10 @@ RouteBase get $webViewTabsRoute => GoRouteData.$route(
 
 mixin $WebViewTabsRoute on GoRouteData {
   static WebViewTabsRoute _fromState(GoRouterState state) =>
-      WebViewTabsRoute(url: state.uri.queryParameters['url']!);
-
-  WebViewTabsRoute get _self => this as WebViewTabsRoute;
+      const WebViewTabsRoute();
 
   @override
-  String get location =>
-      GoRouteData.$location('/web_view_tabs', queryParams: {'url': _self.url});
+  String get location => GoRouteData.$location('/web_view_tabs');
 
   @override
   void go(BuildContext context) => context.go(location);
