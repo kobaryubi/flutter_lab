@@ -47,6 +47,7 @@ typedef OnNavigationRequest =
 WebViewState useWebView({
   required WebViewController controller,
   String? initialUrl,
+  Map<String, String> initialHeaders = const {},
   OnNavigationRequest? onNavigationRequest,
 }) {
   final status = useState(WebViewLoadStatus.loading);
@@ -91,7 +92,7 @@ WebViewState useWebView({
       ..setJavaScriptMode(JavaScriptMode.unrestricted);
 
     if (initialUrl != null) {
-      controller.loadRequest(Uri.parse(initialUrl));
+      controller.loadRequest(Uri.parse(initialUrl), headers: initialHeaders);
     }
 
     return null;
