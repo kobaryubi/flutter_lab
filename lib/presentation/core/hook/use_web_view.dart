@@ -18,6 +18,7 @@ class WebViewState {
   const WebViewState({
     required this.controller,
     required this.status,
+    required this.currentUrl,
   });
 
   /// The WebView controller.
@@ -25,6 +26,9 @@ class WebViewState {
 
   /// Current load status.
   final WebViewLoadStatus status;
+
+  /// Current URL, updated when navigation starts or finishes.
+  final String? currentUrl;
 }
 
 /// Callback type for intercepting navigation requests.
@@ -46,15 +50,18 @@ WebViewState useWebView({
   OnNavigationRequest? onNavigationRequest,
 }) {
   final status = useState(WebViewLoadStatus.loading);
+  final currentUrl = useState<String?>(null);
 
   /// Handles page load started event.
   void handlePageStarted(String url) {
     status.value = WebViewLoadStatus.loading;
+    currentUrl.value = url;
   }
 
   /// Handles page load finished event.
   void handlePageFinished(String url) {
     status.value = WebViewLoadStatus.loaded;
+    currentUrl.value = url;
   }
 
   /// Handles web resource error event.
@@ -93,5 +100,6 @@ WebViewState useWebView({
   return WebViewState(
     controller: controller,
     status: status.value,
+    currentUrl: currentUrl.value,
   );
 }
