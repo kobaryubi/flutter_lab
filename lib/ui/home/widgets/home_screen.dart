@@ -84,6 +84,10 @@ class HomeScreen extends StatelessWidget {
       title: 'web view tabs',
       route: WebViewTabsRoute(),
     ),
+    AppLink(
+      title: 'web view javascript',
+      route: WebViewJavascriptRoute(),
+    ),
   ];
 
   @override

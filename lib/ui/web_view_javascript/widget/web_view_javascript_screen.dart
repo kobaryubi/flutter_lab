@@ -23,8 +23,8 @@ const _htmlContent = '''
 ///
 /// Shows how to use `runJavaScriptReturningResult` to get
 /// element values by ID from the loaded HTML.
-class WebviewJavascriptScreen extends HookWidget {
-  const WebviewJavascriptScreen({super.key});
+class WebViewJavascriptScreen extends HookWidget {
+  const WebViewJavascriptScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

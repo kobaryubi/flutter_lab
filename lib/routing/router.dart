@@ -71,6 +71,7 @@ import 'package:flutter_lab/ui/tutorial/widget/tutorial_screen.dart';
 import 'package:flutter_lab/ui/url_navigation/widget/url_navigation_screen.dart';
 import 'package:flutter_lab/ui/visibility_detector/widget/visibility_detector_screen.dart';
 import 'package:flutter_lab/ui/web_view/widgets/web_view_screen.dart';
+import 'package:flutter_lab/ui/web_view_javascript/widget/web_view_javascript_screen.dart';
 import 'package:flutter_lab/ui/web_view_tabs/widget/web_view_tabs_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -136,6 +137,7 @@ part 'stream_subscription_route.dart';
 part 'tutorial_route.dart';
 part 'url_navigation_route.dart';
 part 'visibility_detector_route.dart';
+part 'web_view_javascript_route.dart';
 part 'web_view_route.dart';
 part 'web_view_tabs_route.dart';
 

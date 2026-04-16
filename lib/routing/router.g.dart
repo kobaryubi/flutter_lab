@@ -71,6 +71,7 @@ List<RouteBase> get $appRoutes => [
   $visibilityDetectorRoute,
   $webViewRoute,
   $webViewTabsRoute,
+  $webViewJavascriptRoute,
 ];
 
 RouteBase get $adfurikunRoute => GoRouteData.$route(
@@ -1823,6 +1824,33 @@ mixin $WebViewTabsRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/web_view_tabs');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $webViewJavascriptRoute => GoRouteData.$route(
+  path: '/web_view_javascript',
+  name: 'web_view_javascript',
+  factory: $WebViewJavascriptRoute._fromState,
+);
+
+mixin $WebViewJavascriptRoute on GoRouteData {
+  static WebViewJavascriptRoute _fromState(GoRouterState state) =>
+      WebViewJavascriptRoute();
+
+  @override
+  String get location => GoRouteData.$location('/web_view_javascript');
 
   @override
   void go(BuildContext context) => context.go(location);
