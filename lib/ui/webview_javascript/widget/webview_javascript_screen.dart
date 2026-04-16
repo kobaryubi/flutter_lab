@@ -74,6 +74,15 @@ class WebviewJavascriptScreen extends HookWidget {
       result.value = 'username: $value';
     }
 
+    /// Sets the text content of the element with id="title" to a new value.
+    Future<void> handleSetTitle() async {
+      await controller.runJavaScript(
+        'document.getElementById("title").innerText = "Updated by Flutter"',
+      );
+
+      result.value = 'title set to: Updated by Flutter';
+    }
+
     return Layout(
       appBar: const AppBar(title: Text('WebView JavaScript')),
       child: Column(
@@ -93,6 +102,10 @@ class WebviewJavascriptScreen extends HookWidget {
               GestureDetector(
                 onTap: isLoaded.value ? handleGetInputValue : null,
                 child: const Text('[Get Input]'),
+              ),
+              GestureDetector(
+                onTap: isLoaded.value ? handleSetTitle : null,
+                child: const Text('[Set Title]'),
               ),
             ],
           ),
