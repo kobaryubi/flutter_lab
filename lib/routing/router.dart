@@ -141,9 +141,15 @@ part 'web_view_javascript_route.dart';
 part 'web_view_route.dart';
 part 'web_view_tabs_route.dart';
 
+/// Global key for the root [Navigator]. Allows app-level widgets (outside
+/// the router subtree) to dispatch navigator operations such as showing a
+/// dialog via `showGeneralDialog`.
+final rootNavigatorKey = GlobalKey<NavigatorState>();
+
 @riverpod
 GoRouter router(Ref ref) => GoRouter(
   initialLocation: Routes.home,
+  navigatorKey: rootNavigatorKey,
   onException: (context, state, router) {
     router.go(Routes.notFound);
   },
