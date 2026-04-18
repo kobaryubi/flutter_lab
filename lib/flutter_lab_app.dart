@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/l10n/app_localizations.dart';
+import 'package:flutter_lab/presentation/core/widget/global_effects.dart';
 import 'package:flutter_lab/presentation/core/widget/global_error_overlay.dart';
 import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
@@ -26,8 +27,10 @@ class FlutterLabApp extends ConsumerWidget {
         textStyle: TextStyles.bodyMedium.merge(
           const TextStyle(color: AppColors.black1),
         ),
-        builder: (context, child) => GlobalErrorOverlay(
-          child: child ?? const SizedBox.shrink(),
+        builder: (context, child) => GlobalEffects(
+          child: GlobalErrorOverlay(
+            child: child ?? const SizedBox.shrink(),
+          ),
         ),
       ),
     );
