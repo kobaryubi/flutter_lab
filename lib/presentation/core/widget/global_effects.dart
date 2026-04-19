@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/routing/router.dart';
+import 'package:go_router/go_router.dart';
 
 /// Hosts app-level `useEffect` side effects that run once the root
 /// [Navigator] is mounted. Uses [rootNavigatorKey] so navigator-dependent
@@ -35,5 +36,22 @@ class GlobalEffects extends HookWidget {
     BuildContext context,
     Animation<double> animation,
     Animation<double> secondaryAnimation,
-  ) => const Center(child: Text('Global Effects Dialog'));
+  ) {
+    /// Closes the app-level dialog.
+    void handleClose() => context.pop();
+
+    return Center(
+      child: Column(
+        mainAxisSize: .min,
+        spacing: 16,
+        children: [
+          const Text('Global Effects Dialog'),
+          GestureDetector(
+            onTap: handleClose,
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
+  }
 }
