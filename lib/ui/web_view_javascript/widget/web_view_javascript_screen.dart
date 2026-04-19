@@ -38,6 +38,10 @@ class WebViewJavascriptScreen extends HookWidget {
         ..setNavigationDelegate(
           NavigationDelegate(
             onPageFinished: (_) {
+              /// Presets the username input value after the page loads.
+              controller.runJavaScript(
+                'document.getElementById("username").value = "preset_user"',
+              );
               isLoaded.value = true;
             },
           ),
