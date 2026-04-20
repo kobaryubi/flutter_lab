@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:adjust_sdk/adjust.dart';
 import 'package:adjust_sdk/adjust_config.dart'
     hide EventFailureCallback, EventSuccessCallback;
+import 'package:adjust_sdk/adjust_deeplink.dart';
 import 'package:adjust_sdk/adjust_event.dart';
 import 'package:adjust_sdk/adjust_event_failure.dart';
 import 'package:adjust_sdk/adjust_event_success.dart';
@@ -87,6 +88,18 @@ class SdkAdjustGateway implements AdjustGateway {
       Adjust.trackEvent(event);
 
       return const Success(unit);
+    } on Exception catch (exception) {
+      return Failure(exception);
+    }
+  }
+
+  @override
+  AsyncResult<String> processAndResolveDeeplink({required String url}) async {
+    try {
+      final deeplink = AdjustDeeplink(url);
+      final resolvedLink = await Adjust.processAndResolveDeeplink(deeplink);
+
+      return Success(resolvedLink ?? url);
     } on Exception catch (exception) {
       return Failure(exception);
     }
