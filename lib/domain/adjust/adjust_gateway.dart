@@ -26,12 +26,6 @@ abstract class AdjustGateway {
   /// [eventToken] is the token assigned to the event in the Adjust dashboard.
   AsyncResult<Unit> trackEvent({required String eventToken});
 
-  /// Forwards [url] to the Adjust SDK and resolves it.
-  ///
-  /// Returns the resolved deep link, falling back to [url] when the SDK
-  /// has nothing additional to resolve.
-  AsyncResult<String> processAndResolveDeeplink({required String url});
-
   /// Sets the push notification token for Adjust.
   ///
   /// Push tokens are used for Audiences, client callbacks,
