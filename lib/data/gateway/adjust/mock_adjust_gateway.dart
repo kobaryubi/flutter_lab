@@ -15,9 +15,5 @@ class MockAdjustGateway implements AdjustGateway {
       const Success(unit);
 
   @override
-  AsyncResult<String> processAndResolveDeeplink({required String url}) async =>
-      Success(url);
-
-  @override
   void setPushToken({required String token}) {}
 }
