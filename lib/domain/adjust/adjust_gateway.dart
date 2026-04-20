@@ -8,6 +8,12 @@ typedef EventSuccessCallback = void Function(EventSuccessData data);
 /// Callback invoked when an Adjust event fails to record.
 typedef EventFailureCallback = void Function(EventFailureData data);
 
+/// Callback invoked when the Adjust SDK delivers a direct deep link.
+///
+/// [resolvedLink] is the link returned by Adjust after processing and
+/// resolving the incoming deep link. It is `null` when resolution fails.
+typedef DirectDeeplinkCallback = void Function(String? resolvedLink);
+
 /// Gateway for Adjust SDK operations.
 ///
 /// Abstracts the Adjust SDK behind a domain-layer interface.
@@ -19,6 +25,7 @@ abstract class AdjustGateway {
   AsyncResult<Unit> initialize({
     EventSuccessCallback? onEventSuccess,
     EventFailureCallback? onEventFailure,
+    DirectDeeplinkCallback? onDirectDeeplink,
   });
 
   /// Tracks an event with the given [eventToken].
