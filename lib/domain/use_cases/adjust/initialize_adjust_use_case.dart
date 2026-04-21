@@ -9,5 +9,15 @@ class InitializeAdjustUseCase {
   final AdjustGateway _adjustGateway;
 
   /// Initializes the Adjust SDK.
-  AsyncResult<Unit> call() => _adjustGateway.initialize();
+  ///
+  /// [onDeferredDeeplink] is invoked when Adjust delivers a deferred deep
+  /// link. [isDeferredDeeplinkOpeningEnabled] defaults to `false` so the
+  /// app — not the SDK — decides when to handle the link.
+  AsyncResult<Unit> call({
+    DeferredDeeplinkCallback? onDeferredDeeplink,
+    bool isDeferredDeeplinkOpeningEnabled = false,
+  }) => _adjustGateway.initialize(
+    onDeferredDeeplink: onDeferredDeeplink,
+    isDeferredDeeplinkOpeningEnabled: isDeferredDeeplinkOpeningEnabled,
+  );
 }

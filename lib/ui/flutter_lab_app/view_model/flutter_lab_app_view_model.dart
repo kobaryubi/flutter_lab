@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_lab/application/di/provider.dart';
+import 'package:flutter_lab/application/notifier/pending_deferred_deeplink_notifier.dart';
 import 'package:flutter_lab/ui/flutter_lab_app/ui_state/flutter_lab_app_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -28,9 +29,22 @@ class FlutterLabAppViewModel extends _$FlutterLabAppViewModel {
   }
 
   /// Initializes the Adjust SDK at app startup (fire-and-forget).
+  ///
+  /// Routes the SDK's deferred deep link callback into
+  /// [PendingDeferredDeeplinkNotifier] so the link can be consumed by the
+  /// UI once the app is ready (e.g. after onboarding completes).
   Future<void> _initializeAdjust() async {
     final useCase = ref.read(initializeAdjustUseCaseProvider);
-    await useCase.call();
+
+    await useCase.call(onDeferredDeeplink: _handleDeferredDeeplink);
+  }
+
+  /// Forwards a deferred deep link captured by Adjust into the
+  /// [PendingDeferredDeeplinkNotifier].
+  void _handleDeferredDeeplink(String deeplink) {
+    ref
+        .read(pendingDeferredDeeplinkProvider.notifier)
+        .capture(deeplink: deeplink);
   }
 
   /// Initializes the AppLovin MAX SDK at app startup (fire-and-forget).
