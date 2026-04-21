@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:adjust_sdk/adjust.dart';
 import 'package:adjust_sdk/adjust_config.dart'
-    hide EventFailureCallback, EventSuccessCallback;
+    hide DeferredDeeplinkCallback, EventFailureCallback, EventSuccessCallback;
 import 'package:adjust_sdk/adjust_event.dart';
 import 'package:adjust_sdk/adjust_event_failure.dart';
 import 'package:adjust_sdk/adjust_event_success.dart';
@@ -31,6 +31,8 @@ class SdkAdjustGateway implements AdjustGateway {
   AsyncResult<Unit> initialize({
     EventSuccessCallback? onEventSuccess,
     EventFailureCallback? onEventFailure,
+    DeferredDeeplinkCallback? onDeferredDeeplink,
+    bool isDeferredDeeplinkOpeningEnabled = false,
   }) async {
     try {
       final appToken = Platform.isIOS ? AppToken.ios : AppToken.android;
@@ -48,6 +50,17 @@ class SdkAdjustGateway implements AdjustGateway {
       if (onEventFailure != null) {
         config.eventFailureCallback = (failureData) =>
             onEventFailure(_mapFailureData(failureData));
+      }
+
+      config.isDeferredDeeplinkOpeningEnabled =
+          isDeferredDeeplinkOpeningEnabled;
+
+      if (onDeferredDeeplink != null) {
+        config.deferredDeeplinkCallback = (deeplink) {
+          if (deeplink == null) return;
+
+          onDeferredDeeplink(deeplink);
+        };
       }
 
       Adjust.initSdk(config);

@@ -8,6 +8,12 @@ typedef EventSuccessCallback = void Function(EventSuccessData data);
 /// Callback invoked when an Adjust event fails to record.
 typedef EventFailureCallback = void Function(EventFailureData data);
 
+/// Callback invoked when Adjust delivers a deferred deep link.
+///
+/// A deferred deep link is one received before the app instance existed
+/// (e.g. attribution-based links delivered on first launch).
+typedef DeferredDeeplinkCallback = void Function(String deeplink);
+
 /// Gateway for Adjust SDK operations.
 ///
 /// Abstracts the Adjust SDK behind a domain-layer interface.
@@ -16,9 +22,16 @@ abstract class AdjustGateway {
   ///
   /// Callbacks must be registered before initialization
   /// as required by the Adjust SDK.
+  ///
+  /// When [onDeferredDeeplink] is supplied it receives the deferred deep link
+  /// captured by the SDK. [isDeferredDeeplinkOpeningEnabled] defaults to
+  /// `false` so the SDK does not automatically open the link — the app
+  /// decides when (and whether) to handle it.
   AsyncResult<Unit> initialize({
     EventSuccessCallback? onEventSuccess,
     EventFailureCallback? onEventFailure,
+    DeferredDeeplinkCallback? onDeferredDeeplink,
+    bool isDeferredDeeplinkOpeningEnabled = false,
   });
 
   /// Tracks an event with the given [eventToken].
