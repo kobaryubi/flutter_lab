@@ -88,6 +88,10 @@ class HomeScreen extends StatelessWidget {
       title: 'web view javascript',
       route: WebViewJavascriptRoute(),
     ),
+    const AppLink(
+      title: 'Adjust deferred deep link',
+      route: AdjustDeferredDeeplinkRoute(),
+    ),
   ];
 
   @override

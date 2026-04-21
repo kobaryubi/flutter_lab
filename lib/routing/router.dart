@@ -6,6 +6,7 @@ import 'package:flutter_lab/routing/observer_demo_observer.dart';
 import 'package:flutter_lab/routing/route_observer.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/adfurikun/widget/adfurikun_screen.dart';
+import 'package:flutter_lab/ui/adjust_deferred_deeplink/widget/adjust_deferred_deeplink_screen.dart';
 import 'package:flutter_lab/ui/analytics/widget/analytics_screen.dart';
 import 'package:flutter_lab/ui/animated_switcher/widget/animated_switcher_screen.dart';
 import 'package:flutter_lab/ui/app_lifecycle/widget/app_lifecycle_screen.dart';
@@ -77,6 +78,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'adfurikun_route.dart';
+part 'adjust_deferred_deeplink_route.dart';
 part 'analytics_route.dart';
 part 'animated_switcher_route.dart';
 part 'app_lifecycle_route.dart';

@@ -8,6 +8,7 @@ part of 'router.dart';
 
 List<RouteBase> get $appRoutes => [
   $adfurikunRoute,
+  $adjustDeferredDeeplinkRoute,
   $analyticsRoute,
   $animatedSwitcherRoute,
   $appLifecycleRoute,
@@ -85,6 +86,33 @@ mixin $AdfurikunRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/adfurikun');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $adjustDeferredDeeplinkRoute => GoRouteData.$route(
+  path: '/adjust_deferred_deeplink',
+  name: 'adjust_deferred_deeplink',
+  factory: $AdjustDeferredDeeplinkRoute._fromState,
+);
+
+mixin $AdjustDeferredDeeplinkRoute on GoRouteData {
+  static AdjustDeferredDeeplinkRoute _fromState(GoRouterState state) =>
+      const AdjustDeferredDeeplinkRoute();
+
+  @override
+  String get location => GoRouteData.$location('/adjust_deferred_deeplink');
 
   @override
   void go(BuildContext context) => context.go(location);
