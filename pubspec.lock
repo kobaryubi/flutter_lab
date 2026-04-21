@@ -21,10 +21,10 @@ packages:
     dependency: "direct main"
     description:
       name: adjust_sdk
-      sha256: "62408962d8b01e0631f4d83ca7300fa43ea7d3b95ad9784fe7a8477e016987e1"
+      sha256: "20958c648be68d5ae482638aaf0c5694fbf4fed4248e9e91df87992e03638054"
       url: "https://pub.dev"
     source: hosted
-    version: "5.5.1"
+    version: "5.6.1"
   analyzer:
     dependency: transitive
     description:
