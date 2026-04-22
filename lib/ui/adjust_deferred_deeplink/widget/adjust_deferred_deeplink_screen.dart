@@ -29,6 +29,11 @@ class AdjustDeferredDeeplinkScreen extends ConsumerWidget {
       viewModel.completeOnboarding();
     }
 
+    /// Fetches the Adjust Device Identifier and stores it in UI state.
+    Future<void> handleLoadAdid() async {
+      await viewModel.loadAdid();
+    }
+
     final pendingDeeplink = uiState.pendingDeeplink;
 
     return Layout(
@@ -47,6 +52,11 @@ class AdjustDeferredDeeplinkScreen extends ConsumerWidget {
             label: 'complete onboarding',
             onTap: handleCompleteOnboarding,
           ),
+          Button(
+            label: 'load adid',
+            onTap: handleLoadAdid,
+          ),
+          if (uiState.adid case AsyncData(:final value)) Text('adid: $value'),
         ],
       ),
     );

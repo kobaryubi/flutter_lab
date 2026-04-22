@@ -14,7 +14,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AdjustDeferredDeeplinkUiState {
 
- String? get pendingDeeplink;
+ String? get pendingDeeplink;/// Result of fetching the Adjust Device Identifier (ADID).
+ AsyncValue<String>? get adid;
 /// Create a copy of AdjustDeferredDeeplinkUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +26,16 @@ $AdjustDeferredDeeplinkUiStateCopyWith<AdjustDeferredDeeplinkUiState> get copyWi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AdjustDeferredDeeplinkUiState&&(identical(other.pendingDeeplink, pendingDeeplink) || other.pendingDeeplink == pendingDeeplink));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AdjustDeferredDeeplinkUiState&&(identical(other.pendingDeeplink, pendingDeeplink) || other.pendingDeeplink == pendingDeeplink)&&(identical(other.adid, adid) || other.adid == adid));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,pendingDeeplink);
+int get hashCode => Object.hash(runtimeType,pendingDeeplink,adid);
 
 @override
 String toString() {
-  return 'AdjustDeferredDeeplinkUiState(pendingDeeplink: $pendingDeeplink)';
+  return 'AdjustDeferredDeeplinkUiState(pendingDeeplink: $pendingDeeplink, adid: $adid)';
 }
 
 
@@ -45,7 +46,7 @@ abstract mixin class $AdjustDeferredDeeplinkUiStateCopyWith<$Res>  {
   factory $AdjustDeferredDeeplinkUiStateCopyWith(AdjustDeferredDeeplinkUiState value, $Res Function(AdjustDeferredDeeplinkUiState) _then) = _$AdjustDeferredDeeplinkUiStateCopyWithImpl;
 @useResult
 $Res call({
- String? pendingDeeplink
+ String? pendingDeeplink, AsyncValue<String>? adid
 });
 
 
@@ -62,10 +63,11 @@ class _$AdjustDeferredDeeplinkUiStateCopyWithImpl<$Res>
 
 /// Create a copy of AdjustDeferredDeeplinkUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? pendingDeeplink = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? pendingDeeplink = freezed,Object? adid = freezed,}) {
   return _then(_self.copyWith(
 pendingDeeplink: freezed == pendingDeeplink ? _self.pendingDeeplink : pendingDeeplink // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,adid: freezed == adid ? _self.adid : adid // ignore: cast_nullable_to_non_nullable
+as AsyncValue<String>?,
   ));
 }
 
@@ -150,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? pendingDeeplink)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? pendingDeeplink,  AsyncValue<String>? adid)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AdjustDeferredDeeplinkUiState() when $default != null:
-return $default(_that.pendingDeeplink);case _:
+return $default(_that.pendingDeeplink,_that.adid);case _:
   return orElse();
 
 }
@@ -171,10 +173,10 @@ return $default(_that.pendingDeeplink);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? pendingDeeplink)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? pendingDeeplink,  AsyncValue<String>? adid)  $default,) {final _that = this;
 switch (_that) {
 case _AdjustDeferredDeeplinkUiState():
-return $default(_that.pendingDeeplink);case _:
+return $default(_that.pendingDeeplink,_that.adid);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +193,10 @@ return $default(_that.pendingDeeplink);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? pendingDeeplink)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? pendingDeeplink,  AsyncValue<String>? adid)?  $default,) {final _that = this;
 switch (_that) {
 case _AdjustDeferredDeeplinkUiState() when $default != null:
-return $default(_that.pendingDeeplink);case _:
+return $default(_that.pendingDeeplink,_that.adid);case _:
   return null;
 
 }
@@ -206,10 +208,12 @@ return $default(_that.pendingDeeplink);case _:
 
 
 class _AdjustDeferredDeeplinkUiState implements AdjustDeferredDeeplinkUiState {
-  const _AdjustDeferredDeeplinkUiState({required this.pendingDeeplink});
+  const _AdjustDeferredDeeplinkUiState({required this.pendingDeeplink, this.adid});
   
 
 @override final  String? pendingDeeplink;
+/// Result of fetching the Adjust Device Identifier (ADID).
+@override final  AsyncValue<String>? adid;
 
 /// Create a copy of AdjustDeferredDeeplinkUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -221,16 +225,16 @@ _$AdjustDeferredDeeplinkUiStateCopyWith<_AdjustDeferredDeeplinkUiState> get copy
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AdjustDeferredDeeplinkUiState&&(identical(other.pendingDeeplink, pendingDeeplink) || other.pendingDeeplink == pendingDeeplink));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AdjustDeferredDeeplinkUiState&&(identical(other.pendingDeeplink, pendingDeeplink) || other.pendingDeeplink == pendingDeeplink)&&(identical(other.adid, adid) || other.adid == adid));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,pendingDeeplink);
+int get hashCode => Object.hash(runtimeType,pendingDeeplink,adid);
 
 @override
 String toString() {
-  return 'AdjustDeferredDeeplinkUiState(pendingDeeplink: $pendingDeeplink)';
+  return 'AdjustDeferredDeeplinkUiState(pendingDeeplink: $pendingDeeplink, adid: $adid)';
 }
 
 
@@ -241,7 +245,7 @@ abstract mixin class _$AdjustDeferredDeeplinkUiStateCopyWith<$Res> implements $A
   factory _$AdjustDeferredDeeplinkUiStateCopyWith(_AdjustDeferredDeeplinkUiState value, $Res Function(_AdjustDeferredDeeplinkUiState) _then) = __$AdjustDeferredDeeplinkUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- String? pendingDeeplink
+ String? pendingDeeplink, AsyncValue<String>? adid
 });
 
 
@@ -258,10 +262,11 @@ class __$AdjustDeferredDeeplinkUiStateCopyWithImpl<$Res>
 
 /// Create a copy of AdjustDeferredDeeplinkUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? pendingDeeplink = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? pendingDeeplink = freezed,Object? adid = freezed,}) {
   return _then(_AdjustDeferredDeeplinkUiState(
 pendingDeeplink: freezed == pendingDeeplink ? _self.pendingDeeplink : pendingDeeplink // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,adid: freezed == adid ? _self.adid : adid // ignore: cast_nullable_to_non_nullable
+as AsyncValue<String>?,
   ));
 }
 

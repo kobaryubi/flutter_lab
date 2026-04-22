@@ -41,4 +41,15 @@ class AdjustDeferredDeeplinkViewModel
   void completeOnboarding() {
     ref.read(pendingDeferredDeeplinkProvider.notifier).consume();
   }
+
+  /// Fetches the Adjust Device Identifier (ADID) and stores it in UI state.
+  Future<void> loadAdid() async {
+    final useCase = ref.read(getAdidUseCaseProvider);
+
+    final adid = await AsyncValue.guard(
+      () async => (await useCase.call()).getOrThrow(),
+    );
+
+    state = state.copyWith(adid: adid);
+  }
 }
