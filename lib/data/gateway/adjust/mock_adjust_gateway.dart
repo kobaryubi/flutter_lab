@@ -23,6 +23,10 @@ class MockAdjustGateway implements AdjustGateway {
       const Success(unit);
 
   @override
+  AsyncResult<String> getAdid() async =>
+      const Success('mock-adid-00000000000000000000000000000000');
+
+  @override
   void setPushToken({required String token}) {}
 
   /// Simulates the SDK delivering a deferred deep link.
