@@ -33,6 +33,7 @@ import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/push_notification/firebase_messaging_push_notification_repository.dart';
 import 'package:flutter_lab/data/repositories/shortcut/file_system_shortcut_repository.dart';
+import 'package:flutter_lab/data/service/secure_storage/secure_storage_service.dart';
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_lab/domain/adfurikun/adfurikun_gateway.dart';
 import 'package:flutter_lab/domain/adjust/adjust_gateway.dart';
@@ -109,6 +110,7 @@ import 'package:flutter_lab/domain/use_cases/shortcut/delete_all_shortcut_icons_
 import 'package:flutter_lab/domain/use_cases/text_recognition/recognize_text_use_case.dart';
 // import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/gen/pigeon/pigeon.g.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -215,6 +217,14 @@ SharedPreferencesService sharedPreferencesService(Ref ref) =>
     SharedPreferencesService(
       sharedPreferencesAsync: ref.read(sharedPreferencesAsyncProvider),
     );
+
+@Riverpod(keepAlive: true)
+FlutterSecureStorage secureStorage(Ref ref) => const FlutterSecureStorage();
+
+@riverpod
+SecureStorageService secureStorageService(Ref ref) => SecureStorageService(
+  secureStorage: ref.read(secureStorageProvider),
+);
 
 // use case
 
