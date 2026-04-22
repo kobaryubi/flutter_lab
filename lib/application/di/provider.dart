@@ -115,8 +115,14 @@ import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 part 'provider.g.dart';
+
+// talker
+/// Shared [Talker] instance used for app-wide logging and debugging UI.
+@Riverpod(keepAlive: true)
+Talker talker(Ref ref) => Talker();
 
 // dio
 @riverpod
