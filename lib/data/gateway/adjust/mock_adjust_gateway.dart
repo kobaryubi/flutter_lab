@@ -5,15 +5,18 @@ import 'package:result_dart/result_dart.dart';
 /// for all operations without depending on the Adjust SDK.
 class MockAdjustGateway implements AdjustGateway {
   DeferredDeeplinkCallback? _onDeferredDeeplink;
+  DirectDeeplinkCallback? _onDirectDeeplink;
 
   @override
   AsyncResult<Unit> initialize({
     EventSuccessCallback? onEventSuccess,
     EventFailureCallback? onEventFailure,
     DeferredDeeplinkCallback? onDeferredDeeplink,
+    DirectDeeplinkCallback? onDirectDeeplink,
     bool isDeferredDeeplinkOpeningEnabled = false,
   }) async {
     _onDeferredDeeplink = onDeferredDeeplink;
+    _onDirectDeeplink = onDirectDeeplink;
 
     return const Success(unit);
   }
@@ -36,5 +39,14 @@ class MockAdjustGateway implements AdjustGateway {
   /// referrer.
   void simulateDeferredDeeplink({required String deeplink}) {
     _onDeferredDeeplink?.call(deeplink);
+  }
+
+  /// Simulates the SDK delivering a direct deep link.
+  ///
+  /// Invokes the callback registered through [initialize], allowing the
+  /// direct deep link flow to be exercised without a real universal
+  /// link / app link.
+  void simulateDirectDeeplink({required String deeplink}) {
+    _onDirectDeeplink?.call(deeplink);
   }
 }
