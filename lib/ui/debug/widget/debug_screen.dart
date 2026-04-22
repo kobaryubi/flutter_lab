@@ -1,19 +1,27 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/application/di/provider.dart';
+import 'package:flutter_lab/data/secure_storage/secure_storage_keys.dart';
+import 'package:flutter_lab/data/shared_preferences/shared_preferences_keys.dart';
+import 'package:flutter_lab/presentation/core/provider/global_snackbar_notifier.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/home/widgets/launcher_row.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-/// Debug-only screen that lists every lab route as a tile.
+/// Debug-only screen that lists every lab route as a tile and shows the
+/// current contents of local and secure storage.
 ///
-/// Reached by long-pressing the [AppBar] title when the app runs in the
-/// `local` flavor. Each tile navigates via `context.go(path)` so routes
-/// that require constructor parameters are skipped.
-class DebugScreen extends StatelessWidget {
+/// Reached by long-pressing the AppBar title when the app runs in the
+/// `local` flavor. Each route tile navigates via `context.go(path)` so
+/// routes requiring constructor parameters are skipped.
+class DebugScreen extends HookConsumerWidget {
   const DebugScreen({super.key});
 
-  static const _entries = <({String title, String path})>[
+  static const _routes = <({String title, String path})>[
     (title: 'home', path: Routes.home),
     (title: 'login', path: Routes.login),
     (title: 'not found', path: Routes.notFound),
@@ -89,23 +97,103 @@ class DebugScreen extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) => Layout(
-    appBar: const AppBar(title: Text('Debug')),
-    child: ListView.builder(
-      itemCount: _entries.length,
-      itemBuilder: _buildRow,
-    ),
-  );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final reloadCounter = useState(0);
 
-  /// Builds a tile for the route at [index] that navigates on tap.
-  Widget _buildRow(BuildContext context, int index) {
-    final entry = _entries[index];
+    final localFuture = useMemoized(() async {
+      final service = ref.read(sharedPreferencesServiceProvider);
+      final raw = await service.getAll(keys: SharedPreferencesKeys.all);
 
-    /// Navigates to the selected lab route by path.
-    void handleTap() {
-      context.go(entry.path);
+      return <String, Object>{
+        for (final entry in raw.entries)
+          if (entry.value != null) entry.key: entry.value!,
+      };
+    }, [reloadCounter.value]);
+
+    final secureFuture = useMemoized(() {
+      final service = ref.read(secureStorageServiceProvider);
+
+      return service.getAll(keys: SecureStorageKeys.all);
+    }, [reloadCounter.value]);
+
+    final localSnapshot = useFuture(localFuture);
+    final secureSnapshot = useFuture(secureFuture);
+
+    /// Copies [value] to the clipboard and posts a snackbar.
+    Future<void> handleCopy(String value) async {
+      await Clipboard.setData(ClipboardData(text: value));
+
+      ref.read(globalSnackbarProvider.notifier).show(text: 'copied');
     }
 
-    return LauncherRow(title: entry.title, onTap: handleTap);
+    return Layout(
+      appBar: const AppBar(title: Text('Debug')),
+      child: ListView(
+        children: [
+          const _SectionHeader('routes'),
+          for (final entry in _routes)
+            LauncherRow(
+              title: entry.title,
+              onTap: () => context.go(entry.path),
+            ),
+          const _SectionHeader('local storage'),
+          if (localSnapshot.data case final entries?)
+            for (final entry in entries.entries)
+              _StorageRow(
+                storageKey: entry.key,
+                value: entry.value.toString(),
+                onCopy: () => handleCopy(entry.value.toString()),
+              ),
+          const _SectionHeader('secure storage'),
+          if (secureSnapshot.data case final entries?)
+            for (final entry in entries.entries)
+              _StorageRow(
+                storageKey: entry.key,
+                value: entry.value,
+                onCopy: () => handleCopy(entry.value),
+              ),
+        ],
+      ),
+    );
   }
+}
+
+/// Section title rendered inline in the debug list.
+class _SectionHeader extends StatelessWidget {
+  const _SectionHeader(this.title);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    child: Text(title),
+  );
+}
+
+/// A row showing a storage entry with a tap-to-copy action.
+class _StorageRow extends StatelessWidget {
+  const _StorageRow({
+    required this.storageKey,
+    required this.value,
+    required this.onCopy,
+  });
+
+  final String storageKey;
+  final String value;
+  final VoidCallback onCopy;
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+    behavior: HitTestBehavior.opaque,
+    onTap: onCopy,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Column(
+        crossAxisAlignment: .start,
+        spacing: 4,
+        children: [Text(storageKey), Text(value)],
+      ),
+    ),
+  );
 }
