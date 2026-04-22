@@ -2540,6 +2540,47 @@ final class TrackEventUseCaseProvider
 
 String _$trackEventUseCaseHash() => r'a5af5c7a742be33c245d00b58cbcce835268efaf';
 
+@ProviderFor(getAdidUseCase)
+const getAdidUseCaseProvider = GetAdidUseCaseProvider._();
+
+final class GetAdidUseCaseProvider
+    extends $FunctionalProvider<GetAdidUseCase, GetAdidUseCase, GetAdidUseCase>
+    with $Provider<GetAdidUseCase> {
+  const GetAdidUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getAdidUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getAdidUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetAdidUseCase> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  GetAdidUseCase create(Ref ref) {
+    return getAdidUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetAdidUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetAdidUseCase>(value),
+    );
+  }
+}
+
+String _$getAdidUseCaseHash() => r'e99f7b44aceabf4b5fd9189051d768d8b288f25f';
+
 @ProviderFor(maxGateway)
 const maxGatewayProvider = MaxGatewayProvider._();
 

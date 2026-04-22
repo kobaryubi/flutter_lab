@@ -67,6 +67,7 @@ import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_interstiti
 import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_reward_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adfurikun/play_adfurikun_interstitial_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adfurikun/play_adfurikun_reward_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/adjust/get_adid_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adjust/initialize_adjust_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adjust/track_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/agreement/initialize_latest_agreed_date_use_case.dart';
@@ -430,6 +431,11 @@ InitializeAdjustUseCase initializeAdjustUseCase(Ref ref) =>
 
 @riverpod
 TrackEventUseCase trackEventUseCase(Ref ref) => TrackEventUseCase(
+  adjustGateway: ref.read(adjustGatewayProvider),
+);
+
+@riverpod
+GetAdidUseCase getAdidUseCase(Ref ref) => GetAdidUseCase(
   adjustGateway: ref.read(adjustGatewayProvider),
 );
 
