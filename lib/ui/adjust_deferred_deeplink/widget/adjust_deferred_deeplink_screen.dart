@@ -34,7 +34,18 @@ class AdjustDeferredDeeplinkScreen extends ConsumerWidget {
       await viewModel.loadAdid();
     }
 
+    /// Asks the mock gateway to deliver a fake direct deep link.
+    void handleSimulateDirect() {
+      viewModel.simulateDirectDeeplink();
+    }
+
+    /// Clears any pending direct deep link held in the notifier.
+    void handleClearDirect() {
+      viewModel.clearDirectDeeplink();
+    }
+
     final pendingDeeplink = uiState.pendingDeeplink;
+    final pendingDirectDeeplink = uiState.pendingDirectDeeplink;
 
     return Layout(
       appBar: const AppBar(title: Text('Adjust deferred deep link')),
@@ -57,6 +68,15 @@ class AdjustDeferredDeeplinkScreen extends ConsumerWidget {
             onTap: handleLoadAdid,
           ),
           if (uiState.adid case AsyncData(:final value)) Text('adid: $value'),
+          Text('direct pending: ${pendingDirectDeeplink ?? '(none)'}'),
+          Button(
+            label: 'simulate direct deeplink',
+            onTap: handleSimulateDirect,
+          ),
+          Button(
+            label: 'clear direct deeplink',
+            onTap: handleClearDirect,
+          ),
         ],
       ),
     );

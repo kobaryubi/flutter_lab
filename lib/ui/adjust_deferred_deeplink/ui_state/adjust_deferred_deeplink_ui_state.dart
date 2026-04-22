@@ -9,6 +9,7 @@ abstract class AdjustDeferredDeeplinkUiState
     with _$AdjustDeferredDeeplinkUiState {
   const factory AdjustDeferredDeeplinkUiState({
     required String? pendingDeeplink,
+    required String? pendingDirectDeeplink,
 
     /// Result of fetching the Adjust Device Identifier (ADID).
     AsyncValue<String>? adid,

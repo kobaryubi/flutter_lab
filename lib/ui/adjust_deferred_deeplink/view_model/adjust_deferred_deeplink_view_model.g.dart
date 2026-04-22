@@ -64,7 +64,7 @@ final class AdjustDeferredDeeplinkViewModelProvider
 }
 
 String _$adjustDeferredDeeplinkViewModelHash() =>
-    r'4545cb10bfb4874f675465af87fcb4a3d94e6573';
+    r'8c0cc5eb36d490a3732d1cb5ccabee76214cc6a9';
 
 /// ViewModel for the Adjust deferred deep link sample screen.
 ///
