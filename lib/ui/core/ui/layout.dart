@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/presentation/core/widget/global_loading_overlay.dart';
+import 'package:flutter_lab/presentation/core/widget/global_snackbar_overlay.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_portal/flutter_portal.dart';
@@ -46,7 +47,9 @@ class Layout extends StatelessWidget {
               ),
               Expanded(
                 child: Portal(
-                  child: GlobalLoadingOverlay(child: child),
+                  child: GlobalLoadingOverlay(
+                    child: GlobalSnackbarOverlay(child: child),
+                  ),
                 ),
               ),
               if (bottomNavigationBar != null) bottomNavigationBar!,
