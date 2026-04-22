@@ -68,6 +68,7 @@ List<RouteBase> get $appRoutes => [
   $shellDemoRoute,
   $shellDemoSubRoute,
   $streamSubscriptionRoute,
+  $talkerLogsRoute,
   $tutorialRoute,
   $urlNavigationRoute,
   $visibilityDetectorRoute,
@@ -1746,6 +1747,33 @@ mixin $StreamSubscriptionRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/stream_subscription');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $talkerLogsRoute => GoRouteData.$route(
+  path: '/talker_logs',
+  name: 'talker_logs',
+  factory: $TalkerLogsRoute._fromState,
+);
+
+mixin $TalkerLogsRoute on GoRouteData {
+  static TalkerLogsRoute _fromState(GoRouterState state) =>
+      const TalkerLogsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/talker_logs');
 
   @override
   void go(BuildContext context) => context.go(location);

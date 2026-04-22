@@ -79,5 +79,7 @@ abstract final class Routes {
 
   static const adjustDeferredDeeplink = '/adjust_deferred_deeplink';
 
+  static const talkerLogs = '/talker_logs';
+
   static const debug = '/debug';
 }

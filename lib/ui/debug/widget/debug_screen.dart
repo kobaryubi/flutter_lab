@@ -90,6 +90,7 @@ class DebugScreen extends ConsumerWidget {
     (title: 'web view tabs', path: Routes.webViewTabs),
     (title: 'web view javascript', path: Routes.webViewJavascript),
     (title: 'adjust deferred deeplink', path: Routes.adjustDeferredDeeplink),
+    (title: 'talker logs', path: Routes.talkerLogs),
   ];
 
   @override
