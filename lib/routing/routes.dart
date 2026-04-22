@@ -78,4 +78,6 @@ abstract final class Routes {
   static const webViewJavascript = '/web_view_javascript';
 
   static const adjustDeferredDeeplink = '/adjust_deferred_deeplink';
+
+  static const debug = '/debug';
 }
