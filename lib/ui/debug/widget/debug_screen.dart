@@ -3,6 +3,7 @@ import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/debug/view_model/debug_view_model.dart';
+import 'package:flutter_lab/ui/debug/widget/debug_edit_dialog.dart';
 import 'package:flutter_lab/ui/home/widgets/launcher_row.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -96,6 +97,41 @@ class DebugScreen extends ConsumerWidget {
     final uiState = ref.watch(debugViewModelProvider);
     final viewModel = ref.read(debugViewModelProvider.notifier);
 
+    /// Prompts for a new value and saves the parsed result to
+    /// SharedPreferences.
+    Future<void> handleEditLocal({
+      required String key,
+      required Object currentValue,
+    }) async {
+      final edited = await showDebugEditDialog(
+        context: context,
+        storageKey: key,
+        initialValue: currentValue.toString(),
+      );
+
+      if (edited == null) return;
+
+      final parsed = _parseToType(text: edited, template: currentValue);
+
+      await viewModel.saveLocal(key: key, value: parsed);
+    }
+
+    /// Prompts for a new value and saves it to FlutterSecureStorage.
+    Future<void> handleEditSecure({
+      required String key,
+      required String currentValue,
+    }) async {
+      final edited = await showDebugEditDialog(
+        context: context,
+        storageKey: key,
+        initialValue: currentValue,
+      );
+
+      if (edited == null) return;
+
+      await viewModel.saveSecure(key: key, value: edited);
+    }
+
     return Layout(
       appBar: const AppBar(title: Text('Debug')),
       child: ListView(
@@ -114,6 +150,10 @@ class DebugScreen extends ConsumerWidget {
                 value: entry.value.toString(),
                 onCopy: () =>
                     viewModel.copyValue(value: entry.value.toString()),
+                onEdit: () => handleEditLocal(
+                  key: entry.key,
+                  currentValue: entry.value,
+                ),
               ),
           const _SectionHeader('secure storage'),
           if (uiState.secureEntries case AsyncData(:final value))
@@ -122,12 +162,30 @@ class DebugScreen extends ConsumerWidget {
                 storageKey: entry.key,
                 value: entry.value,
                 onCopy: () => viewModel.copyValue(value: entry.value),
+                onEdit: () => handleEditSecure(
+                  key: entry.key,
+                  currentValue: entry.value,
+                ),
               ),
         ],
       ),
     );
   }
 }
+
+/// Parses [text] back to the runtime type of [template].
+///
+/// Used for SharedPreferences edits so the saved value keeps its original
+/// type. Supports the five SharedPreferences types; falls back to String
+/// for anything unexpected.
+Object _parseToType({required String text, required Object template}) =>
+    switch (template) {
+      int() => int.parse(text),
+      bool() => text.toLowerCase() == 'true',
+      double() => double.parse(text),
+      List<String>() => text.split('\n'),
+      _ => text,
+    };
 
 /// Section title rendered inline in the debug list.
 class _SectionHeader extends StatelessWidget {
@@ -142,22 +200,25 @@ class _SectionHeader extends StatelessWidget {
   );
 }
 
-/// A row showing a storage entry with a tap-to-copy action.
+/// A row showing a storage entry. Tap to copy, long-press to edit.
 class _StorageRow extends StatelessWidget {
   const _StorageRow({
     required this.storageKey,
     required this.value,
     required this.onCopy,
+    required this.onEdit,
   });
 
   final String storageKey;
   final String value;
   final VoidCallback onCopy;
+  final VoidCallback onEdit;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
     behavior: HitTestBehavior.opaque,
     onTap: onCopy,
+    onLongPress: onEdit,
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
