@@ -1,13 +1,8 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_lab/application/di/provider.dart';
-import 'package:flutter_lab/data/secure_storage/secure_storage_keys.dart';
-import 'package:flutter_lab/data/shared_preferences/shared_preferences_keys.dart';
-import 'package:flutter_lab/presentation/core/provider/global_snackbar_notifier.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:flutter_lab/ui/debug/view_model/debug_view_model.dart';
 import 'package:flutter_lab/ui/home/widgets/launcher_row.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,9 +11,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 /// current contents of local and secure storage.
 ///
 /// Reached by long-pressing the AppBar title when the app runs in the
-/// `local` flavor. Each route tile navigates via `context.go(path)` so
-/// routes requiring constructor parameters are skipped.
-class DebugScreen extends HookConsumerWidget {
+/// `local` flavor. Route tiles navigate via `context.go(path)` so routes
+/// requiring constructor parameters are skipped.
+class DebugScreen extends ConsumerWidget {
   const DebugScreen({super.key});
 
   static const _routes = <({String title, String path})>[
@@ -98,33 +93,8 @@ class DebugScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final reloadCounter = useState(0);
-
-    final localFuture = useMemoized(() async {
-      final service = ref.read(sharedPreferencesServiceProvider);
-      final raw = await service.getAll(keys: SharedPreferencesKeys.all);
-
-      return <String, Object>{
-        for (final entry in raw.entries)
-          if (entry.value != null) entry.key: entry.value!,
-      };
-    }, [reloadCounter.value]);
-
-    final secureFuture = useMemoized(() {
-      final service = ref.read(secureStorageServiceProvider);
-
-      return service.getAll(keys: SecureStorageKeys.all);
-    }, [reloadCounter.value]);
-
-    final localSnapshot = useFuture(localFuture);
-    final secureSnapshot = useFuture(secureFuture);
-
-    /// Copies [value] to the clipboard and posts a snackbar.
-    Future<void> handleCopy(String value) async {
-      await Clipboard.setData(ClipboardData(text: value));
-
-      ref.read(globalSnackbarProvider.notifier).show(text: 'copied');
-    }
+    final uiState = ref.watch(debugViewModelProvider);
+    final viewModel = ref.read(debugViewModelProvider.notifier);
 
     return Layout(
       appBar: const AppBar(title: Text('Debug')),
@@ -137,20 +107,21 @@ class DebugScreen extends HookConsumerWidget {
               onTap: () => context.go(entry.path),
             ),
           const _SectionHeader('local storage'),
-          if (localSnapshot.data case final entries?)
-            for (final entry in entries.entries)
+          if (uiState.localEntries case AsyncData(:final value))
+            for (final entry in value.entries)
               _StorageRow(
                 storageKey: entry.key,
                 value: entry.value.toString(),
-                onCopy: () => handleCopy(entry.value.toString()),
+                onCopy: () =>
+                    viewModel.copyValue(value: entry.value.toString()),
               ),
           const _SectionHeader('secure storage'),
-          if (secureSnapshot.data case final entries?)
-            for (final entry in entries.entries)
+          if (uiState.secureEntries case AsyncData(:final value))
+            for (final entry in value.entries)
               _StorageRow(
                 storageKey: entry.key,
                 value: entry.value,
-                onCopy: () => handleCopy(entry.value),
+                onCopy: () => viewModel.copyValue(value: entry.value),
               ),
         ],
       ),
