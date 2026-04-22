@@ -1,9 +1,15 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/presentation/core/widget/global_loading_overlay.dart';
+import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_portal/flutter_portal.dart';
+import 'package:go_router/go_router.dart';
 
 /// Screen layout with app bar, content area, and optional bottom navigation.
+///
+/// In the `local` flavor, long-pressing the app bar area navigates to the
+/// DebugScreen so every screen shares a single debug entry point.
 class Layout extends StatelessWidget {
   const Layout({
     required this.appBar,
@@ -17,24 +23,37 @@ class Layout extends StatelessWidget {
   final Widget? bottomNavigationBar;
 
   @override
-  Widget build(BuildContext context) => ColoredBox(
-    color: AppColors.primary,
-    child: SafeArea(
-      child: ColoredBox(
-        color: AppColors.white1,
-        child: Column(
-          crossAxisAlignment: .stretch,
-          children: [
-            appBar,
-            Expanded(
-              child: Portal(
-                child: GlobalLoadingOverlay(child: child),
+  Widget build(BuildContext context) {
+    /// Navigates to the DebugScreen. Only active in the `local` flavor.
+    void handleAppBarLongPress() {
+      if (F.appFlavor != Flavor.local) return;
+
+      context.go(Routes.debug);
+    }
+
+    return ColoredBox(
+      color: AppColors.primary,
+      child: SafeArea(
+        child: ColoredBox(
+          color: AppColors.white1,
+          child: Column(
+            crossAxisAlignment: .stretch,
+            children: [
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onLongPress: handleAppBarLongPress,
+                child: appBar,
               ),
-            ),
-            if (bottomNavigationBar != null) bottomNavigationBar!,
-          ],
+              Expanded(
+                child: Portal(
+                  child: GlobalLoadingOverlay(child: child),
+                ),
+              ),
+              if (bottomNavigationBar != null) bottomNavigationBar!,
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
