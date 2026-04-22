@@ -14,6 +14,13 @@ typedef EventFailureCallback = void Function(EventFailureData data);
 /// (e.g. attribution-based links delivered on first launch).
 typedef DeferredDeeplinkCallback = void Function(String deeplink);
 
+/// Callback invoked when Adjust delivers a direct deep link.
+///
+/// A direct deep link is one received by the OS while the app is running
+/// (e.g. universal links / app links). The SDK forwards the resolved
+/// long-form URL after calling `processAndResolveDeeplink` internally.
+typedef DirectDeeplinkCallback = void Function(String deeplink);
+
 /// Gateway for Adjust SDK operations.
 ///
 /// Abstracts the Adjust SDK behind a domain-layer interface.
@@ -31,6 +38,7 @@ abstract class AdjustGateway {
     EventSuccessCallback? onEventSuccess,
     EventFailureCallback? onEventFailure,
     DeferredDeeplinkCallback? onDeferredDeeplink,
+    DirectDeeplinkCallback? onDirectDeeplink,
     bool isDeferredDeeplinkOpeningEnabled = false,
   });
 

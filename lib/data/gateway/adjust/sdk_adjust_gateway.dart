@@ -2,7 +2,12 @@ import 'dart:io';
 
 import 'package:adjust_sdk/adjust.dart';
 import 'package:adjust_sdk/adjust_config.dart'
-    hide DeferredDeeplinkCallback, EventFailureCallback, EventSuccessCallback;
+    hide
+        DeferredDeeplinkCallback,
+        DirectDeeplinkCallback,
+        EventFailureCallback,
+        EventSuccessCallback;
+import 'package:adjust_sdk/adjust_deeplink.dart';
 import 'package:adjust_sdk/adjust_event.dart';
 import 'package:adjust_sdk/adjust_event_failure.dart';
 import 'package:adjust_sdk/adjust_event_success.dart';
@@ -32,6 +37,7 @@ class SdkAdjustGateway implements AdjustGateway {
     EventSuccessCallback? onEventSuccess,
     EventFailureCallback? onEventFailure,
     DeferredDeeplinkCallback? onDeferredDeeplink,
+    DirectDeeplinkCallback? onDirectDeeplink,
     bool isDeferredDeeplinkOpeningEnabled = false,
   }) async {
     try {
@@ -60,6 +66,20 @@ class SdkAdjustGateway implements AdjustGateway {
           if (deeplink == null) return;
 
           onDeferredDeeplink(deeplink);
+        };
+      }
+
+      if (onDirectDeeplink != null) {
+        config.directDeeplinkCallback = (incomingLink) async {
+          if (incomingLink == null) return;
+
+          final resolved = await Adjust.processAndResolveDeeplink(
+            AdjustDeeplink(incomingLink),
+          );
+
+          if (resolved == null) return;
+
+          onDirectDeeplink(resolved);
         };
       }
 
