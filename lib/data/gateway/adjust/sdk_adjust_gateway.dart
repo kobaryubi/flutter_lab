@@ -106,6 +106,26 @@ class SdkAdjustGateway implements AdjustGateway {
   }
 
   @override
+  AsyncResult<String> getAdid() async {
+    try {
+      final adid = await Adjust.getAdid();
+
+      if (adid == null) {
+        return Failure(
+          Exception(
+            'ADID is not yet available. '
+            'The SDK has not reported its first session.',
+          ),
+        );
+      }
+
+      return Success(adid);
+    } on Exception catch (exception) {
+      return Failure(exception);
+    }
+  }
+
+  @override
   void setPushToken({required String token}) {
     Adjust.setPushToken(token);
   }
