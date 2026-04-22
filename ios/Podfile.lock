@@ -15,14 +15,14 @@ PODS:
   - AdfurikunSDK-iOS/Pangle (4.3.0):
     - AdfurikunSDK-iOS/Core
     - Ads-Global (= 7.8.0.5)
-  - Adjust (5.5.3):
-    - Adjust/Adjust (= 5.5.3)
-  - Adjust/Adjust (5.5.3):
-    - AdjustSignature (= 3.62.0)
-  - adjust_sdk (5.5.1):
-    - Adjust (= 5.5.3)
+  - Adjust (5.6.2):
+    - Adjust/Adjust (= 5.6.2)
+  - Adjust/Adjust (5.6.2):
+    - AdjustSignature (= 3.67.0)
+  - adjust_sdk (5.6.1):
+    - Adjust (= 5.6.2)
     - Flutter
-  - AdjustSignature (3.62.0)
+  - AdjustSignature (3.67.0)
   - Ads-Global (7.8.0.5):
     - Ads-Global/BUAdSDK (= 7.8.0.5)
   - Ads-Global/BUAdSDK (7.8.0.5):
@@ -171,6 +171,8 @@ PODS:
   - FirebaseSharedSwift (12.9.0)
   - FiveAd (2.9.20251119)
   - Flutter (1.0.0)
+  - flutter_secure_storage (6.0.0):
+    - Flutter
   - Google-Mobile-Ads-SDK (12.14.0):
     - GoogleUserMessagingPlatform (>= 1.1)
   - google_mobile_ads (7.0.0):
@@ -301,6 +303,7 @@ DEPENDENCIES:
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - firebase_performance (from `.symlinks/plugins/firebase_performance/ios`)
   - Flutter (from `Flutter`)
+  - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - google_mobile_ads (from `.symlinks/plugins/google_mobile_ads/ios`)
   - in_app_review (from `.symlinks/plugins/in_app_review/ios`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
@@ -382,6 +385,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_performance/ios"
   Flutter:
     :path: Flutter
+  flutter_secure_storage:
+    :path: ".symlinks/plugins/flutter_secure_storage/ios"
   google_mobile_ads:
     :path: ".symlinks/plugins/google_mobile_ads/ios"
   in_app_review:
@@ -411,9 +416,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AdfurikunSDK-iOS: f052d3b80cf6d4b840484619e22e89ec91822d26
-  Adjust: 62f433e6c0d021cb9d46ca7d9806736d29313767
-  adjust_sdk: cecf3a1e4129b38a6da7a2401ec7e38398419725
-  AdjustSignature: 682d788005a6e21557913a9dc0381ae8d943ca0a
+  Adjust: 62ea53a252534df416676e7ac2f1558d60e6e39e
+  adjust_sdk: b0f5480ca829d23c08a51934c634893aa8cc01e0
+  AdjustSignature: 9498705a4ac67b719e31828be4d74fbb8656950c
   Ads-Global: f4958eaa8e92b32a05fab125fed7822be81cf878
   AMoAd: e63ccfe84d9cefe07e03442c2e63753cc0a5f729
   app_links: 3dbc685f76b1693c66a6d9dd1e9ab6f73d97dc0a
@@ -449,6 +454,7 @@ SPEC CHECKSUMS:
   FirebaseSharedSwift: 9d2fa84a46676302b89dbd5e6e62bce2fe376909
   FiveAd: b6aa39df9d85404527f14a9c7729eadbb4cdc799
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  flutter_secure_storage: 1ed9476fba7e7a782b22888f956cce43e2c62f13
   Google-Mobile-Ads-SDK: 4534fd2dfcd3f705c5485a6633c5188d03d4eed2
   google_mobile_ads: df3008bafbe1f2ad6862f87334e560d2f047f902
   GoogleAdsOnDeviceConversion: d68c69dd9581a0f5da02617b6f377e5be483970f
