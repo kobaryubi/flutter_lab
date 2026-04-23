@@ -81,6 +81,7 @@ import 'package:flutter_lab/domain/use_cases/app_store/get_app_store_url_use_cas
 import 'package:flutter_lab/domain/use_cases/battery/get_battery_level_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/clock/get_current_time_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/device_info/get_device_info_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/error_handling/fetch_sample_message_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/google_api/check_google_api_availability_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/in_app_review/check_review_availability_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/in_app_review/request_review_use_case.dart';
@@ -599,3 +600,8 @@ CheckGoogleApiAvailabilityUseCase checkGoogleApiAvailabilityUseCase(
 ) => CheckGoogleApiAvailabilityUseCase(
   googleApiGateway: ref.read(googleApiGatewayProvider),
 );
+
+// error handling
+@riverpod
+FetchSampleMessageUseCase fetchSampleMessageUseCase(Ref ref) =>
+    const FetchSampleMessageUseCase();
