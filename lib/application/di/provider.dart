@@ -115,6 +115,7 @@ import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:talker_dio_logger/talker_dio_logger.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 part 'provider.g.dart';
@@ -132,6 +133,10 @@ Dio dio(Ref ref) {
       contentType: Headers.jsonContentType,
       baseUrl: 'http://localhost:3000',
     ),
+  );
+
+  dio.interceptors.add(
+    TalkerDioLogger(talker: ref.read(talkerProvider)),
   );
 
   DioAdapter(dio: dio)
