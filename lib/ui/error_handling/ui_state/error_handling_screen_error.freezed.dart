@@ -55,13 +55,13 @@ extension ErrorHandlingScreenErrorPatterns on ErrorHandlingScreenError {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( NotFound value)?  notFound,TResult Function( PermissionDenied value)?  permissionDenied,TResult Function( Unavailable value)?  unavailable,TResult Function( Generic value)?  generic,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( NotFoundError value)?  notFound,TResult Function( PermissionDeniedError value)?  permissionDenied,TResult Function( UnavailableError value)?  unavailable,TResult Function( GenericError value)?  generic,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case NotFound() when notFound != null:
-return notFound(_that);case PermissionDenied() when permissionDenied != null:
-return permissionDenied(_that);case Unavailable() when unavailable != null:
-return unavailable(_that);case Generic() when generic != null:
+case NotFoundError() when notFound != null:
+return notFound(_that);case PermissionDeniedError() when permissionDenied != null:
+return permissionDenied(_that);case UnavailableError() when unavailable != null:
+return unavailable(_that);case GenericError() when generic != null:
 return generic(_that);case _:
   return orElse();
 
@@ -80,13 +80,13 @@ return generic(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( NotFound value)  notFound,required TResult Function( PermissionDenied value)  permissionDenied,required TResult Function( Unavailable value)  unavailable,required TResult Function( Generic value)  generic,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( NotFoundError value)  notFound,required TResult Function( PermissionDeniedError value)  permissionDenied,required TResult Function( UnavailableError value)  unavailable,required TResult Function( GenericError value)  generic,}){
 final _that = this;
 switch (_that) {
-case NotFound():
-return notFound(_that);case PermissionDenied():
-return permissionDenied(_that);case Unavailable():
-return unavailable(_that);case Generic():
+case NotFoundError():
+return notFound(_that);case PermissionDeniedError():
+return permissionDenied(_that);case UnavailableError():
+return unavailable(_that);case GenericError():
 return generic(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -101,13 +101,13 @@ return generic(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( NotFound value)?  notFound,TResult? Function( PermissionDenied value)?  permissionDenied,TResult? Function( Unavailable value)?  unavailable,TResult? Function( Generic value)?  generic,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( NotFoundError value)?  notFound,TResult? Function( PermissionDeniedError value)?  permissionDenied,TResult? Function( UnavailableError value)?  unavailable,TResult? Function( GenericError value)?  generic,}){
 final _that = this;
 switch (_that) {
-case NotFound() when notFound != null:
-return notFound(_that);case PermissionDenied() when permissionDenied != null:
-return permissionDenied(_that);case Unavailable() when unavailable != null:
-return unavailable(_that);case Generic() when generic != null:
+case NotFoundError() when notFound != null:
+return notFound(_that);case PermissionDeniedError() when permissionDenied != null:
+return permissionDenied(_that);case UnavailableError() when unavailable != null:
+return unavailable(_that);case GenericError() when generic != null:
 return generic(_that);case _:
   return null;
 
@@ -127,10 +127,10 @@ return generic(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  notFound,TResult Function()?  permissionDenied,TResult Function()?  unavailable,TResult Function()?  generic,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case NotFound() when notFound != null:
-return notFound();case PermissionDenied() when permissionDenied != null:
-return permissionDenied();case Unavailable() when unavailable != null:
-return unavailable();case Generic() when generic != null:
+case NotFoundError() when notFound != null:
+return notFound();case PermissionDeniedError() when permissionDenied != null:
+return permissionDenied();case UnavailableError() when unavailable != null:
+return unavailable();case GenericError() when generic != null:
 return generic();case _:
   return orElse();
 
@@ -151,10 +151,10 @@ return generic();case _:
 
 @optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  notFound,required TResult Function()  permissionDenied,required TResult Function()  unavailable,required TResult Function()  generic,}) {final _that = this;
 switch (_that) {
-case NotFound():
-return notFound();case PermissionDenied():
-return permissionDenied();case Unavailable():
-return unavailable();case Generic():
+case NotFoundError():
+return notFound();case PermissionDeniedError():
+return permissionDenied();case UnavailableError():
+return unavailable();case GenericError():
 return generic();}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -171,10 +171,10 @@ return generic();}
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  notFound,TResult? Function()?  permissionDenied,TResult? Function()?  unavailable,TResult? Function()?  generic,}) {final _that = this;
 switch (_that) {
-case NotFound() when notFound != null:
-return notFound();case PermissionDenied() when permissionDenied != null:
-return permissionDenied();case Unavailable() when unavailable != null:
-return unavailable();case Generic() when generic != null:
+case NotFoundError() when notFound != null:
+return notFound();case PermissionDeniedError() when permissionDenied != null:
+return permissionDenied();case UnavailableError() when unavailable != null:
+return unavailable();case GenericError() when generic != null:
 return generic();case _:
   return null;
 
@@ -186,8 +186,8 @@ return generic();case _:
 /// @nodoc
 
 
-class NotFound implements ErrorHandlingScreenError {
-  const NotFound();
+class NotFoundError implements ErrorHandlingScreenError {
+  const NotFoundError();
   
 
 
@@ -197,7 +197,7 @@ class NotFound implements ErrorHandlingScreenError {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotFound);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NotFoundError);
 }
 
 
@@ -218,8 +218,8 @@ String toString() {
 /// @nodoc
 
 
-class PermissionDenied implements ErrorHandlingScreenError {
-  const PermissionDenied();
+class PermissionDeniedError implements ErrorHandlingScreenError {
+  const PermissionDeniedError();
   
 
 
@@ -229,7 +229,7 @@ class PermissionDenied implements ErrorHandlingScreenError {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PermissionDenied);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PermissionDeniedError);
 }
 
 
@@ -250,8 +250,8 @@ String toString() {
 /// @nodoc
 
 
-class Unavailable implements ErrorHandlingScreenError {
-  const Unavailable();
+class UnavailableError implements ErrorHandlingScreenError {
+  const UnavailableError();
   
 
 
@@ -261,7 +261,7 @@ class Unavailable implements ErrorHandlingScreenError {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Unavailable);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UnavailableError);
 }
 
 
@@ -282,8 +282,8 @@ String toString() {
 /// @nodoc
 
 
-class Generic implements ErrorHandlingScreenError {
-  const Generic();
+class GenericError implements ErrorHandlingScreenError {
+  const GenericError();
   
 
 
@@ -293,7 +293,7 @@ class Generic implements ErrorHandlingScreenError {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Generic);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GenericError);
 }
 
 
