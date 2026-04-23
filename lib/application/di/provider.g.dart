@@ -3922,3 +3922,51 @@ final class CheckGoogleApiAvailabilityUseCaseProvider
 
 String _$checkGoogleApiAvailabilityUseCaseHash() =>
     r'434db0592137eb5399c56541fbe1c47eb740f856';
+
+@ProviderFor(fetchSampleMessageUseCase)
+const fetchSampleMessageUseCaseProvider = FetchSampleMessageUseCaseProvider._();
+
+final class FetchSampleMessageUseCaseProvider
+    extends
+        $FunctionalProvider<
+          FetchSampleMessageUseCase,
+          FetchSampleMessageUseCase,
+          FetchSampleMessageUseCase
+        >
+    with $Provider<FetchSampleMessageUseCase> {
+  const FetchSampleMessageUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'fetchSampleMessageUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$fetchSampleMessageUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<FetchSampleMessageUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  FetchSampleMessageUseCase create(Ref ref) {
+    return fetchSampleMessageUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(FetchSampleMessageUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<FetchSampleMessageUseCase>(value),
+    );
+  }
+}
+
+String _$fetchSampleMessageUseCaseHash() =>
+    r'2bf0cce9a73ec87679ba4561ec89ff6c35c633bb';
