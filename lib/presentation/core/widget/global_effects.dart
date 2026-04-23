@@ -19,10 +19,10 @@ class GlobalEffects extends HookWidget {
 
         if (navigatorContext == null) return;
 
-        showGeneralDialog<void>(
-          context: navigatorContext,
-          pageBuilder: buildDialog,
-        );
+        // showGeneralDialog<void>(
+        //   context: navigatorContext,
+        //   pageBuilder: buildDialog,
+        // );
       });
 
       return null;
