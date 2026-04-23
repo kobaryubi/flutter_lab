@@ -81,5 +81,7 @@ abstract final class Routes {
 
   static const talkerLogs = '/talker_logs';
 
+  static const errorHandling = '/error_handling';
+
   static const debug = '/debug';
 }

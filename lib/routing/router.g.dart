@@ -25,6 +25,7 @@ List<RouteBase> get $appRoutes => [
   $dialogStateRoute,
   $dioCacheRoute,
   $effectVsListenRoute,
+  $errorHandlingRoute,
   $etagCacheRoute,
   $firebasePerformanceRoute,
   $formBuilderRoute,
@@ -536,6 +537,33 @@ mixin $EffectVsListenRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/effect_vs_listen');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $errorHandlingRoute => GoRouteData.$route(
+  path: '/error_handling',
+  name: 'error_handling',
+  factory: $ErrorHandlingRoute._fromState,
+);
+
+mixin $ErrorHandlingRoute on GoRouteData {
+  static ErrorHandlingRoute _fromState(GoRouterState state) =>
+      ErrorHandlingRoute();
+
+  @override
+  String get location => GoRouteData.$location('/error_handling');
 
   @override
   void go(BuildContext context) => context.go(location);

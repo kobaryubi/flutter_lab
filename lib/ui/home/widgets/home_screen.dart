@@ -92,6 +92,7 @@ class HomeScreen extends StatelessWidget {
       title: 'Adjust deferred deep link',
       route: AdjustDeferredDeeplinkRoute(),
     ),
+    AppLink(title: 'error handling', route: ErrorHandlingRoute()),
   ];
 
   @override
