@@ -62,6 +62,7 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   talker_dio_logger: ^5.1.16
   talker_flutter: ^5.1.16
+  talker_riverpod_logger: ^5.1.16
   url_launcher: ^6.3.2
   uuid: ^4.5.1
   vector_graphics: ^1.1.19

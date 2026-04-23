@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/application/di/production_overrides.dart';
+import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/data/http/dev_http_overrides.dart';
 import 'package:flutter_lab/firebase_options_local.dart' as local;
 import 'package:flutter_lab/firebase_options_production.dart' as production;
@@ -14,6 +15,8 @@ import 'package:flutter_lab/flutter_lab_app.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:talker_flutter/talker_flutter.dart';
+import 'package:talker_riverpod_logger/talker_riverpod_logger.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,13 +62,17 @@ Future<void> main() async {
     [DeviceOrientation.portraitUp],
   );
 
-  final overrides = F.appFlavor == .production
-      ? productionOverrides
-      : <Override>[];
+  final talker = Talker();
+
+  final overrides = <Override>[
+    if (F.appFlavor == .production) ...productionOverrides,
+    talkerProvider.overrideWith((ref) => talker),
+  ];
 
   runApp(
     ProviderScope(
       overrides: overrides,
+      observers: [TalkerRiverpodObserver(talker: talker)],
       child: const FlutterLabApp(),
     ),
   );
