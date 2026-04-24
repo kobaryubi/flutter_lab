@@ -70,6 +70,7 @@ List<RouteBase> get $appRoutes => [
   $shellDemoSubRoute,
   $streamSubscriptionRoute,
   $talkerLogsRoute,
+  $tarDownloadRoute,
   $tutorialRoute,
   $urlNavigationRoute,
   $visibilityDetectorRoute,
@@ -1802,6 +1803,32 @@ mixin $TalkerLogsRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/talker_logs');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $tarDownloadRoute => GoRouteData.$route(
+  path: '/tar_download',
+  name: 'tar_download',
+  factory: $TarDownloadRoute._fromState,
+);
+
+mixin $TarDownloadRoute on GoRouteData {
+  static TarDownloadRoute _fromState(GoRouterState state) => TarDownloadRoute();
+
+  @override
+  String get location => GoRouteData.$location('/tar_download');
 
   @override
   void go(BuildContext context) => context.go(location);

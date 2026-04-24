@@ -83,5 +83,7 @@ abstract final class Routes {
 
   static const errorHandling = '/error_handling';
 
+  static const tarDownload = '/tar_download';
+
   static const debug = '/debug';
 }

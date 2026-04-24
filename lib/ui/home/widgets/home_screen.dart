@@ -93,6 +93,7 @@ class HomeScreen extends StatelessWidget {
       route: AdjustDeferredDeeplinkRoute(),
     ),
     AppLink(title: 'error handling', route: ErrorHandlingRoute()),
+    AppLink(title: 'tar download', route: TarDownloadRoute()),
   ];
 
   @override
