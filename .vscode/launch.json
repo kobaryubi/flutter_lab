@@ -8,9 +8,11 @@
             "name": "Flutter Lab Local",
             "type": "dart",
             "request": "launch",
+            "preLaunchTask": "resolve-local-host",
             "args": [
                 "--flavor",
-                "local"
+                "local",
+                "--dart-define-from-file=.dart_define/local.env"
             ]
         },
         {
