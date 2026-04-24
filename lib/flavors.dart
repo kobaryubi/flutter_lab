@@ -17,9 +17,18 @@ class F {
     }
   }
 
+  /// Host used to reach the local nginx asset server.
+  ///
+  /// Override at run time with `--dart-define=LOCAL_HOST=<mac-ip>` so a
+  /// physical device can reach the Mac (the simulator keeps `localhost`).
+  static const _localHost = String.fromEnvironment(
+    'LOCAL_HOST',
+    defaultValue: 'localhost',
+  );
+
   /// Base URL for loading assets (images, etc.).
   static String get assetBaseUrl => switch (appFlavor) {
-    .local => 'http://localhost:8081',
+    .local => 'http://$_localHost:8081',
     .production => 'https://your-bucket.s3.amazonaws.com',
   };
 
