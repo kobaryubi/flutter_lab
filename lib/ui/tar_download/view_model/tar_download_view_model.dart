@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/ui/tar_download/ui_state/tar_download_ui_state.dart';
 import 'package:path_provider/path_provider.dart';
@@ -26,8 +25,7 @@ class TarDownloadViewModel extends _$TarDownloadViewModel {
     state = state.copyWith(result: const AsyncLoading());
 
     final result = await AsyncValue.guard(() async {
-      final dio = ref.read(dioProvider);
-      final response = await dio.get<List<int>>(
+      final response = await Dio().get<List<int>>(
         '${F.assetBaseUrl}/$_fileName',
         options: Options(responseType: ResponseType.bytes),
       );
