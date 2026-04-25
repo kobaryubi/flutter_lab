@@ -46,4 +46,13 @@ class TalkerLoggerGateway implements LoggerGateway {
   }) {
     _talker.error(message, error, stackTrace);
   }
+
+  @override
+  void handle({
+    required Object exception,
+    StackTrace? stackTrace,
+    String? message,
+  }) {
+    _talker.handle(exception, stackTrace, message);
+  }
 }

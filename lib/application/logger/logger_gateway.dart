@@ -35,4 +35,16 @@ abstract class LoggerGateway {
     Object? error,
     StackTrace? stackTrace,
   });
+
+  /// Handles a caught exception, producing a richer error log entry than
+  /// [error] (the underlying SDK can classify it as an error or exception
+  /// and format the stack trace accordingly).
+  ///
+  /// Use this from `catch` blocks; use [error] for ad-hoc error messages
+  /// that don't have an associated exception object.
+  void handle({
+    required Object exception,
+    StackTrace? stackTrace,
+    String? message,
+  });
 }
