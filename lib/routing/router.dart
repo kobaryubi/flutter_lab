@@ -80,6 +80,7 @@ import 'package:flutter_lab/ui/web_view_javascript/widget/web_view_javascript_sc
 import 'package:flutter_lab/ui/web_view_tabs/widget/web_view_tabs_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 part 'adfurikun_route.dart';
 part 'adjust_deferred_deeplink_route.dart';
@@ -170,6 +171,7 @@ GoRouter router(Ref ref) => GoRouter(
       logViewEventUseCase: ref.read(logViewEventUseCaseProvider),
     ),
     ref.read(routeObserverProvider),
+    TalkerRouteObserver(ref.read(talkerProvider)),
     ObserverDemoObserver(
       onEvent: (event) => Future(() {
         if (!ref.exists(observerDemoViewModelProvider)) return;
