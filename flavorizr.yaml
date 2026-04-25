@@ -6,6 +6,8 @@ flavors:
       applicationId: "com.masahikokobayashi.flutterlab.local"
     ios:
       bundleId: "com.masahikokobayashi.flutterlab.local"
+      buildSettings:
+        INFOPLIST_FILE: "Runner/Info-local.plist"
   production:
     app:
       name: "Flutter Lab"
