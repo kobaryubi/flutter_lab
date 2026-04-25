@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
+import 'package:flutter_lab/application/logger/logger_gateway.dart';
 // import 'package:flutter_lab/data/gateway/adfurikun/sdk_adfurikun_gateway.dart';
 import 'package:flutter_lab/data/gateway/adfurikun/mock_adfurikun_gateway.dart';
 // import 'package:flutter_lab/data/gateway/adjust/sdk_adjust_gateway.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart'
 import 'package:flutter_lab/data/gateway/device_info/device_info_plus_device_info_gateway.dart';
 import 'package:flutter_lab/data/gateway/file_system_shortcut_icon_gateway.dart';
 import 'package:flutter_lab/data/gateway/google_api/plugin_google_api_gateway.dart';
+import 'package:flutter_lab/data/gateway/logger/talker_logger_gateway.dart';
 // import 'package:flutter_lab/data/gateway/max/sdk_max_gateway.dart';
 import 'package:flutter_lab/data/gateway/max/mock_max_gateway.dart';
 import 'package:flutter_lab/data/gateway/native_button/platform_native_button_gateway.dart';
@@ -125,6 +127,11 @@ part 'provider.g.dart';
 /// Shared [Talker] instance used for app-wide logging and debugging UI.
 @Riverpod(keepAlive: true)
 Talker talker(Ref ref) => Talker();
+
+/// Application-wide logger, backed by the shared [Talker] instance.
+@Riverpod(keepAlive: true)
+LoggerGateway loggerGateway(Ref ref) =>
+    TalkerLoggerGateway(talker: ref.read(talkerProvider));
 
 // dio
 @riverpod

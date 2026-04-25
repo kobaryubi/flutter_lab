@@ -53,6 +53,52 @@ final class TalkerProvider extends $FunctionalProvider<Talker, Talker, Talker>
 
 String _$talkerHash() => r'c8d646cd20bd75ed0669d004dcd9296d4a741de4';
 
+/// Application-wide logger, backed by the shared [Talker] instance.
+
+@ProviderFor(loggerGateway)
+const loggerGatewayProvider = LoggerGatewayProvider._();
+
+/// Application-wide logger, backed by the shared [Talker] instance.
+
+final class LoggerGatewayProvider
+    extends $FunctionalProvider<LoggerGateway, LoggerGateway, LoggerGateway>
+    with $Provider<LoggerGateway> {
+  /// Application-wide logger, backed by the shared [Talker] instance.
+  const LoggerGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'loggerGatewayProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$loggerGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<LoggerGateway> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  LoggerGateway create(Ref ref) {
+    return loggerGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LoggerGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LoggerGateway>(value),
+    );
+  }
+}
+
+String _$loggerGatewayHash() => r'7202d598665dc1f66e589a424cd81ba8997f5fe7';
+
 @ProviderFor(dio)
 const dioProvider = DioProvider._();
 
