@@ -1,3 +1,27 @@
+# Default instruction set with `ios:plist` omitted so flavorizr does not
+# overwrite the hand-edited Info-local.plist / Info.plist files.
+instructions:
+  # Prepare
+  - assets:download
+  - assets:extract
+
+  # Android
+  - android:androidManifest
+  - android:buildGradle
+  - android:dummyAssets
+  - android:icons
+
+  # iOS (ios:plist intentionally omitted)
+  - ios:xcconfig
+  - ios:buildTargets
+  - ios:schema
+  - ios:dummyAssets
+  - ios:icons
+  - ios:launchScreen
+
+  # Cleanup
+  - assets:clean
+
 flavors:
   local:
     app:
