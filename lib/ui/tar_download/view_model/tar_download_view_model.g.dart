@@ -57,7 +57,7 @@ final class TarDownloadViewModelProvider
 }
 
 String _$tarDownloadViewModelHash() =>
-    r'e5edee6aba10e887cb01a60c8edb9ff3db9e90e0';
+    r'e5032b676b36305c6d4f5a00a44e787f56f17bc6';
 
 /// ViewModel for the tar-download sample screen.
 ///
