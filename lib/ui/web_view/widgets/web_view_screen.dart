@@ -29,6 +29,7 @@ class _Body extends HookWidget {
   Widget build(BuildContext context) {
     final controller = useMemoized(WebViewController.new, []);
     final interceptedUrl = useState<String?>(null);
+    final currentUrl = useState<String?>(null);
 
     /// Handles navigation requests by intercepting YouTube URLs.
     NavigationDecision handleNavigationRequest(NavigationRequest request) {
@@ -43,6 +44,11 @@ class _Body extends HookWidget {
       return NavigationDecision.navigate;
     }
 
+    /// Handles tap on the get URL button by reading the current webview URL.
+    Future<void> handleGetUrlTap() async {
+      currentUrl.value = await controller.currentUrl();
+    }
+
     final webView = useWebView(
       controller: controller,
       initialUrl: url,
@@ -52,6 +58,13 @@ class _Body extends HookWidget {
     return Column(
       children: [
         Text('Status: ${webView.status.name}'),
+
+        GestureDetector(
+          onTap: handleGetUrlTap,
+          child: const Text('Get URL'),
+        ),
+
+        if (currentUrl.value != null) Text('Current URL: ${currentUrl.value}'),
 
         if (interceptedUrl.value != null)
           Text('Intercepted YouTube URL: ${interceptedUrl.value}'),
