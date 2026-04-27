@@ -78,6 +78,7 @@ List<RouteBase> get $appRoutes => [
   $webViewJavascriptRoute,
   $webViewRoute,
   $webViewTabsRoute,
+  $webviewCookieRoute,
 ];
 
 RouteBase get $adfurikunRoute => GoRouteData.$route(
@@ -2017,6 +2018,33 @@ mixin $WebViewTabsRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/web_view_tabs');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $webviewCookieRoute => GoRouteData.$route(
+  path: '/webview_cookie',
+  name: 'webview_cookie',
+  factory: $WebviewCookieRoute._fromState,
+);
+
+mixin $WebviewCookieRoute on GoRouteData {
+  static WebviewCookieRoute _fromState(GoRouterState state) =>
+      WebviewCookieRoute();
+
+  @override
+  String get location => GoRouteData.$location('/webview_cookie');
 
   @override
   void go(BuildContext context) => context.go(location);

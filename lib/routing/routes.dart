@@ -77,6 +77,7 @@ abstract final class Routes {
   static const streamSubscription = '/stream_subscription';
   static const webViewTabs = '/web_view_tabs';
   static const webViewJavascript = '/web_view_javascript';
+  static const webviewCookie = '/webview_cookie';
 
   static const adjustDeferredDeeplink = '/adjust_deferred_deeplink';
 

@@ -79,6 +79,7 @@ import 'package:flutter_lab/ui/visibility_detector/widget/visibility_detector_sc
 import 'package:flutter_lab/ui/web_view/widgets/web_view_screen.dart';
 import 'package:flutter_lab/ui/web_view_javascript/widget/web_view_javascript_screen.dart';
 import 'package:flutter_lab/ui/web_view_tabs/widget/web_view_tabs_screen.dart';
+import 'package:flutter_lab/ui/webview_cookie/widget/webview_cookie_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:talker_flutter/talker_flutter.dart';
@@ -153,6 +154,7 @@ part 'visibility_detector_route.dart';
 part 'web_view_javascript_route.dart';
 part 'web_view_route.dart';
 part 'web_view_tabs_route.dart';
+part 'webview_cookie_route.dart';
 
 /// Global key for the root [Navigator]. Allows app-level widgets (outside
 /// the router subtree) to dispatch navigator operations such as showing a

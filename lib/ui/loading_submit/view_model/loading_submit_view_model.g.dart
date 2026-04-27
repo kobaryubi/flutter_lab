@@ -45,7 +45,7 @@ final class LoadingSubmitViewModelProvider
 }
 
 String _$loadingSubmitViewModelHash() =>
-    r'453814928fef011e61116296c62b5bfe12fa3976';
+    r'36b1f484569a3f1bce26b40f2181d3860aeaac01';
 
 /// ViewModel that simulates both a data fetch and a form submission.
 
