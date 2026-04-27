@@ -36,6 +36,7 @@ List<RouteBase> get $appRoutes => [
   $launchUrlDetailRoute,
   $launchUrlRoute,
   $loadingRoute,
+  $loadingSubmitRoute,
   $localIconRoute,
   $localPathsRoute,
   $maxRoute,
@@ -849,6 +850,33 @@ mixin $LoadingRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/loading');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $loadingSubmitRoute => GoRouteData.$route(
+  path: '/loading_submit',
+  name: 'loading_submit',
+  factory: $LoadingSubmitRoute._fromState,
+);
+
+mixin $LoadingSubmitRoute on GoRouteData {
+  static LoadingSubmitRoute _fromState(GoRouterState state) =>
+      LoadingSubmitRoute();
+
+  @override
+  String get location => GoRouteData.$location('/loading_submit');
 
   @override
   void go(BuildContext context) => context.go(location);

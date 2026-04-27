@@ -24,6 +24,7 @@ abstract final class Routes {
   static const ocr = '/ocr';
   static const ocrResult = '/ocr_result';
   static const loading = '/loading';
+  static const loadingSubmit = '/loading_submit';
   static const formBuilder = '/form_builder';
   static const permission = '/permission';
   static const popScope = '/pop_scope';
