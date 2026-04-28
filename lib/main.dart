@@ -8,6 +8,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/application/di/production_overrides.dart';
 import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/data/http/dev_http_overrides.dart';
+import 'package:flutter_lab/firebase_options_fcm_local.dart' as fcm_local;
+import 'package:flutter_lab/firebase_options_fcm_production.dart'
+    as fcm_production;
 import 'package:flutter_lab/firebase_options_local.dart' as local;
 import 'package:flutter_lab/firebase_options_production.dart' as production;
 import 'package:flutter_lab/flavors.dart';
@@ -32,6 +35,12 @@ Future<void> main() async {
       : production.DefaultFirebaseOptions.currentPlatform;
 
   await Firebase.initializeApp(options: firebaseOptions);
+
+  final fcmOptions = F.appFlavor == .local
+      ? fcm_local.DefaultFirebaseOptions.currentPlatform
+      : fcm_production.DefaultFirebaseOptions.currentPlatform;
+
+  await Firebase.initializeApp(name: 'fcm', options: fcmOptions);
 
   /// Catches Flutter framework errors, presents them on screen,
   /// and reports to Crashlytics.
