@@ -272,6 +272,57 @@ fvm dart pub global run flutterfire_cli:flutterfire configure \
   -y
 ```
 
+### FlutterFire CLI (FCM-only secondary project)
+
+A second Firebase project is loaded at runtime via
+`Firebase.initializeApp(name: 'fcm', options: …)` and is used only for Firebase Cloud Messaging.
+Only the generated Dart options file is kept; the platform files
+(`GoogleService-Info.plist`, `google-services.json`) and `firebase.json` edits are discarded
+afterwards because the default Firebase project already owns those slots.
+
+Prerequisites:
+
+- Create `flutter-lab-fcm-local` and `flutter-lab-fcm-production` in the Firebase Console.
+- Inside each, register the iOS and Android apps with the same bundle id / applicationId as the
+  matching flavor (`com.masahikokobayashi.flutterlab.local`, `com.masahikokobayashi.flutterlab`).
+- Upload the APNs Auth Key (.p8) under each new project's *Cloud Messaging* settings.
+
+```sh
+# FCM secondary project — local flavor
+# --ios-build-config is required to skip the interactive prompt; the value
+# does not matter because firebase.json is reverted right after.
+fvm dart pub global run flutterfire_cli:flutterfire configure \
+  --project=flutter-lab-fcm-local \
+  --out=lib/firebase_options_fcm_local.dart \
+  --platforms=android,ios \
+  --ios-build-config=Debug-local \
+  --ios-out=ios/Runner/Firebase/_fcm_local_tmp/GoogleService-Info.plist \
+  --android-out=android/app/src/_fcm_local_tmp/google-services.json \
+  --android-package-name=com.masahikokobayashi.flutterlab.local \
+  --ios-bundle-id=com.masahikokobayashi.flutterlab.local \
+  -y
+
+# FCM secondary project — production flavor
+fvm dart pub global run flutterfire_cli:flutterfire configure \
+  --project=flutter-lab-fcm-production \
+  --out=lib/firebase_options_fcm_production.dart \
+  --platforms=android,ios \
+  --ios-build-config=Debug-production \
+  --ios-out=ios/Runner/Firebase/_fcm_production_tmp/GoogleService-Info.plist \
+  --android-out=android/app/src/_fcm_production_tmp/google-services.json \
+  --android-package-name=com.masahikokobayashi.flutterlab \
+  --ios-bundle-id=com.masahikokobayashi.flutterlab \
+  -y
+
+# Keep only lib/firebase_options_fcm_*.dart. Revert firebase.json and remove the throwaway
+# platform files (they are not used at build time).
+git checkout firebase.json
+rm -rf ios/Runner/Firebase/_fcm_local_tmp \
+       ios/Runner/Firebase/_fcm_production_tmp \
+       android/app/src/_fcm_local_tmp \
+       android/app/src/_fcm_production_tmp
+```
+
 ### Firebase Analytics DebugView
 
 #### iOS
