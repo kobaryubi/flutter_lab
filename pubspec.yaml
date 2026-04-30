@@ -78,6 +78,7 @@ dependencies:
   google_mobile_ads: ^7.0.0
   firebase_crashlytics: ^5.1.0
   visibility_detector: ^0.4.0+2
+  image: ^4.8.0
 
 dev_dependencies:
   patrol: ^4.3.0
