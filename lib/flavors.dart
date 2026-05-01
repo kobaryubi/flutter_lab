@@ -32,6 +32,14 @@ class F {
     .production => 'https://your-bucket.s3.amazonaws.com',
   };
 
+  /// Base URL for detail pages loaded in a WebView.
+  ///
+  /// Combined with an `id` to form `<detailBaseUrl>/<id>.html`.
+  static String get detailBaseUrl => switch (appFlavor) {
+    .local => 'http://$_localHost:8081',
+    .production => 'https://your-domain.example.com',
+  };
+
   /// Test device advertising IDs for AppLovin MAX SDK test mode.
   static List<String> get testDeviceAdvertisingIds {
     switch (appFlavor) {
