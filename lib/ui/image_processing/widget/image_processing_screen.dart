@@ -83,8 +83,9 @@ class ImageProcessingScreen extends HookWidget {
           if (original.value case final bytes?) Image.memory(bytes),
 
           const Text('Variants'),
-          Row(
+          Wrap(
             spacing: 8,
+            runSpacing: 8,
             children: [
               for (final variant in variants.value)
                 Column(
