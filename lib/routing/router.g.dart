@@ -32,6 +32,7 @@ List<RouteBase> get $appRoutes => [
   $googleApiRoute,
   $homeRoute,
   $horizontalLayoutRoute,
+  $imageProcessingRoute,
   $inAppReviewRoute,
   $launchUrlDetailRoute,
   $launchUrlRoute,
@@ -722,6 +723,33 @@ mixin $HorizontalLayoutRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/horizontal_layout');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $imageProcessingRoute => GoRouteData.$route(
+  path: '/image_processing',
+  name: 'image_processing',
+  factory: $ImageProcessingRoute._fromState,
+);
+
+mixin $ImageProcessingRoute on GoRouteData {
+  static ImageProcessingRoute _fromState(GoRouterState state) =>
+      ImageProcessingRoute();
+
+  @override
+  String get location => GoRouteData.$location('/image_processing');
 
   @override
   void go(BuildContext context) => context.go(location);

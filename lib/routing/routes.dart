@@ -51,6 +51,8 @@ abstract final class Routes {
 
   static const horizontalLayout = '/horizontal_layout';
 
+  static const imageProcessing = '/image_processing';
+
   static const routing = '/routing';
   static const routingCupertino = '/routing/cupertino';
   static const routingCupertinoFullscreenDialog =
