@@ -12,7 +12,8 @@
             "args": [
                 "--flavor",
                 "local",
-                "--dart-define-from-file=.dart_define/local.env"
+                "--dart-define-from-file=.dart_define/local.env",
+                "--verbose"
             ]
         },
         {
