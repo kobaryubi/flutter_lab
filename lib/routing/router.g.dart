@@ -17,6 +17,7 @@ List<RouteBase> get $appRoutes => [
   $asyncStateRaceRoute,
   $autoMapprDemoRoute,
   $brightnessRoute,
+  $cameraRoute,
   $clockRoute,
   $counterRoute,
   $crashlyticsRoute,
@@ -332,6 +333,32 @@ mixin $BrightnessRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/brightness');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $cameraRoute => GoRouteData.$route(
+  path: '/camera',
+  name: 'camera',
+  factory: $CameraRoute._fromState,
+);
+
+mixin $CameraRoute on GoRouteData {
+  static CameraRoute _fromState(GoRouterState state) => CameraRoute();
+
+  @override
+  String get location => GoRouteData.$location('/camera');
 
   @override
   void go(BuildContext context) => context.go(location);

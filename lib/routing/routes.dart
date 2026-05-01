@@ -53,6 +53,8 @@ abstract final class Routes {
 
   static const imageProcessing = '/image_processing';
 
+  static const camera = '/camera';
+
   static const routing = '/routing';
   static const routingCupertino = '/routing/cupertino';
   static const routingCupertinoFullscreenDialog =
