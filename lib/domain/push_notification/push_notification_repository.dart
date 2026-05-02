@@ -10,8 +10,8 @@ abstract class PushNotificationRepository {
   /// Returns the APNs token (iOS only), or `null` on other platforms.
   Future<String?> getApnsToken();
 
-  /// Returns the current device registration token.
-  Future<String?> getDeviceToken();
+  /// Returns the current push token.
+  Future<String?> getPushToken();
 
   /// Stream that emits a new token whenever the push token is refreshed.
   Stream<String> get onPushTokenRefresh;

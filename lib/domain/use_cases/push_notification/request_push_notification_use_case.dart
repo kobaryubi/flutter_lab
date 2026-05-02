@@ -25,7 +25,7 @@ class RequestPushNotificationUseCase {
       final apnsToken = await _pushNotificationRepository.getApnsToken();
       log('apnsToken: $apnsToken');
 
-      final deviceToken = await _pushNotificationRepository.getDeviceToken();
+      final deviceToken = await _pushNotificationRepository.getPushToken();
       log('deviceToken: $deviceToken');
 
       return PushNotificationPermission(

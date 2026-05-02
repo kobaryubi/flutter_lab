@@ -20,7 +20,7 @@ class FirebaseMessagingPushNotificationRepository
   Future<String?> getApnsToken() => _instance.getAPNSToken();
 
   @override
-  Future<String?> getDeviceToken() => _instance.getToken();
+  Future<String?> getPushToken() => _instance.getToken();
 
   @override
   Stream<String> get onPushTokenRefresh => _instance.onTokenRefresh;
