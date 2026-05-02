@@ -4016,3 +4016,99 @@ final class FetchSampleMessageUseCaseProvider
 
 String _$fetchSampleMessageUseCaseHash() =>
     r'2bf0cce9a73ec87679ba4561ec89ff6c35c633bb';
+
+@ProviderFor(informationRepository)
+const informationRepositoryProvider = InformationRepositoryProvider._();
+
+final class InformationRepositoryProvider
+    extends
+        $FunctionalProvider<
+          InformationRepository,
+          InformationRepository,
+          InformationRepository
+        >
+    with $Provider<InformationRepository> {
+  const InformationRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'informationRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$informationRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<InformationRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  InformationRepository create(Ref ref) {
+    return informationRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(InformationRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<InformationRepository>(value),
+    );
+  }
+}
+
+String _$informationRepositoryHash() =>
+    r'acac99a8f81ee7c2cebf40e963d7ce5e10b8b7b2';
+
+@ProviderFor(getDetailUrlUseCase)
+const getDetailUrlUseCaseProvider = GetDetailUrlUseCaseProvider._();
+
+final class GetDetailUrlUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetDetailUrlUseCase,
+          GetDetailUrlUseCase,
+          GetDetailUrlUseCase
+        >
+    with $Provider<GetDetailUrlUseCase> {
+  const GetDetailUrlUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getDetailUrlUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getDetailUrlUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetDetailUrlUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetDetailUrlUseCase create(Ref ref) {
+    return getDetailUrlUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetDetailUrlUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetDetailUrlUseCase>(value),
+    );
+  }
+}
+
+String _$getDetailUrlUseCaseHash() =>
+    r'a6f48a39983f13422b3008624a17f22b3b04249c';

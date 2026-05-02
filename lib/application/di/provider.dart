@@ -29,6 +29,7 @@ import 'package:flutter_lab/data/repositories/app_store/platform_app_store_repos
 import 'package:flutter_lab/data/repositories/dio_cache/dio_http_cache_repository.dart';
 import 'package:flutter_lab/data/repositories/etag_cache/s3_etag_cache_repository.dart';
 import 'package:flutter_lab/data/repositories/in_app_review/plugin_in_app_review_repository.dart';
+import 'package:flutter_lab/data/repositories/information/flavor_information_repository.dart';
 import 'package:flutter_lab/data/repositories/location/platform_location_repository.dart';
 import 'package:flutter_lab/data/repositories/navigation/mock_url_navigation_list_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
@@ -52,6 +53,7 @@ import 'package:flutter_lab/domain/etag_cache/etag_cache_repository.dart';
 import 'package:flutter_lab/domain/google_api/google_api_gateway.dart';
 import 'package:flutter_lab/domain/http_cache/http_cache_repository.dart';
 import 'package:flutter_lab/domain/in_app_review/in_app_review_repository.dart';
+import 'package:flutter_lab/domain/information/information_repository.dart';
 import 'package:flutter_lab/domain/location/location_repository.dart';
 import 'package:flutter_lab/domain/max/max_gateway.dart';
 import 'package:flutter_lab/domain/native_button/native_button_gateway.dart';
@@ -87,6 +89,7 @@ import 'package:flutter_lab/domain/use_cases/error_handling/fetch_sample_message
 import 'package:flutter_lab/domain/use_cases/google_api/check_google_api_availability_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/in_app_review/check_review_availability_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/in_app_review/request_review_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/information/get_detail_url_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/watch_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/max/initialize_max_use_case.dart';
@@ -111,7 +114,6 @@ import 'package:flutter_lab/domain/use_cases/push_notification/request_push_noti
 import 'package:flutter_lab/domain/use_cases/shortcut/copy_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/delete_all_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/text_recognition/recognize_text_use_case.dart';
-// import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/gen/pigeon/pigeon.g.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
@@ -612,3 +614,13 @@ CheckGoogleApiAvailabilityUseCase checkGoogleApiAvailabilityUseCase(
 @riverpod
 FetchSampleMessageUseCase fetchSampleMessageUseCase(Ref ref) =>
     const FetchSampleMessageUseCase();
+
+// information
+@riverpod
+InformationRepository informationRepository(Ref ref) =>
+    const FlavorInformationRepository();
+
+@riverpod
+GetDetailUrlUseCase getDetailUrlUseCase(Ref ref) => GetDetailUrlUseCase(
+  informationRepository: ref.read(informationRepositoryProvider),
+);
