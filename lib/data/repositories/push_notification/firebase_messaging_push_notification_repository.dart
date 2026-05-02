@@ -39,6 +39,18 @@ class FirebaseMessagingPushNotificationRepository
       });
 
   @override
+  AsyncResult<Unit> rotatePushToken() async {
+    try {
+      await _instance.deleteToken();
+      await _instance.getToken();
+
+      return const Success(unit);
+    } on Exception catch (exception) {
+      return exception.toFailure();
+    }
+  }
+
+  @override
   AsyncResult<Unit> registerToken({
     required String token,
   }) async {

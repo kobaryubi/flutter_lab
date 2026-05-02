@@ -16,6 +16,12 @@ abstract class PushNotificationRepository {
   /// Stream that emits a new token whenever the push token is refreshed.
   Stream<String> get onPushTokenRefresh;
 
+  /// Deletes the current push token and provisions a new one.
+  ///
+  /// Use this to force a refresh from a debug action; the new token is
+  /// delivered through [onPushTokenRefresh].
+  AsyncResult<Unit> rotatePushToken();
+
   /// Sends the given [token] to the server for registration.
   AsyncResult<Unit> registerToken({required String token});
 }
