@@ -277,7 +277,9 @@ WatchNativeButtonTapUseCase watchNativeButtonTapUseCase(Ref ref) =>
 // push notification
 @riverpod
 PushNotificationRepository pushNotificationRepository(Ref ref) =>
-    FirebaseMessagingPushNotificationRepository();
+    FirebaseMessagingPushNotificationRepository(
+      logger: ref.read(loggerGatewayProvider),
+    );
 
 @riverpod
 RequestPushNotificationUseCase requestPushNotificationUseCase(Ref ref) =>

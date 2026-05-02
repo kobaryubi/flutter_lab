@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_lab/application/logger/logger_gateway.dart';
 import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -8,7 +9,14 @@ import 'package:result_dart/result_dart.dart';
 /// [FirebaseMessaging] SDK directly.
 class FirebaseMessagingPushNotificationRepository
     implements PushNotificationRepository {
+  /// Creates a [FirebaseMessagingPushNotificationRepository] that logs
+  /// push-token refresh events through the given [logger].
+  FirebaseMessagingPushNotificationRepository({
+    required LoggerGateway logger,
+  }) : _logger = logger;
+
   final FirebaseMessaging _instance = FirebaseMessaging.instance;
+  final LoggerGateway _logger;
 
   @override
   Future<String> requestPermission() async {
@@ -23,7 +31,12 @@ class FirebaseMessagingPushNotificationRepository
   Future<String?> getPushToken() => _instance.getToken();
 
   @override
-  Stream<String> get onPushTokenRefresh => _instance.onTokenRefresh;
+  Stream<String> get onPushTokenRefresh =>
+      _instance.onTokenRefresh.map((token) {
+        _logger.info('PushTokenRefresh: $token');
+
+        return token;
+      });
 
   @override
   AsyncResult<Unit> registerToken({
