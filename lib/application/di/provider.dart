@@ -111,6 +111,7 @@ import 'package:flutter_lab/domain/use_cases/profile_passport/start_profile_pass
 import 'package:flutter_lab/domain/use_cases/push_notification/on_push_token_refresh_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/register_token_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/request_push_notification_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/push_notification/rotate_push_token_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/copy_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/delete_all_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/text_recognition/recognize_text_use_case.dart';
@@ -297,6 +298,12 @@ OnPushTokenRefreshUseCase onPushTokenRefreshUseCase(Ref ref) =>
 RegisterTokenUseCase registerTokenUseCase(Ref ref) => RegisterTokenUseCase(
   pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
 );
+
+@riverpod
+RotatePushTokenUseCase rotatePushTokenUseCase(Ref ref) =>
+    RotatePushTokenUseCase(
+      pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
+    );
 
 /// Stream of push token refresh events.
 @riverpod

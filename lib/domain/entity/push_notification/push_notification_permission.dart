@@ -7,6 +7,7 @@ part 'push_notification_permission.freezed.dart';
 abstract class PushNotificationPermission with _$PushNotificationPermission {
   const factory PushNotificationPermission({
     required String authorizationStatus,
+    required String? apnsToken,
     required String? deviceToken,
   }) = _PushNotificationPermission;
 }

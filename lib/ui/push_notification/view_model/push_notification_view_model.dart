@@ -19,4 +19,15 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
       ),
     );
   }
+
+  /// Forces a push token rotation. The new token is delivered via the
+  /// `onPushTokenRefresh` stream and logged through talker.
+  Future<void> rotatePushToken() async {
+    final useCase = ref.read(rotatePushTokenUseCaseProvider);
+    final rotation = await AsyncValue.guard(() async {
+      (await useCase.call()).getOrThrow();
+    });
+
+    state = state.copyWith(rotation: rotation);
+  }
 }

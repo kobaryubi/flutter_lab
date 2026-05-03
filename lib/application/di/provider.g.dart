@@ -1082,7 +1082,7 @@ final class PushNotificationRepositoryProvider
 }
 
 String _$pushNotificationRepositoryHash() =>
-    r'89b774292cdb47e914aa2f04598507bc0adca5f0';
+    r'ea2038e699cdd9e2c346ffec3387c71c94ea355e';
 
 @ProviderFor(requestPushNotificationUseCase)
 const requestPushNotificationUseCaseProvider =
@@ -1230,6 +1230,54 @@ final class RegisterTokenUseCaseProvider
 
 String _$registerTokenUseCaseHash() =>
     r'b2f98225e13cea9f7b8f150e25d8bad60b94fd65';
+
+@ProviderFor(rotatePushTokenUseCase)
+const rotatePushTokenUseCaseProvider = RotatePushTokenUseCaseProvider._();
+
+final class RotatePushTokenUseCaseProvider
+    extends
+        $FunctionalProvider<
+          RotatePushTokenUseCase,
+          RotatePushTokenUseCase,
+          RotatePushTokenUseCase
+        >
+    with $Provider<RotatePushTokenUseCase> {
+  const RotatePushTokenUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'rotatePushTokenUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$rotatePushTokenUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<RotatePushTokenUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  RotatePushTokenUseCase create(Ref ref) {
+    return rotatePushTokenUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(RotatePushTokenUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<RotatePushTokenUseCase>(value),
+    );
+  }
+}
+
+String _$rotatePushTokenUseCaseHash() =>
+    r'2e89bbe3e819eef0532b54f0ff0f8cbf02248705';
 
 /// Stream of push token refresh events.
 
@@ -4063,7 +4111,7 @@ final class InformationRepositoryProvider
 }
 
 String _$informationRepositoryHash() =>
-    r'acac99a8f81ee7c2cebf40e963d7ce5e10b8b7b2';
+    r'4f1cac72f4debf495f8d032a6aab0b8e95fe4b75';
 
 @ProviderFor(getDetailUrlUseCase)
 const getDetailUrlUseCaseProvider = GetDetailUrlUseCaseProvider._();

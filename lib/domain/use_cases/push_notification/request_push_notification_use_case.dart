@@ -30,6 +30,7 @@ class RequestPushNotificationUseCase {
 
       return PushNotificationPermission(
         authorizationStatus: authorizationStatus,
+        apnsToken: apnsToken,
         deviceToken: deviceToken,
       ).toSuccess();
     } on Exception catch (exception) {

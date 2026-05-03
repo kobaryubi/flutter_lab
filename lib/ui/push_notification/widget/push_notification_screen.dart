@@ -28,7 +28,13 @@ class _Body extends ConsumerWidget {
       viewModel.requestPushNotificationPermission();
     }
 
+    /// Forces a push token rotation so onPushTokenRefresh fires.
+    void handleRotateToken() {
+      viewModel.rotatePushToken();
+    }
+
     final permission = uiState.permission;
+    final rotation = uiState.rotation;
 
     return Column(
       crossAxisAlignment: .stretch,
@@ -39,8 +45,16 @@ class _Body extends ConsumerWidget {
         ),
         if (permission case AsyncData(:final value)) ...[
           Text('Authorization: ${value.authorizationStatus}'),
+          Text('APNs Token: ${value.apnsToken ?? "N/A"}'),
           Text('Device Token: ${value.deviceToken ?? "N/A"}'),
         ],
+        GestureDetector(
+          onTap: handleRotateToken,
+          child: const Text('Rotate Token'),
+        ),
+        if (rotation case AsyncLoading()) const Text('Rotating...'),
+        if (rotation case AsyncData()) const Text('Token rotated.'),
+        if (rotation case AsyncError(:final error)) Text('Error: $error'),
       ],
     );
   }

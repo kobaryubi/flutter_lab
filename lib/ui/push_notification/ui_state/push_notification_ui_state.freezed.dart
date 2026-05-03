@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PushNotificationUiState {
 
- AsyncValue<PushNotificationPermission>? get permission;
+ AsyncValue<PushNotificationPermission>? get permission; AsyncValue<void>? get rotation;
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $PushNotificationUiStateCopyWith<PushNotificationUiState> get copyWith => _$Push
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.rotation, rotation) || other.rotation == rotation));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,permission);
+int get hashCode => Object.hash(runtimeType,permission,rotation);
 
 @override
 String toString() {
-  return 'PushNotificationUiState(permission: $permission)';
+  return 'PushNotificationUiState(permission: $permission, rotation: $rotation)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $PushNotificationUiStateCopyWith<$Res>  {
   factory $PushNotificationUiStateCopyWith(PushNotificationUiState value, $Res Function(PushNotificationUiState) _then) = _$PushNotificationUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<PushNotificationPermission>? permission
+ AsyncValue<PushNotificationPermission>? permission, AsyncValue<void>? rotation
 });
 
 
@@ -62,10 +62,11 @@ class _$PushNotificationUiStateCopyWithImpl<$Res>
 
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? permission = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? permission = freezed,Object? rotation = freezed,}) {
   return _then(_self.copyWith(
 permission: freezed == permission ? _self.permission : permission // ignore: cast_nullable_to_non_nullable
-as AsyncValue<PushNotificationPermission>?,
+as AsyncValue<PushNotificationPermission>?,rotation: freezed == rotation ? _self.rotation : rotation // ignore: cast_nullable_to_non_nullable
+as AsyncValue<void>?,
   ));
 }
 
@@ -150,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState() when $default != null:
-return $default(_that.permission);case _:
+return $default(_that.permission,_that.rotation);case _:
   return orElse();
 
 }
@@ -171,10 +172,10 @@ return $default(_that.permission);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation)  $default,) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState():
-return $default(_that.permission);case _:
+return $default(_that.permission,_that.rotation);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +192,10 @@ return $default(_that.permission);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<PushNotificationPermission>? permission)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation)?  $default,) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState() when $default != null:
-return $default(_that.permission);case _:
+return $default(_that.permission,_that.rotation);case _:
   return null;
 
 }
@@ -206,10 +207,11 @@ return $default(_that.permission);case _:
 
 
 class _PushNotificationUiState implements PushNotificationUiState {
-  const _PushNotificationUiState({this.permission});
+  const _PushNotificationUiState({this.permission, this.rotation});
   
 
 @override final  AsyncValue<PushNotificationPermission>? permission;
+@override final  AsyncValue<void>? rotation;
 
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -221,16 +223,16 @@ _$PushNotificationUiStateCopyWith<_PushNotificationUiState> get copyWith => __$P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.rotation, rotation) || other.rotation == rotation));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,permission);
+int get hashCode => Object.hash(runtimeType,permission,rotation);
 
 @override
 String toString() {
-  return 'PushNotificationUiState(permission: $permission)';
+  return 'PushNotificationUiState(permission: $permission, rotation: $rotation)';
 }
 
 
@@ -241,7 +243,7 @@ abstract mixin class _$PushNotificationUiStateCopyWith<$Res> implements $PushNot
   factory _$PushNotificationUiStateCopyWith(_PushNotificationUiState value, $Res Function(_PushNotificationUiState) _then) = __$PushNotificationUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<PushNotificationPermission>? permission
+ AsyncValue<PushNotificationPermission>? permission, AsyncValue<void>? rotation
 });
 
 
@@ -258,10 +260,11 @@ class __$PushNotificationUiStateCopyWithImpl<$Res>
 
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? permission = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? permission = freezed,Object? rotation = freezed,}) {
   return _then(_PushNotificationUiState(
 permission: freezed == permission ? _self.permission : permission // ignore: cast_nullable_to_non_nullable
-as AsyncValue<PushNotificationPermission>?,
+as AsyncValue<PushNotificationPermission>?,rotation: freezed == rotation ? _self.rotation : rotation // ignore: cast_nullable_to_non_nullable
+as AsyncValue<void>?,
   ));
 }
 

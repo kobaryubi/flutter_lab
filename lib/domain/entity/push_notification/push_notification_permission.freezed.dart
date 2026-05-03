@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PushNotificationPermission {
 
- String get authorizationStatus; String? get deviceToken;
+ String get authorizationStatus; String? get apnsToken; String? get deviceToken;
 /// Create a copy of PushNotificationPermission
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $PushNotificationPermissionCopyWith<PushNotificationPermission> get copyWith => 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotificationPermission&&(identical(other.authorizationStatus, authorizationStatus) || other.authorizationStatus == authorizationStatus)&&(identical(other.deviceToken, deviceToken) || other.deviceToken == deviceToken));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotificationPermission&&(identical(other.authorizationStatus, authorizationStatus) || other.authorizationStatus == authorizationStatus)&&(identical(other.apnsToken, apnsToken) || other.apnsToken == apnsToken)&&(identical(other.deviceToken, deviceToken) || other.deviceToken == deviceToken));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,authorizationStatus,deviceToken);
+int get hashCode => Object.hash(runtimeType,authorizationStatus,apnsToken,deviceToken);
 
 @override
 String toString() {
-  return 'PushNotificationPermission(authorizationStatus: $authorizationStatus, deviceToken: $deviceToken)';
+  return 'PushNotificationPermission(authorizationStatus: $authorizationStatus, apnsToken: $apnsToken, deviceToken: $deviceToken)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $PushNotificationPermissionCopyWith<$Res>  {
   factory $PushNotificationPermissionCopyWith(PushNotificationPermission value, $Res Function(PushNotificationPermission) _then) = _$PushNotificationPermissionCopyWithImpl;
 @useResult
 $Res call({
- String authorizationStatus, String? deviceToken
+ String authorizationStatus, String? apnsToken, String? deviceToken
 });
 
 
@@ -62,10 +62,11 @@ class _$PushNotificationPermissionCopyWithImpl<$Res>
 
 /// Create a copy of PushNotificationPermission
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? authorizationStatus = null,Object? deviceToken = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? authorizationStatus = null,Object? apnsToken = freezed,Object? deviceToken = freezed,}) {
   return _then(_self.copyWith(
 authorizationStatus: null == authorizationStatus ? _self.authorizationStatus : authorizationStatus // ignore: cast_nullable_to_non_nullable
-as String,deviceToken: freezed == deviceToken ? _self.deviceToken : deviceToken // ignore: cast_nullable_to_non_nullable
+as String,apnsToken: freezed == apnsToken ? _self.apnsToken : apnsToken // ignore: cast_nullable_to_non_nullable
+as String?,deviceToken: freezed == deviceToken ? _self.deviceToken : deviceToken // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -151,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String authorizationStatus,  String? deviceToken)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String authorizationStatus,  String? apnsToken,  String? deviceToken)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PushNotificationPermission() when $default != null:
-return $default(_that.authorizationStatus,_that.deviceToken);case _:
+return $default(_that.authorizationStatus,_that.apnsToken,_that.deviceToken);case _:
   return orElse();
 
 }
@@ -172,10 +173,10 @@ return $default(_that.authorizationStatus,_that.deviceToken);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String authorizationStatus,  String? deviceToken)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String authorizationStatus,  String? apnsToken,  String? deviceToken)  $default,) {final _that = this;
 switch (_that) {
 case _PushNotificationPermission():
-return $default(_that.authorizationStatus,_that.deviceToken);case _:
+return $default(_that.authorizationStatus,_that.apnsToken,_that.deviceToken);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -192,10 +193,10 @@ return $default(_that.authorizationStatus,_that.deviceToken);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String authorizationStatus,  String? deviceToken)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String authorizationStatus,  String? apnsToken,  String? deviceToken)?  $default,) {final _that = this;
 switch (_that) {
 case _PushNotificationPermission() when $default != null:
-return $default(_that.authorizationStatus,_that.deviceToken);case _:
+return $default(_that.authorizationStatus,_that.apnsToken,_that.deviceToken);case _:
   return null;
 
 }
@@ -207,10 +208,11 @@ return $default(_that.authorizationStatus,_that.deviceToken);case _:
 
 
 class _PushNotificationPermission implements PushNotificationPermission {
-  const _PushNotificationPermission({required this.authorizationStatus, required this.deviceToken});
+  const _PushNotificationPermission({required this.authorizationStatus, required this.apnsToken, required this.deviceToken});
   
 
 @override final  String authorizationStatus;
+@override final  String? apnsToken;
 @override final  String? deviceToken;
 
 /// Create a copy of PushNotificationPermission
@@ -223,16 +225,16 @@ _$PushNotificationPermissionCopyWith<_PushNotificationPermission> get copyWith =
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotificationPermission&&(identical(other.authorizationStatus, authorizationStatus) || other.authorizationStatus == authorizationStatus)&&(identical(other.deviceToken, deviceToken) || other.deviceToken == deviceToken));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotificationPermission&&(identical(other.authorizationStatus, authorizationStatus) || other.authorizationStatus == authorizationStatus)&&(identical(other.apnsToken, apnsToken) || other.apnsToken == apnsToken)&&(identical(other.deviceToken, deviceToken) || other.deviceToken == deviceToken));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,authorizationStatus,deviceToken);
+int get hashCode => Object.hash(runtimeType,authorizationStatus,apnsToken,deviceToken);
 
 @override
 String toString() {
-  return 'PushNotificationPermission(authorizationStatus: $authorizationStatus, deviceToken: $deviceToken)';
+  return 'PushNotificationPermission(authorizationStatus: $authorizationStatus, apnsToken: $apnsToken, deviceToken: $deviceToken)';
 }
 
 
@@ -243,7 +245,7 @@ abstract mixin class _$PushNotificationPermissionCopyWith<$Res> implements $Push
   factory _$PushNotificationPermissionCopyWith(_PushNotificationPermission value, $Res Function(_PushNotificationPermission) _then) = __$PushNotificationPermissionCopyWithImpl;
 @override @useResult
 $Res call({
- String authorizationStatus, String? deviceToken
+ String authorizationStatus, String? apnsToken, String? deviceToken
 });
 
 
@@ -260,10 +262,11 @@ class __$PushNotificationPermissionCopyWithImpl<$Res>
 
 /// Create a copy of PushNotificationPermission
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? authorizationStatus = null,Object? deviceToken = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? authorizationStatus = null,Object? apnsToken = freezed,Object? deviceToken = freezed,}) {
   return _then(_PushNotificationPermission(
 authorizationStatus: null == authorizationStatus ? _self.authorizationStatus : authorizationStatus // ignore: cast_nullable_to_non_nullable
-as String,deviceToken: freezed == deviceToken ? _self.deviceToken : deviceToken // ignore: cast_nullable_to_non_nullable
+as String,apnsToken: freezed == apnsToken ? _self.apnsToken : apnsToken // ignore: cast_nullable_to_non_nullable
+as String?,deviceToken: freezed == deviceToken ? _self.deviceToken : deviceToken // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
