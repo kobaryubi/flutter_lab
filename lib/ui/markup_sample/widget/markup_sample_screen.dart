@@ -37,6 +37,12 @@ class MarkupSampleScreen extends StatelessWidget {
               child: SizedBox(height: 240, child: _ResponsiveCase()),
             ),
             Expanded(
+              child: SizedBox(height: 200, child: _ResponsiveCase()),
+            ),
+            Expanded(
+              child: SizedBox(height: 160, child: _ResponsiveCase()),
+            ),
+            Expanded(
               child: SizedBox(height: 120, child: _ResponsiveCase()),
             ),
           ],
@@ -47,17 +53,21 @@ class MarkupSampleScreen extends StatelessWidget {
 }
 
 /// A single case: a column of `[top spacing] + [content] + [bottom spacing]`
-/// where the spacings keep a minimum height of 40 and the content is a 1:1
-/// square that shrinks once the available height forces both spacings to
-/// that minimum.
+/// where the spacings keep a minimum height of 40 and the content shrinks
+/// once the available height forces both spacings to that minimum.
+///
+/// The content itself is a green `Column` of `[top text] + [flexible body]
+/// + [bottom text]`. The two texts take their intrinsic height; the body
+/// is a 1:1 white square that fills whatever vertical space remains
+/// between them (and never wider than its column width).
 ///
 /// Implementation:
 /// - Two `SizedBox(height: 40)` reserve the minimum top and bottom spacing.
-/// - `Flexible` (loose fit) gives the content up to all remaining height,
-///   and `AspectRatio(1)` makes the content a square sized to the case's
-///   column width when there is room, shrinking when there is not.
+/// - `Flexible` (loose fit) lets the content take the remaining height,
+///   while the inner `AspectRatio(1)` enforces the square shape on the
+///   flexible body.
 /// - `mainAxisAlignment: .spaceBetween` distributes any leftover height
-///   (when the square fits and there is still room) as equal gaps above
+///   (when the content fits and there is still room) as equal gaps above
 ///   and below the content.
 class _ResponsiveCase extends StatelessWidget {
   const _ResponsiveCase();
@@ -70,9 +80,21 @@ class _ResponsiveCase extends StatelessWidget {
       children: [
         SizedBox(height: 40),
         Flexible(
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: ColoredBox(color: Color(0xFF4CAF50)),
+          child: ColoredBox(
+            color: Color(0xFF4CAF50),
+            child: Column(
+              mainAxisSize: .min,
+              children: [
+                Text('top'),
+                Flexible(
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: ColoredBox(color: Color(0xFFFFFFFF)),
+                  ),
+                ),
+                Text('bottom'),
+              ],
+            ),
           ),
         ),
         SizedBox(height: 40),
