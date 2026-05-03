@@ -112,6 +112,9 @@ import 'package:flutter_lab/domain/use_cases/push_notification/on_push_token_ref
 import 'package:flutter_lab/domain/use_cases/push_notification/register_token_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/request_push_notification_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/rotate_push_token_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/push_notification/watch_foreground_push_message_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/push_notification/watch_initial_push_message_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/push_notification/watch_opened_push_message_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/copy_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/delete_all_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/text_recognition/recognize_text_use_case.dart';
@@ -309,6 +312,24 @@ RotatePushTokenUseCase rotatePushTokenUseCase(Ref ref) =>
 @riverpod
 Stream<String> onPushTokenRefresh(Ref ref) =>
     ref.read(onPushTokenRefreshUseCaseProvider).call();
+
+@riverpod
+WatchInitialPushMessageUseCase watchInitialPushMessageUseCase(Ref ref) =>
+    WatchInitialPushMessageUseCase(
+      pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
+    );
+
+@riverpod
+WatchOpenedPushMessageUseCase watchOpenedPushMessageUseCase(Ref ref) =>
+    WatchOpenedPushMessageUseCase(
+      pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
+    );
+
+@riverpod
+WatchForegroundPushMessageUseCase watchForegroundPushMessageUseCase(Ref ref) =>
+    WatchForegroundPushMessageUseCase(
+      pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
+    );
 
 @riverpod
 CopyShortcutIconsUseCase copyShortcutIconsUseCase(Ref ref) =>

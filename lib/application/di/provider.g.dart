@@ -1318,6 +1318,160 @@ final class OnPushTokenRefreshProvider
 String _$onPushTokenRefreshHash() =>
     r'b9f037e932ed73dc073a02fa69d9423c2003b7e1';
 
+@ProviderFor(watchInitialPushMessageUseCase)
+const watchInitialPushMessageUseCaseProvider =
+    WatchInitialPushMessageUseCaseProvider._();
+
+final class WatchInitialPushMessageUseCaseProvider
+    extends
+        $FunctionalProvider<
+          WatchInitialPushMessageUseCase,
+          WatchInitialPushMessageUseCase,
+          WatchInitialPushMessageUseCase
+        >
+    with $Provider<WatchInitialPushMessageUseCase> {
+  const WatchInitialPushMessageUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'watchInitialPushMessageUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$watchInitialPushMessageUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<WatchInitialPushMessageUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  WatchInitialPushMessageUseCase create(Ref ref) {
+    return watchInitialPushMessageUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WatchInitialPushMessageUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WatchInitialPushMessageUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$watchInitialPushMessageUseCaseHash() =>
+    r'6e955cb3416ae682e2ffc4d13e18ff26774556e3';
+
+@ProviderFor(watchOpenedPushMessageUseCase)
+const watchOpenedPushMessageUseCaseProvider =
+    WatchOpenedPushMessageUseCaseProvider._();
+
+final class WatchOpenedPushMessageUseCaseProvider
+    extends
+        $FunctionalProvider<
+          WatchOpenedPushMessageUseCase,
+          WatchOpenedPushMessageUseCase,
+          WatchOpenedPushMessageUseCase
+        >
+    with $Provider<WatchOpenedPushMessageUseCase> {
+  const WatchOpenedPushMessageUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'watchOpenedPushMessageUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$watchOpenedPushMessageUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<WatchOpenedPushMessageUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  WatchOpenedPushMessageUseCase create(Ref ref) {
+    return watchOpenedPushMessageUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WatchOpenedPushMessageUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WatchOpenedPushMessageUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$watchOpenedPushMessageUseCaseHash() =>
+    r'a7de23bf778932fea5bebdf2d5279d8e4885be2e';
+
+@ProviderFor(watchForegroundPushMessageUseCase)
+const watchForegroundPushMessageUseCaseProvider =
+    WatchForegroundPushMessageUseCaseProvider._();
+
+final class WatchForegroundPushMessageUseCaseProvider
+    extends
+        $FunctionalProvider<
+          WatchForegroundPushMessageUseCase,
+          WatchForegroundPushMessageUseCase,
+          WatchForegroundPushMessageUseCase
+        >
+    with $Provider<WatchForegroundPushMessageUseCase> {
+  const WatchForegroundPushMessageUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'watchForegroundPushMessageUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$watchForegroundPushMessageUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<WatchForegroundPushMessageUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  WatchForegroundPushMessageUseCase create(Ref ref) {
+    return watchForegroundPushMessageUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WatchForegroundPushMessageUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WatchForegroundPushMessageUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$watchForegroundPushMessageUseCaseHash() =>
+    r'3427943868323a611f66b3d081c162e7787b2a29';
+
 @ProviderFor(copyShortcutIconsUseCase)
 const copyShortcutIconsUseCaseProvider = CopyShortcutIconsUseCaseProvider._();
 
