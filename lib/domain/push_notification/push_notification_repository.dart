@@ -1,3 +1,4 @@
+import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Repository interface for push notification operations.
@@ -24,4 +25,14 @@ abstract class PushNotificationRepository {
 
   /// Sends the given [token] to the server for registration.
   AsyncResult<Unit> registerToken({required String token});
+
+  /// Returns the message that opened the app from a terminated state, or
+  /// `null` if the app was not launched by tapping a notification.
+  Future<PushMessage?> getInitialMessage();
+
+  /// Stream of messages whose tap opened the app from the background.
+  Stream<PushMessage> get onMessageOpenedApp;
+
+  /// Stream of messages received while the app is in the foreground.
+  Stream<PushMessage> get onForegroundMessage;
 }

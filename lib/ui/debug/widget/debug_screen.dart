@@ -133,10 +133,21 @@ class DebugScreen extends ConsumerWidget {
       await viewModel.saveSecure(key: key, value: edited);
     }
 
+    /// Forces a push token rotation; the view model posts a snackbar with
+    /// the result.
+    void handleRotatePushToken() {
+      viewModel.rotatePushToken();
+    }
+
     return Layout(
       appBar: const AppBar(title: Text('Debug')),
       child: ListView(
         children: [
+          const _SectionHeader('actions'),
+          LauncherRow(
+            title: 'rotate push token',
+            onTap: handleRotatePushToken,
+          ),
           const _SectionHeader('routes'),
           for (final entry in _routes)
             LauncherRow(

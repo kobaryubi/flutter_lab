@@ -80,4 +80,11 @@ class DebugViewModel extends _$DebugViewModel {
 
     ref.read(globalSnackbarProvider.notifier).show(text: 'copied');
   }
+
+  /// Forces a push token rotation. The new token is delivered via
+  /// `onPushTokenRefresh` and logged through talker.
+  Future<void> rotatePushToken() async {
+    final useCase = ref.read(rotatePushTokenUseCaseProvider);
+    await useCase.call();
+  }
 }

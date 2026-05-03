@@ -56,7 +56,7 @@ final class DebugViewModelProvider
   }
 }
 
-String _$debugViewModelHash() => r'4820abe268dd56623e68a0bdb33896f05ef17390';
+String _$debugViewModelHash() => r'6696ebabaca2f7051879d1860ea6a2a485f7b4a3';
 
 /// ViewModel for the DebugScreen storage sections.
 ///
