@@ -8,7 +8,34 @@ part 'push_notification_view_model.g.dart';
 @riverpod
 class PushNotificationViewModel extends _$PushNotificationViewModel {
   @override
-  PushNotificationUiState build() => const PushNotificationUiState();
+  PushNotificationUiState build() {
+    _loadInitialMessage();
+
+    final openedSubscription = ref
+        .read(watchOpenedPushMessageUseCaseProvider)
+        .call()
+        .listen((message) {
+          state = state.copyWith(
+            openedMessages: [...state.openedMessages, message],
+          );
+        });
+
+    final foregroundSubscription = ref
+        .read(watchForegroundPushMessageUseCaseProvider)
+        .call()
+        .listen((message) {
+          state = state.copyWith(
+            foregroundMessages: [...state.foregroundMessages, message],
+          );
+        });
+
+    ref.onDispose(() {
+      openedSubscription.cancel();
+      foregroundSubscription.cancel();
+    });
+
+    return const PushNotificationUiState();
+  }
 
   /// Requests push notification permission and retrieves the device token.
   Future<void> requestPushNotificationPermission() async {
@@ -29,5 +56,14 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
     });
 
     state = state.copyWith(rotation: rotation);
+  }
+
+  /// Loads the message that opened the app from a terminated state.
+  Future<void> _loadInitialMessage() async {
+    final initialMessage = await AsyncValue.guard(
+      () => ref.read(watchInitialPushMessageUseCaseProvider).call(),
+    );
+
+    state = state.copyWith(initialMessage: initialMessage);
   }
 }

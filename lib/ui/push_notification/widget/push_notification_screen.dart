@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/push_notification/view_model/push_notification_view_model.dart';
@@ -35,9 +36,9 @@ class _Body extends ConsumerWidget {
 
     final permission = uiState.permission;
     final rotation = uiState.rotation;
+    final initialMessage = uiState.initialMessage;
 
-    return Column(
-      crossAxisAlignment: .stretch,
+    return ListView(
       children: [
         GestureDetector(
           onTap: handleRequestPermission,
@@ -55,7 +56,29 @@ class _Body extends ConsumerWidget {
         if (rotation case AsyncLoading()) const Text('Rotating...'),
         if (rotation case AsyncData()) const Text('Token rotated.'),
         if (rotation case AsyncError(:final error)) Text('Error: $error'),
+        const Text('--- Initial Message ---'),
+        if (initialMessage case AsyncData(:final value))
+          Text(value == null ? 'none' : _formatMessage(value)),
+        const Text('--- Opened Messages ---'),
+        if (uiState.openedMessages.isEmpty)
+          const Text('none')
+        else
+          for (final message in uiState.openedMessages)
+            Text(_formatMessage(message)),
+        const Text('--- Foreground Messages ---'),
+        if (uiState.foregroundMessages.isEmpty)
+          const Text('none')
+        else
+          for (final message in uiState.foregroundMessages)
+            Text(_formatMessage(message)),
       ],
     );
   }
 }
+
+/// Renders a [PushMessage] as a single string for display.
+String _formatMessage(PushMessage message) =>
+    'id=${message.messageId ?? "-"} '
+    'title=${message.title ?? "-"} '
+    'body=${message.body ?? "-"} '
+    'data=${message.data}';

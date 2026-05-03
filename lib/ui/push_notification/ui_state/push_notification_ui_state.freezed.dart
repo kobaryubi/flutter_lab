@@ -14,7 +14,13 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PushNotificationUiState {
 
- AsyncValue<PushNotificationPermission>? get permission; AsyncValue<void>? get rotation;
+ AsyncValue<PushNotificationPermission>? get permission; AsyncValue<void>? get rotation;/// Message that opened the app from a terminated state, or `null`.
+/// Resolved once on screen entry.
+ AsyncValue<PushMessage?>? get initialMessage;/// Messages whose tap opened the app from the background, in
+/// arrival order while the screen is mounted.
+ List<PushMessage> get openedMessages;/// Messages received while the app is in the foreground, in
+/// arrival order while the screen is mounted.
+ List<PushMessage> get foregroundMessages;
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +31,16 @@ $PushNotificationUiStateCopyWith<PushNotificationUiState> get copyWith => _$Push
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.rotation, rotation) || other.rotation == rotation));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.rotation, rotation) || other.rotation == rotation)&&(identical(other.initialMessage, initialMessage) || other.initialMessage == initialMessage)&&const DeepCollectionEquality().equals(other.openedMessages, openedMessages)&&const DeepCollectionEquality().equals(other.foregroundMessages, foregroundMessages));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,permission,rotation);
+int get hashCode => Object.hash(runtimeType,permission,rotation,initialMessage,const DeepCollectionEquality().hash(openedMessages),const DeepCollectionEquality().hash(foregroundMessages));
 
 @override
 String toString() {
-  return 'PushNotificationUiState(permission: $permission, rotation: $rotation)';
+  return 'PushNotificationUiState(permission: $permission, rotation: $rotation, initialMessage: $initialMessage, openedMessages: $openedMessages, foregroundMessages: $foregroundMessages)';
 }
 
 
@@ -45,7 +51,7 @@ abstract mixin class $PushNotificationUiStateCopyWith<$Res>  {
   factory $PushNotificationUiStateCopyWith(PushNotificationUiState value, $Res Function(PushNotificationUiState) _then) = _$PushNotificationUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<PushNotificationPermission>? permission, AsyncValue<void>? rotation
+ AsyncValue<PushNotificationPermission>? permission, AsyncValue<void>? rotation, AsyncValue<PushMessage?>? initialMessage, List<PushMessage> openedMessages, List<PushMessage> foregroundMessages
 });
 
 
@@ -62,11 +68,14 @@ class _$PushNotificationUiStateCopyWithImpl<$Res>
 
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? permission = freezed,Object? rotation = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? permission = freezed,Object? rotation = freezed,Object? initialMessage = freezed,Object? openedMessages = null,Object? foregroundMessages = null,}) {
   return _then(_self.copyWith(
 permission: freezed == permission ? _self.permission : permission // ignore: cast_nullable_to_non_nullable
 as AsyncValue<PushNotificationPermission>?,rotation: freezed == rotation ? _self.rotation : rotation // ignore: cast_nullable_to_non_nullable
-as AsyncValue<void>?,
+as AsyncValue<void>?,initialMessage: freezed == initialMessage ? _self.initialMessage : initialMessage // ignore: cast_nullable_to_non_nullable
+as AsyncValue<PushMessage?>?,openedMessages: null == openedMessages ? _self.openedMessages : openedMessages // ignore: cast_nullable_to_non_nullable
+as List<PushMessage>,foregroundMessages: null == foregroundMessages ? _self.foregroundMessages : foregroundMessages // ignore: cast_nullable_to_non_nullable
+as List<PushMessage>,
   ));
 }
 
@@ -151,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation,  AsyncValue<PushMessage?>? initialMessage,  List<PushMessage> openedMessages,  List<PushMessage> foregroundMessages)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState() when $default != null:
-return $default(_that.permission,_that.rotation);case _:
+return $default(_that.permission,_that.rotation,_that.initialMessage,_that.openedMessages,_that.foregroundMessages);case _:
   return orElse();
 
 }
@@ -172,10 +181,10 @@ return $default(_that.permission,_that.rotation);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation,  AsyncValue<PushMessage?>? initialMessage,  List<PushMessage> openedMessages,  List<PushMessage> foregroundMessages)  $default,) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState():
-return $default(_that.permission,_that.rotation);case _:
+return $default(_that.permission,_that.rotation,_that.initialMessage,_that.openedMessages,_that.foregroundMessages);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -192,10 +201,10 @@ return $default(_that.permission,_that.rotation);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation,  AsyncValue<PushMessage?>? initialMessage,  List<PushMessage> openedMessages,  List<PushMessage> foregroundMessages)?  $default,) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState() when $default != null:
-return $default(_that.permission,_that.rotation);case _:
+return $default(_that.permission,_that.rotation,_that.initialMessage,_that.openedMessages,_that.foregroundMessages);case _:
   return null;
 
 }
@@ -207,11 +216,36 @@ return $default(_that.permission,_that.rotation);case _:
 
 
 class _PushNotificationUiState implements PushNotificationUiState {
-  const _PushNotificationUiState({this.permission, this.rotation});
+  const _PushNotificationUiState({this.permission, this.rotation, this.initialMessage, final  List<PushMessage> openedMessages = const [], final  List<PushMessage> foregroundMessages = const []}): _openedMessages = openedMessages,_foregroundMessages = foregroundMessages;
   
 
 @override final  AsyncValue<PushNotificationPermission>? permission;
 @override final  AsyncValue<void>? rotation;
+/// Message that opened the app from a terminated state, or `null`.
+/// Resolved once on screen entry.
+@override final  AsyncValue<PushMessage?>? initialMessage;
+/// Messages whose tap opened the app from the background, in
+/// arrival order while the screen is mounted.
+ final  List<PushMessage> _openedMessages;
+/// Messages whose tap opened the app from the background, in
+/// arrival order while the screen is mounted.
+@override@JsonKey() List<PushMessage> get openedMessages {
+  if (_openedMessages is EqualUnmodifiableListView) return _openedMessages;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_openedMessages);
+}
+
+/// Messages received while the app is in the foreground, in
+/// arrival order while the screen is mounted.
+ final  List<PushMessage> _foregroundMessages;
+/// Messages received while the app is in the foreground, in
+/// arrival order while the screen is mounted.
+@override@JsonKey() List<PushMessage> get foregroundMessages {
+  if (_foregroundMessages is EqualUnmodifiableListView) return _foregroundMessages;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_foregroundMessages);
+}
+
 
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -223,16 +257,16 @@ _$PushNotificationUiStateCopyWith<_PushNotificationUiState> get copyWith => __$P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.rotation, rotation) || other.rotation == rotation));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.rotation, rotation) || other.rotation == rotation)&&(identical(other.initialMessage, initialMessage) || other.initialMessage == initialMessage)&&const DeepCollectionEquality().equals(other._openedMessages, _openedMessages)&&const DeepCollectionEquality().equals(other._foregroundMessages, _foregroundMessages));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,permission,rotation);
+int get hashCode => Object.hash(runtimeType,permission,rotation,initialMessage,const DeepCollectionEquality().hash(_openedMessages),const DeepCollectionEquality().hash(_foregroundMessages));
 
 @override
 String toString() {
-  return 'PushNotificationUiState(permission: $permission, rotation: $rotation)';
+  return 'PushNotificationUiState(permission: $permission, rotation: $rotation, initialMessage: $initialMessage, openedMessages: $openedMessages, foregroundMessages: $foregroundMessages)';
 }
 
 
@@ -243,7 +277,7 @@ abstract mixin class _$PushNotificationUiStateCopyWith<$Res> implements $PushNot
   factory _$PushNotificationUiStateCopyWith(_PushNotificationUiState value, $Res Function(_PushNotificationUiState) _then) = __$PushNotificationUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<PushNotificationPermission>? permission, AsyncValue<void>? rotation
+ AsyncValue<PushNotificationPermission>? permission, AsyncValue<void>? rotation, AsyncValue<PushMessage?>? initialMessage, List<PushMessage> openedMessages, List<PushMessage> foregroundMessages
 });
 
 
@@ -260,11 +294,14 @@ class __$PushNotificationUiStateCopyWithImpl<$Res>
 
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? permission = freezed,Object? rotation = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? permission = freezed,Object? rotation = freezed,Object? initialMessage = freezed,Object? openedMessages = null,Object? foregroundMessages = null,}) {
   return _then(_PushNotificationUiState(
 permission: freezed == permission ? _self.permission : permission // ignore: cast_nullable_to_non_nullable
 as AsyncValue<PushNotificationPermission>?,rotation: freezed == rotation ? _self.rotation : rotation // ignore: cast_nullable_to_non_nullable
-as AsyncValue<void>?,
+as AsyncValue<void>?,initialMessage: freezed == initialMessage ? _self.initialMessage : initialMessage // ignore: cast_nullable_to_non_nullable
+as AsyncValue<PushMessage?>?,openedMessages: null == openedMessages ? _self._openedMessages : openedMessages // ignore: cast_nullable_to_non_nullable
+as List<PushMessage>,foregroundMessages: null == foregroundMessages ? _self._foregroundMessages : foregroundMessages // ignore: cast_nullable_to_non_nullable
+as List<PushMessage>,
   ));
 }
 

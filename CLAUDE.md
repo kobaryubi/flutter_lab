@@ -212,7 +212,11 @@ This approach makes it easier to understand, debug, and learn from the implement
 - **Ternary operator** - Prefer ternary operator over if-else for simple conditional returns (e.g., `return value == null ? Failure() : Success(value)`)
 - **UI state variable naming** - Name the variable `uiState` when watching a ViewModel provider (e.g., `final uiState = ref.watch(myViewModelProvider)` instead of `final state = ref.watch(myViewModelProvider)`)
 - **Target platforms** - This project targets iOS and Android only. Do not consider web-specific parameters or platform handling
-- **Use AsyncValue.guard in ViewModel** - ViewModel methods that call use cases should use `AsyncValue.guard` to wrap the call, updating UI state with `state = state.copyWith(field: await AsyncValue.guard(() => useCase.call().getOrThrow()))`. The UI state field type should be `AsyncValue<T>?` (nullable for initial state). The ViewModel method should return `Future<void>`
+- **Use AsyncValue.guard in ViewModel** - ViewModel methods that call use cases should use `AsyncValue.guard` to wrap the call. Compute the guard result first into a local variable, then assign it via `state = state.copyWith(...)` — do not inline the `await` inside `copyWith`. The UI state field type should be `AsyncValue<T>?` (nullable for initial state). The ViewModel method should return `Future<void>`. Example:
+  ```dart
+  final result = await AsyncValue.guard(() => useCase.call().getOrThrow());
+  state = state.copyWith(field: result);
+  ```
 - **Use if-case pattern matching for AsyncValue** - In the UI layer, use `if (field case AsyncData(:final value))` to extract data from `AsyncValue` fields instead of `.when()` or `switch`
 - **Use result_dart in repositories** - Repository methods should return `Result<T>` or `AsyncResult<T>` from `result_dart` instead of raw types. This ensures error handling is explicit at the domain boundary (e.g., `Result<Uri> getUrl()` instead of `Uri getUrl()`)
 - **No StatefulWidget** - Do not use `StatefulWidget`. Use `HookConsumerWidget`, `HookWidget`, `ConsumerWidget`, or `ConsumerStatefulWidget` instead. Manage lifecycle with hooks (e.g., `useEffect` for init/dispose)
