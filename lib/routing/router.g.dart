@@ -41,6 +41,7 @@ List<RouteBase> get $appRoutes => [
   $loadingSubmitRoute,
   $localIconRoute,
   $localPathsRoute,
+  $markupSampleRoute,
   $maxRoute,
   $methodChannelRoute,
   $navigationScreenARoute,
@@ -985,6 +986,33 @@ mixin $LocalPathsRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/local_paths');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $markupSampleRoute => GoRouteData.$route(
+  path: '/markup_sample',
+  name: 'markup_sample',
+  factory: $MarkupSampleRoute._fromState,
+);
+
+mixin $MarkupSampleRoute on GoRouteData {
+  static MarkupSampleRoute _fromState(GoRouterState state) =>
+      MarkupSampleRoute();
+
+  @override
+  String get location => GoRouteData.$location('/markup_sample');
 
   @override
   void go(BuildContext context) => context.go(location);
