@@ -22,6 +22,14 @@ class RequestPushNotificationUseCase {
         'notificationSettings.authorizationStatus: $authorizationStatus',
       );
 
+      await _pushNotificationRepository
+          .setForegroundNotificationPresentationOptions(
+            alert: true,
+            badge: true,
+            sound: true,
+          )
+          .getOrThrow();
+
       final apnsToken = await _pushNotificationRepository.getApnsToken();
       log('apnsToken: $apnsToken');
 
