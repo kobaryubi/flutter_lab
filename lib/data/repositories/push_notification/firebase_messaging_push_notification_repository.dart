@@ -91,6 +91,25 @@ class FirebaseMessagingPushNotificationRepository
 
         return pushMessage;
       });
+
+  @override
+  AsyncResult<Unit> setForegroundNotificationPresentationOptions({
+    required bool alert,
+    required bool badge,
+    required bool sound,
+  }) async {
+    try {
+      await _instance.setForegroundNotificationPresentationOptions(
+        alert: alert,
+        badge: badge,
+        sound: sound,
+      );
+
+      return const Success(unit);
+    } on Exception catch (exception) {
+      return exception.toFailure();
+    }
+  }
 }
 
 /// Maps a [RemoteMessage] from FCM into the domain-layer [PushMessage].
