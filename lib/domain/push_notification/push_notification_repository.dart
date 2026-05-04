@@ -35,4 +35,12 @@ abstract class PushNotificationRepository {
 
   /// Stream of messages received while the app is in the foreground.
   Stream<PushMessage> get onForegroundMessage;
+
+  /// Configures how an incoming notification is presented while the app is
+  /// in the foreground (iOS only; a no-op on other platforms).
+  AsyncResult<Unit> setForegroundNotificationPresentationOptions({
+    required bool alert,
+    required bool badge,
+    required bool sound,
+  });
 }
