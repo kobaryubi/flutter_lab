@@ -288,6 +288,7 @@ AppBadgeGateway appBadgeGateway(Ref ref) => AppBadgePlusAppBadgeGateway();
 @riverpod
 ClearAppBadgeUseCase clearAppBadgeUseCase(Ref ref) => ClearAppBadgeUseCase(
   appBadgeGateway: ref.read(appBadgeGatewayProvider),
+  logger: ref.read(loggerGatewayProvider),
 );
 
 // push notification
