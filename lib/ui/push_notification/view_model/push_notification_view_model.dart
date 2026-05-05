@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/ui/push_notification/ui_state/push_notification_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -18,6 +20,7 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
           state = state.copyWith(
             openedMessages: [...state.openedMessages, message],
           );
+          unawaited(_clearAppBadge());
         });
 
     final foregroundSubscription = ref
@@ -65,5 +68,14 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
     );
 
     state = state.copyWith(initialMessage: initialMessage);
+
+    if (initialMessage case AsyncData(value: final _?)) {
+      unawaited(_clearAppBadge());
+    }
+  }
+
+  /// Removes the app icon badge after a notification tap is handled.
+  Future<void> _clearAppBadge() async {
+    await ref.read(clearAppBadgeUseCaseProvider).call();
   }
 }
