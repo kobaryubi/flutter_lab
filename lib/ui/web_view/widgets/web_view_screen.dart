@@ -87,47 +87,51 @@ class _Body extends HookWidget {
       onNavigationRequest: handleNavigationRequest,
     );
 
-    return Column(
-      children: [
-        Text('Status: ${webView.status.name}'),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Text('Status: ${webView.status.name}'),
 
-        GestureDetector(
-          onTap: handleGetUrlTap,
-          child: const Text('Get URL'),
-        ),
-
-        GestureDetector(
-          onTap: handleReloadTap,
-          child: const Text('Reload'),
-        ),
-
-        GestureDetector(
-          onTap: handleEnableThirdPartyCookiesTap,
-          child: const Text('Enable 3rd-party cookies'),
-        ),
-
-        GestureDetector(
-          onTap: handleGetCookiesTap,
-          child: const Text('Get cookies'),
-        ),
-
-        if (currentUrl.value != null) Text('Current URL: ${currentUrl.value}'),
-
-        if (cookies.value != null) Text('Cookies: ${cookies.value}'),
-
-        if (interceptedUrl.value != null)
-          Text('Intercepted YouTube URL: ${interceptedUrl.value}'),
-
-        Expanded(
-          child: Stack(
-            children: [
-              WebViewWidget(controller: webView.controller),
-
-              if (webView.status == .loading) const Text('Loading...'),
-            ],
+          GestureDetector(
+            onTap: handleGetUrlTap,
+            child: const Text('Get URL'),
           ),
-        ),
-      ],
+
+          GestureDetector(
+            onTap: handleReloadTap,
+            child: const Text('Reload'),
+          ),
+
+          GestureDetector(
+            onTap: handleEnableThirdPartyCookiesTap,
+            child: const Text('Enable 3rd-party cookies'),
+          ),
+
+          GestureDetector(
+            onTap: handleGetCookiesTap,
+            child: const Text('Get cookies'),
+          ),
+
+          if (currentUrl.value != null)
+            Text('Current URL: ${currentUrl.value}'),
+
+          if (cookies.value != null) Text('Cookies: ${cookies.value}'),
+
+          if (interceptedUrl.value != null)
+            Text('Intercepted YouTube URL: ${interceptedUrl.value}'),
+
+          SizedBox(
+            height: 400,
+            child: Stack(
+              children: [
+                WebViewWidget(controller: webView.controller),
+
+                if (webView.status == .loading) const Text('Loading...'),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
