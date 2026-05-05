@@ -4,6 +4,7 @@ import 'package:flutter_lab/presentation/core/hook/use_web_view.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 /// Screen demonstrating the useWebView hook.
 class WebViewScreen extends StatelessWidget {
@@ -54,6 +55,20 @@ class _Body extends HookWidget {
       await controller.reload();
     }
 
+    /// Handles tap on the enable third-party cookies button.
+    ///
+    /// On Android, allows the WebView to accept third-party cookies.
+    /// No-op on iOS, where WKWebView does not expose this toggle.
+    Future<void> handleEnableThirdPartyCookiesTap() async {
+      final platform = controller.platform;
+
+      if (platform is AndroidWebViewController) {
+        await AndroidWebViewCookieManager(
+          const PlatformWebViewCookieManagerCreationParams(),
+        ).setAcceptThirdPartyCookies(platform, true);
+      }
+    }
+
     final webView = useWebView(
       controller: controller,
       initialUrl: url,
@@ -72,6 +87,11 @@ class _Body extends HookWidget {
         GestureDetector(
           onTap: handleReloadTap,
           child: const Text('Reload'),
+        ),
+
+        GestureDetector(
+          onTap: handleEnableThirdPartyCookiesTap,
+          child: const Text('Enable 3rd-party cookies'),
         ),
 
         if (currentUrl.value != null) Text('Current URL: ${currentUrl.value}'),
