@@ -1075,7 +1075,7 @@ final class AppBadgeGatewayProvider
   }
 }
 
-String _$appBadgeGatewayHash() => r'09f0c8079a6f341990607d178623ca6d232a0bdc';
+String _$appBadgeGatewayHash() => r'662e72a66883a0c46515c42976b5a5dbe6cef47a';
 
 @ProviderFor(clearAppBadgeUseCase)
 const clearAppBadgeUseCaseProvider = ClearAppBadgeUseCaseProvider._();

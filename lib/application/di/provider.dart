@@ -9,7 +9,7 @@ import 'package:flutter_lab/data/gateway/adfurikun/mock_adfurikun_gateway.dart';
 // import 'package:flutter_lab/data/gateway/adjust/sdk_adjust_gateway.dart';
 import 'package:flutter_lab/data/gateway/adjust/mock_adjust_gateway.dart';
 import 'package:flutter_lab/data/gateway/analytics/firebase_analytics_gateway.dart';
-import 'package:flutter_lab/data/gateway/app_badge/flutter_app_badge_control_app_badge_gateway.dart';
+import 'package:flutter_lab/data/gateway/app_badge/app_badge_plus_app_badge_gateway.dart';
 import 'package:flutter_lab/data/gateway/arutana/pigeon_arutana_gateway.dart';
 import 'package:flutter_lab/data/gateway/clock/clock_clock_gateway.dart';
 import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart';
@@ -283,8 +283,7 @@ WatchNativeButtonTapUseCase watchNativeButtonTapUseCase(Ref ref) =>
 
 // app badge
 @riverpod
-AppBadgeGateway appBadgeGateway(Ref ref) =>
-    FlutterAppBadgeControlAppBadgeGateway();
+AppBadgeGateway appBadgeGateway(Ref ref) => AppBadgePlusAppBadgeGateway();
 
 @riverpod
 ClearAppBadgeUseCase clearAppBadgeUseCase(Ref ref) => ClearAppBadgeUseCase(
