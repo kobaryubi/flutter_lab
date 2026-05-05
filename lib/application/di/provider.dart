@@ -9,6 +9,7 @@ import 'package:flutter_lab/data/gateway/adfurikun/mock_adfurikun_gateway.dart';
 // import 'package:flutter_lab/data/gateway/adjust/sdk_adjust_gateway.dart';
 import 'package:flutter_lab/data/gateway/adjust/mock_adjust_gateway.dart';
 import 'package:flutter_lab/data/gateway/analytics/firebase_analytics_gateway.dart';
+import 'package:flutter_lab/data/gateway/app_badge/flutter_app_badge_control_app_badge_gateway.dart';
 import 'package:flutter_lab/data/gateway/arutana/pigeon_arutana_gateway.dart';
 import 'package:flutter_lab/data/gateway/clock/clock_clock_gateway.dart';
 import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart';
@@ -42,6 +43,7 @@ import 'package:flutter_lab/domain/adfurikun/adfurikun_gateway.dart';
 import 'package:flutter_lab/domain/adjust/adjust_gateway.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
 import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
+import 'package:flutter_lab/domain/app_badge/app_badge_gateway.dart';
 import 'package:flutter_lab/domain/app_store/app_store_repository.dart';
 import 'package:flutter_lab/domain/arutana/arutana_gateway.dart';
 import 'package:flutter_lab/domain/battery/battery_gateway.dart';
@@ -81,6 +83,7 @@ import 'package:flutter_lab/domain/use_cases/analytics/log_tap_event_use_case.da
 import 'package:flutter_lab/domain/use_cases/analytics/log_view_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/set_default_event_parameters_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/set_user_property_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/app_badge/clear_app_badge_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/app_store/get_app_store_url_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/battery/get_battery_level_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/clock/get_current_time_use_case.dart';
@@ -277,6 +280,16 @@ WatchNativeButtonTapUseCase watchNativeButtonTapUseCase(Ref ref) =>
     WatchNativeButtonTapUseCase(
       nativeButtonGateway: ref.read(nativeButtonGatewayProvider),
     );
+
+// app badge
+@riverpod
+AppBadgeGateway appBadgeGateway(Ref ref) =>
+    FlutterAppBadgeControlAppBadgeGateway();
+
+@riverpod
+ClearAppBadgeUseCase clearAppBadgeUseCase(Ref ref) => ClearAppBadgeUseCase(
+  appBadgeGateway: ref.read(appBadgeGatewayProvider),
+);
 
 // push notification
 @riverpod

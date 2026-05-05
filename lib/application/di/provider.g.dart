@@ -1035,6 +1035,96 @@ final class WatchNativeButtonTapUseCaseProvider
 String _$watchNativeButtonTapUseCaseHash() =>
     r'8b1b528f60801f75b269cc3b20b3814cb04789c9';
 
+@ProviderFor(appBadgeGateway)
+const appBadgeGatewayProvider = AppBadgeGatewayProvider._();
+
+final class AppBadgeGatewayProvider
+    extends
+        $FunctionalProvider<AppBadgeGateway, AppBadgeGateway, AppBadgeGateway>
+    with $Provider<AppBadgeGateway> {
+  const AppBadgeGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'appBadgeGatewayProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$appBadgeGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<AppBadgeGateway> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AppBadgeGateway create(Ref ref) {
+    return appBadgeGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AppBadgeGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AppBadgeGateway>(value),
+    );
+  }
+}
+
+String _$appBadgeGatewayHash() => r'09f0c8079a6f341990607d178623ca6d232a0bdc';
+
+@ProviderFor(clearAppBadgeUseCase)
+const clearAppBadgeUseCaseProvider = ClearAppBadgeUseCaseProvider._();
+
+final class ClearAppBadgeUseCaseProvider
+    extends
+        $FunctionalProvider<
+          ClearAppBadgeUseCase,
+          ClearAppBadgeUseCase,
+          ClearAppBadgeUseCase
+        >
+    with $Provider<ClearAppBadgeUseCase> {
+  const ClearAppBadgeUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'clearAppBadgeUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$clearAppBadgeUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ClearAppBadgeUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ClearAppBadgeUseCase create(Ref ref) {
+    return clearAppBadgeUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ClearAppBadgeUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ClearAppBadgeUseCase>(value),
+    );
+  }
+}
+
+String _$clearAppBadgeUseCaseHash() =>
+    r'de0a76c6b9d7f1fc831b9d8802aed1ffaf0973a8';
+
 @ProviderFor(pushNotificationRepository)
 const pushNotificationRepositoryProvider =
     PushNotificationRepositoryProvider._();
