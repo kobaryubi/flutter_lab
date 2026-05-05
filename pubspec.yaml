@@ -25,6 +25,7 @@ dependencies:
   firebase_messaging: ^16.1.1
   flutter:
     sdk: flutter
+  flutter_app_badge_control: ^0.0.2
   flutter_cache_manager: ^3.4.1
   flutter_form_builder: ^10.3.0
   flutter_hooks: ^0.21.3
