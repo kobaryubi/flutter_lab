@@ -31,6 +31,7 @@ class _Body extends HookWidget {
     final controller = useMemoized(WebViewController.new, []);
     final interceptedUrl = useState<String?>(null);
     final currentUrl = useState<String?>(null);
+    final cookies = useState<String?>(null);
 
     /// Handles navigation requests by intercepting YouTube URLs.
     NavigationDecision handleNavigationRequest(NavigationRequest request) {
@@ -53,6 +54,17 @@ class _Body extends HookWidget {
     /// Handles tap on the reload button by reloading the current page.
     Future<void> handleReloadTap() async {
       await controller.reload();
+    }
+
+    /// Handles tap on the get cookies button.
+    ///
+    /// Reads `document.cookie` from the current page. Note that this only
+    /// returns cookies for the page's origin and excludes HttpOnly cookies.
+    Future<void> handleGetCookiesTap() async {
+      final result = await controller.runJavaScriptReturningResult(
+        'document.cookie',
+      );
+      cookies.value = result.toString();
     }
 
     /// Handles tap on the enable third-party cookies button.
@@ -94,7 +106,14 @@ class _Body extends HookWidget {
           child: const Text('Enable 3rd-party cookies'),
         ),
 
+        GestureDetector(
+          onTap: handleGetCookiesTap,
+          child: const Text('Get cookies'),
+        ),
+
         if (currentUrl.value != null) Text('Current URL: ${currentUrl.value}'),
+
+        if (cookies.value != null) Text('Cookies: ${cookies.value}'),
 
         if (interceptedUrl.value != null)
           Text('Intercepted YouTube URL: ${interceptedUrl.value}'),
