@@ -49,6 +49,11 @@ class _Body extends HookWidget {
       currentUrl.value = await controller.currentUrl();
     }
 
+    /// Handles tap on the reload button by reloading the current page.
+    Future<void> handleReloadTap() async {
+      await controller.reload();
+    }
+
     final webView = useWebView(
       controller: controller,
       initialUrl: url,
@@ -62,6 +67,11 @@ class _Body extends HookWidget {
         GestureDetector(
           onTap: handleGetUrlTap,
           child: const Text('Get URL'),
+        ),
+
+        GestureDetector(
+          onTap: handleReloadTap,
+          child: const Text('Reload'),
         ),
 
         if (currentUrl.value != null) Text('Current URL: ${currentUrl.value}'),
