@@ -56,6 +56,11 @@ target 'Runner' do
   end
 end
 
+target 'NotificationService' do
+  use_frameworks!
+  pod 'Firebase/Messaging'
+end
+
 $iOSVersion = '15.6'
 
 post_install do |installer|
