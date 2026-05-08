@@ -1123,7 +1123,7 @@ final class ClearAppBadgeUseCaseProvider
 }
 
 String _$clearAppBadgeUseCaseHash() =>
-    r'de0a76c6b9d7f1fc831b9d8802aed1ffaf0973a8';
+    r'6be411030413cfc9b6c148cdbef63633df7e0199';
 
 @ProviderFor(pushNotificationRepository)
 const pushNotificationRepositoryProvider =
