@@ -1225,6 +1225,55 @@ final class InitializeLocalNotificationUseCaseProvider
 String _$initializeLocalNotificationUseCaseHash() =>
     r'2f407f80d3e955f195bc1861855f8bc351b9018c';
 
+@ProviderFor(showLocalNotificationUseCase)
+const showLocalNotificationUseCaseProvider =
+    ShowLocalNotificationUseCaseProvider._();
+
+final class ShowLocalNotificationUseCaseProvider
+    extends
+        $FunctionalProvider<
+          ShowLocalNotificationUseCase,
+          ShowLocalNotificationUseCase,
+          ShowLocalNotificationUseCase
+        >
+    with $Provider<ShowLocalNotificationUseCase> {
+  const ShowLocalNotificationUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'showLocalNotificationUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$showLocalNotificationUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ShowLocalNotificationUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ShowLocalNotificationUseCase create(Ref ref) {
+    return showLocalNotificationUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ShowLocalNotificationUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ShowLocalNotificationUseCase>(value),
+    );
+  }
+}
+
+String _$showLocalNotificationUseCaseHash() =>
+    r'14a7360108f1544c574b36d53db82717fb1a7c05';
+
 @ProviderFor(pushNotificationRepository)
 const pushNotificationRepositoryProvider =
     PushNotificationRepositoryProvider._();

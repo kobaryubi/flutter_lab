@@ -96,6 +96,7 @@ import 'package:flutter_lab/domain/use_cases/in_app_review/check_review_availabi
 import 'package:flutter_lab/domain/use_cases/in_app_review/request_review_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/information/get_detail_url_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/local_notification/initialize_local_notification_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/local_notification/show_local_notification_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/watch_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/max/initialize_max_use_case.dart';
@@ -305,6 +306,12 @@ InitializeLocalNotificationUseCase initializeLocalNotificationUseCase(
 ) => InitializeLocalNotificationUseCase(
   localNotificationGateway: ref.read(localNotificationGatewayProvider),
 );
+
+@riverpod
+ShowLocalNotificationUseCase showLocalNotificationUseCase(Ref ref) =>
+    ShowLocalNotificationUseCase(
+      localNotificationGateway: ref.read(localNotificationGatewayProvider),
+    );
 
 // push notification
 @riverpod

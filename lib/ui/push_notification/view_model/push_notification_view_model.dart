@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_lab/application/di/provider.dart';
+import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
+import 'package:flutter_lab/domain/local_notification/local_notification_channel.dart';
 import 'package:flutter_lab/ui/push_notification/ui_state/push_notification_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -30,6 +32,7 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
           state = state.copyWith(
             foregroundMessages: [...state.foregroundMessages, message],
           );
+          unawaited(_showForegroundNotification(message));
         });
 
     ref.onDispose(() {
@@ -77,5 +80,20 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
   /// Removes the app icon badge after a notification tap is handled.
   Future<void> _clearAppBadge() async {
     await ref.read(clearAppBadgeUseCaseProvider).call();
+  }
+
+  /// Surfaces a foreground FCM message as a heads-up local notification.
+  ///
+  /// FCM does not auto-display notifications while the app is in the
+  /// foreground, so we route the message through the local notification
+  /// gateway. Step 6 will read the channel from `message.data`.
+  Future<void> _showForegroundNotification(PushMessage message) async {
+    final useCase = ref.read(showLocalNotificationUseCaseProvider);
+    await useCase.call(
+      id: DateTime.now().millisecondsSinceEpoch & 0x7FFFFFFF,
+      title: message.title,
+      body: message.body,
+      channel: LocalNotificationChannel.highImportance,
+    );
   }
 }
