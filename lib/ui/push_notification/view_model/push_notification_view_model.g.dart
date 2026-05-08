@@ -46,7 +46,7 @@ final class PushNotificationViewModelProvider
 }
 
 String _$pushNotificationViewModelHash() =>
-    r'0bb1ad06da2d39b50e23c60d553b366aa59e61bf';
+    r'a3922f7424e72864685b1a20cd084149e551b342';
 
 /// ViewModel that manages push notification setup.
 

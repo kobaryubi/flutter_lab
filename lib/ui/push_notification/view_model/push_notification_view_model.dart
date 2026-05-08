@@ -64,7 +64,7 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
   /// Loads the message that opened the app from a terminated state.
   Future<void> _loadInitialMessage() async {
     final initialMessage = await AsyncValue.guard(
-      () => ref.read(watchInitialPushMessageUseCaseProvider).call(),
+      () => ref.read(getInitialPushMessageUseCaseProvider).call(),
     );
 
     state = state.copyWith(initialMessage: initialMessage);

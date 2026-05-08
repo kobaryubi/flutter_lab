@@ -1408,56 +1408,54 @@ final class OnPushTokenRefreshProvider
 String _$onPushTokenRefreshHash() =>
     r'b9f037e932ed73dc073a02fa69d9423c2003b7e1';
 
-@ProviderFor(watchInitialPushMessageUseCase)
-const watchInitialPushMessageUseCaseProvider =
-    WatchInitialPushMessageUseCaseProvider._();
+@ProviderFor(getInitialPushMessageUseCase)
+const getInitialPushMessageUseCaseProvider =
+    GetInitialPushMessageUseCaseProvider._();
 
-final class WatchInitialPushMessageUseCaseProvider
+final class GetInitialPushMessageUseCaseProvider
     extends
         $FunctionalProvider<
-          WatchInitialPushMessageUseCase,
-          WatchInitialPushMessageUseCase,
-          WatchInitialPushMessageUseCase
+          GetInitialPushMessageUseCase,
+          GetInitialPushMessageUseCase,
+          GetInitialPushMessageUseCase
         >
-    with $Provider<WatchInitialPushMessageUseCase> {
-  const WatchInitialPushMessageUseCaseProvider._()
+    with $Provider<GetInitialPushMessageUseCase> {
+  const GetInitialPushMessageUseCaseProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'watchInitialPushMessageUseCaseProvider',
+        name: r'getInitialPushMessageUseCaseProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$watchInitialPushMessageUseCaseHash();
+  String debugGetCreateSourceHash() => _$getInitialPushMessageUseCaseHash();
 
   @$internal
   @override
-  $ProviderElement<WatchInitialPushMessageUseCase> $createElement(
+  $ProviderElement<GetInitialPushMessageUseCase> $createElement(
     $ProviderPointer pointer,
   ) => $ProviderElement(pointer);
 
   @override
-  WatchInitialPushMessageUseCase create(Ref ref) {
-    return watchInitialPushMessageUseCase(ref);
+  GetInitialPushMessageUseCase create(Ref ref) {
+    return getInitialPushMessageUseCase(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(WatchInitialPushMessageUseCase value) {
+  Override overrideWithValue(GetInitialPushMessageUseCase value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<WatchInitialPushMessageUseCase>(
-        value,
-      ),
+      providerOverride: $SyncValueProvider<GetInitialPushMessageUseCase>(value),
     );
   }
 }
 
-String _$watchInitialPushMessageUseCaseHash() =>
-    r'6e955cb3416ae682e2ffc4d13e18ff26774556e3';
+String _$getInitialPushMessageUseCaseHash() =>
+    r'1e5ead5d5d87b0823fd40d610db49f48c8c074d8';
 
 @ProviderFor(watchOpenedPushMessageUseCase)
 const watchOpenedPushMessageUseCaseProvider =

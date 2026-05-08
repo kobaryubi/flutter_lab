@@ -2,8 +2,8 @@ import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
 import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 
 /// Returns the message that opened the app from a terminated state.
-class WatchInitialPushMessageUseCase {
-  WatchInitialPushMessageUseCase({
+class GetInitialPushMessageUseCase {
+  GetInitialPushMessageUseCase({
     required PushNotificationRepository pushNotificationRepository,
   }) : _pushNotificationRepository = pushNotificationRepository;
 
