@@ -70,6 +70,11 @@ class FlutterLocalNotificationsLocalNotificationGateway
   @override
   AsyncResult<Unit> initialize() async {
     try {
+      const initializationSettings = InitializationSettings(
+        android: AndroidInitializationSettings(_androidIcon),
+      );
+      await _plugin.initialize(settings: initializationSettings);
+
       final androidPlugin = _plugin
           .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin

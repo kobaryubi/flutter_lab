@@ -25,6 +25,7 @@ class FlutterLabAppViewModel extends _$FlutterLabAppViewModel {
 
     _initializeAdjust();
     _initializeMax();
+    _initializeLocalNotification();
 
     return const FlutterLabAppUiState();
   }
@@ -61,6 +62,13 @@ class FlutterLabAppViewModel extends _$FlutterLabAppViewModel {
   /// Initializes the AppLovin MAX SDK at app startup (fire-and-forget).
   Future<void> _initializeMax() async {
     final useCase = ref.read(initializeMaxUseCaseProvider);
+    await useCase.call();
+  }
+
+  /// Initializes local notifications (Android channels, iOS presentation
+  /// options) at app startup (fire-and-forget).
+  Future<void> _initializeLocalNotification() async {
+    final useCase = ref.read(initializeLocalNotificationUseCaseProvider);
     await useCase.call();
   }
 
