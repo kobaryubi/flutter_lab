@@ -1,3 +1,4 @@
+import 'package:flutter_lab/domain/local_notification/local_notification_channel.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_gateway.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:result_dart/result_dart.dart';
@@ -49,6 +50,16 @@ const _channels = <AndroidNotificationChannel>[
 // TODO(masahiko): replace with a dedicated monochrome notification icon.
 const _androidIcon = 'launch_background';
 
+/// Maps a domain-layer [LocalNotificationChannel] to the const Android
+/// channel registered for that importance level.
+AndroidNotificationChannel _channelFor(LocalNotificationChannel channel) =>
+    switch (channel) {
+      LocalNotificationChannel.highImportance => _highImportanceChannel,
+      LocalNotificationChannel.defaultImportance => _defaultImportanceChannel,
+      LocalNotificationChannel.lowImportance => _lowImportanceChannel,
+      LocalNotificationChannel.minImportance => _minImportanceChannel,
+    };
+
 /// Implementation of [LocalNotificationGateway] backed by the
 /// `flutter_local_notifications` plugin.
 class FlutterLocalNotificationsLocalNotificationGateway
@@ -79,19 +90,20 @@ class FlutterLocalNotificationsLocalNotificationGateway
     required int id,
     required String? title,
     required String? body,
+    required LocalNotificationChannel channel,
   }) async {
     try {
-      const channel = _highImportanceChannel;
+      final androidChannel = _channelFor(channel);
       await _plugin.show(
         id: id,
         title: title,
         body: body,
         notificationDetails: NotificationDetails(
           android: AndroidNotificationDetails(
-            channel.id,
-            channel.name,
-            channelDescription: channel.description,
-            importance: channel.importance,
+            androidChannel.id,
+            androidChannel.name,
+            channelDescription: androidChannel.description,
+            importance: androidChannel.importance,
             icon: _androidIcon,
           ),
         ),
