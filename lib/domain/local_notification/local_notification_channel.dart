@@ -14,5 +14,18 @@ enum LocalNotificationChannel {
   lowImportance,
 
   /// Collapsed in the shade, no badge, no sound.
-  minImportance,
+  minImportance
+  ;
+
+  /// Resolves a channel from a server-sent `data['channel']` value.
+  ///
+  /// Falls back to [defaultImportance] when [key] is null or unrecognized,
+  /// matching Android's default channel behavior.
+  static LocalNotificationChannel fromKey(String? key) => switch (key) {
+    'high' => highImportance,
+    'default' => defaultImportance,
+    'low' => lowImportance,
+    'min' => minImportance,
+    _ => defaultImportance,
+  };
 }

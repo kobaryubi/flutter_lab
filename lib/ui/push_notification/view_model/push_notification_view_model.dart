@@ -82,18 +82,21 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
     await ref.read(clearAppBadgeUseCaseProvider).call();
   }
 
-  /// Surfaces a foreground FCM message as a heads-up local notification.
+  /// Surfaces a foreground FCM message as a local notification.
   ///
   /// FCM does not auto-display notifications while the app is in the
   /// foreground, so we route the message through the local notification
-  /// gateway. Step 6 will read the channel from `message.data`.
+  /// gateway. The channel is selected from `message.data['channel']`,
+  /// falling back to defaultImportance when missing or unrecognized.
   Future<void> _showForegroundNotification(PushMessage message) async {
     final useCase = ref.read(showLocalNotificationUseCaseProvider);
     await useCase.call(
       id: DateTime.now().millisecondsSinceEpoch & 0x7FFFFFFF,
       title: message.title,
       body: message.body,
-      channel: LocalNotificationChannel.highImportance,
+      channel: LocalNotificationChannel.fromKey(
+        message.data['channel'] as String?,
+      ),
     );
   }
 }
