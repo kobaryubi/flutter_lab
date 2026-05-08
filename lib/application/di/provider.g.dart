@@ -1125,6 +1125,54 @@ final class ClearAppBadgeUseCaseProvider
 String _$clearAppBadgeUseCaseHash() =>
     r'6be411030413cfc9b6c148cdbef63633df7e0199';
 
+@ProviderFor(localNotificationGateway)
+const localNotificationGatewayProvider = LocalNotificationGatewayProvider._();
+
+final class LocalNotificationGatewayProvider
+    extends
+        $FunctionalProvider<
+          LocalNotificationGateway,
+          LocalNotificationGateway,
+          LocalNotificationGateway
+        >
+    with $Provider<LocalNotificationGateway> {
+  const LocalNotificationGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'localNotificationGatewayProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$localNotificationGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<LocalNotificationGateway> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  LocalNotificationGateway create(Ref ref) {
+    return localNotificationGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LocalNotificationGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LocalNotificationGateway>(value),
+    );
+  }
+}
+
+String _$localNotificationGatewayHash() =>
+    r'd1cc5ad15378424b4795fe10642b65cafbea15f4';
+
 @ProviderFor(pushNotificationRepository)
 const pushNotificationRepositoryProvider =
     PushNotificationRepositoryProvider._();
