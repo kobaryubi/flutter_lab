@@ -103,6 +103,24 @@ class FlutterLocalNotificationsLocalNotificationGateway
   }
 
   @override
+  AsyncResult<Unit> deleteNotificationChannel({
+    required String channelId,
+  }) async {
+    try {
+      final androidPlugin = _plugin
+          .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin
+          >();
+      await androidPlugin?.deleteNotificationChannel(channelId: channelId);
+
+      return const Success(unit);
+    } on Exception catch (exception, stackTrace) {
+      _logger.handle(exception: exception, stackTrace: stackTrace);
+      return exception.toFailure();
+    }
+  }
+
+  @override
   AsyncResult<Unit> show({
     required int id,
     required String? title,

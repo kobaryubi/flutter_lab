@@ -95,6 +95,7 @@ import 'package:flutter_lab/domain/use_cases/google_api/check_google_api_availab
 import 'package:flutter_lab/domain/use_cases/in_app_review/check_review_availability_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/in_app_review/request_review_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/information/get_detail_url_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/local_notification/delete_local_notification_channel_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/local_notification/initialize_local_notification_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/local_notification/show_local_notification_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
@@ -315,6 +316,13 @@ ShowLocalNotificationUseCase showLocalNotificationUseCase(Ref ref) =>
       localNotificationGateway: ref.read(localNotificationGatewayProvider),
       logger: ref.read(loggerGatewayProvider),
     );
+
+@riverpod
+DeleteLocalNotificationChannelUseCase deleteLocalNotificationChannelUseCase(
+  Ref ref,
+) => DeleteLocalNotificationChannelUseCase(
+  localNotificationGateway: ref.read(localNotificationGatewayProvider),
+);
 
 // push notification
 @riverpod

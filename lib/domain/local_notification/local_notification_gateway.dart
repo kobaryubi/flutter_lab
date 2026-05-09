@@ -19,4 +19,13 @@ abstract class LocalNotificationGateway {
     required String? body,
     required LocalNotificationChannel channel,
   });
+
+  /// Deletes the Android notification channel registered under [channelId].
+  ///
+  /// Use this to clean up legacy channels left on user devices after a
+  /// rename or restructure — channel IDs that no longer appear in
+  /// [LocalNotificationChannel]. Calling this for an unknown [channelId]
+  /// is a no-op. iOS has no notification channels, so this is a no-op
+  /// there.
+  AsyncResult<Unit> deleteNotificationChannel({required String channelId});
 }
