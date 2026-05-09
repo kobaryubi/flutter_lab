@@ -86,17 +86,16 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
   ///
   /// FCM does not auto-display notifications while the app is in the
   /// foreground, so we route the message through the local notification
-  /// gateway. The channel is selected from `message.data['channel']`,
-  /// falling back to defaultImportance when missing or unrecognized.
+  /// gateway. The channel is selected from the FCM-native
+  /// `notification.android.channelId` field, falling back to
+  /// defaultImportance when missing or unrecognized.
   Future<void> _showForegroundNotification(PushMessage message) async {
     final useCase = ref.read(showLocalNotificationUseCaseProvider);
     await useCase.call(
       id: DateTime.now().millisecondsSinceEpoch & 0x7FFFFFFF,
       title: message.title,
       body: message.body,
-      channel: LocalNotificationChannel.fromKey(
-        message.data['channel'] as String?,
-      ),
+      channel: LocalNotificationChannel.fromId(message.channelId),
     );
   }
 }

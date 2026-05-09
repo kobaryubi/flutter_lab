@@ -6,7 +6,7 @@ import 'package:result_dart/result_dart.dart';
 /// Heads-up + sound. Use for time-critical notifications such as alerts the
 /// user must see immediately.
 const _highImportanceChannel = AndroidNotificationChannel(
-  'high_importance_channel',
+  highImportanceChannelId,
   'High Importance Notifications',
   description: 'Urgent notifications shown as heads-up with sound.',
   importance: Importance.high,
@@ -15,7 +15,7 @@ const _highImportanceChannel = AndroidNotificationChannel(
 /// Sound, no heads-up. Standard notifications that should make a sound but
 /// not interrupt the user's current task.
 const _defaultImportanceChannel = AndroidNotificationChannel(
-  'default_importance_channel',
+  defaultImportanceChannelId,
   'Default Notifications',
   description: 'Standard notifications shown silently in the status bar.',
 );
@@ -23,7 +23,7 @@ const _defaultImportanceChannel = AndroidNotificationChannel(
 /// No sound, visible in the shade. Use for low-priority updates the user
 /// can check on their own time.
 const _lowImportanceChannel = AndroidNotificationChannel(
-  'low_importance_channel',
+  lowImportanceChannelId,
   'Low Importance Notifications',
   description: 'Quiet notifications shown without sound.',
   importance: Importance.low,
@@ -32,7 +32,7 @@ const _lowImportanceChannel = AndroidNotificationChannel(
 /// Collapsed in the shade, no badge, no sound. Use for background activity
 /// the user rarely needs to see.
 const _minImportanceChannel = AndroidNotificationChannel(
-  'min_importance_channel',
+  minImportanceChannelId,
   'Minimum Importance Notifications',
   description: 'Background notifications shown collapsed in the shade.',
   importance: Importance.min,

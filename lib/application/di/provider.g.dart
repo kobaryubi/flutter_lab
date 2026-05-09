@@ -1272,7 +1272,7 @@ final class ShowLocalNotificationUseCaseProvider
 }
 
 String _$showLocalNotificationUseCaseHash() =>
-    r'14a7360108f1544c574b36d53db82717fb1a7c05';
+    r'48877f2079660a010daf84d66456066a1d4f75df';
 
 @ProviderFor(pushNotificationRepository)
 const pushNotificationRepositoryProvider =

@@ -12,6 +12,7 @@ abstract class PushMessage with _$PushMessage {
     required String? messageId,
     required String? title,
     required String? body,
+    required String? channelId,
     required Map<String, Object?> data,
   }) = _PushMessage;
 }

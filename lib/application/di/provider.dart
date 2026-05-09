@@ -311,6 +311,7 @@ InitializeLocalNotificationUseCase initializeLocalNotificationUseCase(
 ShowLocalNotificationUseCase showLocalNotificationUseCase(Ref ref) =>
     ShowLocalNotificationUseCase(
       localNotificationGateway: ref.read(localNotificationGatewayProvider),
+      logger: ref.read(loggerGatewayProvider),
     );
 
 // push notification
