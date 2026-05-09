@@ -16,6 +16,10 @@ abstract class PushNotificationUiState with _$PushNotificationUiState {
     AsyncValue<PushNotificationPermission>? permission,
     AsyncValue<void>? rotation,
 
+    /// Result of deleting a legacy notification channel. `null` until the
+    /// user taps the delete button at least once.
+    AsyncValue<void>? channelDeletion,
+
     /// Message that opened the app from a terminated state, or `null`.
     /// Resolved once on screen entry.
     AsyncValue<PushMessage?>? initialMessage,

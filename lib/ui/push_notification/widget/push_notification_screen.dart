@@ -34,8 +34,14 @@ class _Body extends ConsumerWidget {
       viewModel.rotatePushToken();
     }
 
+    /// Deletes the legacy `general_notifications` Android channel.
+    void handleDeleteGeneralNotificationsChannel() {
+      viewModel.deleteGeneralNotificationsChannel();
+    }
+
     final permission = uiState.permission;
     final rotation = uiState.rotation;
+    final channelDeletion = uiState.channelDeletion;
     final initialMessage = uiState.initialMessage;
 
     return ListView(
@@ -56,6 +62,15 @@ class _Body extends ConsumerWidget {
         if (rotation case AsyncLoading()) const Text('Rotating...'),
         if (rotation case AsyncData()) const Text('Token rotated.'),
         if (rotation case AsyncError(:final error)) Text('Error: $error'),
+        GestureDetector(
+          onTap: handleDeleteGeneralNotificationsChannel,
+          child: const Text('Delete general_notifications channel'),
+        ),
+        if (channelDeletion case AsyncLoading()) const Text('Deleting...'),
+        if (channelDeletion case AsyncData())
+          const Text('general_notifications deleted.'),
+        if (channelDeletion case AsyncError(:final error))
+          Text('Error: $error'),
         const Text('--- Initial Message ---'),
         if (initialMessage case AsyncData(:final value))
           Text(value == null ? 'none' : _formatMessage(value)),

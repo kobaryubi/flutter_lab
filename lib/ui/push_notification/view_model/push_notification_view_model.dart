@@ -64,6 +64,17 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
     state = state.copyWith(rotation: rotation);
   }
 
+  /// Deletes the legacy `general_notifications` Android channel as a
+  /// sample of channel cleanup after a rename or restructure.
+  Future<void> deleteGeneralNotificationsChannel() async {
+    final useCase = ref.read(deleteLocalNotificationChannelUseCaseProvider);
+    final channelDeletion = await AsyncValue.guard(() async {
+      (await useCase.call(channelId: 'general_notifications')).getOrThrow();
+    });
+
+    state = state.copyWith(channelDeletion: channelDeletion);
+  }
+
   /// Loads the message that opened the app from a terminated state.
   Future<void> _loadInitialMessage() async {
     final initialMessage = await AsyncValue.guard(
