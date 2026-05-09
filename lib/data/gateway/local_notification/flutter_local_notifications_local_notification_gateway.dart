@@ -1,3 +1,4 @@
+import 'package:flutter_lab/application/logger/logger_gateway.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_channel.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_gateway.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -47,8 +48,11 @@ const _channels = <AndroidNotificationChannel>[
   _minImportanceChannel,
 ];
 
-// TODO(masahiko): replace with a dedicated monochrome notification icon.
-const _androidIcon = 'launch_background';
+/// Notification small-icon resource. Resolved via
+/// `Resources.getIdentifier(name, "drawable", ...)` by the plugin, so the
+/// asset must live under `res/drawable/` (not `mipmap/`) and the name has
+/// no prefix.
+const _androidIcon = 'ic_notification';
 
 /// Maps a domain-layer [LocalNotificationChannel] to the const Android
 /// channel registered for that importance level.
@@ -64,8 +68,15 @@ AndroidNotificationChannel _channelFor(LocalNotificationChannel channel) =>
 /// `flutter_local_notifications` plugin.
 class FlutterLocalNotificationsLocalNotificationGateway
     implements LocalNotificationGateway {
+  /// Creates the gateway. The [logger] is used to surface plugin
+  /// exceptions; the gateway itself never throws to its callers.
+  FlutterLocalNotificationsLocalNotificationGateway({
+    required LoggerGateway logger,
+  }) : _logger = logger;
+
   final FlutterLocalNotificationsPlugin _plugin =
       FlutterLocalNotificationsPlugin();
+  final LoggerGateway _logger;
 
   @override
   AsyncResult<Unit> initialize() async {
@@ -85,7 +96,8 @@ class FlutterLocalNotificationsLocalNotificationGateway
       }
 
       return const Success(unit);
-    } on Exception catch (exception) {
+    } on Exception catch (exception, stackTrace) {
+      _logger.handle(exception: exception, stackTrace: stackTrace);
       return exception.toFailure();
     }
   }
@@ -115,7 +127,8 @@ class FlutterLocalNotificationsLocalNotificationGateway
       );
 
       return const Success(unit);
-    } on Exception catch (exception) {
+    } on Exception catch (exception, stackTrace) {
+      _logger.handle(exception: exception, stackTrace: stackTrace);
       return exception.toFailure();
     }
   }

@@ -1171,7 +1171,7 @@ final class LocalNotificationGatewayProvider
 }
 
 String _$localNotificationGatewayHash() =>
-    r'd1cc5ad15378424b4795fe10642b65cafbea15f4';
+    r'f72694d870598f90a575538d8785244b7a42f622';
 
 @ProviderFor(initializeLocalNotificationUseCase)
 const initializeLocalNotificationUseCaseProvider =

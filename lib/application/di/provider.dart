@@ -298,7 +298,9 @@ ClearAppBadgeUseCase clearAppBadgeUseCase(Ref ref) => ClearAppBadgeUseCase(
 // local notification
 @Riverpod(keepAlive: true)
 LocalNotificationGateway localNotificationGateway(Ref ref) =>
-    FlutterLocalNotificationsLocalNotificationGateway();
+    FlutterLocalNotificationsLocalNotificationGateway(
+      logger: ref.read(loggerGatewayProvider),
+    );
 
 @riverpod
 InitializeLocalNotificationUseCase initializeLocalNotificationUseCase(
