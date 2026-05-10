@@ -15,6 +15,7 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
   @override
   PushNotificationUiState build() {
     _loadInitialMessage();
+    _loadInitialLocalNotificationTap();
 
     final openedSubscription = ref
         .read(watchOpenedPushMessageUseCaseProvider)
@@ -87,6 +88,16 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
     if (initialMessage case AsyncData(value: final _?)) {
       unawaited(_clearAppBadge());
     }
+  }
+
+  /// Loads the local-notification tap that launched the app from a
+  /// terminated state.
+  Future<void> _loadInitialLocalNotificationTap() async {
+    final initialTap = await AsyncValue.guard(
+      () => ref.read(getInitialLocalNotificationTapUseCaseProvider).call(),
+    );
+
+    state = state.copyWith(initialLocalNotificationTap: initialTap);
   }
 
   /// Removes the app icon badge after a notification tap is handled.

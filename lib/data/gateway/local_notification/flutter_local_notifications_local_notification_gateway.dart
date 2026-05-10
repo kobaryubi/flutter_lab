@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_lab/application/logger/logger_gateway.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_channel.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_gateway.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_message.dart';
+import 'package:flutter_lab/domain/local_notification/local_notification_tap.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -57,6 +59,24 @@ const _channels = <AndroidNotificationChannel>[
 /// no prefix.
 const _androidIcon = 'ic_notification';
 
+/// Background-isolate callback invoked when the user taps a local
+/// notification while the app is terminated.
+///
+/// Runs in a fresh, headless isolate spawned by the OS — the main
+/// isolate's `LoggerGateway` instance is not available here. Logs via
+/// `debugPrint` so the output reaches `adb logcat` (and `flutter run`
+/// when the device is still attached). Must be a top-level function
+/// annotated with `@pragma('vm:entry-point')` so the AOT compiler
+/// keeps it in release builds.
+@pragma('vm:entry-point')
+void _handleBackgroundNotificationTap(NotificationResponse response) {
+  debugPrint(
+    'LocalNotificationBackgroundTap: '
+    'id=${response.id}, '
+    'payload=${response.payload}',
+  );
+}
+
 /// Maps a domain-layer [LocalNotificationChannel] to the const Android
 /// channel registered for that importance level.
 AndroidNotificationChannel _channelFor(LocalNotificationChannel channel) =>
@@ -90,6 +110,8 @@ class FlutterLocalNotificationsLocalNotificationGateway
       await _plugin.initialize(
         settings: initializationSettings,
         onDidReceiveNotificationResponse: _handleNotificationTap,
+        onDidReceiveBackgroundNotificationResponse:
+            _handleBackgroundNotificationTap,
       );
 
       final androidPlugin = _plugin
@@ -117,6 +139,27 @@ class FlutterLocalNotificationsLocalNotificationGateway
       'id=${response.id}, '
       'payload=${response.payload}',
     );
+  }
+
+  @override
+  Future<LocalNotificationTap?> getInitialTap() async {
+    final details = await _plugin.getNotificationAppLaunchDetails();
+    if (details == null || !details.didNotificationLaunchApp) return null;
+
+    final response = details.notificationResponse;
+    _logger.info(
+      'InitialLocalNotificationTap raw: '
+      'id=${response?.id}, payload=${response?.payload}',
+    );
+
+    final payload = response?.payload;
+    final data = payload == null
+        ? <String, Object?>{}
+        : Map<String, Object?>.from(jsonDecode(payload) as Map);
+    final tap = LocalNotificationTap(id: response?.id, data: data);
+    _logger.info('InitialLocalNotificationTap: $tap');
+
+    return tap;
   }
 
   @override

@@ -43,6 +43,7 @@ class _Body extends ConsumerWidget {
     final rotation = uiState.rotation;
     final channelDeletion = uiState.channelDeletion;
     final initialMessage = uiState.initialMessage;
+    final initialLocalNotificationTap = uiState.initialLocalNotificationTap;
 
     return ListView(
       children: [
@@ -74,6 +75,9 @@ class _Body extends ConsumerWidget {
         const Text('--- Initial Message ---'),
         if (initialMessage case AsyncData(:final value))
           Text(value == null ? 'none' : _formatMessage(value)),
+        const Text('--- Initial Local Notification Tap ---'),
+        if (initialLocalNotificationTap case AsyncData(:final value))
+          Text(value == null ? 'none' : 'id=${value.id} data=${value.data}'),
         const Text('--- Opened Messages ---'),
         if (uiState.openedMessages.isEmpty)
           const Text('none')
