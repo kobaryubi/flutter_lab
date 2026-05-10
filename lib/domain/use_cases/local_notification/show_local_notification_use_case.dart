@@ -1,9 +1,9 @@
 import 'package:flutter_lab/application/logger/logger_gateway.dart';
-import 'package:flutter_lab/domain/local_notification/local_notification_channel.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_gateway.dart';
+import 'package:flutter_lab/domain/local_notification/local_notification_message.dart';
 import 'package:result_dart/result_dart.dart';
 
-/// Shows a local notification through the specified [LocalNotificationChannel].
+/// Shows a local notification described by a [LocalNotificationMessage].
 class ShowLocalNotificationUseCase {
   ShowLocalNotificationUseCase({
     required LocalNotificationGateway localNotificationGateway,
@@ -15,22 +15,14 @@ class ShowLocalNotificationUseCase {
   final LoggerGateway _logger;
 
   /// Logs the request, then delegates to the gateway's `show` method.
-  AsyncResult<Unit> call({
-    required int id,
-    required String? title,
-    required String? body,
-    required LocalNotificationChannel channel,
-  }) {
+  AsyncResult<Unit> call({required LocalNotificationMessage message}) {
     _logger.info(
-      'ShowLocalNotification: id=$id, channel=${channel.name}, '
-      'title=$title, body=$body',
+      'ShowLocalNotification: id=${message.id}, '
+      'channel=${message.channel.name}, '
+      'title=${message.title}, body=${message.body}, '
+      'data=${message.data}',
     );
 
-    return _localNotificationGateway.show(
-      id: id,
-      title: title,
-      body: body,
-      channel: channel,
-    );
+    return _localNotificationGateway.show(message: message);
   }
 }

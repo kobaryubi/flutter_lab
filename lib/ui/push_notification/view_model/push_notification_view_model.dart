@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_channel.dart';
+import 'package:flutter_lab/domain/local_notification/local_notification_message.dart';
 import 'package:flutter_lab/ui/push_notification/ui_state/push_notification_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -100,13 +101,15 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
   /// gateway. The channel is selected from the FCM-native
   /// `notification.android.channelId` field, falling back to
   /// defaultImportance when missing or unrecognized.
-  Future<void> _showForegroundNotification(PushMessage message) async {
+  Future<void> _showForegroundNotification(PushMessage pushMessage) async {
     final useCase = ref.read(showLocalNotificationUseCaseProvider);
-    await useCase.call(
+    final message = LocalNotificationMessage(
       id: DateTime.now().millisecondsSinceEpoch & 0x7FFFFFFF,
-      title: message.title,
-      body: message.body,
-      channel: LocalNotificationChannel.fromId(message.channelId),
+      title: pushMessage.title,
+      body: pushMessage.body,
+      channel: LocalNotificationChannel.fromId(pushMessage.channelId),
+      data: pushMessage.data,
     );
+    await useCase.call(message: message);
   }
 }
