@@ -191,10 +191,9 @@ class FlutterLocalNotificationsLocalNotificationGateway
         notificationDetails: NotificationDetails(
           android: AndroidNotificationDetails(
             androidChannel.id,
+            // Name is ignored when the channel is already registered;
+            // the plugin's API forces it as a required positional arg.
             androidChannel.name,
-            channelDescription: androidChannel.description,
-            importance: androidChannel.importance,
-            icon: _androidIcon,
           ),
         ),
         payload: message.data.isEmpty ? null : jsonEncode(message.data),
