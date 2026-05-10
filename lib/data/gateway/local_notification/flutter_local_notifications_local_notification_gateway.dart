@@ -87,7 +87,10 @@ class FlutterLocalNotificationsLocalNotificationGateway
       const initializationSettings = InitializationSettings(
         android: AndroidInitializationSettings(_androidIcon),
       );
-      await _plugin.initialize(settings: initializationSettings);
+      await _plugin.initialize(
+        settings: initializationSettings,
+        onDidReceiveNotificationResponse: _handleNotificationTap,
+      );
 
       final androidPlugin = _plugin
           .resolvePlatformSpecificImplementation<
@@ -103,6 +106,17 @@ class FlutterLocalNotificationsLocalNotificationGateway
       _logger.handle(exception: exception, stackTrace: stackTrace);
       return exception.toFailure();
     }
+  }
+
+  /// Invoked by the plugin when the user taps a local notification while
+  /// the app is alive (foreground or background). Currently only logs;
+  /// future work: expose a tap stream the view model can subscribe to.
+  void _handleNotificationTap(NotificationResponse response) {
+    _logger.info(
+      'LocalNotificationTap: '
+      'id=${response.id}, '
+      'payload=${response.payload}',
+    );
   }
 
   @override

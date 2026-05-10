@@ -115,8 +115,8 @@ class FirebaseMessagingPushNotificationRepository
 /// Maps a [RemoteMessage] from FCM into the domain-layer [PushMessage].
 PushMessage _toPushMessage(RemoteMessage message) => PushMessage(
   messageId: message.messageId,
-  title: message.notification?.title,
-  body: message.notification?.body,
+  title: message.notification?.title ?? '',
+  body: message.notification?.body ?? '',
   channelId: message.notification?.android?.channelId,
   data: message.data,
 );

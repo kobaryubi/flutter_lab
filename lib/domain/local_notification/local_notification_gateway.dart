@@ -1,4 +1,5 @@
 import 'package:flutter_lab/domain/local_notification/local_notification_channel.dart';
+import 'package:flutter_lab/domain/local_notification/local_notification_message.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Gateway interface for displaying local notifications on the device.
@@ -11,14 +12,8 @@ abstract class LocalNotificationGateway {
   /// foreground presentation options). Safe to call multiple times.
   AsyncResult<Unit> initialize();
 
-  /// Shows a notification with the given [id], [title], and [body] through
-  /// the specified [channel].
-  AsyncResult<Unit> show({
-    required int id,
-    required String? title,
-    required String? body,
-    required LocalNotificationChannel channel,
-  });
+  /// Shows the local notification described by [message].
+  AsyncResult<Unit> show({required LocalNotificationMessage message});
 
   /// Deletes the Android notification channel registered under [channelId].
   ///

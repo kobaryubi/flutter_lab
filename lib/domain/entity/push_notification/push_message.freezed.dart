@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PushMessage {
 
- String? get messageId; String? get title; String? get body; String? get channelId; Map<String, Object?> get data;
+ String? get messageId; String get title; String get body; String? get channelId; Map<String, Object?> get data;
 /// Create a copy of PushMessage
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $PushMessageCopyWith<$Res>  {
   factory $PushMessageCopyWith(PushMessage value, $Res Function(PushMessage) _then) = _$PushMessageCopyWithImpl;
 @useResult
 $Res call({
- String? messageId, String? title, String? body, String? channelId, Map<String, Object?> data
+ String? messageId, String title, String body, String? channelId, Map<String, Object?> data
 });
 
 
@@ -62,12 +62,12 @@ class _$PushMessageCopyWithImpl<$Res>
 
 /// Create a copy of PushMessage
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? messageId = freezed,Object? title = freezed,Object? body = freezed,Object? channelId = freezed,Object? data = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? messageId = freezed,Object? title = null,Object? body = null,Object? channelId = freezed,Object? data = null,}) {
   return _then(_self.copyWith(
 messageId: freezed == messageId ? _self.messageId : messageId // ignore: cast_nullable_to_non_nullable
-as String?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String?,body: freezed == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
-as String?,channelId: freezed == channelId ? _self.channelId : channelId // ignore: cast_nullable_to_non_nullable
+as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
+as String,channelId: freezed == channelId ? _self.channelId : channelId // ignore: cast_nullable_to_non_nullable
 as String?,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
 as Map<String, Object?>,
   ));
@@ -154,7 +154,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? messageId,  String? title,  String? body,  String? channelId,  Map<String, Object?> data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? messageId,  String title,  String body,  String? channelId,  Map<String, Object?> data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PushMessage() when $default != null:
 return $default(_that.messageId,_that.title,_that.body,_that.channelId,_that.data);case _:
@@ -175,7 +175,7 @@ return $default(_that.messageId,_that.title,_that.body,_that.channelId,_that.dat
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? messageId,  String? title,  String? body,  String? channelId,  Map<String, Object?> data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? messageId,  String title,  String body,  String? channelId,  Map<String, Object?> data)  $default,) {final _that = this;
 switch (_that) {
 case _PushMessage():
 return $default(_that.messageId,_that.title,_that.body,_that.channelId,_that.data);case _:
@@ -195,7 +195,7 @@ return $default(_that.messageId,_that.title,_that.body,_that.channelId,_that.dat
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? messageId,  String? title,  String? body,  String? channelId,  Map<String, Object?> data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? messageId,  String title,  String body,  String? channelId,  Map<String, Object?> data)?  $default,) {final _that = this;
 switch (_that) {
 case _PushMessage() when $default != null:
 return $default(_that.messageId,_that.title,_that.body,_that.channelId,_that.data);case _:
@@ -214,8 +214,8 @@ class _PushMessage implements PushMessage {
   
 
 @override final  String? messageId;
-@override final  String? title;
-@override final  String? body;
+@override final  String title;
+@override final  String body;
 @override final  String? channelId;
  final  Map<String, Object?> _data;
 @override Map<String, Object?> get data {
@@ -255,7 +255,7 @@ abstract mixin class _$PushMessageCopyWith<$Res> implements $PushMessageCopyWith
   factory _$PushMessageCopyWith(_PushMessage value, $Res Function(_PushMessage) _then) = __$PushMessageCopyWithImpl;
 @override @useResult
 $Res call({
- String? messageId, String? title, String? body, String? channelId, Map<String, Object?> data
+ String? messageId, String title, String body, String? channelId, Map<String, Object?> data
 });
 
 
@@ -272,12 +272,12 @@ class __$PushMessageCopyWithImpl<$Res>
 
 /// Create a copy of PushMessage
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? messageId = freezed,Object? title = freezed,Object? body = freezed,Object? channelId = freezed,Object? data = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? messageId = freezed,Object? title = null,Object? body = null,Object? channelId = freezed,Object? data = null,}) {
   return _then(_PushMessage(
 messageId: freezed == messageId ? _self.messageId : messageId // ignore: cast_nullable_to_non_nullable
-as String?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String?,body: freezed == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
-as String?,channelId: freezed == channelId ? _self.channelId : channelId // ignore: cast_nullable_to_non_nullable
+as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
+as String,channelId: freezed == channelId ? _self.channelId : channelId // ignore: cast_nullable_to_non_nullable
 as String?,data: null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
 as Map<String, Object?>,
   ));

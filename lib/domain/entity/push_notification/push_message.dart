@@ -10,8 +10,8 @@ part 'push_message.freezed.dart';
 abstract class PushMessage with _$PushMessage {
   const factory PushMessage({
     required String? messageId,
-    required String? title,
-    required String? body,
+    required String title,
+    required String body,
     required String? channelId,
     required Map<String, Object?> data,
   }) = _PushMessage;
