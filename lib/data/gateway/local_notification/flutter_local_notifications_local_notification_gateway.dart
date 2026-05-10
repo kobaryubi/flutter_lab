@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter_lab/application/logger/logger_gateway.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_channel.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_gateway.dart';
+import 'package:flutter_lab/domain/local_notification/local_notification_message.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -121,18 +124,13 @@ class FlutterLocalNotificationsLocalNotificationGateway
   }
 
   @override
-  AsyncResult<Unit> show({
-    required int id,
-    required String? title,
-    required String? body,
-    required LocalNotificationChannel channel,
-  }) async {
+  AsyncResult<Unit> show({required LocalNotificationMessage message}) async {
     try {
-      final androidChannel = _channelFor(channel);
+      final androidChannel = _channelFor(message.channel);
       await _plugin.show(
-        id: id,
-        title: title,
-        body: body,
+        id: message.id,
+        title: message.title,
+        body: message.body,
         notificationDetails: NotificationDetails(
           android: AndroidNotificationDetails(
             androidChannel.id,
@@ -142,6 +140,7 @@ class FlutterLocalNotificationsLocalNotificationGateway
             icon: _androidIcon,
           ),
         ),
+        payload: message.data.isEmpty ? null : jsonEncode(message.data),
       );
 
       return const Success(unit);
