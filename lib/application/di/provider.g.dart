@@ -1809,7 +1809,7 @@ final class WatchForegroundPushMessageUseCaseProvider
 }
 
 String _$watchForegroundPushMessageUseCaseHash() =>
-    r'3427943868323a611f66b3d081c162e7787b2a29';
+    r'f2ba5b659ddc3c93b69cc5ebb413914fb63c62be';
 
 @ProviderFor(copyShortcutIconsUseCase)
 const copyShortcutIconsUseCaseProvider = CopyShortcutIconsUseCaseProvider._();

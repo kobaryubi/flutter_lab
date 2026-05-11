@@ -383,6 +383,7 @@ WatchOpenedPushMessageUseCase watchOpenedPushMessageUseCase(Ref ref) =>
 WatchForegroundPushMessageUseCase watchForegroundPushMessageUseCase(Ref ref) =>
     WatchForegroundPushMessageUseCase(
       pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
+      localNotificationGateway: ref.read(localNotificationGatewayProvider),
     );
 
 @riverpod
