@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_lab/application/logger/logger_gateway.dart';
+import 'package:flutter_lab/data/mapper/push_notification/push_message_mapper.dart';
 import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
-import 'package:flutter_lab/domain/entity/push_notification/push_notification.dart';
 import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -19,6 +19,7 @@ class FirebaseMessagingPushNotificationRepository
 
   final FirebaseMessaging _instance = FirebaseMessaging.instance;
   final LoggerGateway _logger;
+  final PushMessageMapper _pushMessageMapper = const PushMessageMapper();
 
   @override
   Future<String> requestPermission() async {
@@ -67,7 +68,9 @@ class FirebaseMessagingPushNotificationRepository
     if (message == null) return null;
 
     _logger.info('InitialPushMessage raw: ${message.toMap()}');
-    final pushMessage = _toPushMessage(message);
+    final pushMessage = _pushMessageMapper.convert<RemoteMessage, PushMessage>(
+      message,
+    );
     _logger.info('InitialPushMessage: $pushMessage');
 
     return pushMessage;
@@ -77,7 +80,8 @@ class FirebaseMessagingPushNotificationRepository
   Stream<PushMessage> get onMessageOpenedApp =>
       FirebaseMessaging.onMessageOpenedApp.map((message) {
         _logger.info('OpenedPushMessage raw: ${message.toMap()}');
-        final pushMessage = _toPushMessage(message);
+        final pushMessage = _pushMessageMapper
+            .convert<RemoteMessage, PushMessage>(message);
         _logger.info('OpenedPushMessage: $pushMessage');
 
         return pushMessage;
@@ -87,7 +91,8 @@ class FirebaseMessagingPushNotificationRepository
   Stream<PushMessage> get onForegroundMessage =>
       FirebaseMessaging.onMessage.map((message) {
         _logger.info('ForegroundPushMessage raw: ${message.toMap()}');
-        final pushMessage = _toPushMessage(message);
+        final pushMessage = _pushMessageMapper
+            .convert<RemoteMessage, PushMessage>(message);
         _logger.info('ForegroundPushMessage: $pushMessage');
 
         return pushMessage;
@@ -111,20 +116,4 @@ class FirebaseMessagingPushNotificationRepository
       return exception.toFailure();
     }
   }
-}
-
-/// Maps a [RemoteMessage] from FCM into the domain-layer [PushMessage].
-PushMessage _toPushMessage(RemoteMessage message) {
-  final remoteNotification = message.notification;
-
-  return PushMessage(
-    messageId: message.messageId,
-    notification: PushNotification(
-      title: remoteNotification?.title ?? '',
-      body: remoteNotification?.body ?? '',
-    ),
-    channelId: remoteNotification?.android?.channelId,
-    imageUrl: remoteNotification?.android?.imageUrl,
-    data: message.data,
-  );
 }
