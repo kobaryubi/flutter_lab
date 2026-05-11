@@ -118,5 +118,6 @@ PushMessage _toPushMessage(RemoteMessage message) => PushMessage(
   title: message.notification?.title ?? '',
   body: message.notification?.body ?? '',
   channelId: message.notification?.android?.channelId,
+  imageUrl: message.notification?.android?.imageUrl,
   data: message.data,
 );

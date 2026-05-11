@@ -13,6 +13,7 @@ abstract class PushMessage with _$PushMessage {
     required String title,
     required String body,
     required String? channelId,
+    required String? imageUrl,
     required Map<String, Object?> data,
   }) = _PushMessage;
 }
