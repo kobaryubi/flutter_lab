@@ -192,7 +192,7 @@ class FlutterLocalNotificationsLocalNotificationGateway
         try {
           final response = await Dio().get<List<int>>(
             imageUrl,
-            options: Options(responseType: ResponseType.bytes),
+            options: Options(responseType: .bytes),
           );
           final data = response.data;
 
