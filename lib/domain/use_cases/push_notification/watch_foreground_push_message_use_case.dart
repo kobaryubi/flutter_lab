@@ -38,6 +38,7 @@ class WatchForegroundPushMessageUseCase {
                 title: message.title,
                 body: message.body,
                 channel: LocalNotificationChannel.fromId(message.channelId),
+                imageUrl: message.imageUrl,
                 data: message.data,
               ),
             ),
