@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PushMessage {
 
- String? get messageId; PushNotification get notification; String? get channelId; String? get imageUrl; Map<String, Object?> get data;
+ String? get messageId; PushNotification get notification; String? get channelId; String? get imageUrl; PushMessageData get data;
 /// Create a copy of PushMessage
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,12 +25,12 @@ $PushMessageCopyWith<PushMessage> get copyWith => _$PushMessageCopyWithImpl<Push
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushMessage&&(identical(other.messageId, messageId) || other.messageId == messageId)&&(identical(other.notification, notification) || other.notification == notification)&&(identical(other.channelId, channelId) || other.channelId == channelId)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushMessage&&(identical(other.messageId, messageId) || other.messageId == messageId)&&(identical(other.notification, notification) || other.notification == notification)&&(identical(other.channelId, channelId) || other.channelId == channelId)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.data, data) || other.data == data));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,messageId,notification,channelId,imageUrl,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,messageId,notification,channelId,imageUrl,data);
 
 @override
 String toString() {
@@ -45,11 +45,11 @@ abstract mixin class $PushMessageCopyWith<$Res>  {
   factory $PushMessageCopyWith(PushMessage value, $Res Function(PushMessage) _then) = _$PushMessageCopyWithImpl;
 @useResult
 $Res call({
- String? messageId, PushNotification notification, String? channelId, String? imageUrl, Map<String, Object?> data
+ String? messageId, PushNotification notification, String? channelId, String? imageUrl, PushMessageData data
 });
 
 
-$PushNotificationCopyWith<$Res> get notification;
+$PushNotificationCopyWith<$Res> get notification;$PushMessageDataCopyWith<$Res> get data;
 
 }
 /// @nodoc
@@ -69,7 +69,7 @@ as String?,notification: null == notification ? _self.notification : notificatio
 as PushNotification,channelId: freezed == channelId ? _self.channelId : channelId // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as Map<String, Object?>,
+as PushMessageData,
   ));
 }
 /// Create a copy of PushMessage
@@ -80,6 +80,15 @@ $PushNotificationCopyWith<$Res> get notification {
   
   return $PushNotificationCopyWith<$Res>(_self.notification, (value) {
     return _then(_self.copyWith(notification: value));
+  });
+}/// Create a copy of PushMessage
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PushMessageDataCopyWith<$Res> get data {
+  
+  return $PushMessageDataCopyWith<$Res>(_self.data, (value) {
+    return _then(_self.copyWith(data: value));
   });
 }
 }
@@ -163,7 +172,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? messageId,  PushNotification notification,  String? channelId,  String? imageUrl,  Map<String, Object?> data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? messageId,  PushNotification notification,  String? channelId,  String? imageUrl,  PushMessageData data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PushMessage() when $default != null:
 return $default(_that.messageId,_that.notification,_that.channelId,_that.imageUrl,_that.data);case _:
@@ -184,7 +193,7 @@ return $default(_that.messageId,_that.notification,_that.channelId,_that.imageUr
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? messageId,  PushNotification notification,  String? channelId,  String? imageUrl,  Map<String, Object?> data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? messageId,  PushNotification notification,  String? channelId,  String? imageUrl,  PushMessageData data)  $default,) {final _that = this;
 switch (_that) {
 case _PushMessage():
 return $default(_that.messageId,_that.notification,_that.channelId,_that.imageUrl,_that.data);case _:
@@ -204,7 +213,7 @@ return $default(_that.messageId,_that.notification,_that.channelId,_that.imageUr
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? messageId,  PushNotification notification,  String? channelId,  String? imageUrl,  Map<String, Object?> data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? messageId,  PushNotification notification,  String? channelId,  String? imageUrl,  PushMessageData data)?  $default,) {final _that = this;
 switch (_that) {
 case _PushMessage() when $default != null:
 return $default(_that.messageId,_that.notification,_that.channelId,_that.imageUrl,_that.data);case _:
@@ -219,20 +228,14 @@ return $default(_that.messageId,_that.notification,_that.channelId,_that.imageUr
 
 
 class _PushMessage implements PushMessage {
-  const _PushMessage({required this.messageId, required this.notification, required this.channelId, required this.imageUrl, required final  Map<String, Object?> data}): _data = data;
+  const _PushMessage({required this.messageId, required this.notification, required this.channelId, required this.imageUrl, required this.data});
   
 
 @override final  String? messageId;
 @override final  PushNotification notification;
 @override final  String? channelId;
 @override final  String? imageUrl;
- final  Map<String, Object?> _data;
-@override Map<String, Object?> get data {
-  if (_data is EqualUnmodifiableMapView) return _data;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(_data);
-}
-
+@override final  PushMessageData data;
 
 /// Create a copy of PushMessage
 /// with the given fields replaced by the non-null parameter values.
@@ -244,12 +247,12 @@ _$PushMessageCopyWith<_PushMessage> get copyWith => __$PushMessageCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushMessage&&(identical(other.messageId, messageId) || other.messageId == messageId)&&(identical(other.notification, notification) || other.notification == notification)&&(identical(other.channelId, channelId) || other.channelId == channelId)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other._data, _data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushMessage&&(identical(other.messageId, messageId) || other.messageId == messageId)&&(identical(other.notification, notification) || other.notification == notification)&&(identical(other.channelId, channelId) || other.channelId == channelId)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.data, data) || other.data == data));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,messageId,notification,channelId,imageUrl,const DeepCollectionEquality().hash(_data));
+int get hashCode => Object.hash(runtimeType,messageId,notification,channelId,imageUrl,data);
 
 @override
 String toString() {
@@ -264,11 +267,11 @@ abstract mixin class _$PushMessageCopyWith<$Res> implements $PushMessageCopyWith
   factory _$PushMessageCopyWith(_PushMessage value, $Res Function(_PushMessage) _then) = __$PushMessageCopyWithImpl;
 @override @useResult
 $Res call({
- String? messageId, PushNotification notification, String? channelId, String? imageUrl, Map<String, Object?> data
+ String? messageId, PushNotification notification, String? channelId, String? imageUrl, PushMessageData data
 });
 
 
-@override $PushNotificationCopyWith<$Res> get notification;
+@override $PushNotificationCopyWith<$Res> get notification;@override $PushMessageDataCopyWith<$Res> get data;
 
 }
 /// @nodoc
@@ -287,8 +290,8 @@ messageId: freezed == messageId ? _self.messageId : messageId // ignore: cast_nu
 as String?,notification: null == notification ? _self.notification : notification // ignore: cast_nullable_to_non_nullable
 as PushNotification,channelId: freezed == channelId ? _self.channelId : channelId // ignore: cast_nullable_to_non_nullable
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,data: null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as Map<String, Object?>,
+as String?,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as PushMessageData,
   ));
 }
 
@@ -300,6 +303,15 @@ $PushNotificationCopyWith<$Res> get notification {
   
   return $PushNotificationCopyWith<$Res>(_self.notification, (value) {
     return _then(_self.copyWith(notification: value));
+  });
+}/// Create a copy of PushMessage
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PushMessageDataCopyWith<$Res> get data {
+  
+  return $PushMessageDataCopyWith<$Res>(_self.data, (value) {
+    return _then(_self.copyWith(data: value));
   });
 }
 }
