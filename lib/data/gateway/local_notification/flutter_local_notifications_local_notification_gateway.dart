@@ -7,6 +7,7 @@ import 'package:flutter_lab/domain/local_notification/local_notification_gateway
 import 'package:flutter_lab/domain/local_notification/local_notification_message.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_tap.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:http/http.dart' as http;
 import 'package:result_dart/result_dart.dart';
 
 /// Heads-up + sound. Use for time-critical notifications such as alerts the
@@ -184,6 +185,21 @@ class FlutterLocalNotificationsLocalNotificationGateway
   AsyncResult<Unit> show({required LocalNotificationMessage message}) async {
     try {
       final androidChannel = _channelFor(message.channel);
+      final imageUrl = message.imageUrl;
+      Uint8List? imageBytes;
+
+      if (imageUrl != null) {
+        try {
+          final response = await http.get(Uri.parse(imageUrl));
+
+          if (response.statusCode == 200) {
+            imageBytes = response.bodyBytes;
+          }
+        } on Exception catch (exception, stackTrace) {
+          _logger.handle(exception: exception, stackTrace: stackTrace);
+        }
+      }
+
       await _plugin.show(
         id: message.id,
         title: message.title,
@@ -194,6 +210,11 @@ class FlutterLocalNotificationsLocalNotificationGateway
             // Name is ignored when the channel is already registered;
             // the plugin's API forces it as a required positional arg.
             androidChannel.name,
+            styleInformation: imageBytes == null
+                ? null
+                : BigPictureStyleInformation(
+                    ByteArrayAndroidBitmap(imageBytes),
+                  ),
           ),
         ),
         payload: message.data.isEmpty ? null : jsonEncode(message.data),
