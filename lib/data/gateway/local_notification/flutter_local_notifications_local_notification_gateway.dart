@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_lab/application/logger/logger_gateway.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_channel.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_lab/domain/local_notification/local_notification_gateway
 import 'package:flutter_lab/domain/local_notification/local_notification_message.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_tap.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:http/http.dart' as http;
 import 'package:result_dart/result_dart.dart';
 
 /// Heads-up + sound. Use for time-critical notifications such as alerts the
@@ -190,10 +190,14 @@ class FlutterLocalNotificationsLocalNotificationGateway
 
       if (imageUrl != null) {
         try {
-          final response = await http.get(Uri.parse(imageUrl));
+          final response = await Dio().get<List<int>>(
+            imageUrl,
+            options: Options(responseType: ResponseType.bytes),
+          );
+          final data = response.data;
 
-          if (response.statusCode == 200) {
-            imageBytes = response.bodyBytes;
+          if (data != null) {
+            imageBytes = Uint8List.fromList(data);
           }
         } on Exception catch (exception, stackTrace) {
           _logger.handle(exception: exception, stackTrace: stackTrace);
