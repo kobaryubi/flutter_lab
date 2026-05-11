@@ -1,3 +1,4 @@
+import 'package:flutter_lab/domain/entity/push_notification/push_notification.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'push_message.freezed.dart';
@@ -10,8 +11,7 @@ part 'push_message.freezed.dart';
 abstract class PushMessage with _$PushMessage {
   const factory PushMessage({
     required String? messageId,
-    required String title,
-    required String body,
+    required PushNotification notification,
     required String? channelId,
     required String? imageUrl,
     required Map<String, Object?> data,

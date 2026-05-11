@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_lab/application/logger/logger_gateway.dart';
 import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
+import 'package:flutter_lab/domain/entity/push_notification/push_notification.dart';
 import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -113,11 +114,17 @@ class FirebaseMessagingPushNotificationRepository
 }
 
 /// Maps a [RemoteMessage] from FCM into the domain-layer [PushMessage].
-PushMessage _toPushMessage(RemoteMessage message) => PushMessage(
-  messageId: message.messageId,
-  title: message.notification?.title ?? '',
-  body: message.notification?.body ?? '',
-  channelId: message.notification?.android?.channelId,
-  imageUrl: message.notification?.android?.imageUrl,
-  data: message.data,
-);
+PushMessage _toPushMessage(RemoteMessage message) {
+  final remoteNotification = message.notification;
+
+  return PushMessage(
+    messageId: message.messageId,
+    notification: PushNotification(
+      title: remoteNotification?.title ?? '',
+      body: remoteNotification?.body ?? '',
+    ),
+    channelId: remoteNotification?.android?.channelId,
+    imageUrl: remoteNotification?.android?.imageUrl,
+    data: message.data,
+  );
+}

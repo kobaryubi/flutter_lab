@@ -98,6 +98,5 @@ class _Body extends ConsumerWidget {
 /// Renders a [PushMessage] as a single string for display.
 String _formatMessage(PushMessage message) =>
     'id=${message.messageId ?? "-"} '
-    'title=${message.title} '
-    'body=${message.body} '
+    'notification=${message.notification} '
     'data=${message.data}';

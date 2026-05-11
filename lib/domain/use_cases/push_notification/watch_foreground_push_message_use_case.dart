@@ -35,8 +35,8 @@ class WatchForegroundPushMessageUseCase {
             _localNotificationGateway.show(
               message: LocalNotificationMessage(
                 id: DateTime.now().millisecondsSinceEpoch & 0x7FFFFFFF,
-                title: message.title,
-                body: message.body,
+                title: message.notification.title,
+                body: message.notification.body,
                 channel: LocalNotificationChannel.fromId(message.channelId),
                 imageUrl: message.imageUrl,
                 data: message.data,
