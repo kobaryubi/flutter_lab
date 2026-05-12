@@ -1376,6 +1376,54 @@ final class PushNotificationRepositoryProvider
 String _$pushNotificationRepositoryHash() =>
     r'ea2038e699cdd9e2c346ffec3387c71c94ea355e';
 
+@ProviderFor(pushMessageService)
+const pushMessageServiceProvider = PushMessageServiceProvider._();
+
+final class PushMessageServiceProvider
+    extends
+        $FunctionalProvider<
+          PushMessageService,
+          PushMessageService,
+          PushMessageService
+        >
+    with $Provider<PushMessageService> {
+  const PushMessageServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'pushMessageServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$pushMessageServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<PushMessageService> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  PushMessageService create(Ref ref) {
+    return pushMessageService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(PushMessageService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<PushMessageService>(value),
+    );
+  }
+}
+
+String _$pushMessageServiceHash() =>
+    r'aa80a289fcc52d76ffd12edd7fb06d6ed91fb9a4';
+
 @ProviderFor(requestPushNotificationUseCase)
 const requestPushNotificationUseCaseProvider =
     RequestPushNotificationUseCaseProvider._();

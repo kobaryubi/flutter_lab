@@ -38,6 +38,7 @@ import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/push_notification/firebase_messaging_push_notification_repository.dart';
 import 'package:flutter_lab/data/repositories/shortcut/file_system_shortcut_repository.dart';
+import 'package:flutter_lab/data/service/push_notification/default_push_message_service.dart';
 import 'package:flutter_lab/data/service/secure_storage/secure_storage_service.dart';
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_lab/domain/adfurikun/adfurikun_gateway.dart';
@@ -67,6 +68,7 @@ import 'package:flutter_lab/domain/performance/performance_gateway.dart';
 import 'package:flutter_lab/domain/permission/permission_gateway.dart';
 import 'package:flutter_lab/domain/pigeon_example/pigeon_gateway.dart';
 import 'package:flutter_lab/domain/profile_passport/profile_passport_gateway.dart';
+import 'package:flutter_lab/domain/push_notification/push_message_service.dart';
 import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/text_recognition/text_recognition_gateway.dart';
@@ -330,6 +332,10 @@ PushNotificationRepository pushNotificationRepository(Ref ref) =>
     FirebaseMessagingPushNotificationRepository(
       logger: ref.read(loggerGatewayProvider),
     );
+
+@riverpod
+PushMessageService pushMessageService(Ref ref) =>
+    const DefaultPushMessageService();
 
 @riverpod
 RequestPushNotificationUseCase requestPushNotificationUseCase(Ref ref) =>

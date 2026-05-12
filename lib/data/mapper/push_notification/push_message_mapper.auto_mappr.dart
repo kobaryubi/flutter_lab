@@ -269,6 +269,7 @@ class $PushMessageMapper implements _i1.AutoMapprInterface {
       notification: _i4.PushMessageMapper.notificationFrom(model),
       channelId: _i4.PushMessageMapper.channelIdFrom(model),
       imageUrl: _i4.PushMessageMapper.imageUrlFrom(model),
+      badge: _i4.PushMessageMapper.badgeFrom(model),
       data: _i4.PushMessageMapper.dataFrom(model),
     );
   }
