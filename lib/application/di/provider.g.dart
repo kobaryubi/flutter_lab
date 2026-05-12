@@ -1276,57 +1276,6 @@ final class DeleteLocalNotificationChannelUseCaseProvider
 String _$deleteLocalNotificationChannelUseCaseHash() =>
     r'd3343bee3fe5c25d3221499d06cde5d49d0cbe1c';
 
-@ProviderFor(getInitialLocalNotificationTapUseCase)
-const getInitialLocalNotificationTapUseCaseProvider =
-    GetInitialLocalNotificationTapUseCaseProvider._();
-
-final class GetInitialLocalNotificationTapUseCaseProvider
-    extends
-        $FunctionalProvider<
-          GetInitialLocalNotificationTapUseCase,
-          GetInitialLocalNotificationTapUseCase,
-          GetInitialLocalNotificationTapUseCase
-        >
-    with $Provider<GetInitialLocalNotificationTapUseCase> {
-  const GetInitialLocalNotificationTapUseCaseProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'getInitialLocalNotificationTapUseCaseProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() =>
-      _$getInitialLocalNotificationTapUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<GetInitialLocalNotificationTapUseCase> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  GetInitialLocalNotificationTapUseCase create(Ref ref) {
-    return getInitialLocalNotificationTapUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(GetInitialLocalNotificationTapUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride:
-          $SyncValueProvider<GetInitialLocalNotificationTapUseCase>(value),
-    );
-  }
-}
-
-String _$getInitialLocalNotificationTapUseCaseHash() =>
-    r'0e099dffb33c7202b4d8de0118ebc60f604b5cfc';
-
 @ProviderFor(pushNotificationRepository)
 const pushNotificationRepositoryProvider =
     PushNotificationRepositoryProvider._();
