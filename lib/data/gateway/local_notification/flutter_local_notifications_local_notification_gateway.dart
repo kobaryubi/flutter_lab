@@ -4,9 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_lab/application/logger/logger_gateway.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_channel.dart';
+import 'package:flutter_lab/domain/local_notification/local_notification_data.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_gateway.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_message.dart';
-import 'package:flutter_lab/domain/local_notification/local_notification_tap.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:result_dart/result_dart.dart';
 
@@ -143,13 +143,13 @@ class FlutterLocalNotificationsLocalNotificationGateway
   }
 
   @override
-  Future<LocalNotificationTap?> getInitialTap() async {
+  Future<LocalNotificationData?> getInitialLocalNotificationData() async {
     final details = await _plugin.getNotificationAppLaunchDetails();
     if (details == null || !details.didNotificationLaunchApp) return null;
 
     final response = details.notificationResponse;
     _logger.info(
-      'InitialLocalNotificationTap raw: '
+      'InitialLocalNotificationData raw: '
       'id=${response?.id}, payload=${response?.payload}',
     );
 
@@ -157,10 +157,13 @@ class FlutterLocalNotificationsLocalNotificationGateway
     final data = payload == null
         ? <String, Object?>{}
         : Map<String, Object?>.from(jsonDecode(payload) as Map);
-    final tap = LocalNotificationTap(id: response?.id, data: data);
-    _logger.info('InitialLocalNotificationTap: $tap');
+    final notificationData = LocalNotificationData(
+      id: response?.id,
+      data: data,
+    );
+    _logger.info('InitialLocalNotificationData: $notificationData');
 
-    return tap;
+    return notificationData;
   }
 
   @override
@@ -214,6 +217,7 @@ class FlutterLocalNotificationsLocalNotificationGateway
             // Name is ignored when the channel is already registered;
             // the plugin's API forces it as a required positional arg.
             androidChannel.name,
+            number: message.badge,
             styleInformation: imageBytes == null
                 ? null
                 : BigPictureStyleInformation(

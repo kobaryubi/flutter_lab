@@ -12,5 +12,6 @@ abstract class PushNotification with _$PushNotification {
   const factory PushNotification({
     required String title,
     required String body,
+    required int? badge,
   }) = _PushNotification;
 }

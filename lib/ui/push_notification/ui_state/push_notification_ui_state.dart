@@ -1,6 +1,5 @@
 import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
 import 'package:flutter_lab/domain/entity/push_notification/push_notification_permission.dart';
-import 'package:flutter_lab/domain/local_notification/local_notification_tap.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -24,10 +23,6 @@ abstract class PushNotificationUiState with _$PushNotificationUiState {
     /// Message that opened the app from a terminated state, or `null`.
     /// Resolved once on screen entry.
     AsyncValue<PushMessage?>? initialMessage,
-
-    /// Local-notification tap that launched the app from a terminated
-    /// state, or `null`. Resolved once on screen entry.
-    AsyncValue<LocalNotificationTap?>? initialLocalNotificationTap,
 
     /// Messages whose tap opened the app from the background, in
     /// arrival order while the screen is mounted.

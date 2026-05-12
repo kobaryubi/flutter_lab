@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PushNotification {
 
- String get title; String get body;
+ String get title; String get body; int? get badge;
 /// Create a copy of PushNotification
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $PushNotificationCopyWith<PushNotification> get copyWith => _$PushNotificationCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotification&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotification&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body)&&(identical(other.badge, badge) || other.badge == badge));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,title,body);
+int get hashCode => Object.hash(runtimeType,title,body,badge);
 
 @override
 String toString() {
-  return 'PushNotification(title: $title, body: $body)';
+  return 'PushNotification(title: $title, body: $body, badge: $badge)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $PushNotificationCopyWith<$Res>  {
   factory $PushNotificationCopyWith(PushNotification value, $Res Function(PushNotification) _then) = _$PushNotificationCopyWithImpl;
 @useResult
 $Res call({
- String title, String body
+ String title, String body, int? badge
 });
 
 
@@ -62,11 +62,12 @@ class _$PushNotificationCopyWithImpl<$Res>
 
 /// Create a copy of PushNotification
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? body = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? body = null,Object? badge = freezed,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
-as String,
+as String,badge: freezed == badge ? _self.badge : badge // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -151,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String body)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String body,  int? badge)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PushNotification() when $default != null:
-return $default(_that.title,_that.body);case _:
+return $default(_that.title,_that.body,_that.badge);case _:
   return orElse();
 
 }
@@ -172,10 +173,10 @@ return $default(_that.title,_that.body);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String body)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String body,  int? badge)  $default,) {final _that = this;
 switch (_that) {
 case _PushNotification():
-return $default(_that.title,_that.body);case _:
+return $default(_that.title,_that.body,_that.badge);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -192,10 +193,10 @@ return $default(_that.title,_that.body);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String body)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String body,  int? badge)?  $default,) {final _that = this;
 switch (_that) {
 case _PushNotification() when $default != null:
-return $default(_that.title,_that.body);case _:
+return $default(_that.title,_that.body,_that.badge);case _:
   return null;
 
 }
@@ -207,11 +208,12 @@ return $default(_that.title,_that.body);case _:
 
 
 class _PushNotification implements PushNotification {
-  const _PushNotification({required this.title, required this.body});
+  const _PushNotification({required this.title, required this.body, required this.badge});
   
 
 @override final  String title;
 @override final  String body;
+@override final  int? badge;
 
 /// Create a copy of PushNotification
 /// with the given fields replaced by the non-null parameter values.
@@ -223,16 +225,16 @@ _$PushNotificationCopyWith<_PushNotification> get copyWith => __$PushNotificatio
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotification&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotification&&(identical(other.title, title) || other.title == title)&&(identical(other.body, body) || other.body == body)&&(identical(other.badge, badge) || other.badge == badge));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,title,body);
+int get hashCode => Object.hash(runtimeType,title,body,badge);
 
 @override
 String toString() {
-  return 'PushNotification(title: $title, body: $body)';
+  return 'PushNotification(title: $title, body: $body, badge: $badge)';
 }
 
 
@@ -243,7 +245,7 @@ abstract mixin class _$PushNotificationCopyWith<$Res> implements $PushNotificati
   factory _$PushNotificationCopyWith(_PushNotification value, $Res Function(_PushNotification) _then) = __$PushNotificationCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String body
+ String title, String body, int? badge
 });
 
 
@@ -260,11 +262,12 @@ class __$PushNotificationCopyWithImpl<$Res>
 
 /// Create a copy of PushNotification
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? body = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? body = null,Object? badge = freezed,}) {
   return _then(_PushNotification(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,body: null == body ? _self.body : body // ignore: cast_nullable_to_non_nullable
-as String,
+as String,badge: freezed == badge ? _self.badge : badge // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
