@@ -369,12 +369,14 @@ Stream<String> onPushTokenRefresh(Ref ref) =>
 GetInitialPushMessageUseCase getInitialPushMessageUseCase(Ref ref) =>
     GetInitialPushMessageUseCase(
       pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
+      pushMessageService: ref.read(pushMessageServiceProvider),
     );
 
 @riverpod
 WatchOpenedPushMessageUseCase watchOpenedPushMessageUseCase(Ref ref) =>
     WatchOpenedPushMessageUseCase(
       pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
+      pushMessageService: ref.read(pushMessageServiceProvider),
     );
 
 @riverpod
@@ -382,6 +384,7 @@ WatchForegroundPushMessageUseCase watchForegroundPushMessageUseCase(Ref ref) =>
     WatchForegroundPushMessageUseCase(
       pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
       localNotificationGateway: ref.read(localNotificationGatewayProvider),
+      pushMessageService: ref.read(pushMessageServiceProvider),
     );
 
 @riverpod

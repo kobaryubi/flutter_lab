@@ -1705,7 +1705,7 @@ final class GetInitialPushMessageUseCaseProvider
 }
 
 String _$getInitialPushMessageUseCaseHash() =>
-    r'1e5ead5d5d87b0823fd40d610db49f48c8c074d8';
+    r'0fd91bba9d4db3ffcba346b2b23e2832273c327f';
 
 @ProviderFor(watchOpenedPushMessageUseCase)
 const watchOpenedPushMessageUseCaseProvider =
@@ -1756,7 +1756,7 @@ final class WatchOpenedPushMessageUseCaseProvider
 }
 
 String _$watchOpenedPushMessageUseCaseHash() =>
-    r'a7de23bf778932fea5bebdf2d5279d8e4885be2e';
+    r'5971dbbc1e42768cbb467b4d04e6024a5224fe84';
 
 @ProviderFor(watchForegroundPushMessageUseCase)
 const watchForegroundPushMessageUseCaseProvider =
@@ -1808,7 +1808,7 @@ final class WatchForegroundPushMessageUseCaseProvider
 }
 
 String _$watchForegroundPushMessageUseCaseHash() =>
-    r'f2ba5b659ddc3c93b69cc5ebb413914fb63c62be';
+    r'45113906a4e30fcddd406a7f7651bea9cb8fae6b';
 
 @ProviderFor(copyShortcutIconsUseCase)
 const copyShortcutIconsUseCaseProvider = CopyShortcutIconsUseCaseProvider._();
