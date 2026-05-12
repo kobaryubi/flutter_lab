@@ -2,6 +2,7 @@ import 'package:auto_mappr_annotation/auto_mappr_annotation.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_lab/data/mapper/push_notification/push_message_mapper.auto_mappr.dart';
 import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
+import 'package:flutter_lab/domain/entity/push_notification/push_message_data.dart';
 import 'package:flutter_lab/domain/entity/push_notification/push_notification.dart';
 
 /// Maps the FCM [RemoteMessage] into the domain-layer [PushMessage].
@@ -11,6 +12,7 @@ import 'package:flutter_lab/domain/entity/push_notification/push_notification.da
       Field.custom('notification', custom: PushMessageMapper.notificationFrom),
       Field.custom('channelId', custom: PushMessageMapper.channelIdFrom),
       Field.custom('imageUrl', custom: PushMessageMapper.imageUrlFrom),
+      Field.custom('data', custom: PushMessageMapper.dataFrom),
     ],
   ),
 ])
@@ -32,4 +34,10 @@ class PushMessageMapper extends $PushMessageMapper {
   /// Reads imageUrl from the deep FCM Android notification path.
   static String? imageUrlFrom(RemoteMessage source) =>
       source.notification?.android?.imageUrl;
+
+  /// Builds a [PushMessageData] from the FCM data map, falling back to
+  /// an empty `targetScreen` when the payload does not specify one.
+  static PushMessageData dataFrom(RemoteMessage source) => PushMessageData(
+    targetScreen: source.data['targetScreen'] as String? ?? '',
+  );
 }
