@@ -13,15 +13,6 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
   PushNotificationUiState build() {
     _loadInitialMessage();
 
-    final openedSubscription = ref
-        .read(watchOpenedPushMessageUseCaseProvider)
-        .call()
-        .listen((message) {
-          state = state.copyWith(
-            openedMessages: [...state.openedMessages, message],
-          );
-        });
-
     final foregroundSubscription = ref
         .read(watchForegroundPushMessageUseCaseProvider)
         .call()
@@ -31,10 +22,7 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
           );
         });
 
-    ref.onDispose(() {
-      openedSubscription.cancel();
-      foregroundSubscription.cancel();
-    });
+    ref.onDispose(foregroundSubscription.cancel);
 
     return const PushNotificationUiState();
   }

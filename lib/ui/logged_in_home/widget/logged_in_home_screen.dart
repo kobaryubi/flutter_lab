@@ -9,7 +9,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Landing screen shown after login. Reads the pending target screen
 /// captured from a push-notification tap and exposes it for the view layer
-/// to navigate to.
+/// to navigate to. Re-arrivals via `go` re-trigger the consume on mount,
+/// so no per-screen stream subscription is needed.
 class LoggedInHomeScreen extends HookConsumerWidget {
   const LoggedInHomeScreen({super.key});
 

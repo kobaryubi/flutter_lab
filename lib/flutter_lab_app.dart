@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/application/di/provider.dart';
+import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
 import 'package:flutter_lab/l10n/app_localizations.dart';
 import 'package:flutter_lab/presentation/core/widget/global_effects.dart';
 import 'package:flutter_lab/presentation/core/widget/global_error_overlay.dart';
@@ -16,6 +18,23 @@ class FlutterLabApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
     ref.listen(flutterLabAppViewModelProvider, (previous, next) {});
+
+    /// Navigates to [LoggedInHomeRoute] whenever the app-level opened
+    /// push-message stream emits a new tap event.
+    void handleOpenedPushMessage(
+      AsyncValue<PushMessage>? previous,
+      AsyncValue<PushMessage> next,
+    ) {
+      if (next is! AsyncData<PushMessage>) return;
+
+      final navigatorContext = rootNavigatorKey.currentContext;
+
+      if (navigatorContext == null) return;
+
+      LoggedInHomeRoute().go(navigatorContext);
+    }
+
+    ref.listen(watchOpenedPushMessageUseCaseProvider, handleOpenedPushMessage);
 
     return Portal(
       child: WidgetsApp.router(

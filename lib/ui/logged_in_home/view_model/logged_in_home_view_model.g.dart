@@ -10,22 +10,22 @@ part of 'logged_in_home_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 /// ViewModel for the logged-in home screen.
 ///
-/// Consumes any pending target screen on initialization and exposes it
-/// via the UI state so the view layer can decide whether to navigate.
+/// Holds the pending target screen captured from a push-notification tap
+/// so the view layer can react to it (typically by navigating).
 
 @ProviderFor(LoggedInHomeViewModel)
 const loggedInHomeViewModelProvider = LoggedInHomeViewModelProvider._();
 
 /// ViewModel for the logged-in home screen.
 ///
-/// Consumes any pending target screen on initialization and exposes it
-/// via the UI state so the view layer can decide whether to navigate.
+/// Holds the pending target screen captured from a push-notification tap
+/// so the view layer can react to it (typically by navigating).
 final class LoggedInHomeViewModelProvider
     extends $NotifierProvider<LoggedInHomeViewModel, LoggedInHomeUiState> {
   /// ViewModel for the logged-in home screen.
   ///
-  /// Consumes any pending target screen on initialization and exposes it
-  /// via the UI state so the view layer can decide whether to navigate.
+  /// Holds the pending target screen captured from a push-notification tap
+  /// so the view layer can react to it (typically by navigating).
   const LoggedInHomeViewModelProvider._()
     : super(
         from: null,
@@ -54,12 +54,12 @@ final class LoggedInHomeViewModelProvider
 }
 
 String _$loggedInHomeViewModelHash() =>
-    r'd73ad4f8f5bc343f19f1a0f437b702aacb511103';
+    r'823c443e1d18c6d597a008fe01014a64de33867e';
 
 /// ViewModel for the logged-in home screen.
 ///
-/// Consumes any pending target screen on initialization and exposes it
-/// via the UI state so the view layer can decide whether to navigate.
+/// Holds the pending target screen captured from a push-notification tap
+/// so the view layer can react to it (typically by navigating).
 
 abstract class _$LoggedInHomeViewModel extends $Notifier<LoggedInHomeUiState> {
   LoggedInHomeUiState build();

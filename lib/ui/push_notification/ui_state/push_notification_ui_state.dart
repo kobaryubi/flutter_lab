@@ -24,10 +24,6 @@ abstract class PushNotificationUiState with _$PushNotificationUiState {
     /// Resolved once on screen entry.
     AsyncValue<PushMessage?>? initialMessage,
 
-    /// Messages whose tap opened the app from the background, in
-    /// arrival order while the screen is mounted.
-    @Default([]) List<PushMessage> openedMessages,
-
     /// Messages received while the app is in the foreground, in
     /// arrival order while the screen is mounted.
     @Default([]) List<PushMessage> foregroundMessages,

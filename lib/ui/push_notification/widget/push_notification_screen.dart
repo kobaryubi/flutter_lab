@@ -28,29 +28,18 @@ class _Body extends ConsumerWidget {
     final viewModel = ref.read(pushNotificationViewModelProvider.notifier);
     final logger = ref.read(loggerGatewayProvider);
 
-    /// Navigates to the logged-in home screen whenever a new opened message
-    /// arrives or the initial-message load completes with a non-null value.
+    /// Navigates to the logged-in home screen when the initial-message
+    /// load completes with a non-null value. Opened-message navigation is
+    /// handled at the app level in [FlutterLabApp].
     void handleUiStateChange(
       PushNotificationUiState? previous,
       PushNotificationUiState next,
     ) {
-      final previousOpenedCount = previous?.openedMessages.length ?? 0;
-      final nextOpenedCount = next.openedMessages.length;
-
       logger.debug(
         'handleUiStateChange: '
-        'previousOpenedCount=$previousOpenedCount, '
-        'nextOpenedCount=$nextOpenedCount, '
         'previousInitialMessage=${previous?.initialMessage}, '
         'nextInitialMessage=${next.initialMessage}',
       );
-
-      if (nextOpenedCount > previousOpenedCount) {
-        logger.debug('Navigating to LoggedInHome via opened message');
-        LoggedInHomeRoute().go(context);
-
-        return;
-      }
 
       if (next.initialMessage case AsyncData(
         value: final _?,
@@ -112,12 +101,6 @@ class _Body extends ConsumerWidget {
         const Text('--- Initial Message ---'),
         if (initialMessage case AsyncData(:final value))
           Text(value == null ? 'none' : _formatMessage(value)),
-        const Text('--- Opened Messages ---'),
-        if (uiState.openedMessages.isEmpty)
-          const Text('none')
-        else
-          for (final message in uiState.openedMessages)
-            Text(_formatMessage(message)),
         const Text('--- Foreground Messages ---'),
         if (uiState.foregroundMessages.isEmpty)
           const Text('none')
