@@ -125,7 +125,6 @@ import 'package:flutter_lab/domain/use_cases/push_notification/on_push_token_ref
 import 'package:flutter_lab/domain/use_cases/push_notification/register_token_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/request_push_notification_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/rotate_push_token_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/push_notification/save_pending_target_screen_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/watch_foreground_push_message_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/watch_opened_push_message_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/copy_shortcut_icons_use_case.dart';
@@ -381,12 +380,6 @@ WatchForegroundPushMessageUseCase watchForegroundPushMessageUseCase(Ref ref) =>
       pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
       localNotificationGateway: ref.read(localNotificationGatewayProvider),
       pushMessageService: ref.read(pushMessageServiceProvider),
-    );
-
-@riverpod
-SavePendingTargetScreenUseCase savePendingTargetScreenUseCase(Ref ref) =>
-    SavePendingTargetScreenUseCase(
-      memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
     );
 
 @riverpod

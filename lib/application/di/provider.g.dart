@@ -1759,57 +1759,6 @@ final class WatchForegroundPushMessageUseCaseProvider
 String _$watchForegroundPushMessageUseCaseHash() =>
     r'45113906a4e30fcddd406a7f7651bea9cb8fae6b';
 
-@ProviderFor(savePendingTargetScreenUseCase)
-const savePendingTargetScreenUseCaseProvider =
-    SavePendingTargetScreenUseCaseProvider._();
-
-final class SavePendingTargetScreenUseCaseProvider
-    extends
-        $FunctionalProvider<
-          SavePendingTargetScreenUseCase,
-          SavePendingTargetScreenUseCase,
-          SavePendingTargetScreenUseCase
-        >
-    with $Provider<SavePendingTargetScreenUseCase> {
-  const SavePendingTargetScreenUseCaseProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'savePendingTargetScreenUseCaseProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$savePendingTargetScreenUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<SavePendingTargetScreenUseCase> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  SavePendingTargetScreenUseCase create(Ref ref) {
-    return savePendingTargetScreenUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(SavePendingTargetScreenUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<SavePendingTargetScreenUseCase>(
-        value,
-      ),
-    );
-  }
-}
-
-String _$savePendingTargetScreenUseCaseHash() =>
-    r'038a964d142f8572f2de9ac1dbb9149ea6d4eaff';
-
 @ProviderFor(consumePendingTargetScreenUseCase)
 const consumePendingTargetScreenUseCaseProvider =
     ConsumePendingTargetScreenUseCaseProvider._();
