@@ -41,6 +41,8 @@ abstract final class Routes {
   static const routeAwareDemo = '/route_aware_demo';
   static const routeAwareDemoDetail = '/route_aware_demo/detail';
 
+  static const useTopRoute = '/use_top_route';
+
   static const navigationScreenA = '/navigation/screen_a';
   static const navigationScreenB = '/navigation/screen_b';
   static const navigationScreenC = '/navigation/screen_c';

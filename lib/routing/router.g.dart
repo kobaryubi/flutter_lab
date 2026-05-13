@@ -77,6 +77,7 @@ List<RouteBase> get $appRoutes => [
   $tarDownloadRoute,
   $tutorialRoute,
   $urlNavigationRoute,
+  $useTopRouteRoute,
   $visibilityDetectorRoute,
   $webViewJavascriptRoute,
   $webViewRoute,
@@ -1994,6 +1995,32 @@ mixin $UrlNavigationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/url_navigation');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $useTopRouteRoute => GoRouteData.$route(
+  path: '/use_top_route',
+  name: 'use_top_route',
+  factory: $UseTopRouteRoute._fromState,
+);
+
+mixin $UseTopRouteRoute on GoRouteData {
+  static UseTopRouteRoute _fromState(GoRouterState state) => UseTopRouteRoute();
+
+  @override
+  String get location => GoRouteData.$location('/use_top_route');
 
   @override
   void go(BuildContext context) => context.go(location);

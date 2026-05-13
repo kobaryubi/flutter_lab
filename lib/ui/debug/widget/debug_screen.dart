@@ -56,6 +56,7 @@ class DebugScreen extends ConsumerWidget {
     (title: 'observer demo detail', path: Routes.observerDemoDetail),
     (title: 'route aware demo', path: Routes.routeAwareDemo),
     (title: 'route aware demo detail', path: Routes.routeAwareDemoDetail),
+    (title: 'use top route', path: Routes.useTopRoute),
     (title: 'navigation screen a', path: Routes.navigationScreenA),
     (title: 'navigation screen b', path: Routes.navigationScreenB),
     (title: 'navigation screen c', path: Routes.navigationScreenC),
