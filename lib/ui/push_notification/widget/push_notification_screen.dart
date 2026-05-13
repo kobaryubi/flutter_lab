@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
 import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
@@ -25,6 +26,7 @@ class _Body extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final uiState = ref.watch(pushNotificationViewModelProvider);
     final viewModel = ref.read(pushNotificationViewModelProvider.notifier);
+    final logger = ref.read(loggerGatewayProvider);
 
     /// Navigates to the logged-in home screen whenever a new opened message
     /// arrives or the initial-message load completes with a non-null value.
@@ -33,8 +35,18 @@ class _Body extends ConsumerWidget {
       PushNotificationUiState next,
     ) {
       final previousOpenedCount = previous?.openedMessages.length ?? 0;
+      final nextOpenedCount = next.openedMessages.length;
 
-      if (next.openedMessages.length > previousOpenedCount) {
+      logger.debug(
+        'handleUiStateChange: '
+        'previousOpenedCount=$previousOpenedCount, '
+        'nextOpenedCount=$nextOpenedCount, '
+        'previousInitialMessage=${previous?.initialMessage}, '
+        'nextInitialMessage=${next.initialMessage}',
+      );
+
+      if (nextOpenedCount > previousOpenedCount) {
+        logger.debug('Navigating to LoggedInHome via opened message');
         LoggedInHomeRoute().go(context);
 
         return;
@@ -43,6 +55,7 @@ class _Body extends ConsumerWidget {
       if (next.initialMessage case AsyncData(
         value: final _?,
       ) when previous?.initialMessage != next.initialMessage) {
+        logger.debug('Navigating to LoggedInHome via initial message');
         LoggedInHomeRoute().go(context);
       }
     }

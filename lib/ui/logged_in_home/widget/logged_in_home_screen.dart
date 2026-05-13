@@ -18,6 +18,12 @@ class LoggedInHomeScreen extends HookConsumerWidget {
     final uiState = ref.watch(loggedInHomeViewModelProvider);
     final viewModel = ref.read(loggedInHomeViewModelProvider.notifier);
 
+    /// Consumes the pending target screen after the first frame builds,
+    /// so the resulting state mutation does not run during widget build.
+    void consumeAfterFrame(Duration _) {
+      viewModel.consumePendingTargetScreen();
+    }
+
     /// Navigates to the consumed target screen path as soon as it appears
     /// on the UI state, replacing this landing screen in the stack.
     void handleUiStateChange(
@@ -32,7 +38,7 @@ class LoggedInHomeScreen extends HookConsumerWidget {
     }
 
     useEffect(() {
-      viewModel.consumePendingTargetScreen();
+      WidgetsBinding.instance.addPostFrameCallback(consumeAfterFrame);
       return null;
     }, const []);
 
