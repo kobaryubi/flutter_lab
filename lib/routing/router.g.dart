@@ -76,8 +76,8 @@ List<RouteBase> get $appRoutes => [
   $talkerLogsRoute,
   $tarDownloadRoute,
   $tutorialRoute,
+  $currentRouteStateRoute,
   $urlNavigationRoute,
-  $useTopRouteRoute,
   $visibilityDetectorRoute,
   $webViewJavascriptRoute,
   $webViewRoute,
@@ -1983,18 +1983,18 @@ mixin $TutorialRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $urlNavigationRoute => GoRouteData.$route(
-  path: '/url_navigation',
-  name: 'url_navigation',
-  factory: $UrlNavigationRoute._fromState,
+RouteBase get $currentRouteStateRoute => GoRouteData.$route(
+  path: '/current_route_state',
+  name: 'current_route_state',
+  factory: $CurrentRouteStateRoute._fromState,
 );
 
-mixin $UrlNavigationRoute on GoRouteData {
-  static UrlNavigationRoute _fromState(GoRouterState state) =>
-      UrlNavigationRoute();
+mixin $CurrentRouteStateRoute on GoRouteData {
+  static CurrentRouteStateRoute _fromState(GoRouterState state) =>
+      CurrentRouteStateRoute();
 
   @override
-  String get location => GoRouteData.$location('/url_navigation');
+  String get location => GoRouteData.$location('/current_route_state');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -2010,17 +2010,18 @@ mixin $UrlNavigationRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $useTopRouteRoute => GoRouteData.$route(
-  path: '/use_top_route',
-  name: 'use_top_route',
-  factory: $UseTopRouteRoute._fromState,
+RouteBase get $urlNavigationRoute => GoRouteData.$route(
+  path: '/url_navigation',
+  name: 'url_navigation',
+  factory: $UrlNavigationRoute._fromState,
 );
 
-mixin $UseTopRouteRoute on GoRouteData {
-  static UseTopRouteRoute _fromState(GoRouterState state) => UseTopRouteRoute();
+mixin $UrlNavigationRoute on GoRouteData {
+  static UrlNavigationRoute _fromState(GoRouterState state) =>
+      UrlNavigationRoute();
 
   @override
-  String get location => GoRouteData.$location('/use_top_route');
+  String get location => GoRouteData.$location('/url_navigation');
 
   @override
   void go(BuildContext context) => context.go(location);
