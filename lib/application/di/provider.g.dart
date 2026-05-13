@@ -1077,54 +1077,6 @@ final class AppBadgeGatewayProvider
 
 String _$appBadgeGatewayHash() => r'662e72a66883a0c46515c42976b5a5dbe6cef47a';
 
-@ProviderFor(clearAppBadgeUseCase)
-const clearAppBadgeUseCaseProvider = ClearAppBadgeUseCaseProvider._();
-
-final class ClearAppBadgeUseCaseProvider
-    extends
-        $FunctionalProvider<
-          ClearAppBadgeUseCase,
-          ClearAppBadgeUseCase,
-          ClearAppBadgeUseCase
-        >
-    with $Provider<ClearAppBadgeUseCase> {
-  const ClearAppBadgeUseCaseProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'clearAppBadgeUseCaseProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$clearAppBadgeUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<ClearAppBadgeUseCase> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  ClearAppBadgeUseCase create(Ref ref) {
-    return clearAppBadgeUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ClearAppBadgeUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ClearAppBadgeUseCase>(value),
-    );
-  }
-}
-
-String _$clearAppBadgeUseCaseHash() =>
-    r'6be411030413cfc9b6c148cdbef63633df7e0199';
-
 @ProviderFor(localNotificationGateway)
 const localNotificationGatewayProvider = LocalNotificationGatewayProvider._();
 
@@ -1419,7 +1371,7 @@ final class PushMessageServiceProvider
 }
 
 String _$pushMessageServiceHash() =>
-    r'aa80a289fcc52d76ffd12edd7fb06d6ed91fb9a4';
+    r'5f17feff5232d6984f1e0aa45d32c066acb6bcd6';
 
 @ProviderFor(requestPushNotificationUseCase)
 const requestPushNotificationUseCaseProvider =

@@ -20,7 +20,6 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
           state = state.copyWith(
             openedMessages: [...state.openedMessages, message],
           );
-          unawaited(_clearAppBadge());
         });
 
     final foregroundSubscription = ref
@@ -79,14 +78,5 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
     );
 
     state = state.copyWith(initialMessage: initialMessage);
-
-    if (initialMessage case AsyncData(value: final _?)) {
-      unawaited(_clearAppBadge());
-    }
-  }
-
-  /// Removes the app icon badge after a notification tap is handled.
-  Future<void> _clearAppBadge() async {
-    await ref.read(clearAppBadgeUseCaseProvider).call();
   }
 }

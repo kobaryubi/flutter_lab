@@ -89,7 +89,6 @@ import 'package:flutter_lab/domain/use_cases/analytics/log_tap_event_use_case.da
 import 'package:flutter_lab/domain/use_cases/analytics/log_view_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/set_default_event_parameters_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/set_user_property_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/app_badge/clear_app_badge_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/app_store/get_app_store_url_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/battery/get_battery_level_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/clock/get_current_time_use_case.dart';
@@ -296,12 +295,6 @@ WatchNativeButtonTapUseCase watchNativeButtonTapUseCase(Ref ref) =>
 @riverpod
 AppBadgeGateway appBadgeGateway(Ref ref) => AppBadgePlusAppBadgeGateway();
 
-@riverpod
-ClearAppBadgeUseCase clearAppBadgeUseCase(Ref ref) => ClearAppBadgeUseCase(
-  appBadgeGateway: ref.read(appBadgeGatewayProvider),
-  logger: ref.read(loggerGatewayProvider),
-);
-
 // local notification
 @Riverpod(keepAlive: true)
 LocalNotificationGateway localNotificationGateway(Ref ref) =>
@@ -335,8 +328,10 @@ PushNotificationRepository pushNotificationRepository(Ref ref) =>
     );
 
 @riverpod
-PushMessageService pushMessageService(Ref ref) =>
-    const DefaultPushMessageService();
+PushMessageService pushMessageService(Ref ref) => DefaultPushMessageService(
+  memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
+  appBadgeGateway: ref.read(appBadgeGatewayProvider),
+);
 
 @riverpod
 RequestPushNotificationUseCase requestPushNotificationUseCase(Ref ref) =>
