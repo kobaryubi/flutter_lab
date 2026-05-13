@@ -21,6 +21,7 @@ List<RouteBase> get $appRoutes => [
   $clockRoute,
   $counterRoute,
   $crashlyticsRoute,
+  $currentRouteStateRoute,
   $debugRoute,
   $deviceInfoRoute,
   $dialogStateRoute,
@@ -76,7 +77,6 @@ List<RouteBase> get $appRoutes => [
   $talkerLogsRoute,
   $tarDownloadRoute,
   $tutorialRoute,
-  $currentRouteStateRoute,
   $urlNavigationRoute,
   $visibilityDetectorRoute,
   $webViewJavascriptRoute,
@@ -439,6 +439,33 @@ mixin $CrashlyticsRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/crashlytics');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $currentRouteStateRoute => GoRouteData.$route(
+  path: '/current_route_state',
+  name: 'current_route_state',
+  factory: $CurrentRouteStateRoute._fromState,
+);
+
+mixin $CurrentRouteStateRoute on GoRouteData {
+  static CurrentRouteStateRoute _fromState(GoRouterState state) =>
+      CurrentRouteStateRoute();
+
+  @override
+  String get location => GoRouteData.$location('/current_route_state');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -1968,33 +1995,6 @@ mixin $TutorialRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/tutorial');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $currentRouteStateRoute => GoRouteData.$route(
-  path: '/current_route_state',
-  name: 'current_route_state',
-  factory: $CurrentRouteStateRoute._fromState,
-);
-
-mixin $CurrentRouteStateRoute on GoRouteData {
-  static CurrentRouteStateRoute _fromState(GoRouterState state) =>
-      CurrentRouteStateRoute();
-
-  @override
-  String get location => GoRouteData.$location('/current_route_state');
 
   @override
   void go(BuildContext context) => context.go(location);
