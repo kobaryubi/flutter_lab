@@ -2,7 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:flutter_lab/ui/logged_in_home/ui_state/logged_in_home_ui_state.dart';
 import 'package:flutter_lab/ui/logged_in_home/view_model/logged_in_home_view_model.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Landing screen shown after login. Reads the pending target screen
@@ -16,10 +18,25 @@ class LoggedInHomeScreen extends HookConsumerWidget {
     final uiState = ref.watch(loggedInHomeViewModelProvider);
     final viewModel = ref.read(loggedInHomeViewModelProvider.notifier);
 
+    /// Navigates to the consumed target screen path as soon as it appears
+    /// on the UI state, replacing this landing screen in the stack.
+    void handleUiStateChange(
+      LoggedInHomeUiState? previous,
+      LoggedInHomeUiState next,
+    ) {
+      final targetScreen = next.targetScreen;
+
+      if (targetScreen == null) return;
+
+      context.go(targetScreen);
+    }
+
     useEffect(() {
       viewModel.consumePendingTargetScreen();
       return null;
     }, const []);
+
+    ref.listen(loggedInHomeViewModelProvider, handleUiStateChange);
 
     return Layout(
       appBar: const AppBar(title: Text('Logged In Home')),
