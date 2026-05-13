@@ -15,7 +15,6 @@ abstract class PushMessage with _$PushMessage {
     required PushNotification notification,
     required String? channelId,
     required String? imageUrl,
-    required int? badge,
     required PushMessageData data,
   }) = _PushMessage;
 }

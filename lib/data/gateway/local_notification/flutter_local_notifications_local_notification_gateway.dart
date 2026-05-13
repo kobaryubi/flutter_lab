@@ -157,10 +157,7 @@ class FlutterLocalNotificationsLocalNotificationGateway
     final data = payload == null
         ? <String, Object?>{}
         : Map<String, Object?>.from(jsonDecode(payload) as Map);
-    final notificationData = LocalNotificationData(
-      id: response?.id,
-      data: data,
-    );
+    final notificationData = LocalNotificationData(data: data);
     _logger.info('InitialLocalNotificationData: $notificationData');
 
     return notificationData;

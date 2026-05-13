@@ -12,7 +12,6 @@ import 'package:flutter_lab/domain/entity/push_notification/push_notification.da
       Field.custom('notification', custom: PushMessageMapper.notificationFrom),
       Field.custom('channelId', custom: PushMessageMapper.channelIdFrom),
       Field.custom('imageUrl', custom: PushMessageMapper.imageUrlFrom),
-      Field.custom('badge', custom: PushMessageMapper.badgeFrom),
       Field.custom('data', custom: PushMessageMapper.dataFrom),
     ],
   ),
@@ -21,11 +20,15 @@ class PushMessageMapper extends $PushMessageMapper {
   const PushMessageMapper();
 
   /// Builds a [PushNotification] from the FCM remote notification block,
-  /// falling back to empty strings for data-only messages.
+  /// falling back to empty strings for data-only messages. The badge
+  /// count is parsed from the FCM data payload (`data['badge']`), which
+  /// always arrives as a string, and is `null` when absent or
+  /// non-numeric.
   static PushNotification notificationFrom(RemoteMessage source) =>
       PushNotification(
         title: source.notification?.title ?? '',
         body: source.notification?.body ?? '',
+        badge: int.tryParse(source.data['badge'] as String? ?? ''),
       );
 
   /// Reads channelId from the deep FCM Android notification path.
@@ -35,12 +38,6 @@ class PushMessageMapper extends $PushMessageMapper {
   /// Reads imageUrl from the deep FCM Android notification path.
   static String? imageUrlFrom(RemoteMessage source) =>
       source.notification?.android?.imageUrl;
-
-  /// Reads the badge count from the FCM data payload. FCM data values
-  /// always arrive as strings, so this parses to int and returns `null`
-  /// when absent or non-numeric.
-  static int? badgeFrom(RemoteMessage source) =>
-      int.tryParse(source.data['badge'] as String? ?? '');
 
   /// Builds a [PushMessageData] from the FCM data map, falling back to
   /// an empty `targetScreen` when the payload does not specify one.
