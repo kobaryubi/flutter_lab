@@ -1,6 +1,6 @@
 import 'package:flutter_lab/domain/local_notification/local_notification_channel.dart';
+import 'package:flutter_lab/domain/local_notification/local_notification_data.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_message.dart';
-import 'package:flutter_lab/domain/local_notification/local_notification_tap.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Gateway interface for displaying local notifications on the device.
@@ -16,14 +16,14 @@ abstract class LocalNotificationGateway {
   /// Shows the local notification described by [message].
   AsyncResult<Unit> show({required LocalNotificationMessage message});
 
-  /// Returns the tap that launched the app from a terminated state, or
-  /// `null` if the app was opened any other way.
+  /// Returns the data of the tap that launched the app from a terminated
+  /// state, or `null` if the app was opened any other way.
   ///
   /// One-shot, resolved at startup. Backed by the plugin's
   /// `getNotificationAppLaunchDetails` API. Only applies to body taps —
   /// action-button taps on a terminated app go through the background
   /// isolate callback and are not surfaced here.
-  Future<LocalNotificationTap?> getInitialTap();
+  Future<LocalNotificationData?> getInitialLocalNotificationData();
 
   /// Deletes the Android notification channel registered under [channelId].
   ///

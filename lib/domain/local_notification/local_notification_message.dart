@@ -19,6 +19,7 @@ abstract class LocalNotificationMessage with _$LocalNotificationMessage {
     required String body,
     required LocalNotificationChannel channel,
     required String? imageUrl,
+    required int? badge,
     @Default(<String, Object?>{}) Map<String, Object?> data,
   }) = _LocalNotificationMessage;
 }
