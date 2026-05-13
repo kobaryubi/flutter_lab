@@ -1,7 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
+import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:flutter_lab/ui/push_notification/ui_state/push_notification_ui_state.dart';
 import 'package:flutter_lab/ui/push_notification/view_model/push_notification_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -23,6 +25,29 @@ class _Body extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final uiState = ref.watch(pushNotificationViewModelProvider);
     final viewModel = ref.read(pushNotificationViewModelProvider.notifier);
+
+    /// Navigates to the logged-in home screen whenever a new opened message
+    /// arrives or the initial-message load completes with a non-null value.
+    void handleUiStateChange(
+      PushNotificationUiState? previous,
+      PushNotificationUiState next,
+    ) {
+      final previousOpenedCount = previous?.openedMessages.length ?? 0;
+
+      if (next.openedMessages.length > previousOpenedCount) {
+        LoggedInHomeRoute().go(context);
+
+        return;
+      }
+
+      if (next.initialMessage case AsyncData(
+        value: final _?,
+      ) when previous?.initialMessage != next.initialMessage) {
+        LoggedInHomeRoute().go(context);
+      }
+    }
+
+    ref.listen(pushNotificationViewModelProvider, handleUiStateChange);
 
     /// Requests push notification permission and displays the result.
     void handleRequestPermission() {

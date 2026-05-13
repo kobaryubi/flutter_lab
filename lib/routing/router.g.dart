@@ -42,6 +42,7 @@ List<RouteBase> get $appRoutes => [
   $loadingSubmitRoute,
   $localIconRoute,
   $localPathsRoute,
+  $loggedInHomeRoute,
   $markupSampleRoute,
   $maxRoute,
   $methodChannelRoute,
@@ -1014,6 +1015,33 @@ mixin $LocalPathsRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/local_paths');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $loggedInHomeRoute => GoRouteData.$route(
+  path: '/logged_in_home',
+  name: 'logged_in_home',
+  factory: $LoggedInHomeRoute._fromState,
+);
+
+mixin $LoggedInHomeRoute on GoRouteData {
+  static LoggedInHomeRoute _fromState(GoRouterState state) =>
+      LoggedInHomeRoute();
+
+  @override
+  String get location => GoRouteData.$location('/logged_in_home');
 
   @override
   void go(BuildContext context) => context.go(location);

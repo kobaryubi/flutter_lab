@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'mock_logged_in_ui_state.dart';
+part of 'logged_in_home_ui_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,20 +12,20 @@ part of 'mock_logged_in_ui_state.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$MockLoggedInUiState {
+mixin _$LoggedInHomeUiState {
 
  String? get targetScreen;
-/// Create a copy of MockLoggedInUiState
+/// Create a copy of LoggedInHomeUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$MockLoggedInUiStateCopyWith<MockLoggedInUiState> get copyWith => _$MockLoggedInUiStateCopyWithImpl<MockLoggedInUiState>(this as MockLoggedInUiState, _$identity);
+$LoggedInHomeUiStateCopyWith<LoggedInHomeUiState> get copyWith => _$LoggedInHomeUiStateCopyWithImpl<LoggedInHomeUiState>(this as LoggedInHomeUiState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MockLoggedInUiState&&(identical(other.targetScreen, targetScreen) || other.targetScreen == targetScreen));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoggedInHomeUiState&&(identical(other.targetScreen, targetScreen) || other.targetScreen == targetScreen));
 }
 
 
@@ -34,15 +34,15 @@ int get hashCode => Object.hash(runtimeType,targetScreen);
 
 @override
 String toString() {
-  return 'MockLoggedInUiState(targetScreen: $targetScreen)';
+  return 'LoggedInHomeUiState(targetScreen: $targetScreen)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $MockLoggedInUiStateCopyWith<$Res>  {
-  factory $MockLoggedInUiStateCopyWith(MockLoggedInUiState value, $Res Function(MockLoggedInUiState) _then) = _$MockLoggedInUiStateCopyWithImpl;
+abstract mixin class $LoggedInHomeUiStateCopyWith<$Res>  {
+  factory $LoggedInHomeUiStateCopyWith(LoggedInHomeUiState value, $Res Function(LoggedInHomeUiState) _then) = _$LoggedInHomeUiStateCopyWithImpl;
 @useResult
 $Res call({
  String? targetScreen
@@ -53,14 +53,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$MockLoggedInUiStateCopyWithImpl<$Res>
-    implements $MockLoggedInUiStateCopyWith<$Res> {
-  _$MockLoggedInUiStateCopyWithImpl(this._self, this._then);
+class _$LoggedInHomeUiStateCopyWithImpl<$Res>
+    implements $LoggedInHomeUiStateCopyWith<$Res> {
+  _$LoggedInHomeUiStateCopyWithImpl(this._self, this._then);
 
-  final MockLoggedInUiState _self;
-  final $Res Function(MockLoggedInUiState) _then;
+  final LoggedInHomeUiState _self;
+  final $Res Function(LoggedInHomeUiState) _then;
 
-/// Create a copy of MockLoggedInUiState
+/// Create a copy of LoggedInHomeUiState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? targetScreen = freezed,}) {
   return _then(_self.copyWith(
@@ -72,8 +72,8 @@ as String?,
 }
 
 
-/// Adds pattern-matching-related methods to [MockLoggedInUiState].
-extension MockLoggedInUiStatePatterns on MockLoggedInUiState {
+/// Adds pattern-matching-related methods to [LoggedInHomeUiState].
+extension LoggedInHomeUiStatePatterns on LoggedInHomeUiState {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -86,10 +86,10 @@ extension MockLoggedInUiStatePatterns on MockLoggedInUiState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MockLoggedInUiState value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LoggedInHomeUiState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _MockLoggedInUiState() when $default != null:
+case _LoggedInHomeUiState() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -108,10 +108,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MockLoggedInUiState value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LoggedInHomeUiState value)  $default,){
 final _that = this;
 switch (_that) {
-case _MockLoggedInUiState():
+case _LoggedInHomeUiState():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -129,10 +129,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MockLoggedInUiState value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LoggedInHomeUiState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _MockLoggedInUiState() when $default != null:
+case _LoggedInHomeUiState() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -152,7 +152,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? targetScreen)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _MockLoggedInUiState() when $default != null:
+case _LoggedInHomeUiState() when $default != null:
 return $default(_that.targetScreen);case _:
   return orElse();
 
@@ -173,7 +173,7 @@ return $default(_that.targetScreen);case _:
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? targetScreen)  $default,) {final _that = this;
 switch (_that) {
-case _MockLoggedInUiState():
+case _LoggedInHomeUiState():
 return $default(_that.targetScreen);case _:
   throw StateError('Unexpected subclass');
 
@@ -193,7 +193,7 @@ return $default(_that.targetScreen);case _:
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? targetScreen)?  $default,) {final _that = this;
 switch (_that) {
-case _MockLoggedInUiState() when $default != null:
+case _LoggedInHomeUiState() when $default != null:
 return $default(_that.targetScreen);case _:
   return null;
 
@@ -205,23 +205,23 @@ return $default(_that.targetScreen);case _:
 /// @nodoc
 
 
-class _MockLoggedInUiState implements MockLoggedInUiState {
-  const _MockLoggedInUiState({this.targetScreen});
+class _LoggedInHomeUiState implements LoggedInHomeUiState {
+  const _LoggedInHomeUiState({this.targetScreen});
   
 
 @override final  String? targetScreen;
 
-/// Create a copy of MockLoggedInUiState
+/// Create a copy of LoggedInHomeUiState
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$MockLoggedInUiStateCopyWith<_MockLoggedInUiState> get copyWith => __$MockLoggedInUiStateCopyWithImpl<_MockLoggedInUiState>(this, _$identity);
+_$LoggedInHomeUiStateCopyWith<_LoggedInHomeUiState> get copyWith => __$LoggedInHomeUiStateCopyWithImpl<_LoggedInHomeUiState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MockLoggedInUiState&&(identical(other.targetScreen, targetScreen) || other.targetScreen == targetScreen));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoggedInHomeUiState&&(identical(other.targetScreen, targetScreen) || other.targetScreen == targetScreen));
 }
 
 
@@ -230,15 +230,15 @@ int get hashCode => Object.hash(runtimeType,targetScreen);
 
 @override
 String toString() {
-  return 'MockLoggedInUiState(targetScreen: $targetScreen)';
+  return 'LoggedInHomeUiState(targetScreen: $targetScreen)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$MockLoggedInUiStateCopyWith<$Res> implements $MockLoggedInUiStateCopyWith<$Res> {
-  factory _$MockLoggedInUiStateCopyWith(_MockLoggedInUiState value, $Res Function(_MockLoggedInUiState) _then) = __$MockLoggedInUiStateCopyWithImpl;
+abstract mixin class _$LoggedInHomeUiStateCopyWith<$Res> implements $LoggedInHomeUiStateCopyWith<$Res> {
+  factory _$LoggedInHomeUiStateCopyWith(_LoggedInHomeUiState value, $Res Function(_LoggedInHomeUiState) _then) = __$LoggedInHomeUiStateCopyWithImpl;
 @override @useResult
 $Res call({
  String? targetScreen
@@ -249,17 +249,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$MockLoggedInUiStateCopyWithImpl<$Res>
-    implements _$MockLoggedInUiStateCopyWith<$Res> {
-  __$MockLoggedInUiStateCopyWithImpl(this._self, this._then);
+class __$LoggedInHomeUiStateCopyWithImpl<$Res>
+    implements _$LoggedInHomeUiStateCopyWith<$Res> {
+  __$LoggedInHomeUiStateCopyWithImpl(this._self, this._then);
 
-  final _MockLoggedInUiState _self;
-  final $Res Function(_MockLoggedInUiState) _then;
+  final _LoggedInHomeUiState _self;
+  final $Res Function(_LoggedInHomeUiState) _then;
 
-/// Create a copy of MockLoggedInUiState
+/// Create a copy of LoggedInHomeUiState
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? targetScreen = freezed,}) {
-  return _then(_MockLoggedInUiState(
+  return _then(_LoggedInHomeUiState(
 targetScreen: freezed == targetScreen ? _self.targetScreen : targetScreen // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

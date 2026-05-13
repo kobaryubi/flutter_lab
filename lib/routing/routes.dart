@@ -1,6 +1,7 @@
 abstract final class Routes {
   static const home = '/';
   static const login = '/login';
+  static const loggedInHome = '/logged_in_home';
   static const notFound = '/404';
 
   static const webView = '/web_view';
