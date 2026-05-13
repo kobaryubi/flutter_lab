@@ -8,15 +8,18 @@ part of 'flutter_lab_app_view_model.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// ViewModel that manages app-level token refresh registration.
+/// ViewModel that manages app-level subscriptions: token refresh, Adjust
+/// deep links, and opened-push-message taps.
 
 @ProviderFor(FlutterLabAppViewModel)
 const flutterLabAppViewModelProvider = FlutterLabAppViewModelProvider._();
 
-/// ViewModel that manages app-level token refresh registration.
+/// ViewModel that manages app-level subscriptions: token refresh, Adjust
+/// deep links, and opened-push-message taps.
 final class FlutterLabAppViewModelProvider
     extends $NotifierProvider<FlutterLabAppViewModel, FlutterLabAppUiState> {
-  /// ViewModel that manages app-level token refresh registration.
+  /// ViewModel that manages app-level subscriptions: token refresh, Adjust
+  /// deep links, and opened-push-message taps.
   const FlutterLabAppViewModelProvider._()
     : super(
         from: null,
@@ -45,9 +48,10 @@ final class FlutterLabAppViewModelProvider
 }
 
 String _$flutterLabAppViewModelHash() =>
-    r'38dc2c1848c5f1cd658ecbdb8b021398e7ccb436';
+    r'4b39cfbd1d3b22283a2dcf1bde0db2e5822bad07';
 
-/// ViewModel that manages app-level token refresh registration.
+/// ViewModel that manages app-level subscriptions: token refresh, Adjust
+/// deep links, and opened-push-message taps.
 
 abstract class _$FlutterLabAppViewModel
     extends $Notifier<FlutterLabAppUiState> {

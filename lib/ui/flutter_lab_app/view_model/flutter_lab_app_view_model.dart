@@ -3,25 +3,41 @@ import 'dart:async';
 import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/application/notifier/pending_deferred_deeplink_notifier.dart';
 import 'package:flutter_lab/application/notifier/pending_direct_deeplink_notifier.dart';
+import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
 import 'package:flutter_lab/ui/flutter_lab_app/ui_state/flutter_lab_app_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'flutter_lab_app_view_model.g.dart';
 
-/// ViewModel that manages app-level token refresh registration.
+/// ViewModel that manages app-level subscriptions: token refresh, Adjust
+/// deep links, and opened-push-message taps.
 @riverpod
 class FlutterLabAppViewModel extends _$FlutterLabAppViewModel {
-  StreamSubscription<String>? _subscription;
+  StreamSubscription<String>? _tokenSubscription;
+  StreamSubscription<PushMessage>? _openedPushMessageSubscription;
 
   @override
   FlutterLabAppUiState build() {
     final onPushTokenRefreshUseCase = ref.read(
       onPushTokenRefreshUseCaseProvider,
     );
-    _subscription = onPushTokenRefreshUseCase.call().listen(
+    _tokenSubscription = onPushTokenRefreshUseCase.call().listen(
       _handleTokenRefresh,
     );
-    ref.onDispose(() => _subscription?.cancel());
+
+    final watchOpenedPushMessageUseCase = ref.read(
+      watchOpenedPushMessageUseCaseProvider,
+    );
+    _openedPushMessageSubscription = watchOpenedPushMessageUseCase
+        .call()
+        .listen((message) {
+          state = state.copyWith(lastOpenedPushMessage: message);
+        });
+
+    ref.onDispose(() {
+      _tokenSubscription?.cancel();
+      _openedPushMessageSubscription?.cancel();
+    });
 
     _initializeAdjust();
     _initializeMax();

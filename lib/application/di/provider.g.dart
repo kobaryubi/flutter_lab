@@ -1607,6 +1607,71 @@ final class OnPushTokenRefreshProvider
 String _$onPushTokenRefreshHash() =>
     r'b9f037e932ed73dc073a02fa69d9423c2003b7e1';
 
+/// App-level use case for observing push-message taps. Subscribed once
+/// in [FlutterLabAppViewModel] so the `PushMessageService.handle` side
+/// effects (saving target screen, clearing app badge) fire exactly once
+/// per tap regardless of which screens are currently watching.
+
+@ProviderFor(watchOpenedPushMessageUseCase)
+const watchOpenedPushMessageUseCaseProvider =
+    WatchOpenedPushMessageUseCaseProvider._();
+
+/// App-level use case for observing push-message taps. Subscribed once
+/// in [FlutterLabAppViewModel] so the `PushMessageService.handle` side
+/// effects (saving target screen, clearing app badge) fire exactly once
+/// per tap regardless of which screens are currently watching.
+
+final class WatchOpenedPushMessageUseCaseProvider
+    extends
+        $FunctionalProvider<
+          WatchOpenedPushMessageUseCase,
+          WatchOpenedPushMessageUseCase,
+          WatchOpenedPushMessageUseCase
+        >
+    with $Provider<WatchOpenedPushMessageUseCase> {
+  /// App-level use case for observing push-message taps. Subscribed once
+  /// in [FlutterLabAppViewModel] so the `PushMessageService.handle` side
+  /// effects (saving target screen, clearing app badge) fire exactly once
+  /// per tap regardless of which screens are currently watching.
+  const WatchOpenedPushMessageUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'watchOpenedPushMessageUseCaseProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$watchOpenedPushMessageUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<WatchOpenedPushMessageUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  WatchOpenedPushMessageUseCase create(Ref ref) {
+    return watchOpenedPushMessageUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WatchOpenedPushMessageUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WatchOpenedPushMessageUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$watchOpenedPushMessageUseCaseHash() =>
+    r'a5713510001fbbf748e4c8ea65e32fd6ae80dc17';
+
 @ProviderFor(getInitialPushMessageUseCase)
 const getInitialPushMessageUseCaseProvider =
     GetInitialPushMessageUseCaseProvider._();
@@ -1655,57 +1720,6 @@ final class GetInitialPushMessageUseCaseProvider
 
 String _$getInitialPushMessageUseCaseHash() =>
     r'0fd91bba9d4db3ffcba346b2b23e2832273c327f';
-
-@ProviderFor(watchOpenedPushMessageUseCase)
-const watchOpenedPushMessageUseCaseProvider =
-    WatchOpenedPushMessageUseCaseProvider._();
-
-final class WatchOpenedPushMessageUseCaseProvider
-    extends
-        $FunctionalProvider<
-          WatchOpenedPushMessageUseCase,
-          WatchOpenedPushMessageUseCase,
-          WatchOpenedPushMessageUseCase
-        >
-    with $Provider<WatchOpenedPushMessageUseCase> {
-  const WatchOpenedPushMessageUseCaseProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'watchOpenedPushMessageUseCaseProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$watchOpenedPushMessageUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<WatchOpenedPushMessageUseCase> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  WatchOpenedPushMessageUseCase create(Ref ref) {
-    return watchOpenedPushMessageUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(WatchOpenedPushMessageUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<WatchOpenedPushMessageUseCase>(
-        value,
-      ),
-    );
-  }
-}
-
-String _$watchOpenedPushMessageUseCaseHash() =>
-    r'5971dbbc1e42768cbb467b4d04e6024a5224fe84';
 
 @ProviderFor(watchForegroundPushMessageUseCase)
 const watchForegroundPushMessageUseCaseProvider =

@@ -360,16 +360,20 @@ RotatePushTokenUseCase rotatePushTokenUseCase(Ref ref) =>
 Stream<String> onPushTokenRefresh(Ref ref) =>
     ref.read(onPushTokenRefreshUseCaseProvider).call();
 
-@riverpod
-GetInitialPushMessageUseCase getInitialPushMessageUseCase(Ref ref) =>
-    GetInitialPushMessageUseCase(
+/// App-level use case for observing push-message taps. Subscribed once
+/// in [FlutterLabAppViewModel] so the `PushMessageService.handle` side
+/// effects (saving target screen, clearing app badge) fire exactly once
+/// per tap regardless of which screens are currently watching.
+@Riverpod(keepAlive: true)
+WatchOpenedPushMessageUseCase watchOpenedPushMessageUseCase(Ref ref) =>
+    WatchOpenedPushMessageUseCase(
       pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
       pushMessageService: ref.read(pushMessageServiceProvider),
     );
 
 @riverpod
-WatchOpenedPushMessageUseCase watchOpenedPushMessageUseCase(Ref ref) =>
-    WatchOpenedPushMessageUseCase(
+GetInitialPushMessageUseCase getInitialPushMessageUseCase(Ref ref) =>
+    GetInitialPushMessageUseCase(
       pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
       pushMessageService: ref.read(pushMessageServiceProvider),
     );

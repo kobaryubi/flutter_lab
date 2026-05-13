@@ -14,30 +14,73 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FlutterLabAppUiState {
 
-
+ PushMessage? get lastOpenedPushMessage;
+/// Create a copy of FlutterLabAppUiState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$FlutterLabAppUiStateCopyWith<FlutterLabAppUiState> get copyWith => _$FlutterLabAppUiStateCopyWithImpl<FlutterLabAppUiState>(this as FlutterLabAppUiState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FlutterLabAppUiState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FlutterLabAppUiState&&(identical(other.lastOpenedPushMessage, lastOpenedPushMessage) || other.lastOpenedPushMessage == lastOpenedPushMessage));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,lastOpenedPushMessage);
 
 @override
 String toString() {
-  return 'FlutterLabAppUiState()';
+  return 'FlutterLabAppUiState(lastOpenedPushMessage: $lastOpenedPushMessage)';
 }
 
 
 }
 
 /// @nodoc
-class $FlutterLabAppUiStateCopyWith<$Res>  {
-$FlutterLabAppUiStateCopyWith(FlutterLabAppUiState _, $Res Function(FlutterLabAppUiState) __);
+abstract mixin class $FlutterLabAppUiStateCopyWith<$Res>  {
+  factory $FlutterLabAppUiStateCopyWith(FlutterLabAppUiState value, $Res Function(FlutterLabAppUiState) _then) = _$FlutterLabAppUiStateCopyWithImpl;
+@useResult
+$Res call({
+ PushMessage? lastOpenedPushMessage
+});
+
+
+$PushMessageCopyWith<$Res>? get lastOpenedPushMessage;
+
+}
+/// @nodoc
+class _$FlutterLabAppUiStateCopyWithImpl<$Res>
+    implements $FlutterLabAppUiStateCopyWith<$Res> {
+  _$FlutterLabAppUiStateCopyWithImpl(this._self, this._then);
+
+  final FlutterLabAppUiState _self;
+  final $Res Function(FlutterLabAppUiState) _then;
+
+/// Create a copy of FlutterLabAppUiState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? lastOpenedPushMessage = freezed,}) {
+  return _then(_self.copyWith(
+lastOpenedPushMessage: freezed == lastOpenedPushMessage ? _self.lastOpenedPushMessage : lastOpenedPushMessage // ignore: cast_nullable_to_non_nullable
+as PushMessage?,
+  ));
+}
+/// Create a copy of FlutterLabAppUiState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PushMessageCopyWith<$Res>? get lastOpenedPushMessage {
+    if (_self.lastOpenedPushMessage == null) {
+    return null;
+  }
+
+  return $PushMessageCopyWith<$Res>(_self.lastOpenedPushMessage!, (value) {
+    return _then(_self.copyWith(lastOpenedPushMessage: value));
+  });
+}
 }
 
 
@@ -119,10 +162,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function()?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( PushMessage? lastOpenedPushMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FlutterLabAppUiState() when $default != null:
-return $default();case _:
+return $default(_that.lastOpenedPushMessage);case _:
   return orElse();
 
 }
@@ -140,10 +183,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function()  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( PushMessage? lastOpenedPushMessage)  $default,) {final _that = this;
 switch (_that) {
 case _FlutterLabAppUiState():
-return $default();case _:
+return $default(_that.lastOpenedPushMessage);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +203,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function()?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( PushMessage? lastOpenedPushMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _FlutterLabAppUiState() when $default != null:
-return $default();case _:
+return $default(_that.lastOpenedPushMessage);case _:
   return null;
 
 }
@@ -175,32 +218,78 @@ return $default();case _:
 
 
 class _FlutterLabAppUiState implements FlutterLabAppUiState {
-  const _FlutterLabAppUiState();
+  const _FlutterLabAppUiState({this.lastOpenedPushMessage});
   
 
+@override final  PushMessage? lastOpenedPushMessage;
 
-
+/// Create a copy of FlutterLabAppUiState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FlutterLabAppUiStateCopyWith<_FlutterLabAppUiState> get copyWith => __$FlutterLabAppUiStateCopyWithImpl<_FlutterLabAppUiState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FlutterLabAppUiState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FlutterLabAppUiState&&(identical(other.lastOpenedPushMessage, lastOpenedPushMessage) || other.lastOpenedPushMessage == lastOpenedPushMessage));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,lastOpenedPushMessage);
 
 @override
 String toString() {
-  return 'FlutterLabAppUiState()';
+  return 'FlutterLabAppUiState(lastOpenedPushMessage: $lastOpenedPushMessage)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$FlutterLabAppUiStateCopyWith<$Res> implements $FlutterLabAppUiStateCopyWith<$Res> {
+  factory _$FlutterLabAppUiStateCopyWith(_FlutterLabAppUiState value, $Res Function(_FlutterLabAppUiState) _then) = __$FlutterLabAppUiStateCopyWithImpl;
+@override @useResult
+$Res call({
+ PushMessage? lastOpenedPushMessage
+});
 
 
+@override $PushMessageCopyWith<$Res>? get lastOpenedPushMessage;
+
+}
+/// @nodoc
+class __$FlutterLabAppUiStateCopyWithImpl<$Res>
+    implements _$FlutterLabAppUiStateCopyWith<$Res> {
+  __$FlutterLabAppUiStateCopyWithImpl(this._self, this._then);
+
+  final _FlutterLabAppUiState _self;
+  final $Res Function(_FlutterLabAppUiState) _then;
+
+/// Create a copy of FlutterLabAppUiState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? lastOpenedPushMessage = freezed,}) {
+  return _then(_FlutterLabAppUiState(
+lastOpenedPushMessage: freezed == lastOpenedPushMessage ? _self.lastOpenedPushMessage : lastOpenedPushMessage // ignore: cast_nullable_to_non_nullable
+as PushMessage?,
+  ));
+}
+
+/// Create a copy of FlutterLabAppUiState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PushMessageCopyWith<$Res>? get lastOpenedPushMessage {
+    if (_self.lastOpenedPushMessage == null) {
+    return null;
+  }
+
+  return $PushMessageCopyWith<$Res>(_self.lastOpenedPushMessage!, (value) {
+    return _then(_self.copyWith(lastOpenedPushMessage: value));
+  });
+}
+}
 
 // dart format on
