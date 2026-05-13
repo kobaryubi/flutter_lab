@@ -1276,6 +1276,54 @@ final class DeleteLocalNotificationChannelUseCaseProvider
 String _$deleteLocalNotificationChannelUseCaseHash() =>
     r'd3343bee3fe5c25d3221499d06cde5d49d0cbe1c';
 
+@ProviderFor(memoryStorageGateway)
+const memoryStorageGatewayProvider = MemoryStorageGatewayProvider._();
+
+final class MemoryStorageGatewayProvider
+    extends
+        $FunctionalProvider<
+          MemoryStorageGateway,
+          MemoryStorageGateway,
+          MemoryStorageGateway
+        >
+    with $Provider<MemoryStorageGateway> {
+  const MemoryStorageGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'memoryStorageGatewayProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$memoryStorageGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<MemoryStorageGateway> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  MemoryStorageGateway create(Ref ref) {
+    return memoryStorageGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(MemoryStorageGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<MemoryStorageGateway>(value),
+    );
+  }
+}
+
+String _$memoryStorageGatewayHash() =>
+    r'cdad8554f4679501b189f0ab44cac8bd301789f7';
+
 @ProviderFor(pushNotificationRepository)
 const pushNotificationRepositoryProvider =
     PushNotificationRepositoryProvider._();
@@ -1758,6 +1806,160 @@ final class WatchForegroundPushMessageUseCaseProvider
 
 String _$watchForegroundPushMessageUseCaseHash() =>
     r'45113906a4e30fcddd406a7f7651bea9cb8fae6b';
+
+@ProviderFor(savePendingTargetScreenUseCase)
+const savePendingTargetScreenUseCaseProvider =
+    SavePendingTargetScreenUseCaseProvider._();
+
+final class SavePendingTargetScreenUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SavePendingTargetScreenUseCase,
+          SavePendingTargetScreenUseCase,
+          SavePendingTargetScreenUseCase
+        >
+    with $Provider<SavePendingTargetScreenUseCase> {
+  const SavePendingTargetScreenUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'savePendingTargetScreenUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$savePendingTargetScreenUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<SavePendingTargetScreenUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SavePendingTargetScreenUseCase create(Ref ref) {
+    return savePendingTargetScreenUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SavePendingTargetScreenUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SavePendingTargetScreenUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$savePendingTargetScreenUseCaseHash() =>
+    r'038a964d142f8572f2de9ac1dbb9149ea6d4eaff';
+
+@ProviderFor(consumePendingTargetScreenUseCase)
+const consumePendingTargetScreenUseCaseProvider =
+    ConsumePendingTargetScreenUseCaseProvider._();
+
+final class ConsumePendingTargetScreenUseCaseProvider
+    extends
+        $FunctionalProvider<
+          ConsumePendingTargetScreenUseCase,
+          ConsumePendingTargetScreenUseCase,
+          ConsumePendingTargetScreenUseCase
+        >
+    with $Provider<ConsumePendingTargetScreenUseCase> {
+  const ConsumePendingTargetScreenUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'consumePendingTargetScreenUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() =>
+      _$consumePendingTargetScreenUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ConsumePendingTargetScreenUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ConsumePendingTargetScreenUseCase create(Ref ref) {
+    return consumePendingTargetScreenUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ConsumePendingTargetScreenUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ConsumePendingTargetScreenUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$consumePendingTargetScreenUseCaseHash() =>
+    r'f07a5eab1c75ccd38446521fc3206838f0966895';
+
+@ProviderFor(clearPendingTargetScreenUseCase)
+const clearPendingTargetScreenUseCaseProvider =
+    ClearPendingTargetScreenUseCaseProvider._();
+
+final class ClearPendingTargetScreenUseCaseProvider
+    extends
+        $FunctionalProvider<
+          ClearPendingTargetScreenUseCase,
+          ClearPendingTargetScreenUseCase,
+          ClearPendingTargetScreenUseCase
+        >
+    with $Provider<ClearPendingTargetScreenUseCase> {
+  const ClearPendingTargetScreenUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'clearPendingTargetScreenUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$clearPendingTargetScreenUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ClearPendingTargetScreenUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ClearPendingTargetScreenUseCase create(Ref ref) {
+    return clearPendingTargetScreenUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ClearPendingTargetScreenUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ClearPendingTargetScreenUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$clearPendingTargetScreenUseCaseHash() =>
+    r'e508ebcde9f7b39b727087d37f76b2da12a51d0b';
 
 @ProviderFor(copyShortcutIconsUseCase)
 const copyShortcutIconsUseCaseProvider = CopyShortcutIconsUseCaseProvider._();

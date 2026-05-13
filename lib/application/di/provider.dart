@@ -4,6 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
 import 'package:flutter_lab/application/logger/logger_gateway.dart';
+import 'package:flutter_lab/application/memory_storage/memory_storage_gateway.dart';
 // import 'package:flutter_lab/data/gateway/adfurikun/sdk_adfurikun_gateway.dart';
 import 'package:flutter_lab/data/gateway/adfurikun/mock_adfurikun_gateway.dart';
 // import 'package:flutter_lab/data/gateway/adjust/sdk_adjust_gateway.dart';
@@ -20,6 +21,7 @@ import 'package:flutter_lab/data/gateway/local_notification/flutter_local_notifi
 import 'package:flutter_lab/data/gateway/logger/talker_logger_gateway.dart';
 // import 'package:flutter_lab/data/gateway/max/sdk_max_gateway.dart';
 import 'package:flutter_lab/data/gateway/max/mock_max_gateway.dart';
+import 'package:flutter_lab/data/gateway/memory_storage/map_memory_storage_gateway.dart';
 import 'package:flutter_lab/data/gateway/native_button/platform_native_button_gateway.dart';
 import 'package:flutter_lab/data/gateway/performance/firebase_performance_gateway.dart';
 import 'package:flutter_lab/data/gateway/permission/permission_handler_gateway.dart';
@@ -117,11 +119,14 @@ import 'package:flutter_lab/domain/use_cases/permission/request_permission_use_c
 import 'package:flutter_lab/domain/use_cases/pet/clear_pet_cache_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/pet/list_pets_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/profile_passport/start_profile_passport_service_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/push_notification/clear_pending_target_screen_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/push_notification/consume_pending_target_screen_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/get_initial_push_message_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/on_push_token_refresh_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/register_token_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/request_push_notification_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/rotate_push_token_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/push_notification/save_pending_target_screen_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/watch_foreground_push_message_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/watch_opened_push_message_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/copy_shortcut_icons_use_case.dart';
@@ -318,6 +323,10 @@ DeleteLocalNotificationChannelUseCase deleteLocalNotificationChannelUseCase(
   localNotificationGateway: ref.read(localNotificationGatewayProvider),
 );
 
+// memory storage
+@Riverpod(keepAlive: true)
+MemoryStorageGateway memoryStorageGateway(Ref ref) => MapMemoryStorageGateway();
+
 // push notification
 @riverpod
 PushNotificationRepository pushNotificationRepository(Ref ref) =>
@@ -377,6 +386,24 @@ WatchForegroundPushMessageUseCase watchForegroundPushMessageUseCase(Ref ref) =>
       pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
       localNotificationGateway: ref.read(localNotificationGatewayProvider),
       pushMessageService: ref.read(pushMessageServiceProvider),
+    );
+
+@riverpod
+SavePendingTargetScreenUseCase savePendingTargetScreenUseCase(Ref ref) =>
+    SavePendingTargetScreenUseCase(
+      memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
+    );
+
+@riverpod
+ConsumePendingTargetScreenUseCase consumePendingTargetScreenUseCase(Ref ref) =>
+    ConsumePendingTargetScreenUseCase(
+      memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
+    );
+
+@riverpod
+ClearPendingTargetScreenUseCase clearPendingTargetScreenUseCase(Ref ref) =>
+    ClearPendingTargetScreenUseCase(
+      memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
     );
 
 @riverpod
