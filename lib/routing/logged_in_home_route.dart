@@ -51,7 +51,7 @@ class LoggedInHomeTab1Route extends GoRouteData with $LoggedInHomeTab1Route {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     debugPrint('LoggedInHomeTab1Route: build (nonce=$nonce)');
-    return LoggedInHomeTab1Screen(nonce: nonce);
+    return LoggedInHomeTab1Screen(key: ValueKey(nonce));
   }
 }
 

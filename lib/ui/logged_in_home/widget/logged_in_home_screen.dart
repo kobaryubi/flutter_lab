@@ -1,58 +1,92 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
-import 'package:flutter_lab/ui/logged_in_home/ui_state/logged_in_home_ui_state.dart';
-import 'package:flutter_lab/ui/logged_in_home/view_model/logged_in_home_view_model.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-/// Landing screen shown after login. Reads the pending target screen
-/// captured from a push-notification tap and exposes it for the view layer
-/// to navigate to. Re-arrivals via `go` re-trigger the consume on mount,
-/// so no per-screen stream subscription is needed.
-class LoggedInHomeScreen extends HookConsumerWidget {
-  const LoggedInHomeScreen({super.key});
+/// Shell screen for the logged-in home. Renders the bottom-nav switcher
+/// over a [StatefulNavigationShell] so the two tabs preserve their state
+/// across branch swaps.
+class LoggedInHomeScreen extends StatelessWidget {
+  const LoggedInHomeScreen({
+    required this.navigationShell,
+    super.key,
+  });
+
+  final StatefulNavigationShell navigationShell;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final uiState = ref.watch(loggedInHomeViewModelProvider);
-    final viewModel = ref.read(loggedInHomeViewModelProvider.notifier);
-    final logger = ref.read(loggerGatewayProvider);
-
-    /// Navigates to the consumed target screen path as soon as it appears
-    /// on the UI state, replacing this landing screen in the stack.
-    void handleUiStateChange(
-      LoggedInHomeUiState? previous,
-      LoggedInHomeUiState next,
-    ) {
-      final targetScreen = next.targetScreen;
-
-      if (targetScreen == null) return;
-
-      context.go(targetScreen);
+  Widget build(BuildContext context) {
+    /// Switches to the tapped tab branch.
+    void handleTapTab(int index) {
+      navigationShell.goBranch(index);
     }
-
-    useEffect(() {
-      logger.debug('LoggedInHomeScreen: initialization start');
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        viewModel.consumePendingTargetScreen();
-      });
-      return null;
-    }, const []);
-
-    ref.listen(loggedInHomeViewModelProvider, handleUiStateChange);
 
     return Layout(
       appBar: const AppBar(title: Text('Logged In Home')),
-      child: Column(
-        crossAxisAlignment: .start,
-        spacing: 8,
-        children: [
-          Text('targetScreen: ${uiState.targetScreen ?? "none"}'),
-        ],
+      bottomNavigationBar: _BottomNavBar(
+        currentIndex: navigationShell.currentIndex,
+        onTap: handleTapTab,
       ),
+      child: navigationShell,
     );
   }
+}
+
+/// Bottom navigation bar with two tabs.
+class _BottomNavBar extends StatelessWidget {
+  const _BottomNavBar({
+    required this.currentIndex,
+    required this.onTap,
+  });
+
+  final int currentIndex;
+  final ValueChanged<int> onTap;
+
+  @override
+  Widget build(BuildContext context) => Row(
+    children: [
+      _TabButton(
+        label: 'Tab 1',
+        isSelected: currentIndex == 0,
+        onTap: () => onTap(0),
+      ),
+      _TabButton(
+        label: 'Tab 2',
+        isSelected: currentIndex == 1,
+        onTap: () => onTap(1),
+      ),
+    ],
+  );
+}
+
+/// A single tab button in the bottom navigation bar.
+class _TabButton extends StatelessWidget {
+  const _TabButton({
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => Expanded(
+    child: GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Center(
+          child: Text(
+            label,
+            style: TextStyle(
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
 }
