@@ -45,7 +45,9 @@ class _Body extends ConsumerWidget {
         value: final _?,
       ) when previous?.initialMessage != next.initialMessage) {
         logger.debug('Navigating to LoggedInHome via initial message');
-        LoggedInHomeRoute().go(context);
+        LoggedInHomeTab1Route(
+          nonce: DateTime.now().microsecondsSinceEpoch.toString(),
+        ).go(context);
       }
     }
 

@@ -1,3 +1,5 @@
+import 'package:flutter_lab/ui/logged_in_home/widget/logged_in_home_screen.dart'
+    show LoggedInHomeScreen;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'logged_in_home_ui_state.freezed.dart';

@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'url navigation', route: UrlNavigationRoute()),
     AppLink(title: 'dio cache', route: DioCacheRoute()),
     AppLink(title: 'push notification', route: PushNotificationRoute()),
-    AppLink(title: 'logged in home', route: LoggedInHomeRoute()),
+    const AppLink(title: 'logged in home', route: LoggedInHomeRoute()),
     AppLink(title: 'app store', route: AppStoreRoute()),
     AppLink(title: 'network', route: NetworkRoute()),
     AppLink(title: 'brightness', route: BrightnessRoute()),
