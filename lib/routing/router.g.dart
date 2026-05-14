@@ -1030,18 +1030,67 @@ mixin $LocalPathsRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $loggedInHomeRoute => GoRouteData.$route(
-  path: '/logged_in_home',
-  name: 'logged_in_home',
-  factory: $LoggedInHomeRoute._fromState,
+RouteBase get $loggedInHomeRoute => StatefulShellRouteData.$route(
+  factory: $LoggedInHomeRouteExtension._fromState,
+  branches: [
+    StatefulShellBranchData.$branch(
+      routes: [
+        GoRouteData.$route(
+          path: '/logged_in_home/tab1',
+          name: 'logged_in_home_tab1',
+          factory: $LoggedInHomeTab1Route._fromState,
+        ),
+      ],
+    ),
+    StatefulShellBranchData.$branch(
+      routes: [
+        GoRouteData.$route(
+          path: '/logged_in_home/tab2',
+          name: 'logged_in_home_tab2',
+          factory: $LoggedInHomeTab2Route._fromState,
+        ),
+      ],
+    ),
+  ],
 );
 
-mixin $LoggedInHomeRoute on GoRouteData {
+extension $LoggedInHomeRouteExtension on LoggedInHomeRoute {
   static LoggedInHomeRoute _fromState(GoRouterState state) =>
-      LoggedInHomeRoute();
+      const LoggedInHomeRoute();
+}
+
+mixin $LoggedInHomeTab1Route on GoRouteData {
+  static LoggedInHomeTab1Route _fromState(GoRouterState state) =>
+      LoggedInHomeTab1Route(nonce: state.uri.queryParameters['nonce']);
+
+  LoggedInHomeTab1Route get _self => this as LoggedInHomeTab1Route;
 
   @override
-  String get location => GoRouteData.$location('/logged_in_home');
+  String get location => GoRouteData.$location(
+    '/logged_in_home/tab1',
+    queryParams: {if (_self.nonce != null) 'nonce': _self.nonce},
+  );
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $LoggedInHomeTab2Route on GoRouteData {
+  static LoggedInHomeTab2Route _fromState(GoRouterState state) =>
+      const LoggedInHomeTab2Route();
+
+  @override
+  String get location => GoRouteData.$location('/logged_in_home/tab2');
 
   @override
   void go(BuildContext context) => context.go(location);

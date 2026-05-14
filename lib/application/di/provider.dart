@@ -118,7 +118,6 @@ import 'package:flutter_lab/domain/use_cases/permission/request_permission_use_c
 import 'package:flutter_lab/domain/use_cases/pet/clear_pet_cache_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/pet/list_pets_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/profile_passport/start_profile_passport_service_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/push_notification/clear_pending_target_screen_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/consume_pending_target_screen_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/get_initial_push_message_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/on_push_token_refresh_use_case.dart';
@@ -361,9 +360,9 @@ Stream<String> onPushTokenRefresh(Ref ref) =>
     ref.read(onPushTokenRefreshUseCaseProvider).call();
 
 /// App-level use case for observing push-message taps. Subscribed once
-/// in [FlutterLabAppViewModel] so the `PushMessageService.handle` side
-/// effects (saving target screen, clearing app badge) fire exactly once
-/// per tap regardless of which screens are currently watching.
+/// in the FlutterLabApp view model so the `PushMessageService.handle`
+/// side effect (clearing app badge) fires exactly once per tap regardless
+/// of which screens are currently watching.
 @Riverpod(keepAlive: true)
 WatchOpenedPushMessageUseCase watchOpenedPushMessageUseCase(Ref ref) =>
     WatchOpenedPushMessageUseCase(
@@ -389,12 +388,6 @@ WatchForegroundPushMessageUseCase watchForegroundPushMessageUseCase(Ref ref) =>
 @riverpod
 ConsumePendingTargetScreenUseCase consumePendingTargetScreenUseCase(Ref ref) =>
     ConsumePendingTargetScreenUseCase(
-      memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
-    );
-
-@riverpod
-ClearPendingTargetScreenUseCase clearPendingTargetScreenUseCase(Ref ref) =>
-    ClearPendingTargetScreenUseCase(
       memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
     );
 

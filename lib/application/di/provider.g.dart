@@ -1608,18 +1608,18 @@ String _$onPushTokenRefreshHash() =>
     r'b9f037e932ed73dc073a02fa69d9423c2003b7e1';
 
 /// App-level use case for observing push-message taps. Subscribed once
-/// in [FlutterLabAppViewModel] so the `PushMessageService.handle` side
-/// effects (saving target screen, clearing app badge) fire exactly once
-/// per tap regardless of which screens are currently watching.
+/// in the FlutterLabApp view model so the `PushMessageService.handle`
+/// side effect (clearing app badge) fires exactly once per tap regardless
+/// of which screens are currently watching.
 
 @ProviderFor(watchOpenedPushMessageUseCase)
 const watchOpenedPushMessageUseCaseProvider =
     WatchOpenedPushMessageUseCaseProvider._();
 
 /// App-level use case for observing push-message taps. Subscribed once
-/// in [FlutterLabAppViewModel] so the `PushMessageService.handle` side
-/// effects (saving target screen, clearing app badge) fire exactly once
-/// per tap regardless of which screens are currently watching.
+/// in the FlutterLabApp view model so the `PushMessageService.handle`
+/// side effect (clearing app badge) fires exactly once per tap regardless
+/// of which screens are currently watching.
 
 final class WatchOpenedPushMessageUseCaseProvider
     extends
@@ -1630,9 +1630,9 @@ final class WatchOpenedPushMessageUseCaseProvider
         >
     with $Provider<WatchOpenedPushMessageUseCase> {
   /// App-level use case for observing push-message taps. Subscribed once
-  /// in [FlutterLabAppViewModel] so the `PushMessageService.handle` side
-  /// effects (saving target screen, clearing app badge) fire exactly once
-  /// per tap regardless of which screens are currently watching.
+  /// in the FlutterLabApp view model so the `PushMessageService.handle`
+  /// side effect (clearing app badge) fires exactly once per tap regardless
+  /// of which screens are currently watching.
   const WatchOpenedPushMessageUseCaseProvider._()
     : super(
         from: null,
@@ -1824,57 +1824,6 @@ final class ConsumePendingTargetScreenUseCaseProvider
 
 String _$consumePendingTargetScreenUseCaseHash() =>
     r'f07a5eab1c75ccd38446521fc3206838f0966895';
-
-@ProviderFor(clearPendingTargetScreenUseCase)
-const clearPendingTargetScreenUseCaseProvider =
-    ClearPendingTargetScreenUseCaseProvider._();
-
-final class ClearPendingTargetScreenUseCaseProvider
-    extends
-        $FunctionalProvider<
-          ClearPendingTargetScreenUseCase,
-          ClearPendingTargetScreenUseCase,
-          ClearPendingTargetScreenUseCase
-        >
-    with $Provider<ClearPendingTargetScreenUseCase> {
-  const ClearPendingTargetScreenUseCaseProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'clearPendingTargetScreenUseCaseProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$clearPendingTargetScreenUseCaseHash();
-
-  @$internal
-  @override
-  $ProviderElement<ClearPendingTargetScreenUseCase> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  ClearPendingTargetScreenUseCase create(Ref ref) {
-    return clearPendingTargetScreenUseCase(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ClearPendingTargetScreenUseCase value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ClearPendingTargetScreenUseCase>(
-        value,
-      ),
-    );
-  }
-}
-
-String _$clearPendingTargetScreenUseCaseHash() =>
-    r'e508ebcde9f7b39b727087d37f76b2da12a51d0b';
 
 @ProviderFor(copyShortcutIconsUseCase)
 const copyShortcutIconsUseCaseProvider = CopyShortcutIconsUseCaseProvider._();

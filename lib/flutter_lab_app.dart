@@ -17,8 +17,10 @@ class FlutterLabApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
 
-    /// Navigates to [LoggedInHomeRoute] when the app-level view model
-    /// records a new push-notification tap.
+    /// Navigates to [LoggedInHomeTab1Route] when the app-level view model
+    /// records a new push-notification tap, with a fresh nonce so the
+    /// tab's useEffect re-fires even when the shell already has the tab
+    /// mounted.
     void handleFlutterLabAppStateChange(
       FlutterLabAppUiState? previous,
       FlutterLabAppUiState next,
@@ -29,7 +31,9 @@ class FlutterLabApp extends ConsumerWidget {
 
       if (navigatorContext == null) return;
 
-      LoggedInHomeRoute().go(navigatorContext);
+      LoggedInHomeTab1Route(
+        nonce: DateTime.now().microsecondsSinceEpoch.toString(),
+      ).go(navigatorContext);
     }
 
     ref.listen(flutterLabAppViewModelProvider, handleFlutterLabAppStateChange);

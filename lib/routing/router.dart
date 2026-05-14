@@ -42,6 +42,8 @@ import 'package:flutter_lab/ui/loading_submit/widget/loading_submit_screen.dart'
 import 'package:flutter_lab/ui/local_icon/widget/local_icon_screen.dart';
 import 'package:flutter_lab/ui/local_paths/widget/local_paths_screen.dart';
 import 'package:flutter_lab/ui/logged_in_home/widget/logged_in_home_screen.dart';
+import 'package:flutter_lab/ui/logged_in_home/widget/logged_in_home_tab1_screen.dart';
+import 'package:flutter_lab/ui/logged_in_home/widget/logged_in_home_tab2_screen.dart';
 import 'package:flutter_lab/ui/markup_sample/widget/markup_sample_screen.dart';
 import 'package:flutter_lab/ui/max/widget/max_screen.dart';
 import 'package:flutter_lab/ui/method_channel/widget/method_channel_screen.dart';
