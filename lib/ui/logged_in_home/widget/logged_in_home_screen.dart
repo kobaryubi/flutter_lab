@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/logged_in_home/ui_state/logged_in_home_ui_state.dart';
@@ -18,6 +19,7 @@ class LoggedInHomeScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final uiState = ref.watch(loggedInHomeViewModelProvider);
     final viewModel = ref.read(loggedInHomeViewModelProvider.notifier);
+    final logger = ref.read(loggerGatewayProvider);
 
     /// Navigates to the consumed target screen path as soon as it appears
     /// on the UI state, replacing this landing screen in the stack.
@@ -33,6 +35,7 @@ class LoggedInHomeScreen extends HookConsumerWidget {
     }
 
     useEffect(() {
+      logger.debug('LoggedInHomeScreen: initialization start');
       WidgetsBinding.instance.addPostFrameCallback((_) {
         viewModel.consumePendingTargetScreen();
       });
