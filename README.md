@@ -24,6 +24,7 @@ fluttergen
 fvm dart run pigeon --input pigeons/common.dart
 fvm dart run pigeon --input pigeons/pigeon.dart
 fvm dart run pigeon --input pigeons/arutana.dart
+fvm dart run dart_pubspec_licenses:generate -o lib/gen/oss_licenses.dart
 ```
 
 ## Misc
