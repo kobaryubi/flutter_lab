@@ -54,6 +54,7 @@ List<RouteBase> get $appRoutes => [
   $observerDemoRoute,
   $observerDemoDetailRoute,
   $ocrResultRoute,
+  $ossLicensesRoute,
   $ocrRoute,
   $permissionRoute,
   $petCacheRoute,
@@ -1388,6 +1389,32 @@ mixin $OcrResultRoute on GoRouteData {
   @override
   String get location =>
       GoRouteData.$location('/ocr_result', queryParams: {'text': _self.text});
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $ossLicensesRoute => GoRouteData.$route(
+  path: '/oss_licenses',
+  name: 'oss_licenses',
+  factory: $OssLicensesRoute._fromState,
+);
+
+mixin $OssLicensesRoute on GoRouteData {
+  static OssLicensesRoute _fromState(GoRouterState state) => OssLicensesRoute();
+
+  @override
+  String get location => GoRouteData.$location('/oss_licenses');
 
   @override
   void go(BuildContext context) => context.go(location);

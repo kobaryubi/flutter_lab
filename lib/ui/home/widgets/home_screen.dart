@@ -104,6 +104,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'tar download', route: TarDownloadRoute()),
     AppLink(title: 'image processing', route: ImageProcessingRoute()),
     AppLink(title: 'camera', route: CameraRoute()),
+    AppLink(title: 'OSS licenses', route: OssLicensesRoute()),
   ];
 
   @override

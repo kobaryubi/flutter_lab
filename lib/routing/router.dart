@@ -56,6 +56,7 @@ import 'package:flutter_lab/ui/observer_demo/widget/observer_demo_detail_screen.
 import 'package:flutter_lab/ui/observer_demo/widget/observer_demo_screen.dart';
 import 'package:flutter_lab/ui/ocr/widget/ocr_result_screen.dart';
 import 'package:flutter_lab/ui/ocr/widget/ocr_screen.dart';
+import 'package:flutter_lab/ui/oss_licenses/widget/oss_licenses_screen.dart';
 import 'package:flutter_lab/ui/permission/widget/permission_screen.dart';
 import 'package:flutter_lab/ui/pet_cache/widget/pet_cache_screen.dart';
 import 'package:flutter_lab/ui/pigeon/widget/pigeon_screen.dart';
@@ -137,6 +138,7 @@ part 'network_route.dart';
 part 'not_found_route.dart';
 part 'observer_demo_route.dart';
 part 'ocr_result_route.dart';
+part 'oss_licenses_route.dart';
 part 'ocr_route.dart';
 part 'permission_route.dart';
 part 'pet_cache_route.dart';

@@ -98,5 +98,7 @@ abstract final class Routes {
 
   static const tarDownload = '/tar_download';
 
+  static const ossLicenses = '/oss_licenses';
+
   static const debug = '/debug';
 }
