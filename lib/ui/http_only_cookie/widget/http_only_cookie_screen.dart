@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -18,6 +19,7 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final logger = ref.read(loggerGatewayProvider);
     final cookies = useState<List<Cookie>?>(null);
     final isLoaded = useState(false);
 
@@ -27,11 +29,17 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
     }
 
     /// Reads every cookie for [_cookieUrl] from the native cookie store,
-    /// including `HttpOnly` cookies.
+    /// including `HttpOnly` cookies, and logs each one.
     Future<void> handleGetCookies() async {
-      cookies.value = await CookieManager.instance().getCookies(
+      final cookieList = await CookieManager.instance().getCookies(
         url: _cookieUrl,
       );
+
+      for (final cookie in cookieList) {
+        logger.debug('cookie ${cookie.name} httpOnly=${cookie.isHttpOnly}');
+      }
+
+      cookies.value = cookieList;
     }
 
     return Layout(
