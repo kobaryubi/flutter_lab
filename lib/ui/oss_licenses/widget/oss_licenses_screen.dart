@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/gen/oss_licenses.dart' as oss;
+import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 
@@ -26,8 +27,12 @@ class _Body extends StatelessWidget {
   const _Body();
 
   @override
-  Widget build(BuildContext context) => ListView.builder(
+  Widget build(BuildContext context) => ListView.separated(
     itemCount: _displayedPackages.length,
+    separatorBuilder: (_, _) => const SizedBox(
+      height: 1,
+      child: ColoredBox(color: AppColors.gray1),
+    ),
     itemBuilder: (context, index) =>
         _PackageRow(package: _displayedPackages[index]),
   );
