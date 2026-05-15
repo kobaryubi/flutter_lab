@@ -10,10 +10,8 @@ final List<oss.Package> _displayedPackages = oss.allDependencies
     .toList(growable: false);
 
 /// Screen that lists every shipped runtime package (direct + transitive)
-/// from the generated [oss.allDependencies] constant.
-///
-/// Tapping a row will navigate to the license detail screen
-/// (wired up alongside route registration).
+/// from the generated [oss.allDependencies] constant, showing each
+/// package's full metadata and license text inline.
 class OssLicensesScreen extends StatelessWidget {
   const OssLicensesScreen({super.key});
 
@@ -35,7 +33,8 @@ class _Body extends StatelessWidget {
   );
 }
 
-/// Single row showing a package's name and version.
+/// Row showing every field of a package: name, version, description,
+/// homepage, repository, authors, SPDX identifiers, and full license text.
 class _PackageRow extends StatelessWidget {
   const _PackageRow({required this.package});
 
@@ -48,11 +47,14 @@ class _PackageRow extends StatelessWidget {
       crossAxisAlignment: .start,
       spacing: 4,
       children: [
-        Text(package.name),
-        Text(
-          '${package.version ?? '-'}  '
-          '${package.spdxIdentifiers.join(', ')}',
-        ),
+        Text('name: ${package.name}'),
+        Text('version: ${package.version ?? '-'}'),
+        Text('description: ${package.description}'),
+        Text('homepage: ${package.homepage ?? '-'}'),
+        Text('repository: ${package.repository ?? '-'}'),
+        Text('authors: ${package.authors.join(', ')}'),
+        Text('spdx: ${package.spdxIdentifiers.join(', ')}'),
+        Text('license:\n${package.license ?? '-'}'),
       ],
     ),
   );
