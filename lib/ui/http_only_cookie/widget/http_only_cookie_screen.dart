@@ -19,6 +19,12 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cookies = useState<List<Cookie>?>(null);
+    final isLoaded = useState(false);
+
+    /// Marks the page as loaded once the WebView finishes loading.
+    void handleLoadStop(InAppWebViewController controller, WebUri? url) {
+      isLoaded.value = true;
+    }
 
     /// Reads every cookie for [_cookieUrl] from the native cookie store,
     /// including `HttpOnly` cookies.
@@ -34,7 +40,7 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
         spacing: 8,
         children: [
           GestureDetector(
-            onTap: handleGetCookies,
+            onTap: isLoaded.value ? handleGetCookies : null,
             child: const Text('[Get Cookies]'),
           ),
 
@@ -56,6 +62,7 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
           Expanded(
             child: InAppWebView(
               initialUrlRequest: URLRequest(url: _cookieUrl),
+              onLoadStop: handleLoadStop,
             ),
           ),
         ],
