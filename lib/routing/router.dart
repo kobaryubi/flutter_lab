@@ -50,6 +50,7 @@ import 'package:flutter_lab/ui/method_channel/widget/method_channel_screen.dart'
 import 'package:flutter_lab/ui/navigation/widget/navigation_screen_a.dart';
 import 'package:flutter_lab/ui/navigation/widget/navigation_screen_b.dart';
 import 'package:flutter_lab/ui/navigation/widget/navigation_screen_c.dart';
+import 'package:flutter_lab/ui/nested_button/widget/nested_button_screen.dart';
 import 'package:flutter_lab/ui/network/widget/network_screen.dart';
 import 'package:flutter_lab/ui/observer_demo/provider/observer_demo_view_model.dart';
 import 'package:flutter_lab/ui/observer_demo/widget/observer_demo_detail_screen.dart';
@@ -134,6 +135,7 @@ part 'method_channel_route.dart';
 part 'navigation_screen_a_route.dart';
 part 'navigation_screen_b_route.dart';
 part 'navigation_screen_c_route.dart';
+part 'nested_button_route.dart';
 part 'network_route.dart';
 part 'not_found_route.dart';
 part 'observer_demo_route.dart';
