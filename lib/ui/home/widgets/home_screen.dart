@@ -105,6 +105,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'image processing', route: ImageProcessingRoute()),
     AppLink(title: 'camera', route: CameraRoute()),
     AppLink(title: 'OSS licenses', route: OssLicensesRoute()),
+    AppLink(title: 'HttpOnly cookie', route: HttpOnlyCookieRoute()),
   ];
 
   @override

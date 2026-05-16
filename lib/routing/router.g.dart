@@ -34,6 +34,7 @@ List<RouteBase> get $appRoutes => [
   $googleApiRoute,
   $homeRoute,
   $horizontalLayoutRoute,
+  $httpOnlyCookieRoute,
   $imageProcessingRoute,
   $inAppReviewRoute,
   $launchUrlDetailRoute,
@@ -781,6 +782,33 @@ mixin $HorizontalLayoutRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/horizontal_layout');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $httpOnlyCookieRoute => GoRouteData.$route(
+  path: '/http_only_cookie',
+  name: 'http_only_cookie',
+  factory: $HttpOnlyCookieRoute._fromState,
+);
+
+mixin $HttpOnlyCookieRoute on GoRouteData {
+  static HttpOnlyCookieRoute _fromState(GoRouterState state) =>
+      HttpOnlyCookieRoute();
+
+  @override
+  String get location => GoRouteData.$location('/http_only_cookie');
 
   @override
   void go(BuildContext context) => context.go(location);
