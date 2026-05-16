@@ -7,6 +7,7 @@ import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/domain/entity/cookie/cookie.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:flutter_lab/ui/http_only_cookie/hook/use_in_app_web_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// URL whose cookies are inspected: loaded in the WebView and queried
@@ -54,7 +55,7 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
     final cookies = useState<List<Cookie>?>(null);
     final isLoaded = useState(false);
     final userAgent = useState<String?>(null);
-    final webViewController = useRef<InAppWebViewController?>(null);
+    final webView = useInAppWebView();
     final jsResult = useState<String?>(null);
 
     useEffect(() {
@@ -77,10 +78,8 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
       return () => isDisposed = true;
     }, []);
 
-    /// Captures the WebView controller and marks the page as loaded once
-    /// the WebView finishes loading.
+    /// Marks the page as loaded once the WebView finishes loading.
     void handleLoadStop(InAppWebViewController controller, WebUri? url) {
-      webViewController.value = controller;
       isLoaded.value = true;
     }
 
@@ -134,7 +133,7 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
     /// Evaluates `document.cookie` via `evaluateJavascript`. JavaScript
     /// only sees non-`HttpOnly` cookies.
     Future<void> handleEvaluateJavascript() async {
-      final controller = webViewController.value;
+      final controller = webView.controller;
 
       if (controller == null) {
         return;
@@ -151,7 +150,7 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
     /// Runs [_asyncJavascript] via `callAsyncJavascript`, which awaits a
     /// delay before returning `document.cookie`.
     Future<void> handleCallAsyncJavascript() async {
-      final controller = webViewController.value;
+      final controller = webView.controller;
 
       if (controller == null) {
         return;
@@ -221,6 +220,7 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
                     initialSettings: InAppWebViewSettings(
                       userAgent: resolvedUserAgent,
                     ),
+                    onWebViewCreated: webView.onWebViewCreated,
                     onLoadStop: handleLoadStop,
                   ),
           ),
