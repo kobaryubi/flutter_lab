@@ -1,20 +1,23 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart'
-    as flutter_inappwebview;
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_lab/ui/http_only_cookie/hook/use_in_app_web_view.dart';
 
 /// Common widget wrapping the `flutter_inappwebview` WebView.
 ///
 /// Wires the WebView to the [state] produced by `useInAppWebView`,
 /// capturing the controller through `onWebViewCreated`.
-class InAppWebView extends StatelessWidget {
-  const InAppWebView({required this.state, super.key});
+class WebView extends StatelessWidget {
+  const WebView({required this.state, required this.url, super.key});
 
   /// State produced by the `useInAppWebView` hook.
   final InAppWebViewState state;
 
+  /// URL loaded by the WebView.
+  final String url;
+
   @override
-  Widget build(BuildContext context) => flutter_inappwebview.InAppWebView(
+  Widget build(BuildContext context) => InAppWebView(
+    initialUrlRequest: URLRequest(url: WebUri(url)),
     onWebViewCreated: state.onWebViewCreated,
   );
 }
