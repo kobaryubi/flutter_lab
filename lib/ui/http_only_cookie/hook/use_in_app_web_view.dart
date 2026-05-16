@@ -4,11 +4,23 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 /// Suffix appended to the WebView's default user agent.
 const String _userAgentSuffix = 'flutter_lab-http-only-cookie/1.0';
 
+/// Load status of an [InAppWebView].
+enum WebViewLoadStatus {
+  /// A page is currently loading.
+  loading,
+
+  /// A page finished loading.
+  loaded,
+
+  /// A page failed to load.
+  error,
+}
+
 /// State returned by the [useInAppWebView] hook.
 class InAppWebViewState {
   const InAppWebViewState({
     required this.controller,
-    required this.isLoaded,
+    required this.status,
     required this.userAgent,
     required this.onWebViewCreated,
     required this.onLoadStart,
@@ -18,8 +30,8 @@ class InAppWebViewState {
   /// The WebView controller, or `null` until the WebView is created.
   final InAppWebViewController? controller;
 
-  /// Whether the WebView has finished loading the current page.
-  final bool isLoaded;
+  /// Load status of the current page.
+  final WebViewLoadStatus status;
 
   /// Resolved user agent, or `null` until it has been resolved.
   final String? userAgent;
@@ -36,18 +48,18 @@ class InAppWebViewState {
   onLoadStop;
 }
 
-/// Hook that manages an [InAppWebView]'s controller, load state, and user
+/// Hook that manages an [InAppWebView]'s controller, load status, and user
 /// agent.
 ///
 /// `InAppWebView` creates its controller internally, so this hook owns the
-/// `controller`, `isLoaded`, and `userAgent` state and exposes the handlers
+/// `controller`, `status`, and `userAgent` state and exposes the handlers
 /// to wire into the widget.
 ///
 /// The resolved user agent is the platform default with [_userAgentSuffix]
 /// appended.
 InAppWebViewState useInAppWebView() {
   final controller = useState<InAppWebViewController?>(null);
-  final isLoaded = useState(false);
+  final status = useState(WebViewLoadStatus.loading);
   final userAgent = useState<String?>(null);
 
   useEffect(() {
@@ -78,17 +90,17 @@ InAppWebViewState useInAppWebView() {
 
   /// Marks the WebView as loading once a page starts loading.
   void onLoadStart(InAppWebViewController webViewController, WebUri? url) {
-    isLoaded.value = false;
+    status.value = WebViewLoadStatus.loading;
   }
 
   /// Marks the WebView as loaded once a page finishes loading.
   void onLoadStop(InAppWebViewController webViewController, WebUri? url) {
-    isLoaded.value = true;
+    status.value = WebViewLoadStatus.loaded;
   }
 
   return InAppWebViewState(
     controller: controller.value,
-    isLoaded: isLoaded.value,
+    status: status.value,
     userAgent: userAgent.value,
     onWebViewCreated: onWebViewCreated,
     onLoadStart: onLoadStart,

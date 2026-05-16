@@ -137,29 +137,31 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
       jsResult.value = 'callAsyncJavascript: ${result?.value}';
     }
 
+    final isLoaded = webView.status == .loaded;
+
     return Layout(
       appBar: const AppBar(title: Text('HttpOnly Cookie')),
       child: Column(
         spacing: 8,
         children: [
           GestureDetector(
-            onTap: webView.isLoaded ? handleGetCookies : null,
+            onTap: isLoaded ? handleGetCookies : null,
             child: const Text('[Get Cookies]'),
           ),
           GestureDetector(
-            onTap: webView.isLoaded ? handleSetCookie : null,
+            onTap: isLoaded ? handleSetCookie : null,
             child: const Text('[Set Test Cookie]'),
           ),
           GestureDetector(
-            onTap: webView.isLoaded ? handleDeleteCookies : null,
+            onTap: isLoaded ? handleDeleteCookies : null,
             child: const Text('[Delete Cookies]'),
           ),
           GestureDetector(
-            onTap: webView.isLoaded ? handleEvaluateJavascript : null,
+            onTap: isLoaded ? handleEvaluateJavascript : null,
             child: const Text('[Eval document.cookie]'),
           ),
           GestureDetector(
-            onTap: webView.isLoaded ? handleCallAsyncJavascript : null,
+            onTap: isLoaded ? handleCallAsyncJavascript : null,
             child: const Text('[Call Async JS]'),
           ),
 
