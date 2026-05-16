@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart' hide Cookie;
@@ -26,6 +28,15 @@ const String _asyncJavascript = '''
 await new Promise((resolve) => setTimeout(resolve, 500));
 return document.cookie;
 ''';
+
+/// User script injected at document start via `initialUserScripts`.
+///
+/// It writes a cookie from JavaScript before the page content loads,
+/// so the injected cookie is visible to the cookie buttons afterwards.
+final UserScript _userScript = UserScript(
+  source: "document.cookie = 'user_script=injected';",
+  injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START,
+);
 
 /// Screen demonstrating WebView cookie operations and JavaScript
 /// injection.
@@ -206,6 +217,7 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
                 ? const Center(child: Text('preparing WebView...'))
                 : InAppWebView(
                     initialUrlRequest: URLRequest(url: _cookieUrl),
+                    initialUserScripts: UnmodifiableListView([_userScript]),
                     initialSettings: InAppWebViewSettings(
                       userAgent: resolvedUserAgent,
                     ),
