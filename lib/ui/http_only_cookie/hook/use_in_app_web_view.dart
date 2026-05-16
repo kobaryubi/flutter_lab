@@ -11,13 +11,14 @@ class InAppWebViewState {
     required this.isLoaded,
     required this.userAgent,
     required this.onWebViewCreated,
+    required this.onLoadStart,
     required this.onLoadStop,
   });
 
   /// The WebView controller, or `null` until the WebView is created.
   final InAppWebViewController? controller;
 
-  /// Whether the WebView has finished loading a page at least once.
+  /// Whether the WebView has finished loading the current page.
   final bool isLoaded;
 
   /// Resolved user agent, or `null` until it has been resolved.
@@ -25,6 +26,10 @@ class InAppWebViewState {
 
   /// Handler for `InAppWebView.onWebViewCreated`; captures the controller.
   final void Function(InAppWebViewController controller) onWebViewCreated;
+
+  /// Handler for `InAppWebView.onLoadStart`; marks the page as loading.
+  final void Function(InAppWebViewController controller, WebUri? url)
+  onLoadStart;
 
   /// Handler for `InAppWebView.onLoadStop`; marks the page as loaded.
   final void Function(InAppWebViewController controller, WebUri? url)
@@ -71,6 +76,11 @@ InAppWebViewState useInAppWebView() {
     controller.value = webViewController;
   }
 
+  /// Marks the WebView as loading once a page starts loading.
+  void onLoadStart(InAppWebViewController webViewController, WebUri? url) {
+    isLoaded.value = false;
+  }
+
   /// Marks the WebView as loaded once a page finishes loading.
   void onLoadStop(InAppWebViewController webViewController, WebUri? url) {
     isLoaded.value = true;
@@ -81,6 +91,7 @@ InAppWebViewState useInAppWebView() {
     isLoaded: isLoaded.value,
     userAgent: userAgent.value,
     onWebViewCreated: onWebViewCreated,
+    onLoadStart: onLoadStart,
     onLoadStop: onLoadStop,
   );
 }
