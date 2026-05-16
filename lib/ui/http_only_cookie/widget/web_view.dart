@@ -18,6 +18,7 @@ class WebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => InAppWebView(
     initialUrlRequest: URLRequest(url: WebUri(url)),
+    initialSettings: InAppWebViewSettings(),
     onWebViewCreated: state.onWebViewCreated,
   );
 }
