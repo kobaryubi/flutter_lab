@@ -27,13 +27,22 @@ class WebView extends StatelessWidget {
   final UnmodifiableListView<UserScript>? initialUserScripts;
 
   @override
-  Widget build(BuildContext context) => InAppWebView(
-    initialUrlRequest: URLRequest(url: WebUri(url)),
-    initialUserScripts: initialUserScripts,
-    initialSettings: InAppWebViewSettings(
-      isInspectable: F.appFlavor != .production,
-    ),
-    onWebViewCreated: state.onWebViewCreated,
-    onLoadStop: state.onLoadStop,
-  );
+  Widget build(BuildContext context) {
+    final userAgent = state.userAgent;
+
+    if (userAgent == null) {
+      return const Center(child: Text('preparing WebView...'));
+    }
+
+    return InAppWebView(
+      initialUrlRequest: URLRequest(url: WebUri(url)),
+      initialUserScripts: initialUserScripts,
+      initialSettings: InAppWebViewSettings(
+        isInspectable: F.appFlavor != .production,
+        userAgent: userAgent,
+      ),
+      onWebViewCreated: state.onWebViewCreated,
+      onLoadStop: state.onLoadStop,
+    );
+  }
 }
