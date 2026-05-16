@@ -42,6 +42,7 @@ class WebView extends StatelessWidget {
         userAgent: userAgent,
       ),
       onWebViewCreated: state.onWebViewCreated,
+      onLoadStart: state.onLoadStart,
       onLoadStop: state.onLoadStop,
     );
   }
