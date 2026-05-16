@@ -20,5 +20,6 @@ class WebView extends StatelessWidget {
     initialUrlRequest: URLRequest(url: WebUri(url)),
     initialSettings: InAppWebViewSettings(),
     onWebViewCreated: state.onWebViewCreated,
+    onLoadStop: state.onLoadStop,
   );
 }
