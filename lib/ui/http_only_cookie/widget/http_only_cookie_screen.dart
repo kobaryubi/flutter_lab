@@ -10,6 +10,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 /// reading cookies the JavaScript `document.cookie` API cannot see.
 final WebUri _cookieUrl = WebUri('https://github.com');
 
+/// Custom user agent applied to the WebView, demonstrating that
+/// [InAppWebViewSettings.userAgent] overrides the platform default.
+const String _userAgent = 'flutter_lab-http-only-cookie/1.0';
+
 /// Screen demonstrating how to read `HttpOnly` cookies from a WebView.
 ///
 /// `flutter_inappwebview`'s [CookieManager] reads the native cookie store,
@@ -70,6 +74,7 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
           Expanded(
             child: InAppWebView(
               initialUrlRequest: URLRequest(url: _cookieUrl),
+              initialSettings: InAppWebViewSettings(userAgent: _userAgent),
               onLoadStop: handleLoadStop,
             ),
           ),
