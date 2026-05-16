@@ -52,5 +52,8 @@ migrate_working_dir/
 # FVM Version Cache
 .fvm/
 
+# Claude Code worktrees
+.claude/worktrees/
+
 # Patrol auto-generated test bundle
 patrol_test/test_bundle.dart
