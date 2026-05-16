@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/ui/http_only_cookie/hook/use_in_app_web_view.dart';
 
 /// Common widget wrapping the `flutter_inappwebview` WebView.
@@ -29,7 +30,9 @@ class WebView extends StatelessWidget {
   Widget build(BuildContext context) => InAppWebView(
     initialUrlRequest: URLRequest(url: WebUri(url)),
     initialUserScripts: initialUserScripts,
-    initialSettings: InAppWebViewSettings(),
+    initialSettings: InAppWebViewSettings(
+      isInspectable: F.appFlavor != .production,
+    ),
     onWebViewCreated: state.onWebViewCreated,
     onLoadStop: state.onLoadStop,
   );
