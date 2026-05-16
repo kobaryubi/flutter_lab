@@ -8,14 +8,12 @@ import 'package:flutter_lab/domain/entity/cookie/cookie.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/http_only_cookie/hook/use_in_app_web_view.dart';
+import 'package:flutter_lab/ui/http_only_cookie/widget/web_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// URL whose cookies are inspected: loaded in the WebView and queried
 /// through the cookie gateway.
 final WebUri _cookieUrl = WebUri('https://github.com');
-
-/// Suffix appended to the WebView's default user agent.
-const String _userAgentSuffix = 'flutter_lab-http-only-cookie/1.0';
 
 /// Name of the cookie written by the set-cookie action.
 const String _testCookieName = 'lab_test';
@@ -53,35 +51,8 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
     final logger = ref.read(loggerGatewayProvider);
     final cookieGateway = ref.read(webViewCookieGatewayProvider);
     final cookies = useState<List<Cookie>?>(null);
-    final isLoaded = useState(false);
-    final userAgent = useState<String?>(null);
     final webView = useInAppWebView();
     final jsResult = useState<String?>(null);
-
-    useEffect(() {
-      var isDisposed = false;
-
-      /// Joins the platform default user agent with [_userAgentSuffix].
-      Future<void> resolveUserAgent() async {
-        final defaultUserAgent =
-            await InAppWebViewController.getDefaultUserAgent();
-
-        if (isDisposed) {
-          return;
-        }
-
-        userAgent.value = '$defaultUserAgent $_userAgentSuffix';
-      }
-
-      resolveUserAgent();
-
-      return () => isDisposed = true;
-    }, []);
-
-    /// Marks the page as loaded once the WebView finishes loading.
-    void handleLoadStop(InAppWebViewController controller, WebUri? url) {
-      isLoaded.value = true;
-    }
 
     /// Reads every cookie for [_cookieUrl] through the gateway, logs each
     /// one, and updates the displayed list.
@@ -166,31 +137,29 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
       jsResult.value = 'callAsyncJavascript: ${result?.value}';
     }
 
-    final resolvedUserAgent = userAgent.value;
-
     return Layout(
       appBar: const AppBar(title: Text('HttpOnly Cookie')),
       child: Column(
         spacing: 8,
         children: [
           GestureDetector(
-            onTap: isLoaded.value ? handleGetCookies : null,
+            onTap: webView.isLoaded ? handleGetCookies : null,
             child: const Text('[Get Cookies]'),
           ),
           GestureDetector(
-            onTap: isLoaded.value ? handleSetCookie : null,
+            onTap: webView.isLoaded ? handleSetCookie : null,
             child: const Text('[Set Test Cookie]'),
           ),
           GestureDetector(
-            onTap: isLoaded.value ? handleDeleteCookies : null,
+            onTap: webView.isLoaded ? handleDeleteCookies : null,
             child: const Text('[Delete Cookies]'),
           ),
           GestureDetector(
-            onTap: isLoaded.value ? handleEvaluateJavascript : null,
+            onTap: webView.isLoaded ? handleEvaluateJavascript : null,
             child: const Text('[Eval document.cookie]'),
           ),
           GestureDetector(
-            onTap: isLoaded.value ? handleCallAsyncJavascript : null,
+            onTap: webView.isLoaded ? handleCallAsyncJavascript : null,
             child: const Text('[Call Async JS]'),
           ),
 
@@ -212,17 +181,11 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
                   ),
 
           Expanded(
-            child: resolvedUserAgent == null
-                ? const Center(child: Text('preparing WebView...'))
-                : InAppWebView(
-                    initialUrlRequest: URLRequest(url: _cookieUrl),
-                    initialUserScripts: UnmodifiableListView([_userScript]),
-                    initialSettings: InAppWebViewSettings(
-                      userAgent: resolvedUserAgent,
-                    ),
-                    onWebViewCreated: webView.onWebViewCreated,
-                    onLoadStop: handleLoadStop,
-                  ),
+            child: WebView(
+              state: webView,
+              url: _cookieUrl.toString(),
+              initialUserScripts: UnmodifiableListView([_userScript]),
+            ),
           ),
         ],
       ),
