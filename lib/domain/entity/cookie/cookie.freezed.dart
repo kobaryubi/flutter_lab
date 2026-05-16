@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Cookie {
 
- String get name; String get value; bool get isHttpOnly; bool get isSecure; String? get domain; String? get path;
+ String get name; bool get isHttpOnly; bool get isSecure; String? get value; String? get domain; String? get path;
 /// Create a copy of Cookie
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $CookieCopyWith<Cookie> get copyWith => _$CookieCopyWithImpl<Cookie>(this as Coo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Cookie&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.isHttpOnly, isHttpOnly) || other.isHttpOnly == isHttpOnly)&&(identical(other.isSecure, isSecure) || other.isSecure == isSecure)&&(identical(other.domain, domain) || other.domain == domain)&&(identical(other.path, path) || other.path == path));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Cookie&&(identical(other.name, name) || other.name == name)&&(identical(other.isHttpOnly, isHttpOnly) || other.isHttpOnly == isHttpOnly)&&(identical(other.isSecure, isSecure) || other.isSecure == isSecure)&&(identical(other.value, value) || other.value == value)&&(identical(other.domain, domain) || other.domain == domain)&&(identical(other.path, path) || other.path == path));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,value,isHttpOnly,isSecure,domain,path);
+int get hashCode => Object.hash(runtimeType,name,isHttpOnly,isSecure,value,domain,path);
 
 @override
 String toString() {
-  return 'Cookie(name: $name, value: $value, isHttpOnly: $isHttpOnly, isSecure: $isSecure, domain: $domain, path: $path)';
+  return 'Cookie(name: $name, isHttpOnly: $isHttpOnly, isSecure: $isSecure, value: $value, domain: $domain, path: $path)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $CookieCopyWith<$Res>  {
   factory $CookieCopyWith(Cookie value, $Res Function(Cookie) _then) = _$CookieCopyWithImpl;
 @useResult
 $Res call({
- String name, String value, bool isHttpOnly, bool isSecure, String? domain, String? path
+ String name, bool isHttpOnly, bool isSecure, String? value, String? domain, String? path
 });
 
 
@@ -62,13 +62,13 @@ class _$CookieCopyWithImpl<$Res>
 
 /// Create a copy of Cookie
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? value = null,Object? isHttpOnly = null,Object? isSecure = null,Object? domain = freezed,Object? path = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? isHttpOnly = null,Object? isSecure = null,Object? value = freezed,Object? domain = freezed,Object? path = freezed,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,isHttpOnly: null == isHttpOnly ? _self.isHttpOnly : isHttpOnly // ignore: cast_nullable_to_non_nullable
 as bool,isSecure: null == isSecure ? _self.isSecure : isSecure // ignore: cast_nullable_to_non_nullable
-as bool,domain: freezed == domain ? _self.domain : domain // ignore: cast_nullable_to_non_nullable
+as bool,value: freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as String?,domain: freezed == domain ? _self.domain : domain // ignore: cast_nullable_to_non_nullable
 as String?,path: freezed == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -155,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String value,  bool isHttpOnly,  bool isSecure,  String? domain,  String? path)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  bool isHttpOnly,  bool isSecure,  String? value,  String? domain,  String? path)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Cookie() when $default != null:
-return $default(_that.name,_that.value,_that.isHttpOnly,_that.isSecure,_that.domain,_that.path);case _:
+return $default(_that.name,_that.isHttpOnly,_that.isSecure,_that.value,_that.domain,_that.path);case _:
   return orElse();
 
 }
@@ -176,10 +176,10 @@ return $default(_that.name,_that.value,_that.isHttpOnly,_that.isSecure,_that.dom
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String value,  bool isHttpOnly,  bool isSecure,  String? domain,  String? path)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  bool isHttpOnly,  bool isSecure,  String? value,  String? domain,  String? path)  $default,) {final _that = this;
 switch (_that) {
 case _Cookie():
-return $default(_that.name,_that.value,_that.isHttpOnly,_that.isSecure,_that.domain,_that.path);case _:
+return $default(_that.name,_that.isHttpOnly,_that.isSecure,_that.value,_that.domain,_that.path);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +196,10 @@ return $default(_that.name,_that.value,_that.isHttpOnly,_that.isSecure,_that.dom
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String value,  bool isHttpOnly,  bool isSecure,  String? domain,  String? path)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  bool isHttpOnly,  bool isSecure,  String? value,  String? domain,  String? path)?  $default,) {final _that = this;
 switch (_that) {
 case _Cookie() when $default != null:
-return $default(_that.name,_that.value,_that.isHttpOnly,_that.isSecure,_that.domain,_that.path);case _:
+return $default(_that.name,_that.isHttpOnly,_that.isSecure,_that.value,_that.domain,_that.path);case _:
   return null;
 
 }
@@ -211,13 +211,13 @@ return $default(_that.name,_that.value,_that.isHttpOnly,_that.isSecure,_that.dom
 
 
 class _Cookie implements Cookie {
-  const _Cookie({required this.name, required this.value, required this.isHttpOnly, required this.isSecure, this.domain, this.path});
+  const _Cookie({required this.name, required this.isHttpOnly, required this.isSecure, this.value, this.domain, this.path});
   
 
 @override final  String name;
-@override final  String value;
 @override final  bool isHttpOnly;
 @override final  bool isSecure;
+@override final  String? value;
 @override final  String? domain;
 @override final  String? path;
 
@@ -231,16 +231,16 @@ _$CookieCopyWith<_Cookie> get copyWith => __$CookieCopyWithImpl<_Cookie>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Cookie&&(identical(other.name, name) || other.name == name)&&(identical(other.value, value) || other.value == value)&&(identical(other.isHttpOnly, isHttpOnly) || other.isHttpOnly == isHttpOnly)&&(identical(other.isSecure, isSecure) || other.isSecure == isSecure)&&(identical(other.domain, domain) || other.domain == domain)&&(identical(other.path, path) || other.path == path));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Cookie&&(identical(other.name, name) || other.name == name)&&(identical(other.isHttpOnly, isHttpOnly) || other.isHttpOnly == isHttpOnly)&&(identical(other.isSecure, isSecure) || other.isSecure == isSecure)&&(identical(other.value, value) || other.value == value)&&(identical(other.domain, domain) || other.domain == domain)&&(identical(other.path, path) || other.path == path));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,name,value,isHttpOnly,isSecure,domain,path);
+int get hashCode => Object.hash(runtimeType,name,isHttpOnly,isSecure,value,domain,path);
 
 @override
 String toString() {
-  return 'Cookie(name: $name, value: $value, isHttpOnly: $isHttpOnly, isSecure: $isSecure, domain: $domain, path: $path)';
+  return 'Cookie(name: $name, isHttpOnly: $isHttpOnly, isSecure: $isSecure, value: $value, domain: $domain, path: $path)';
 }
 
 
@@ -251,7 +251,7 @@ abstract mixin class _$CookieCopyWith<$Res> implements $CookieCopyWith<$Res> {
   factory _$CookieCopyWith(_Cookie value, $Res Function(_Cookie) _then) = __$CookieCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String value, bool isHttpOnly, bool isSecure, String? domain, String? path
+ String name, bool isHttpOnly, bool isSecure, String? value, String? domain, String? path
 });
 
 
@@ -268,13 +268,13 @@ class __$CookieCopyWithImpl<$Res>
 
 /// Create a copy of Cookie
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? value = null,Object? isHttpOnly = null,Object? isSecure = null,Object? domain = freezed,Object? path = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? isHttpOnly = null,Object? isSecure = null,Object? value = freezed,Object? domain = freezed,Object? path = freezed,}) {
   return _then(_Cookie(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
 as String,isHttpOnly: null == isHttpOnly ? _self.isHttpOnly : isHttpOnly // ignore: cast_nullable_to_non_nullable
 as bool,isSecure: null == isSecure ? _self.isSecure : isSecure // ignore: cast_nullable_to_non_nullable
-as bool,domain: freezed == domain ? _self.domain : domain // ignore: cast_nullable_to_non_nullable
+as bool,value: freezed == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
+as String?,domain: freezed == domain ? _self.domain : domain // ignore: cast_nullable_to_non_nullable
 as String?,path: freezed == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

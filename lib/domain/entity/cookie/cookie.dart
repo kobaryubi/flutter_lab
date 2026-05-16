@@ -8,9 +8,9 @@ part 'cookie.freezed.dart';
 abstract class Cookie with _$Cookie {
   const factory Cookie({
     required String name,
-    required String value,
     required bool isHttpOnly,
     required bool isSecure,
+    String? value,
     String? domain,
     String? path,
   }) = _Cookie;
