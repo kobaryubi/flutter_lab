@@ -25,6 +25,7 @@ class InAppWebViewState {
     required this.onWebViewCreated,
     required this.onLoadStart,
     required this.onLoadStop,
+    required this.onReceivedError,
   });
 
   /// The WebView controller, or `null` until the WebView is created.
@@ -46,6 +47,14 @@ class InAppWebViewState {
   /// Handler for `InAppWebView.onLoadStop`; marks the page as loaded.
   final void Function(InAppWebViewController controller, WebUri? url)
   onLoadStop;
+
+  /// Handler for `InAppWebView.onReceivedError`; marks the page as failed.
+  final void Function(
+    InAppWebViewController controller,
+    WebResourceRequest request,
+    WebResourceError error,
+  )
+  onReceivedError;
 }
 
 /// Hook that manages an [InAppWebView]'s controller, load status, and user
@@ -90,12 +99,21 @@ InAppWebViewState useInAppWebView() {
 
   /// Marks the WebView as loading once a page starts loading.
   void onLoadStart(InAppWebViewController webViewController, WebUri? url) {
-    status.value = WebViewLoadStatus.loading;
+    status.value = .loading;
   }
 
   /// Marks the WebView as loaded once a page finishes loading.
   void onLoadStop(InAppWebViewController webViewController, WebUri? url) {
-    status.value = WebViewLoadStatus.loaded;
+    status.value = .loaded;
+  }
+
+  /// Marks the WebView as failed once a load error is received.
+  void onReceivedError(
+    InAppWebViewController webViewController,
+    WebResourceRequest request,
+    WebResourceError error,
+  ) {
+    status.value = .error;
   }
 
   return InAppWebViewState(
@@ -105,5 +123,6 @@ InAppWebViewState useInAppWebView() {
     onWebViewCreated: onWebViewCreated,
     onLoadStart: onLoadStart,
     onLoadStop: onLoadStop,
+    onReceivedError: onReceivedError,
   );
 }
