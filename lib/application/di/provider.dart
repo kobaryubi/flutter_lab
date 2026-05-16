@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
 import 'package:flutter_lab/application/logger/logger_gateway.dart';
 import 'package:flutter_lab/application/memory_storage/memory_storage_gateway.dart';
+import 'package:flutter_lab/application/web_view_cookie/web_view_cookie_gateway.dart';
 // import 'package:flutter_lab/data/gateway/adfurikun/sdk_adfurikun_gateway.dart';
 import 'package:flutter_lab/data/gateway/adfurikun/mock_adfurikun_gateway.dart';
 // import 'package:flutter_lab/data/gateway/adjust/sdk_adjust_gateway.dart';
@@ -28,6 +29,7 @@ import 'package:flutter_lab/data/gateway/permission/permission_handler_gateway.d
 import 'package:flutter_lab/data/gateway/pigeon_example/pigeon_pigeon_gateway.dart';
 import 'package:flutter_lab/data/gateway/profile_passport/pigeon_profile_passport_gateway.dart';
 import 'package:flutter_lab/data/gateway/text_recognition/mlkit_text_recognition_gateway.dart';
+import 'package:flutter_lab/data/gateway/web_view_cookie/flutter_inappwebview_web_view_cookie_gateway.dart';
 import 'package:flutter_lab/data/repositories/agreement/shared_preferences_agreement_repository.dart';
 import 'package:flutter_lab/data/repositories/app_store/platform_app_store_repository.dart';
 import 'package:flutter_lab/data/repositories/dio_cache/dio_http_cache_repository.dart';
@@ -149,6 +151,11 @@ Talker talker(Ref ref) => Talker();
 @Riverpod(keepAlive: true)
 LoggerGateway loggerGateway(Ref ref) =>
     TalkerLoggerGateway(talker: ref.read(talkerProvider));
+
+/// WebView cookie operations gateway.
+@Riverpod(keepAlive: true)
+WebViewCookieGateway webViewCookieGateway(Ref ref) =>
+    FlutterInappwebviewWebViewCookieGateway();
 
 // dio
 @riverpod

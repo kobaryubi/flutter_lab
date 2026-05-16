@@ -99,6 +99,59 @@ final class LoggerGatewayProvider
 
 String _$loggerGatewayHash() => r'7202d598665dc1f66e589a424cd81ba8997f5fe7';
 
+/// WebView cookie operations gateway.
+
+@ProviderFor(webViewCookieGateway)
+const webViewCookieGatewayProvider = WebViewCookieGatewayProvider._();
+
+/// WebView cookie operations gateway.
+
+final class WebViewCookieGatewayProvider
+    extends
+        $FunctionalProvider<
+          WebViewCookieGateway,
+          WebViewCookieGateway,
+          WebViewCookieGateway
+        >
+    with $Provider<WebViewCookieGateway> {
+  /// WebView cookie operations gateway.
+  const WebViewCookieGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'webViewCookieGatewayProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$webViewCookieGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<WebViewCookieGateway> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  WebViewCookieGateway create(Ref ref) {
+    return webViewCookieGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WebViewCookieGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WebViewCookieGateway>(value),
+    );
+  }
+}
+
+String _$webViewCookieGatewayHash() =>
+    r'0fd074730d23a7e1c011202552d0a51d8a511aaa';
+
 @ProviderFor(dio)
 const dioProvider = DioProvider._();
 
