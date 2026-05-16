@@ -20,10 +20,18 @@ const String _testCookieName = 'lab_test';
 /// Value of the cookie written by the set-cookie action.
 const String _testCookieValue = 'hello';
 
-/// Screen demonstrating WebView cookie operations.
+/// Async JavaScript body run via `callAsyncJavascript`: awaits a short
+/// delay, then returns the document cookies.
+const String _asyncJavascript = '''
+await new Promise((resolve) => setTimeout(resolve, 500));
+return document.cookie;
+''';
+
+/// Screen demonstrating WebView cookie operations and JavaScript
+/// injection.
 ///
-/// Reading goes through the cookie gateway, which queries the native
-/// cookie store and therefore returns `HttpOnly` cookies that the
+/// Cookie reading goes through the cookie gateway, which queries the
+/// native cookie store and therefore returns `HttpOnly` cookies that the
 /// JavaScript `document.cookie` API cannot see.
 class HttpOnlyCookieScreen extends HookConsumerWidget {
   const HttpOnlyCookieScreen({super.key});
@@ -35,6 +43,8 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
     final cookies = useState<List<Cookie>?>(null);
     final isLoaded = useState(false);
     final userAgent = useState<String?>(null);
+    final webViewController = useRef<InAppWebViewController?>(null);
+    final jsResult = useState<String?>(null);
 
     useEffect(() {
       var isDisposed = false;
@@ -56,8 +66,10 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
       return () => isDisposed = true;
     }, []);
 
-    /// Marks the page as loaded once the WebView finishes loading.
+    /// Captures the WebView controller and marks the page as loaded once
+    /// the WebView finishes loading.
     void handleLoadStop(InAppWebViewController controller, WebUri? url) {
+      webViewController.value = controller;
       isLoaded.value = true;
     }
 
@@ -108,6 +120,42 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
       await handleGetCookies();
     }
 
+    /// Evaluates `document.cookie` via `evaluateJavascript`. JavaScript
+    /// only sees non-`HttpOnly` cookies.
+    Future<void> handleEvaluateJavascript() async {
+      final controller = webViewController.value;
+
+      if (controller == null) {
+        return;
+      }
+
+      final result = await controller.evaluateJavascript(
+        source: 'document.cookie',
+      );
+
+      logger.debug('evaluateJavascript document.cookie: $result');
+      jsResult.value = 'evaluateJavascript: $result';
+    }
+
+    /// Runs [_asyncJavascript] via `callAsyncJavascript`, which awaits a
+    /// delay before returning `document.cookie`.
+    Future<void> handleCallAsyncJavascript() async {
+      final controller = webViewController.value;
+
+      if (controller == null) {
+        return;
+      }
+
+      final result = await controller.callAsyncJavaScript(
+        functionBody: _asyncJavascript,
+      );
+
+      logger.debug(
+        'callAsyncJavascript value=${result?.value} error=${result?.error}',
+      );
+      jsResult.value = 'callAsyncJavascript: ${result?.value}';
+    }
+
     final resolvedUserAgent = userAgent.value;
 
     return Layout(
@@ -127,6 +175,16 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
             onTap: isLoaded.value ? handleDeleteCookies : null,
             child: const Text('[Delete Cookies]'),
           ),
+          GestureDetector(
+            onTap: isLoaded.value ? handleEvaluateJavascript : null,
+            child: const Text('[Eval document.cookie]'),
+          ),
+          GestureDetector(
+            onTap: isLoaded.value ? handleCallAsyncJavascript : null,
+            child: const Text('[Call Async JS]'),
+          ),
+
+          if (jsResult.value case final result?) Text(result),
 
           if (cookies.value case final cookieList?)
             cookieList.isEmpty
