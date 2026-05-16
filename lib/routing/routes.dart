@@ -56,6 +56,8 @@ abstract final class Routes {
 
   static const horizontalLayout = '/horizontal_layout';
 
+  static const nestedButton = '/nested_button';
+
   static const markupSample = '/markup_sample';
 
   static const imageProcessing = '/image_processing';

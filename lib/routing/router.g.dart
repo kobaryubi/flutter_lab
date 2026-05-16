@@ -50,6 +50,7 @@ List<RouteBase> get $appRoutes => [
   $navigationScreenARoute,
   $navigationScreenBRoute,
   $navigationScreenCRoute,
+  $nestedButtonRoute,
   $networkRoute,
   $notFoundRoute,
   $observerDemoRoute,
@@ -1281,6 +1282,32 @@ mixin $NavigationScreenCRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/navigation/screen_c');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $nestedButtonRoute => GoRouteData.$route(
+  path: '/nested_button',
+  factory: $NestedButtonRoute._fromState,
+);
+
+mixin $NestedButtonRoute on GoRouteData {
+  static NestedButtonRoute _fromState(GoRouterState state) =>
+      NestedButtonRoute();
+
+  @override
+  String get location => GoRouteData.$location('/nested_button');
 
   @override
   void go(BuildContext context) => context.go(location);

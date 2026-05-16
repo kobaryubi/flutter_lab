@@ -6,8 +6,8 @@ pre-commit:
   jobs:
     - name: format
       glob: "*.dart"
-      run: fvm dart format {staged_files}
+      run: unset GIT_DIR && fvm dart format {staged_files}
       stage_fixed: true
     - name: fix
-      run: fvm dart fix --apply
+      run: unset GIT_DIR && fvm dart fix --apply
       stage_fixed: true
