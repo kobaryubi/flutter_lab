@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_lab/application/di/production_overrides.dart';
 import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/data/http/dev_http_overrides.dart';
@@ -70,6 +71,14 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp],
   );
+
+  /// Enables WebView content debugging (chrome://inspect) on Android
+  /// outside the production flavor.
+  if (defaultTargetPlatform == .android) {
+    await InAppWebViewController.setWebContentsDebuggingEnabled(
+      F.appFlavor != .production,
+    );
+  }
 
   final talker = Talker();
 
