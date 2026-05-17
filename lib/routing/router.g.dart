@@ -84,6 +84,7 @@ List<RouteBase> get $appRoutes => [
   $urlNavigationRoute,
   $visibilityDetectorRoute,
   $webViewJavascriptRoute,
+  $webViewRemoteUrlRoute,
   $webViewRoute,
   $webViewTabsRoute,
   $webviewCookieRoute,
@@ -2235,6 +2236,33 @@ mixin $WebViewJavascriptRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/web_view_javascript');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $webViewRemoteUrlRoute => GoRouteData.$route(
+  path: '/web_view_remote_url',
+  name: 'web_view_remote_url',
+  factory: $WebViewRemoteUrlRoute._fromState,
+);
+
+mixin $WebViewRemoteUrlRoute on GoRouteData {
+  static WebViewRemoteUrlRoute _fromState(GoRouterState state) =>
+      WebViewRemoteUrlRoute();
+
+  @override
+  String get location => GoRouteData.$location('/web_view_remote_url');
 
   @override
   void go(BuildContext context) => context.go(location);

@@ -92,6 +92,7 @@ abstract final class Routes {
   static const webViewJavascript = '/web_view_javascript';
   static const webviewCookie = '/webview_cookie';
   static const httpOnlyCookie = '/http_only_cookie';
+  static const webViewRemoteUrl = '/web_view_remote_url';
 
   static const adjustDeferredDeeplink = '/adjust_deferred_deeplink';
 
