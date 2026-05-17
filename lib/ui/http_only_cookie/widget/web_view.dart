@@ -45,6 +45,7 @@ class WebView extends StatelessWidget {
       onLoadStart: state.onLoadStart,
       onLoadStop: state.onLoadStop,
       onReceivedError: state.onReceivedError,
+      onReceivedHttpError: state.onReceivedHttpError,
     );
   }
 }
