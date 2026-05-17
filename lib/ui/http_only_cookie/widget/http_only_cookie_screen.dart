@@ -5,10 +5,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart' hide Cookie;
 import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/domain/value_object/cookie/cookie.dart';
+import 'package:flutter_lab/ui/core/hook/use_in_app_web_view.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
-import 'package:flutter_lab/ui/http_only_cookie/hook/use_in_app_web_view.dart';
-import 'package:flutter_lab/ui/http_only_cookie/widget/web_view.dart';
+import 'package:flutter_lab/ui/core/ui/web_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// URL whose cookies are inspected: loaded in the WebView and queried
