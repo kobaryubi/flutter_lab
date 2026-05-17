@@ -192,6 +192,8 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
                     ],
                   ),
 
+          if (webView.status == .error) const Text('failed to load'),
+
           Expanded(
             child: WebView(
               state: webView,
