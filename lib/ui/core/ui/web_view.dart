@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_lab/flavors.dart';
-import 'package:flutter_lab/ui/http_only_cookie/hook/use_in_app_web_view.dart';
+import 'package:flutter_lab/ui/core/hook/use_in_app_web_view.dart';
 
 /// Common widget wrapping the `flutter_inappwebview` WebView.
 ///
@@ -12,7 +12,7 @@ import 'package:flutter_lab/ui/http_only_cookie/hook/use_in_app_web_view.dart';
 class WebView extends StatelessWidget {
   const WebView({
     required this.state,
-    required this.url,
+    this.url,
     this.initialUserScripts,
     this.shouldOverrideUrlLoading,
     super.key,
@@ -21,8 +21,9 @@ class WebView extends StatelessWidget {
   /// State produced by the `useInAppWebView` hook.
   final InAppWebViewState state;
 
-  /// URL loaded by the WebView.
-  final String url;
+  /// URL loaded by the WebView, or `null` to start blank (the URL can be
+  /// loaded later through the controller).
+  final String? url;
 
   /// User scripts injected when the WebView is created.
   final UnmodifiableListView<UserScript>? initialUserScripts;
@@ -43,8 +44,10 @@ class WebView extends StatelessWidget {
       return const Center(child: Text('preparing WebView...'));
     }
 
+    final url = this.url;
+
     return InAppWebView(
-      initialUrlRequest: URLRequest(url: WebUri(url)),
+      initialUrlRequest: url == null ? null : URLRequest(url: WebUri(url)),
       initialUserScripts: initialUserScripts,
       initialSettings: InAppWebViewSettings(
         isInspectable: F.appFlavor != .production,
