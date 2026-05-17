@@ -44,10 +44,11 @@ class WebView extends StatelessWidget {
       return const Center(child: Text('preparing WebView...'));
     }
 
-    final url = this.url;
-
     return InAppWebView(
-      initialUrlRequest: url == null ? null : URLRequest(url: WebUri(url)),
+      initialUrlRequest: switch (url) {
+        final url? => URLRequest(url: WebUri(url)),
+        null => null,
+      },
       initialUserScripts: initialUserScripts,
       initialSettings: InAppWebViewSettings(
         isInspectable: F.appFlavor != .production,
