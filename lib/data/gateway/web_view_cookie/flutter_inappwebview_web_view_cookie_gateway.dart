@@ -1,8 +1,8 @@
 import 'package:flutter_inappwebview/flutter_inappwebview.dart' as inappwebview;
 import 'package:flutter_lab/application/web_view_cookie/web_view_cookie_gateway.dart';
 import 'package:flutter_lab/data/mapper/web_view_cookie/cookie_mapper.dart';
-import 'package:flutter_lab/domain/entity/cookie/cookie.dart';
 import 'package:flutter_lab/domain/entity/exception/domain_exception.dart';
+import 'package:flutter_lab/domain/value_object/cookie/cookie.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// `flutter_inappwebview` implementation of [WebViewCookieGateway].

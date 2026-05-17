@@ -1,4 +1,4 @@
-import 'package:flutter_lab/domain/entity/cookie/cookie.dart';
+import 'package:flutter_lab/domain/value_object/cookie/cookie.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// Gateway abstracting WebView cookie operations.

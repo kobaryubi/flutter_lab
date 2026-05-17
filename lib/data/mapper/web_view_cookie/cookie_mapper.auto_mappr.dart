@@ -13,7 +13,7 @@ import 'package:flutter_inappwebview_platform_interface/src/types/cookie.dart'
     as _i2;
 import 'package:flutter_lab/data/mapper/web_view_cookie/cookie_mapper.dart'
     as _i4;
-import 'package:flutter_lab/domain/entity/cookie/cookie.dart' as _i3;
+import 'package:flutter_lab/domain/value_object/cookie/cookie.dart' as _i3;
 
 /// {@template package:flutter_lab/data/mapper/web_view_cookie/cookie_mapper.dart}
 /// Available mappings:

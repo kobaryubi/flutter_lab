@@ -1,7 +1,7 @@
 import 'package:auto_mappr_annotation/auto_mappr_annotation.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart' as inappwebview;
 import 'package:flutter_lab/data/mapper/web_view_cookie/cookie_mapper.auto_mappr.dart';
-import 'package:flutter_lab/domain/entity/cookie/cookie.dart';
+import 'package:flutter_lab/domain/value_object/cookie/cookie.dart';
 
 /// Maps a `flutter_inappwebview` cookie into the domain-layer [Cookie].
 @AutoMappr([
