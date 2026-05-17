@@ -101,6 +101,18 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
       await handleGetCookies();
     }
 
+    /// Deletes every cookie across all URLs, then refreshes the list.
+    Future<void> handleDeleteAllCookies() async {
+      final result = await cookieGateway.deleteAllCookies();
+
+      result.fold(
+        (_) {},
+        (exception) => logger.handle(exception: exception),
+      );
+
+      await handleGetCookies();
+    }
+
     /// Evaluates `document.cookie` via `evaluateJavascript`. JavaScript
     /// only sees non-`HttpOnly` cookies.
     Future<void> handleEvaluateJavascript() async {
@@ -165,6 +177,10 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
           GestureDetector(
             onTap: isLoaded ? handleDeleteCookies : null,
             child: const Text('[Delete Cookies]'),
+          ),
+          GestureDetector(
+            onTap: isLoaded ? handleDeleteAllCookies : null,
+            child: const Text('[Delete All Cookies]'),
           ),
           GestureDetector(
             onTap: isLoaded ? handleEvaluateJavascript : null,
