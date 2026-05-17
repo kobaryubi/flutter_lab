@@ -21,8 +21,8 @@ class FlutterInappwebviewWebViewCookieGateway implements WebViewCookieGateway {
       return Success(
         _mapper.convertList<inappwebview.Cookie, Cookie>(sdkCookies),
       );
-    } on Exception catch (exception) {
-      return Failure(exception);
+    } on Exception {
+      return const Failure(DomainException.unknown());
     }
   }
 
@@ -61,8 +61,8 @@ class FlutterInappwebviewWebViewCookieGateway implements WebViewCookieGateway {
       );
 
       return const Success(unit);
-    } on Exception catch (exception) {
-      return Failure(exception);
+    } on Exception {
+      return const Failure(DomainException.unknown());
     }
   }
 
@@ -78,8 +78,8 @@ class FlutterInappwebviewWebViewCookieGateway implements WebViewCookieGateway {
       );
 
       return const Success(unit);
-    } on Exception catch (exception) {
-      return Failure(exception);
+    } on Exception {
+      return const Failure(DomainException.unknown());
     }
   }
 
@@ -91,8 +91,8 @@ class FlutterInappwebviewWebViewCookieGateway implements WebViewCookieGateway {
       );
 
       return const Success(unit);
-    } on Exception catch (exception) {
-      return Failure(exception);
+    } on Exception {
+      return const Failure(DomainException.unknown());
     }
   }
 
