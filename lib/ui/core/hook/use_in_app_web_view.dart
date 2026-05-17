@@ -2,7 +2,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 /// Suffix appended to the WebView's default user agent.
-const String _userAgentSuffix = 'flutter_lab-http-only-cookie/1.0';
+const String _userAgentSuffix = 'flutter_lab/1.0';
 
 /// Load status of an [InAppWebView].
 enum WebViewLoadStatus {
