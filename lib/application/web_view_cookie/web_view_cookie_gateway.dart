@@ -26,4 +26,7 @@ abstract class WebViewCookieGateway {
 
   /// Deletes every cookie stored for [url].
   AsyncResult<Unit> deleteCookies({required Uri url});
+
+  /// Deletes every cookie stored for every URL.
+  AsyncResult<Unit> deleteAllCookies();
 }

@@ -95,4 +95,15 @@ class FlutterInappwebviewWebViewCookieGateway implements WebViewCookieGateway {
       return Failure(exception);
     }
   }
+
+  @override
+  AsyncResult<Unit> deleteAllCookies() async {
+    try {
+      await _cookieManager.deleteAllCookies();
+
+      return const Success(unit);
+    } on Exception {
+      return const Failure(DomainException.unknown());
+    }
+  }
 }
