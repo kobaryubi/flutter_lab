@@ -117,21 +117,34 @@ InAppWebViewState useInAppWebView() {
     status.value = .loaded;
   }
 
-  /// Marks the WebView as failed once a load error is received.
+  /// Marks the WebView as failed once a main-frame load error is received.
+  ///
+  /// Subresource failures (images, scripts) are ignored.
   void onReceivedError(
     InAppWebViewController webViewController,
     WebResourceRequest request,
     WebResourceError error,
   ) {
+    if (request.isForMainFrame != true) {
+      return;
+    }
+
     status.value = .error;
   }
 
-  /// Marks the WebView as failed once an HTTP error response is received.
+  /// Marks the WebView as failed once a main-frame HTTP error response is
+  /// received.
+  ///
+  /// Subresource failures (images, scripts) are ignored.
   void onReceivedHttpError(
     InAppWebViewController webViewController,
     WebResourceRequest request,
     WebResourceResponse errorResponse,
   ) {
+    if (request.isForMainFrame != true) {
+      return;
+    }
+
     status.value = .error;
   }
 
