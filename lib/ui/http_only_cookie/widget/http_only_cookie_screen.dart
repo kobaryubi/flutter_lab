@@ -137,6 +137,16 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
       jsResult.value = 'callAsyncJavascript: ${result?.value}';
     }
 
+    /// Logs the navigation target, then allows the navigation.
+    Future<NavigationActionPolicy?> shouldOverrideUrlLoading(
+      InAppWebViewController controller,
+      NavigationAction navigationAction,
+    ) async {
+      logger.debug('navigate: ${navigationAction.request.url}');
+
+      return .ALLOW;
+    }
+
     final isLoaded = webView.status == .loaded;
 
     return Layout(
@@ -187,6 +197,7 @@ class HttpOnlyCookieScreen extends HookConsumerWidget {
               state: webView,
               url: _cookieUrl.toString(),
               initialUserScripts: UnmodifiableListView([_userScript]),
+              shouldOverrideUrlLoading: shouldOverrideUrlLoading,
             ),
           ),
         ],
