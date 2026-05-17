@@ -14,6 +14,7 @@ class WebView extends StatelessWidget {
     required this.state,
     required this.url,
     this.initialUserScripts,
+    this.shouldOverrideUrlLoading,
     super.key,
   });
 
@@ -25,6 +26,14 @@ class WebView extends StatelessWidget {
 
   /// User scripts injected when the WebView is created.
   final UnmodifiableListView<UserScript>? initialUserScripts;
+
+  /// Decides whether a navigation should proceed; invoked for every
+  /// navigation when provided.
+  final Future<NavigationActionPolicy?> Function(
+    InAppWebViewController controller,
+    NavigationAction navigationAction,
+  )?
+  shouldOverrideUrlLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +49,14 @@ class WebView extends StatelessWidget {
       initialSettings: InAppWebViewSettings(
         isInspectable: F.appFlavor != .production,
         userAgent: userAgent,
+        useShouldOverrideUrlLoading: true,
       ),
       onWebViewCreated: state.onWebViewCreated,
       onLoadStart: state.onLoadStart,
       onLoadStop: state.onLoadStop,
       onReceivedError: state.onReceivedError,
       onReceivedHttpError: state.onReceivedHttpError,
+      shouldOverrideUrlLoading: shouldOverrideUrlLoading,
     );
   }
 }
