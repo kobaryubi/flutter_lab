@@ -2,6 +2,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart' as inappwebview;
 import 'package:flutter_lab/application/web_view_cookie/web_view_cookie_gateway.dart';
 import 'package:flutter_lab/data/mapper/web_view_cookie/cookie_mapper.dart';
 import 'package:flutter_lab/domain/entity/cookie/cookie.dart';
+import 'package:flutter_lab/domain/entity/exception/domain_exception.dart';
 import 'package:result_dart/result_dart.dart';
 
 /// `flutter_inappwebview` implementation of [WebViewCookieGateway].
@@ -22,6 +23,27 @@ class FlutterInappwebviewWebViewCookieGateway implements WebViewCookieGateway {
       );
     } on Exception catch (exception) {
       return Failure(exception);
+    }
+  }
+
+  @override
+  AsyncResult<Cookie> getCookie({
+    required Uri url,
+    required String name,
+  }) async {
+    try {
+      final sdkCookie = await _cookieManager.getCookie(
+        url: inappwebview.WebUri(url.toString()),
+        name: name,
+      );
+
+      if (sdkCookie == null) {
+        return const Failure(DomainException.notFound());
+      }
+
+      return Success(_mapper.convert<inappwebview.Cookie, Cookie>(sdkCookie));
+    } on Exception {
+      return const Failure(DomainException.unknown());
     }
   }
 

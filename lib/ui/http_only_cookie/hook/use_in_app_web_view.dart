@@ -76,7 +76,13 @@ class InAppWebViewState {
 ///
 /// The resolved user agent is the platform default with [_userAgentSuffix]
 /// appended.
-InAppWebViewState useInAppWebView() {
+///
+/// [onLoadStart] and [onLoadStop], when given, are invoked after the hook
+/// updates its own `status` for the corresponding event.
+InAppWebViewState useInAppWebView({
+  void Function(InAppWebViewController controller, WebUri? url)? onLoadStart,
+  void Function(InAppWebViewController controller, WebUri? url)? onLoadStop,
+}) {
   final controller = useState<InAppWebViewController?>(null);
   final status = useState(WebViewLoadStatus.loading);
   final userAgent = useState<String?>(null);
@@ -107,14 +113,18 @@ InAppWebViewState useInAppWebView() {
     controller.value = webViewController;
   }
 
-  /// Marks the WebView as loading once a page starts loading.
-  void onLoadStart(InAppWebViewController webViewController, WebUri? url) {
+  /// Marks the WebView as loading once a page starts loading, then invokes
+  /// the caller's [onLoadStart].
+  void handleLoadStart(InAppWebViewController webViewController, WebUri? url) {
     status.value = .loading;
+    onLoadStart?.call(webViewController, url);
   }
 
-  /// Marks the WebView as loaded once a page finishes loading.
-  void onLoadStop(InAppWebViewController webViewController, WebUri? url) {
+  /// Marks the WebView as loaded once a page finishes loading, then invokes
+  /// the caller's [onLoadStop].
+  void handleLoadStop(InAppWebViewController webViewController, WebUri? url) {
     status.value = .loaded;
+    onLoadStop?.call(webViewController, url);
   }
 
   /// Marks the WebView as failed once a main-frame load error is received.
@@ -153,8 +163,8 @@ InAppWebViewState useInAppWebView() {
     status: status.value,
     userAgent: userAgent.value,
     onWebViewCreated: onWebViewCreated,
-    onLoadStart: onLoadStart,
-    onLoadStop: onLoadStop,
+    onLoadStart: handleLoadStart,
+    onLoadStop: handleLoadStop,
     onReceivedError: onReceivedError,
     onReceivedHttpError: onReceivedHttpError,
   );

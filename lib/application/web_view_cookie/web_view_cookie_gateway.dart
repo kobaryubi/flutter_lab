@@ -9,6 +9,11 @@ abstract class WebViewCookieGateway {
   /// Returns every cookie stored for [url].
   AsyncResult<List<Cookie>> getCookies({required Uri url});
 
+  /// Returns the cookie named [name] for [url].
+  ///
+  /// Fails when no cookie with that name exists.
+  AsyncResult<Cookie> getCookie({required Uri url, required String name});
+
   /// Sets a cookie named [name] with [value] for [url].
   AsyncResult<Unit> setCookie({
     required Uri url,
