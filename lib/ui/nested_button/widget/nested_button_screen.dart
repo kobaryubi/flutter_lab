@@ -1,15 +1,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:flutter_lab/ui/nested_button/widget/tappable_button.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-/// Screen demonstrating two nested [GestureDetector]s.
+/// Screen demonstrating a nested-button press-color issue.
 ///
-/// The inner detector sits inside the outer one. Tapping the inner detector
-/// wins the gesture arena, so the outer detector's `onTap` does not fire.
-/// Tapping the outer detector's surrounding area fires only the outer one.
+/// Two [TappableButton]s are nested. Long-pressing the inner button also turns
+/// the outer button to its pressed color, because `onTapDown` fires for the
+/// outer detector before the gesture arena resolves.
 class NestedButtonScreen extends StatelessWidget {
   const NestedButtonScreen({super.key});
 
@@ -20,22 +23,25 @@ class NestedButtonScreen extends StatelessWidget {
   );
 }
 
-class _Body extends HookWidget {
+class _Body extends HookConsumerWidget {
   const _Body();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final outerTapCount = useState(0);
     final innerTapCount = useState(0);
+    final logger = ref.read(loggerGatewayProvider);
 
-    /// Increments the outer detector's tap count.
+    /// Increments the outer button's tap count and logs it at info level.
     void handleOuterTap() {
       outerTapCount.value++;
+      logger.info('Outer button tapped: ${outerTapCount.value}');
     }
 
-    /// Increments the inner detector's tap count.
+    /// Increments the inner button's tap count and logs it at warning level.
     void handleInnerTap() {
       innerTapCount.value++;
+      logger.warning('Inner button tapped: ${innerTapCount.value}');
     }
 
     return DefaultTextStyle(
@@ -47,25 +53,18 @@ class _Body extends HookWidget {
           children: [
             Text('Outer tapped: ${outerTapCount.value}'),
             Text('Inner tapped: ${innerTapCount.value}'),
-            GestureDetector(
-              behavior: HitTestBehavior.opaque,
+            TappableButton(
               onTap: handleOuterTap,
-              child: ColoredBox(
-                color: AppColors.gray1,
-                child: SizedBox(
-                  width: 240,
-                  height: 240,
-                  child: Center(
-                    child: GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: handleInnerTap,
-                      child: const ColoredBox(
-                        color: AppColors.primary,
-                        child: SizedBox(width: 120, height: 120),
-                      ),
-                    ),
-                  ),
-                ),
+              color: AppColors.gray1,
+              pressedColor: AppColors.gray3,
+              width: 240,
+              height: 240,
+              child: TappableButton(
+                onTap: handleInnerTap,
+                color: AppColors.primary,
+                pressedColor: AppColors.primaryContainer,
+                width: 120,
+                height: 120,
               ),
             ),
           ],
