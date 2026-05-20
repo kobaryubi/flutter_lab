@@ -18,11 +18,21 @@ class DebugViewModel extends _$DebugViewModel {
   @override
   DebugUiState build() {
     Future.microtask(() async {
+      await loadAppVersion();
       await loadLocal();
       await loadSecure();
     });
 
     return const DebugUiState();
+  }
+
+  /// Loads the current app version via the get-app-version use case.
+  Future<void> loadAppVersion() async {
+    final useCase = ref.read(getAppVersionUseCaseProvider);
+
+    final appVersion = await AsyncValue.guard(useCase.call);
+
+    state = state.copyWith(appVersion: appVersion);
   }
 
   /// Loads SharedPreferences entries for the declared keys.

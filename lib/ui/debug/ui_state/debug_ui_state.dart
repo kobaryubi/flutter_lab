@@ -7,6 +7,9 @@ part 'debug_ui_state.freezed.dart';
 @freezed
 abstract class DebugUiState with _$DebugUiState {
   const factory DebugUiState({
+    /// App version (e.g. `"1.0.1+2"`).
+    AsyncValue<String>? appVersion,
+
     /// Entries read from SharedPreferences, keyed by declared key.
     AsyncValue<Map<String, Object>>? localEntries,
 

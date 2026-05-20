@@ -4725,6 +4725,95 @@ final class FetchSampleMessageUseCaseProvider
 String _$fetchSampleMessageUseCaseHash() =>
     r'2bf0cce9a73ec87679ba4561ec89ff6c35c633bb';
 
+@ProviderFor(appInfoGateway)
+const appInfoGatewayProvider = AppInfoGatewayProvider._();
+
+final class AppInfoGatewayProvider
+    extends $FunctionalProvider<AppInfoGateway, AppInfoGateway, AppInfoGateway>
+    with $Provider<AppInfoGateway> {
+  const AppInfoGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'appInfoGatewayProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$appInfoGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<AppInfoGateway> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AppInfoGateway create(Ref ref) {
+    return appInfoGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AppInfoGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AppInfoGateway>(value),
+    );
+  }
+}
+
+String _$appInfoGatewayHash() => r'76aaa745a13ee100cfd30cba099e99f84eff66f9';
+
+@ProviderFor(getAppVersionUseCase)
+const getAppVersionUseCaseProvider = GetAppVersionUseCaseProvider._();
+
+final class GetAppVersionUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GetAppVersionUseCase,
+          GetAppVersionUseCase,
+          GetAppVersionUseCase
+        >
+    with $Provider<GetAppVersionUseCase> {
+  const GetAppVersionUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getAppVersionUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getAppVersionUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GetAppVersionUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GetAppVersionUseCase create(Ref ref) {
+    return getAppVersionUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GetAppVersionUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GetAppVersionUseCase>(value),
+    );
+  }
+}
+
+String _$getAppVersionUseCaseHash() =>
+    r'cd25e7054533a83cb74f864a15d22633121c722a';
+
 @ProviderFor(informationRepository)
 const informationRepositoryProvider = InformationRepositoryProvider._();
 

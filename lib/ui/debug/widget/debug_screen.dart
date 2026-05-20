@@ -144,6 +144,12 @@ class DebugScreen extends ConsumerWidget {
       appBar: const AppBar(title: Text('Debug')),
       child: ListView(
         children: [
+          const _SectionHeader('version'),
+          if (uiState.appVersion case AsyncData(:final value))
+            LauncherRow(
+              title: value,
+              onTap: () => viewModel.copyValue(value: value),
+            ),
           const _SectionHeader('actions'),
           LauncherRow(
             title: 'rotate push token',

@@ -12,6 +12,7 @@ import 'package:flutter_lab/data/gateway/adfurikun/mock_adfurikun_gateway.dart';
 import 'package:flutter_lab/data/gateway/adjust/mock_adjust_gateway.dart';
 import 'package:flutter_lab/data/gateway/analytics/firebase_analytics_gateway.dart';
 import 'package:flutter_lab/data/gateway/app_badge/app_badge_plus_app_badge_gateway.dart';
+import 'package:flutter_lab/data/gateway/app_info/package_info_plus_app_info_gateway.dart';
 import 'package:flutter_lab/data/gateway/arutana/pigeon_arutana_gateway.dart';
 import 'package:flutter_lab/data/gateway/clock/clock_clock_gateway.dart';
 import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart';
@@ -50,6 +51,7 @@ import 'package:flutter_lab/domain/adjust/adjust_gateway.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
 import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
 import 'package:flutter_lab/domain/app_badge/app_badge_gateway.dart';
+import 'package:flutter_lab/domain/app_info/app_info_gateway.dart';
 import 'package:flutter_lab/domain/app_store/app_store_repository.dart';
 import 'package:flutter_lab/domain/arutana/arutana_gateway.dart';
 import 'package:flutter_lab/domain/battery/battery_gateway.dart';
@@ -93,6 +95,7 @@ import 'package:flutter_lab/domain/use_cases/analytics/log_tap_event_use_case.da
 import 'package:flutter_lab/domain/use_cases/analytics/log_view_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/set_default_event_parameters_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/set_user_property_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/app_info/get_app_version_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/app_store/get_app_store_url_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/battery/get_battery_level_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/clock/get_current_time_use_case.dart';
@@ -725,6 +728,15 @@ CheckGoogleApiAvailabilityUseCase checkGoogleApiAvailabilityUseCase(
 @riverpod
 FetchSampleMessageUseCase fetchSampleMessageUseCase(Ref ref) =>
     const FetchSampleMessageUseCase();
+
+// app info
+@riverpod
+AppInfoGateway appInfoGateway(Ref ref) => PackageInfoPlusAppInfoGateway();
+
+@riverpod
+GetAppVersionUseCase getAppVersionUseCase(Ref ref) => GetAppVersionUseCase(
+  appInfoGateway: ref.read(appInfoGatewayProvider),
+);
 
 // information
 @riverpod

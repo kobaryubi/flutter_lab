@@ -14,7 +14,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DebugUiState {
 
-/// Entries read from SharedPreferences, keyed by declared key.
+/// App version (e.g. `"1.0.1+2"`).
+ AsyncValue<String>? get appVersion;/// Entries read from SharedPreferences, keyed by declared key.
  AsyncValue<Map<String, Object>>? get localEntries;/// Entries read from FlutterSecureStorage, keyed by declared key.
  AsyncValue<Map<String, String>>? get secureEntries;
 /// Create a copy of DebugUiState
@@ -27,16 +28,16 @@ $DebugUiStateCopyWith<DebugUiState> get copyWith => _$DebugUiStateCopyWithImpl<D
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DebugUiState&&(identical(other.localEntries, localEntries) || other.localEntries == localEntries)&&(identical(other.secureEntries, secureEntries) || other.secureEntries == secureEntries));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DebugUiState&&(identical(other.appVersion, appVersion) || other.appVersion == appVersion)&&(identical(other.localEntries, localEntries) || other.localEntries == localEntries)&&(identical(other.secureEntries, secureEntries) || other.secureEntries == secureEntries));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,localEntries,secureEntries);
+int get hashCode => Object.hash(runtimeType,appVersion,localEntries,secureEntries);
 
 @override
 String toString() {
-  return 'DebugUiState(localEntries: $localEntries, secureEntries: $secureEntries)';
+  return 'DebugUiState(appVersion: $appVersion, localEntries: $localEntries, secureEntries: $secureEntries)';
 }
 
 
@@ -47,7 +48,7 @@ abstract mixin class $DebugUiStateCopyWith<$Res>  {
   factory $DebugUiStateCopyWith(DebugUiState value, $Res Function(DebugUiState) _then) = _$DebugUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<Map<String, Object>>? localEntries, AsyncValue<Map<String, String>>? secureEntries
+ AsyncValue<String>? appVersion, AsyncValue<Map<String, Object>>? localEntries, AsyncValue<Map<String, String>>? secureEntries
 });
 
 
@@ -64,9 +65,10 @@ class _$DebugUiStateCopyWithImpl<$Res>
 
 /// Create a copy of DebugUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? localEntries = freezed,Object? secureEntries = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? appVersion = freezed,Object? localEntries = freezed,Object? secureEntries = freezed,}) {
   return _then(_self.copyWith(
-localEntries: freezed == localEntries ? _self.localEntries : localEntries // ignore: cast_nullable_to_non_nullable
+appVersion: freezed == appVersion ? _self.appVersion : appVersion // ignore: cast_nullable_to_non_nullable
+as AsyncValue<String>?,localEntries: freezed == localEntries ? _self.localEntries : localEntries // ignore: cast_nullable_to_non_nullable
 as AsyncValue<Map<String, Object>>?,secureEntries: freezed == secureEntries ? _self.secureEntries : secureEntries // ignore: cast_nullable_to_non_nullable
 as AsyncValue<Map<String, String>>?,
   ));
@@ -153,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Map<String, Object>>? localEntries,  AsyncValue<Map<String, String>>? secureEntries)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<String>? appVersion,  AsyncValue<Map<String, Object>>? localEntries,  AsyncValue<Map<String, String>>? secureEntries)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DebugUiState() when $default != null:
-return $default(_that.localEntries,_that.secureEntries);case _:
+return $default(_that.appVersion,_that.localEntries,_that.secureEntries);case _:
   return orElse();
 
 }
@@ -174,10 +176,10 @@ return $default(_that.localEntries,_that.secureEntries);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Map<String, Object>>? localEntries,  AsyncValue<Map<String, String>>? secureEntries)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<String>? appVersion,  AsyncValue<Map<String, Object>>? localEntries,  AsyncValue<Map<String, String>>? secureEntries)  $default,) {final _that = this;
 switch (_that) {
 case _DebugUiState():
-return $default(_that.localEntries,_that.secureEntries);case _:
+return $default(_that.appVersion,_that.localEntries,_that.secureEntries);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +196,10 @@ return $default(_that.localEntries,_that.secureEntries);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Map<String, Object>>? localEntries,  AsyncValue<Map<String, String>>? secureEntries)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<String>? appVersion,  AsyncValue<Map<String, Object>>? localEntries,  AsyncValue<Map<String, String>>? secureEntries)?  $default,) {final _that = this;
 switch (_that) {
 case _DebugUiState() when $default != null:
-return $default(_that.localEntries,_that.secureEntries);case _:
+return $default(_that.appVersion,_that.localEntries,_that.secureEntries);case _:
   return null;
 
 }
@@ -209,9 +211,11 @@ return $default(_that.localEntries,_that.secureEntries);case _:
 
 
 class _DebugUiState implements DebugUiState {
-  const _DebugUiState({this.localEntries, this.secureEntries});
+  const _DebugUiState({this.appVersion, this.localEntries, this.secureEntries});
   
 
+/// App version (e.g. `"1.0.1+2"`).
+@override final  AsyncValue<String>? appVersion;
 /// Entries read from SharedPreferences, keyed by declared key.
 @override final  AsyncValue<Map<String, Object>>? localEntries;
 /// Entries read from FlutterSecureStorage, keyed by declared key.
@@ -227,16 +231,16 @@ _$DebugUiStateCopyWith<_DebugUiState> get copyWith => __$DebugUiStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DebugUiState&&(identical(other.localEntries, localEntries) || other.localEntries == localEntries)&&(identical(other.secureEntries, secureEntries) || other.secureEntries == secureEntries));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DebugUiState&&(identical(other.appVersion, appVersion) || other.appVersion == appVersion)&&(identical(other.localEntries, localEntries) || other.localEntries == localEntries)&&(identical(other.secureEntries, secureEntries) || other.secureEntries == secureEntries));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,localEntries,secureEntries);
+int get hashCode => Object.hash(runtimeType,appVersion,localEntries,secureEntries);
 
 @override
 String toString() {
-  return 'DebugUiState(localEntries: $localEntries, secureEntries: $secureEntries)';
+  return 'DebugUiState(appVersion: $appVersion, localEntries: $localEntries, secureEntries: $secureEntries)';
 }
 
 
@@ -247,7 +251,7 @@ abstract mixin class _$DebugUiStateCopyWith<$Res> implements $DebugUiStateCopyWi
   factory _$DebugUiStateCopyWith(_DebugUiState value, $Res Function(_DebugUiState) _then) = __$DebugUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<Map<String, Object>>? localEntries, AsyncValue<Map<String, String>>? secureEntries
+ AsyncValue<String>? appVersion, AsyncValue<Map<String, Object>>? localEntries, AsyncValue<Map<String, String>>? secureEntries
 });
 
 
@@ -264,9 +268,10 @@ class __$DebugUiStateCopyWithImpl<$Res>
 
 /// Create a copy of DebugUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? localEntries = freezed,Object? secureEntries = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? appVersion = freezed,Object? localEntries = freezed,Object? secureEntries = freezed,}) {
   return _then(_DebugUiState(
-localEntries: freezed == localEntries ? _self.localEntries : localEntries // ignore: cast_nullable_to_non_nullable
+appVersion: freezed == appVersion ? _self.appVersion : appVersion // ignore: cast_nullable_to_non_nullable
+as AsyncValue<String>?,localEntries: freezed == localEntries ? _self.localEntries : localEntries // ignore: cast_nullable_to_non_nullable
 as AsyncValue<Map<String, Object>>?,secureEntries: freezed == secureEntries ? _self.secureEntries : secureEntries // ignore: cast_nullable_to_non_nullable
 as AsyncValue<Map<String, String>>?,
   ));
