@@ -223,6 +223,7 @@ This approach makes it easier to understand, debug, and learn from the implement
 - **Use `spacing` property** - Use the `spacing` property on `Column`, `Row`, and `Flex` instead of inserting `SizedBox` widgets between children for uniform spacing (e.g., `Column(spacing: 8, children: [...])` instead of adding `const SizedBox(height: 8)` between items)
 - **Blank lines for readability** - Add blank lines before and after control flow statements (`if`, `for`, `switch`, `return`, early returns) and before the final statement in a method to improve readability
 - **2-space indentation for markup** - Use 2 spaces for indentation in HTML and other markup files
+- **Entity vs value object** - Split domain models by identity: identity-bearing models (a stable `id` that persists across attribute changes — e.g. `User`, `Pet`) go in `lib/domain/entity/`; immutable, identity-less models defined entirely by their attributes (e.g. `Cookie`) go in `lib/domain/value_object/`
 
 ## Rule Management
 
