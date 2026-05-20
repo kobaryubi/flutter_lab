@@ -3374,6 +3374,106 @@ final class GetAdidUseCaseProvider
 
 String _$getAdidUseCaseHash() => r'e99f7b44aceabf4b5fd9189051d768d8b288f25f';
 
+@ProviderFor(savePendingDeeplinkUseCase)
+const savePendingDeeplinkUseCaseProvider =
+    SavePendingDeeplinkUseCaseProvider._();
+
+final class SavePendingDeeplinkUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SavePendingDeeplinkUseCase,
+          SavePendingDeeplinkUseCase,
+          SavePendingDeeplinkUseCase
+        >
+    with $Provider<SavePendingDeeplinkUseCase> {
+  const SavePendingDeeplinkUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'savePendingDeeplinkUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$savePendingDeeplinkUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<SavePendingDeeplinkUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SavePendingDeeplinkUseCase create(Ref ref) {
+    return savePendingDeeplinkUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SavePendingDeeplinkUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SavePendingDeeplinkUseCase>(value),
+    );
+  }
+}
+
+String _$savePendingDeeplinkUseCaseHash() =>
+    r'd3e76e7bb7bc7ab7a920034e6b7e763a575b3a57';
+
+@ProviderFor(consumePendingDeeplinkUseCase)
+const consumePendingDeeplinkUseCaseProvider =
+    ConsumePendingDeeplinkUseCaseProvider._();
+
+final class ConsumePendingDeeplinkUseCaseProvider
+    extends
+        $FunctionalProvider<
+          ConsumePendingDeeplinkUseCase,
+          ConsumePendingDeeplinkUseCase,
+          ConsumePendingDeeplinkUseCase
+        >
+    with $Provider<ConsumePendingDeeplinkUseCase> {
+  const ConsumePendingDeeplinkUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'consumePendingDeeplinkUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$consumePendingDeeplinkUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<ConsumePendingDeeplinkUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  ConsumePendingDeeplinkUseCase create(Ref ref) {
+    return consumePendingDeeplinkUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ConsumePendingDeeplinkUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ConsumePendingDeeplinkUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$consumePendingDeeplinkUseCaseHash() =>
+    r'68e928acb7e128d5e7b11c7ca69a5db9c4395d9b';
+
 @ProviderFor(maxGateway)
 const maxGatewayProvider = MaxGatewayProvider._();
 

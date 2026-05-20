@@ -8,8 +8,9 @@ part 'adjust_deferred_deeplink_ui_state.freezed.dart';
 abstract class AdjustDeferredDeeplinkUiState
     with _$AdjustDeferredDeeplinkUiState {
   const factory AdjustDeferredDeeplinkUiState({
-    required String? pendingDeeplink,
-    required String? pendingDirectDeeplink,
+    /// Most recently consumed pending deep link, or `null` if the user
+    /// has not pressed "consume" yet (or there was nothing pending).
+    String? consumedDeeplink,
 
     /// Result of fetching the Adjust Device Identifier (ADID).
     AsyncValue<String>? adid,

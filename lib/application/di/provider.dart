@@ -82,8 +82,10 @@ import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_interstiti
 import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_reward_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adfurikun/play_adfurikun_interstitial_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adfurikun/play_adfurikun_reward_ad_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/adjust/consume_pending_deeplink_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adjust/get_adid_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adjust/initialize_adjust_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/adjust/save_pending_deeplink_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adjust/track_event_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/agreement/initialize_latest_agreed_date_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/analytics/log_event_use_case.dart';
@@ -566,6 +568,18 @@ TrackEventUseCase trackEventUseCase(Ref ref) => TrackEventUseCase(
 GetAdidUseCase getAdidUseCase(Ref ref) => GetAdidUseCase(
   adjustGateway: ref.read(adjustGatewayProvider),
 );
+
+@riverpod
+SavePendingDeeplinkUseCase savePendingDeeplinkUseCase(Ref ref) =>
+    SavePendingDeeplinkUseCase(
+      memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
+    );
+
+@riverpod
+ConsumePendingDeeplinkUseCase consumePendingDeeplinkUseCase(Ref ref) =>
+    ConsumePendingDeeplinkUseCase(
+      memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
+    );
 
 // max
 @Riverpod(keepAlive: true)

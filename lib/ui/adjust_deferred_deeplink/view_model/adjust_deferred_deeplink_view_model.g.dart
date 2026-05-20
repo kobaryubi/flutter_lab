@@ -10,9 +10,9 @@ part of 'adjust_deferred_deeplink_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 /// ViewModel for the Adjust deferred deep link sample screen.
 ///
-/// Watches [pendingDeferredDeeplinkProvider] so the UI reflects the link
-/// captured by the Adjust SDK at app startup, and exposes operations to
-/// drive the demo flow.
+/// Drives the demo manually: simulate buttons push fake deep links into
+/// the shared storage via the real Adjust callbacks, and a "consume"
+/// button reads and clears the stored value via the consume use case.
 
 @ProviderFor(AdjustDeferredDeeplinkViewModel)
 const adjustDeferredDeeplinkViewModelProvider =
@@ -20,9 +20,9 @@ const adjustDeferredDeeplinkViewModelProvider =
 
 /// ViewModel for the Adjust deferred deep link sample screen.
 ///
-/// Watches [pendingDeferredDeeplinkProvider] so the UI reflects the link
-/// captured by the Adjust SDK at app startup, and exposes operations to
-/// drive the demo flow.
+/// Drives the demo manually: simulate buttons push fake deep links into
+/// the shared storage via the real Adjust callbacks, and a "consume"
+/// button reads and clears the stored value via the consume use case.
 final class AdjustDeferredDeeplinkViewModelProvider
     extends
         $NotifierProvider<
@@ -31,9 +31,9 @@ final class AdjustDeferredDeeplinkViewModelProvider
         > {
   /// ViewModel for the Adjust deferred deep link sample screen.
   ///
-  /// Watches [pendingDeferredDeeplinkProvider] so the UI reflects the link
-  /// captured by the Adjust SDK at app startup, and exposes operations to
-  /// drive the demo flow.
+  /// Drives the demo manually: simulate buttons push fake deep links into
+  /// the shared storage via the real Adjust callbacks, and a "consume"
+  /// button reads and clears the stored value via the consume use case.
   const AdjustDeferredDeeplinkViewModelProvider._()
     : super(
         from: null,
@@ -64,13 +64,13 @@ final class AdjustDeferredDeeplinkViewModelProvider
 }
 
 String _$adjustDeferredDeeplinkViewModelHash() =>
-    r'8c0cc5eb36d490a3732d1cb5ccabee76214cc6a9';
+    r'd91a0278e47bc1f5e6bc019e270e4840116fca12';
 
 /// ViewModel for the Adjust deferred deep link sample screen.
 ///
-/// Watches [pendingDeferredDeeplinkProvider] so the UI reflects the link
-/// captured by the Adjust SDK at app startup, and exposes operations to
-/// drive the demo flow.
+/// Drives the demo manually: simulate buttons push fake deep links into
+/// the shared storage via the real Adjust callbacks, and a "consume"
+/// button reads and clears the stored value via the consume use case.
 
 abstract class _$AdjustDeferredDeeplinkViewModel
     extends $Notifier<AdjustDeferredDeeplinkUiState> {

@@ -7,8 +7,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Sample screen demonstrating Adjust's deferred deep link flow.
 ///
-/// Mirrors the docs example: a deep link captured by the SDK at app
-/// startup is held until onboarding completes, then consumed.
+/// Both deferred and direct deep links share a single storage slot. The
+/// user simulates an incoming link, then presses "consume" to read and
+/// clear it — mirroring how a post-login navigator would handle it in
+/// production.
 class AdjustDeferredDeeplinkScreen extends ConsumerWidget {
   const AdjustDeferredDeeplinkScreen({super.key});
 
@@ -20,18 +22,8 @@ class AdjustDeferredDeeplinkScreen extends ConsumerWidget {
     );
 
     /// Asks the mock gateway to deliver a fake deferred deep link.
-    void handleSimulate() {
+    void handleSimulateDeferred() {
       viewModel.simulateDeferredDeeplink();
-    }
-
-    /// Marks onboarding complete, consuming any pending link.
-    void handleCompleteOnboarding() {
-      viewModel.completeOnboarding();
-    }
-
-    /// Fetches the Adjust Device Identifier and stores it in UI state.
-    Future<void> handleLoadAdid() async {
-      await viewModel.loadAdid();
     }
 
     /// Asks the mock gateway to deliver a fake direct deep link.
@@ -39,13 +31,17 @@ class AdjustDeferredDeeplinkScreen extends ConsumerWidget {
       viewModel.simulateDirectDeeplink();
     }
 
-    /// Clears any pending direct deep link held in the notifier.
-    void handleClearDirect() {
-      viewModel.clearDirectDeeplink();
+    /// Reads and clears the pending deep link, surfacing it in UI state.
+    void handleConsume() {
+      viewModel.consumePendingDeeplink();
     }
 
-    final pendingDeeplink = uiState.pendingDeeplink;
-    final pendingDirectDeeplink = uiState.pendingDirectDeeplink;
+    /// Fetches the Adjust Device Identifier and stores it in UI state.
+    Future<void> handleLoadAdid() async {
+      await viewModel.loadAdid();
+    }
+
+    final consumedDeeplink = uiState.consumedDeeplink;
 
     return Layout(
       appBar: const AppBar(title: Text('Adjust deferred deep link')),
@@ -54,29 +50,24 @@ class AdjustDeferredDeeplinkScreen extends ConsumerWidget {
         crossAxisAlignment: .start,
         spacing: 16,
         children: [
-          Text('pending: ${pendingDeeplink ?? '(none)'}'),
+          Text('last consumed: ${consumedDeeplink ?? '(none)'}'),
           Button(
             label: 'simulate deferred deeplink',
-            onTap: handleSimulate,
+            onTap: handleSimulateDeferred,
           ),
           Button(
-            label: 'complete onboarding',
-            onTap: handleCompleteOnboarding,
+            label: 'simulate direct deeplink',
+            onTap: handleSimulateDirect,
+          ),
+          Button(
+            label: 'consume pending deeplink',
+            onTap: handleConsume,
           ),
           Button(
             label: 'load adid',
             onTap: handleLoadAdid,
           ),
           if (uiState.adid case AsyncData(:final value)) Text('adid: $value'),
-          Text('direct pending: ${pendingDirectDeeplink ?? '(none)'}'),
-          Button(
-            label: 'simulate direct deeplink',
-            onTap: handleSimulateDirect,
-          ),
-          Button(
-            label: 'clear direct deeplink',
-            onTap: handleClearDirect,
-          ),
         ],
       ),
     );

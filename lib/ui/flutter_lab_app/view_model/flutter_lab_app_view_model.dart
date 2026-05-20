@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_lab/application/di/provider.dart';
-import 'package:flutter_lab/application/notifier/pending_deferred_deeplink_notifier.dart';
-import 'package:flutter_lab/application/notifier/pending_direct_deeplink_notifier.dart';
 import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
 import 'package:flutter_lab/ui/flutter_lab_app/ui_state/flutter_lab_app_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -48,8 +46,8 @@ class FlutterLabAppViewModel extends _$FlutterLabAppViewModel {
 
   /// Initializes the Adjust SDK at app startup (fire-and-forget).
   ///
-  /// Routes the SDK's deferred and direct deep link callbacks into their
-  /// respective notifiers so the UI can consume them when ready.
+  /// Routes the SDK's deferred and direct deep link callbacks into the
+  /// shared in-memory storage so the app can consume them when ready.
   Future<void> _initializeAdjust() async {
     final useCase = ref.read(initializeAdjustUseCaseProvider);
 
@@ -59,20 +57,17 @@ class FlutterLabAppViewModel extends _$FlutterLabAppViewModel {
     );
   }
 
-  /// Forwards a deferred deep link captured by Adjust into the
-  /// [PendingDeferredDeeplinkNotifier].
+  /// Stores a deferred deep link captured by Adjust into shared in-memory
+  /// storage, ready to be consumed once the app is past onboarding.
   void _handleDeferredDeeplink(String deeplink) {
-    ref
-        .read(pendingDeferredDeeplinkProvider.notifier)
-        .capture(deeplink: deeplink);
+    ref.read(savePendingDeeplinkUseCaseProvider).call(deeplink: deeplink);
   }
 
-  /// Forwards a direct deep link (resolved long-form URL) captured by
-  /// Adjust into the [PendingDirectDeeplinkNotifier].
+  /// Stores a direct deep link (resolved long-form URL) captured by
+  /// Adjust into shared in-memory storage, ready to be consumed by the
+  /// app.
   void _handleDirectDeeplink(String deeplink) {
-    ref
-        .read(pendingDirectDeeplinkProvider.notifier)
-        .capture(deeplink: deeplink);
+    ref.read(savePendingDeeplinkUseCaseProvider).call(deeplink: deeplink);
   }
 
   /// Initializes the AppLovin MAX SDK at app startup (fire-and-forget).

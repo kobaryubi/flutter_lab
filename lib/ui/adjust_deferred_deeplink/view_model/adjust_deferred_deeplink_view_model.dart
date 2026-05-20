@@ -1,6 +1,4 @@
 import 'package:flutter_lab/application/di/provider.dart';
-import 'package:flutter_lab/application/notifier/pending_deferred_deeplink_notifier.dart';
-import 'package:flutter_lab/application/notifier/pending_direct_deeplink_notifier.dart';
 import 'package:flutter_lab/data/gateway/adjust/mock_adjust_gateway.dart';
 import 'package:flutter_lab/ui/adjust_deferred_deeplink/ui_state/adjust_deferred_deeplink_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,22 +13,15 @@ const _sampleDirectDeeplink = 'flutter-lab://product/42?ref=push';
 
 /// ViewModel for the Adjust deferred deep link sample screen.
 ///
-/// Watches [pendingDeferredDeeplinkProvider] so the UI reflects the link
-/// captured by the Adjust SDK at app startup, and exposes operations to
-/// drive the demo flow.
+/// Drives the demo manually: simulate buttons push fake deep links into
+/// the shared storage via the real Adjust callbacks, and a "consume"
+/// button reads and clears the stored value via the consume use case.
 @riverpod
 class AdjustDeferredDeeplinkViewModel
     extends _$AdjustDeferredDeeplinkViewModel {
   @override
-  AdjustDeferredDeeplinkUiState build() {
-    final pendingDeeplink = ref.watch(pendingDeferredDeeplinkProvider);
-    final pendingDirectDeeplink = ref.watch(pendingDirectDeeplinkProvider);
-
-    return AdjustDeferredDeeplinkUiState(
-      pendingDeeplink: pendingDeeplink,
-      pendingDirectDeeplink: pendingDirectDeeplink,
-    );
-  }
+  AdjustDeferredDeeplinkUiState build() =>
+      const AdjustDeferredDeeplinkUiState();
 
   /// Triggers the mock gateway to deliver a fake deferred deep link.
   ///
@@ -56,15 +47,11 @@ class AdjustDeferredDeeplinkViewModel
     gateway.simulateDirectDeeplink(deeplink: _sampleDirectDeeplink);
   }
 
-  /// Marks onboarding complete, clearing any pending link and locking the
-  /// notifier so future captures are ignored.
-  void completeOnboarding() {
-    ref.read(pendingDeferredDeeplinkProvider.notifier).consume();
-  }
-
-  /// Clears the pending direct deep link.
-  void clearDirectDeeplink() {
-    ref.read(pendingDirectDeeplinkProvider.notifier).clear();
+  /// Reads and clears the pending deep link, exposing the result in
+  /// [AdjustDeferredDeeplinkUiState.consumedDeeplink].
+  void consumePendingDeeplink() {
+    final deeplink = ref.read(consumePendingDeeplinkUseCaseProvider).call();
+    state = state.copyWith(consumedDeeplink: deeplink);
   }
 
   /// Fetches the Adjust Device Identifier (ADID) and stores it in UI state.

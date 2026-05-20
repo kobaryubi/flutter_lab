@@ -48,7 +48,7 @@ final class FlutterLabAppViewModelProvider
 }
 
 String _$flutterLabAppViewModelHash() =>
-    r'4b39cfbd1d3b22283a2dcf1bde0db2e5822bad07';
+    r'65b1774549c9a6354059f082c77b6b76125df3f6';
 
 /// ViewModel that manages app-level subscriptions: token refresh, Adjust
 /// deep links, and opened-push-message taps.
