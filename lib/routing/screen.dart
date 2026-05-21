@@ -362,4 +362,7 @@ enum Screen {
 
   /// The [MemberState]s that are permitted to visit this screen.
   final Set<MemberState> allowedStates;
+
+  /// Returns whether a user in [state] is allowed to visit this screen.
+  bool isAccessibleBy(MemberState state) => allowedStates.contains(state);
 }
