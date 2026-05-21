@@ -12,7 +12,7 @@ class DeeplinkService {
 
   static const _customScheme = 'flutterlab';
   static const _canonicalHost = 'kobaryubi.github.io';
-  static const _legacyPath = '/index.html';
+  static const _legacyPaths = {'', '/', '/index.html'};
   static const _legacyIdParam = 'id';
 
   /// Returns the canonical [Uri] for [url], or a [Failure] if [url] is
@@ -20,6 +20,10 @@ class DeeplinkService {
   ///
   /// - `flutterlab:///foo` → `https://kobaryubi.github.io/foo`
   /// - `https://kobaryubi.github.io/index.html?id=foo` →
+  ///   `https://kobaryubi.github.io/foo`
+  /// - `https://kobaryubi.github.io/?id=foo` →
+  ///   `https://kobaryubi.github.io/foo`
+  /// - `https://kobaryubi.github.io?id=foo` →
   ///   `https://kobaryubi.github.io/foo`
   /// - Any other valid absolute URI is returned unchanged.
   Result<Uri> normalize({required String url}) {
@@ -34,13 +38,13 @@ class DeeplinkService {
         : parsed;
 
     final id = rehosted.queryParameters[_legacyIdParam];
-    final isLegacyIndex =
+    final isLegacy =
         rehosted.host == _canonicalHost &&
-        rehosted.path == _legacyPath &&
+        _legacyPaths.contains(rehosted.path) &&
         id != null &&
         id.isNotEmpty;
 
-    if (!isLegacyIndex) {
+    if (!isLegacy) {
       return rehosted.toSuccess();
     }
 
