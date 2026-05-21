@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_lab/application/gateway/shortcut_icon_gateway.dart';
 import 'package:flutter_lab/application/logger/logger_gateway.dart';
 import 'package:flutter_lab/application/memory_storage/memory_storage_gateway.dart';
+import 'package:flutter_lab/application/service/deeplink_application_service.dart';
 import 'package:flutter_lab/application/web_view_cookie/web_view_cookie_gateway.dart';
 // import 'package:flutter_lab/data/gateway/adfurikun/sdk_adfurikun_gateway.dart';
 import 'package:flutter_lab/data/gateway/adfurikun/mock_adfurikun_gateway.dart';
@@ -57,6 +58,7 @@ import 'package:flutter_lab/domain/arutana/arutana_gateway.dart';
 import 'package:flutter_lab/domain/battery/battery_gateway.dart';
 import 'package:flutter_lab/domain/battery/platform_battery_gateway.dart';
 import 'package:flutter_lab/domain/clock/clock_gateway.dart';
+import 'package:flutter_lab/domain/deeplink/deeplink_service.dart';
 import 'package:flutter_lab/domain/device_info/device_info_gateway.dart';
 import 'package:flutter_lab/domain/entity/app_store/target_platform_type.dart';
 import 'package:flutter_lab/domain/etag_cache/etag_cache_repository.dart';
@@ -747,3 +749,11 @@ InformationRepository informationRepository(Ref ref) =>
 GetDetailUrlUseCase getDetailUrlUseCase(Ref ref) => GetDetailUrlUseCase(
   informationRepository: ref.read(informationRepositoryProvider),
 );
+
+// deeplink
+@riverpod
+DeeplinkApplicationService deeplinkApplicationService(Ref ref) =>
+    DeeplinkApplicationService(
+      deeplinkService: const DeeplinkService(),
+      memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
+    );

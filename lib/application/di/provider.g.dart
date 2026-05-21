@@ -4909,3 +4909,52 @@ final class GetDetailUrlUseCaseProvider
 
 String _$getDetailUrlUseCaseHash() =>
     r'a6f48a39983f13422b3008624a17f22b3b04249c';
+
+@ProviderFor(deeplinkApplicationService)
+const deeplinkApplicationServiceProvider =
+    DeeplinkApplicationServiceProvider._();
+
+final class DeeplinkApplicationServiceProvider
+    extends
+        $FunctionalProvider<
+          DeeplinkApplicationService,
+          DeeplinkApplicationService,
+          DeeplinkApplicationService
+        >
+    with $Provider<DeeplinkApplicationService> {
+  const DeeplinkApplicationServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'deeplinkApplicationServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$deeplinkApplicationServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<DeeplinkApplicationService> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  DeeplinkApplicationService create(Ref ref) {
+    return deeplinkApplicationService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(DeeplinkApplicationService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<DeeplinkApplicationService>(value),
+    );
+  }
+}
+
+String _$deeplinkApplicationServiceHash() =>
+    r'52dbaa532da24e4483322878b9babf0f6ecf7c7b';
