@@ -1,9 +1,5 @@
 part of 'router.dart';
 
-@TypedGoRoute<ObserverDemoRoute>(
-  path: Routes.observerDemo,
-  name: 'observer_demo',
-)
 @immutable
 class ObserverDemoRoute extends GoRouteData with $ObserverDemoRoute {
   @override
@@ -11,10 +7,6 @@ class ObserverDemoRoute extends GoRouteData with $ObserverDemoRoute {
       const ObserverDemoScreen();
 }
 
-@TypedGoRoute<ObserverDemoDetailRoute>(
-  path: Routes.observerDemoDetail,
-  name: 'observer_demo_detail',
-)
 @immutable
 class ObserverDemoDetailRoute extends GoRouteData
     with $ObserverDemoDetailRoute {
