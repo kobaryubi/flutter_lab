@@ -53,8 +53,6 @@ List<RouteBase> get $appRoutes => [
   $nestedButtonRoute,
   $networkRoute,
   $notFoundRoute,
-  $observerDemoRoute,
-  $observerDemoDetailRoute,
   $ocrResultRoute,
   $ossLicensesRoute,
   $ocrRoute,
@@ -749,14 +747,73 @@ mixin $GoogleApiRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $homeRoute =>
-    GoRouteData.$route(path: '/', name: 'home', factory: $HomeRoute._fromState);
+RouteBase get $homeRoute => GoRouteData.$route(
+  path: '/',
+  name: 'home',
+  factory: $HomeRoute._fromState,
+  routes: [
+    GoRouteData.$route(
+      path: 'observer_demo',
+      name: 'observer_demo',
+      factory: $ObserverDemoRoute._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'detail',
+          name: 'observer_demo_detail',
+          factory: $ObserverDemoDetailRoute._fromState,
+        ),
+      ],
+    ),
+  ],
+);
 
 mixin $HomeRoute on GoRouteData {
   static HomeRoute _fromState(GoRouterState state) => HomeRoute();
 
   @override
   String get location => GoRouteData.$location('/');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $ObserverDemoRoute on GoRouteData {
+  static ObserverDemoRoute _fromState(GoRouterState state) =>
+      ObserverDemoRoute();
+
+  @override
+  String get location => GoRouteData.$location('/observer_demo');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $ObserverDemoDetailRoute on GoRouteData {
+  static ObserverDemoDetailRoute _fromState(GoRouterState state) =>
+      ObserverDemoDetailRoute();
+
+  @override
+  String get location => GoRouteData.$location('/observer_demo/detail');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -1361,60 +1418,6 @@ mixin $NotFoundRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/404');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $observerDemoRoute => GoRouteData.$route(
-  path: '/observer_demo',
-  name: 'observer_demo',
-  factory: $ObserverDemoRoute._fromState,
-);
-
-mixin $ObserverDemoRoute on GoRouteData {
-  static ObserverDemoRoute _fromState(GoRouterState state) =>
-      ObserverDemoRoute();
-
-  @override
-  String get location => GoRouteData.$location('/observer_demo');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $observerDemoDetailRoute => GoRouteData.$route(
-  path: '/observer_demo/detail',
-  name: 'observer_demo_detail',
-  factory: $ObserverDemoDetailRoute._fromState,
-);
-
-mixin $ObserverDemoDetailRoute on GoRouteData {
-  static ObserverDemoDetailRoute _fromState(GoRouterState state) =>
-      ObserverDemoDetailRoute();
-
-  @override
-  String get location => GoRouteData.$location('/observer_demo/detail');
 
   @override
   void go(BuildContext context) => context.go(location);

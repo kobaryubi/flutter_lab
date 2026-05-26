@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/adjust_deferred_deeplink/view_model/adjust_deferred_deeplink_view_model.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/button.dart';
@@ -41,6 +42,12 @@ class AdjustDeferredDeeplinkScreen extends ConsumerWidget {
       await viewModel.loadAdid();
     }
 
+    /// Navigates to the observer demo detail screen via `context.go`,
+    /// which rebuilds the back stack thanks to nested route declarations.
+    void handleGoToObserverDemoDetail() {
+      ObserverDemoDetailRoute().go(context);
+    }
+
     final consumedDeeplink = uiState.consumedDeeplink;
 
     return Layout(
@@ -62,6 +69,10 @@ class AdjustDeferredDeeplinkScreen extends ConsumerWidget {
           Button(
             label: 'consume pending deeplink',
             onTap: handleConsume,
+          ),
+          Button(
+            label: 'go to observer demo detail (context.go)',
+            onTap: handleGoToObserverDemoDetail,
           ),
           Button(
             label: 'load adid',
