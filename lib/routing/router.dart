@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/domain/entity/launch_url/launch_url_mode.dart';
 import 'package:flutter_lab/routing/analytics_navigation_observer.dart';
+import 'package:flutter_lab/routing/logging_navigation_observer.dart';
 import 'package:flutter_lab/routing/observer_demo_observer.dart';
 import 'package:flutter_lab/routing/route_observer.dart';
 import 'package:flutter_lab/routing/routes.dart';
@@ -182,26 +183,43 @@ part 'webview_cookie_route.dart';
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 
 @riverpod
-GoRouter router(Ref ref) => GoRouter(
-  initialLocation: Routes.home,
-  navigatorKey: rootNavigatorKey,
-  onException: (context, state, router) {
-    router.go(Routes.notFound);
-  },
-  debugLogDiagnostics: true,
-  routes: $appRoutes,
-  observers: [
-    AnalyticsNavigationObserver(
-      logViewEventUseCase: ref.read(logViewEventUseCaseProvider),
-    ),
-    ref.read(routeObserverProvider),
-    TalkerRouteObserver(ref.read(talkerProvider)),
-    ObserverDemoObserver(
-      onEvent: (event) => Future(() {
-        if (!ref.exists(observerDemoViewModelProvider)) return;
+GoRouter router(Ref ref) {
+  late final GoRouter goRouter;
 
-        ref.read(observerDemoViewModelProvider.notifier).addEvent(event: event);
-      }),
-    ),
-  ],
-);
+  // Late binding is required so the observer's getCurrentUri callback
+  // can reference the router instance from inside the GoRouter
+  // constructor's observers list.
+  // ignore: join_return_with_assignment
+  goRouter = GoRouter(
+    initialLocation: Routes.home,
+    navigatorKey: rootNavigatorKey,
+    onException: (context, state, router) {
+      router.go(Routes.notFound);
+    },
+    debugLogDiagnostics: true,
+    routes: $appRoutes,
+    observers: [
+      AnalyticsNavigationObserver(
+        logViewEventUseCase: ref.read(logViewEventUseCaseProvider),
+      ),
+      ref.read(routeObserverProvider),
+      TalkerRouteObserver(ref.read(talkerProvider)),
+      ObserverDemoObserver(
+        onEvent: (event) => Future(() {
+          if (!ref.exists(observerDemoViewModelProvider)) return;
+
+          ref
+              .read(observerDemoViewModelProvider.notifier)
+              .addEvent(event: event);
+        }),
+      ),
+      LoggingNavigationObserver(
+        tag: 'root',
+        logger: ref.read(loggerGatewayProvider),
+        getCurrentUri: () => goRouter.routerDelegate.currentConfiguration.uri,
+      ),
+    ],
+  );
+
+  return goRouter;
+}
