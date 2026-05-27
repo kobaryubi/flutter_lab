@@ -221,5 +221,22 @@ GoRouter router(Ref ref) {
     ],
   );
 
+  // Listen to GoRouter directly so that route changes which never reach
+  // a NavigatorObserver — most notably StatefulShellRoute tab swaps,
+  // which keep all branches mounted and therefore fire no push/pop —
+  // are still captured in the log stream.
+  final logger = ref.read(loggerGatewayProvider);
+
+  /// Logs the current URI whenever GoRouter notifies of a state change.
+  void handleRouterChanged() {
+    final uri = goRouter.routerDelegate.currentConfiguration.uri;
+    logger.info('[router-listener] uri=$uri');
+  }
+
+  goRouter.routerDelegate.addListener(handleRouterChanged);
+  ref.onDispose(
+    () => goRouter.routerDelegate.removeListener(handleRouterChanged),
+  );
+
   return goRouter;
 }
