@@ -18,6 +18,7 @@ abstract final class Routes {
   static const urlNavigation = '/url_navigation';
   static const dioCache = '/dio_cache';
   static const etagCache = '/etag_cache';
+  static const revalidatingImage = '/revalidating_image';
   static const pushNotification = '/push_notification';
   static const appStore = '/app_store';
   static const network = '/network';

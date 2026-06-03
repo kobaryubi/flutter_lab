@@ -63,6 +63,7 @@ List<RouteBase> get $appRoutes => [
   $portalRoute,
   $profilePassportRoute,
   $pushNotificationRoute,
+  $revalidatingImageRoute,
   $routeAwareDemoRoute,
   $routeAwareDemoDetailRoute,
   $routingCupertinoFullscreenDialogRoute,
@@ -1699,6 +1700,33 @@ mixin $PushNotificationRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $revalidatingImageRoute => GoRouteData.$route(
+  path: '/revalidating_image',
+  name: 'revalidating_image',
+  factory: $RevalidatingImageRoute._fromState,
+);
+
+mixin $RevalidatingImageRoute on GoRouteData {
+  static RevalidatingImageRoute _fromState(GoRouterState state) =>
+      RevalidatingImageRoute();
+
+  @override
+  String get location => GoRouteData.$location('/revalidating_image');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $routeAwareDemoRoute => GoRouteData.$route(
   path: '/route_aware_demo',
   name: 'route_aware_demo',
@@ -2407,4 +2435,4 @@ final class RouterProvider
   }
 }
 
-String _$routerHash() => r'291b7b7615c177c9159e0b6a4f6dbdae73c8f8a1';
+String _$routerHash() => r'46ec6401e6ff6c0563947ef5d37397b49fd22791';
