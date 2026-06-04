@@ -15,9 +15,7 @@ T _$identity<T>(T value) => value;
 mixin _$RevalidatingImageUiState {
 
 /// The fetched image URL. `null` before the first fetch.
- AsyncValue<Uri>? get imageUrl;/// HTTP status code of the most recent revalidation: `304` (cache reused)
-/// or `200` (cache replaced). `null` until the image has been loaded once.
- int? get lastStatusCode;
+ AsyncValue<Uri>? get imageUrl;
 /// Create a copy of RevalidatingImageUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +26,16 @@ $RevalidatingImageUiStateCopyWith<RevalidatingImageUiState> get copyWith => _$Re
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RevalidatingImageUiState&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.lastStatusCode, lastStatusCode) || other.lastStatusCode == lastStatusCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RevalidatingImageUiState&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,imageUrl,lastStatusCode);
+int get hashCode => Object.hash(runtimeType,imageUrl);
 
 @override
 String toString() {
-  return 'RevalidatingImageUiState(imageUrl: $imageUrl, lastStatusCode: $lastStatusCode)';
+  return 'RevalidatingImageUiState(imageUrl: $imageUrl)';
 }
 
 
@@ -48,7 +46,7 @@ abstract mixin class $RevalidatingImageUiStateCopyWith<$Res>  {
   factory $RevalidatingImageUiStateCopyWith(RevalidatingImageUiState value, $Res Function(RevalidatingImageUiState) _then) = _$RevalidatingImageUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<Uri>? imageUrl, int? lastStatusCode
+ AsyncValue<Uri>? imageUrl
 });
 
 
@@ -65,11 +63,10 @@ class _$RevalidatingImageUiStateCopyWithImpl<$Res>
 
 /// Create a copy of RevalidatingImageUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? imageUrl = freezed,Object? lastStatusCode = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? imageUrl = freezed,}) {
   return _then(_self.copyWith(
 imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as AsyncValue<Uri>?,lastStatusCode: freezed == lastStatusCode ? _self.lastStatusCode : lastStatusCode // ignore: cast_nullable_to_non_nullable
-as int?,
+as AsyncValue<Uri>?,
   ));
 }
 
@@ -154,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Uri>? imageUrl,  int? lastStatusCode)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<Uri>? imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RevalidatingImageUiState() when $default != null:
-return $default(_that.imageUrl,_that.lastStatusCode);case _:
+return $default(_that.imageUrl);case _:
   return orElse();
 
 }
@@ -175,10 +172,10 @@ return $default(_that.imageUrl,_that.lastStatusCode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Uri>? imageUrl,  int? lastStatusCode)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<Uri>? imageUrl)  $default,) {final _that = this;
 switch (_that) {
 case _RevalidatingImageUiState():
-return $default(_that.imageUrl,_that.lastStatusCode);case _:
+return $default(_that.imageUrl);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +192,10 @@ return $default(_that.imageUrl,_that.lastStatusCode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Uri>? imageUrl,  int? lastStatusCode)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<Uri>? imageUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _RevalidatingImageUiState() when $default != null:
-return $default(_that.imageUrl,_that.lastStatusCode);case _:
+return $default(_that.imageUrl);case _:
   return null;
 
 }
@@ -210,14 +207,11 @@ return $default(_that.imageUrl,_that.lastStatusCode);case _:
 
 
 class _RevalidatingImageUiState implements RevalidatingImageUiState {
-  const _RevalidatingImageUiState({this.imageUrl, this.lastStatusCode});
+  const _RevalidatingImageUiState({this.imageUrl});
   
 
 /// The fetched image URL. `null` before the first fetch.
 @override final  AsyncValue<Uri>? imageUrl;
-/// HTTP status code of the most recent revalidation: `304` (cache reused)
-/// or `200` (cache replaced). `null` until the image has been loaded once.
-@override final  int? lastStatusCode;
 
 /// Create a copy of RevalidatingImageUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -229,16 +223,16 @@ _$RevalidatingImageUiStateCopyWith<_RevalidatingImageUiState> get copyWith => __
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RevalidatingImageUiState&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.lastStatusCode, lastStatusCode) || other.lastStatusCode == lastStatusCode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RevalidatingImageUiState&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,imageUrl,lastStatusCode);
+int get hashCode => Object.hash(runtimeType,imageUrl);
 
 @override
 String toString() {
-  return 'RevalidatingImageUiState(imageUrl: $imageUrl, lastStatusCode: $lastStatusCode)';
+  return 'RevalidatingImageUiState(imageUrl: $imageUrl)';
 }
 
 
@@ -249,7 +243,7 @@ abstract mixin class _$RevalidatingImageUiStateCopyWith<$Res> implements $Revali
   factory _$RevalidatingImageUiStateCopyWith(_RevalidatingImageUiState value, $Res Function(_RevalidatingImageUiState) _then) = __$RevalidatingImageUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<Uri>? imageUrl, int? lastStatusCode
+ AsyncValue<Uri>? imageUrl
 });
 
 
@@ -266,11 +260,10 @@ class __$RevalidatingImageUiStateCopyWithImpl<$Res>
 
 /// Create a copy of RevalidatingImageUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? imageUrl = freezed,Object? lastStatusCode = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? imageUrl = freezed,}) {
   return _then(_RevalidatingImageUiState(
 imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as AsyncValue<Uri>?,lastStatusCode: freezed == lastStatusCode ? _self.lastStatusCode : lastStatusCode // ignore: cast_nullable_to_non_nullable
-as int?,
+as AsyncValue<Uri>?,
   ));
 }
 

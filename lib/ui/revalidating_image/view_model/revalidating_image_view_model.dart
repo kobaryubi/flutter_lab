@@ -1,28 +1,15 @@
 import 'dart:io';
 
-import 'package:flutter_lab/data/cache/revalidating_image_cache_manager.dart';
 import 'package:flutter_lab/ui/revalidating_image/ui_state/revalidating_image_ui_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'revalidating_image_view_model.g.dart';
 
-/// ViewModel that fetches the debug image URL and tracks the latest
-/// revalidation status reported by [RevalidatingImageCacheManager].
+/// ViewModel that fetches the debug image URL served by the nginx asset server.
 @riverpod
 class RevalidatingImageViewModel extends _$RevalidatingImageViewModel {
   @override
-  RevalidatingImageUiState build() {
-    final subscription = RevalidatingImageCacheManager().revalidationStatusCodes
-        .listen(_onRevalidationStatus);
-    ref.onDispose(subscription.cancel);
-
-    return const RevalidatingImageUiState();
-  }
-
-  /// Records the HTTP status code (`304`/`200`) of the latest revalidation.
-  void _onRevalidationStatus(int statusCode) {
-    state = state.copyWith(lastStatusCode: statusCode);
-  }
+  RevalidatingImageUiState build() => const RevalidatingImageUiState();
 
   /// Fetches the debug image URL, transitioning the state `loading -> data`.
   ///
@@ -44,6 +31,9 @@ class RevalidatingImageViewModel extends _$RevalidatingImageViewModel {
   /// back to the emulator/simulator host: `10.0.2.2` on Android, else
   /// `localhost`.
   Future<Uri> _resolveImageUrl() async {
+    // Dummy delay so the `loading` state is visible before `data`.
+    await Future<void>.delayed(const Duration(seconds: 1));
+
     const localHost = String.fromEnvironment('LOCAL_HOST');
     final host = localHost.isNotEmpty
         ? localHost

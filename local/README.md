@@ -26,8 +26,7 @@ answers conditional requests automatically:
 ### Swap the debug image to change its ETag
 
 ```bash
-./local/swap-etag-image.sh            # random color, new ETag
-./local/swap-etag-image.sh 255 0 0    # explicit R G B
+./local/swap-etag-image.sh    # random color, new ETag
 ```
 
 Each run rewrites `local/assets/images/etag-debug.png`, so its size/mtime — and
