@@ -33,6 +33,7 @@ class DebugScreen extends ConsumerWidget {
     (title: 'url navigation', path: Routes.urlNavigation),
     (title: 'dio cache', path: Routes.dioCache),
     (title: 'etag cache', path: Routes.etagCache),
+    (title: 'revalidating image', path: Routes.revalidatingImage),
     (title: 'push notification', path: Routes.pushNotification),
     (title: 'app store', path: Routes.appStore),
     (title: 'network', path: Routes.network),

@@ -57,6 +57,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'counter', route: CounterRoute()),
     AppLink(title: 'async state race', route: AsyncStateRaceRoute()),
     AppLink(title: 'ETag cache', route: EtagCacheRoute()),
+    AppLink(title: 'revalidating image', route: RevalidatingImageRoute()),
     AppLink(title: 'Google API', route: GoogleApiRoute()),
     AppLink(title: 'pigeon', route: PigeonRoute()),
     AppLink(title: 'dialog state', route: DialogStateRoute()),
