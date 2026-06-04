@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/revalidating_image/ui_state/revalidating_image_ui_state.dart';
@@ -18,13 +19,24 @@ class RevalidatingImageScreen extends StatelessWidget {
   );
 }
 
-class _Body extends ConsumerWidget {
+class _Body extends HookConsumerWidget {
   const _Body();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final uiState = ref.watch(revalidatingImageViewModelProvider);
     final viewModel = ref.read(revalidatingImageViewModelProvider.notifier);
+
+    // Fetch once when the screen first appears, in addition to button taps.
+    // Deferred to after the frame because `fetchImageUrl` mutates provider
+    // state synchronously, which is not allowed during the build phase.
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        viewModel.fetchImageUrl();
+      });
+
+      return null;
+    }, []);
 
     /// Fetches the image URL through the view model (`loading -> data`).
     void handleFetch() {
