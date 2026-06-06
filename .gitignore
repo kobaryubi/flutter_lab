@@ -57,3 +57,8 @@ migrate_working_dir/
 
 # Patrol auto-generated test bundle
 patrol_test/test_bundle.dart
+
+# Fastlane temporary / generated artifacts (covers android/ and ios/).
+# https://docs.fastlane.tools/best-practices/source-control/
+**/fastlane/report.xml
+**/fastlane/Preview.html
