@@ -30,4 +30,16 @@ platform :android do
     # Output: build/app/outputs/bundle/productionRelease/app-production-release.aab
     sh("cd ../.. && fvm flutter build appbundle --flavor production")
   end
+
+  desc "Build a release Android APK (.apk) for the production flavor"
+  lane :build_apk do
+    # Same `flutter build` approach as `build`, but produces an `.apk` instead
+    # of an `.aab`. An APK installs directly on a device and is the format beta
+    # tools like Firebase App Distribution accept (Milestone 4).
+    #
+    # NOTE: release is still debug-signed (see android/app/build.gradle.kts),
+    # so this APK is for local install / internal testing only — not Play.
+    # Output: build/app/outputs/flutter-apk/app-production-release.apk
+    sh("cd ../.. && fvm flutter build apk --flavor production")
+  end
 end
