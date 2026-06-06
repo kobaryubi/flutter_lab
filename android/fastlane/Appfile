@@ -1,0 +1,11 @@
+# Android identifiers that Fastlane passes to Play-Store actions (e.g. supply).
+#
+# This is the `production` flavor's applicationId — Fastlane treats it as the
+# default. The `local` flavor uses `...flutterlab.local`; when a lane targets
+# that flavor we override `package_name:` per-lane instead of here.
+package_name("com.masahikokobayashi.flutterlab")
+
+# Path to the Google Play service-account JSON key, used by
+# `upload_to_play_store` to authenticate uploads. We don't have a key yet, so
+# it's commented out — we'll enable it in the beta/release milestone.
+# json_key_file("path/to/play-store-service-account.json")
