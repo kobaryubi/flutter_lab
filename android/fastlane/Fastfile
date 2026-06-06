@@ -17,4 +17,17 @@ platform :android do
     sh("cd ../.. && fvm flutter analyze")
     sh("cd ../.. && fvm flutter test")
   end
+
+  desc "Build a release Android App Bundle (.aab) for the production flavor"
+  lane :build do
+    # Build through `flutter build` (NOT raw `gradle`) so the Dart code is
+    # compiled and the flavor wiring is applied. We produce an `.aab` because
+    # that's the format Google Play requires. The `production` flavor needs no
+    # --dart-define-from-file (only `local` does).
+    #
+    # NOTE: release is still debug-signed (see android/app/build.gradle.kts),
+    # so this artifact is for local verification only — not Play upload yet.
+    # Output: build/app/outputs/bundle/productionRelease/app-production-release.aab
+    sh("cd ../.. && fvm flutter build appbundle --flavor production")
+  end
 end

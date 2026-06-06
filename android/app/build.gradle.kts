@@ -47,6 +47,15 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
+
+            // R8 code shrinking is already enabled by default for Flutter
+            // release builds, so we don't set `isMinifyEnabled`. We only point
+            // R8 at our keep rules so it stops aborting on the missing optional
+            // ML Kit / ad-SDK classes (see android/app/proguard-rules.pro).
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
         }
     }
 }
