@@ -208,6 +208,7 @@ This approach makes it easier to understand, debug, and learn from the implement
 - **No automatic commits** - Do not commit changes automatically; only commit when explicitly requested
 - **No git -C option** - Do not use the `-C` option in git commands; run git commands from the working directory instead
 - **Use fvm for all CLI commands** - Always use `fvm flutter` instead of `flutter` and `fvm dart` instead of `dart` when running CLI commands (e.g., `fvm flutter analyze` instead of `flutter analyze`, `fvm dart run pigeon` instead of `dart run pigeon`)
+- **Use `bundle exec` for fastlane** - Always run Fastlane via `bundle exec fastlane <lane>` (not raw `fastlane`) so the version pinned in `Gemfile.lock` is used. This works from any subdirectory (e.g. `android/`) because Bundler walks up to the root `Gemfile`.
 - **Named parameters** - Use named parameters for function arguments to improve readability (e.g., `saveDate({required DateTime date})` instead of `saveDate(DateTime date)`)
 - **Ternary operator** - Prefer ternary operator over if-else for simple conditional returns (e.g., `return value == null ? Failure() : Success(value)`)
 - **UI state variable naming** - Name the variable `uiState` when watching a ViewModel provider (e.g., `final uiState = ref.watch(myViewModelProvider)` instead of `final state = ref.watch(myViewModelProvider)`)
