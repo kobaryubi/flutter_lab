@@ -7,8 +7,6 @@ import 'package:flutter_lab/application/logger/logger_gateway.dart';
 import 'package:flutter_lab/application/memory_storage/memory_storage_gateway.dart';
 import 'package:flutter_lab/application/service/deeplink_application_service.dart';
 import 'package:flutter_lab/application/web_view_cookie/web_view_cookie_gateway.dart';
-// import 'package:flutter_lab/data/gateway/adfurikun/sdk_adfurikun_gateway.dart';
-import 'package:flutter_lab/data/gateway/adfurikun/mock_adfurikun_gateway.dart';
 // import 'package:flutter_lab/data/gateway/adjust/sdk_adjust_gateway.dart';
 import 'package:flutter_lab/data/gateway/adjust/mock_adjust_gateway.dart';
 import 'package:flutter_lab/data/gateway/analytics/firebase_analytics_gateway.dart';
@@ -47,7 +45,6 @@ import 'package:flutter_lab/data/repositories/shortcut/file_system_shortcut_repo
 import 'package:flutter_lab/data/service/push_notification/default_push_message_service.dart';
 import 'package:flutter_lab/data/service/secure_storage/secure_storage_service.dart';
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
-import 'package:flutter_lab/domain/adfurikun/adfurikun_gateway.dart';
 import 'package:flutter_lab/domain/adjust/adjust_gateway.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
 import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
@@ -80,12 +77,6 @@ import 'package:flutter_lab/domain/push_notification/push_message_service.dart';
 import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/text_recognition/text_recognition_gateway.dart';
-import 'package:flutter_lab/domain/use_cases/adfurikun/initialize_adfurikun_interstitial_ad_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/adfurikun/initialize_adfurikun_reward_ad_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_interstitial_ad_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/adfurikun/load_adfurikun_reward_ad_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/adfurikun/play_adfurikun_interstitial_ad_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/adfurikun/play_adfurikun_reward_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adjust/consume_pending_deeplink_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adjust/get_adid_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adjust/initialize_adjust_use_case.dart';
@@ -610,52 +601,6 @@ ShowMediationDebuggerUseCase showMediationDebuggerUseCase(Ref ref) =>
     ShowMediationDebuggerUseCase(
       maxGateway: ref.read(maxGatewayProvider),
     );
-
-// adfurikun
-@Riverpod(keepAlive: true)
-AdfurikunGateway adfurikunGateway(Ref ref) => MockAdfurikunGateway();
-
-@riverpod
-InitializeAdfurikunInterstitialAdUseCase
-initializeAdfurikunInterstitialAdUseCase(Ref ref) =>
-    InitializeAdfurikunInterstitialAdUseCase(
-      adfurikunGateway: ref.read(adfurikunGatewayProvider),
-    );
-
-@riverpod
-LoadAdfurikunInterstitialAdUseCase loadAdfurikunInterstitialAdUseCase(
-  Ref ref,
-) => LoadAdfurikunInterstitialAdUseCase(
-  adfurikunGateway: ref.read(adfurikunGatewayProvider),
-);
-
-@riverpod
-PlayAdfurikunInterstitialAdUseCase playAdfurikunInterstitialAdUseCase(
-  Ref ref,
-) => PlayAdfurikunInterstitialAdUseCase(
-  adfurikunGateway: ref.read(adfurikunGatewayProvider),
-);
-
-@riverpod
-InitializeAdfurikunRewardAdUseCase initializeAdfurikunRewardAdUseCase(
-  Ref ref,
-) => InitializeAdfurikunRewardAdUseCase(
-  adfurikunGateway: ref.read(adfurikunGatewayProvider),
-);
-
-@riverpod
-LoadAdfurikunRewardAdUseCase loadAdfurikunRewardAdUseCase(
-  Ref ref,
-) => LoadAdfurikunRewardAdUseCase(
-  adfurikunGateway: ref.read(adfurikunGatewayProvider),
-);
-
-@riverpod
-PlayAdfurikunRewardAdUseCase playAdfurikunRewardAdUseCase(
-  Ref ref,
-) => PlayAdfurikunRewardAdUseCase(
-  adfurikunGateway: ref.read(adfurikunGatewayProvider),
-);
 
 // analytics
 @riverpod

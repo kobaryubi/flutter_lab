@@ -310,11 +310,6 @@ enum Screen {
     {MemberState.guest, MemberState.provisional, MemberState.regular},
     isAllowedFromDeeplink: false,
   ),
-  adfurikun(
-    Routes.adfurikun,
-    {MemberState.guest, MemberState.provisional, MemberState.regular},
-    isAllowedFromDeeplink: false,
-  ),
   profilePassport(
     Routes.profilePassport,
     {MemberState.guest, MemberState.provisional, MemberState.regular},
