@@ -1,0 +1,20 @@
+# Fastfile — defines the "lanes" (automation recipes) for Android.
+#
+# Run a lane from the project root with:
+#   bundle exec fastlane android test
+#
+# Docs: https://docs.fastlane.tools/actions/
+
+# Tells Fastlane that the lanes below target the Android platform.
+default_platform(:android)
+
+platform :android do
+  desc "Run the Flutter analyzer and unit tests"
+  lane :test do
+    # `sh` runs a shell command from inside the `android/fastlane/` directory,
+    # so we `cd ../..` up to the Flutter project root before running tools.
+    # We use `fvm flutter` to honor this project's pinned Flutter version.
+    sh("cd ../.. && fvm flutter analyze")
+    sh("cd ../.. && fvm flutter test")
+  end
+end
