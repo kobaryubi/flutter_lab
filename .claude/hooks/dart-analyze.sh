@@ -28,10 +28,26 @@ esac
 
 cd "$CLAUDE_PROJECT_DIR"
 
-# Analyze the edited file only. On any issue, dart analyze exits non-zero;
-# forward its output via stderr and exit 2 so Claude is prompted to fix it.
+# Analyze the edited file only. On any issue, dart analyze exits non-zero.
+# To keep token cost low we don't forward the full report: we show the issue
+# count plus only the first 3 issues. Claude can re-run `fvm dart analyze` for
+# the rest if needed.
 if ! output=$(fvm dart analyze "$file_path" 2>&1); then
-  echo "$output" >&2
+  # Issue lines look like "  error - file:line:col - message - code".
+  issues=$(printf '%s\n' "$output" | grep -E '^[[:space:]]*(error|warning|info)' || true)
+
+  # Unexpected failure (not a normal issue list) — surface the raw output.
+  if [ -z "$issues" ]; then
+    printf '%s\n' "$output" >&2
+    exit 2
+  fi
+
+  count=$(printf '%s\n' "$issues" | grep -c . || true)
+  {
+    echo "dart analyze: $count issue(s) in $file_path (showing first 3):"
+    printf '%s\n' "$issues" | head -3
+    [ "$count" -gt 3 ] && echo "… +$((count - 3)) more — run: fvm dart analyze \"$file_path\"" || true
+  } >&2
   exit 2
 fi
 
