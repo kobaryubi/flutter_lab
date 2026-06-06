@@ -109,14 +109,20 @@ flutter widget-preview start
 
 ### rbenv
 
+On macOS, do **not** use the system Ruby for Fastlane/CocoaPods. Manage Ruby with
+[rbenv](https://github.com/rbenv/rbenv) instead. Fastlane supports Ruby 2.7+ but
+prefers 3.3 or newer.
+
 ```sh
-# Install rbenv (includes ruby-build)
+# 1. Install rbenv (Homebrew bundles ruby-build, which provides `rbenv install`)
 brew install rbenv
 
-# Install Ruby version specified in .ruby-version
+# 2. Install the Ruby version pinned in .ruby-version (reads the file automatically)
 rbenv install
 
-# Verify
+# 3. Verify rbenv is active and on the expected version
+which ruby        # -> ~/.rbenv/shims/ruby  (NOT /usr/bin/ruby)
+rbenv version     # -> matches .ruby-version
 ruby --version
 ```
 
