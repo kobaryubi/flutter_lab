@@ -39,6 +39,14 @@ Build a release Android App Bundle (.aab) for the production flavor
 
 Build a release Android APK (.apk) for the production flavor
 
+### android beta_firebase
+
+```sh
+[bundle exec] fastlane android beta_firebase
+```
+
+Build and distribute the production APK to Firebase App Distribution
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
