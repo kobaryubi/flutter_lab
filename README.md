@@ -149,6 +149,35 @@ bundle install
 bundle exec fastlane [lane]
 ```
 
+### Verify release signing
+
+Confirm a built `.aab`/`.apk` was signed with the upload keystore (not the
+debug key) by checking that the artifact's signer matches the keystore's
+certificate owner.
+
+```sh
+# 1. Keystore side: who owns the certificate in the keystore?
+keytool -list -v -keystore ~/upload-keystore.jks | grep -E "Owner|SHA256"
+#   -> Owner: CN=Masahiko Kobayashi, ...
+
+# 2a. Artifact side (.aab / .jar): who actually signed it?
+jarsigner -verify -verbose -certs \
+  build/app/outputs/bundle/productionRelease/app-production-release.aab \
+  | grep -E "jar verified|CN="
+#   -> jar verified.
+#   -> X.509, CN=Masahiko Kobayashi, ...
+
+# 2b. Artifact side (.apk): apksigner is the recommended tool for APKs.
+apksigner verify --print-certs --verbose \
+  build/app/outputs/flutter-apk/app-production-release.apk
+#   -> Signer #1 certificate DN: CN=Masahiko Kobayashi, ...
+```
+
+The build is correctly release-signed when the keystore Owner CN (step 1)
+matches the artifact's signer CN (step 2). A debug-signed build instead shows
+`CN=Android Debug, O=Android, C=US`. For a strict check, compare the SHA-256
+certificate fingerprints from both sides instead of just the CN.
+
 ### fvm
 
 ```sh
