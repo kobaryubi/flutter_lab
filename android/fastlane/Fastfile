@@ -42,4 +42,21 @@ platform :android do
     # Output: build/app/outputs/flutter-apk/app-production-release.apk
     sh("cd ../.. && fvm flutter build apk --flavor production")
   end
+
+  desc "Build and distribute the production APK to Firebase App Distribution"
+  lane :beta_firebase do
+    # Reuse the build_apk lane to produce the APK, then upload it to Firebase
+    # App Distribution for the `testers` group. Authentication uses your
+    # `firebase login` credentials, so no service-account key is needed locally.
+    build_apk
+
+    firebase_app_distribution(
+      # Production Android app ID from android/app/src/production/google-services.json.
+      app: "1:981414646881:android:4300ea58eb702e1ad1c620",
+      # Path is relative to the android/ directory (where fastlane runs).
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
+      groups: "testers",
+      release_notes: "Internal test build via fastlane",
+    )
+  end
 end
