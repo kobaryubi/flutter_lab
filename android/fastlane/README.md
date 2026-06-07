@@ -31,6 +31,14 @@ Run the Flutter analyzer and unit tests
 
 Build a release Android App Bundle (.aab) for the production flavor
 
+### android build_apk
+
+```sh
+[bundle exec] fastlane android build_apk
+```
+
+Build a release Android APK (.apk) for the production flavor
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
