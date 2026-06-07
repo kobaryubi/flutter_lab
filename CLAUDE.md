@@ -144,7 +144,17 @@ Files are auto-generated with build_runner:
 - `*.auto_mappr.dart` - DTO mapping
 - `router.g.dart` - Typed routes
 
-Run `fvm dart run build_runner build` after modifying annotated files.
+### Code Generation Workflow
+
+- A `build_runner watch` process is expected to be running during development.
+  Do **not** run a one-shot `build_runner build` for routine edits — let watch
+  regenerate `*.g.dart` / `*.freezed.dart` automatically (saves time and tokens).
+- **Exception — before committing generated files:** ensure they are up to date.
+  If there's any doubt that watch has caught up (e.g. you edited an annotated
+  file in the same turn), run once and check only the summary:
+  `fvm dart run build_runner build --delete-conflicting-outputs 2>&1 | tail -3`
+- If generated files reference deleted/renamed symbols, assume watch is stale
+  and run the one-shot build above rather than guessing.
 
 ## Flavors
 
