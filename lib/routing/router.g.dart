@@ -12,7 +12,6 @@ List<RouteBase> get $appRoutes => [
   $animatedSwitcherRoute,
   $appLifecycleRoute,
   $appStoreRoute,
-  $arutanaRoute,
   $asyncStateRaceRoute,
   $autoMapprDemoRoute,
   $brightnessRoute,
@@ -206,32 +205,6 @@ mixin $AppStoreRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/app_store');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $arutanaRoute => GoRouteData.$route(
-  path: '/arutana',
-  name: 'arutana',
-  factory: $ArutanaRoute._fromState,
-);
-
-mixin $ArutanaRoute on GoRouteData {
-  static ArutanaRoute _fromState(GoRouterState state) => ArutanaRoute();
-
-  @override
-  String get location => GoRouteData.$location('/arutana');
 
   @override
   void go(BuildContext context) => context.go(location);

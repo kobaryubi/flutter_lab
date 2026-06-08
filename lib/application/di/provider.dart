@@ -12,7 +12,6 @@ import 'package:flutter_lab/data/gateway/adjust/mock_adjust_gateway.dart';
 import 'package:flutter_lab/data/gateway/analytics/firebase_analytics_gateway.dart';
 import 'package:flutter_lab/data/gateway/app_badge/app_badge_plus_app_badge_gateway.dart';
 import 'package:flutter_lab/data/gateway/app_info/package_info_plus_app_info_gateway.dart';
-import 'package:flutter_lab/data/gateway/arutana/pigeon_arutana_gateway.dart';
 import 'package:flutter_lab/data/gateway/clock/clock_clock_gateway.dart';
 import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart';
 import 'package:flutter_lab/data/gateway/device_info/device_info_plus_device_info_gateway.dart';
@@ -51,7 +50,6 @@ import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
 import 'package:flutter_lab/domain/app_badge/app_badge_gateway.dart';
 import 'package:flutter_lab/domain/app_info/app_info_gateway.dart';
 import 'package:flutter_lab/domain/app_store/app_store_repository.dart';
-import 'package:flutter_lab/domain/arutana/arutana_gateway.dart';
 import 'package:flutter_lab/domain/battery/battery_gateway.dart';
 import 'package:flutter_lab/domain/battery/platform_battery_gateway.dart';
 import 'package:flutter_lab/domain/clock/clock_gateway.dart';
@@ -528,10 +526,6 @@ GreetingApi greetingApi(Ref ref) => GreetingApi();
 
 @riverpod
 PigeonGateway pigeonGateway(Ref ref) => PigeonPigeonGateway();
-
-// arutana
-@Riverpod(keepAlive: true)
-ArutanaGateway arutanaGateway(Ref ref) => PigeonArutanaGateway();
 
 // profile passport
 @Riverpod(keepAlive: true)

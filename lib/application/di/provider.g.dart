@@ -3056,47 +3056,6 @@ final class PigeonGatewayProvider
 
 String _$pigeonGatewayHash() => r'e7e9283b95eab8c82494d0c7be649825c797b615';
 
-@ProviderFor(arutanaGateway)
-const arutanaGatewayProvider = ArutanaGatewayProvider._();
-
-final class ArutanaGatewayProvider
-    extends $FunctionalProvider<ArutanaGateway, ArutanaGateway, ArutanaGateway>
-    with $Provider<ArutanaGateway> {
-  const ArutanaGatewayProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'arutanaGatewayProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$arutanaGatewayHash();
-
-  @$internal
-  @override
-  $ProviderElement<ArutanaGateway> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  ArutanaGateway create(Ref ref) {
-    return arutanaGateway(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ArutanaGateway value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<ArutanaGateway>(value),
-    );
-  }
-}
-
-String _$arutanaGatewayHash() => r'471876ccb0ccd0aa88b1b0857dee0ea1d93dce98';
-
 @ProviderFor(profilePassportGateway)
 const profilePassportGatewayProvider = ProfilePassportGatewayProvider._();
 
