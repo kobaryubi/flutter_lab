@@ -63,6 +63,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'route aware demo', route: RouteAwareDemoRoute()),
     AppLink(title: 'current route state', route: CurrentRouteStateRoute()),
     AppLink(title: 'horizontal layout', route: HorizontalLayoutRoute()),
+    AppLink(title: 'stack fit', route: StackFitRoute()),
     AppLink(title: 'nested button', route: NestedButtonRoute()),
     AppLink(title: 'markup sample', route: MarkupSampleRoute()),
     AppLink(title: 'ProfilePassport', route: ProfilePassportRoute()),
