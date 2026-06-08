@@ -74,6 +74,7 @@ List<RouteBase> get $appRoutes => [
   $shellDemoDetailRoute,
   $shellDemoRoute,
   $shellDemoSubRoute,
+  $stackFitRoute,
   $streamSubscriptionRoute,
   $talkerLogsRoute,
   $tarDownloadRoute,
@@ -2026,6 +2027,32 @@ mixin $ShellDemoSubRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/shell_demo_sub');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $stackFitRoute => GoRouteData.$route(
+  path: '/stack_fit',
+  name: 'stack_fit',
+  factory: $StackFitRoute._fromState,
+);
+
+mixin $StackFitRoute on GoRouteData {
+  static StackFitRoute _fromState(GoRouterState state) => StackFitRoute();
+
+  @override
+  String get location => GoRouteData.$location('/stack_fit');
 
   @override
   void go(BuildContext context) => context.go(location);
