@@ -19,4 +19,16 @@ platform :ios do
     sh("cd ../.. && fvm flutter analyze")
     sh("cd ../.. && fvm flutter test")
   end
+
+  desc "Build the iOS app (no code signing) to verify it compiles"
+  lane :build do
+    # Build through `flutter build` (NOT raw `xcodebuild`) so the Dart code is
+    # compiled and the flavor wiring (production scheme) is applied.
+    #
+    # `--no-codesign` skips signing entirely, so this works WITHOUT a
+    # certificate / provisioning profile — it only verifies the app compiles.
+    # A distributable `.ipa` (which requires signing) comes in a later
+    # milestone via `flutter build ipa`.
+    sh("cd ../.. && fvm flutter build ios --no-codesign --flavor production")
+  end
 end
