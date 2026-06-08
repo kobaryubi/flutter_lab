@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/hook/use_route_aware.dart';
+import 'package:flutter_lab/hook/use_route_screen_initialization.dart';
 import 'package:flutter_lab/routing/route_observer.dart';
 import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
@@ -48,6 +49,17 @@ class _Body extends HookConsumerWidget {
       didPop: () => handleEvent('didPop'),
       didPushNext: () => handleEvent('didPushNext'),
       didPopNext: () => handleEvent('didPopNext'),
+    );
+
+    /// Logs an initialization firing so the three init triggers (first
+    /// appearance, return, foreground resume) are visible in the event list.
+    void handleInitialize() {
+      handleEvent('onInitialize');
+    }
+
+    useRouteScreenInitialization(
+      ref.read(routeObserverProvider),
+      onInitialize: handleInitialize,
     );
 
     /// Navigates to the detail screen to trigger route-aware events.
