@@ -1,0 +1,22 @@
+# Fastfile — defines the "lanes" (automation recipes) for iOS.
+#
+# Run a lane from the project root with:
+#   bundle exec fastlane ios test
+#
+# Docs: https://docs.fastlane.tools/actions/
+
+# Tells Fastlane that the lanes below target the iOS platform.
+default_platform(:ios)
+
+platform :ios do
+  desc "Run the Flutter analyzer and unit tests"
+  lane :test do
+    # `sh` runs a shell command from inside the `ios/fastlane/` directory,
+    # so we `cd ../..` up to the Flutter project root before running tools.
+    # We use `fvm flutter` to honor this project's pinned Flutter version.
+    # This lane is platform-agnostic (same as the Android one) and needs no
+    # Apple Developer account.
+    sh("cd ../.. && fvm flutter analyze")
+    sh("cd ../.. && fvm flutter test")
+  end
+end
