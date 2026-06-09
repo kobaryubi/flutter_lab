@@ -23,6 +23,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Run the Flutter analyzer and unit tests
 
+### ios build
+
+```sh
+[bundle exec] fastlane ios build
+```
+
+Build the iOS app (no code signing) to verify it compiles
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
