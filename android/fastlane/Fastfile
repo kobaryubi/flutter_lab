@@ -59,4 +59,21 @@ platform :android do
       release_notes: "Internal test build via fastlane",
     )
   end
+
+  desc "Build and upload the production AAB to Google Play internal testing"
+  lane :beta_play do
+    # Build the AAB (Play requires .aab), then upload it to the `internal`
+    # test track. Auth uses the service-account key from the Appfile
+    # (json_key_file). Path is relative to the android/ directory.
+    #
+    # Prerequisites (one-time, done in the Play Console / GCP — not by fastlane):
+    #   1. App created on Play Console and at least ONE manual AAB upload.
+    #   2. A service-account JSON key with release permission for this app.
+    build
+
+    upload_to_play_store(
+      track: "internal",
+      aab: "../build/app/outputs/bundle/productionRelease/app-production-release.aab",
+    )
+  end
 end

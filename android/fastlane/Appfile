@@ -6,6 +6,6 @@
 package_name("com.masahikokobayashi.flutterlab")
 
 # Path to the Google Play service-account JSON key, used by
-# `upload_to_play_store` to authenticate uploads. We don't have a key yet, so
-# it's commented out — we'll enable it in the beta/release milestone.
-# json_key_file("path/to/play-store-service-account.json")
+# `upload_to_play_store` to authenticate uploads. Kept OUTSIDE the repo (home
+# directory) so the secret is never committed — place your downloaded key there.
+json_key_file("/Users/masahikokobayashi/play-store-key.json")
