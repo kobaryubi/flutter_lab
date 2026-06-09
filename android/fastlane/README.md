@@ -47,6 +47,14 @@ Build a release Android APK (.apk) for the production flavor
 
 Build and distribute the production APK to Firebase App Distribution
 
+### android beta_play
+
+```sh
+[bundle exec] fastlane android beta_play
+```
+
+Build and upload the production AAB to Google Play internal testing
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
