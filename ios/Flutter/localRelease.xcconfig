@@ -4,3 +4,10 @@
 ASSET_PREFIX=local
 BUNDLE_NAME=Flutter Lab Local
 BUNDLE_DISPLAY_NAME=Flutter Lab Local
+
+// Flutter delivers the engine Flutter.framework via a Swift Package, but this
+// project uses CocoaPods with SPM disabled, so neither SPM nor the generated
+// Pods xcconfig puts the engine framework on FRAMEWORK_SEARCH_PATHS and
+// <Flutter/Flutter.h> can't be resolved. Supply the release/device engine slice
+// here (Release-only config, so debug `flutter run` is unaffected).
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$(FLUTTER_ROOT)/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64"
