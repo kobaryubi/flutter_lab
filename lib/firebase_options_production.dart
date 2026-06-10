@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'flutter-lab-production.firebasestorage.app',
     iosBundleId: 'com.masahikokobayashi.flutterlab',
   );
+
 }
