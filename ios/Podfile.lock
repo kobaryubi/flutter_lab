@@ -1,20 +1,4 @@
 PODS:
-  - AdfurikunSDK-iOS/AdMob (4.3.0):
-    - AdfurikunSDK-iOS/Core
-    - Google-Mobile-Ads-SDK (< 13.0, >= 11.2.0)
-  - AdfurikunSDK-iOS/Afio (4.3.0):
-    - AdfurikunSDK-iOS/Core
-    - AMoAd (<= 6.2.7)
-  - AdfurikunSDK-iOS/Core (4.3.0)
-  - AdfurikunSDK-iOS/Five (4.3.0):
-    - AdfurikunSDK-iOS/Core
-    - FiveAd (= 2.9.20251119)
-  - AdfurikunSDK-iOS/InMobi (4.3.0):
-    - AdfurikunSDK-iOS/Core
-    - InMobiSDK (= 11.1.0)
-  - AdfurikunSDK-iOS/Pangle (4.3.0):
-    - AdfurikunSDK-iOS/Core
-    - Ads-Global (= 7.8.0.5)
   - Adjust (5.6.2):
     - Adjust/Adjust (= 5.6.2)
   - Adjust/Adjust (5.6.2):
@@ -23,37 +7,10 @@ PODS:
     - Adjust (= 5.6.2)
     - Flutter
   - AdjustSignature (3.67.0)
-  - Ads-Global (7.8.0.5):
-    - Ads-Global/BUAdSDK (= 7.8.0.5)
-  - Ads-Global/BUAdSDK (7.8.0.5):
-    - Ads-Global/PangleSDK
-    - Ads-Global/TikTokBusinessSDK
-  - Ads-Global/PangleSDK (7.8.0.5)
-  - Ads-Global/TikTokBusinessSDK (7.8.0.5)
-  - AMoAd (6.2.7)
   - app_badge_plus (1.2.9):
     - Flutter
   - app_links (6.4.1):
     - Flutter
-  - applovin_max (4.6.2):
-    - AppLovinSDK (= 13.6.0)
-    - Flutter
-  - AppLovinMediationByteDanceAdapter (7.8.0.5.0):
-    - Ads-Global (= 7.8.0.5)
-    - AppLovinSDK (>= 13.0.0)
-  - AppLovinMediationGoogleAdManagerAdapter (12.14.0.0):
-    - AppLovinSDK (>= 13.0.0)
-    - Google-Mobile-Ads-SDK (= 12.14.0)
-  - AppLovinMediationInMobiAdapter (11.1.0.0):
-    - AppLovinSDK (>= 13.0.0)
-    - InMobiSDK (= 11.1.0)
-  - AppLovinMediationLineAdapter (2.9.20251119.0):
-    - AppLovinSDK (>= 13.0.0)
-    - FiveAd (= 2.9.20251119)
-  - AppLovinMediationMaioAdapter (2.1.6.0):
-    - AppLovinSDK
-    - MaioSDK-v2 (= 2.1.6)
-  - AppLovinSDK (13.6.0)
   - camera_avfoundation (0.0.1):
     - Flutter
   - CocoaAsyncSocket (7.6.5)
@@ -171,7 +128,6 @@ PODS:
     - nanopb (~> 3.30910.0)
     - PromisesSwift (~> 2.1)
   - FirebaseSharedSwift (12.9.0)
-  - FiveAd (2.9.20251119)
   - Flutter (1.0.0)
   - flutter_inappwebview_ios (0.0.1):
     - Flutter
@@ -268,10 +224,8 @@ PODS:
   - GTMSessionFetcher/Core (3.5.0)
   - in_app_review (2.0.0):
     - Flutter
-  - InMobiSDK (11.1.0)
   - integration_test (0.0.1):
     - Flutter
-  - MaioSDK-v2 (2.1.6)
   - MLImage (1.0.0-beta6)
   - MLKitCommon (12.0.0):
     - GoogleDataTransport (~> 10.0)
@@ -334,20 +288,9 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - AdfurikunSDK-iOS/AdMob (= 4.3.0)
-  - AdfurikunSDK-iOS/Afio (= 4.3.0)
-  - AdfurikunSDK-iOS/Five (= 4.3.0)
-  - AdfurikunSDK-iOS/InMobi (= 4.3.0)
-  - AdfurikunSDK-iOS/Pangle (= 4.3.0)
   - adjust_sdk (from `.symlinks/plugins/adjust_sdk/ios`)
   - app_badge_plus (from `.symlinks/plugins/app_badge_plus/ios`)
   - app_links (from `.symlinks/plugins/app_links/ios`)
-  - applovin_max (from `.symlinks/plugins/applovin_max/ios`)
-  - AppLovinMediationByteDanceAdapter (= 7.8.0.5.0)
-  - AppLovinMediationGoogleAdManagerAdapter (= 12.14.0.0)
-  - AppLovinMediationInMobiAdapter (= 11.1.0.0)
-  - AppLovinMediationLineAdapter (= 2.9.20251119.0)
-  - AppLovinMediationMaioAdapter (= 2.1.6.0)
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
@@ -380,17 +323,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AdfurikunSDK-iOS
     - Adjust
     - AdjustSignature
-    - Ads-Global
-    - AMoAd
-    - AppLovinMediationByteDanceAdapter
-    - AppLovinMediationGoogleAdManagerAdapter
-    - AppLovinMediationInMobiAdapter
-    - AppLovinMediationLineAdapter
-    - AppLovinMediationMaioAdapter
-    - AppLovinSDK
     - CocoaAsyncSocket
     - Firebase
     - FirebaseABTesting
@@ -406,7 +340,6 @@ SPEC REPOS:
     - FirebaseRemoteConfigInterop
     - FirebaseSessions
     - FirebaseSharedSwift
-    - FiveAd
     - Google-Mobile-Ads-SDK
     - GoogleAdsOnDeviceConversion
     - GoogleAppMeasurement
@@ -416,8 +349,6 @@ SPEC REPOS:
     - GoogleUserMessagingPlatform
     - GoogleUtilities
     - GTMSessionFetcher
-    - InMobiSDK
-    - MaioSDK-v2
     - MLImage
     - MLKitCommon
     - MLKitTextRecognition
@@ -436,8 +367,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/app_badge_plus/ios"
   app_links:
     :path: ".symlinks/plugins/app_links/ios"
-  applovin_max:
-    :path: ".symlinks/plugins/applovin_max/ios"
   camera_avfoundation:
     :path: ".symlinks/plugins/camera_avfoundation/ios"
   connectivity_plus:
@@ -496,21 +425,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
-  AdfurikunSDK-iOS: f052d3b80cf6d4b840484619e22e89ec91822d26
   Adjust: 62ea53a252534df416676e7ac2f1558d60e6e39e
   adjust_sdk: b0f5480ca829d23c08a51934c634893aa8cc01e0
   AdjustSignature: 9498705a4ac67b719e31828be4d74fbb8656950c
-  Ads-Global: f4958eaa8e92b32a05fab125fed7822be81cf878
-  AMoAd: e63ccfe84d9cefe07e03442c2e63753cc0a5f729
   app_badge_plus: 6032bcb1e31689948ff63404c5d6f118001a9dee
   app_links: 3dbc685f76b1693c66a6d9dd1e9ab6f73d97dc0a
-  applovin_max: 48b3939a5e8e99e54ebacaff210fdae476fe1f88
-  AppLovinMediationByteDanceAdapter: 7b4cc00ecd2cc856a3b9ec6c456f5570dd770276
-  AppLovinMediationGoogleAdManagerAdapter: f958f755741c0f9184b04b7f9e388fbbe07d018b
-  AppLovinMediationInMobiAdapter: 08523b56427250dae5e79408134461504ec50fe0
-  AppLovinMediationLineAdapter: 0f1217d3e32f1ad5b46eb1f714d76c7a8854251a
-  AppLovinMediationMaioAdapter: e399d8fcdf8ce4737600fcc9e19b9d33c6ea993d
-  AppLovinSDK: c516661fbeb9d7ba1ec8c10c8da60581178a6204
   camera_avfoundation: 5675ca25298b6f81fa0a325188e7df62cc217741
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
@@ -534,7 +453,6 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfigInterop: 765ee19cd2bfa8e54937c8dae901eb634ad6787d
   FirebaseSessions: a2d06fd980431fda934c7a543901aca05fc4edcc
   FirebaseSharedSwift: 9d2fa84a46676302b89dbd5e6e62bce2fe376909
-  FiveAd: b6aa39df9d85404527f14a9c7729eadbb4cdc799
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   flutter_inappwebview_ios: b89ba3482b96fb25e00c967aae065701b66e9b99
   flutter_local_notifications: 643a3eda1ce1c0599413ca31672536d423dee214
@@ -552,9 +470,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   in_app_review: 7dd1ea365263f834b8464673f9df72c80c17c937
-  InMobiSDK: 43b1d6560bd75c8c382bb54fa8e248f5ed979860
   integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
-  MaioSDK-v2: 02780811845ba7dff080c9b92b6a5d29484ac777
   MLImage: 0ad1c5f50edd027672d8b26b0fee78a8b4a0fc56
   MLKitCommon: 07c2c33ae5640e5380beaaa6e4b9c249a205542d
   MLKitTextRecognition: 3b41f3ff084a79afb214408d25d2068d77ab322c
@@ -577,6 +493,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: 7a95fa5b60cc718a708b8f2966718e93db0cef1b
   webview_flutter_wkwebview: 8ebf4fded22593026f7dbff1fbff31ea98573c8d
 
-PODFILE CHECKSUM: 2405d5e3481c62524472b0147a55971b34074eed
+PODFILE CHECKSUM: 6e3ea28ed5ed78c5ed2c66dbe674300640d5643f
 
 COCOAPODS: 1.16.2
