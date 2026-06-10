@@ -300,11 +300,6 @@ enum Screen {
     {MemberState.guest, MemberState.provisional, MemberState.regular},
     isAllowedFromDeeplink: false,
   ),
-  max(
-    Routes.max,
-    {MemberState.guest, MemberState.provisional, MemberState.regular},
-    isAllowedFromDeeplink: false,
-  ),
   profilePassport(
     Routes.profilePassport,
     {MemberState.guest, MemberState.provisional, MemberState.regular},

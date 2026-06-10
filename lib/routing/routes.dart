@@ -73,7 +73,6 @@ abstract final class Routes {
       '/routing/cupertino/fullscreen_dialog';
 
   static const petCache = '/pet_cache';
-  static const max = '/max';
   static const profilePassport = '/profile_passport';
   static const animatedSwitcher = '/animated_switcher';
 

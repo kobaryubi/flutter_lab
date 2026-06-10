@@ -39,14 +39,4 @@ class F {
     .local => 'http://$_localHost:8081',
     .production => 'https://your-domain.example.com',
   };
-
-  /// Test device advertising IDs for AppLovin MAX SDK test mode.
-  static List<String> get testDeviceAdvertisingIds {
-    switch (appFlavor) {
-      case Flavor.local:
-        return ['TODO-IDFA', 'TODO-GAID'];
-      case Flavor.production:
-        return [];
-    }
-  }
 }

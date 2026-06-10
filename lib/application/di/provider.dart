@@ -19,8 +19,6 @@ import 'package:flutter_lab/data/gateway/file_system_shortcut_icon_gateway.dart'
 import 'package:flutter_lab/data/gateway/google_api/plugin_google_api_gateway.dart';
 import 'package:flutter_lab/data/gateway/local_notification/flutter_local_notifications_local_notification_gateway.dart';
 import 'package:flutter_lab/data/gateway/logger/talker_logger_gateway.dart';
-// import 'package:flutter_lab/data/gateway/max/sdk_max_gateway.dart';
-import 'package:flutter_lab/data/gateway/max/mock_max_gateway.dart';
 import 'package:flutter_lab/data/gateway/memory_storage/map_memory_storage_gateway.dart';
 import 'package:flutter_lab/data/gateway/native_button/platform_native_button_gateway.dart';
 import 'package:flutter_lab/data/gateway/performance/firebase_performance_gateway.dart';
@@ -63,7 +61,6 @@ import 'package:flutter_lab/domain/in_app_review/in_app_review_repository.dart';
 import 'package:flutter_lab/domain/information/information_repository.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_gateway.dart';
 import 'package:flutter_lab/domain/location/location_repository.dart';
-import 'package:flutter_lab/domain/max/max_gateway.dart';
 import 'package:flutter_lab/domain/native_button/native_button_gateway.dart';
 import 'package:flutter_lab/domain/navigation/url_navigation_list_repository.dart';
 import 'package:flutter_lab/domain/network/network_gateway.dart';
@@ -100,10 +97,6 @@ import 'package:flutter_lab/domain/use_cases/local_notification/delete_local_not
 import 'package:flutter_lab/domain/use_cases/local_notification/initialize_local_notification_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/watch_location_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/max/initialize_max_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/max/load_rewarded_ad_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/max/show_mediation_debugger_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/max/show_rewarded_ad_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/native_button/watch_native_button_tap_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/network/watch_connectivity_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/performance/increment_metric_use_case.dart';
@@ -569,31 +562,6 @@ SavePendingDeeplinkUseCase savePendingDeeplinkUseCase(Ref ref) =>
 ConsumePendingDeeplinkUseCase consumePendingDeeplinkUseCase(Ref ref) =>
     ConsumePendingDeeplinkUseCase(
       memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
-    );
-
-// max
-@Riverpod(keepAlive: true)
-MaxGateway maxGateway(Ref ref) => MockMaxGateway();
-
-@riverpod
-InitializeMaxUseCase initializeMaxUseCase(Ref ref) => InitializeMaxUseCase(
-  maxGateway: ref.read(maxGatewayProvider),
-);
-
-@riverpod
-LoadRewardedAdUseCase loadRewardedAdUseCase(Ref ref) => LoadRewardedAdUseCase(
-  maxGateway: ref.read(maxGatewayProvider),
-);
-
-@riverpod
-ShowRewardedAdUseCase showRewardedAdUseCase(Ref ref) => ShowRewardedAdUseCase(
-  maxGateway: ref.read(maxGatewayProvider),
-);
-
-@riverpod
-ShowMediationDebuggerUseCase showMediationDebuggerUseCase(Ref ref) =>
-    ShowMediationDebuggerUseCase(
-      maxGateway: ref.read(maxGatewayProvider),
     );
 
 // analytics

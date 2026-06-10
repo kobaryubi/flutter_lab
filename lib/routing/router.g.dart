@@ -43,7 +43,6 @@ List<RouteBase> get $appRoutes => [
   $localPathsRoute,
   $loggedInHomeRoute,
   $markupSampleRoute,
-  $maxRoute,
   $methodChannelRoute,
   $navigationScreenARoute,
   $navigationScreenBRoute,
@@ -1154,32 +1153,6 @@ mixin $MarkupSampleRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/markup_sample');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $maxRoute => GoRouteData.$route(
-  path: '/max',
-  name: 'max',
-  factory: $MaxRoute._fromState,
-);
-
-mixin $MaxRoute on GoRouteData {
-  static MaxRoute _fromState(GoRouterState state) => MaxRoute();
-
-  @override
-  String get location => GoRouteData.$location('/max');
 
   @override
   void go(BuildContext context) => context.go(location);
