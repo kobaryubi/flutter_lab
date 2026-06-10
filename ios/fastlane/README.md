@@ -31,6 +31,22 @@ Run the Flutter analyzer and unit tests
 
 Build the iOS app (no code signing) to verify it compiles
 
+### ios build_ipa
+
+```sh
+[bundle exec] fastlane ios build_ipa
+```
+
+Build a signed ad-hoc .ipa for the production flavor
+
+### ios beta_firebase
+
+```sh
+[bundle exec] fastlane ios beta_firebase
+```
+
+Build and distribute the production .ipa to Firebase App Distribution
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
