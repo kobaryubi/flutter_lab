@@ -31,4 +31,41 @@ platform :ios do
     # milestone via `flutter build ipa`.
     sh("cd ../.. && fvm flutter build ios --no-codesign --flavor production")
   end
+
+  desc "Build a signed ad-hoc .ipa for the production flavor"
+  lane :build_ipa do
+    # Unlike the `build` lane (--no-codesign, compile check only), Firebase App
+    # Distribution needs a SIGNED .ipa that testers can install on real devices.
+    #
+    # `--export-method ad-hoc` produces an artifact installable on the devices
+    # listed in the ad-hoc provisioning profile (each tester's UDID must be
+    # registered in the Apple Developer portal and included in the profile).
+    #
+    # Prerequisites (one-time, set up in Xcode or via `match` — NOT by this lane):
+    #   1. Apple Developer account + distribution certificate.
+    #   2. An ad-hoc provisioning profile for com.masahikokobayashi.flutterlab
+    #      that lists the tester device UDIDs.
+    #   3. apple_id / team_id filled in the Appfile.
+    # Output: build/ios/ipa/Flutter Lab.ipa
+    sh("cd ../.. && fvm flutter build ipa --flavor production --export-method ad-hoc")
+  end
+
+  desc "Build and distribute the production .ipa to Firebase App Distribution"
+  lane :beta_firebase do
+    # iOS counterpart of the Android `beta_firebase` lane. Reuse `build_ipa` to
+    # produce the signed artifact, then upload it for the `testers` group.
+    # Auth uses your `firebase login` credentials (no service-account key needed).
+    build_ipa
+
+    firebase_app_distribution(
+      # Production iOS app ID from firebase.json (Release-production mapping).
+      app: "1:981414646881:ios:4aa48de2553c8076d1c620",
+      # `flutter build ipa` output, relative to the ios/ directory (where
+      # fastlane runs). Adjust the filename if your scheme names the .ipa
+      # differently.
+      ipa_path: "../build/ios/ipa/Flutter Lab.ipa",
+      groups: "testers",
+      release_notes: "Internal test build via fastlane",
+    )
+  end
 end
