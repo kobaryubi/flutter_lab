@@ -62,3 +62,6 @@ patrol_test/test_bundle.dart
 # https://docs.fastlane.tools/best-practices/source-control/
 **/fastlane/report.xml
 **/fastlane/Preview.html
+
+# App Store Connect API private key (.p8) — secret, never commit.
+*.p8
