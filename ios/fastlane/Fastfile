@@ -51,7 +51,15 @@ platform :ios do
     # CocoaPods is pinned in the Gemfile, so the `pod install` that `flutter
     # build` triggers resolves to the bundled version under this `bundle exec`
     # context — no env juggling needed.
-    sh("cd ../.. && fvm flutter build ipa --flavor production --export-method ad-hoc")
+    #
+    # We pass an explicit `--export-options-plist` instead of `--export-method
+    # ad-hoc`. The latter makes Flutter auto-generate an ExportOptions.plist with
+    # `signingStyle: automatic` (and no provisioningProfiles), which ignores our
+    # manually-created ad-hoc profiles and fails with "requires a provisioning
+    # profile …". The plist below pins manual signing + the exact profiles for
+    # the app and the NotificationService extension. (The path is relative to the
+    # project root, since we `cd ../..` first.)
+    sh("cd ../.. && fvm flutter build ipa --flavor production --export-options-plist ios/ExportOptions-adhoc.plist")
   end
 
   desc "Build and distribute the production .ipa to Firebase App Distribution"

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  Export options for `flutter build ipa` (production, ad-hoc / release-testing).
+
+	  Why this file exists: by default the "export method ad-hoc" flag makes
+	  Flutter auto-generate an ExportOptions.plist with `signingStyle: automatic`
+	  and NO `provisioningProfiles`, which makes Xcode IGNORE the manually-created
+	  ad-hoc profiles and resolve signing itself. Passing this plist via the
+	  "export options plist" flag forces manual signing with the exact profiles
+	  below, matching the Manual CODE_SIGN_STYLE set on the Release-production
+	  configs of both the Runner app and the NotificationService extension.
+	-->
+	<key>method</key>
+	<string>release-testing</string>
+	<key>signingStyle</key>
+	<string>manual</string>
+	<key>teamID</key>
+	<string>TENQMTMR26</string>
+	<key>signingCertificate</key>
+	<string>Apple Distribution</string>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>com.masahikokobayashi.flutterlab</key>
+		<string>Flutter Lab AdHoc Production</string>
+		<key>com.masahikokobayashi.flutterlab.default.NotificationService</key>
+		<string>Flutter Lab NotificationService AdHoc Production</string>
+	</dict>
+</dict>
+</plist>
