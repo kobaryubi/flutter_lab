@@ -35,6 +35,14 @@ target 'Runner' do
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 
+  # Declared explicitly in BOTH the app and the NotificationService extension so
+  # CocoaPods integrates a single shared build of GoogleUtilities. Without this,
+  # both targets (the app via Firebase plugins, the extension via
+  # Firebase/Messaging) each produce GoogleUtilities.framework /
+  # GoogleUtilities_Privacy.bundle into the shared archive output, failing the
+  # archive with "Multiple commands produce …". See flutterfire#16818.
+  pod 'GoogleUtilities'
+
   target 'RunnerTests' do
     inherit! :search_paths
   end
@@ -47,6 +55,10 @@ end
 target 'NotificationService' do
   use_frameworks!
   pod 'Firebase/Messaging'
+  # See the note on the Runner target: declaring GoogleUtilities here too lets
+  # CocoaPods share a single build across both targets and avoids the
+  # "Multiple commands produce GoogleUtilities.framework" archive failure.
+  pod 'GoogleUtilities'
 end
 
 $iOSVersion = '15.6'
