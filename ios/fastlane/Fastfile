@@ -47,6 +47,10 @@ platform :ios do
     #      that lists the tester device UDIDs.
     #   3. apple_id / team_id filled in the Appfile.
     # Output: build/ios/ipa/Flutter Lab.ipa
+    #
+    # CocoaPods is pinned in the Gemfile, so the `pod install` that `flutter
+    # build` triggers resolves to the bundled version under this `bundle exec`
+    # context — no env juggling needed.
     sh("cd ../.. && fvm flutter build ipa --flavor production --export-method ad-hoc")
   end
 
