@@ -45,14 +45,28 @@ platform :android do
 
   desc "Build and distribute the production APK to Firebase App Distribution"
   lane :beta_firebase do
-    # Reuse the build_apk lane to produce the APK, then upload it to Firebase
-    # App Distribution for the `testers` group. Authentication uses your
-    # `firebase login` credentials, so no service-account key is needed locally.
-    build_apk
+    # Production Android app ID from android/app/src/production/google-services.json.
+    app_id = "1:981414646881:android:4300ea58eb702e1ad1c620"
+
+    # Read the build number (versionCode) of the LATEST release already on
+    # Firebase App Distribution, then build the next one as +1 so every upload
+    # gets a strictly increasing, unique versionCode (testers/Play require this).
+    # Auth reuses your `firebase login` credentials — same as the upload action
+    # below — so no service-account key is needed for local runs.
+    latest = firebase_app_distribution_get_latest_release(app: app_id)
+    # `buildVersion` is a string ("3"); `.to_i` of a missing/nil value is 0, so
+    # the first-ever release builds as 1.
+    next_build_number = latest&.dig(:buildVersion).to_i + 1
+    UI.message("Next build number (versionCode): #{next_build_number}")
+
+    # Build the APK, overriding ONLY the build number for this build. pubspec.yaml
+    # is left untouched (nothing to commit); `versionCode = flutter.versionCode`
+    # in build.gradle.kts picks up this value. The version NAME still comes from
+    # pubspec.yaml.
+    sh("cd ../.. && fvm flutter build apk --flavor production --build-number=#{next_build_number}")
 
     firebase_app_distribution(
-      # Production Android app ID from android/app/src/production/google-services.json.
-      app: "1:981414646881:android:4300ea58eb702e1ad1c620",
+      app: app_id,
       # Path is relative to the android/ directory (where fastlane runs).
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       groups: "testers",
