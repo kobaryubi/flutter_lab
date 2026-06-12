@@ -64,14 +64,29 @@ platform :ios do
 
   desc "Build and distribute the production .ipa to Firebase App Distribution"
   lane :beta_firebase do
-    # iOS counterpart of the Android `beta_firebase` lane. Reuse `build_ipa` to
-    # produce the signed artifact, then upload it for the `testers` group.
-    # Auth uses your `firebase login` credentials (no service-account key needed).
-    build_ipa
+    # Production iOS app ID from firebase.json (Release-production mapping).
+    app_id = "1:981414646881:ios:4aa48de2553c8076d1c620"
+
+    # Same approach as the Android `beta_firebase` lane: read the build number
+    # (CFBundleVersion) of the LATEST release already on Firebase App
+    # Distribution, then build the next one as +1 so every upload gets a
+    # strictly increasing, unique value. iOS keeps its OWN build-number history
+    # on FAD, independent of Android. Auth reuses your `firebase login`
+    # credentials — no service-account key needed.
+    latest = firebase_app_distribution_get_latest_release(app: app_id)
+    # `buildVersion` is a string ("3"); `.to_i` of a missing/nil value is 0, so
+    # the first-ever release builds as 1.
+    next_build_number = latest&.dig(:buildVersion).to_i + 1
+    UI.message("Next build number (CFBundleVersion): #{next_build_number}")
+
+    # Inline the build (instead of calling `build_ipa`) so we can override ONLY
+    # the build number for this build — pubspec.yaml stays untouched (nothing to
+    # commit). Manual signing + the ad-hoc profiles still come from
+    # ExportOptions-adhoc.plist; the version NAME still comes from pubspec.yaml.
+    sh("cd ../.. && fvm flutter build ipa --flavor production --export-options-plist ios/ExportOptions-adhoc.plist --build-number=#{next_build_number}")
 
     firebase_app_distribution(
-      # Production iOS app ID from firebase.json (Release-production mapping).
-      app: "1:981414646881:ios:4aa48de2553c8076d1c620",
+      app: app_id,
       # `flutter build ipa` output, relative to the ios/ directory (where
       # fastlane runs). Adjust the filename if your scheme names the .ipa
       # differently.
