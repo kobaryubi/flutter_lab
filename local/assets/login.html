@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDK Login</title>
+</head>
+<body>
+  <h1>SDK Login</h1>
+  <p id="message">Issuing cookies...</p>
+  <script>
+    // Mimics the auth SDK's login web page (and httpbin's /cookies/set):
+    // every query parameter is issued as a cookie, so the app can read the
+    // access token from the cookie store after the page loads.
+    const parameters = new URLSearchParams(window.location.search);
+
+    for (const [name, value] of parameters) {
+      document.cookie = `${name}=${value}; path=/`;
+    }
+
+    document.getElementById('message').textContent =
+      `Issued ${[...parameters].length} cookie(s). You are logged in.`;
+  </script>
+</body>
+</html>

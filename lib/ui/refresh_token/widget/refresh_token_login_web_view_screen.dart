@@ -29,6 +29,11 @@ class RefreshTokenLoginWebViewScreen extends HookConsumerWidget {
     );
     final logger = ref.read(loggerGatewayProvider);
 
+    /// Logs every page load start to make silent load failures visible.
+    void handleLoadStart(InAppWebViewController controller, WebUri? url) {
+      logger.debug('RefreshTokenLoginWebViewScreen: onLoadStart url=$url');
+    }
+
     /// Attempts to save the access token cookie once a page finishes
     /// loading.
     void handleLoadStop(InAppWebViewController controller, WebUri? url) {
@@ -36,7 +41,10 @@ class RefreshTokenLoginWebViewScreen extends HookConsumerWidget {
       viewModel.saveAccessTokenFromCookie(url: loginUrl);
     }
 
-    final webView = useInAppWebView(onLoadStop: handleLoadStop);
+    final webView = useInAppWebView(
+      onLoadStart: handleLoadStart,
+      onLoadStop: handleLoadStop,
+    );
 
     /// Pops this screen with `true` once the access token has been saved.
     void handleSaveAccessTokenChanged(
@@ -68,6 +76,9 @@ class RefreshTokenLoginWebViewScreen extends HookConsumerWidget {
         children: [
           if (uiState.saveAccessToken case AsyncError(:final error))
             Text('Error: $error'),
+
+          if (webView.status case WebViewLoadStatus.error)
+            const Text('Failed to load the login page.'),
 
           Expanded(
             child: WebView(state: webView, url: loginUrl.toString()),
