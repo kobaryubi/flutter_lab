@@ -420,6 +420,21 @@ enum Screen {
     {MemberState.guest, MemberState.provisional, MemberState.regular},
     isAllowedFromDeeplink: false,
   ),
+  refreshTokenLogin(
+    Routes.refreshTokenLogin,
+    {MemberState.guest, MemberState.provisional, MemberState.regular},
+    isAllowedFromDeeplink: false,
+  ),
+  refreshTokenLoginWebView(
+    Routes.refreshTokenLoginWebView,
+    {MemberState.guest, MemberState.provisional, MemberState.regular},
+    isAllowedFromDeeplink: false,
+  ),
+  refreshTokenMyPage(
+    Routes.refreshTokenMyPage,
+    {MemberState.guest, MemberState.provisional, MemberState.regular},
+    isAllowedFromDeeplink: false,
+  ),
   debug(
     Routes.debug,
     {MemberState.guest, MemberState.provisional, MemberState.regular},
