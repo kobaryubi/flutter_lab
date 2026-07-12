@@ -104,5 +104,9 @@ abstract final class Routes {
 
   static const ossLicenses = '/oss_licenses';
 
+  static const refreshTokenLogin = '/refresh_token_login';
+  static const refreshTokenLoginWebView = '/refresh_token_login_web_view';
+  static const refreshTokenMyPage = '/refresh_token_my_page';
+
   static const debug = '/debug';
 }

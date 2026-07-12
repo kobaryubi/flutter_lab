@@ -60,6 +60,9 @@ List<RouteBase> get $appRoutes => [
   $portalRoute,
   $profilePassportRoute,
   $pushNotificationRoute,
+  $refreshTokenLoginRoute,
+  $refreshTokenLoginWebViewRoute,
+  $refreshTokenMyPageRoute,
   $revalidatingImageRoute,
   $routeAwareDemoRoute,
   $routeAwareDemoDetailRoute,
@@ -1605,6 +1608,95 @@ mixin $PushNotificationRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/push_notification');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $refreshTokenLoginRoute => GoRouteData.$route(
+  path: '/refresh_token_login',
+  name: 'refresh_token_login',
+  factory: $RefreshTokenLoginRoute._fromState,
+);
+
+mixin $RefreshTokenLoginRoute on GoRouteData {
+  static RefreshTokenLoginRoute _fromState(GoRouterState state) =>
+      RefreshTokenLoginRoute();
+
+  @override
+  String get location => GoRouteData.$location('/refresh_token_login');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $refreshTokenLoginWebViewRoute => GoRouteData.$route(
+  path: '/refresh_token_login_web_view',
+  name: 'refresh_token_login_web_view',
+  factory: $RefreshTokenLoginWebViewRoute._fromState,
+);
+
+mixin $RefreshTokenLoginWebViewRoute on GoRouteData {
+  static RefreshTokenLoginWebViewRoute _fromState(GoRouterState state) =>
+      RefreshTokenLoginWebViewRoute(
+        loginUrl: state.uri.queryParameters['login-url']!,
+      );
+
+  RefreshTokenLoginWebViewRoute get _self =>
+      this as RefreshTokenLoginWebViewRoute;
+
+  @override
+  String get location => GoRouteData.$location(
+    '/refresh_token_login_web_view',
+    queryParams: {'login-url': _self.loginUrl},
+  );
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $refreshTokenMyPageRoute => GoRouteData.$route(
+  path: '/refresh_token_my_page',
+  name: 'refresh_token_my_page',
+  factory: $RefreshTokenMyPageRoute._fromState,
+);
+
+mixin $RefreshTokenMyPageRoute on GoRouteData {
+  static RefreshTokenMyPageRoute _fromState(GoRouterState state) =>
+      RefreshTokenMyPageRoute();
+
+  @override
+  String get location => GoRouteData.$location('/refresh_token_my_page');
 
   @override
   void go(BuildContext context) => context.go(location);
