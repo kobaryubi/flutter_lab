@@ -57,7 +57,7 @@ final class RefreshTokenLoginWebViewViewModelProvider
 }
 
 String _$refreshTokenLoginWebViewViewModelHash() =>
-    r'7c72ac256a2c2f2c2afdce5a12ae60444999b285';
+    r'b0b34229098dcef0f0e824eb9a428312d92513fb';
 
 /// ViewModel that saves the access token cookie issued by the login web
 /// page.

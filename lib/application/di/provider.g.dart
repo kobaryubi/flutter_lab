@@ -190,7 +190,7 @@ final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
   }
 }
 
-String _$dioHash() => r'b926cc469a2118d2304243e171492f10d508de3d';
+String _$dioHash() => r'7045ba7a65ede79458e30242cb3649f633d9acad';
 
 @ProviderFor(petRepository)
 const petRepositoryProvider = PetRepositoryProvider._();
@@ -4332,3 +4332,340 @@ final class DeeplinkApplicationServiceProvider
 
 String _$deeplinkApplicationServiceHash() =>
     r'52dbaa532da24e4483322878b9babf0f6ecf7c7b';
+
+/// Third-party authentication SDK gateway.
+
+@ProviderFor(authSdkGateway)
+const authSdkGatewayProvider = AuthSdkGatewayProvider._();
+
+/// Third-party authentication SDK gateway.
+
+final class AuthSdkGatewayProvider
+    extends $FunctionalProvider<AuthSdkGateway, AuthSdkGateway, AuthSdkGateway>
+    with $Provider<AuthSdkGateway> {
+  /// Third-party authentication SDK gateway.
+  const AuthSdkGatewayProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'authSdkGatewayProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$authSdkGatewayHash();
+
+  @$internal
+  @override
+  $ProviderElement<AuthSdkGateway> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AuthSdkGateway create(Ref ref) {
+    return authSdkGateway(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AuthSdkGateway value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AuthSdkGateway>(value),
+    );
+  }
+}
+
+String _$authSdkGatewayHash() => r'5fcfb6ecf20dc073d69791ebbaa627bb982a4088';
+
+@ProviderFor(accessTokenRepository)
+const accessTokenRepositoryProvider = AccessTokenRepositoryProvider._();
+
+final class AccessTokenRepositoryProvider
+    extends
+        $FunctionalProvider<
+          AccessTokenRepository,
+          AccessTokenRepository,
+          AccessTokenRepository
+        >
+    with $Provider<AccessTokenRepository> {
+  const AccessTokenRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'accessTokenRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$accessTokenRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<AccessTokenRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  AccessTokenRepository create(Ref ref) {
+    return accessTokenRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AccessTokenRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AccessTokenRepository>(value),
+    );
+  }
+}
+
+String _$accessTokenRepositoryHash() =>
+    r'92f2e98786c6f63b21ef07a395a527135cb1bb5d';
+
+@ProviderFor(userProfileRepository)
+const userProfileRepositoryProvider = UserProfileRepositoryProvider._();
+
+final class UserProfileRepositoryProvider
+    extends
+        $FunctionalProvider<
+          UserProfileRepository,
+          UserProfileRepository,
+          UserProfileRepository
+        >
+    with $Provider<UserProfileRepository> {
+  const UserProfileRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'userProfileRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$userProfileRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<UserProfileRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  UserProfileRepository create(Ref ref) {
+    return userProfileRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(UserProfileRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<UserProfileRepository>(value),
+    );
+  }
+}
+
+String _$userProfileRepositoryHash() =>
+    r'2b7d0f905d77212e13c5545e2dc2258bfb4f1f2b';
+
+@ProviderFor(generateLoginUrlUseCase)
+const generateLoginUrlUseCaseProvider = GenerateLoginUrlUseCaseProvider._();
+
+final class GenerateLoginUrlUseCaseProvider
+    extends
+        $FunctionalProvider<
+          GenerateLoginUrlUseCase,
+          GenerateLoginUrlUseCase,
+          GenerateLoginUrlUseCase
+        >
+    with $Provider<GenerateLoginUrlUseCase> {
+  const GenerateLoginUrlUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'generateLoginUrlUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$generateLoginUrlUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<GenerateLoginUrlUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GenerateLoginUrlUseCase create(Ref ref) {
+    return generateLoginUrlUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(GenerateLoginUrlUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<GenerateLoginUrlUseCase>(value),
+    );
+  }
+}
+
+String _$generateLoginUrlUseCaseHash() =>
+    r'90c18a3e81d5ed3e9de05e348d8a097058b35ae8';
+
+@ProviderFor(refreshTokenUseCase)
+const refreshTokenUseCaseProvider = RefreshTokenUseCaseProvider._();
+
+final class RefreshTokenUseCaseProvider
+    extends
+        $FunctionalProvider<
+          RefreshTokenUseCase,
+          RefreshTokenUseCase,
+          RefreshTokenUseCase
+        >
+    with $Provider<RefreshTokenUseCase> {
+  const RefreshTokenUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'refreshTokenUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$refreshTokenUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<RefreshTokenUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  RefreshTokenUseCase create(Ref ref) {
+    return refreshTokenUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(RefreshTokenUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<RefreshTokenUseCase>(value),
+    );
+  }
+}
+
+String _$refreshTokenUseCaseHash() =>
+    r'bd62a852a5b118b892d266347a1d1cf6dee78aa8';
+
+@ProviderFor(saveAccessTokenFromCookieUseCase)
+const saveAccessTokenFromCookieUseCaseProvider =
+    SaveAccessTokenFromCookieUseCaseProvider._();
+
+final class SaveAccessTokenFromCookieUseCaseProvider
+    extends
+        $FunctionalProvider<
+          SaveAccessTokenFromCookieUseCase,
+          SaveAccessTokenFromCookieUseCase,
+          SaveAccessTokenFromCookieUseCase
+        >
+    with $Provider<SaveAccessTokenFromCookieUseCase> {
+  const SaveAccessTokenFromCookieUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'saveAccessTokenFromCookieUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$saveAccessTokenFromCookieUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<SaveAccessTokenFromCookieUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  SaveAccessTokenFromCookieUseCase create(Ref ref) {
+    return saveAccessTokenFromCookieUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(SaveAccessTokenFromCookieUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<SaveAccessTokenFromCookieUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$saveAccessTokenFromCookieUseCaseHash() =>
+    r'08a92eb1b18c0e896539aa8b6367451ab10e06d5';
+
+@ProviderFor(fetchUserProfileUseCase)
+const fetchUserProfileUseCaseProvider = FetchUserProfileUseCaseProvider._();
+
+final class FetchUserProfileUseCaseProvider
+    extends
+        $FunctionalProvider<
+          FetchUserProfileUseCase,
+          FetchUserProfileUseCase,
+          FetchUserProfileUseCase
+        >
+    with $Provider<FetchUserProfileUseCase> {
+  const FetchUserProfileUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'fetchUserProfileUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$fetchUserProfileUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<FetchUserProfileUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  FetchUserProfileUseCase create(Ref ref) {
+    return fetchUserProfileUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(FetchUserProfileUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<FetchUserProfileUseCase>(value),
+    );
+  }
+}
+
+String _$fetchUserProfileUseCaseHash() =>
+    r'192a88180dbe429e24e4ae758334655299043566';

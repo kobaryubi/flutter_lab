@@ -12,6 +12,7 @@ import 'package:flutter_lab/data/gateway/adjust/mock_adjust_gateway.dart';
 import 'package:flutter_lab/data/gateway/analytics/firebase_analytics_gateway.dart';
 import 'package:flutter_lab/data/gateway/app_badge/app_badge_plus_app_badge_gateway.dart';
 import 'package:flutter_lab/data/gateway/app_info/package_info_plus_app_info_gateway.dart';
+import 'package:flutter_lab/data/gateway/auth_sdk/mock_auth_sdk_gateway.dart';
 import 'package:flutter_lab/data/gateway/clock/clock_clock_gateway.dart';
 import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart';
 import 'package:flutter_lab/data/gateway/device_info/device_info_plus_device_info_gateway.dart';
@@ -27,6 +28,7 @@ import 'package:flutter_lab/data/gateway/pigeon_example/pigeon_pigeon_gateway.da
 import 'package:flutter_lab/data/gateway/profile_passport/pigeon_profile_passport_gateway.dart';
 import 'package:flutter_lab/data/gateway/text_recognition/mlkit_text_recognition_gateway.dart';
 import 'package:flutter_lab/data/gateway/web_view_cookie/flutter_inappwebview_web_view_cookie_gateway.dart';
+import 'package:flutter_lab/data/repositories/access_token/memory_access_token_repository.dart';
 import 'package:flutter_lab/data/repositories/agreement/shared_preferences_agreement_repository.dart';
 import 'package:flutter_lab/data/repositories/app_store/platform_app_store_repository.dart';
 import 'package:flutter_lab/data/repositories/dio_cache/dio_http_cache_repository.dart';
@@ -39,15 +41,18 @@ import 'package:flutter_lab/data/repositories/pet/pet_repository.dart';
 import 'package:flutter_lab/data/repositories/pet/pet_repository_remote.dart';
 import 'package:flutter_lab/data/repositories/push_notification/firebase_messaging_push_notification_repository.dart';
 import 'package:flutter_lab/data/repositories/shortcut/file_system_shortcut_repository.dart';
+import 'package:flutter_lab/data/repositories/user_profile/dio_user_profile_repository.dart';
 import 'package:flutter_lab/data/service/push_notification/default_push_message_service.dart';
 import 'package:flutter_lab/data/service/secure_storage/secure_storage_service.dart';
 import 'package:flutter_lab/data/service/shared_preferences/shared_preferences_service.dart';
+import 'package:flutter_lab/domain/access_token/access_token_repository.dart';
 import 'package:flutter_lab/domain/adjust/adjust_gateway.dart';
 import 'package:flutter_lab/domain/agreement/agreement_repository.dart';
 import 'package:flutter_lab/domain/analytics/analytics_gateway.dart';
 import 'package:flutter_lab/domain/app_badge/app_badge_gateway.dart';
 import 'package:flutter_lab/domain/app_info/app_info_gateway.dart';
 import 'package:flutter_lab/domain/app_store/app_store_repository.dart';
+import 'package:flutter_lab/domain/auth_sdk/auth_sdk_gateway.dart';
 import 'package:flutter_lab/domain/battery/battery_gateway.dart';
 import 'package:flutter_lab/domain/battery/platform_battery_gateway.dart';
 import 'package:flutter_lab/domain/clock/clock_gateway.dart';
@@ -72,6 +77,7 @@ import 'package:flutter_lab/domain/push_notification/push_message_service.dart';
 import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
 import 'package:flutter_lab/domain/text_recognition/text_recognition_gateway.dart';
+import 'package:flutter_lab/domain/use_cases/access_token/save_access_token_from_cookie_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adjust/consume_pending_deeplink_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adjust/get_adid_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/adjust/initialize_adjust_use_case.dart';
@@ -85,6 +91,8 @@ import 'package:flutter_lab/domain/use_cases/analytics/set_default_event_paramet
 import 'package:flutter_lab/domain/use_cases/analytics/set_user_property_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/app_info/get_app_version_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/app_store/get_app_store_url_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/auth_sdk/generate_login_url_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/auth_sdk/refresh_token_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/battery/get_battery_level_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/clock/get_current_time_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/device_info/get_device_info_use_case.dart';
@@ -120,6 +128,8 @@ import 'package:flutter_lab/domain/use_cases/push_notification/watch_opened_push
 import 'package:flutter_lab/domain/use_cases/shortcut/copy_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/shortcut/delete_all_shortcut_icons_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/text_recognition/recognize_text_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/user_profile/fetch_user_profile_use_case.dart';
+import 'package:flutter_lab/domain/user_profile/user_profile_repository.dart';
 import 'package:flutter_lab/gen/pigeon/pigeon.g.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
@@ -178,6 +188,28 @@ Dio dio(Ref ref) {
       (server) => server.reply(
         201,
         null,
+        delay: const Duration(seconds: 1),
+      ),
+    )
+    // The adapter picks the first matching handler in registration order:
+    // the refreshed token hits the 200 below; any other token falls through
+    // to the catch-all 401.
+    ..onGet(
+      '/my_page',
+      (server) => server.reply(
+        200,
+        {'id': 1, 'name': 'Masahiko'},
+        delay: const Duration(seconds: 1),
+      ),
+      headers: {
+        'Authorization': 'Bearer ${MockAuthSdkGateway.refreshedAccessToken}',
+      },
+    )
+    ..onGet(
+      '/my_page',
+      (server) => server.reply(
+        401,
+        {'message': 'access token is expired'},
         delay: const Duration(seconds: 1),
       ),
     );
@@ -663,4 +695,41 @@ DeeplinkApplicationService deeplinkApplicationService(Ref ref) =>
     DeeplinkApplicationService(
       deeplinkService: const DeeplinkService(),
       memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
+    );
+
+// refresh token sample
+/// Third-party authentication SDK gateway.
+@Riverpod(keepAlive: true)
+AuthSdkGateway authSdkGateway(Ref ref) => MockAuthSdkGateway();
+
+@riverpod
+AccessTokenRepository accessTokenRepository(Ref ref) =>
+    MemoryAccessTokenRepository(
+      memoryStorageGateway: ref.read(memoryStorageGatewayProvider),
+    );
+
+@riverpod
+UserProfileRepository userProfileRepository(Ref ref) =>
+    DioUserProfileRepository(dio: ref.read(dioProvider));
+
+@riverpod
+GenerateLoginUrlUseCase generateLoginUrlUseCase(Ref ref) =>
+    GenerateLoginUrlUseCase(authSdkGateway: ref.read(authSdkGatewayProvider));
+
+@riverpod
+RefreshTokenUseCase refreshTokenUseCase(Ref ref) =>
+    RefreshTokenUseCase(authSdkGateway: ref.read(authSdkGatewayProvider));
+
+@riverpod
+SaveAccessTokenFromCookieUseCase saveAccessTokenFromCookieUseCase(Ref ref) =>
+    SaveAccessTokenFromCookieUseCase(
+      webViewCookieGateway: ref.read(webViewCookieGatewayProvider),
+      accessTokenRepository: ref.read(accessTokenRepositoryProvider),
+    );
+
+@riverpod
+FetchUserProfileUseCase fetchUserProfileUseCase(Ref ref) =>
+    FetchUserProfileUseCase(
+      accessTokenRepository: ref.read(accessTokenRepositoryProvider),
+      userProfileRepository: ref.read(userProfileRepositoryProvider),
     );

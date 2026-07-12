@@ -19,7 +19,14 @@ class RefreshTokenLoginWebViewViewModel
   /// issuing the cookie), so an in-flight or succeeded save is not
   /// repeated; a failed save is retried on the next page load.
   Future<void> saveAccessTokenFromCookie({required Uri url}) async {
+    final logger = ref.read(loggerGatewayProvider);
+
     if (state.saveAccessToken case AsyncLoading() || AsyncData()) {
+      logger.debug(
+        'RefreshTokenLoginWebViewViewModel: save skipped '
+        '(state=${state.saveAccessToken})',
+      );
+
       return;
     }
 
@@ -30,6 +37,7 @@ class RefreshTokenLoginWebViewViewModel
       () async => (await useCase.call(url: url)).getOrThrow(),
     );
 
+    logger.debug('RefreshTokenLoginWebViewViewModel: save result=$result');
     state = state.copyWith(saveAccessToken: result);
   }
 }

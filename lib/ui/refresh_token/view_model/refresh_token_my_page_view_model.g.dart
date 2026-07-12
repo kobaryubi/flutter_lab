@@ -53,7 +53,7 @@ final class RefreshTokenMyPageViewModelProvider
 }
 
 String _$refreshTokenMyPageViewModelHash() =>
-    r'54043ce0fa4d9486cc46365a8b6e7c7fc0ad77cc';
+    r'a1058efddde7544bf98ea178feceee7750f3f022';
 
 /// ViewModel that fetches the signed-in user's profile and refreshes the
 /// session when the access token has expired.
