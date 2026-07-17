@@ -4,7 +4,7 @@ import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Global overlay that displays widgets at the root level.
-class GlobalErrorOverlay extends ConsumerWidget {
+class GlobalErrorOverlay extends HookConsumerWidget {
   const GlobalErrorOverlay({required this.child, super.key});
 
   final Widget child;
