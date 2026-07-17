@@ -101,6 +101,7 @@ class HomeScreen extends StatelessWidget {
       route: AdjustDeferredDeeplinkRoute(),
     ),
     AppLink(title: 'error handling', route: ErrorHandlingRoute()),
+    AppLink(title: 'error portal', route: ErrorPortalRoute()),
     AppLink(title: 'tar download', route: TarDownloadRoute()),
     AppLink(title: 'image processing', route: ImageProcessingRoute()),
     AppLink(title: 'camera', route: CameraRoute()),
@@ -108,6 +109,8 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'HttpOnly cookie', route: HttpOnlyCookieRoute()),
     AppLink(title: 'WebView remote URL', route: WebViewRemoteUrlRoute()),
     AppLink(title: 'Refresh token', route: RefreshTokenLoginRoute()),
+    AppLink(title: 'text scale', route: TextScaleRoute()),
+    AppLink(title: 'phone call', route: PhoneCallRoute()),
   ];
 
   @override
