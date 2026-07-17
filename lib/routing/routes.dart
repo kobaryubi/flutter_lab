@@ -100,6 +100,8 @@ abstract final class Routes {
 
   static const errorHandling = '/error_handling';
 
+  static const errorPortal = '/error_portal';
+
   static const tarDownload = '/tar_download';
 
   static const ossLicenses = '/oss_licenses';
@@ -107,6 +109,10 @@ abstract final class Routes {
   static const refreshTokenLogin = '/refresh_token_login';
   static const refreshTokenLoginWebView = '/refresh_token_login_web_view';
   static const refreshTokenMyPage = '/refresh_token_my_page';
+
+  static const textScale = '/text_scale';
+
+  static const phoneCall = '/phone_call';
 
   static const debug = '/debug';
 }

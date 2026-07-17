@@ -26,6 +26,7 @@ List<RouteBase> get $appRoutes => [
   $dioCacheRoute,
   $effectVsListenRoute,
   $errorHandlingRoute,
+  $errorPortalRoute,
   $etagCacheRoute,
   $firebasePerformanceRoute,
   $formBuilderRoute,
@@ -55,6 +56,7 @@ List<RouteBase> get $appRoutes => [
   $ocrRoute,
   $permissionRoute,
   $petCacheRoute,
+  $phoneCallRoute,
   $pigeonRoute,
   $popScopeRoute,
   $portalRoute,
@@ -80,6 +82,7 @@ List<RouteBase> get $appRoutes => [
   $streamSubscriptionRoute,
   $talkerLogsRoute,
   $tarDownloadRoute,
+  $textScaleRoute,
   $tutorialRoute,
   $urlNavigationRoute,
   $visibilityDetectorRoute,
@@ -577,6 +580,32 @@ mixin $ErrorHandlingRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/error_handling');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $errorPortalRoute => GoRouteData.$route(
+  path: '/error_portal',
+  name: 'error_portal',
+  factory: $ErrorPortalRoute._fromState,
+);
+
+mixin $ErrorPortalRoute on GoRouteData {
+  static ErrorPortalRoute _fromState(GoRouterState state) => ErrorPortalRoute();
+
+  @override
+  String get location => GoRouteData.$location('/error_portal');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -1491,6 +1520,32 @@ mixin $PetCacheRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $phoneCallRoute => GoRouteData.$route(
+  path: '/phone_call',
+  name: 'phone_call',
+  factory: $PhoneCallRoute._fromState,
+);
+
+mixin $PhoneCallRoute on GoRouteData {
+  static PhoneCallRoute _fromState(GoRouterState state) => PhoneCallRoute();
+
+  @override
+  String get location => GoRouteData.$location('/phone_call');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $pigeonRoute => GoRouteData.$route(
   path: '/pigeon',
   name: 'pigeon',
@@ -2198,6 +2253,32 @@ mixin $TarDownloadRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/tar_download');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $textScaleRoute => GoRouteData.$route(
+  path: '/text_scale',
+  name: 'text_scale',
+  factory: $TextScaleRoute._fromState,
+);
+
+mixin $TextScaleRoute on GoRouteData {
+  static TextScaleRoute _fromState(GoRouterState state) => TextScaleRoute();
+
+  @override
+  String get location => GoRouteData.$location('/text_scale');
 
   @override
   void go(BuildContext context) => context.go(location);
