@@ -16,7 +16,13 @@ class GlobalErrorOverlay extends HookConsumerWidget {
     final widget = ref.watch(globalErrorWidgetProvider);
     final isVisible = widget != null;
 
-    final observer = useMemoized(BackButtonSwallowObserver.new);
+    /// Reports whether the error widget is currently visible. Read lazily at
+    /// back-press time so the observer never holds stale state.
+    bool isErrorVisible() => ref.read(globalErrorWidgetProvider) != null;
+
+    final observer = useMemoized(
+      () => BackButtonSwallowObserver(isErrorVisible: isErrorVisible),
+    );
 
     useEffect(() {
       WidgetsBinding.instance.addObserver(observer);
