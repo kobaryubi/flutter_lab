@@ -2,10 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/presentation/core/widget/global_loading_overlay.dart';
 import 'package:flutter_lab/presentation/core/widget/global_snackbar_overlay.dart';
-import 'package:flutter_lab/routing/routes.dart';
+import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_portal/flutter_portal.dart';
-import 'package:go_router/go_router.dart';
 
 /// Screen layout with app bar, content area, and optional bottom navigation.
 ///
@@ -29,7 +28,7 @@ class Layout extends StatelessWidget {
     void handleAppBarLongPress() {
       if (F.appFlavor != Flavor.local) return;
 
-      context.go(Routes.debug);
+      const DebugRoute().push<void>(context);
     }
 
     return ColoredBox(
