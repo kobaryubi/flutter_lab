@@ -1,9 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/presentation/core/provider/global_error_widget_notifier.dart';
 import 'package:flutter_lab/routing/routes.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/debug/view_model/debug_view_model.dart';
 import 'package:flutter_lab/ui/debug/widget/debug_edit_dialog.dart';
+import 'package:flutter_lab/ui/debug/widget/debug_global_error.dart';
 import 'package:flutter_lab/ui/home/widgets/launcher_row.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -139,6 +141,13 @@ class DebugScreen extends ConsumerWidget {
       viewModel.rotatePushToken();
     }
 
+    /// Shows the debug fullscreen error in the global overlay to verify that
+    /// the Android back key is swallowed while it is visible.
+    void handleShowGlobalError() {
+      ref.read(globalErrorWidgetProvider.notifier).widget =
+          const DebugGlobalError();
+    }
+
     return Layout(
       appBar: const AppBar(title: Text('Debug')),
       child: ListView(
@@ -153,6 +162,10 @@ class DebugScreen extends ConsumerWidget {
           LauncherRow(
             title: 'rotate push token',
             onTap: handleRotatePushToken,
+          ),
+          LauncherRow(
+            title: 'show global error',
+            onTap: handleShowGlobalError,
           ),
           const _SectionHeader('routes'),
           for (final entry in _routes)
