@@ -11,6 +11,7 @@ List<RouteBase> get $appRoutes => [
   $analyticsRoute,
   $animatedSwitcherRoute,
   $appLifecycleRoute,
+  $appLinksRoute,
   $appStoreRoute,
   $asyncStateRaceRoute,
   $autoMapprDemoRoute,
@@ -184,6 +185,32 @@ mixin $AppLifecycleRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/app_lifecycle');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $appLinksRoute => GoRouteData.$route(
+  path: '/app_links',
+  name: 'app_links',
+  factory: $AppLinksRoute._fromState,
+);
+
+mixin $AppLinksRoute on GoRouteData {
+  static AppLinksRoute _fromState(GoRouterState state) => const AppLinksRoute();
+
+  @override
+  String get location => GoRouteData.$location('/app_links');
 
   @override
   void go(BuildContext context) => context.go(location);

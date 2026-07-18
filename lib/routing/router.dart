@@ -10,6 +10,7 @@ import 'package:flutter_lab/ui/adjust_deferred_deeplink/widget/adjust_deferred_d
 import 'package:flutter_lab/ui/analytics/widget/analytics_screen.dart';
 import 'package:flutter_lab/ui/animated_switcher/widget/animated_switcher_screen.dart';
 import 'package:flutter_lab/ui/app_lifecycle/widget/app_lifecycle_screen.dart';
+import 'package:flutter_lab/ui/app_links/widget/app_links_screen.dart';
 import 'package:flutter_lab/ui/app_store/widget/app_store_screen.dart';
 import 'package:flutter_lab/ui/async_state_race/widget/async_state_race_screen.dart';
 import 'package:flutter_lab/ui/auto_mappr_demo/widget/auto_mappr_demo_screen.dart';
@@ -104,6 +105,7 @@ part 'adjust_deferred_deeplink_route.dart';
 part 'analytics_route.dart';
 part 'animated_switcher_route.dart';
 part 'app_lifecycle_route.dart';
+part 'app_links_route.dart';
 part 'app_store_route.dart';
 part 'async_state_race_route.dart';
 part 'auto_mappr_demo_route.dart';

@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'shared preferences', route: SharedPreferencesRoute()),
     AppLink(title: 'S3 ETag cache', route: S3EtagCacheRoute()),
     AppLink(title: 'app lifecycle hooks', route: AppLifecycleRoute()),
+    const AppLink(title: 'app_links', route: AppLinksRoute()),
     const AppLink(
       title: 'web view',
       route: WebViewRoute(url: 'https://flutter.dev'),
