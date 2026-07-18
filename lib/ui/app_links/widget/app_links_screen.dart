@@ -8,8 +8,10 @@ import 'package:flutter_lab/ui/core/ui/layout.dart';
 
 /// Screen that demonstrates the `app_links` package.
 ///
-/// Step 1: shows the deep link that launched the app on a cold start
-/// (`AppLinks.getInitialLink`). It is `null` when the app is opened normally.
+/// - Step 1: shows the deep link that launched the app on a cold start
+///   (`AppLinks.getInitialLink`). It is `null` when the app is opened normally.
+/// - Step 2: shows links that arrive while the app is already running, by
+///   listening to `AppLinks.uriLinkStream`.
 class AppLinksScreen extends StatelessWidget {
   const AppLinksScreen({super.key});
 
@@ -25,18 +27,23 @@ class _Body extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    // A single AppLinks instance shared by the initial fetch and the stream.
+    final appLinks = useMemoized(AppLinks.new);
     final initialLink = useState<Uri?>(null);
 
     useEffect(() {
-      final appLinks = AppLinks();
-
       // Fetch the link that launched the app (cold start), if any.
       appLinks.getInitialLink().then((uri) {
         initialLink.value = uri;
       });
 
       return null;
-    }, const []);
+    }, [appLinks]);
+
+    // Emits every link that arrives while the app is running.
+    final latestLink = useStream<Uri?>(
+      useMemoized(() => appLinks.uriLinkStream, [appLinks]),
+    );
 
     return DefaultTextStyle(
       style: TextStyles.bodyMedium.copyWith(color: AppColors.black1),
@@ -49,6 +56,14 @@ class _Body extends HookWidget {
             const SizedBox(height: 8),
 
             Text(initialLink.value?.toString() ?? 'null'),
+
+            const SizedBox(height: 24),
+
+            const Text('Latest link (live stream):'),
+
+            const SizedBox(height: 8),
+
+            Text(latestLink.data?.toString() ?? 'null'),
           ],
         ),
       ),
