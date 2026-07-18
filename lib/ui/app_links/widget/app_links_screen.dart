@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app_links/app_links.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -30,20 +32,37 @@ class _Body extends HookWidget {
     // A single AppLinks instance shared by the initial fetch and the stream.
     final appLinks = useMemoized(AppLinks.new);
     final initialLink = useState<Uri?>(null);
+    final latestLink = useState<Uri?>(null);
+    final latestLinkSource = useState<String?>(null);
 
     useEffect(() {
-      // Fetch the link that launched the app (cold start), if any.
-      appLinks.getInitialLink().then((uri) {
-        initialLink.value = uri;
-      });
+      StreamSubscription<Uri>? subscription;
+      var isFirstEvent = true;
 
-      return null;
+      /// Fetches the cold-start link, then subscribes to the live stream and
+      /// classifies each event as a cold-start replay or a genuine live link.
+      Future<void> listenToLinks() async {
+        final initialUri = await appLinks.getInitialLink();
+        initialLink.value = initialUri;
+
+        /// Records an incoming link and whether it is the one-time replay of
+        /// the cold-start link (only the first event can be the replay).
+        void handleLink(Uri uri) {
+          final isColdStartReplay = isFirstEvent && uri == initialUri;
+          isFirstEvent = false;
+
+          latestLink.value = uri;
+          latestLinkSource.value =
+              isColdStartReplay ? 'cold-start replay' : 'live';
+        }
+
+        subscription = appLinks.uriLinkStream.listen(handleLink);
+      }
+
+      listenToLinks();
+
+      return () => subscription?.cancel();
     }, [appLinks]);
-
-    // Emits every link that arrives while the app is running.
-    final latestLink = useStream<Uri?>(
-      useMemoized(() => appLinks.uriLinkStream, [appLinks]),
-    );
 
     return DefaultTextStyle(
       style: TextStyles.bodyMedium.copyWith(color: AppColors.black1),
@@ -59,11 +78,15 @@ class _Body extends HookWidget {
 
             const SizedBox(height: 24),
 
-            const Text('Latest link (live stream):'),
+            const Text('Latest link (stream):'),
 
             const SizedBox(height: 8),
 
-            Text(latestLink.data?.toString() ?? 'null'),
+            Text(latestLink.value?.toString() ?? 'null'),
+
+            const SizedBox(height: 8),
+
+            Text('source: ${latestLinkSource.value ?? 'none'}'),
           ],
         ),
       ),
