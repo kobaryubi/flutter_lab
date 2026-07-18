@@ -410,11 +410,6 @@ enum Screen {
     {MemberState.guest, MemberState.provisional, MemberState.regular},
     isAllowedFromDeeplink: false,
   ),
-  errorPortal(
-    Routes.errorPortal,
-    {MemberState.guest, MemberState.provisional, MemberState.regular},
-    isAllowedFromDeeplink: false,
-  ),
   tarDownload(
     Routes.tarDownload,
     {MemberState.guest, MemberState.provisional, MemberState.regular},

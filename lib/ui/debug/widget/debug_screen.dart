@@ -50,7 +50,6 @@ class DebugScreen extends ConsumerWidget {
     (title: 'effect vs listen', path: Routes.effectVsListen),
     (title: 'method channel', path: Routes.methodChannel),
     (title: 'async state race', path: Routes.asyncStateRace),
-    (title: 'error portal', path: Routes.errorPortal),
     (title: 'google api', path: Routes.googleApi),
     (title: 'pigeon', path: Routes.pigeon),
     (title: 'dialog state', path: Routes.dialogState),

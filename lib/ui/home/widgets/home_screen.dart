@@ -101,7 +101,6 @@ class HomeScreen extends StatelessWidget {
       route: AdjustDeferredDeeplinkRoute(),
     ),
     AppLink(title: 'error handling', route: ErrorHandlingRoute()),
-    AppLink(title: 'error portal', route: ErrorPortalRoute()),
     AppLink(title: 'tar download', route: TarDownloadRoute()),
     AppLink(title: 'image processing', route: ImageProcessingRoute()),
     AppLink(title: 'camera', route: CameraRoute()),

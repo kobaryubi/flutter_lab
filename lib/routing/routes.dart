@@ -100,8 +100,6 @@ abstract final class Routes {
 
   static const errorHandling = '/error_handling';
 
-  static const errorPortal = '/error_portal';
-
   static const tarDownload = '/tar_download';
 
   static const ossLicenses = '/oss_licenses';

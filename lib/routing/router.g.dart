@@ -26,7 +26,6 @@ List<RouteBase> get $appRoutes => [
   $dioCacheRoute,
   $effectVsListenRoute,
   $errorHandlingRoute,
-  $errorPortalRoute,
   $etagCacheRoute,
   $firebasePerformanceRoute,
   $formBuilderRoute,
@@ -580,32 +579,6 @@ mixin $ErrorHandlingRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/error_handling');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $errorPortalRoute => GoRouteData.$route(
-  path: '/error_portal',
-  name: 'error_portal',
-  factory: $ErrorPortalRoute._fromState,
-);
-
-mixin $ErrorPortalRoute on GoRouteData {
-  static ErrorPortalRoute _fromState(GoRouterState state) => ErrorPortalRoute();
-
-  @override
-  String get location => GoRouteData.$location('/error_portal');
 
   @override
   void go(BuildContext context) => context.go(location);
