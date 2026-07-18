@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/gen/assets.gen.dart';
+import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/themes/colors.dart';
 import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:flutter_lab/ui/core/themes/theme.dart';
@@ -22,32 +24,44 @@ class AppBar extends StatelessWidget {
       context.pop();
     }
 
+    /// Pushes the DebugScreen so every screen shares a single debug entry
+    /// point. Only active in the `local` flavor.
+    void handleLongPress() {
+      if (F.appFlavor != Flavor.local) return;
+
+      const DebugRoute().push<void>(context);
+    }
+
     final effectiveOnBackTap =
         onBackTap ?? (context.canPop() ? handlePopRoute : null);
 
-    return ColoredBox(
-      color: AppColors.primary,
-      child: SafeArea(
-        bottom: false,
-        child: Container(
-          height: Dimens.appBarHeight,
-          padding: const EdgeInsets.symmetric(horizontal: Dimens.padding),
-          child: Stack(
-            children: [
-              Center(
-                child: DefaultTextStyle(
-                  style: TextStyles.headlineLarge.copyWith(
-                    color: AppColors.onPrimary,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onLongPress: handleLongPress,
+      child: ColoredBox(
+        color: AppColors.primary,
+        child: SafeArea(
+          bottom: false,
+          child: Container(
+            height: Dimens.appBarHeight,
+            padding: const EdgeInsets.symmetric(horizontal: Dimens.padding),
+            child: Stack(
+              children: [
+                Center(
+                  child: DefaultTextStyle(
+                    style: TextStyles.headlineLarge.copyWith(
+                      color: AppColors.onPrimary,
+                    ),
+                    child: title,
                   ),
-                  child: title,
                 ),
-              ),
-              if (effectiveOnBackTap case final onBackTap?)
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: _BackButton(onTap: onBackTap),
-                ),
-            ],
+                if (effectiveOnBackTap case final onBackTap?)
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: _BackButton(onTap: onBackTap),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
