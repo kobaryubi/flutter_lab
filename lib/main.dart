@@ -91,6 +91,14 @@ Future<void> main() async {
     observers: [TalkerRiverpodObserver(talker: talker)],
   );
 
+  /// Resolves the push message that launched the app from a terminated
+  /// state before the first frame. Wrapped in [AsyncValue.guard] so a
+  /// failure here never blocks startup; the view model re-reads the same
+  /// provider and surfaces any error as UI state.
+  await AsyncValue.guard(
+    () => container.read(initialPushMessageProvider.future),
+  );
+
   runApp(
     UncontrolledProviderScope(
       container: container,

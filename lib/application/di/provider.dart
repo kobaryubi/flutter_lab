@@ -59,6 +59,7 @@ import 'package:flutter_lab/domain/clock/clock_gateway.dart';
 import 'package:flutter_lab/domain/deeplink/deeplink_service.dart';
 import 'package:flutter_lab/domain/device_info/device_info_gateway.dart';
 import 'package:flutter_lab/domain/entity/app_store/target_platform_type.dart';
+import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
 import 'package:flutter_lab/domain/etag_cache/etag_cache_repository.dart';
 import 'package:flutter_lab/domain/google_api/google_api_gateway.dart';
 import 'package:flutter_lab/domain/http_cache/http_cache_repository.dart';
@@ -404,6 +405,18 @@ GetInitialPushMessageUseCase getInitialPushMessageUseCase(Ref ref) =>
       pushNotificationRepository: ref.read(pushNotificationRepositoryProvider),
       pushMessageService: ref.read(pushMessageServiceProvider),
     );
+
+/// The push message that launched the app from a terminated state, or
+/// `null` when the app was started normally.
+///
+/// Resolved before `runApp` through the root [ProviderContainer] so the
+/// result (and the one-shot side effects of `PushMessageService.handle`)
+/// is settled before the widget tree builds. `keepAlive` keeps the
+/// pre-warmed value cached for later readers such as the push
+/// notification view model.
+@Riverpod(keepAlive: true)
+Future<PushMessage?> initialPushMessage(Ref ref) =>
+    ref.read(getInitialPushMessageUseCaseProvider).call();
 
 @riverpod
 WatchForegroundPushMessageUseCase watchForegroundPushMessageUseCase(Ref ref) =>

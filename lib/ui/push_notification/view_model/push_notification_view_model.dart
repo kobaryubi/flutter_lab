@@ -60,9 +60,13 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
   }
 
   /// Loads the message that opened the app from a terminated state.
+  ///
+  /// Reads the pre-warmed [initialPushMessageProvider] (resolved before
+  /// `runApp`) instead of calling the use case directly, so the use case
+  /// and its side effects run exactly once per launch.
   Future<void> _loadInitialMessage() async {
     final initialMessage = await AsyncValue.guard(
-      () => ref.read(getInitialPushMessageUseCaseProvider).call(),
+      () => ref.read(initialPushMessageProvider.future),
     );
 
     state = state.copyWith(initialMessage: initialMessage);

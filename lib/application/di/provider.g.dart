@@ -1774,6 +1774,72 @@ final class GetInitialPushMessageUseCaseProvider
 String _$getInitialPushMessageUseCaseHash() =>
     r'0fd91bba9d4db3ffcba346b2b23e2832273c327f';
 
+/// The push message that launched the app from a terminated state, or
+/// `null` when the app was started normally.
+///
+/// Resolved before `runApp` through the root [ProviderContainer] so the
+/// result (and the one-shot side effects of `PushMessageService.handle`)
+/// is settled before the widget tree builds. `keepAlive` keeps the
+/// pre-warmed value cached for later readers such as the push
+/// notification view model.
+
+@ProviderFor(initialPushMessage)
+const initialPushMessageProvider = InitialPushMessageProvider._();
+
+/// The push message that launched the app from a terminated state, or
+/// `null` when the app was started normally.
+///
+/// Resolved before `runApp` through the root [ProviderContainer] so the
+/// result (and the one-shot side effects of `PushMessageService.handle`)
+/// is settled before the widget tree builds. `keepAlive` keeps the
+/// pre-warmed value cached for later readers such as the push
+/// notification view model.
+
+final class InitialPushMessageProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<PushMessage?>,
+          PushMessage?,
+          FutureOr<PushMessage?>
+        >
+    with $FutureModifier<PushMessage?>, $FutureProvider<PushMessage?> {
+  /// The push message that launched the app from a terminated state, or
+  /// `null` when the app was started normally.
+  ///
+  /// Resolved before `runApp` through the root [ProviderContainer] so the
+  /// result (and the one-shot side effects of `PushMessageService.handle`)
+  /// is settled before the widget tree builds. `keepAlive` keeps the
+  /// pre-warmed value cached for later readers such as the push
+  /// notification view model.
+  const InitialPushMessageProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'initialPushMessageProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$initialPushMessageHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<PushMessage?> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<PushMessage?> create(Ref ref) {
+    return initialPushMessage(ref);
+  }
+}
+
+String _$initialPushMessageHash() =>
+    r'4ff83021a55f21b1e870fca03ccd690f03000761';
+
 @ProviderFor(watchForegroundPushMessageUseCase)
 const watchForegroundPushMessageUseCaseProvider =
     WatchForegroundPushMessageUseCaseProvider._();
