@@ -18,7 +18,6 @@ import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/flutter_lab_app.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logging/logging.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:talker_riverpod_logger/talker_riverpod_logger.dart';
 
@@ -82,15 +81,19 @@ Future<void> main() async {
 
   final talker = Talker();
 
-  final overrides = <Override>[
-    if (F.appFlavor == .production) ...productionOverrides,
-    talkerProvider.overrideWith((ref) => talker),
-  ];
+  /// Created before [runApp] so providers can be read and initialized
+  /// (e.g. `await container.read(xxxProvider.future)`) before the app starts.
+  final container = ProviderContainer(
+    overrides: [
+      if (F.appFlavor == .production) ...productionOverrides,
+      talkerProvider.overrideWith((ref) => talker),
+    ],
+    observers: [TalkerRiverpodObserver(talker: talker)],
+  );
 
   runApp(
-    ProviderScope(
-      overrides: overrides,
-      observers: [TalkerRiverpodObserver(talker: talker)],
+    UncontrolledProviderScope(
+      container: container,
       child: const FlutterLabApp(),
     ),
   );
