@@ -74,7 +74,6 @@ class DebugScreen extends ConsumerWidget {
       path: Routes.routingCupertinoFullscreenDialog,
     ),
     (title: 'pet cache', path: Routes.petCache),
-    (title: 'profile passport', path: Routes.profilePassport),
     (title: 'animated switcher', path: Routes.animatedSwitcher),
     (title: 'analytics', path: Routes.analytics),
     (title: 'crashlytics', path: Routes.crashlytics),
