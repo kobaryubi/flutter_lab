@@ -17,7 +17,3 @@
 -dontwarn com.google.mlkit.vision.text.japanese.JapaneseTextRecognizerOptions
 -dontwarn com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions$Builder
 -dontwarn com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
-
-# AppLovin MAX / moloco mediation — Unity LevelPlay classes referenced but unused.
--dontwarn com.unity3d.mediation.LevelPlay
--dontwarn com.unity3d.mediation.impression.LevelPlayImpressionDataListener

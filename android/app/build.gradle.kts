@@ -70,7 +70,7 @@ android {
             // R8 code shrinking is already enabled by default for Flutter
             // release builds, so we don't set `isMinifyEnabled`. We only point
             // R8 at our keep rules so it stops aborting on the missing optional
-            // ML Kit / ad-SDK classes (see android/app/proguard-rules.pro).
+            // ML Kit classes (see android/app/proguard-rules.pro).
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
@@ -99,8 +99,6 @@ dependencies {
     implementation(files("libs/ProfilePassportNotice_Release_PRO_3.7.2.aar"))
     implementation(files("libs/ProfilePassportGeofence_Release_PRO_3.7.2.aar"))
     implementation(files("libs/ProfilePassportADID_Release_PRO_3.7.2.aar"))
-    // MAX mediation adapter (release only to avoid Patrol test conflicts)
-    releaseImplementation("com.applovin.mediation:moloco-adapter:4.6.0.0")
 }
 
 flutter {
