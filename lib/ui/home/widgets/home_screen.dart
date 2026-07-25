@@ -111,6 +111,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'Refresh token', route: RefreshTokenLoginRoute()),
     AppLink(title: 'text scale', route: TextScaleRoute()),
     AppLink(title: 'phone call', route: PhoneCallRoute()),
+    AppLink(title: 'selectable region', route: SelectableRegionRoute()),
   ];
 
   @override
