@@ -93,6 +93,7 @@ class DebugScreen extends ConsumerWidget {
     (title: 'adjust deferred deeplink', path: Routes.adjustDeferredDeeplink),
     (title: 'talker logs', path: Routes.talkerLogs),
     (title: 'text scale', path: Routes.textScale),
+    (title: 'selectable region', path: Routes.selectableRegion),
   ];
 
   @override
