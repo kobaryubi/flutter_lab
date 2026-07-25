@@ -25,7 +25,6 @@ import 'package:flutter_lab/data/gateway/native_button/platform_native_button_ga
 import 'package:flutter_lab/data/gateway/performance/firebase_performance_gateway.dart';
 import 'package:flutter_lab/data/gateway/permission/permission_handler_gateway.dart';
 import 'package:flutter_lab/data/gateway/pigeon_example/pigeon_pigeon_gateway.dart';
-import 'package:flutter_lab/data/gateway/profile_passport/pigeon_profile_passport_gateway.dart';
 import 'package:flutter_lab/data/gateway/text_recognition/mlkit_text_recognition_gateway.dart';
 import 'package:flutter_lab/data/gateway/web_view_cookie/flutter_inappwebview_web_view_cookie_gateway.dart';
 import 'package:flutter_lab/data/repositories/access_token/memory_access_token_repository.dart';
@@ -73,7 +72,6 @@ import 'package:flutter_lab/domain/network/network_gateway.dart';
 import 'package:flutter_lab/domain/performance/performance_gateway.dart';
 import 'package:flutter_lab/domain/permission/permission_gateway.dart';
 import 'package:flutter_lab/domain/pigeon_example/pigeon_gateway.dart';
-import 'package:flutter_lab/domain/profile_passport/profile_passport_gateway.dart';
 import 'package:flutter_lab/domain/push_notification/push_message_service.dart';
 import 'package:flutter_lab/domain/push_notification/push_notification_repository.dart';
 import 'package:flutter_lab/domain/shortcut/shortcut_repository.dart';
@@ -117,7 +115,6 @@ import 'package:flutter_lab/domain/use_cases/permission/open_app_settings_use_ca
 import 'package:flutter_lab/domain/use_cases/permission/request_permission_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/pet/clear_pet_cache_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/pet/list_pets_use_case.dart';
-import 'package:flutter_lab/domain/use_cases/profile_passport/start_profile_passport_service_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/consume_pending_target_screen_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/get_initial_push_message_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/push_notification/on_push_token_refresh_use_case.dart';
@@ -564,18 +561,6 @@ GreetingApi greetingApi(Ref ref) => GreetingApi();
 
 @riverpod
 PigeonGateway pigeonGateway(Ref ref) => PigeonPigeonGateway();
-
-// profile passport
-@Riverpod(keepAlive: true)
-ProfilePassportGateway profilePassportGateway(Ref ref) =>
-    PigeonProfilePassportGateway();
-
-@riverpod
-StartProfilePassportServiceUseCase startProfilePassportServiceUseCase(
-  Ref ref,
-) => StartProfilePassportServiceUseCase(
-  profilePassportGateway: ref.read(profilePassportGatewayProvider),
-);
 
 // adjust
 @Riverpod(keepAlive: true)
