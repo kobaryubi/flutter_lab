@@ -113,5 +113,7 @@ abstract final class Routes {
 
   static const phoneCall = '/phone_call';
 
+  static const selectableRegion = '/selectable_region';
+
   static const debug = '/debug';
 }

@@ -74,6 +74,7 @@ List<RouteBase> get $appRoutes => [
   $s3EtagCacheRoute,
   $screenshotPreventionRoute,
   $scrollToSectionRoute,
+  $selectableRegionRoute,
   $sharedPreferencesRoute,
   $shellDemoDetailRoute,
   $shellDemoRoute,
@@ -1995,6 +1996,33 @@ mixin $ScrollToSectionRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/scroll_to_section');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $selectableRegionRoute => GoRouteData.$route(
+  path: '/selectable_region',
+  name: 'selectable_region',
+  factory: $SelectableRegionRoute._fromState,
+);
+
+mixin $SelectableRegionRoute on GoRouteData {
+  static SelectableRegionRoute _fromState(GoRouterState state) =>
+      SelectableRegionRoute();
+
+  @override
+  String get location => GoRouteData.$location('/selectable_region');
 
   @override
   void go(BuildContext context) => context.go(location);
