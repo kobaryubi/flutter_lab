@@ -93,6 +93,7 @@ class DebugScreen extends ConsumerWidget {
     (title: 'talker logs', path: Routes.talkerLogs),
     (title: 'text scale', path: Routes.textScale),
     (title: 'selectable region', path: Routes.selectableRegion),
+    (title: 'selection area', path: Routes.selectionArea),
   ];
 
   @override
