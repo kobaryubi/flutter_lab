@@ -114,5 +114,7 @@ abstract final class Routes {
 
   static const selectableRegion = '/selectable_region';
 
+  static const selectionArea = '/selection_area';
+
   static const debug = '/debug';
 }

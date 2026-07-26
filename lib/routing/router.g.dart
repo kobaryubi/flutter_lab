@@ -74,6 +74,7 @@ List<RouteBase> get $appRoutes => [
   $screenshotPreventionRoute,
   $scrollToSectionRoute,
   $selectableRegionRoute,
+  $selectionAreaRoute,
   $sharedPreferencesRoute,
   $shellDemoDetailRoute,
   $shellDemoRoute,
@@ -1995,6 +1996,33 @@ mixin $SelectableRegionRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/selectable_region');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $selectionAreaRoute => GoRouteData.$route(
+  path: '/selection_area',
+  name: 'selection_area',
+  factory: $SelectionAreaRoute._fromState,
+);
+
+mixin $SelectionAreaRoute on GoRouteData {
+  static SelectionAreaRoute _fromState(GoRouterState state) =>
+      SelectionAreaRoute();
+
+  @override
+  String get location => GoRouteData.$location('/selection_area');
 
   @override
   void go(BuildContext context) => context.go(location);
