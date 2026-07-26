@@ -1,4 +1,6 @@
+import 'package:flutter/rendering.dart' show SelectedContent;
 import 'package:flutter/widgets.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 
@@ -17,36 +19,58 @@ class SelectableRegionScreen extends StatelessWidget {
   );
 }
 
-class _Body extends StatelessWidget {
+class _Body extends HookWidget {
   const _Body();
 
   @override
-  Widget build(BuildContext context) => SelectableRegion(
-    // Selection handles/toolbars are platform-specific (material/cupertino);
-    // widgets-only imports leave no controls, so selection is handle-less.
-    selectionControls: emptyTextSelectionControls,
-    child: const DefaultSelectionStyle(
-      // Without a material Theme there is no default selection color,
-      // making the selection highlight invisible.
-      selectionColor: Color(0x6633B5E5),
-      child: Padding(
-        padding: .all(16),
-        child: Column(
-          spacing: 16,
-          crossAxisAlignment: .start,
-          children: [
-            Text('Long-press and drag to select text.'),
-            Text(
-              'First paragraph: SelectableRegion wraps a whole subtree '
-              'and makes every text descendant selectable.',
+  Widget build(BuildContext context) {
+    final selectedText = useState('');
+
+    /// Stores the selected plain text so it can be displayed below the
+    /// region. Called with `null` when the selection is cleared.
+    void handleSelectionChanged(SelectedContent? content) {
+      selectedText.value = content?.plainText ?? '';
+    }
+
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        spacing: 16,
+        crossAxisAlignment: .start,
+        children: [
+          SelectableRegion(
+            // Selection handles/toolbars are platform-specific
+            // (material/cupertino); widgets-only imports leave no controls,
+            // so selection is handle-less.
+            selectionControls: emptyTextSelectionControls,
+            onSelectionChanged: handleSelectionChanged,
+            child: const DefaultSelectionStyle(
+              // Without a material Theme there is no default selection color,
+              // making the selection highlight invisible.
+              selectionColor: Color(0x6633B5E5),
+              child: Column(
+                spacing: 16,
+                crossAxisAlignment: .start,
+                children: [
+                  Text('Long-press and drag to select text.'),
+                  Text(
+                    'First paragraph: SelectableRegion wraps a whole subtree '
+                    'and makes every text descendant selectable.',
+                  ),
+                  Text(
+                    'Second paragraph: notice the selection continues across '
+                    'separate Text widgets as you keep dragging.',
+                  ),
+                ],
+              ),
             ),
-            Text(
-              'Second paragraph: notice the selection continues across '
-              'separate Text widgets as you keep dragging.',
-            ),
-          ],
-        ),
+          ),
+
+          // Outside the SelectableRegion, so the status line itself is not
+          // selectable.
+          Text('Selected: ${selectedText.value}'),
+        ],
       ),
-    ),
-  );
+    );
+  }
 }
