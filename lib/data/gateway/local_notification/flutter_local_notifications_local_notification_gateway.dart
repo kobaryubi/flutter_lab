@@ -104,6 +104,12 @@ class FlutterLocalNotificationsLocalNotificationGateway
 
   @override
   AsyncResult<Unit> initialize() async {
+    // Initialization here is Android-only (small icon and notification
+    // channels); on iOS there is nothing to set up.
+    if (defaultTargetPlatform == .iOS) {
+      return const Success(unit);
+    }
+
     try {
       const initializationSettings = InitializationSettings(
         android: AndroidInitializationSettings(_androidIcon),
