@@ -61,6 +61,20 @@ class _Body extends HookWidget {
                     'Second paragraph: notice the selection continues across '
                     'separate Text widgets as you keep dragging.',
                   ),
+
+                  // Subtrees wrapped in SelectionContainer.disabled are
+                  // skipped by the surrounding SelectableRegion.
+                  SelectionContainer.disabled(
+                    child: Text(
+                      'Excluded paragraph: this text is inside '
+                      'SelectionContainer.disabled and cannot be selected.',
+                    ),
+                  ),
+
+                  Text(
+                    'Third paragraph: dragging over the excluded part jumps '
+                    'straight here and the selection continues.',
+                  ),
                 ],
               ),
             ),
