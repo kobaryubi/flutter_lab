@@ -7,8 +7,10 @@ import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:flutter/material.dart' show materialTextSelectionHandleControls;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/application/di/provider.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Screen demonstrating text selection on a raw [EditableText] without
 /// material.
@@ -51,11 +53,12 @@ class _EditableTextSelectionDelegate
   bool get selectionEnabled => true;
 }
 
-class _Body extends HookWidget {
+class _Body extends HookConsumerWidget {
   const _Body();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final logger = ref.read(loggerGatewayProvider);
     // The controller owns the text and the current TextSelection;
     // the focus node decides when the field talks to the keyboard.
     // Both are cached by hooks so rebuilds reuse the same instances.
@@ -94,6 +97,11 @@ class _Body extends HookWidget {
       TextSelection selection,
       SelectionChangedCause? cause,
     ) {
+      logger.debug(
+        'selection changed: ${selection.start}-${selection.end} '
+        'cause=${cause?.name}',
+      );
+
       final willShowHandles =
           cause == SelectionChangedCause.longPress ||
           cause == SelectionChangedCause.drag;
