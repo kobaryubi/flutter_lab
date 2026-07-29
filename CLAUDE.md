@@ -210,6 +210,7 @@ This approach makes it easier to understand, debug, and learn from the implement
 ## Coding Rules
 
 - **Dartdoc comments** - Add dartdoc (`///`) to public APIs and functions to explain their purpose
+- **English-only comments** - Do not write Japanese in code comments (dartdoc included); comments are English only. When a Japanese translation is needed, present it in the chat instead of the code
 - **No styling in examples** - When implementing example/lab features, skip styling (colors, shadows, etc.) to focus on confirming functionality only
 - **Dot shorthands** - Use dot shorthand syntax when the type is clear from context for enums, static factory constructors, and static methods (e.g., `.center` instead of `MainAxisAlignment.center`, `.all(8)` instead of `EdgeInsets.all(8)`)
 - **No abbreviations** - Use full variable names instead of abbreviations (e.g., `exception` instead of `e`, `context` instead of `ctx`)
