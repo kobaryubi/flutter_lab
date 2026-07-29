@@ -8,6 +8,10 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   static final _links = [
+    AppLink(
+      title: 'editable text selection',
+      route: EditableTextSelectionRoute(),
+    ),
     AppLink(title: 'not found', route: NotFoundRoute()),
     AppLink(title: 'routing', route: RoutingRoute()),
     const AppLink(
@@ -112,10 +116,6 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'phone call', route: PhoneCallRoute()),
     AppLink(title: 'selectable region', route: SelectableRegionRoute()),
     AppLink(title: 'selection area', route: SelectionAreaRoute()),
-    AppLink(
-      title: 'editable text selection',
-      route: EditableTextSelectionRoute(),
-    ),
   ];
 
   @override
