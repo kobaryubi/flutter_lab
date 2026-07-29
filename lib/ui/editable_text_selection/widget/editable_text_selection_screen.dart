@@ -6,11 +6,9 @@ import 'package:flutter_lab/ui/core/ui/layout.dart';
 /// Screen demonstrating text selection on a raw [EditableText] without
 /// material.
 ///
-/// Step 3: gesture wiring. [TextSelectionGestureDetectorBuilder] — the same
-/// widgets-layer class material's TextField uses — converts taps and
-/// long-presses into selection commands on [EditableTextState]. Tap now
-/// places the cursor and opens the keyboard; long-press selects a word.
-/// The selection is still invisible: no highlight color is set yet.
+/// Step 4: selection highlight. [EditableText.selectionColor] paints the
+/// selected range, so the long-press word selection from the previous step
+/// finally becomes visible. Handles and the context menu are still missing.
 class EditableTextSelectionScreen extends StatelessWidget {
   const EditableTextSelectionScreen({super.key});
 
@@ -54,9 +52,9 @@ class _Body extends HookWidget {
     // Both are cached by hooks so rebuilds reuse the same instances.
     final controller = useTextEditingController(
       text:
-          'Step 3: tap to place the cursor and type. Long-press selects '
-          'a word, but the selection is still invisible: the highlight '
-          'color arrives in the next step.',
+          'Step 4: long-press to select a word — the selection is now '
+          'visible thanks to selectionColor. Drag handles and the '
+          'Copy/Paste menu are still missing.',
     );
     final focusNode = useFocusNode();
 
@@ -89,6 +87,9 @@ class _Body extends HookWidget {
           // Only used by iOS's floating cursor (force-press / spacebar
           // drag).
           backgroundCursorColor: const Color(0xFF808080),
+          // Without a material Theme there is no default selection color;
+          // leaving this null keeps the highlight invisible.
+          selectionColor: const Color(0x6633B5E5),
           // Disable RenderEditable's built-in tap/long-press recognizers so
           // the surrounding TextSelectionGestureDetector is the only gesture
           // handler — otherwise both would process the same pointer events.
