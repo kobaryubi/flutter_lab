@@ -1,3 +1,10 @@
+// Selection handle visuals only exist in the cupertino/material libraries;
+// the imports are scoped to just those symbols as a deliberate exception to
+// the widgets-only import rule.
+import 'package:flutter/cupertino.dart'
+    show cupertinoTextSelectionHandleControls;
+import 'package:flutter/foundation.dart' show defaultTargetPlatform;
+import 'package:flutter/material.dart' show materialTextSelectionHandleControls;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
@@ -6,9 +13,11 @@ import 'package:flutter_lab/ui/core/ui/layout.dart';
 /// Screen demonstrating text selection on a raw [EditableText] without
 /// material.
 ///
-/// Step 4: selection highlight. [EditableText.selectionColor] paints the
-/// selected range, so the long-press word selection from the previous step
-/// finally becomes visible. Handles and the context menu are still missing.
+/// Step 5: drag handles. [EditableText.selectionControls] supplies the
+/// handle visuals — picked per platform the same way SelectionArea does it,
+/// since no framework part switches them automatically. Handle visibility
+/// mirrors material's TextField: shown only for touch-driven selections.
+/// The context menu is still missing.
 class EditableTextSelectionScreen extends StatelessWidget {
   const EditableTextSelectionScreen({super.key});
 
@@ -52,9 +61,9 @@ class _Body extends HookWidget {
     // Both are cached by hooks so rebuilds reuse the same instances.
     final controller = useTextEditingController(
       text:
-          'Step 4: long-press to select a word — the selection is now '
-          'visible thanks to selectionColor. Drag handles and the '
-          'Copy/Paste menu are still missing.',
+          'Step 5: long-press to select a word — drag handles now appear '
+          'and can extend the selection. The Copy/Paste menu is still '
+          'missing.',
     );
     final focusNode = useFocusNode();
 
@@ -68,6 +77,31 @@ class _Body extends HookWidget {
         ),
       ),
     );
+    final showSelectionHandles = useState(false);
+
+    // No framework part switches handle visuals automatically;
+    // SelectionArea, TextField, and this sample all hand-roll the same
+    // platform switch. iOS/Android only, per project scope.
+    final selectionControls = switch (defaultTargetPlatform) {
+      TargetPlatform.iOS => cupertinoTextSelectionHandleControls,
+      _ => materialTextSelectionHandleControls,
+    };
+
+    /// Shows drag handles only for touch-driven selection changes
+    /// (long-press / drag), mirroring material's TextField, so keyboard
+    /// selection stays handle-less.
+    void handleSelectionChanged(
+      TextSelection selection,
+      SelectionChangedCause? cause,
+    ) {
+      final willShowHandles =
+          cause == SelectionChangedCause.longPress ||
+          cause == SelectionChangedCause.drag;
+
+      if (willShowHandles == showSelectionHandles.value) return;
+
+      showSelectionHandles.value = willShowHandles;
+    }
 
     return Padding(
       padding: const .all(16),
@@ -90,6 +124,9 @@ class _Body extends HookWidget {
           // Without a material Theme there is no default selection color;
           // leaving this null keeps the highlight invisible.
           selectionColor: const Color(0x6633B5E5),
+          selectionControls: selectionControls,
+          showSelectionHandles: showSelectionHandles.value,
+          onSelectionChanged: handleSelectionChanged,
           // Disable RenderEditable's built-in tap/long-press recognizers so
           // the surrounding TextSelectionGestureDetector is the only gesture
           // handler — otherwise both would process the same pointer events.
