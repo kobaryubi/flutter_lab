@@ -94,6 +94,7 @@ class DebugScreen extends ConsumerWidget {
     (title: 'text scale', path: Routes.textScale),
     (title: 'selectable region', path: Routes.selectableRegion),
     (title: 'selection area', path: Routes.selectionArea),
+    (title: 'editable text selection', path: Routes.editableTextSelection),
   ];
 
   @override

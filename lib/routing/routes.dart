@@ -116,5 +116,7 @@ abstract final class Routes {
 
   static const selectionArea = '/selection_area';
 
+  static const editableTextSelection = '/editable_text_selection';
+
   static const debug = '/debug';
 }

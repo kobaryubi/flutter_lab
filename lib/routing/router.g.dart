@@ -25,6 +25,7 @@ List<RouteBase> get $appRoutes => [
   $deviceInfoRoute,
   $dialogStateRoute,
   $dioCacheRoute,
+  $editableTextSelectionRoute,
   $effectVsListenRoute,
   $errorHandlingRoute,
   $etagCacheRoute,
@@ -553,6 +554,33 @@ mixin $DioCacheRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/dio_cache');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $editableTextSelectionRoute => GoRouteData.$route(
+  path: '/editable_text_selection',
+  name: 'editable_text_selection',
+  factory: $EditableTextSelectionRoute._fromState,
+);
+
+mixin $EditableTextSelectionRoute on GoRouteData {
+  static EditableTextSelectionRoute _fromState(GoRouterState state) =>
+      EditableTextSelectionRoute();
+
+  @override
+  String get location => GoRouteData.$location('/editable_text_selection');
 
   @override
   void go(BuildContext context) => context.go(location);
