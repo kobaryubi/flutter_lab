@@ -144,6 +144,12 @@ class _Body extends HookConsumerWidget {
         return false;
       }
 
+      // A disabled field never shows handles, whatever path changed the
+      // selection (material: `if (!_isEnabled) return false;`).
+      if (disabled.value) {
+        return false;
+      }
+
       // A long-press shows handles even in an empty field.
       if (cause == SelectionChangedCause.longPress) {
         return true;
