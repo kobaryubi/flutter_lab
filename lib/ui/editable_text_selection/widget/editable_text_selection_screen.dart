@@ -120,9 +120,19 @@ class _Body extends HookConsumerWidget {
     /// Decides whether the drag handles should be visible for the selection
     /// change that just happened — the counterpart of material TextField's
     /// `_shouldShowSelectionHandles`, rebuilt step by step.
-    bool shouldShowSelectionHandles(SelectionChangedCause? cause) =>
-        cause == SelectionChangedCause.longPress ||
-        cause == SelectionChangedCause.drag;
+    bool shouldShowSelectionHandles(SelectionChangedCause? cause) {
+      // The cause only says HOW the selection changed; whether the
+      // triggering gesture was the kind that warrants toolbar/handles is
+      // context only the gesture builder has — it records it in its
+      // callbacks and exposes it through these two getters.
+      if (!gestureDetectorBuilder.shouldShowSelectionToolbar ||
+          !gestureDetectorBuilder.shouldShowSelectionHandles) {
+        return false;
+      }
+
+      return cause == SelectionChangedCause.longPress ||
+          cause == SelectionChangedCause.drag;
+    }
 
     /// Logs every selection change and syncs handle visibility through
     /// [shouldShowSelectionHandles], the same split material's TextField
