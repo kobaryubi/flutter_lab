@@ -51,9 +51,15 @@ class _EditableTextSelectionDelegate
   @override
   final editableTextKey = GlobalKey<EditableTextState>();
 
-  /// iOS force-press selection; off to keep the sample minimal.
+  /// iOS-only force-press (3D Touch) selection, mirroring material's
+  /// TextField: pressing hard selects the word under the finger without the
+  /// long-press delay.
+  ///
+  /// Only 3D Touch hardware (iPhone 6s–XS) ever fires it — elsewhere the
+  /// recognizer never triggers — but gating per platform keeps it out of
+  /// the gesture arena entirely on Android.
   @override
-  bool get forcePressEnabled => false;
+  bool get forcePressEnabled => defaultTargetPlatform == TargetPlatform.iOS;
 
   /// Master switch the builder checks before starting any selection.
   @override
