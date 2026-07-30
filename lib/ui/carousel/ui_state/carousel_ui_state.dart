@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,5 +12,11 @@ abstract class CarouselUiState with _$CarouselUiState {
     /// Image URLs returned by the image-list API. `null` before the first
     /// fetch, which fires when the screen comes to the front.
     AsyncValue<List<Uri>>? imageUrls,
+
+    /// Image bytes prefetched once by the view model, keyed by URL.
+    ///
+    /// Holding the bytes here (instead of fetching inside each slide's
+    /// build) is what prevents a network request per slide change.
+    AsyncValue<Map<Uri, Uint8List>>? prefetchedImages,
   }) = _CarouselUiState;
 }
