@@ -91,6 +91,7 @@ class _Body extends HookConsumerWidget {
     );
     final showSelectionHandles = useState(false);
     final readOnly = useState(false);
+    final disabled = useState(false);
 
     // No framework part switches handle visuals automatically;
     // SelectionArea, TextField, and this sample all hand-roll the same
@@ -127,6 +128,12 @@ class _Body extends HookConsumerWidget {
       readOnly.value = !readOnly.value;
     }
 
+    /// Flips the disabled state; the wiring that makes the field inert is
+    /// added piece by piece in the following steps.
+    void handleDisabledToggle() {
+      disabled.value = !disabled.value;
+    }
+
     /// Builds the Cut/Copy/Paste menu from the button items
     /// [EditableTextState] computes (positioning included); the adaptive
     /// toolbar switches the looks per platform by itself.
@@ -147,6 +154,13 @@ class _Body extends HookConsumerWidget {
             onTap: handleReadOnlyToggle,
             child: Text(
               'readOnly: ${readOnly.value ? 'ON' : 'OFF'} (tap to toggle)',
+              style: const TextStyle(fontSize: 16, color: Color(0xFF000000)),
+            ),
+          ),
+          GestureDetector(
+            onTap: handleDisabledToggle,
+            child: Text(
+              'disabled: ${disabled.value ? 'ON' : 'OFF'} (tap to toggle)',
               style: const TextStyle(fontSize: 16, color: Color(0xFF000000)),
             ),
           ),
