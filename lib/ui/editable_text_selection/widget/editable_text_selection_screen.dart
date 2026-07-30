@@ -118,8 +118,9 @@ class _Body extends HookConsumerWidget {
     };
 
     /// Decides whether the drag handles should be visible for the selection
-    /// change that just happened — the counterpart of material TextField's
-    /// `_shouldShowSelectionHandles`, rebuilt step by step.
+    /// change that just happened, replicating material TextField's
+    /// `_shouldShowSelectionHandles` decision order in full — only the
+    /// stylus-handwriting case is omitted, as this sample never enables it.
     bool shouldShowSelectionHandles(SelectionChangedCause? cause) {
       // The overlay belongs to touchscreen interaction only. The builder
       // records the PointerDeviceKind (finger/stylus vs mouse) at gesture
