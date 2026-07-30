@@ -121,17 +121,35 @@ class _Body extends HookConsumerWidget {
     /// change that just happened — the counterpart of material TextField's
     /// `_shouldShowSelectionHandles`, rebuilt step by step.
     bool shouldShowSelectionHandles(SelectionChangedCause? cause) {
-      // The cause only says HOW the selection changed; whether the
-      // triggering gesture was the kind that warrants toolbar/handles is
-      // context only the gesture builder has — it records it in its
-      // callbacks and exposes it through these two getters.
+      // The overlay belongs to touchscreen interaction only. The builder
+      // records the PointerDeviceKind (finger/stylus vs mouse) at gesture
+      // start — information the cause can't carry: a mouse drag and a
+      // finger drag both arrive here as `cause == drag`.
       if (!gestureDetectorBuilder.shouldShowSelectionToolbar ||
           !gestureDetectorBuilder.shouldShowSelectionHandles) {
         return false;
       }
 
-      return cause == SelectionChangedCause.longPress ||
-          cause == SelectionChangedCause.drag;
+      // Hardware-keyboard selection (shift + arrows) is not a gesture; the
+      // flags above still hold the previous gesture's value, so the cause
+      // must rule it out explicitly.
+      if (cause == SelectionChangedCause.keyboard) {
+        return false;
+      }
+
+      // A long-press shows handles even in an empty field.
+      if (cause == SelectionChangedCause.longPress) {
+        return true;
+      }
+
+      // Every other gesture that passed the gate (double-tap, force-press,
+      // tap's collapsed caret handle on Android) shows handles as long as
+      // there is text to handle.
+      if (controller.text.isNotEmpty) {
+        return true;
+      }
+
+      return false;
     }
 
     /// Logs every selection change and syncs handle visibility through
