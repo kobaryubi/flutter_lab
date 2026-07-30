@@ -117,9 +117,16 @@ class _Body extends HookConsumerWidget {
       _ => materialTextSelectionHandleControls,
     };
 
-    /// Shows drag handles only for touch-driven selection changes
-    /// (long-press / drag), mirroring material's TextField, so keyboard
-    /// selection stays handle-less.
+    /// Decides whether the drag handles should be visible for the selection
+    /// change that just happened — the counterpart of material TextField's
+    /// `_shouldShowSelectionHandles`, rebuilt step by step.
+    bool shouldShowSelectionHandles(SelectionChangedCause? cause) =>
+        cause == SelectionChangedCause.longPress ||
+        cause == SelectionChangedCause.drag;
+
+    /// Logs every selection change and syncs handle visibility through
+    /// [shouldShowSelectionHandles], the same split material's TextField
+    /// uses in `_handleSelectionChanged`.
     void handleSelectionChanged(
       TextSelection selection,
       SelectionChangedCause? cause,
@@ -129,9 +136,7 @@ class _Body extends HookConsumerWidget {
         'cause=${cause?.name}',
       );
 
-      final willShowHandles =
-          cause == SelectionChangedCause.longPress ||
-          cause == SelectionChangedCause.drag;
+      final willShowHandles = shouldShowSelectionHandles(cause);
 
       if (willShowHandles == showSelectionHandles.value) return;
 
