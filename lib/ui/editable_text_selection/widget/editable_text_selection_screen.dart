@@ -21,6 +21,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 /// [EditableTextState.showToolbar] (e.g. on long-press end).
 /// [AdaptiveTextSelectionToolbar] switches the looks per platform by
 /// itself, so no hand-rolled switch is needed here — unlike the handles.
+///
+/// Step 7: read-only. [EditableText.readOnly] keeps the text selectable
+/// and copyable but rejects edits and never summons the keyboard; the
+/// context menu drops Cut/Paste automatically.
 class EditableTextSelectionScreen extends StatelessWidget {
   const EditableTextSelectionScreen({super.key});
 
@@ -81,6 +85,7 @@ class _Body extends HookConsumerWidget {
       ),
     );
     final showSelectionHandles = useState(false);
+    final readOnly = useState(false);
 
     // No framework part switches handle visuals automatically;
     // SelectionArea, TextField, and this sample all hand-roll the same
@@ -111,6 +116,12 @@ class _Body extends HookConsumerWidget {
       showSelectionHandles.value = willShowHandles;
     }
 
+    /// Flips [EditableText.readOnly]; selection and copy keep working,
+    /// but edits are rejected and the keyboard never shows.
+    void handleReadOnlyToggle() {
+      readOnly.value = !readOnly.value;
+    }
+
     /// Builds the Cut/Copy/Paste menu from the button items
     /// [EditableTextState] computes (positioning included); the adaptive
     /// toolbar switches the looks per platform by itself.
@@ -123,35 +134,50 @@ class _Body extends HookConsumerWidget {
 
     return Padding(
       padding: const .all(16),
-      // buildGestureDetector wraps the child in a TextSelectionGestureDetector
-      // that recognizes tap / double-tap / long-press / drag and translates
-      // them into platform-appropriate selection behavior.
-      child: gestureDetectorBuilder.buildGestureDetector(
-        behavior: HitTestBehavior.translucent,
-        child: EditableText(
-          key: editableTextKey,
-          controller: controller,
-          focusNode: focusNode,
-          // All three below are required: without a material Theme nothing
-          // supplies a default text style or cursor colors.
-          style: const TextStyle(fontSize: 16, color: Color(0xFF000000)),
-          cursorColor: const Color(0xFF000000),
-          // Only used by iOS's floating cursor (force-press / spacebar
-          // drag).
-          backgroundCursorColor: const Color(0xFF808080),
-          // Without a material Theme there is no default selection color;
-          // leaving this null keeps the highlight invisible.
-          selectionColor: const Color(0x6633B5E5),
-          selectionControls: selectionControls,
-          showSelectionHandles: showSelectionHandles.value,
-          onSelectionChanged: handleSelectionChanged,
-          contextMenuBuilder: buildContextMenu,
-          // Disable RenderEditable's built-in tap/long-press recognizers so
-          // the surrounding TextSelectionGestureDetector is the only gesture
-          // handler — otherwise both would process the same pointer events.
-          // The same setup material's TextField uses.
-          rendererIgnoresPointer: true,
-        ),
+      child: Column(
+        crossAxisAlignment: .start,
+        spacing: 16,
+        children: [
+          GestureDetector(
+            onTap: handleReadOnlyToggle,
+            child: Text(
+              'readOnly: ${readOnly.value ? 'ON' : 'OFF'} (tap to toggle)',
+              style: const TextStyle(fontSize: 16, color: Color(0xFF000000)),
+            ),
+          ),
+          // buildGestureDetector wraps the child in a
+          // TextSelectionGestureDetector that recognizes tap / double-tap /
+          // long-press / drag and translates them into platform-appropriate
+          // selection behavior.
+          gestureDetectorBuilder.buildGestureDetector(
+            behavior: HitTestBehavior.translucent,
+            child: EditableText(
+              key: editableTextKey,
+              controller: controller,
+              focusNode: focusNode,
+              readOnly: readOnly.value,
+              // All three below are required: without a material Theme
+              // nothing supplies a default text style or cursor colors.
+              style: const TextStyle(fontSize: 16, color: Color(0xFF000000)),
+              cursorColor: const Color(0xFF000000),
+              // Only used by iOS's floating cursor (force-press / spacebar
+              // drag).
+              backgroundCursorColor: const Color(0xFF808080),
+              // Without a material Theme there is no default selection color;
+              // leaving this null keeps the highlight invisible.
+              selectionColor: const Color(0x6633B5E5),
+              selectionControls: selectionControls,
+              showSelectionHandles: showSelectionHandles.value,
+              onSelectionChanged: handleSelectionChanged,
+              contextMenuBuilder: buildContextMenu,
+              // Disable RenderEditable's built-in tap/long-press recognizers
+              // so the surrounding TextSelectionGestureDetector is the only
+              // gesture handler — otherwise both would process the same
+              // pointer events. The same setup material's TextField uses.
+              rendererIgnoresPointer: true,
+            ),
+          ),
+        ],
       ),
     );
   }
