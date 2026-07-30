@@ -119,8 +119,7 @@ class _Body extends HookConsumerWidget {
 
     /// Decides whether the drag handles should be visible for the selection
     /// change that just happened, replicating material TextField's
-    /// `_shouldShowSelectionHandles` decision order in full — only the
-    /// stylus-handwriting case is omitted, as this sample never enables it.
+    /// `_shouldShowSelectionHandles` decision order in full.
     bool shouldShowSelectionHandles(SelectionChangedCause? cause) {
       // The overlay belongs to touchscreen interaction only. The builder
       // records the PointerDeviceKind (finger/stylus vs mouse) at gesture
@@ -151,8 +150,11 @@ class _Body extends HookConsumerWidget {
         return false;
       }
 
-      // A long-press shows handles even in an empty field.
-      if (cause == SelectionChangedCause.longPress) {
+      // A long-press shows handles even in an empty field. Stylus
+      // handwriting (on by default on EditableText) is its pen-driven
+      // equivalent: circling text with an iPad Pencil selects it.
+      if (cause == SelectionChangedCause.longPress ||
+          cause == SelectionChangedCause.stylusHandwriting) {
         return true;
       }
 
