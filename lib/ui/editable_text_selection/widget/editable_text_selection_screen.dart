@@ -174,7 +174,10 @@ class _Body extends HookConsumerWidget {
               key: selectionDelegate.editableTextKey,
               controller: controller,
               focusNode: focusNode,
-              readOnly: readOnly.value,
+              // A disabled field must also be read-only so the IME editing
+              // channel is closed — mirrors material's TextField
+              // (readOnly: widget.readOnly || !_isEnabled).
+              readOnly: readOnly.value || disabled.value,
               // All three below are required: without a material Theme
               // nothing supplies a default text style or cursor colors.
               style: const TextStyle(fontSize: 16, color: Color(0xFF000000)),
