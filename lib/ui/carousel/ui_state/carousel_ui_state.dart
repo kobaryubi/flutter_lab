@@ -18,5 +18,9 @@ abstract class CarouselUiState with _$CarouselUiState {
     /// Holding the bytes here (instead of fetching inside each slide's
     /// build) is what prevents a network request per slide change.
     AsyncValue<Map<Uri, Uint8List>>? prefetchedImages,
+
+    /// Number of image HTTP requests issued since the screen appeared,
+    /// displayed so the refetch-per-slide problem is observable.
+    @Default(0) int imageRequestCount,
   }) = _CarouselUiState;
 }
