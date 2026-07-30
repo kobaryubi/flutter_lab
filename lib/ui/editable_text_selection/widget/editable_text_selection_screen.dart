@@ -150,15 +150,28 @@ class _Body extends HookConsumerWidget {
       disabled.value = !disabled.value;
     }
 
-    /// Builds the Cut/Copy/Paste menu from the button items
-    /// [EditableTextState] computes (positioning included); the adaptive
-    /// toolbar switches the looks per platform by itself.
+    /// Builds the context menu the way material's TextField default does:
+    /// the OS-rendered menu (iOS 16+; paste without the permission prompt,
+    /// Look Up, etc.) when the field supports it, otherwise the
+    /// Flutter-rendered adaptive toolbar.
+    ///
+    /// [SystemContextMenu.isSupportedByField] needs an active input
+    /// connection, so read-only (and therefore disabled) states fall back
+    /// to the Flutter toolbar automatically.
     Widget buildContextMenu(
       BuildContext context,
       EditableTextState editableTextState,
-    ) => AdaptiveTextSelectionToolbar.editableText(
-      editableTextState: editableTextState,
-    );
+    ) {
+      if (SystemContextMenu.isSupportedByField(editableTextState)) {
+        return SystemContextMenu.editableText(
+          editableTextState: editableTextState,
+        );
+      }
+
+      return AdaptiveTextSelectionToolbar.editableText(
+        editableTextState: editableTextState,
+      );
+    }
 
     return Padding(
       padding: const .all(16),
