@@ -137,6 +137,13 @@ class _Body extends HookConsumerWidget {
         return false;
       }
 
+      // Read-only still allows select-and-copy, so ranged selections keep
+      // their handles; a collapsed caret can't be edited there, making its
+      // (Android) teardrop handle pointless.
+      if (readOnly.value && controller.selection.isCollapsed) {
+        return false;
+      }
+
       // A long-press shows handles even in an empty field.
       if (cause == SelectionChangedCause.longPress) {
         return true;
