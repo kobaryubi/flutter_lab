@@ -62,8 +62,12 @@ class _EditableTextSelectionDelegate
   bool get forcePressEnabled => defaultTargetPlatform == TargetPlatform.iOS;
 
   /// Master switch the builder checks before starting any selection.
+  ///
+  /// A mutable field (not a getter) so the widget can flip it off while
+  /// the field is disabled — the same way material's TextField feeds
+  /// `widget.enabled` into its delegate.
   @override
-  bool get selectionEnabled => true;
+  bool selectionEnabled = true;
 }
 
 class _Body extends HookConsumerWidget {
@@ -98,6 +102,12 @@ class _Body extends HookConsumerWidget {
     // actively unfocuses an already-focused node (dismissing the keyboard
     // and, via the focus listener, any open selection overlay).
     focusNode.canRequestFocus = !disabled.value;
+
+    // Stops the gesture builder from starting new selections while
+    // disabled (TextField: `widget.selectionEnabled && _isEnabled`).
+    // Belt and braces once the pointer level is blocked too, but keeps
+    // the delegate truthful whichever layer a gesture reaches.
+    selectionDelegate.selectionEnabled = !disabled.value;
 
     // No framework part switches handle visuals automatically;
     // SelectionArea, TextField, and this sample all hand-roll the same
