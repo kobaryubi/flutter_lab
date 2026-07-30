@@ -12,4 +12,17 @@ part 'carousel_view_model.g.dart';
 class CarouselViewModel extends _$CarouselViewModel {
   @override
   CarouselUiState build() => const CarouselUiState();
+
+  /// Builds the image URL list, simulating an image-list API call.
+  Future<List<Uri>> _listImageUrls() async {
+    // Dummy delay so the `loading` state is visible before `data`.
+    await Future<void>.delayed(const Duration(milliseconds: 500));
+
+    const imageIds = [10, 20, 30, 40, 50];
+
+    return [
+      for (final imageId in imageIds)
+        Uri.parse('https://picsum.photos/id/$imageId/400/300'),
+    ];
+  }
 }
