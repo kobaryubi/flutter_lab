@@ -93,6 +93,12 @@ class _Body extends HookConsumerWidget {
     final readOnly = useState(false);
     final disabled = useState(false);
 
+    // Closes the focus channel while disabled, as material's TextField
+    // does: no tap or Tab traversal can focus the field, and the setter
+    // actively unfocuses an already-focused node (dismissing the keyboard
+    // and, via the focus listener, any open selection overlay).
+    focusNode.canRequestFocus = !disabled.value;
+
     // No framework part switches handle visuals automatically;
     // SelectionArea, TextField, and this sample all hand-roll the same
     // platform switch. iOS/Android only, per project scope.
