@@ -42,12 +42,14 @@ class EditableTextSelectionScreen extends StatelessWidget {
 /// plain object works just as well and keeps the widget hooks-based.
 class _EditableTextSelectionDelegate
     implements TextSelectionGestureDetectorBuilderDelegate {
-  _EditableTextSelectionDelegate({required this.editableTextKey});
-
   /// How the builder finds the [EditableTextState]: the same key must be
   /// passed as [EditableText.key] below.
+  ///
+  /// Owned by the delegate (created here, not injected) the same way
+  /// material's TextField State does it; one delegate per field keeps the
+  /// key unique even with multiple fields on screen.
   @override
-  final GlobalKey<EditableTextState> editableTextKey;
+  final editableTextKey = GlobalKey<EditableTextState>();
 
   /// iOS force-press selection; off to keep the sample minimal.
   @override
@@ -74,15 +76,12 @@ class _Body extends HookConsumerWidget {
     );
     final focusNode = useFocusNode();
 
-    // The key connects the pieces: the builder receives it through the
-    // delegate and calls editableTextKey.currentState to drive selection.
-    final editableTextKey = useMemoized(GlobalKey<EditableTextState>.new);
+    // The delegate owns the GlobalKey that connects the pieces: the builder
+    // calls editableTextKey.currentState to drive selection, and the same
+    // key goes to EditableText.key below.
+    final selectionDelegate = useMemoized(_EditableTextSelectionDelegate.new);
     final gestureDetectorBuilder = useMemoized(
-      () => TextSelectionGestureDetectorBuilder(
-        delegate: _EditableTextSelectionDelegate(
-          editableTextKey: editableTextKey,
-        ),
-      ),
+      () => TextSelectionGestureDetectorBuilder(delegate: selectionDelegate),
     );
     final showSelectionHandles = useState(false);
     final readOnly = useState(false);
@@ -152,7 +151,7 @@ class _Body extends HookConsumerWidget {
           gestureDetectorBuilder.buildGestureDetector(
             behavior: HitTestBehavior.translucent,
             child: EditableText(
-              key: editableTextKey,
+              key: selectionDelegate.editableTextKey,
               controller: controller,
               focusNode: focusNode,
               readOnly: readOnly.value,
