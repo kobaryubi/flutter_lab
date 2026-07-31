@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lab/ui/carousel/view_model/carousel_view_model.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Screen that verifies whether carousel_slider refetches images from the
 /// network on every slide change, and demonstrates holding the bytes in the
@@ -15,9 +17,19 @@ class CarouselScreen extends StatelessWidget {
   );
 }
 
-class _Body extends StatelessWidget {
+class _Body extends HookConsumerWidget {
   const _Body();
 
   @override
-  Widget build(BuildContext context) => const Text('Carousel lab');
+  Widget build(BuildContext context, WidgetRef ref) {
+    final uiState = ref.watch(carouselViewModelProvider);
+
+    return Column(
+      crossAxisAlignment: .stretch,
+      spacing: 8,
+      children: [
+        Text('Image HTTP requests: ${uiState.imageRequestCount}'),
+      ],
+    );
+  }
 }
