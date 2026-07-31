@@ -1,4 +1,8 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter_lab/ui/carousel/ui_state/carousel_ui_state.dart';
+import 'package:http/http.dart' as http;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'carousel_view_model.g.dart';
@@ -22,6 +26,27 @@ class CarouselViewModel extends _$CarouselViewModel {
     final imageUrls = await AsyncValue.guard(_listImageUrls);
 
     state = state.copyWith(imageUrls: imageUrls);
+  }
+
+  /// Downloads the bytes of a single image and increments the request count.
+  ///
+  /// Called directly from a slide's build in the "fetch per slide build"
+  /// mode, which reproduces the refetch-per-slide problem.
+  Future<Uint8List> downloadImage({required Uri url}) async {
+    final response = await http.get(url);
+
+    // Mutating provider state is deferred until after the awaited response,
+    // so it never runs synchronously inside the widget build phase.
+    state = state.copyWith(imageRequestCount: state.imageRequestCount + 1);
+
+    if (response.statusCode != HttpStatus.ok) {
+      throw HttpException(
+        'Failed to download image: ${response.statusCode}',
+        uri: url,
+      );
+    }
+
+    return response.bodyBytes;
   }
 
   /// Builds the image URL list, simulating an image-list API call.
