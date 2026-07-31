@@ -52,9 +52,19 @@ class _Body extends HookConsumerWidget {
       }
     }
 
+    final enablesInfiniteScroll = useState(true);
+
+    /// Toggles infinite scroll, resetting the counter so looping and
+    /// non-looping refetch behavior can be compared.
+    void handleInfiniteScrollToggle() {
+      enablesInfiniteScroll.value = !enablesInfiniteScroll.value;
+      viewModel.resetRequestCount();
+    }
+
     final modeLabel = usesPrefetchedImages.value
         ? 'prefetched bytes'
         : 'fetch per slide build';
+    final infiniteScrollLabel = enablesInfiniteScroll.value ? 'on' : 'off';
 
     return Column(
       crossAxisAlignment: .stretch,
@@ -64,6 +74,10 @@ class _Body extends HookConsumerWidget {
         GestureDetector(
           onTap: handleModeToggle,
           child: Text('Mode: $modeLabel (tap to switch)'),
+        ),
+        GestureDetector(
+          onTap: handleInfiniteScrollToggle,
+          child: Text('Infinite scroll: $infiniteScrollLabel (tap to switch)'),
         ),
         Expanded(
           child: _ImageSection(
