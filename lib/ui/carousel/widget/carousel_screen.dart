@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/carousel/view_model/carousel_view_model.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
@@ -23,6 +24,18 @@ class _Body extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final uiState = ref.watch(carouselViewModelProvider);
+    final viewModel = ref.read(carouselViewModelProvider.notifier);
+
+    // Fetch the image URL list once when the screen comes to the front.
+    // Deferred to after the frame because `fetchImageUrls` mutates provider
+    // state synchronously, which is not allowed during the build phase.
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        viewModel.fetchImageUrls();
+      });
+
+      return null;
+    }, []);
 
     return Column(
       crossAxisAlignment: .stretch,
