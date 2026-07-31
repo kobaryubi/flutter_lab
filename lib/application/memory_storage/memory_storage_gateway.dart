@@ -1,3 +1,5 @@
+import 'package:flutter_lab/application/memory_storage/deep_link_state.dart';
+
 /// Gateway interface for a process-scoped, in-memory key/value store.
 ///
 /// Holds transient values that need to survive between unrelated callers
@@ -19,4 +21,13 @@ abstract class MemoryStorageGateway {
 
   /// Removes the value stored under [key]. No-op if nothing is stored.
   void remove({required String key});
+
+  /// Deep link reception state for the current resume.
+  ///
+  /// Starts as [NoLink]; implementations must never return `null` so
+  /// callers can pattern-match without a null check.
+  DeepLinkState get deepLinkState;
+
+  /// Replaces the deep link reception state.
+  set deepLinkState(DeepLinkState value);
 }

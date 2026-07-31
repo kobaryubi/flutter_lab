@@ -1,3 +1,4 @@
+import 'package:flutter_lab/application/memory_storage/deep_link_state.dart';
 import 'package:flutter_lab/application/memory_storage/memory_storage_gateway.dart';
 
 /// [MemoryStorageGateway] backed by a plain `Map` held in memory.
@@ -24,4 +25,7 @@ class MapMemoryStorageGateway implements MemoryStorageGateway {
   void remove({required String key}) {
     _entries.remove(key);
   }
+
+  @override
+  DeepLinkState deepLinkState = const DeepLinkState.noLink();
 }
