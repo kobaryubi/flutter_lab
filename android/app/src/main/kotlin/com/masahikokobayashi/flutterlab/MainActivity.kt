@@ -14,6 +14,8 @@ import com.masahikokobayashi.flutterlab.pigeon.FlutterError
 import com.masahikokobayashi.flutterlab.pigeon.GreetingApi
 import com.masahikokobayashi.flutterlab.pigeon.MessageData
 import com.masahikokobayashi.flutterlab.pigeon.MessageFlutterApi
+import com.masahikokobayashi.flutterlab.pigeon.LocalNotificationHostApi
+import com.masahikokobayashi.flutterlab.infrastructure.notification.LocalNotificationHostApiImpl
 import com.masahikokobayashi.flutterlab.infrastructure.platform.ErrorCodes
 import com.masahikokobayashi.flutterlab.infrastructure.platform.EventChannelNames
 import com.masahikokobayashi.flutterlab.infrastructure.platform.MethodChannelNames
@@ -85,6 +87,16 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
 
         // Register Pigeon FlutterApi (native → Dart)
         pigeonFlutterApi = PigeonFlutterApi(flutterEngine.dartExecutor.binaryMessenger)
+
+        // Register Pigeon LocalNotificationHostApi. The channel is created
+        // up front so it exists before the first show() call; applicationContext
+        // is used because notifications outlive this activity.
+        val localNotificationHostApi = LocalNotificationHostApiImpl(applicationContext)
+        localNotificationHostApi.createChannel()
+        LocalNotificationHostApi.setUp(
+            flutterEngine.dartExecutor.binaryMessenger,
+            localNotificationHostApi
+        )
 
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
 
