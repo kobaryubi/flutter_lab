@@ -148,12 +148,10 @@ class FlutterLocalNotificationsLocalNotificationGateway
     );
   }
 
+  // Tap streaming is only wired up in the pigeon-backed gateway; this
+  // legacy implementation only logs taps in _handleNotificationTap.
   @override
-  Stream<LocalNotificationData> get onNotificationTap {
-    // Tap streaming is only wired up in the pigeon-backed gateway; this
-    // legacy implementation only logs taps in _handleNotificationTap.
-    return const Stream.empty();
-  }
+  Stream<LocalNotificationData> get onNotificationTap => const Stream.empty();
 
   @override
   Future<LocalNotificationData?> getInitialLocalNotificationData() async {
