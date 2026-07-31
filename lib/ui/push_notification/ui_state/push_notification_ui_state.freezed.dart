@@ -20,7 +20,9 @@ mixin _$PushNotificationUiState {
 /// Resolved once on screen entry.
  AsyncValue<PushMessage?>? get initialMessage;/// Messages received while the app is in the foreground, in
 /// arrival order while the screen is mounted.
- List<PushMessage> get foregroundMessages;
+ List<PushMessage> get foregroundMessages;/// Payloads of local notifications tapped while the app process is
+/// alive, in arrival order while the screen is mounted.
+ List<LocalNotificationData> get tappedNotifications;
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -31,16 +33,16 @@ $PushNotificationUiStateCopyWith<PushNotificationUiState> get copyWith => _$Push
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.rotation, rotation) || other.rotation == rotation)&&(identical(other.channelDeletion, channelDeletion) || other.channelDeletion == channelDeletion)&&(identical(other.initialMessage, initialMessage) || other.initialMessage == initialMessage)&&const DeepCollectionEquality().equals(other.foregroundMessages, foregroundMessages));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.rotation, rotation) || other.rotation == rotation)&&(identical(other.channelDeletion, channelDeletion) || other.channelDeletion == channelDeletion)&&(identical(other.initialMessage, initialMessage) || other.initialMessage == initialMessage)&&const DeepCollectionEquality().equals(other.foregroundMessages, foregroundMessages)&&const DeepCollectionEquality().equals(other.tappedNotifications, tappedNotifications));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,permission,rotation,channelDeletion,initialMessage,const DeepCollectionEquality().hash(foregroundMessages));
+int get hashCode => Object.hash(runtimeType,permission,rotation,channelDeletion,initialMessage,const DeepCollectionEquality().hash(foregroundMessages),const DeepCollectionEquality().hash(tappedNotifications));
 
 @override
 String toString() {
-  return 'PushNotificationUiState(permission: $permission, rotation: $rotation, channelDeletion: $channelDeletion, initialMessage: $initialMessage, foregroundMessages: $foregroundMessages)';
+  return 'PushNotificationUiState(permission: $permission, rotation: $rotation, channelDeletion: $channelDeletion, initialMessage: $initialMessage, foregroundMessages: $foregroundMessages, tappedNotifications: $tappedNotifications)';
 }
 
 
@@ -51,7 +53,7 @@ abstract mixin class $PushNotificationUiStateCopyWith<$Res>  {
   factory $PushNotificationUiStateCopyWith(PushNotificationUiState value, $Res Function(PushNotificationUiState) _then) = _$PushNotificationUiStateCopyWithImpl;
 @useResult
 $Res call({
- AsyncValue<PushNotificationPermission>? permission, AsyncValue<void>? rotation, AsyncValue<void>? channelDeletion, AsyncValue<PushMessage?>? initialMessage, List<PushMessage> foregroundMessages
+ AsyncValue<PushNotificationPermission>? permission, AsyncValue<void>? rotation, AsyncValue<void>? channelDeletion, AsyncValue<PushMessage?>? initialMessage, List<PushMessage> foregroundMessages, List<LocalNotificationData> tappedNotifications
 });
 
 
@@ -68,14 +70,15 @@ class _$PushNotificationUiStateCopyWithImpl<$Res>
 
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? permission = freezed,Object? rotation = freezed,Object? channelDeletion = freezed,Object? initialMessage = freezed,Object? foregroundMessages = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? permission = freezed,Object? rotation = freezed,Object? channelDeletion = freezed,Object? initialMessage = freezed,Object? foregroundMessages = null,Object? tappedNotifications = null,}) {
   return _then(_self.copyWith(
 permission: freezed == permission ? _self.permission : permission // ignore: cast_nullable_to_non_nullable
 as AsyncValue<PushNotificationPermission>?,rotation: freezed == rotation ? _self.rotation : rotation // ignore: cast_nullable_to_non_nullable
 as AsyncValue<void>?,channelDeletion: freezed == channelDeletion ? _self.channelDeletion : channelDeletion // ignore: cast_nullable_to_non_nullable
 as AsyncValue<void>?,initialMessage: freezed == initialMessage ? _self.initialMessage : initialMessage // ignore: cast_nullable_to_non_nullable
 as AsyncValue<PushMessage?>?,foregroundMessages: null == foregroundMessages ? _self.foregroundMessages : foregroundMessages // ignore: cast_nullable_to_non_nullable
-as List<PushMessage>,
+as List<PushMessage>,tappedNotifications: null == tappedNotifications ? _self.tappedNotifications : tappedNotifications // ignore: cast_nullable_to_non_nullable
+as List<LocalNotificationData>,
   ));
 }
 
@@ -160,10 +163,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation,  AsyncValue<void>? channelDeletion,  AsyncValue<PushMessage?>? initialMessage,  List<PushMessage> foregroundMessages)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation,  AsyncValue<void>? channelDeletion,  AsyncValue<PushMessage?>? initialMessage,  List<PushMessage> foregroundMessages,  List<LocalNotificationData> tappedNotifications)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState() when $default != null:
-return $default(_that.permission,_that.rotation,_that.channelDeletion,_that.initialMessage,_that.foregroundMessages);case _:
+return $default(_that.permission,_that.rotation,_that.channelDeletion,_that.initialMessage,_that.foregroundMessages,_that.tappedNotifications);case _:
   return orElse();
 
 }
@@ -181,10 +184,10 @@ return $default(_that.permission,_that.rotation,_that.channelDeletion,_that.init
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation,  AsyncValue<void>? channelDeletion,  AsyncValue<PushMessage?>? initialMessage,  List<PushMessage> foregroundMessages)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation,  AsyncValue<void>? channelDeletion,  AsyncValue<PushMessage?>? initialMessage,  List<PushMessage> foregroundMessages,  List<LocalNotificationData> tappedNotifications)  $default,) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState():
-return $default(_that.permission,_that.rotation,_that.channelDeletion,_that.initialMessage,_that.foregroundMessages);case _:
+return $default(_that.permission,_that.rotation,_that.channelDeletion,_that.initialMessage,_that.foregroundMessages,_that.tappedNotifications);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,10 +204,10 @@ return $default(_that.permission,_that.rotation,_that.channelDeletion,_that.init
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation,  AsyncValue<void>? channelDeletion,  AsyncValue<PushMessage?>? initialMessage,  List<PushMessage> foregroundMessages)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<PushNotificationPermission>? permission,  AsyncValue<void>? rotation,  AsyncValue<void>? channelDeletion,  AsyncValue<PushMessage?>? initialMessage,  List<PushMessage> foregroundMessages,  List<LocalNotificationData> tappedNotifications)?  $default,) {final _that = this;
 switch (_that) {
 case _PushNotificationUiState() when $default != null:
-return $default(_that.permission,_that.rotation,_that.channelDeletion,_that.initialMessage,_that.foregroundMessages);case _:
+return $default(_that.permission,_that.rotation,_that.channelDeletion,_that.initialMessage,_that.foregroundMessages,_that.tappedNotifications);case _:
   return null;
 
 }
@@ -216,7 +219,7 @@ return $default(_that.permission,_that.rotation,_that.channelDeletion,_that.init
 
 
 class _PushNotificationUiState implements PushNotificationUiState {
-  const _PushNotificationUiState({this.permission, this.rotation, this.channelDeletion, this.initialMessage, final  List<PushMessage> foregroundMessages = const []}): _foregroundMessages = foregroundMessages;
+  const _PushNotificationUiState({this.permission, this.rotation, this.channelDeletion, this.initialMessage, final  List<PushMessage> foregroundMessages = const [], final  List<LocalNotificationData> tappedNotifications = const []}): _foregroundMessages = foregroundMessages,_tappedNotifications = tappedNotifications;
   
 
 @override final  AsyncValue<PushNotificationPermission>? permission;
@@ -238,6 +241,17 @@ class _PushNotificationUiState implements PushNotificationUiState {
   return EqualUnmodifiableListView(_foregroundMessages);
 }
 
+/// Payloads of local notifications tapped while the app process is
+/// alive, in arrival order while the screen is mounted.
+ final  List<LocalNotificationData> _tappedNotifications;
+/// Payloads of local notifications tapped while the app process is
+/// alive, in arrival order while the screen is mounted.
+@override@JsonKey() List<LocalNotificationData> get tappedNotifications {
+  if (_tappedNotifications is EqualUnmodifiableListView) return _tappedNotifications;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_tappedNotifications);
+}
+
 
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
@@ -249,16 +263,16 @@ _$PushNotificationUiStateCopyWith<_PushNotificationUiState> get copyWith => __$P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.rotation, rotation) || other.rotation == rotation)&&(identical(other.channelDeletion, channelDeletion) || other.channelDeletion == channelDeletion)&&(identical(other.initialMessage, initialMessage) || other.initialMessage == initialMessage)&&const DeepCollectionEquality().equals(other._foregroundMessages, _foregroundMessages));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PushNotificationUiState&&(identical(other.permission, permission) || other.permission == permission)&&(identical(other.rotation, rotation) || other.rotation == rotation)&&(identical(other.channelDeletion, channelDeletion) || other.channelDeletion == channelDeletion)&&(identical(other.initialMessage, initialMessage) || other.initialMessage == initialMessage)&&const DeepCollectionEquality().equals(other._foregroundMessages, _foregroundMessages)&&const DeepCollectionEquality().equals(other._tappedNotifications, _tappedNotifications));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,permission,rotation,channelDeletion,initialMessage,const DeepCollectionEquality().hash(_foregroundMessages));
+int get hashCode => Object.hash(runtimeType,permission,rotation,channelDeletion,initialMessage,const DeepCollectionEquality().hash(_foregroundMessages),const DeepCollectionEquality().hash(_tappedNotifications));
 
 @override
 String toString() {
-  return 'PushNotificationUiState(permission: $permission, rotation: $rotation, channelDeletion: $channelDeletion, initialMessage: $initialMessage, foregroundMessages: $foregroundMessages)';
+  return 'PushNotificationUiState(permission: $permission, rotation: $rotation, channelDeletion: $channelDeletion, initialMessage: $initialMessage, foregroundMessages: $foregroundMessages, tappedNotifications: $tappedNotifications)';
 }
 
 
@@ -269,7 +283,7 @@ abstract mixin class _$PushNotificationUiStateCopyWith<$Res> implements $PushNot
   factory _$PushNotificationUiStateCopyWith(_PushNotificationUiState value, $Res Function(_PushNotificationUiState) _then) = __$PushNotificationUiStateCopyWithImpl;
 @override @useResult
 $Res call({
- AsyncValue<PushNotificationPermission>? permission, AsyncValue<void>? rotation, AsyncValue<void>? channelDeletion, AsyncValue<PushMessage?>? initialMessage, List<PushMessage> foregroundMessages
+ AsyncValue<PushNotificationPermission>? permission, AsyncValue<void>? rotation, AsyncValue<void>? channelDeletion, AsyncValue<PushMessage?>? initialMessage, List<PushMessage> foregroundMessages, List<LocalNotificationData> tappedNotifications
 });
 
 
@@ -286,14 +300,15 @@ class __$PushNotificationUiStateCopyWithImpl<$Res>
 
 /// Create a copy of PushNotificationUiState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? permission = freezed,Object? rotation = freezed,Object? channelDeletion = freezed,Object? initialMessage = freezed,Object? foregroundMessages = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? permission = freezed,Object? rotation = freezed,Object? channelDeletion = freezed,Object? initialMessage = freezed,Object? foregroundMessages = null,Object? tappedNotifications = null,}) {
   return _then(_PushNotificationUiState(
 permission: freezed == permission ? _self.permission : permission // ignore: cast_nullable_to_non_nullable
 as AsyncValue<PushNotificationPermission>?,rotation: freezed == rotation ? _self.rotation : rotation // ignore: cast_nullable_to_non_nullable
 as AsyncValue<void>?,channelDeletion: freezed == channelDeletion ? _self.channelDeletion : channelDeletion // ignore: cast_nullable_to_non_nullable
 as AsyncValue<void>?,initialMessage: freezed == initialMessage ? _self.initialMessage : initialMessage // ignore: cast_nullable_to_non_nullable
 as AsyncValue<PushMessage?>?,foregroundMessages: null == foregroundMessages ? _self._foregroundMessages : foregroundMessages // ignore: cast_nullable_to_non_nullable
-as List<PushMessage>,
+as List<PushMessage>,tappedNotifications: null == tappedNotifications ? _self._tappedNotifications : tappedNotifications // ignore: cast_nullable_to_non_nullable
+as List<LocalNotificationData>,
   ));
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter_lab/domain/entity/push_notification/push_message.dart';
 import 'package:flutter_lab/domain/entity/push_notification/push_notification_permission.dart';
+import 'package:flutter_lab/domain/local_notification/local_notification_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -27,5 +28,9 @@ abstract class PushNotificationUiState with _$PushNotificationUiState {
     /// Messages received while the app is in the foreground, in
     /// arrival order while the screen is mounted.
     @Default([]) List<PushMessage> foregroundMessages,
+
+    /// Payloads of local notifications tapped while the app process is
+    /// alive, in arrival order while the screen is mounted.
+    @Default([]) List<LocalNotificationData> tappedNotifications,
   }) = _PushNotificationUiState;
 }
