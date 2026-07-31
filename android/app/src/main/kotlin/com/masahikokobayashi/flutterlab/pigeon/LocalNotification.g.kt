@@ -15,6 +15,9 @@ import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 private object LocalNotificationPigeonUtils {
 
+  fun createConnectionError(channelName: String): FlutterError {
+    return FlutterError("channel-error",  "Unable to establish connection on channel: '$channelName'.", "")  }
+
   fun wrapResult(result: Any?): List<Any?> {
     return listOf(result)
   }
@@ -113,6 +116,42 @@ interface LocalNotificationHostApi {
           channel.setMessageHandler(null)
         }
       }
+    }
+  }
+}
+/**
+ * Pigeon Flutter API for local notification events (native → Dart).
+ *
+ * Implemented on the Dart side and called from MainActivity when the
+ * user taps a notification while the app process is alive (foreground
+ * or background), which arrives as onNewIntent instead of a fresh
+ * launch.
+ *
+ * Generated class from Pigeon that represents Flutter messages that can be called from Kotlin.
+ */
+class LocalNotificationFlutterApi(private val binaryMessenger: BinaryMessenger, private val messageChannelSuffix: String = "") {
+  companion object {
+    /** The codec used by LocalNotificationFlutterApi. */
+    val codec: MessageCodec<Any?> by lazy {
+      LocalNotificationPigeonCodec()
+    }
+  }
+  /** Delivers the payload of a tapped notification. */
+  fun onNotificationTap(payloadArg: Map<String, String>, callback: (Result<Unit>) -> Unit)
+{
+    val separatedMessageChannelSuffix = if (messageChannelSuffix.isNotEmpty()) ".$messageChannelSuffix" else ""
+    val channelName = "dev.flutter.pigeon.flutter_lab.LocalNotificationFlutterApi.onNotificationTap$separatedMessageChannelSuffix"
+    val channel = BasicMessageChannel<Any?>(binaryMessenger, channelName, codec)
+    channel.send(listOf(payloadArg)) {
+      if (it is List<*>) {
+        if (it.size > 1) {
+          callback(Result.failure(FlutterError(it[0] as String, it[1] as String, it[2] as String?)))
+        } else {
+          callback(Result.success(Unit))
+        }
+      } else {
+        callback(Result.failure(LocalNotificationPigeonUtils.createConnectionError(channelName)))
+      } 
     }
   }
 }

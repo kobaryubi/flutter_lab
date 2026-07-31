@@ -15,6 +15,20 @@ PlatformException _createConnectionError(String channelName) {
   );
 }
 
+List<Object?> wrapResponse({
+  Object? result,
+  PlatformException? error,
+  bool empty = false,
+}) {
+  if (empty) {
+    return <Object?>[];
+  }
+  if (error == null) {
+    return <Object?>[result];
+  }
+  return <Object?>[error.code, error.message, error.details];
+}
+
 class _PigeonCodec extends StandardMessageCodec {
   const _PigeonCodec();
   @override
@@ -116,6 +130,63 @@ class LocalNotificationHostApi {
     } else {
       return (pigeonVar_replyList[0] as Map<Object?, Object?>?)
           ?.cast<String, String>();
+    }
+  }
+}
+
+/// Pigeon Flutter API for local notification events (native → Dart).
+///
+/// Implemented on the Dart side and called from MainActivity when the
+/// user taps a notification while the app process is alive (foreground
+/// or background), which arrives as onNewIntent instead of a fresh
+/// launch.
+abstract class LocalNotificationFlutterApi {
+  static const MessageCodec<Object?> pigeonChannelCodec = _PigeonCodec();
+
+  /// Delivers the payload of a tapped notification.
+  void onNotificationTap(Map<String, String> payload);
+
+  static void setUp(
+    LocalNotificationFlutterApi? api, {
+    BinaryMessenger? binaryMessenger,
+    String messageChannelSuffix = '',
+  }) {
+    messageChannelSuffix = messageChannelSuffix.isNotEmpty
+        ? '.$messageChannelSuffix'
+        : '';
+    {
+      final pigeonVar_channel = BasicMessageChannel<Object?>(
+        'dev.flutter.pigeon.flutter_lab.LocalNotificationFlutterApi.onNotificationTap$messageChannelSuffix',
+        pigeonChannelCodec,
+        binaryMessenger: binaryMessenger,
+      );
+      if (api == null) {
+        pigeonVar_channel.setMessageHandler(null);
+      } else {
+        pigeonVar_channel.setMessageHandler((Object? message) async {
+          assert(
+            message != null,
+            'Argument for dev.flutter.pigeon.flutter_lab.LocalNotificationFlutterApi.onNotificationTap was null.',
+          );
+          final List<Object?> args = (message as List<Object?>?)!;
+          final Map<String, String>? arg_payload =
+              (args[0] as Map<Object?, Object?>?)?.cast<String, String>();
+          assert(
+            arg_payload != null,
+            'Argument for dev.flutter.pigeon.flutter_lab.LocalNotificationFlutterApi.onNotificationTap was null, expected non-null Map<String, String>.',
+          );
+          try {
+            api.onNotificationTap(arg_payload!);
+            return wrapResponse(empty: true);
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          } catch (e) {
+            return wrapResponse(
+              error: PlatformException(code: 'error', message: e.toString()),
+            );
+          }
+        });
+      }
     }
   }
 }

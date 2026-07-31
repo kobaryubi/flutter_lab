@@ -35,3 +35,15 @@ abstract class LocalNotificationHostApi {
   /// way (launcher, deep link, ...).
   Map<String, String>? getInitialPayload();
 }
+
+/// Pigeon Flutter API for local notification events (native → Dart).
+///
+/// Implemented on the Dart side and called from MainActivity when the
+/// user taps a notification while the app process is alive (foreground
+/// or background), which arrives as onNewIntent instead of a fresh
+/// launch.
+@FlutterApi()
+abstract class LocalNotificationFlutterApi {
+  /// Delivers the payload of a tapped notification.
+  void onNotificationTap(Map<String, String> payload);
+}
