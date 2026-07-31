@@ -25,6 +25,12 @@ abstract class LocalNotificationGateway {
   /// isolate callback and are not surfaced here.
   Future<LocalNotificationData?> getInitialLocalNotificationData();
 
+  /// Emits the data of each notification tapped while the app process is
+  /// alive (foreground or background). Terminated-state launches are not
+  /// emitted here; they are resolved once via
+  /// [getInitialLocalNotificationData].
+  Stream<LocalNotificationData> get onNotificationTap;
+
   /// Deletes the Android notification channel registered under [channelId].
   ///
   /// Use this to clean up legacy channels left on user devices after a
