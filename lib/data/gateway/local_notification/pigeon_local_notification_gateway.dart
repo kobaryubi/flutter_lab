@@ -1,9 +1,27 @@
+import 'dart:async';
+
 import 'package:flutter_lab/application/logger/logger_gateway.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_data.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_gateway.dart';
 import 'package:flutter_lab/domain/local_notification/local_notification_message.dart';
 import 'package:flutter_lab/gen/pigeon/local_notification.g.dart';
 import 'package:result_dart/result_dart.dart';
+
+/// Receives native → Dart Pigeon calls for notification taps and forwards
+/// each payload to the [onTap] handler.
+///
+/// Kept as a separate class (instead of the gateway implementing the
+/// Pigeon API directly) because the gateway's `onNotificationTap` stream
+/// getter and the Pigeon method share the same name.
+class _LocalNotificationFlutterApiImpl extends LocalNotificationFlutterApi {
+  _LocalNotificationFlutterApiImpl({required this.onTap});
+
+  /// Invoked with the payload of each tapped notification.
+  final void Function(Map<String, String> payload) onTap;
+
+  @override
+  void onNotificationTap(Map<String, String> payload) => onTap(payload);
+}
 
 /// Implementation of [LocalNotificationGateway] backed by the Pigeon
 /// [LocalNotificationHostApi] with a hand-written Android native side.
@@ -13,13 +31,31 @@ import 'package:result_dart/result_dart.dart';
 /// here — unlike the flutter_local_notifications implementation, which had
 /// to create channels from Dart.
 class PigeonLocalNotificationGateway implements LocalNotificationGateway {
-  /// Creates the gateway. The [logger] surfaces host API exceptions; the
-  /// gateway itself never throws to its callers.
+  /// Creates the gateway and registers the native → Dart tap receiver.
+  /// The [logger] surfaces host API exceptions; the gateway itself never
+  /// throws to its callers.
   PigeonLocalNotificationGateway({required LoggerGateway logger})
-    : _logger = logger;
+    : _logger = logger {
+    LocalNotificationFlutterApi.setUp(
+      _LocalNotificationFlutterApiImpl(onTap: _handleNotificationTap),
+    );
+  }
 
   final LocalNotificationHostApi _hostApi = LocalNotificationHostApi();
   final LoggerGateway _logger;
+
+  /// Broadcast so multiple listeners (and re-subscribes across ViewModel
+  /// rebuilds) are allowed; taps emitted with no listener are dropped.
+  final StreamController<LocalNotificationData> _tapController =
+      StreamController.broadcast();
+
+  /// Forwards a tapped notification payload into [onNotificationTap].
+  void _handleNotificationTap(Map<String, String> payload) {
+    _tapController.add(LocalNotificationData(data: payload));
+  }
+
+  @override
+  Stream<LocalNotificationData> get onNotificationTap => _tapController.stream;
 
   @override
   AsyncResult<Unit> initialize() async => const Success(unit);
@@ -61,13 +97,11 @@ class PigeonLocalNotificationGateway implements LocalNotificationGateway {
     }
   }
 
+  // The native side owns the single foreground channel and there are no
+  // legacy channels to clean up in this implementation, so this is a
+  // no-op kept only to satisfy the gateway interface.
   @override
   AsyncResult<Unit> deleteNotificationChannel({
     required String channelId,
-  }) async {
-    // The native side owns the single foreground channel and there are no
-    // legacy channels to clean up in this implementation, so this is a
-    // no-op kept only to satisfy the gateway interface.
-    return const Success(unit);
-  }
+  }) async => const Success(unit);
 }
