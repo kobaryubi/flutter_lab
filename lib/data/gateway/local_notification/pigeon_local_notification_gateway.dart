@@ -48,10 +48,17 @@ class PigeonLocalNotificationGateway implements LocalNotificationGateway {
 
   @override
   Future<LocalNotificationData?> getInitialLocalNotificationData() async {
-    // Terminated-state tap launches are not surfaced yet; the payload is
-    // already attached to the launch intent on the native side, and a
-    // host API method to read it will be added in a later step.
-    return null;
+    try {
+      // Null means the launch intent carried no notification payload —
+      // the app was opened from the launcher, a deep link, etc.
+      final payload = await _hostApi.getInitialPayload();
+
+      return payload == null ? null : LocalNotificationData(data: payload);
+    } on Exception catch (exception, stackTrace) {
+      _logger.handle(exception: exception, stackTrace: stackTrace);
+
+      return null;
+    }
   }
 
   @override
