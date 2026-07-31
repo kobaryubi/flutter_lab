@@ -2,6 +2,7 @@ package com.masahikokobayashi.flutterlab
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
@@ -14,8 +15,10 @@ import com.masahikokobayashi.flutterlab.pigeon.FlutterError
 import com.masahikokobayashi.flutterlab.pigeon.GreetingApi
 import com.masahikokobayashi.flutterlab.pigeon.MessageData
 import com.masahikokobayashi.flutterlab.pigeon.MessageFlutterApi
+import com.masahikokobayashi.flutterlab.pigeon.LocalNotificationFlutterApi
 import com.masahikokobayashi.flutterlab.pigeon.LocalNotificationHostApi
 import com.masahikokobayashi.flutterlab.infrastructure.notification.LocalNotificationHostApiImpl
+import com.masahikokobayashi.flutterlab.infrastructure.notification.readLocalNotificationPayload
 import com.masahikokobayashi.flutterlab.infrastructure.platform.ErrorCodes
 import com.masahikokobayashi.flutterlab.infrastructure.platform.EventChannelNames
 import com.masahikokobayashi.flutterlab.infrastructure.platform.MethodChannelNames
@@ -75,6 +78,7 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
     private var eventSink: EventChannel.EventSink? = null
     private var locationManager: LocationManager? = null
     private var pigeonFlutterApi: PigeonFlutterApi? = null
+    private var localNotificationFlutterApi: LocalNotificationFlutterApi? = null
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -99,6 +103,11 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
             flutterEngine.dartExecutor.binaryMessenger,
             localNotificationHostApi
         )
+
+        // Client for calling the Dart-side LocalNotificationFlutterApi
+        // implementation (notification taps while the process is alive).
+        localNotificationFlutterApi =
+            LocalNotificationFlutterApi(flutterEngine.dartExecutor.binaryMessenger)
 
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
 
@@ -134,6 +143,26 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
 
         EventChannel(flutterEngine.dartExecutor.binaryMessenger, EventChannelNames.LOCATION_UPDATES)
             .setStreamHandler(this)
+    }
+
+    /// Called instead of a fresh launch when this singleTop activity is
+    /// already running and receives a new Intent — e.g. the user taps a
+    /// notification while the app is in the foreground or background.
+    override fun onNewIntent(intent: Intent) {
+        // Let FlutterActivity forward the intent to the engine first
+        // (deep links and plugins rely on this).
+        super.onNewIntent(intent)
+
+        // Keep the activity's `intent` property pointing at the latest
+        // Intent so later readers observe what actually arrived.
+        setIntent(intent)
+
+        val payload = readLocalNotificationPayload(intent) ?: return
+
+        // Fire-and-forget: the Dart handler returns nothing, and there is
+        // no meaningful recovery here if it fails, so the result callback
+        // is intentionally empty.
+        localNotificationFlutterApi?.onNotificationTap(payload) { }
     }
 
     /// Retrieves the device's current battery level as a percentage.
