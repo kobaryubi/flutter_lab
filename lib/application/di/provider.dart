@@ -18,7 +18,7 @@ import 'package:flutter_lab/data/gateway/connectivity_plus_network_gateway.dart'
 import 'package:flutter_lab/data/gateway/device_info/device_info_plus_device_info_gateway.dart';
 import 'package:flutter_lab/data/gateway/file_system_shortcut_icon_gateway.dart';
 import 'package:flutter_lab/data/gateway/google_api/plugin_google_api_gateway.dart';
-import 'package:flutter_lab/data/gateway/local_notification/flutter_local_notifications_local_notification_gateway.dart';
+import 'package:flutter_lab/data/gateway/local_notification/pigeon_local_notification_gateway.dart';
 import 'package:flutter_lab/data/gateway/logger/talker_logger_gateway.dart';
 import 'package:flutter_lab/data/gateway/memory_storage/map_memory_storage_gateway.dart';
 import 'package:flutter_lab/data/gateway/native_button/platform_native_button_gateway.dart';
@@ -322,7 +322,7 @@ AppBadgeGateway appBadgeGateway(Ref ref) => AppBadgePlusAppBadgeGateway();
 // local notification
 @Riverpod(keepAlive: true)
 LocalNotificationGateway localNotificationGateway(Ref ref) =>
-    FlutterLocalNotificationsLocalNotificationGateway(
+    PigeonLocalNotificationGateway(
       logger: ref.read(loggerGatewayProvider),
     );
 
