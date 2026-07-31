@@ -24,6 +24,17 @@ class PushNotificationViewModel extends _$PushNotificationViewModel {
 
     ref.onDispose(foregroundSubscription.cancel);
 
+    final tapSubscription = ref
+        .read(watchLocalNotificationTapUseCaseProvider)
+        .call()
+        .listen((data) {
+          state = state.copyWith(
+            tappedNotifications: [...state.tappedNotifications, data],
+          );
+        });
+
+    ref.onDispose(tapSubscription.cancel);
+
     return const PushNotificationUiState();
   }
 
