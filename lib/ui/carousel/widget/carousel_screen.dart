@@ -39,11 +39,32 @@ class _Body extends HookConsumerWidget {
       return null;
     }, []);
 
+    final usesPrefetchedImages = useState(false);
+
+    /// Switches between per-build fetching and prefetched-bytes rendering,
+    /// resetting the counter so each mode is measured from a clean baseline.
+    void handleModeToggle() {
+      usesPrefetchedImages.value = !usesPrefetchedImages.value;
+      viewModel.resetRequestCount();
+
+      if (usesPrefetchedImages.value) {
+        viewModel.prefetchImages();
+      }
+    }
+
+    final modeLabel = usesPrefetchedImages.value
+        ? 'prefetched bytes'
+        : 'fetch per slide build';
+
     return Column(
       crossAxisAlignment: .stretch,
       spacing: 8,
       children: [
         Text('Image HTTP requests: ${uiState.imageRequestCount}'),
+        GestureDetector(
+          onTap: handleModeToggle,
+          child: Text('Mode: $modeLabel (tap to switch)'),
+        ),
         Expanded(child: _ImageSection(uiState: uiState)),
       ],
     );
