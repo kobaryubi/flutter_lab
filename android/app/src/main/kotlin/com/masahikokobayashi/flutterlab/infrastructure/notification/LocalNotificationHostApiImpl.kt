@@ -18,6 +18,22 @@ import com.masahikokobayashi.flutterlab.pigeon.LocalNotificationHostApi
 /// on the launch intent, and MainActivity can read it back in one call.
 const val EXTRA_LOCAL_NOTIFICATION_PAYLOAD = "local_notification_payload"
 
+/// Reads back the payload HashMap stored on [intent] by
+/// [LocalNotificationHostApiImpl.show], or null when the intent did not
+/// come from a notification tap (launcher, deep link, ...).
+///
+/// Shared by getInitialPayload (terminated-state launch) and
+/// MainActivity.onNewIntent (tap while the process is alive). The
+/// single-argument getSerializableExtra is deprecated since API 33 in
+/// favor of a typed overload, but that overload is unavailable below 33
+/// (minSdk 29), so the deprecated call is suppressed instead of branching
+/// on the OS version.
+fun readLocalNotificationPayload(intent: Intent): Map<String, String>? {
+    @Suppress("DEPRECATION", "UNCHECKED_CAST")
+    return intent.getSerializableExtra(EXTRA_LOCAL_NOTIFICATION_PAYLOAD)
+        as? HashMap<String, String>
+}
+
 /// Channel for FCM messages received while the app is in the foreground.
 ///
 /// Since Android 8.0, every notification must belong to a "channel" — a
@@ -111,17 +127,6 @@ class LocalNotificationHostApiImpl(
     override fun getInitialPayload(): Map<String, String>? {
         val intent = currentIntent() ?: return null
 
-        // Read back the HashMap stored by show(). getSerializableExtra
-        // returns null when the extra is absent — i.e. the app was opened
-        // from the launcher or a deep link, not a notification tap.
-        // The single-argument overload is deprecated since API 33 in favor
-        // of a typed one, but the typed overload is unavailable below 33
-        // (minSdk 29), so the deprecated call is suppressed instead of
-        // branching on the OS version.
-        @Suppress("DEPRECATION", "UNCHECKED_CAST")
-        val payload =
-            intent.getSerializableExtra(EXTRA_LOCAL_NOTIFICATION_PAYLOAD) as? HashMap<String, String>
-
-        return payload
+        return readLocalNotificationPayload(intent)
     }
 }
