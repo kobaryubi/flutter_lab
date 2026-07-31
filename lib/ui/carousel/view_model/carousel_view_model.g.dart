@@ -56,7 +56,7 @@ final class CarouselViewModelProvider
   }
 }
 
-String _$carouselViewModelHash() => r'56a53cb1933075118a8fac54fa14e0e0d24d9cf9';
+String _$carouselViewModelHash() => r'cfbbb64cd7bf9ff1344e822b5864d38373e4249d';
 
 /// ViewModel for the carousel lab screen.
 ///

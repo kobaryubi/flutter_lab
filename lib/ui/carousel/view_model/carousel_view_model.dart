@@ -13,6 +13,17 @@ class CarouselViewModel extends _$CarouselViewModel {
   @override
   CarouselUiState build() => const CarouselUiState();
 
+  /// Fetches the image URL list, transitioning `loading -> data`.
+  ///
+  /// The view calls this once when the screen comes to the front.
+  Future<void> fetchImageUrls() async {
+    state = state.copyWith(imageUrls: const AsyncLoading<List<Uri>>());
+
+    final imageUrls = await AsyncValue.guard(_listImageUrls);
+
+    state = state.copyWith(imageUrls: imageUrls);
+  }
+
   /// Builds the image URL list, simulating an image-list API call.
   Future<List<Uri>> _listImageUrls() async {
     // Dummy delay so the `loading` state is visible before `data`.
