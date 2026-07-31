@@ -48,13 +48,19 @@ class PigeonLocalNotificationGateway implements LocalNotificationGateway {
 
   @override
   Future<LocalNotificationData?> getInitialLocalNotificationData() async {
-    throw UnimplementedError();
+    // Terminated-state tap launches are not surfaced yet; the payload is
+    // already attached to the launch intent on the native side, and a
+    // host API method to read it will be added in a later step.
+    return null;
   }
 
   @override
   AsyncResult<Unit> deleteNotificationChannel({
     required String channelId,
   }) async {
-    throw UnimplementedError();
+    // The native side owns the single foreground channel and there are no
+    // legacy channels to clean up in this implementation, so this is a
+    // no-op kept only to satisfy the gateway interface.
+    return const Success(unit);
   }
 }
