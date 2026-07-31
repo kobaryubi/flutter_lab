@@ -62,6 +62,12 @@ interface LocalNotificationHostApi {
    * to Dart when the user taps the notification.
    */
   fun show(title: String, body: String, payload: Map<String, String>)
+  /**
+   * Returns the payload of the notification tap that launched the app
+   * from a terminated state, or `null` if the app was opened any other
+   * way (launcher, deep link, ...).
+   */
+  fun getInitialPayload(): Map<String, String>?
 
   companion object {
     /** The codec used by LocalNotificationHostApi. */
@@ -83,6 +89,21 @@ interface LocalNotificationHostApi {
             val wrapped: List<Any?> = try {
               api.show(titleArg, bodyArg, payloadArg)
               listOf(null)
+            } catch (exception: Throwable) {
+              LocalNotificationPigeonUtils.wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_lab.LocalNotificationHostApi.getInitialPayload$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { _, reply ->
+            val wrapped: List<Any?> = try {
+              listOf(api.getInitialPayload())
             } catch (exception: Throwable) {
               LocalNotificationPigeonUtils.wrapError(exception)
             }

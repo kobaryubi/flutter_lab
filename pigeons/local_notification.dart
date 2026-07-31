@@ -29,4 +29,9 @@ abstract class LocalNotificationHostApi {
     required String body,
     required Map<String, String> payload,
   });
+
+  /// Returns the payload of the notification tap that launched the app
+  /// from a terminated state, or `null` if the app was opened any other
+  /// way (launcher, deep link, ...).
+  Map<String, String>? getInitialPayload();
 }
