@@ -16,6 +16,7 @@ import 'package:flutter_lab/ui/async_state_race/widget/async_state_race_screen.d
 import 'package:flutter_lab/ui/auto_mappr_demo/widget/auto_mappr_demo_screen.dart';
 import 'package:flutter_lab/ui/brightness/widget/brightness_screen.dart';
 import 'package:flutter_lab/ui/camera/widget/camera_screen.dart';
+import 'package:flutter_lab/ui/carousel/widget/carousel_screen.dart';
 import 'package:flutter_lab/ui/clock/widget/clock_screen.dart';
 import 'package:flutter_lab/ui/counter/widget/counter_screen.dart';
 import 'package:flutter_lab/ui/crashlytics/widget/crashlytics_screen.dart';
@@ -113,6 +114,7 @@ part 'async_state_race_route.dart';
 part 'auto_mappr_demo_route.dart';
 part 'brightness_route.dart';
 part 'camera_route.dart';
+part 'carousel_route.dart';
 part 'clock_route.dart';
 part 'counter_route.dart';
 part 'crashlytics_route.dart';
