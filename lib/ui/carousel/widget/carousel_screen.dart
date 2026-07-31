@@ -137,3 +137,32 @@ class _PerBuildFetchSlide extends HookConsumerWidget {
     return Image.memory(imageBytes);
   }
 }
+
+/// Slide that renders bytes already held in the UI state, so advancing the
+/// carousel never touches the network even though a fresh element is mounted.
+class _PrefetchedSlide extends StatelessWidget {
+  const _PrefetchedSlide({required this.uiState, required this.url});
+
+  final CarouselUiState uiState;
+  final Uri url;
+
+  @override
+  Widget build(BuildContext context) {
+    final prefetchedImages = uiState.prefetchedImages;
+
+    if (prefetchedImages case AsyncData(:final value)) {
+      final imageBytes = value[url];
+
+      return imageBytes == null
+          ? const Text('No prefetched image')
+          : Image.memory(imageBytes);
+    }
+
+    if (prefetchedImages case AsyncError(:final error)) {
+      return Text('Error: $error');
+    }
+
+    // The remaining states are `null` (not started yet) and loading.
+    return const Text('Prefetching...');
+  }
+}
