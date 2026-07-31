@@ -20,5 +20,13 @@ import 'package:pigeon/pigeon.dart';
 abstract class LocalNotificationHostApi {
   /// Shows a notification in the system tray with the given [title]
   /// and [body].
-  void show({required String title, required String body});
+  ///
+  /// [payload] is an opaque key/value bag (typically the FCM data
+  /// payload) attached to the tap intent so it can be delivered back
+  /// to Dart when the user taps the notification.
+  void show({
+    required String title,
+    required String body,
+    required Map<String, String> payload,
+  });
 }
