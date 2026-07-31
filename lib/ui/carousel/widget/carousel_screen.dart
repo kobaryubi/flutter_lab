@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/ui/carousel/ui_state/carousel_ui_state.dart';
 import 'package:flutter_lab/ui/carousel/view_model/carousel_view_model.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
@@ -42,7 +43,30 @@ class _Body extends HookConsumerWidget {
       spacing: 8,
       children: [
         Text('Image HTTP requests: ${uiState.imageRequestCount}'),
+        Expanded(child: _ImageSection(uiState: uiState)),
       ],
     );
+  }
+}
+
+class _ImageSection extends StatelessWidget {
+  const _ImageSection({required this.uiState});
+
+  final CarouselUiState uiState;
+
+  @override
+  Widget build(BuildContext context) {
+    final imageUrls = uiState.imageUrls;
+
+    if (imageUrls case AsyncData(:final value)) {
+      return Text('Fetched ${value.length} image URLs');
+    }
+
+    if (imageUrls case AsyncError(:final error)) {
+      return Text('Error: $error');
+    }
+
+    // The remaining states are `null` (before the first fetch) and loading.
+    return const Text('Loading...');
   }
 }
