@@ -67,7 +67,9 @@ class _ImageSection extends StatelessWidget {
       return CarouselSlider.builder(
         itemCount: value.length,
         itemBuilder: buildSlide,
-        options: CarouselOptions(),
+        // `enableInfiniteScroll` is already true by default, matching the
+        // problem scenario (infinite loop + autoplay).
+        options: CarouselOptions(autoPlay: true),
       );
     }
 
@@ -78,4 +80,16 @@ class _ImageSection extends StatelessWidget {
     // The remaining states are `null` (before the first fetch) and loading.
     return const Text('Loading...');
   }
+}
+
+/// Slide that downloads its image inside its own build, reproducing the
+/// refetch-per-slide problem: infinite scroll mounts a fresh element on every
+/// slide change, so this widget's download runs again each time.
+class _PerBuildFetchSlide extends HookConsumerWidget {
+  const _PerBuildFetchSlide({required this.url});
+
+  final Uri url;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) => Text('$url');
 }
