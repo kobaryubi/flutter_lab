@@ -49,6 +49,28 @@ class CarouselViewModel extends _$CarouselViewModel {
     return response.bodyBytes;
   }
 
+  /// Downloads all images once and keeps their bytes in the UI state.
+  ///
+  /// Slides rendering from [CarouselUiState.prefetchedImages] never touch the
+  /// network on a slide change, which is the fix being verified.
+  Future<void> prefetchImages() async {
+    final imageUrls = state.imageUrls;
+
+    if (imageUrls case AsyncData(:final value)) {
+      state = state.copyWith(
+        prefetchedImages: const AsyncLoading<Map<Uri, Uint8List>>(),
+      );
+
+      final prefetchedImages = await AsyncValue.guard(
+        () async => {
+          for (final url in value) url: await downloadImage(url: url),
+        },
+      );
+
+      state = state.copyWith(prefetchedImages: prefetchedImages);
+    }
+  }
+
   /// Builds the image URL list, simulating an image-list API call.
   Future<List<Uri>> _listImageUrls() async {
     // Dummy delay so the `loading` state is visible before `data`.
