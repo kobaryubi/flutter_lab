@@ -65,25 +65,41 @@ class _Body extends HookConsumerWidget {
           onTap: handleModeToggle,
           child: Text('Mode: $modeLabel (tap to switch)'),
         ),
-        Expanded(child: _ImageSection(uiState: uiState)),
+        Expanded(
+          child: _ImageSection(
+            uiState: uiState,
+            usesPrefetchedImages: usesPrefetchedImages.value,
+          ),
+        ),
       ],
     );
   }
 }
 
 class _ImageSection extends StatelessWidget {
-  const _ImageSection({required this.uiState});
+  const _ImageSection({
+    required this.uiState,
+    required this.usesPrefetchedImages,
+  });
 
   final CarouselUiState uiState;
+
+  /// Whether slides render prefetched bytes instead of fetching per build.
+  final bool usesPrefetchedImages;
 
   @override
   Widget build(BuildContext context) {
     final imageUrls = uiState.imageUrls;
 
     if (imageUrls case AsyncData(:final value)) {
-      /// Builds one slide that fetches its image on every build.
-      Widget buildSlide(BuildContext context, int index, int realIndex) =>
-          _PerBuildFetchSlide(url: value[index]);
+      /// Builds one slide for the current fetching mode.
+      Widget buildSlide(BuildContext context, int index, int realIndex) {
+        final url = value[index];
+
+        return usesPrefetchedImages
+            ? _PrefetchedSlide(uiState: uiState, url: url)
+            : _PerBuildFetchSlide(url: url);
+      }
 
       return CarouselSlider.builder(
         itemCount: value.length,
