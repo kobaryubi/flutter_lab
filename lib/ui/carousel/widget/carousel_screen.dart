@@ -83,6 +83,7 @@ class _Body extends HookConsumerWidget {
           child: _ImageSection(
             uiState: uiState,
             usesPrefetchedImages: usesPrefetchedImages.value,
+            enablesInfiniteScroll: enablesInfiniteScroll.value,
           ),
         ),
       ],
@@ -94,12 +95,16 @@ class _ImageSection extends StatelessWidget {
   const _ImageSection({
     required this.uiState,
     required this.usesPrefetchedImages,
+    required this.enablesInfiniteScroll,
   });
 
   final CarouselUiState uiState;
 
   /// Whether slides render prefetched bytes instead of fetching per build.
   final bool usesPrefetchedImages;
+
+  /// Whether the carousel loops infinitely, matching the problem scenario.
+  final bool enablesInfiniteScroll;
 
   @override
   Widget build(BuildContext context) {
@@ -118,9 +123,10 @@ class _ImageSection extends StatelessWidget {
       return CarouselSlider.builder(
         itemCount: value.length,
         itemBuilder: buildSlide,
-        // `enableInfiniteScroll` is already true by default, matching the
-        // problem scenario (infinite loop + autoplay).
-        options: CarouselOptions(autoPlay: true),
+        options: CarouselOptions(
+          autoPlay: true,
+          enableInfiniteScroll: enablesInfiniteScroll,
+        ),
       );
     }
 
