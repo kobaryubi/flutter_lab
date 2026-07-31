@@ -109,6 +109,12 @@ class _Body extends ConsumerWidget {
         else
           for (final message in uiState.foregroundMessages)
             Text(_formatMessage(message)),
+        const Text('--- Tapped Notifications ---'),
+        if (uiState.tappedNotifications.isEmpty)
+          const Text('none')
+        else
+          for (final notification in uiState.tappedNotifications)
+            Text('data=${notification.data}'),
       ],
     );
   }
