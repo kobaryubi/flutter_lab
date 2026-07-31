@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/carousel/ui_state/carousel_ui_state.dart';
@@ -59,7 +60,15 @@ class _ImageSection extends StatelessWidget {
     final imageUrls = uiState.imageUrls;
 
     if (imageUrls case AsyncData(:final value)) {
-      return Text('Fetched ${value.length} image URLs');
+      /// Builds one slide, showing only its index for now.
+      Widget buildSlide(BuildContext context, int index, int realIndex) =>
+          Text('Slide $index');
+
+      return CarouselSlider.builder(
+        itemCount: value.length,
+        itemBuilder: buildSlide,
+        options: CarouselOptions(),
+      );
     }
 
     if (imageUrls case AsyncError(:final error)) {
