@@ -71,6 +71,14 @@ class CarouselViewModel extends _$CarouselViewModel {
     }
   }
 
+  /// Resets the image request counter to zero.
+  ///
+  /// Called when the view switches modes so each mode's request count can be
+  /// compared from a clean baseline.
+  void resetRequestCount() {
+    state = state.copyWith(imageRequestCount: 0);
+  }
+
   /// Builds the image URL list, simulating an image-list API call.
   Future<List<Uri>> _listImageUrls() async {
     // Dummy delay so the `loading` state is visible before `data`.
