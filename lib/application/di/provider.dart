@@ -102,6 +102,7 @@ import 'package:flutter_lab/domain/use_cases/in_app_review/request_review_use_ca
 import 'package:flutter_lab/domain/use_cases/information/get_detail_url_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/local_notification/delete_local_notification_channel_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/local_notification/initialize_local_notification_use_case.dart';
+import 'package:flutter_lab/domain/use_cases/local_notification/watch_local_notification_tap_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/get_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/location/watch_location_use_case.dart';
 import 'package:flutter_lab/domain/use_cases/native_button/watch_native_button_tap_use_case.dart';
@@ -339,6 +340,12 @@ DeleteLocalNotificationChannelUseCase deleteLocalNotificationChannelUseCase(
 ) => DeleteLocalNotificationChannelUseCase(
   localNotificationGateway: ref.read(localNotificationGatewayProvider),
 );
+
+@riverpod
+WatchLocalNotificationTapUseCase watchLocalNotificationTapUseCase(Ref ref) =>
+    WatchLocalNotificationTapUseCase(
+      localNotificationGateway: ref.read(localNotificationGatewayProvider),
+    );
 
 // memory storage
 @Riverpod(keepAlive: true)

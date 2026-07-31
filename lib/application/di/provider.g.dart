@@ -1281,6 +1281,57 @@ final class DeleteLocalNotificationChannelUseCaseProvider
 String _$deleteLocalNotificationChannelUseCaseHash() =>
     r'd3343bee3fe5c25d3221499d06cde5d49d0cbe1c';
 
+@ProviderFor(watchLocalNotificationTapUseCase)
+const watchLocalNotificationTapUseCaseProvider =
+    WatchLocalNotificationTapUseCaseProvider._();
+
+final class WatchLocalNotificationTapUseCaseProvider
+    extends
+        $FunctionalProvider<
+          WatchLocalNotificationTapUseCase,
+          WatchLocalNotificationTapUseCase,
+          WatchLocalNotificationTapUseCase
+        >
+    with $Provider<WatchLocalNotificationTapUseCase> {
+  const WatchLocalNotificationTapUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'watchLocalNotificationTapUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$watchLocalNotificationTapUseCaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<WatchLocalNotificationTapUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  WatchLocalNotificationTapUseCase create(Ref ref) {
+    return watchLocalNotificationTapUseCase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WatchLocalNotificationTapUseCase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WatchLocalNotificationTapUseCase>(
+        value,
+      ),
+    );
+  }
+}
+
+String _$watchLocalNotificationTapUseCaseHash() =>
+    r'c779af072babefc4bc2920ea420f729c03c9d3a8';
+
 @ProviderFor(memoryStorageGateway)
 const memoryStorageGatewayProvider = MemoryStorageGatewayProvider._();
 
