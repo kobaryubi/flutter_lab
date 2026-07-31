@@ -2,10 +2,17 @@
 // the imports are scoped to just those symbols as a deliberate exception to
 // the widgets-only import rule.
 import 'package:flutter/cupertino.dart'
-    show cupertinoTextSelectionHandleControls;
+    show
+        CupertinoTheme,
+        CupertinoThemeData,
+        cupertinoTextSelectionHandleControls;
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:flutter/material.dart'
-    show AdaptiveTextSelectionToolbar, materialTextSelectionHandleControls;
+    show
+        AdaptiveTextSelectionToolbar,
+        TextSelectionTheme,
+        TextSelectionThemeData,
+        materialTextSelectionHandleControls;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/application/di/provider.dart';
@@ -242,45 +249,67 @@ class _Body extends HookConsumerWidget {
               style: const TextStyle(fontSize: 16, color: Color(0xFF000000)),
             ),
           ),
-          // The pointer half of the disabled wiring: blocks every pointer
-          // event at hit-test level — including paths no flag guards, such
-          // as drag-scrolling the text (material: IgnorePointer(ignoring:
-          // !_isEnabled)).
-          IgnorePointer(
-            ignoring: disabled.value,
-            // buildGestureDetector wraps the child in a
-            // TextSelectionGestureDetector that recognizes tap / double-tap /
-            // long-press / drag and translates them into platform-appropriate
-            // selection behavior.
-            child: gestureDetectorBuilder.buildGestureDetector(
-              behavior: HitTestBehavior.translucent,
-              child: EditableText(
-                key: selectionDelegate.editableTextKey,
-                controller: controller,
-                focusNode: focusNode,
-                // A disabled field must also be read-only so the IME editing
-                // channel is closed — mirrors material's TextField
-                // (readOnly: widget.readOnly || !_isEnabled).
-                readOnly: readOnly.value || disabled.value,
-                // All three below are required: without a material Theme
-                // nothing supplies a default text style or cursor colors.
-                style: const TextStyle(fontSize: 16, color: Color(0xFF000000)),
-                cursorColor: const Color(0xFF000000),
-                // Only used by iOS's floating cursor (force-press / spacebar
-                // drag).
-                backgroundCursorColor: const Color(0xFF808080),
-                // Without a material Theme there is no default selection
-                // color; leaving this null keeps the highlight invisible.
-                selectionColor: const Color(0x6633B5E5),
-                selectionControls: selectionControls,
-                showSelectionHandles: showSelectionHandles.value,
-                onSelectionChanged: handleSelectionChanged,
-                contextMenuBuilder: buildContextMenu,
-                // Disable RenderEditable's built-in tap/long-press recognizers
-                // so the surrounding TextSelectionGestureDetector is the only
-                // gesture handler — otherwise both would process the same
-                // pointer events. The same setup material's TextField uses.
-                rendererIgnoresPointer: true,
+          // Handle color comes from neither selectionColor nor cursorColor:
+          // the handle painters look up CupertinoTheme (iOS) /
+          // TextSelectionTheme (Android). SelectionOverlay.showHandles()
+          // captures these InheritedThemes from the field's context into the
+          // app Overlay, so wrapping here reaches the handles. Loud green on
+          // purpose, to make it obvious where these colors show up.
+          CupertinoTheme(
+            data: const CupertinoThemeData(
+              selectionHandleColor: Color(0xFF00FF00),
+            ),
+            child: TextSelectionTheme(
+              data: const TextSelectionThemeData(
+                selectionHandleColor: Color(0xFF00FF00),
+              ),
+              // The pointer half of the disabled wiring: blocks every pointer
+              // event at hit-test level — including paths no flag guards,
+              // such as drag-scrolling the text (material:
+              // IgnorePointer(ignoring: !_isEnabled)).
+              child: IgnorePointer(
+                ignoring: disabled.value,
+                // buildGestureDetector wraps the child in a
+                // TextSelectionGestureDetector that recognizes tap /
+                // double-tap / long-press / drag and translates them into
+                // platform-appropriate selection behavior.
+                child: gestureDetectorBuilder.buildGestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  child: EditableText(
+                    key: selectionDelegate.editableTextKey,
+                    controller: controller,
+                    focusNode: focusNode,
+                    // A disabled field must also be read-only so the IME
+                    // editing channel is closed — mirrors material's
+                    // TextField (readOnly: widget.readOnly || !_isEnabled).
+                    readOnly: readOnly.value || disabled.value,
+                    // All three below are required: without a material Theme
+                    // nothing supplies a default text style or cursor colors.
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF000000),
+                    ),
+                    cursorColor: const Color(0xFF000000),
+                    // Only used by iOS's floating cursor (force-press /
+                    // spacebar drag).
+                    backgroundCursorColor: const Color(0xFF808080),
+                    // Without a material Theme there is no default selection
+                    // color; leaving this null keeps the highlight invisible.
+                    // Loud red on purpose, to make it obvious where this
+                    // color shows up.
+                    selectionColor: const Color(0x66FF0000),
+                    selectionControls: selectionControls,
+                    showSelectionHandles: showSelectionHandles.value,
+                    onSelectionChanged: handleSelectionChanged,
+                    contextMenuBuilder: buildContextMenu,
+                    // Disable RenderEditable's built-in tap/long-press
+                    // recognizers so the surrounding
+                    // TextSelectionGestureDetector is the only gesture
+                    // handler — otherwise both would process the same pointer
+                    // events. The same setup material's TextField uses.
+                    rendererIgnoresPointer: true,
+                  ),
+                ),
               ),
             ),
           ),
