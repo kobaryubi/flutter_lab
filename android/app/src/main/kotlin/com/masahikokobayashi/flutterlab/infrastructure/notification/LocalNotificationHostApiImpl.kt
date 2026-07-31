@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import com.masahikokobayashi.flutterlab.R
 import com.masahikokobayashi.flutterlab.pigeon.LocalNotificationHostApi
 
@@ -30,8 +31,14 @@ private const val CHANNEL_ID = "foreground_push"
 private const val CHANNEL_NAME = "Foreground Push Notifications"
 
 /// Pigeon LocalNotificationHostApi implementation for Android.
+///
+/// [currentIntent] is a lambda (not an Intent value) because the Intent
+/// that launched the activity is only known to the activity itself and
+/// can change over its lifetime; the lambda lets this class read the
+/// latest one lazily without holding a reference to the activity.
 class LocalNotificationHostApiImpl(
-    private val context: Context
+    private val context: Context,
+    private val currentIntent: () -> Intent?
 ) : LocalNotificationHostApi {
 
     /// Creates the notification channel used by [show]. Creating a channel
@@ -99,5 +106,22 @@ class LocalNotificationHostApiImpl(
         // Hand the notification to the OS; from here on the tray owns it.
         context.getSystemService(NotificationManager::class.java)
             .notify(notificationId, notification)
+    }
+
+    override fun getInitialPayload(): Map<String, String>? {
+        val intent = currentIntent() ?: return null
+
+        // Read back the HashMap stored by show(). getSerializableExtra
+        // returns null when the extra is absent — i.e. the app was opened
+        // from the launcher or a deep link, not a notification tap.
+        // The single-argument overload is deprecated since API 33 in favor
+        // of a typed one, but the typed overload is unavailable below 33
+        // (minSdk 29), so the deprecated call is suppressed instead of
+        // branching on the OS version.
+        @Suppress("DEPRECATION", "UNCHECKED_CAST")
+        val payload =
+            intent.getSerializableExtra(EXTRA_LOCAL_NOTIFICATION_PAYLOAD) as? HashMap<String, String>
+
+        return payload
     }
 }

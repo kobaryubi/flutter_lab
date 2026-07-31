@@ -90,8 +90,10 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler, LocationList
 
         // Register Pigeon LocalNotificationHostApi. The channel is created
         // up front so it exists before the first show() call; applicationContext
-        // is used because notifications outlive this activity.
-        val localNotificationHostApi = LocalNotificationHostApiImpl(applicationContext)
+        // is used because notifications outlive this activity. The trailing
+        // lambda hands the activity's current Intent to getInitialPayload
+        // without leaking the activity itself.
+        val localNotificationHostApi = LocalNotificationHostApiImpl(applicationContext) { intent }
         localNotificationHostApi.createChannel()
         LocalNotificationHostApi.setUp(
             flutterEngine.dartExecutor.binaryMessenger,
