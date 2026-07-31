@@ -60,9 +60,9 @@ class _ImageSection extends StatelessWidget {
     final imageUrls = uiState.imageUrls;
 
     if (imageUrls case AsyncData(:final value)) {
-      /// Builds one slide, showing only its index for now.
+      /// Builds one slide that fetches its image on every build.
       Widget buildSlide(BuildContext context, int index, int realIndex) =>
-          Text('Slide $index');
+          _PerBuildFetchSlide(url: value[index]);
 
       return CarouselSlider.builder(
         itemCount: value.length,
@@ -91,5 +91,28 @@ class _PerBuildFetchSlide extends HookConsumerWidget {
   final Uri url;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) => Text('$url');
+  Widget build(BuildContext context, WidgetRef ref) {
+    final viewModel = ref.read(carouselViewModelProvider.notifier);
+
+    // `useMemoized` caches the future only for this element's lifetime, and
+    // infinite scroll mounts a fresh element per slide change — so a new
+    // download starts every time the carousel advances.
+    final imageBytesFuture = useMemoized(
+      () => viewModel.downloadImage(url: url),
+      [url],
+    );
+    final imageBytesSnapshot = useFuture(imageBytesFuture);
+
+    if (imageBytesSnapshot.hasError) {
+      return Text('Error: ${imageBytesSnapshot.error}');
+    }
+
+    final imageBytes = imageBytesSnapshot.data;
+
+    if (imageBytes == null) {
+      return const Text('Downloading...');
+    }
+
+    return Image.memory(imageBytes);
+  }
 }
