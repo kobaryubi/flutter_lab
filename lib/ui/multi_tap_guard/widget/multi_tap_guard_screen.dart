@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:flutter_lab/ui/multi_tap_guard/widget/single_touch_container.dart';
 
 /// Screen that demonstrates how to prevent double navigation when two
 /// navigation buttons are tapped simultaneously with multi-touch.
@@ -46,9 +47,15 @@ class _Body extends HookWidget {
       isNavigating.value = false;
     }
 
+    /// Pushes NavigationScreenA without any lock. The enclosing
+    /// SingleTouchContainer alone is what blocks a simultaneous second tap.
+    Future<void> handleUnguardedNavigateToA() =>
+        NavigationScreenARoute().push<void>(context);
+
     return Column(
       spacing: 8,
       children: [
+        const Text('Navigation lock:'),
         GestureDetector(
           onTap: handleNavigateToA,
           child: const Text('Go to Screen A'),
@@ -56,6 +63,13 @@ class _Body extends HookWidget {
         GestureDetector(
           onTap: handleNavigateToB,
           child: const Text('Go to Screen B'),
+        ),
+        const Text('Single touch container:'),
+        SingleTouchContainer(
+          child: GestureDetector(
+            onTap: handleUnguardedNavigateToA,
+            child: const Text('Go to Screen A (unguarded)'),
+          ),
         ),
       ],
     );
