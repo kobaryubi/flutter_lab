@@ -116,6 +116,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'phone call', route: PhoneCallRoute()),
     AppLink(title: 'selectable region', route: SelectableRegionRoute()),
     AppLink(title: 'selection area', route: SelectionAreaRoute()),
+    AppLink(title: 'carousel', route: CarouselRoute()),
   ];
 
   @override
