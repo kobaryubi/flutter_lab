@@ -8,6 +8,7 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   static final _links = [
+    AppLink(title: 'multi tap guard', route: MultiTapGuardRoute()),
     AppLink(
       title: 'editable text selection',
       route: EditableTextSelectionRoute(),
