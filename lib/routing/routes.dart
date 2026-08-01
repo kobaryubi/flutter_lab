@@ -120,5 +120,7 @@ abstract final class Routes {
 
   static const carousel = '/carousel';
 
+  static const multiTapGuard = '/multi_tap_guard';
+
   static const debug = '/debug';
 }
