@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
@@ -15,20 +16,35 @@ class MultiTapGuardScreen extends StatelessWidget {
   );
 }
 
-class _Body extends StatelessWidget {
+class _Body extends HookWidget {
   const _Body();
 
   @override
   Widget build(BuildContext context) {
-    /// Pushes NavigationScreenA. Intentionally unguarded for now, so tapping
-    /// both buttons simultaneously reproduces double navigation.
-    Future<void> handleNavigateToA() =>
-        NavigationScreenARoute().push<void>(context);
+    // Shared navigation lock. Both handlers check it synchronously before
+    // pushing, so the second of two simultaneous taps is ignored. `useRef`
+    // keeps the value across rebuilds without triggering a rebuild.
+    final isNavigating = useRef(false);
 
-    /// Pushes NavigationScreenB. Intentionally unguarded for now, so tapping
-    /// both buttons simultaneously reproduces double navigation.
-    Future<void> handleNavigateToB() =>
-        NavigationScreenBRoute().push<void>(context);
+    /// Pushes NavigationScreenA unless another navigation is in progress,
+    /// then releases the lock when the pushed screen is popped.
+    Future<void> handleNavigateToA() async {
+      if (isNavigating.value) return;
+
+      isNavigating.value = true;
+      await NavigationScreenARoute().push<void>(context);
+      isNavigating.value = false;
+    }
+
+    /// Pushes NavigationScreenB unless another navigation is in progress,
+    /// then releases the lock when the pushed screen is popped.
+    Future<void> handleNavigateToB() async {
+      if (isNavigating.value) return;
+
+      isNavigating.value = true;
+      await NavigationScreenBRoute().push<void>(context);
+      isNavigating.value = false;
+    }
 
     return Column(
       spacing: 8,
