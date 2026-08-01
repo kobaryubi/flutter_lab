@@ -52,6 +52,11 @@ class _Body extends HookWidget {
     Future<void> handleUnguardedNavigateToA() =>
         NavigationScreenARoute().push<void>(context);
 
+    /// Pushes NavigationScreenB without any lock. The enclosing
+    /// SingleTouchContainer alone is what blocks a simultaneous second tap.
+    Future<void> handleUnguardedNavigateToB() =>
+        NavigationScreenBRoute().push<void>(context);
+
     return Column(
       spacing: 8,
       children: [
@@ -66,9 +71,18 @@ class _Body extends HookWidget {
         ),
         const Text('Single touch container:'),
         SingleTouchContainer(
-          child: GestureDetector(
-            onTap: handleUnguardedNavigateToA,
-            child: const Text('Go to Screen A (unguarded)'),
+          child: Column(
+            spacing: 8,
+            children: [
+              GestureDetector(
+                onTap: handleUnguardedNavigateToA,
+                child: const Text('Go to Screen A (unguarded)'),
+              ),
+              GestureDetector(
+                onTap: handleUnguardedNavigateToB,
+                child: const Text('Go to Screen B (unguarded)'),
+              ),
+            ],
           ),
         ),
       ],
