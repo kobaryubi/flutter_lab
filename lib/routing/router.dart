@@ -49,6 +49,7 @@ import 'package:flutter_lab/ui/logged_in_home/widget/logged_in_home_tab1_screen.
 import 'package:flutter_lab/ui/logged_in_home/widget/logged_in_home_tab2_screen.dart';
 import 'package:flutter_lab/ui/markup_sample/widget/markup_sample_screen.dart';
 import 'package:flutter_lab/ui/method_channel/widget/method_channel_screen.dart';
+import 'package:flutter_lab/ui/multi_tap_guard/widget/multi_tap_guard_screen.dart';
 import 'package:flutter_lab/ui/navigation/widget/navigation_screen_a.dart';
 import 'package:flutter_lab/ui/navigation/widget/navigation_screen_b.dart';
 import 'package:flutter_lab/ui/navigation/widget/navigation_screen_c.dart';
@@ -144,6 +145,7 @@ part 'local_paths_route.dart';
 part 'logged_in_home_route.dart';
 part 'markup_sample_route.dart';
 part 'method_channel_route.dart';
+part 'multi_tap_guard_route.dart';
 part 'navigation_screen_a_route.dart';
 part 'navigation_screen_b_route.dart';
 part 'navigation_screen_c_route.dart';

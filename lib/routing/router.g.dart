@@ -47,6 +47,7 @@ List<RouteBase> get $appRoutes => [
   $loggedInHomeRoute,
   $markupSampleRoute,
   $methodChannelRoute,
+  $multiTapGuardRoute,
   $navigationScreenARoute,
   $navigationScreenBRoute,
   $navigationScreenCRoute,
@@ -1268,6 +1269,33 @@ mixin $MethodChannelRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/method_channel');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $multiTapGuardRoute => GoRouteData.$route(
+  path: '/multi_tap_guard',
+  name: 'multi_tap_guard',
+  factory: $MultiTapGuardRoute._fromState,
+);
+
+mixin $MultiTapGuardRoute on GoRouteData {
+  static MultiTapGuardRoute _fromState(GoRouterState state) =>
+      MultiTapGuardRoute();
+
+  @override
+  String get location => GoRouteData.$location('/multi_tap_guard');
 
   @override
   void go(BuildContext context) => context.go(location);
