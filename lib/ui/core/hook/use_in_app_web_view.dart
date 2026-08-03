@@ -27,6 +27,7 @@ class InAppWebViewState {
     required this.onLoadStop,
     required this.onReceivedError,
     required this.onReceivedHttpError,
+    this.loadUrl,
   });
 
   /// The WebView controller, or `null` until the WebView is created.
@@ -65,6 +66,13 @@ class InAppWebViewState {
     WebResourceResponse errorResponse,
   )
   onReceivedHttpError;
+
+  /// Loads a URL programmatically while keeping [status] as loading.
+  ///
+  /// Marks [status] as loading synchronously before delegating to the
+  /// controller, so there is no gap between a programmatic load request and
+  /// the `onLoadStart` event. `null` until the WebView is created.
+  final Future<void> Function({required WebUri url})? loadUrl;
 }
 
 /// Hook that manages an [InAppWebView]'s controller, load status, and user
@@ -158,6 +166,23 @@ InAppWebViewState useInAppWebView({
     status.value = .error;
   }
 
+  /// Loads [url] while keeping the status as loading.
+  ///
+  /// Marks the status as loading synchronously before delegating to the
+  /// controller, so the loading state has no gap between this call and the
+  /// `onLoadStart` event.
+  Future<void> loadUrl({required WebUri url}) async {
+    final webViewController = controller.value;
+
+    if (webViewController == null) {
+      return;
+    }
+
+    status.value = .loading;
+
+    await webViewController.loadUrl(urlRequest: URLRequest(url: url));
+  }
+
   return InAppWebViewState(
     controller: controller.value,
     status: status.value,
@@ -167,5 +192,6 @@ InAppWebViewState useInAppWebView({
     onLoadStop: handleLoadStop,
     onReceivedError: onReceivedError,
     onReceivedHttpError: onReceivedHttpError,
+    loadUrl: controller.value == null ? null : loadUrl,
   );
 }
