@@ -90,4 +90,21 @@ platform :android do
       aab: "../build/app/outputs/bundle/productionRelease/app-production-release.aab",
     )
   end
+
+  desc "Build the production AAB for a MANUAL upload on the Play Console"
+  lane :build_play_manual do |options|
+    # For the first-ever release Play Console requires a manual AAB upload
+    # (drag & drop in the Play Console UI), so this lane only builds — no
+    # service-account auth, no API call.
+    #
+    # The versionCode cannot be fetched from Play here (e.g. the app has no
+    # uploads yet), so pass it explicitly when needed:
+    #   bundle exec fastlane android build_play_manual build_number:2
+    # When omitted, the `+N` build number from pubspec.yaml's `version:` is used.
+    build_number_flag = options[:build_number] ? " --build-number=#{options[:build_number]}" : ""
+
+    sh("cd ../.. && fvm flutter build appbundle --flavor production#{build_number_flag}")
+
+    UI.success("AAB ready for manual upload: build/app/outputs/bundle/productionRelease/app-production-release.aab")
+  end
 end
