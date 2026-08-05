@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  Export options for `flutter build ipa` (production, App Store / TestFlight).
+
+	  Same rationale as ExportOptions-adhoc.plist: passing an explicit plist
+	  forces manual signing with the exact profiles below instead of letting
+	  Xcode auto-resolve. The only differences from the ad-hoc variant are the
+	  `method` (app-store-connect) and the App Store distribution profiles.
+	-->
+	<key>method</key>
+	<string>app-store-connect</string>
+	<key>signingStyle</key>
+	<string>manual</string>
+	<key>teamID</key>
+	<string>TENQMTMR26</string>
+	<key>signingCertificate</key>
+	<string>Apple Distribution</string>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>com.masahikokobayashi.flutterlab</key>
+		<string>Flutter Lab AppStore Production</string>
+		<key>com.masahikokobayashi.flutterlab.default.NotificationService</key>
+		<string>Flutter Lab NotificationService AppStore Production</string>
+	</dict>
+</dict>
+</plist>
