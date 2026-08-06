@@ -91,7 +91,6 @@ List<RouteBase> get $appRoutes => [
   $tutorialRoute,
   $urlNavigationRoute,
   $visibilityDetectorRoute,
-  $webViewErrorResetRoute,
   $webViewJavascriptRoute,
   $webViewRemoteUrlRoute,
   $webViewRoute,
@@ -2499,33 +2498,6 @@ mixin $VisibilityDetectorRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/visibility_detector');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $webViewErrorResetRoute => GoRouteData.$route(
-  path: '/web_view_error_reset',
-  name: 'web_view_error_reset',
-  factory: $WebViewErrorResetRoute._fromState,
-);
-
-mixin $WebViewErrorResetRoute on GoRouteData {
-  static WebViewErrorResetRoute _fromState(GoRouterState state) =>
-      WebViewErrorResetRoute();
-
-  @override
-  String get location => GoRouteData.$location('/web_view_error_reset');
 
   @override
   void go(BuildContext context) => context.go(location);
