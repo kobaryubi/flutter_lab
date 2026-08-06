@@ -26,6 +26,12 @@ class RoutingScreen extends StatelessWidget {
             RoutingCupertinoFullscreenDialogRoute().push<void>(context);
           },
         ),
+        Button(
+          label: 'custom transition',
+          onTap: () {
+            RoutingCustomTransitionRoute().push<void>(context);
+          },
+        ),
       ],
     ),
   );
