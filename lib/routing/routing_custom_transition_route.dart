@@ -13,14 +13,19 @@ class RoutingCustomTransitionRoute extends GoRouteData
     GoRouterState state,
   ) => CustomTransitionPage(
     key: state.pageKey,
-    transitionsBuilder: buildSlideUpTransition,
+    opaque: false,
+    transitionDuration: Duration.zero,
+    transitionsBuilder: buildSlideTransition,
     child: const RoutingCustomTransitionScreen(),
   );
 }
 
-/// Slides the page up from the bottom on push; the reversed animation on pop
-/// slides it back down.
-Widget buildSlideUpTransition(
+/// Slides the page vertically along the route animation.
+///
+/// The forward duration is zero, so this is only visible on pop, where the
+/// reversed animation slides the page down. The slide-up on open is driven
+/// inside the screen after the initial fetch completes.
+Widget buildSlideTransition(
   BuildContext context,
   Animation<double> animation,
   Animation<double> secondaryAnimation,
