@@ -72,6 +72,7 @@ abstract final class Routes {
   static const routingCupertino = '/routing/cupertino';
   static const routingCupertinoFullscreenDialog =
       '/routing/cupertino/fullscreen_dialog';
+  static const routingCustomTransition = '/routing/custom_transition';
 
   static const petCache = '/pet_cache';
   static const animatedSwitcher = '/animated_switcher';
