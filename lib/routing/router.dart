@@ -77,6 +77,7 @@ import 'package:flutter_lab/ui/route_aware_demo/widget/route_aware_demo_screen.d
 import 'package:flutter_lab/ui/routing/widget/routing_screen.dart';
 import 'package:flutter_lab/ui/routing_cupertino/widget/routing_cupertino_screen.dart';
 import 'package:flutter_lab/ui/routing_cupertino_fullscreen_dialog/widget/routing_cupertino_fullscreen_dialog_screen.dart';
+import 'package:flutter_lab/ui/routing_custom_transition/widget/routing_custom_transition_screen.dart';
 import 'package:flutter_lab/ui/s3_etag_cache/widget/s3_etag_cache_screen.dart';
 import 'package:flutter_lab/ui/screenshot_prevention/widget/screenshot_prevention_screen.dart';
 import 'package:flutter_lab/ui/scroll_to_section/widget/scroll_to_section_screen.dart';
@@ -172,6 +173,7 @@ part 'route_aware_demo_route.dart';
 part 'router.g.dart';
 part 'routing_cupertino_fullscreen_dialog_route.dart';
 part 'routing_cupertino_route.dart';
+part 'routing_custom_transition_route.dart';
 part 'routing_route.dart';
 part 's3_etag_cache_route.dart';
 part 'screenshot_prevention_route.dart';

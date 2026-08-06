@@ -72,6 +72,7 @@ List<RouteBase> get $appRoutes => [
   $routeAwareDemoDetailRoute,
   $routingCupertinoFullscreenDialogRoute,
   $routingCupertinoRoute,
+  $routingCustomTransitionRoute,
   $routingRoute,
   $s3EtagCacheRoute,
   $screenshotPreventionRoute,
@@ -1947,6 +1948,33 @@ mixin $RoutingCupertinoRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/routing/cupertino');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $routingCustomTransitionRoute => GoRouteData.$route(
+  path: '/routing/custom_transition',
+  name: 'routing_custom_transition',
+  factory: $RoutingCustomTransitionRoute._fromState,
+);
+
+mixin $RoutingCustomTransitionRoute on GoRouteData {
+  static RoutingCustomTransitionRoute _fromState(GoRouterState state) =>
+      RoutingCustomTransitionRoute();
+
+  @override
+  String get location => GoRouteData.$location('/routing/custom_transition');
 
   @override
   void go(BuildContext context) => context.go(location);
