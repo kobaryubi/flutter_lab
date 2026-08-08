@@ -25,3 +25,15 @@ integration_test/
   journey: `login_and_view_pet_list_test.dart`.
 - Support directories (robots, fakes, shared helpers) are added and
   designed when the first file that needs them is placed.
+
+## 3. Journey Selection
+
+Select journeys by risk × frequency, not by screen coverage:
+
+1. **Critical path** — the flow that defines the app; breakage is a blocker.
+2. **Irreversible actions** — submissions, deletions, purchases.
+3. **Cross-cutting wiring** — app startup, deep links, session restore.
+4. **One representative error journey** — e.g. network failure shows retry UI.
+
+Anything catchable by a unit or widget test (validation details, edge-case
+branching, styling) stays out of E2E.
