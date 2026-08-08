@@ -37,3 +37,13 @@ Select journeys by risk × frequency, not by screen coverage:
 
 Anything catchable by a unit or widget test (validation details, edge-case
 branching, styling) stays out of E2E.
+
+## 4. Running Tests
+
+```bash
+fvm flutter test integration_test --flavor local -d <device_id>
+```
+
+- Always run against the `local` flavor; never point E2E at `production`.
+- Requires a running emulator/simulator or a connected device
+  (list with `fvm flutter devices`).
