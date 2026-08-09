@@ -1,6 +1,12 @@
+import 'package:flutter/widgets.dart';
+import 'package:flutter_test/flutter_test.dart';
+
 import 'page_object.dart';
 
 /// Page object for the home screen, which lists links to feature screens.
 class HomePageObject extends PageObject {
-  const HomePageObject({required super.tester});
+  HomePageObject({required super.tester});
+
+  /// Link that navigates to the E2E counter screen.
+  final Finder e2eCounterLink = find.byKey(const Key('home_e2e_counter_link'));
 }
