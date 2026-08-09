@@ -65,3 +65,6 @@ Each screen a journey touches gets one page object in
   as one unit) — unlike Playwright's auto-waiting `click`, a bare
   `tester.tap` never repaints, so pairing them here prevents the
   classic forgotten-await flake.
+- Finder fields locate widgets by `Key`, named
+  `<feature>_<widget>_<role>` (e.g. `e2e_counter_increment_button`) —
+  refactor-safe and independent of user-visible text.
