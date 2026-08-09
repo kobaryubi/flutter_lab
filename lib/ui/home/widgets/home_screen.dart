@@ -58,6 +58,7 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'device info', route: DeviceInfoRoute()),
     AppLink(title: 'clock', route: ClockRoute()),
     AppLink(title: 'counter', route: CounterRoute()),
+    AppLink(title: 'e2e counter', route: E2eCounterRoute()),
     AppLink(title: 'async state race', route: AsyncStateRaceRoute()),
     AppLink(title: 'ETag cache', route: EtagCacheRoute()),
     AppLink(title: 'revalidating image', route: RevalidatingImageRoute()),
