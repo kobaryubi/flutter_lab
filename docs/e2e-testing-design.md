@@ -58,3 +58,6 @@ Each screen a journey touches gets one page object in
 - Following [Playwright's POM guidance](https://playwright.dev/docs/pom),
   finders are fields on the page object — every selector is captured in
   exactly one place.
+- Page objects expose actions only; assertions stay in the test body
+  (`expect` against a finder field, e.g.
+  `expect(counterPageObject.countText, findsOneWidget)`).
