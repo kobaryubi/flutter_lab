@@ -21,9 +21,24 @@ class _Body extends HookWidget {
   Widget build(BuildContext context) {
     final count = useState(0);
 
-    return Text(
-      '${count.value}',
-      key: const Key('e2e_counter_count_text'),
+    /// Increments the displayed count by one.
+    void handleIncrement() {
+      count.value++;
+    }
+
+    return Column(
+      spacing: 8,
+      children: [
+        Text(
+          '${count.value}',
+          key: const Key('e2e_counter_count_text'),
+        ),
+        GestureDetector(
+          key: const Key('e2e_counter_increment_button'),
+          onTap: handleIncrement,
+          child: const Text('+'),
+        ),
+      ],
     );
   }
 }
