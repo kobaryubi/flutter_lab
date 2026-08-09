@@ -18,5 +18,12 @@ class _Body extends HookWidget {
   const _Body();
 
   @override
-  Widget build(BuildContext context) => const SizedBox.shrink();
+  Widget build(BuildContext context) {
+    final count = useState(0);
+
+    return Text(
+      '${count.value}',
+      key: const Key('e2e_counter_count_text'),
+    );
+  }
 }
