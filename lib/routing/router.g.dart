@@ -26,6 +26,7 @@ List<RouteBase> get $appRoutes => [
   $deviceInfoRoute,
   $dialogStateRoute,
   $dioCacheRoute,
+  $e2eCounterRoute,
   $editableTextSelectionRoute,
   $effectVsListenRoute,
   $errorHandlingRoute,
@@ -583,6 +584,32 @@ mixin $DioCacheRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/dio_cache');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $e2eCounterRoute => GoRouteData.$route(
+  path: '/e2e_counter',
+  name: 'e2eCounter',
+  factory: $E2eCounterRoute._fromState,
+);
+
+mixin $E2eCounterRoute on GoRouteData {
+  static E2eCounterRoute _fromState(GoRouterState state) => E2eCounterRoute();
+
+  @override
+  String get location => GoRouteData.$location('/e2e_counter');
 
   @override
   void go(BuildContext context) => context.go(location);
