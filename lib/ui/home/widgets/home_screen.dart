@@ -58,7 +58,11 @@ class HomeScreen extends StatelessWidget {
     AppLink(title: 'device info', route: DeviceInfoRoute()),
     AppLink(title: 'clock', route: ClockRoute()),
     AppLink(title: 'counter', route: CounterRoute()),
-    AppLink(title: 'e2e counter', route: E2eCounterRoute()),
+    AppLink(
+      title: 'e2e counter',
+      route: E2eCounterRoute(),
+      key: const Key('home_e2e_counter_link'),
+    ),
     AppLink(title: 'async state race', route: AsyncStateRaceRoute()),
     AppLink(title: 'ETag cache', route: EtagCacheRoute()),
     AppLink(title: 'revalidating image', route: RevalidatingImageRoute()),
@@ -144,6 +148,7 @@ class HomeScreen extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       final link = _links[index];
                       return LauncherRow(
+                        key: link.key,
                         title: link.title,
                         onTap: () {
                           link.route.push<void>(context);

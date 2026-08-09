@@ -4,9 +4,13 @@ import 'package:flutter_lab/ui/core/themes/dimens.dart';
 import 'package:go_router/go_router.dart';
 
 class AppLink {
-  const AppLink({required this.title, required this.route});
+  const AppLink({required this.title, required this.route, this.key});
   final String title;
   final GoRouteData route;
+
+  /// Optional key forwarded to the rendered [LauncherRow] so tests can
+  /// locate the link without depending on its visible text.
+  final Key? key;
 }
 
 class LauncherRow extends StatelessWidget {
