@@ -124,4 +124,6 @@ abstract final class Routes {
   static const multiTapGuard = '/multi_tap_guard';
 
   static const debug = '/debug';
+
+  static const e2eCounter = '/e2e_counter';
 }
