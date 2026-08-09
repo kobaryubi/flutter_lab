@@ -47,3 +47,14 @@ fvm flutter test integration_test --flavor local -d <device_id>
 - Always run against the `local` flavor; never point E2E at `production`.
 - Requires a running emulator/simulator or a connected device
   (list with `fvm flutter devices`).
+
+## 5. Page Object Model
+
+Each screen a journey touches gets one page object in
+`integration_test/page_objects/<feature>_page_object.dart`:
+
+- Class name: `<Screen name>PageObject`, extending a shared `PageObject`
+  base class that holds the `WidgetTester`.
+- Following [Playwright's POM guidance](https://playwright.dev/docs/pom),
+  finders are fields on the page object — every selector is captured in
+  exactly one place.
