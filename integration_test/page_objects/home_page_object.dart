@@ -9,4 +9,12 @@ class HomePageObject extends PageObject {
 
   /// Link that navigates to the E2E counter screen.
   final Finder e2eCounterLink = find.byKey(const Key('home_e2e_counter_link'));
+
+  /// Scrolls to the E2E counter link, taps it, and waits for the
+  /// resulting navigation to settle.
+  Future<void> openE2eCounter() async {
+    await tester.scrollUntilVisible(e2eCounterLink, 100);
+    await tester.tap(e2eCounterLink);
+    await tester.pumpAndSettle();
+  }
 }
