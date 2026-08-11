@@ -14,4 +14,10 @@ class E2eCounterPageObject extends PageObject {
   final Finder incrementButton = find.byKey(
     const Key('e2e_counter_increment_button'),
   );
+
+  /// Taps the increment button and waits for the count to be repainted.
+  Future<void> increment() async {
+    await tester.tap(incrementButton);
+    await tester.pumpAndSettle();
+  }
 }
