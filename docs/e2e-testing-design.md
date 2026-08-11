@@ -16,15 +16,21 @@ journeys become test targets.
 
 ```
 integration_test/
-└── e2e/
-    └── <feature>/
-        └── <journey_name>_test.dart   # One user journey per file
+├── e2e/
+│   └── <feature>/
+│       └── <journey_name>_test.dart   # One user journey per file
+└── fakes/
+    └── fake_<dependency>.dart         # One fake per replaced dependency
 ```
 
 - One file = one user journey (not one screen). Name files after the
   journey: `login_and_view_pet_list_test.dart`.
-- Support directories (robots, fakes, shared helpers) are added and
-  designed when the first file that needs them is placed.
+- `fakes/` holds no-op or in-memory implementations of domain interfaces,
+  injected via Riverpod provider `overrides` in the test's `ProviderScope`
+  so the app boots without real backends (e.g. `FakeAnalyticsGateway`
+  replaces the Firebase-backed gateway, avoiding `Firebase.initializeApp()`).
+- Support directories (robots, shared helpers) are added and designed
+  when the first file that needs them is placed.
 
 ## 3. Journey Selection
 
