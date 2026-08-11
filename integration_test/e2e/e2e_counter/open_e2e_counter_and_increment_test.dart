@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_lab/flavors.dart';
 import 'package:flutter_lab/flutter_lab_app.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,5 +24,10 @@ void main() {
 
     final e2eCounterPageObject = E2eCounterPageObject(tester: tester);
     expect(e2eCounterPageObject.countText, findsOne);
+
+    await e2eCounterPageObject.increment();
+
+    final countText = tester.widget<Text>(e2eCounterPageObject.countText);
+    expect(countText.data, '1');
   });
 }
