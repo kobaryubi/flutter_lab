@@ -19,8 +19,10 @@ integration_test/
 ├── e2e/
 │   └── <feature>/
 │       └── <journey_name>_test.dart   # One user journey per file
-└── fakes/
-    └── fake_<dependency>.dart         # One fake per replaced dependency
+├── fakes/
+│   └── fake_<dependency>.dart         # One fake per replaced dependency
+└── page_objects/
+    └── <feature>_page_object.dart     # One page object per screen (§5)
 ```
 
 - One file = one user journey (not one screen). Name files after the
