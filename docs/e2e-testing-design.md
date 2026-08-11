@@ -60,7 +60,7 @@ Each screen a journey touches gets one page object in
   exactly one place.
 - Page objects expose actions only; assertions stay in the test body
   (`expect` against a finder field, e.g.
-  `expect(counterPageObject.countText, findsOneWidget)`).
+  `expect(counterPageObject.countText, findsOne)`).
 - Action methods pump until the UI settles (`tap` + `pumpAndSettle`
   as one unit) — unlike Playwright's auto-waiting `click`, a bare
   `tester.tap` never repaints, so pairing them here prevents the
