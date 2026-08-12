@@ -13,6 +13,14 @@ class SwipeTabsScreen extends HookWidget {
   Widget build(BuildContext context) {
     final pageController = usePageController();
 
+    // Rebuild on every scroll notification so the indicator bar tracks the
+    // swipe position continuously, not only on completed page changes.
+    useListenable(pageController);
+
+    final currentPage = pageController.hasClients
+        ? pageController.page ?? 0.0
+        : 0.0;
+
     /// Animates the page view to the given tab index.
     void animateToTab({required int index}) {
       unawaited(
@@ -51,6 +59,18 @@ class SwipeTabsScreen extends HookWidget {
                 ),
               ),
             ],
+          ),
+          SizedBox(
+            height: 2,
+            child: Align(
+              // Maps the fractional page (0.0..1.0) to the alignment range
+              // (-1.0..1.0) so the bar slides in sync with the swipe.
+              alignment: Alignment(currentPage * 2 - 1, 0),
+              child: const FractionallySizedBox(
+                widthFactor: 0.5,
+                child: ColoredBox(color: Color(0xFF000000)),
+              ),
+            ),
           ),
           Expanded(
             child: PageView(
