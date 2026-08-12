@@ -2,4 +2,5 @@
 class ViewTypeNames {
   static const map = 'map';
   static const nativeButton = 'nativeButton';
+  static const addPassButton = 'addPassButton';
 }
