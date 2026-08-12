@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/data/platform/view_type_names.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
@@ -20,21 +19,14 @@ class AddPassButtonScreen extends StatelessWidget {
   );
 }
 
-class _Body extends HookWidget {
+class _Body extends StatelessWidget {
   const _Body();
 
   @override
   Widget build(BuildContext context) {
-    final isDialogOpen = useState(false);
-
     /// Opens a dialog over the native button.
-    ///
-    /// Hides the native button while the dialog is open so that the
-    /// platform view cannot bleed through the Flutter-rendered dialog.
-    Future<void> handleOpenDialog() async {
-      isDialogOpen.value = true;
-
-      await showGeneralDialog<void>(
+    void handleOpenDialog() {
+      showGeneralDialog<void>(
         context: context,
         pageBuilder:
             (
@@ -43,8 +35,6 @@ class _Body extends HookWidget {
               Animation<double> secondaryAnimation,
             ) => const _DialogContent(),
       );
-
-      isDialogOpen.value = false;
     }
 
     return Center(
@@ -52,7 +42,7 @@ class _Body extends HookWidget {
         mainAxisAlignment: .center,
         spacing: 16,
         children: [
-          _AddPassButtonView(isVisible: !isDialogOpen.value),
+          const _AddPassButtonView(),
           GestureDetector(
             onTap: handleOpenDialog,
             child: const Text('Open Dialog'),
@@ -67,11 +57,7 @@ class _Body extends HookWidget {
 ///
 /// iOS only: embeds a `PKAddPassButton` via [UiKitView].
 class _AddPassButtonView extends StatelessWidget {
-  const _AddPassButtonView({required this.isVisible});
-
-  /// Whether the native button is shown; when false a same-sized
-  /// placeholder keeps the layout stable.
-  final bool isVisible;
+  const _AddPassButtonView();
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +65,15 @@ class _AddPassButtonView extends StatelessWidget {
       return const Text('PKAddPassButton is available on iOS only');
     }
 
-    if (!isVisible) {
+    // ModalRoute.isCurrentOf registers a dependency on the enclosing
+    // route's status, so this widget rebuilds automatically whenever
+    // another route (a dialog included) is pushed above or popped.
+    // Hiding the platform view then prevents its border from bleeding
+    // through the Flutter-rendered dialog, with no coordination needed
+    // at any showDialog call site.
+    final isRouteCurrent = ModalRoute.isCurrentOf(context) ?? true;
+
+    if (!isRouteCurrent) {
       return const SizedBox(width: 240, height: 48);
     }
 
