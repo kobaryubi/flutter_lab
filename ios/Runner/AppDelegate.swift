@@ -89,6 +89,8 @@ private class PigeonFlutterApi {
   private static let mapViewId = "map"
   private static let nativeButtonPluginName = "NativeButtonPlugin"
   private static let nativeButtonId = "nativeButton"
+  private static let addPassButtonPluginName = "AddPassButtonPlugin"
+  private static let addPassButtonId = "addPassButton"
 
   // MARK: - Properties
 
@@ -148,6 +150,17 @@ private class PigeonFlutterApi {
     buttonRegistrar!.register(
       nativeButtonFactory,
       withId: Self.nativeButtonId
+    )
+
+    // Register add pass button platform view
+    let addPassButtonRegistrar = engineBridge.pluginRegistry.registrar(
+      forPlugin: Self.addPassButtonPluginName
+    )
+
+    let addPassButtonFactory = AddPassButtonFactory()
+    addPassButtonRegistrar!.register(
+      addPassButtonFactory,
+      withId: Self.addPassButtonId
     )
   }
 }
