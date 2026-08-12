@@ -128,4 +128,6 @@ abstract final class Routes {
   static const debug = '/debug';
 
   static const e2eCounter = '/e2e_counter';
+
+  static const swipeTabs = '/swipe_tabs';
 }

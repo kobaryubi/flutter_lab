@@ -87,6 +87,7 @@ List<RouteBase> get $appRoutes => [
   $shellDemoSubRoute,
   $stackFitRoute,
   $streamSubscriptionRoute,
+  $swipeTabsRoute,
   $talkerLogsRoute,
   $tarDownloadRoute,
   $textScaleRoute,
@@ -2394,6 +2395,32 @@ mixin $StreamSubscriptionRoute on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/stream_subscription');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $swipeTabsRoute => GoRouteData.$route(
+  path: '/swipe_tabs',
+  name: 'swipeTabs',
+  factory: $SwipeTabsRoute._fromState,
+);
+
+mixin $SwipeTabsRoute on GoRouteData {
+  static SwipeTabsRoute _fromState(GoRouterState state) => SwipeTabsRoute();
+
+  @override
+  String get location => GoRouteData.$location('/swipe_tabs');
 
   @override
   void go(BuildContext context) => context.go(location);
