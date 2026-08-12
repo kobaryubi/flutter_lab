@@ -62,6 +62,8 @@ abstract final class Routes {
 
   static const nestedButton = '/nested_button';
 
+  static const addPassButton = '/add_pass_button';
+
   static const markupSample = '/markup_sample';
 
   static const imageProcessing = '/image_processing';

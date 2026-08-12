@@ -7,6 +7,7 @@ part of 'router.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
+  $addPassButtonRoute,
   $adjustDeferredDeeplinkRoute,
   $analyticsRoute,
   $animatedSwitcherRoute,
@@ -98,6 +99,33 @@ List<RouteBase> get $appRoutes => [
   $webViewTabsRoute,
   $webviewCookieRoute,
 ];
+
+RouteBase get $addPassButtonRoute => GoRouteData.$route(
+  path: '/add_pass_button',
+  name: 'add_pass_button',
+  factory: $AddPassButtonRoute._fromState,
+);
+
+mixin $AddPassButtonRoute on GoRouteData {
+  static AddPassButtonRoute _fromState(GoRouterState state) =>
+      AddPassButtonRoute();
+
+  @override
+  String get location => GoRouteData.$location('/add_pass_button');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
 
 RouteBase get $adjustDeferredDeeplinkRoute => GoRouteData.$route(
   path: '/adjust_deferred_deeplink',
