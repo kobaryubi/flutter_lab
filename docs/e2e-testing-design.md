@@ -66,6 +66,9 @@ Each screen a journey touches gets one page object in
 - Following [Playwright's POM guidance](https://playwright.dev/docs/pom),
   finders are fields on the page object — every selector is captured in
   exactly one place.
+- Action methods are named after user intent (`openE2eCounter`,
+  `increment`), not widget mechanics (`tapLink`, `pressButton`) — tests
+  read as journeys, and renaming a widget never renames the action.
 - Page objects expose actions only; assertions stay in the test body
   (`expect` against a finder field, e.g.
   `expect(counterPageObject.countText, findsOne)`).
