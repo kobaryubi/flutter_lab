@@ -68,6 +68,9 @@ class SwipeTabsScreen extends HookWidget {
               alignment: Alignment(currentPage * 2 - 1, 0),
               child: const FractionallySizedBox(
                 widthFactor: 0.5,
+                // Without a height factor the child ColoredBox receives loose
+                // height constraints from Align and collapses to zero height.
+                heightFactor: 1,
                 child: ColoredBox(color: Color(0xFF000000)),
               ),
             ),
