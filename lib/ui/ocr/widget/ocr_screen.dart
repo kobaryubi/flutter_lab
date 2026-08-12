@@ -8,7 +8,6 @@ import 'package:flutter_lab/routing/router.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/ocr/view_model/ocr_view_model.dart';
-import 'package:flutter_lab/ui/ocr/widget/frame_overlay.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Screen that displays a camera preview with real-time OCR text recognition.
@@ -101,13 +100,7 @@ class _Body extends HookConsumerWidget {
         children: [
           Expanded(
             child: Center(
-              child: CameraPreview(
-                value,
-                child: const CustomPaint(
-                  painter: FrameOverlayPainter(),
-                  child: SizedBox.expand(),
-                ),
-              ),
+              child: CameraPreview(value),
             ),
           ),
           GestureDetector(
