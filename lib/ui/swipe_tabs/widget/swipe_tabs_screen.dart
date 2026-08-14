@@ -4,18 +4,34 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
+import 'package:flutter_lab/ui/swipe_tabs/view_model/swipe_tabs_view_model.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Titles of the tab pages, shared by the label row, the indicator sizing,
 /// and the page view contents.
 const _tabTitles = ['Tab 1', 'Tab 2'];
 
 /// Screen with tab pages that can be switched by horizontal swipe.
-class SwipeTabsScreen extends HookWidget {
+class SwipeTabsScreen extends HookConsumerWidget {
   const SwipeTabsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final pageController = usePageController();
+
+    useEffect(() {
+      // Riverpod forbids notifier mutation during build, so defer the
+      // initial fetch to a microtask.
+      unawaited(
+        Future.microtask(
+          () => ref
+              .read(swipeTabsViewModelProvider.notifier)
+              .fetchItems(tabIndex: 0),
+        ),
+      );
+
+      return null;
+    }, const []);
 
     return Layout(
       appBar: const AppBar(title: Text('Swipe Tabs')),
