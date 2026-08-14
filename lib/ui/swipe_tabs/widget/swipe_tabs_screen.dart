@@ -33,6 +33,37 @@ class SwipeTabsScreen extends HookConsumerWidget {
       return null;
     }, const []);
 
+    final lastFetchedIndex = useState(0);
+
+    /// Fetches the settled tab's items once the page scroll fully stops.
+    ///
+    /// [ScrollEndNotification] fires after the drag plus its ballistic
+    /// settling (and after [PageController.animateToPage]), so the fetch
+    /// never starts while the tab transition is still animating.
+    bool handleScrollEnd(ScrollEndNotification notification) {
+      // Ignore notifications bubbling up from scrollables inside the pages.
+      if (notification.depth != 0) {
+        return false;
+      }
+
+      final settledIndex = pageController.page!.round();
+
+      // A drag that springs back to the current page also ends here, so
+      // only fetch when the settled page actually changed.
+      if (settledIndex == lastFetchedIndex.value) {
+        return false;
+      }
+
+      lastFetchedIndex.value = settledIndex;
+      unawaited(
+        ref
+            .read(swipeTabsViewModelProvider.notifier)
+            .fetchItems(tabIndex: settledIndex),
+      );
+
+      return false;
+    }
+
     return Layout(
       appBar: const AppBar(title: Text('Swipe Tabs')),
       child: Column(
@@ -51,11 +82,14 @@ class SwipeTabsScreen extends HookConsumerWidget {
           ),
           _TabIndicator(pageController: pageController),
           Expanded(
-            child: PageView(
-              controller: pageController,
-              children: [
-                for (final title in _tabTitles) Center(child: Text(title)),
-              ],
+            child: NotificationListener<ScrollEndNotification>(
+              onNotification: handleScrollEnd,
+              child: PageView(
+                controller: pageController,
+                children: [
+                  for (final title in _tabTitles) Center(child: Text(title)),
+                ],
+              ),
             ),
           ),
         ],
