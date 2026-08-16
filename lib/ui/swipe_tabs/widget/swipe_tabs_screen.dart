@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_lab/presentation/core/hook/use_global_loading.dart';
 import 'package:flutter_lab/ui/core/ui/app_bar.dart';
 import 'package:flutter_lab/ui/core/ui/layout.dart';
 import 'package:flutter_lab/ui/swipe_tabs/view_model/swipe_tabs_view_model.dart';
@@ -18,6 +19,14 @@ class SwipeTabsScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pageController = usePageController();
+    final uiState = ref.watch(swipeTabsViewModelProvider);
+
+    /// Sync the screen-covering global loading overlay (tabs included)
+    /// with the tab item fetch state.
+    useGlobalLoading(
+      ref: ref,
+      isLoading: uiState.items is AsyncLoading,
+    );
 
     useEffect(() {
       // Riverpod forbids notifier mutation during build, so defer the
