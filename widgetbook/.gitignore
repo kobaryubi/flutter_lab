@@ -1,0 +1,13 @@
+# Only patterns not already covered by the repository root .gitignore.
+# Unanchored patterns there (.dart_tool/, .idea/, *.iml, .DS_Store, ...)
+# already apply to this directory.
+
+# Flutter/Dart/Pub related
+ios/Flutter/.last_build_id
+/build/
+/coverage/
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
