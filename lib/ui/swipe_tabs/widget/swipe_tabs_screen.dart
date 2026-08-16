@@ -96,7 +96,15 @@ class SwipeTabsScreen extends HookConsumerWidget {
               child: PageView(
                 controller: pageController,
                 children: [
-                  for (final title in _tabTitles) Center(child: Text(title)),
+                  for (final title in _tabTitles)
+                    if (uiState.items case AsyncData(:final value))
+                      ListView(
+                        children: [
+                          for (final item in value) Text(item),
+                        ],
+                      )
+                    else
+                      Center(child: Text(title)),
                 ],
               ),
             ),
