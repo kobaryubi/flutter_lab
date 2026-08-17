@@ -1,16 +1,25 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:widgetbook/widgetbook.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+
+import 'main.directories.g.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const WidgetbookApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+/// Root widget of the Widgetbook catalog app.
+///
+/// The [widgetbook.App] annotation makes widgetbook_generator emit
+/// `main.directories.g.dart` next to this file.
+@widgetbook.App()
+class WidgetbookApp extends StatelessWidget {
+  const WidgetbookApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
-    );
+    // The default constructor wraps use-case previews in a plain
+    // WidgetsApp, matching this project's no-Material policy.
+    return Widgetbook(directories: directories);
   }
 }
