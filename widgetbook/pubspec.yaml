@@ -19,7 +19,9 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
   widgetbook_generator: ^3.24.0
-  build_runner: ^2.15.1
+  # Pinned to the version used by the root package; 2.15 fails to compile
+  # its build script when dependencies use native build hooks.
+  build_runner: 2.11.1
 
 flutter:
   uses-material-design: true
