@@ -3,8 +3,9 @@
 Refs: [Quick Start](https://docs.widgetbook.io/quick-start),
 [Annotations](https://docs.widgetbook.io/use-cases/annotations)
 
-The official docs define no file layout for `widgetbook/lib/`; the catalog
-tree comes from `@UseCase` (`type`, `path`), not from file locations.
+The official docs define no file layout for `widgetbook/lib/`. By default
+the generator derives the catalog tree from each use-case file's path under
+`lib/`; the `path` parameter of `@UseCase` overrides it per use case.
 
 ## Policy: mirror the main app's `lib/`
 
