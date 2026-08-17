@@ -95,4 +95,45 @@ platform :ios do
       release_notes: "Internal test build via fastlane",
     )
   end
+
+  desc "Build and upload the production .ipa to TestFlight"
+  lane :beta_testflight do
+    # App Store Connect API Key — the non-interactive auth for BOTH actions
+    # below (no Apple ID login / 2FA prompt). Created in App Store Connect →
+    # Users and Access → Integrations → App Store Connect API. The .p8 private
+    # key can only be downloaded ONCE at creation time; keep it out of git.
+    # NOTE: dummy values — replace key_id / issuer_id / key_filepath with the
+    # real ones before running this lane.
+    api_key = app_store_connect_api_key(
+      key_id: "DUMMY12345",                              # 10-char Key ID
+      issuer_id: "00000000-0000-0000-0000-000000000000", # UUID shown above the key list
+      key_filepath: "fastlane/AuthKey_DUMMY12345.p8",    # relative to ios/
+    )
+
+    # Same +1 strategy as `beta_firebase`, but against TestFlight's OWN build
+    # number history (independent of Firebase App Distribution). The app
+    # (bundle id from the Appfile) must already exist in App Store Connect.
+    # `initial_build_number: 0` makes the first-ever upload build as 1.
+    next_build_number = latest_testflight_build_number(
+      api_key: api_key,
+      initial_build_number: 0,
+    ) + 1
+    UI.message("Next build number (CFBundleVersion): #{next_build_number}")
+
+    # TestFlight requires an App Store signed .ipa — the ad-hoc plist used by
+    # `build_ipa` / `beta_firebase` will NOT be accepted. This plist (to be
+    # created) mirrors ExportOptions-adhoc.plist with method `app-store` and
+    # App Store provisioning profiles for the app + NotificationService.
+    sh("cd ../.. && fvm flutter build ipa --flavor production --export-options-plist ios/ExportOptions-appstore.plist --build-number=#{next_build_number}")
+
+    upload_to_testflight(
+      api_key: api_key,
+      # `flutter build ipa` output, relative to the ios/ directory.
+      ipa: "../build/ios/ipa/Flutter Lab.ipa",
+      # Return as soon as the upload finishes instead of polling App Store
+      # Connect until processing completes (saves several minutes; the build
+      # shows up in the TestFlight tab once Apple finishes processing).
+      skip_waiting_for_build_processing: true,
+    )
+  end
 end
